@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2goclient patch and x2goruncommand patch
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goclient%20patch%20and%20x2goruncommand%20patch&In-Reply-To=%3C87fwkz8amt.fsf%40faui43f.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002721.html">
+   <LINK REL="Next"  HREF="002731.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2goclient patch and x2goruncommand patch</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goclient%20patch%20and%20x2goruncommand%20patch&In-Reply-To=%3C87fwkz8amt.fsf%40faui43f.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-Dev] x2goclient patch and x2goruncommand patch">siretart at tauware.de
+       </A><BR>
+    <I>Thu Aug 18 09:03:06 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002721.html">[X2go-Dev] x2goclient patch and x2goruncommand patch (was: Re: [X2go-User] [SOLVED] Re: Instructions for manual install from source tarballs on a less well-known distribution)
+</A></li>
+        <LI>Next message: <A HREF="002731.html">[X2go-Dev] x2goclient patch and x2goruncommand patch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2725">[ date ]</a>
+              <a href="thread.html#2725">[ thread ]</a>
+              <a href="subject.html#2725">[ subject ]</a>
+              <a href="author.html#2725">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Aug 18, 2011 at 08:16:02 (CEST), Mike Gabriel wrote:
+
+&gt;&gt;<i>
+</I>&gt;&gt;<i>  EXEC=`which $cmd`
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> actually I would remove 'which' altogether.  However, type is a bash
+</I>&gt;&gt;<i> built-in function if I'm not mistaken, so on distributions where bash
+</I>&gt;&gt;<i> is not the default shell, this may present problems...
+</I>&gt;<i>
+</I>&gt;<i> @Alex, Morty, Reinhard: any comments on this one???
+</I>
+Seems pretty pointless to me as well. Either $cmd can be resolved in the
+search path ($PATH environment variable), then `$cmd` would do the same,
+or if it is not, then the which or type call will fail as well.
+
+Cheers
+
+-- 
+Gruesse/greetings,
+Reinhard Tartler, KeyID 945348A4
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002721.html">[X2go-Dev] x2goclient patch and x2goruncommand patch (was: Re: [X2go-User] [SOLVED] Re: Instructions for manual install from source tarballs on a less well-known distribution)
+</A></li>
+	<LI>Next message: <A HREF="002731.html">[X2go-Dev] x2goclient patch and x2goruncommand patch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2725">[ date ]</a>
+              <a href="thread.html#2725">[ thread ]</a>
+              <a href="subject.html#2725">[ subject ]</a>
+              <a href="author.html#2725">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

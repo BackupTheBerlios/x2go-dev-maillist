@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goserver 3.0.99: cannot terminate session from command line
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goserver%203.0.99%3A%20cannot%20terminate%20session%20from%0A%20command%20line&In-Reply-To=%3C4D4C139C.6080902%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001700.html">
+   <LINK REL="Next"  HREF="001721.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goserver 3.0.99: cannot terminate session from command line</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goserver%203.0.99%3A%20cannot%20terminate%20session%20from%0A%20command%20line&In-Reply-To=%3C4D4C139C.6080902%40verizon.net%3E"
+       TITLE="[X2go-dev] x2goserver 3.0.99: cannot terminate session from command line">greno at verizon.net
+       </A><BR>
+    <I>Fri Feb  4 15:56:28 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001700.html">[X2go-dev] x2goserver 3.0.99: cannot terminate session from command line
+</A></li>
+        <LI>Next message: <A HREF="001721.html">[X2go-dev] Errors in DOMAIN\Username behaviour / followup to LDAP	problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1702">[ date ]</a>
+              <a href="thread.html#1702">[ thread ]</a>
+              <a href="subject.html#1702">[ subject ]</a>
+              <a href="author.html#1702">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 02/04/2011 01:48 AM, Oleksandr Shneyder wrote:
+&gt;<i> Am 04.02.2011 04:13, schrieb Gerry Reno:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> I upgraded the server to 3.0.99 and configured postgresql.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> But when I try to terminate a session from the command line I see these
+</I>&gt;&gt;<i> errors:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     # sudo /usr/bin/x2goterminate-session ubuntu-51-1296672519_stDGNOME_dp24
+</I>&gt;&gt;<i>     DBD::Pg::st execute failed: ERROR:  permission denied for relation
+</I>&gt;&gt;<i>     sessions_view at /usr/lib/x2go/x2godbwrapper.pm line 449.
+</I>&gt;&gt;<i>     Died at /usr/lib/x2go/x2godbwrapper.pm line 449.
+</I>&gt;&gt;<i>     DBD::Pg::st execute failed: ERROR:  permission denied for relation
+</I>&gt;&gt;<i>     sessions_view at /usr/lib/x2go/x2godbwrapper.pm line 348.
+</I>&gt;&gt;<i>     Died at /usr/lib/x2go/x2godbwrapper.pm line 348.
+</I>&gt;&gt;<i>     kill: usage: kill [-s sigspec | -n signum | -sigspec] pid | jobspec
+</I>&gt;&gt;<i>     ... or kill -l [sigspec]
+</I>&gt;&gt;<i>     DBD::Pg::st execute failed: ERROR:  permission denied for relation
+</I>&gt;&gt;<i>     sessions_view at /usr/lib/x2go/x2godbwrapper.pm line 476.
+</I>&gt;&gt;<i>     Died at /usr/lib/x2go/x2godbwrapper.pm line 476.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> What is wrong here?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     
+</I>&gt;<i> Hello Gary,
+</I>&gt;<i>
+</I>&gt;<i> The user can update/delete entries in pgsql only if they was inserted by
+</I>&gt;<i> himself. That mean, that you must execute &quot;x2goterminate-session&quot; as
+</I>&gt;<i> user, who have started this session. If you not this user, try to
+</I>&gt;<i> execute sudo su &lt;user&gt; -c &quot;x2goterminate-session
+</I>&gt;<i> ubuntu-51-1296672519_stDGNOME_dp24&quot;
+</I>&gt;<i>
+</I>&gt;<i> regards,
+</I>&gt;<i> alex
+</I>&gt;<i>   
+</I>&gt;<i>
+</I>
+Alex,
+    Thanks.  That appears to work.
+
+    # sudo su ubuntu -c &quot;x2goterminate-session
+    ubuntu-51-1296672519_stDGNOME_dp24&quot;
+    DISPLAY=51
+    #
+    # sudo  x2golistsessions_sql  $(hostname)
+    #
+
+
+
+Regards,
+Gerry
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001700.html">[X2go-dev] x2goserver 3.0.99: cannot terminate session from command line
+</A></li>
+	<LI>Next message: <A HREF="001721.html">[X2go-dev] Errors in DOMAIN\Username behaviour / followup to LDAP	problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1702">[ date ]</a>
+              <a href="thread.html#1702">[ thread ]</a>
+              <a href="subject.html#1702">[ subject ]</a>
+              <a href="author.html#1702">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

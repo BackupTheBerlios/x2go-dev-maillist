@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#172: x2gobroker-authservice creates logfiles that	x2gobroker-daemon can not access
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23172%3A%20x2gobroker-authservice%20creates%20logfiles%20that%0A%09x2gobroker-daemon%20can%20not%20access&In-Reply-To=%3CCAFJm-UPyT2eX42txYRtHVHr6uKjjvcWDAH%3DmRfr9Wi5bNXJ%3Dog%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005452.html">
+   <LINK REL="Next"  HREF="005460.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#172: x2gobroker-authservice creates logfiles that	x2gobroker-daemon can not access</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23172%3A%20x2gobroker-authservice%20creates%20logfiles%20that%0A%09x2gobroker-daemon%20can%20not%20access&In-Reply-To=%3CCAFJm-UPyT2eX42txYRtHVHr6uKjjvcWDAH%3DmRfr9Wi5bNXJ%3Dog%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#172: x2gobroker-authservice creates logfiles that	x2gobroker-daemon can not access">abo at dsl.dk
+       </A><BR>
+    <I>Wed Apr 17 15:03:38 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005452.html">[X2Go-Dev] Processed: Re: Bug#170: x2gobroker-authservice needs python-x2gobroker
+</A></li>
+        <LI>Next message: <A HREF="005460.html">[X2Go-Dev] Bug#172: Bug#172: x2gobroker-authservice creates	logfiles that x2gobroker-daemon can not access
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5440">[ date ]</a>
+              <a href="thread.html#5440">[ thread ]</a>
+              <a href="subject.html#5440">[ subject ]</a>
+              <a href="author.html#5440">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2gobroker-authservice
+Version: 0.0.1.0-0~334~precise1
+
+When x2gobroker-authservice starts, it creates four files in
+/var/log/x2gobroker: access.log, authservice.log, broker.log and error.log
+(if they do not already exist). Because x2gobroker-authservice is running
+as root, these files will be owned by root and have permission mode 644.
+This makes them unwriteable to anybody but root. When x2gobroker-daemon
+starts it will attempt to open at least /var/log/x2gobroker/broker.log, but
+since x2gobroker-daemon runs as the user x2gobroker, it can't open that
+file in write-mode. This makes the daemon exit without any error messages
+when started by the init-system. It might be best to make
+x2gobroker-authservice keep to it's own set of log-files to avoid this
+problem. A work-around is to chown ownership of the files to the user
+x2gobroker.
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130417/4c0b6719/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130417/4c0b6719/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005452.html">[X2Go-Dev] Processed: Re: Bug#170: x2gobroker-authservice needs python-x2gobroker
+</A></li>
+	<LI>Next message: <A HREF="005460.html">[X2Go-Dev] Bug#172: Bug#172: x2gobroker-authservice creates	logfiles that x2gobroker-daemon can not access
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5440">[ date ]</a>
+              <a href="thread.html#5440">[ thread ]</a>
+              <a href="subject.html#5440">[ subject ]</a>
+              <a href="author.html#5440">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

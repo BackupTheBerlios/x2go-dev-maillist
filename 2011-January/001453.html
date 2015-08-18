@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev]  Hardware requirements
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%20Hardware%20requirements&In-Reply-To=%3CAANLkTi%3Dqcn_0pzWyVJ%3D%3DJwG4k9ROz8-oiEM53Pw%3DZ%2BVg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001452.html">
+   <LINK REL="Next"  HREF="001461.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev]  Hardware requirements</H1>
+    <B>brian mullan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%20Hardware%20requirements&In-Reply-To=%3CAANLkTi%3Dqcn_0pzWyVJ%3D%3DJwG4k9ROz8-oiEM53Pw%3DZ%2BVg%40mail.gmail.com%3E"
+       TITLE="[X2go-dev]  Hardware requirements">bmullan.mail at gmail.com
+       </A><BR>
+    <I>Thu Jan  6 16:53:53 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001452.html">[X2go-dev] Hardware requirements
+</A></li>
+        <LI>Next message: <A HREF="001461.html">[X2go-dev] Hardware requirements
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1453">[ date ]</a>
+              <a href="thread.html#1453">[ thread ]</a>
+              <a href="subject.html#1453">[ subject ]</a>
+              <a href="author.html#1453">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Joakim
+
+If you haven't read this yet off of the old x2go website you might want to
+read about how Linux4Afrika
+Project&lt;<A HREF="http://www.linux4afrika.de/x2go/basic_installation.html">http://www.linux4afrika.de/x2go/basic_installation.html</A>&gt;configured
+their x2go servers.
+
+That web site and information is a bit &quot;dated&quot; but it can give you some
+ideas.
+
+One thing caught my eye in your email are a couple of your statements:
+
+&quot;the setup will serve 200 x2goclietn users on a wlan&quot;
+
+If the goal is to support 200 simultaneous users... I'm not sure those 2
+servers can do that.
+
+But if its just to support 200 accounts with some portion of those logged in
+at any one time then it can work but will still need some sanity scale
+testing by yourself
+to know how many at any one time can be logged in.
+
+Second, over a wan you don't say what kind of bandwidth your WAN has.
+So basic questions will be what is bandwidth of WAN link to the site or
+sites.
+How many users would be on each of those WAN links sharing that bandwidth.
+
+Keep in mind no NX technology whether x2go, NoMachines NX or anyone else can
+defy physics so the size and number of Servers has to be
+in line with the number of users and the load represented by the x2go server
+as well as any APPs they run.
+
+The number of users will be limited at any one time to the bandwidth of your
+WAN link and the capabilities/size of your servers (cpu, memory, disk i/o,
+network i/o).
+
+
+
+----------------------------------------------------------------------
+
+Message: 1
+Date: Wed, 05 Jan 2011 14:00:49 +0100
+From: Joakim Seeberg &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kontakt at seebergit.dk</A>&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+Subject: [X2go-dev] Hardware requirements
+Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">4D246B81.3060702 at seebergit.dk</A>&gt;
+Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+
+Hi, could someone elaborate on the hardware requirements for x2goserver
+setup. It is for educational use so the primary applications is
+openoffice and firefox on kde or gnome desktop. The setup will serve 200
+x2goclient users on a wlan.
+
+At the moment I have 2 used IBM servers with SCSI RAID, dual Pentium 4
+CPU, ram unknown.
+
+Does the load spread automaticly or will the user have to choose server
+at login, when using x2goserver with more than one node?
+
+Thanks, Joakim
+
+
+------------------------------
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110106/2815714f/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110106/2815714f/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001452.html">[X2go-dev] Hardware requirements
+</A></li>
+	<LI>Next message: <A HREF="001461.html">[X2go-dev] Hardware requirements
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1453">[ date ]</a>
+              <a href="thread.html#1453">[ thread ]</a>
+              <a href="subject.html#1453">[ subject ]</a>
+              <a href="author.html#1453">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

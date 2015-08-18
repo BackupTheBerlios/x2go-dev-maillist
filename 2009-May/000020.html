@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] GNOME does not initialize correctly: dbus-launch failed to autolaunch D-Bus session
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20GNOME%20does%20not%20initialize%20correctly%3A%20dbus-launch%0A%20failed%20to%20autolaunch%20D-Bus%20session&In-Reply-To=%3C1241895404.6078.39.camel%40mattotaupa.wohnung.familie-menzel.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000019.html">
+   <LINK REL="Next"  HREF="000021.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] GNOME does not initialize correctly: dbus-launch failed to autolaunch D-Bus session</H1>
+    <B>Paul Menzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20GNOME%20does%20not%20initialize%20correctly%3A%20dbus-launch%0A%20failed%20to%20autolaunch%20D-Bus%20session&In-Reply-To=%3C1241895404.6078.39.camel%40mattotaupa.wohnung.familie-menzel.net%3E"
+       TITLE="[X2go-dev] GNOME does not initialize correctly: dbus-launch failed to autolaunch D-Bus session">paulepanter at users.sourceforge.net
+       </A><BR>
+    <I>Sat May  9 20:56:44 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000019.html">[X2go-dev] [solved] x2goclient-3.00 compiles without problems but crashes running on opensuse
+</A></li>
+        <LI>Next message: <A HREF="000021.html">[X2go-dev] x2go Server on Ubuntu Jaunty 9.04
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#20">[ date ]</a>
+              <a href="thread.html#20">[ thread ]</a>
+              <a href="subject.html#20">[ subject ]</a>
+              <a href="author.html#20">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear Oleksandr,
+
+
+thank your for your answer.
+
+Am Dienstag, den 14.04.2009, 08:27 +0200 schrieb Oleksandr Shneyder:
+&gt;<i> Paul Menzel schrieb:
+</I>
+&gt;<i> &gt; I am running Debian Sid on the server and the x2goclient_gtk. Since some
+</I>&gt;<i> &gt; time (I think January 2009) the GNOME session does not start anymore and
+</I>&gt;<i> &gt; I can just see the background picture. Unfortunately I do not know what
+</I>&gt;<i> &gt; has changed on the system.
+</I> 
+[&#8230;]
+
+&gt;<i> &gt; Do you have a solution for this problem?
+</I>
+[&#8230;]
+
+&gt;<i> I don't know which command start Sid to launch gnome. I had the same
+</I>&gt;<i> problem on opensuse. Solution was to launch /etc/X11/xdm/Xsession
+</I>&gt;<i> instead of gnome-session.
+</I>&gt;<i> 
+</I>&gt;<i> If you say, that /usr/bin/dbus-launch /usr/bin/gnome-session work, you
+</I>&gt;<i> can create start script /usr/bin/start-gnome:
+</I>&gt;<i> 
+</I>&gt;<i> #!/bin/bash
+</I>&gt;<i> /usr/bin/dbus-launch /usr/bin/gnome-session
+</I>&gt;<i> 
+</I>&gt;<i> and start it instead of gnome-session.
+</I>&gt;<i> 
+</I>&gt;<i> IMPORTANT: do not launch it with &quot;Single application&quot; (Anwendung) in
+</I>&gt;<i> x2goclient, but with &quot;Custom&quot; (Eigener)
+</I>
+I tried it again today and did not have this problem anymore. So I did
+not have to try your solution.
+
+Some version changed, so I will paste the output below for reference.
+
+
+Thanks a lot,
+
+Paul
+
+
+&gt;<i> &gt; $ LANG=C dpkg -l x2g*
+</I>&gt;<i> &gt; Desired=Unknown/Install/Remove/Purge/Hold
+</I>&gt;<i> &gt; | Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+</I>&gt;<i> &gt; |/ Err?=(none)/Hold/Reinst-required/X=both-problems (Status,Err: uppercase=bad)
+</I>&gt;<i> &gt; ||/ Name           Version        Description
+</I>&gt;<i> &gt; +++-==============-==============-============================================
+</I>&gt;<i> &gt; ii  x2goagent      3.3.0-3-1      Special NX-ized client, was developed by NoM
+</I>&gt;<i> &gt; un  x2goclient     &lt;none&gt;         (no description available)
+</I>&gt;<i> &gt; ii  x2goclient-cli 2.0.1-1        x2goclient-cli command line client for x2go
+</I>&gt;<i> &gt; ii  x2goclient-gtk 2.99-3         x2goclient gtk client
+</I>&gt;<i> &gt; ii  x2goserver     2.0.1-19       x2goserver (daemon and tools)
+</I>
+$ LANG=C dpkg -l x2g*
+Desired=Unknown/Install/Remove/Purge/Hold
+|<i> Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+</I>|<i>/ Err?=(none)/Hold/Reinst-required/X=both-problems (Status,Err: uppercase=bad)
+</I>||<i>/ Name           Version        Description
+</I>+++-==============-==============-============================================
+ii  x2goagent      3.3.0-6-1      Special NX-ized client, was developed by NoM
+un  x2goclient     &lt;none&gt;         (no description available)
+ii  x2goclient-cli 2.0.1-1        x2goclient-cli command line client for x2go
+ii  x2goclient-gtk 3.00-1         x2goclient gtk client
+ii  x2goserver     3.0.0-1        x2goserver (daemon and tools)
+
+&gt;<i> &gt; $ LANG=C dpkg -l gnome-session
+</I>&gt;<i> &gt; Desired=Unknown/Install/Remove/Purge/Hold
+</I>&gt;<i> &gt; | Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+</I>&gt;<i> &gt; |/ Err?=(none)/Hold/Reinst-required/X=both-problems (Status,Err: uppercase=bad)
+</I>&gt;<i> &gt; ||/ Name           Version        Description
+</I>&gt;<i> &gt; +++-==============-==============-============================================
+</I>&gt;<i> &gt; ii  gnome-session  2.22.3-3       The GNOME 2 Session Manager
+</I>
+Same version. Did not change.
+
+&gt;<i> &gt; $ LANG=C dpkg -l dbus*
+</I>&gt;<i> &gt; Desired=Unknown/Install/Remove/Purge/Hold
+</I>&gt;<i> &gt; | Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+</I>&gt;<i> &gt; |/ Err?=(none)/Hold/Reinst-required/X=both-problems (Status,Err: uppercase=bad)
+</I>&gt;<i> &gt; ||/ Name           Version        Description
+</I>&gt;<i> &gt; +++-==============-==============-============================================
+</I>&gt;<i> &gt; ii  dbus           1.2.12-1       simple interprocess messaging system
+</I>&gt;<i> &gt; un  dbus-1-utils   &lt;none&gt;         (no description available)
+</I>&gt;<i> &gt; un  dbus-qt-1      &lt;none&gt;         (no description available)
+</I>&gt;<i> &gt; un  dbus-qt-1c2    &lt;none&gt;         (no description available)
+</I>&gt;<i> &gt; ii  dbus-x11       1.2.12-1       simple interprocess messaging system (X11 de
+</I>
+Same version. Did not change.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: Dies ist ein digital signierter Nachrichtenteil
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090509/6fc3dcf8/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090509/6fc3dcf8/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000019.html">[X2go-dev] [solved] x2goclient-3.00 compiles without problems but crashes running on opensuse
+</A></li>
+	<LI>Next message: <A HREF="000021.html">[X2go-dev] x2go Server on Ubuntu Jaunty 9.04
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#20">[ date ]</a>
+              <a href="thread.html#20">[ thread ]</a>
+              <a href="subject.html#20">[ subject ]</a>
+              <a href="author.html#20">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [X2go-Dev] X2goclient doesn't run Trinity
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2go-Dev%5D%20X2goclient%20doesn%27t%20run%20Trinity&In-Reply-To=%3C4F26513A.3090007%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003301.html">
+   <LINK REL="Next"  HREF="003309.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [X2go-Dev] X2goclient doesn't run Trinity</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2go-Dev%5D%20X2goclient%20doesn%27t%20run%20Trinity&In-Reply-To=%3C4F26513A.3090007%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] [X2go-Dev] X2goclient doesn't run Trinity">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Mon Jan 30 09:13:46 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003301.html">[X2Go-Dev] [X2go-Dev] X2goclient doesn't run Trinity
+</A></li>
+        <LI>Next message: <A HREF="003309.html">[X2Go-Dev] [X2go-Dev] X2goclient doesn't run Trinity
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3303">[ date ]</a>
+              <a href="thread.html#3303">[ thread ]</a>
+              <a href="subject.html#3303">[ subject ]</a>
+              <a href="author.html#3303">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 30.01.2012 08:43, schrieb Oleksandr Shneyder:
+&gt;<i> Am 27.01.2012 22:31, schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>:
+</I>&gt;&gt;<i> Am 27.01.2012 22:18, schrieb Mike Gabriel:
+</I>&gt;&gt;&gt;<i> Hi Stefan,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> On Fr 27 Jan 2012 21:41:04 CET &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>&quot; wrote:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Hi,
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> I run Trinity, the KDE3-fork, on one of my servers.
+</I>&gt;&gt;&gt;&gt;<i> When connecting to it with the NXclient, I set it to run the
+</I>&gt;&gt;&gt;&gt;<i> following custom command in fullscreen:
+</I>&gt;&gt;&gt;&gt;<i> /opt/trinity/bin/startkde
+</I>&gt;&gt;&gt;&gt;<i> and everything works as expected.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> I tried the same with the latest X2goclient, and it doesn't work. I
+</I>&gt;&gt;&gt;&gt;<i> can see the screen background with the logo for a few moments, then
+</I>&gt;&gt;&gt;&gt;<i> it closes again and returns me to the login window.
+</I>&gt;&gt;&gt;&gt;<i> I tried both the &quot;custom command&quot; as well as the &quot;other desktop
+</I>&gt;&gt;&gt;&gt;<i> environment&quot; options and supplied the same path.
+</I>&gt;&gt;&gt;&gt;<i> Neither works.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> you cannot run applications with a full path. The path name is always
+</I>&gt;&gt;&gt;<i> stripped off and the application has to be in $PATH.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I tried &quot;startkde&quot; without a path, but the result is the same
+</I>&gt;&gt;<i> (/usr/bin/startkde is a symlink pointing to /opt/trinity/bin/startkde,
+</I>&gt;&gt;<i> and /usr/bin obviously is in $PATH). :-(
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -Stefan
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2Go-Dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> 
+</I>&gt;<i> Hello Stefan,
+</I>&gt;<i> 
+</I>&gt;<i> That is not a bug from x2goclient. I have tried trinity on my server
+</I>&gt;<i> with newest x2go client and it have works. But after update of trinity I
+</I>&gt;<i> have same problem as your. I'll make some investigations and will let
+</I>&gt;<i> you know if I can resolve this problem.
+</I>&gt;<i> 
+</I>&gt;<i> regards,
+</I>&gt;<i> Alex
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+Hello Stefan,
+
+seems like trinity have problems with Xinerama from x2goagent. I'll fix
+it. Now you can as workaround enable Xinerama support in x2goclient (it
+works only with last version of x2goclient).
+
+regards,
+Alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120130/26dce822/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120130/26dce822/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003301.html">[X2Go-Dev] [X2go-Dev] X2goclient doesn't run Trinity
+</A></li>
+	<LI>Next message: <A HREF="003309.html">[X2Go-Dev] [X2go-Dev] X2goclient doesn't run Trinity
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3303">[ date ]</a>
+              <a href="thread.html#3303">[ thread ]</a>
+              <a href="subject.html#3303">[ subject ]</a>
+              <a href="author.html#3303">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

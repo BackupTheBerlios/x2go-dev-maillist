@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#251: X2Go issue (in src:x2gothinclient) has been	marked as closed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23251%3A%20X2Go%20issue%20%28in%20src%3Ax2gothinclient%29%20has%20been%0A%09marked%20as%20closed&In-Reply-To=%3C20130719215302.A621C5DB39%40ymir%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005958.html">
+   <LINK REL="Next"  HREF="005963.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#251: X2Go issue (in src:x2gothinclient) has been	marked as closed</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23251%3A%20X2Go%20issue%20%28in%20src%3Ax2gothinclient%29%20has%20been%0A%09marked%20as%20closed&In-Reply-To=%3C20130719215302.A621C5DB39%40ymir%3E"
+       TITLE="[X2Go-Dev] Bug#251: X2Go issue (in src:x2gothinclient) has been	marked as closed">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jul 19 23:53:02 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005958.html">[X2Go-Dev] Bug#115: X2Go issue (in src:x2gothinclient) has been	marked as closed
+</A></li>
+        <LI>Next message: <A HREF="005963.html">[X2Go-Dev] Processed: X2Go issue (in src:x2gothinclient) has been marked as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5959">[ date ]</a>
+              <a href="thread.html#5959">[ thread ]</a>
+              <a href="subject.html#5959">[ subject ]</a>
+              <a href="author.html#5959">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>close #251
+thanks
+
+Hello,
+
+we are very hopeful that X2Go issue #251 reported by you
+has been resolved in the new release (1.1.0.0) of the
+X2Go source project &#187;src:x2gothinclient&#171;.
+
+You can view the complete changelog entry of src:x2gothinclient (1.1.0.0)
+below, and you can use the following link to view all the code changes
+between this and the last release of src:x2gothinclient.
+
+    <A HREF="http://code.x2go.org/gitweb?p=x2gothinclient.git;a=commitdiff;h=82d0f1a2a4c45b40e76ce98d2b8ad8b28e7aad56;hp=111c8e9da59660fb68473111fb0a32c7106a1170">http://code.x2go.org/gitweb?p=x2gothinclient.git;a=commitdiff;h=82d0f1a2a4c45b40e76ce98d2b8ad8b28e7aad56;hp=111c8e9da59660fb68473111fb0a32c7106a1170</A>
+
+If you feel that the issue has not been resolved satisfyingly, feel
+free to reopen this bug report or submit a follow-up report with
+further observations described based on the new released version
+of src:x2gothinclient.
+
+Thanks a lot for contributing to X2Go!!!
+
+light+love
+X2Go Git Admin (on behalf of the sender of this mail)
+
+---
+X2Go Component: src:x2gothinclient
+Version: 1.1.0.0
+Status: RELEASE
+Date: Fri, 19 Jul 2013 23:31:10 +0200
+Fixes: 66 95 115 251
+Changes: 
+ x2gothinclient (1.1.0.0) RELEASED; urgency=low
+ .
+   [ Mike Gabriel ]
+   * New upstream version (1.1.0.0):
+     - When X2Go TCE has plymouth installed, make sure pressing the
+       halt button does not change to the wrong tty.
+     - Truncate echo output lines to less than 80 chars.
+     - Use sed to patch initramfs configuration (rather than a patch
+       that fails on wheezy). The change is needed for squeeze only.
+     - Fix x2go_tce_shell.sh script, escape braces.
+     - Change method of mounting /proc, /sys and /dev inside of chroots.
+     - Step towards wheezy, enable plymouth boot splash.
+     - Symlink /etc/mtab to /proc/mounts before installing any kernel
+       during the chroot creation process.
+     - Handle /etc/fstab in TCE chroot differently for squeeze and wheezy
+       (/dev/pts does not need an entry in fstab on wheezy systems, /var/run
+       got relocated to /run).
+     - /etc/network/interfaces in wheezy already contains a loopback device
+       entry.
+     - Mount proc and sysfs from outside chroot, cleanly unmount both in case
+       there are more than one mountpoints for sysfs or proc mounted.
+     - Do not fail if proc or sysfs are already mounted within chroot.
+     - Allow thin client management (x2gothinclient_shell,
+       x2gothinclient_upgrade) while thin clients are in use.
+     - Disable kms for radeon and i915 graphics adapters.
+     - x2gothinclient_shell now does not affect boot behavious of the TCE
+       machines anymore, thus, removing the notification output when
+       launching the X2Go TCE maintenance shell.
+     - Drop i686 kernel support, use i486 kernel by default. In Debian wheezy
+       we only find a 686-pae kernel which fails on some (virtual) hardware (e.g.
+       virtualbox).
+     - Make sure that kernel + initrd symlinks are relative symlinks.
+     - Keep mounts for /proc and /dev/pts with option noauto for mounting inside
+       of chroot. They are not needed during TCE boot.
+     - Make the SSH daemon listen on IPv4 localhost address only.
+     - Provide /dev/pts inside chroot.
+     - Move configuration template from /usr/share/tce to /usr/share/tce/etc.
+     - Add direct FreeRDP support for defaults TCE installation.
+     - Add empty known_host file for FreeRDP.
+     - Start with US keyboard as default keyboard layout.
+     - Only mount /proc, /sys, /dev/pts inside chroot if not already mounted.
+     - Xorg appears as /usr/bin/X in ps ax output. Make sure it gets detected.
+     - Provide a README.hostname file in doc folder of x2gothinclientmanagement.
+     - For TCE stations with multiple heads, align heads next to each other
+       in order of appearance in xrandr.
+     - Fix multi-head detection failures where xrandr writes output to stderr
+       (closes upstream issue #48).
+     - Rename x2goclient user to ,,x2gothinclient'' user (system user account).
+       Make sure that the system user account gets created during
+       x2gothinclient_create and during installation of the x2gothinclient
+       package (closes upstream issue #47).
+     - x2gothinclient_create: replace /home by /var/lib/x2gothinclient in
+       /etc/fstab template.
+     - x2gothinclient_update: make sure config target folders exist.
+     - x2gothinclient_create: syntax fix, spotted by Thomas G&#252;ttler (Fixes: #95).
+     - Export $LANG and $LANGUAGE to TCE daemon.
+     - Use qx instead of open3 to launch x2goclient. (Fixes: #66).
+     - Only make x2gousbmount and x2gognupgccid scripts functional if
+       x2gothinclientd is running.
+     - When finishing x2gothinclientd, wait when killing processes till all
+       processes have vanished. Only kill processes owned by user x2gothinclient.
+     - When finishing x2gothinclientd, make sure no dbus-* processes remain.
+     - Unmount /proc, /sys and /dev/pts before doing x2gothinclient_cleanup.
+     - Add README.qemu that explains how to test the X2Go TCE with qemu.
+       (Fixes: #115).
+     - Fix code that turns absolute symlinks into relative symlink for /vmlinuz
+       and /initrd.img.
+     - Fix shutdown button failures.
+     - TCE management: Do an apt-get clean after TCE creation/upgrade.
+     - TCE creation: fix installation path of FreeRDP's known_hosts file.
+     - TCE creation: install the TCE from the nightly builds while this
+       project is not yet released. (Fixes: #251).
+     - TCE creation: default to wheezy for creating new TCE environments.
+   * /debian/control:
+     + Maintainer change in package: X2Go Developers &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>&gt;.
+     + Priority: optional.
+     + Add dependency (x2gothinclient bin:package): x11-xserver-utils (for xrandr
+       support).
+     + Add dependency (x2gousbmount, x2gocdmanager): libfile-path-expand-perl.
+     + Bump Standards to 3.9.3 (no changes needed).
+     + Remove TCE tools (vim, mc, ...) from Recommends: field, install those via
+       x2gothinclient_create. Add pulseaudio, dbus-x11, policykit-1 to Depends:
+       field.
+   * /debian/rules:
+     + Fix lintian issue: debian-rules-missing-recommended-target build-arch
+     + Fix lintian issue: debian-rules-missing-recommended-target build-indep
+   * /debian/x2gothinclient.examples:
+     + Fix src location of example config files.
+   * /debian/x2gothinclient.install:
+     + Install TCE config files into /etc/x2go by default.
+   * /debian/x2gothinclientmanagement.manpages:
+     + Make sure all man pages for bin:package x2gothinclientmanagement get
+       installed into package.
+   * /debian/x2gothinclient.init:
+     + Update pointer to X2Go TCE documentation on <A HREF="http://wiki.x2go.org.">http://wiki.x2go.org.</A>
+   * /debian/x2gothinclient.postrm:
+     + On action=purge, wait for 20s until x2gothinclientd has stopped.
+   * /debian/po/*:
+     + Use po-debconf for translating debconf templates. Add German debconf
+       translation.
+   * Launch X2Go TCE via /etc/X11/default-display-manager. Add debconf template
+     to handle default display manager selection. Inspired by Debian's gdm
+     package.
+   * Only start X2Go CD Manager if x2gothinclientd is the default display
+     manager.
+ .
+   [ Oleksandr Shneyder ]
+   * New upstream version (1.1.0.0):
+     - Use expand_file from File::Path::Expand to detect full path
+       of ~x2gothinclient/.halt.
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005958.html">[X2Go-Dev] Bug#115: X2Go issue (in src:x2gothinclient) has been	marked as closed
+</A></li>
+	<LI>Next message: <A HREF="005963.html">[X2Go-Dev] Processed: X2Go issue (in src:x2gothinclient) has been marked as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5959">[ date ]</a>
+              <a href="thread.html#5959">[ thread ]</a>
+              <a href="subject.html#5959">[ subject ]</a>
+              <a href="author.html#5959">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

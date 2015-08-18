@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] sudo permissions?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20sudo%20permissions%3F&In-Reply-To=%3C1286287834.3445.3.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001143.html">
+   <LINK REL="Next"  HREF="001134.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] sudo permissions?</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20sudo%20permissions%3F&In-Reply-To=%3C1286287834.3445.3.camel%40localhost%3E"
+       TITLE="[X2go-dev] sudo permissions?">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Oct  5 16:10:34 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001143.html">[X2go-dev] sudo permissions?
+</A></li>
+        <LI>Next message: <A HREF="001134.html">[X2go-dev] X2go-dev Digest, Vol 21, Issue 36
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1144">[ date ]</a>
+              <a href="thread.html#1144">[ thread ]</a>
+              <a href="subject.html#1144">[ subject ]</a>
+              <a href="author.html#1144">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2010-10-05 at 09:37 +0200, Oleksandr Shneyder wrote:
+&gt;<i> Hello Rob, list
+</I>&gt;<i> 
+</I>&gt;<i> In multi-user environment session informations of all users are stored
+</I>&gt;<i> in one data base table. If we granting access to this table for all
+</I>&gt;<i> users, each user will be able to view or change data of other users,
+</I>&gt;<i> that's unacceptable. Using sudo we can give access for user only to his
+</I>&gt;<i> own data. It's simplest way we have found to protect data of other
+</I>&gt;<i> users. In postgresql we could use views, but not all DBMS have such
+</I>&gt;<i> mechanisms. We cannot although create single table for every user,
+</I>&gt;<i> because all users should know which DISPLAYs/ports are currently in use
+</I>&gt;<i> by other users.
+</I>&gt;<i> 
+</I>&gt;<i> Rob you are right. The user which execute sql queries not necessarily
+</I>&gt;<i> should be root. As you can see, in x2gopgwrapper.local all queries are
+</I>&gt;<i> executed with user postgres. We could make same changes in
+</I>&gt;<i> x2gopgwrapper_local and x2gopgwrapper_net, but wee need to add a new
+</I>&gt;<i> user into a system (as user &quot;x2go&quot; in your example). Unfortunately since
+</I>&gt;<i> x2goserver version 3_0.1-9
+</I>&gt;<i> (<A HREF="http://x2go.obviously-nice.de/deb/pool-heuler/x2goserver/">http://x2go.obviously-nice.de/deb/pool-heuler/x2goserver/</A>)
+</I>&gt;<i> there is one more reason to run x2gopgwrapper as root. Running with
+</I>&gt;<i> argument &quot;startshadowagent&quot; x2gopgwrapper should start x2gostartagent as
+</I>&gt;<i> user which desktop will be displayed. I don't see the simple way to do
+</I>&gt;<i> this without root privileges.
+</I>&lt;snip&gt;
+We were quite uncomfortable running as the postgres user in our
+environment.  We altered the scripts so that they used schemas instead.
+Each user can see only their schema within the single PostgreSQL
+database.  We then created a separate table to sessions with the
+information needed to be held in common.  That was visible to postgres
+and we used triggers to synchronize the common table with the individual
+schemas.  Finally, we moved all functionality which needed the postgres
+and root users to the x2gocleansessions daemon so that users have very
+restricted access to the database and the underling system.  I don't
+know if those changes would be portable to your system - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001143.html">[X2go-dev] sudo permissions?
+</A></li>
+	<LI>Next message: <A HREF="001134.html">[X2go-dev] X2go-dev Digest, Vol 21, Issue 36
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1144">[ date ]</a>
+              <a href="thread.html#1144">[ thread ]</a>
+              <a href="subject.html#1144">[ subject ]</a>
+              <a href="author.html#1144">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

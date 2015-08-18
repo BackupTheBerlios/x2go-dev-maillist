@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Does X2GO have support for scanning using	a	client-side scanner?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Does%20X2GO%20have%20support%20for%20scanning%20using%0A%09a%09client-side%20scanner%3F&In-Reply-To=%3C20100523133134.GE19269%40rantanplan.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000480.html">
+   <LINK REL="Next"  HREF="000482.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Does X2GO have support for scanning using	a	client-side scanner?</H1>
+    <B>rupi</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Does%20X2GO%20have%20support%20for%20scanning%20using%0A%09a%09client-side%20scanner%3F&In-Reply-To=%3C20100523133134.GE19269%40rantanplan.org%3E"
+       TITLE="[X2go-dev] Does X2GO have support for scanning using	a	client-side scanner?">rupi at rantanplan.org
+       </A><BR>
+    <I>Sun May 23 15:31:34 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000480.html">[X2go-dev] Does X2GO have support for scanning using	a	client-side scanner?
+</A></li>
+        <LI>Next message: <A HREF="000482.html">[X2go-dev] Serious Issue - x2goagent runaway CPU
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#490">[ date ]</a>
+              <a href="thread.html#490">[ thread ]</a>
+              <a href="subject.html#490">[ subject ]</a>
+              <a href="author.html#490">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+after a quick look in the saned documentation[1] i think setting up saned
+on the clients and usinging sane with the sane-net backend shouldn't be that
+hard (though it requires a trusted network environment because there is no
+authentication/authorization besides tcp wrapper support..). You may want
+to tweak the users environment to set SANE_NET_HOSTS to her/his client pc.
+
+Including tunneling support over ssh in x2go for saned is probably a tricky
+thing since sane uses a different tcp connection or control and data plus
+it resolves the port exclusivly over services.
+
+But saned on the clients should ease the process for your users.
+
+/rupi
+
+1: <A HREF="http://www.sane-project.org/docs.html">http://www.sane-project.org/docs.html</A>
+
+-- 
+ <A HREF="http://rantanplan.org/~rupi/">http://rantanplan.org/~rupi/</A> || encrypt email || use free software
+ fingerprint = 9639 0ABC AD2F 155F C96C  FC78 3CFE 82C0 0AF9 AE3A
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: Digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100523/ce749f80/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100523/ce749f80/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000480.html">[X2go-dev] Does X2GO have support for scanning using	a	client-side scanner?
+</A></li>
+	<LI>Next message: <A HREF="000482.html">[X2go-dev] Serious Issue - x2goagent runaway CPU
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#490">[ date ]</a>
+              <a href="thread.html#490">[ thread ]</a>
+              <a href="subject.html#490">[ subject ]</a>
+              <a href="author.html#490">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

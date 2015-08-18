@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Major%20issue%20with%20users%27%20mounts%20and%20encrypted%0A%20%28ecryptfs%29%20homes%20in%20suspended%20sessions&In-Reply-To=%3CCAJ0cceZfpvNkR2K9fWEghckfdjV0V5fd5GfppzyroVxHTn-S0w%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004485.html">
+   <LINK REL="Next"  HREF="004487.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Major%20issue%20with%20users%27%20mounts%20and%20encrypted%0A%20%28ecryptfs%29%20homes%20in%20suspended%20sessions&In-Reply-To=%3CCAJ0cceZfpvNkR2K9fWEghckfdjV0V5fd5GfppzyroVxHTn-S0w%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions">siretart at gmail.com
+       </A><BR>
+    <I>Sat Nov  3 15:59:21 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004485.html">[X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions
+</A></li>
+        <LI>Next message: <A HREF="004487.html">[X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4486">[ date ]</a>
+              <a href="thread.html#4486">[ thread ]</a>
+              <a href="subject.html#4486">[ subject ]</a>
+              <a href="author.html#4486">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Oct 29, 2012 at 7:39 AM, Eugene San &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">eugenesan at gmail.com</A>&gt; wrote:
+
+I guess above related to the fact all pam sessions are closed during
+&gt;<i> suspend.
+</I>&gt;<i> Any ideas how to fix that?
+</I>&gt;<i>
+</I>
+Does creating a file ~/.ecryptfs/auto-umount help?
+
+Note that this disables auto umounting your crypted directory completely.
+However, if this helps, then I think pam_ecryptfs.so should be extended to
+check for active x2go sessions before auto-umounting crypted sessions.
+
+-- 
+regards,
+    Reinhard
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121103/19ab02db/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121103/19ab02db/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004485.html">[X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions
+</A></li>
+	<LI>Next message: <A HREF="004487.html">[X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4486">[ date ]</a>
+              <a href="thread.html#4486">[ thread ]</a>
+              <a href="subject.html#4486">[ subject ]</a>
+              <a href="author.html#4486">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

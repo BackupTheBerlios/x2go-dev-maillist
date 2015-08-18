@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2GO and SSH
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2GO%20and%20SSH&In-Reply-To=%3C4D0868FA.2060007%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001373.html">
+   <LINK REL="Next"  HREF="001386.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2GO and SSH</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2GO%20and%20SSH&In-Reply-To=%3C4D0868FA.2060007%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] X2GO and SSH">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Wed Dec 15 08:06:34 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001373.html">[X2go-dev] X2GO and SSH
+</A></li>
+        <LI>Next message: <A HREF="001386.html">[X2go-dev] X2GO and SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1384">[ date ]</a>
+              <a href="thread.html#1384">[ thread ]</a>
+              <a href="subject.html#1384">[ subject ]</a>
+              <a href="author.html#1384">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>--[ UxBoD ]-- schrieb:
+&gt;<i> ----- Original Message -----
+</I>&gt;&gt;<i> --[ UxBoD ]-- schrieb:
+</I>&gt;&gt;&gt;<i> ----- Original Message -----
+</I>&gt;&gt;&gt;<i> Hi Alex,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Thank you for the detailed steps. May I ask if you rebuilt Qt,
+</I>&gt;&gt;&gt;<i> statically, under Windows or has all your work been performed under
+</I>&gt;&gt;&gt;<i> Linux ? I have tried both of those Qt versions and ran configure.exe
+</I>&gt;&gt;&gt;<i> -static -openssl -I&lt;path_to_openssl_include&gt;
+</I>&gt;&gt;&gt;<i> -L&lt;path_to_openssl_libs&gt; and it failed to compile when running
+</I>&gt;&gt;&gt;<i> mingw32-make sub-src.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I must be doing something crazily wrong in the way I am rebuilding
+</I>&gt;&gt;&gt;<i> Qt :(
+</I>&gt;&gt;<i> I'm configure and build Qt always under windows. My configuration
+</I>&gt;&gt;<i> options are:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -release
+</I>&gt;&gt;<i> -static
+</I>&gt;&gt;<i> -openssl
+</I>&gt;&gt;<i> -qt-style-windowsxp
+</I>&gt;&gt;<i> -qt-style-windowsvista
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> openssl installed under c:\Program Files\openssl
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> regards,
+</I>&gt;<i> 
+</I>&gt;<i> Hi Alex,
+</I>&gt;<i> 
+</I>&gt;<i> I finally managed to build Qt! Now onto libssh in the latest x2go-client. I am guess that I need to apply the diff and then build it ? Do you perform the compile under Cygwin or use MinGW32 ?
+</I>
+
+Hello,
+
+As I wrote in my last e-mail, the changes you need for x2goclient are
+already in master branch of libssh. You can build it on your system
+using mingw shipped with Qt SDK (need cmake, libssl and zlib) or get
+ready for use build from us:
+
+<A HREF="http://x2go.obviously-nice.de/deb/libssh/libssh-x2go.zip">http://x2go.obviously-nice.de/deb/libssh/libssh-x2go.zip</A>
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 260 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101215/9a9846bc/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101215/9a9846bc/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001373.html">[X2go-dev] X2GO and SSH
+</A></li>
+	<LI>Next message: <A HREF="001386.html">[X2go-dev] X2GO and SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1384">[ date ]</a>
+              <a href="thread.html#1384">[ thread ]</a>
+              <a href="subject.html#1384">[ subject ]</a>
+              <a href="author.html#1384">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

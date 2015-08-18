@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2go with git submodules
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20with%20git%20submodules&In-Reply-To=%3C509A4ACD.1080701%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004497.html">
+   <LINK REL="Next"  HREF="004503.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2go with git submodules</H1>
+    <B>Ralf Hemmecke</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20with%20git%20submodules&In-Reply-To=%3C509A4ACD.1080701%40gmail.com%3E"
+       TITLE="[X2Go-Dev] x2go with git submodules">hemmecke at gmail.com
+       </A><BR>
+    <I>Wed Nov  7 12:49:33 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004497.html">[X2Go-Dev] x2goserver without root access
+</A></li>
+        <LI>Next message: <A HREF="004503.html">[X2Go-Dev] x2go with git submodules
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4502">[ date ]</a>
+              <a href="thread.html#4502">[ thread ]</a>
+              <a href="subject.html#4502">[ subject ]</a>
+              <a href="author.html#4502">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm sorry, my last mail should have been sent to the developers list (of
+course).
+
+On 11/07/2012 12:25 PM, Reinhard Tartler wrote:
+&gt;<i> On Wed, Nov 7, 2012 at 11:42 AM, Ralf Hemmecke &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">hemmecke at gmail.com</A>&gt; wrote:
+</I>&gt;&gt;&gt;&gt;<i> Maybe I should rather subscribe to the x2go-developer list. Looking at
+</I>&gt;&gt;&gt;&gt;<i> <A HREF="http://www.x2go.org/doku.php/wiki:development:git">http://www.x2go.org/doku.php/wiki:development:git</A>
+</I>&gt;&gt;&gt;&gt;<i> tells me about &quot;Checkout all repos:&quot;. A bash-script? That looks like
+</I>&gt;&gt;&gt;&gt;<i> x2go should rather use &quot;git submodules&quot; no?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> maybe I shouldn't do this before knowing x2go better, but since I was
+</I>&gt;&gt;<i> somehow shocked by this bash script...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I've actually executed it and found out that I should delete the
+</I>&gt;&gt;<i> deprecated line *and* the line
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> x2goagent.git \
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> since also that gives a 'permission denied error'.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Furthermore, when I look at <A HREF="http://code.x2go.org/gitweb,">http://code.x2go.org/gitweb,</A> I somehow get
+</I>&gt;&gt;<i> the impression that the list on the webpage is completely outdated.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> So, here my suggestion. Use git submodules and tell developers to clone
+</I>&gt;&gt;<i> the sources like
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   git clone <A HREF="git://code.x2go.org/x2org.git">git://code.x2go.org/x2org.git</A>
+</I>&gt;&gt;<i>   cd x2org
+</I>&gt;&gt;<i>   git submodule init
+</I>&gt;&gt;<i>   git submodule update
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Someone from the core developers should (of course create the initial
+</I>&gt;&gt;<i> x2org.git.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> For demonstration purposes you can start with
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   git clone <A HREF="git://github.com/hemmecke/x2go.git">git://github.com/hemmecke/x2go.git</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> but some core developer should actually produce a x2go.git like
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   mkdir x2go
+</I>&gt;&gt;<i>   cd x2go
+</I>&gt;&gt;<i>   git init
+</I>&gt;&gt;<i>   for r in buildscripts.git ,,, ; do \
+</I>&gt;&gt;<i>     git submodule add <A HREF="git://code.x2go.org/$r;">git://code.x2go.org/$r;</A> \
+</I>&gt;&gt;<i>   done
+</I>&gt;&gt;<i>   git commit
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> with the correct list of (sub-)projects or simply clone my x2go.git and
+</I>&gt;&gt;<i> add the missing projects via
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   git submodule add <A HREF="git://code.x2go.org/libjpeg-turbo.git">git://code.x2go.org/libjpeg-turbo.git</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> and then publish that x2go.git repo somewhere.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This probably doesn't give you the exactly same setup as you had before,
+</I>&gt;&gt;<i> since (as you can see from the <A HREF="git://,">git://,</A> everyone would only get read
+</I>&gt;&gt;<i> access to the repository.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> But hey, we are dealing with git, nobody actually needs write access to
+</I>&gt;&gt;<i> anybody elses repository. The X2GO project has just to declare some of
+</I>&gt;&gt;<i> the many repositories as the OFFICIAL one and one or two people would be
+</I>&gt;&gt;<i> responsible to push into this OFFICIAL repository. For collaboration
+</I>&gt;&gt;<i> there is github and all the other free git-repository hosting providers.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> But of course, that is all up to the inner core of developers who
+</I>&gt;&gt;<i> decide. I've just made my suggestion. Feel free to adapt to your actual
+</I>&gt;&gt;<i> needs. (Since I am too new, I don't yet know them.)
+</I>&gt;<i> 
+</I>&gt;<i> Implementing what you suggest is very likely to break our build
+</I>&gt;<i> infrastructure, which automatically builds nightly debian packages for
+</I>&gt;<i> debian and ubuntu. I'm not saying that it was impossible to do what
+</I>&gt;<i> you suggest, but we must ensure first that changing the repository
+</I>&gt;<i> organization does not cause regressions for our users.
+</I>
+Huh? I don't understand this. All I suggested was to add a new &quot;super&quot;
+repository that pulls in the existing ones for a local setup. All your
+official repositories can stay where they are. You could even leave the
+bash script in place if you like.
+
+I think I forgot to include a link.
+<A HREF="http://git-scm.com/book/en/Git-Tools-Submodules">http://git-scm.com/book/en/Git-Tools-Submodules</A>
+
+Ralf
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004497.html">[X2Go-Dev] x2goserver without root access
+</A></li>
+	<LI>Next message: <A HREF="004503.html">[X2Go-Dev] x2go with git submodules
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4502">[ date ]</a>
+              <a href="thread.html#4502">[ thread ]</a>
+              <a href="subject.html#4502">[ subject ]</a>
+              <a href="author.html#4502">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

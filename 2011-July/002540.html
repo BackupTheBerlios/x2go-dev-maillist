@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] [PATCH] Allow users to edit their *own* sessions only
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BPATCH%5D%20Allow%20users%20to%20edit%20their%20%2Aown%2A%20sessions%20only&In-Reply-To=%3C1311545403-18466-1-git-send-email-siretart%40tauware.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002533.html">
+   <LINK REL="Next"  HREF="002541.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] [PATCH] Allow users to edit their *own* sessions only</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BPATCH%5D%20Allow%20users%20to%20edit%20their%20%2Aown%2A%20sessions%20only&In-Reply-To=%3C1311545403-18466-1-git-send-email-siretart%40tauware.de%3E"
+       TITLE="[X2go-Dev] [PATCH] Allow users to edit their *own* sessions only">siretart at tauware.de
+       </A><BR>
+    <I>Mon Jul 25 00:10:03 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002533.html">[X2go-Dev] x2goclient win32 build howto
+</A></li>
+        <LI>Next message: <A HREF="002541.html">[X2go-Dev] [PATCH] Allow users to edit their *own* sessions only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2540">[ date ]</a>
+              <a href="thread.html#2540">[ thread ]</a>
+              <a href="subject.html#2540">[ subject ]</a>
+              <a href="author.html#2540">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>previously, users could create sessions under wrong uids or delete
+sessions from other users. This patch implements prevents this by
+checking the userid of the caller with the session id.
+---
+ x2goserver/lib/x2gosqlitewrapper.pl |   23 ++++++++++++++++++++---
+ 1 files changed, 20 insertions(+), 3 deletions(-)
+
+diff --git a/x2goserver/lib/x2gosqlitewrapper.pl b/x2goserver/lib/x2gosqlitewrapper.pl
+index 70ee4e5..8483f32 100755
+--- a/x2goserver/lib/x2gosqlitewrapper.pl
++++ b/x2goserver/lib/x2gosqlitewrapper.pl
+@@ -25,14 +25,14 @@ use strict;
+ use DBI;
+ use POSIX;
+ 
+-# retrieve home dir of x2gouser 
++# retrieve home dir of x2gouser
+ my $x2gouser='x2gouser';
+ my ($uname, $pass, $uid, $pgid, $quota, $comment, $gcos, $homedir, $shell, $expire) = getpwnam($x2gouser);
+ my $dbfile=&quot;$homedir/x2go_sessions&quot;;
+ 
+ # retrieve account data of real user
+ my $realuser=$&lt;;
+-my ($uname, $pass, $uid, $pgid, $quota, $comment, $gcos, $homedir, $shell, $expire) = getpwnam($realuser);
++my ($uname, $pass, $uid, $pgid, $quota, $comment, $gcos, $homedir, $shell, $expire) = getpwuid($realuser);
+ 
+ my $dbh=DBI-&gt;connect(&quot;dbi:SQLite:dbname=$dbfile&quot;,&quot;&quot;,&quot;&quot;,{AutoCommit =&gt; 1}) or die $_;
+ 
+@@ -81,6 +81,7 @@ elsif($cmd eq  &quot;listsessionsroot_all&quot;)
+ elsif($cmd eq  &quot;getmounts&quot;)
+ {
+ 	my $sid=shift or die &quot;argument \&quot;session_id\&quot; missed&quot;;
++	check_user($sid);
+ 	my @strings;
+ 	my $sth=$dbh-&gt;prepare(&quot;select client, path from mounts where session_id=?&quot;);
+ 	$sth-&gt;execute($sid)or die;
+@@ -91,6 +92,7 @@ elsif($cmd eq  &quot;deletemount&quot;)
+ {
+ 	my $sid=shift or die &quot;argument \&quot;session_id\&quot; missed&quot;;
+ 	my $path=shift or die &quot;argument \&quot;path\&quot; missed&quot;;
++	check_user($sid);
+ 	my $sth=$dbh-&gt;prepare(&quot;delete from mounts where session_id=? and path=?&quot;);
+ 	$sth-&gt;execute($sid, $path);
+ 	$sth-&gt;finish();
+@@ -101,6 +103,7 @@ elsif($cmd eq  &quot;insertmount&quot;)
+ 	my $sid=shift or die &quot;argument \&quot;session_id\&quot; missed&quot;;
+ 	my $path=shift or die &quot;argument \&quot;path\&quot; missed&quot;;
+ 	my $client=shift or die &quot;argument \&quot;client\&quot; missed&quot;;
++	check_user($sid);
+ 	my $sth=$dbh-&gt;prepare(&quot;insert into mounts (session_id,path,client) values  (?, ?, ?)&quot;);
+ 	$sth-&gt;execute($sid, $path, $client);
+ 	if(!$sth-&gt;err())
+@@ -115,6 +118,7 @@ elsif($cmd eq  &quot;insertsession&quot;)
+ 	my $display=shift or die &quot;argument \&quot;display\&quot; missed&quot;;
+ 	my $server=shift or die &quot;argument \&quot;server\&quot; missed&quot;;
+ 	my $sid=shift or die &quot;argument \&quot;session_id\&quot; missed&quot;;
++	check_user($sid);
+ 	my $sth=$dbh-&gt;prepare(&quot;insert into sessions (display,server,uname,session_id, init_time, last_time) values
+ 	                       (?, ?, ?, ?, datetime('now','localtime'), datetime('now','localtime'))&quot;);
+ 	$sth-&gt;execute($display, $server, $realuser, $sid) or die $_;
+@@ -131,6 +135,7 @@ elsif($cmd eq  &quot;createsession&quot;)
+ 	my $snd_port=shift or die&quot;argument \&quot;snd_port\&quot; missed&quot;;
+ 	my $fs_port=shift or die&quot;argument \&quot;fs_port\&quot; missed&quot;;
+ 	my $sid=shift or die &quot;argument \&quot;session_id\&quot; missed&quot;;
++	check_user($sid);
+ 	my $sth=$dbh-&gt;prepare(&quot;update sessions set status='R',last_time=datetime('now','localtime'),cookie=?,agent_pid=?,
+ 	                       client=?,gr_port=?,sound_port=?,fs_port=? where session_id=? and uname=?&quot;);
+ 	$sth-&gt;execute($cookie, $pid, $client, $gr_port, $snd_port, $fs_port, $sid, $realuser)or die;
+@@ -144,6 +149,7 @@ elsif($cmd eq  &quot;insertport&quot;)
+ 	my $sid=shift or die &quot;argument \&quot;session_id\&quot; missed&quot;;
+ 	my $sshport=shift or die &quot;argument \&quot;port\&quot; missed&quot;;
+ 	my $sth=$dbh-&gt;prepare(&quot;insert into used_ports (server,session_id,port) values  (?, ?, ?)&quot;);
++	check_user($sid);
+ 	$sth-&gt;execute($server, $sid, $sshport) or die;
+ 	$sth-&gt;finish();
+ }
+@@ -152,6 +158,7 @@ elsif($cmd eq  &quot;resume&quot;)
+ {
+ 	my $client=shift or die &quot;argument \&quot;client\&quot; missed&quot;;
+ 	my $sid=shift or die &quot;argument \&quot;session_id\&quot; missed&quot;;
++	check_user($sid);
+ 	my $sth=$dbh-&gt;prepare(&quot;update sessions set last_time=datetime('now','localtime'),status='R',
+ 	                       client=? where session_id = ? and uname=?&quot;);
+ 	$sth-&gt;execute($client, $sid, $realuser) or die;
+@@ -162,6 +169,7 @@ elsif($cmd eq  &quot;changestatus&quot;)
+ {
+ 	my $status=shift or die &quot;argument \&quot;status\&quot; missed&quot;;
+ 	my $sid=shift or die &quot;argument \&quot;session_id\&quot; missed&quot;;
++	check_user($sid);
+ 	my $sth=$dbh-&gt;prepare(&quot;update sessions set last_time=datetime('now','localtime'),
+ 	                       status=? where session_id = ? and uname=?&quot;);
+ 	$sth-&gt;execute($status, $sid, $realuser)or die;
+@@ -170,7 +178,6 @@ elsif($cmd eq  &quot;changestatus&quot;)
+ 
+ elsif($cmd eq  &quot;getdisplays&quot;)
+ {
+-
+ 	#ignore $server
+ 	my @strings;
+ 	my $sth=$dbh-&gt;prepare(&quot;select display from sessions&quot;);
+@@ -222,6 +229,7 @@ elsif($cmd eq  &quot;getagent&quot;)
+ {
+ 	my $sid=shift or die &quot;argument \&quot;session_id\&quot; missed&quot;;
+ 	my $agent;
++	check_user($sid);
+ 	my $sth=$dbh-&gt;prepare(&quot;select agent_pid from sessions
+ 	                       where session_id=?&quot;);
+ 	$sth-&gt;execute($sid)or die;
+@@ -239,6 +247,7 @@ elsif($cmd eq  &quot;getdisplay&quot;)
+ {
+ 	my $sid=shift or die &quot;argument \&quot;session_id\&quot; missed&quot;;
+ 	my $display;
++	check_user($sid);
+ 	my $sth=$dbh-&gt;prepare(&quot;select display from sessions
+ 	                       where session_id =?&quot;);
+ 	$sth-&gt;execute($sid)or die;
+@@ -296,6 +305,14 @@ sub checkroot
+ 	}
+ }
+ 
++sub check_user
++{
++	my $sid=shift or die &quot;argument \&quot;session_id\&quot; missed&quot;;
++	# session id looks like someuser-51-1304005895_stDgnome-session_dp24
++        my ( $user, $rest ) = split('-', $sid, 2);
++        $user eq $uname or die &quot;$uname is not authorized (should be $user)&quot;;
++}
++
+ sub fetchrow_printall_array
+ {
+ 	# print all arrays separated by the pipe symbol
+-- 
+1.7.4.1
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002533.html">[X2go-Dev] x2goclient win32 build howto
+</A></li>
+	<LI>Next message: <A HREF="002541.html">[X2go-Dev] [PATCH] Allow users to edit their *own* sessions only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2540">[ date ]</a>
+              <a href="thread.html#2540">[ thread ]</a>
+              <a href="subject.html#2540">[ subject ]</a>
+              <a href="author.html#2540">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

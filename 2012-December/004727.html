@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH 2/8] make xfonts-base a recommends
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%202/8%5D%20make%20xfonts-base%20a%20recommends&In-Reply-To=%3C20121212144050.8247245b1mrj761u%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004713.html">
+   <LINK REL="Next"  HREF="004712.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH 2/8] make xfonts-base a recommends</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%202/8%5D%20make%20xfonts-base%20a%20recommends&In-Reply-To=%3C20121212144050.8247245b1mrj761u%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [PATCH 2/8] make xfonts-base a recommends">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Dec 12 14:40:50 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004713.html">[X2Go-Dev] [PATCH 2/8] make xfonts-base a recommends
+</A></li>
+        <LI>Next message: <A HREF="004712.html">[X2Go-Dev] [PATCH 3/8] Rely on shlibs files instead of hard coding	library dependencies
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4727">[ date ]</a>
+              <a href="thread.html#4727">[ thread ]</a>
+              <a href="subject.html#4727">[ subject ]</a>
+              <a href="author.html#4727">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>+1 from me!
+
+Mike
+
+On Mi 12 Dez 2012 13:13:12 CET Reinhard Tartler wrote:
+
+&gt;<i> According to lintian, this is a severe error. Demote to recommends to
+</I>&gt;<i> ensure that it still gets installed by default.
+</I>&gt;<i> ---
+</I>&gt;<i>  debian/control |    3 ++-
+</I>&gt;<i>  1 file changed, 2 insertions(+), 1 deletion(-)
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/debian/control b/debian/control
+</I>&gt;<i> index bafef22..be83f79 100644
+</I>&gt;<i> --- a/debian/control
+</I>&gt;<i> +++ b/debian/control
+</I>&gt;<i> @@ -76,9 +76,10 @@ Package: nxagent
+</I>&gt;<i>  Architecture: any
+</I>&gt;<i>  Depends:
+</I>&gt;<i>   libnx-x11 (&gt;= ${source:Version}), libnx-x11 (&lt;&lt; ${source:Version}.1~),
+</I>&gt;<i> - xfonts-base,
+</I>&gt;<i>   ${shlibs:Depends},
+</I>&gt;<i>   ${misc:Depends},
+</I>&gt;<i> +Recommends:
+</I>&gt;<i> + xfonts-base,
+</I>&gt;<i>  Description: NX agent
+</I>&gt;<i>   NX is a software suite which implements very efficient
+</I>&gt;<i>   compression of the X11 protocol. This increases performance when
+</I>&gt;<i> --
+</I>&gt;<i> 1.7.10.4
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121212/dc489b7f/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121212/dc489b7f/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004713.html">[X2Go-Dev] [PATCH 2/8] make xfonts-base a recommends
+</A></li>
+	<LI>Next message: <A HREF="004712.html">[X2Go-Dev] [PATCH 3/8] Rely on shlibs files instead of hard coding	library dependencies
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4727">[ date ]</a>
+              <a href="thread.html#4727">[ thread ]</a>
+              <a href="subject.html#4727">[ subject ]</a>
+              <a href="author.html#4727">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

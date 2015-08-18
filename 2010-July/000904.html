@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go embedded doesn't fit screen
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20embedded%20doesn%27t%20fit%20screen&In-Reply-To=%3C20100725194713.16336hgabo1i7ngg%40mail.gmli.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000896.html">
+   <LINK REL="Next"  HREF="000897.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go embedded doesn't fit screen</H1>
+    <B>contact at gmli.fr</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20embedded%20doesn%27t%20fit%20screen&In-Reply-To=%3C20100725194713.16336hgabo1i7ngg%40mail.gmli.fr%3E"
+       TITLE="[X2go-dev] x2go embedded doesn't fit screen">contact at gmli.fr
+       </A><BR>
+    <I>Sun Jul 25 19:47:13 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000896.html">[X2go-dev] x2go embedded doesn't fit screen
+</A></li>
+        <LI>Next message: <A HREF="000897.html">[X2go-dev] x2go embedded doesn't fit screen
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#904">[ date ]</a>
+              <a href="thread.html#904">[ thread ]</a>
+              <a href="subject.html#904">[ subject ]</a>
+              <a href="author.html#904">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Quoting Gerry Reno &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">greno at verizon.net</A>&gt;:
+
+&gt;<i> The only thing I can think of is that gedit is starting up  
+</I>&gt;<i> &quot;fullscreen&quot;.  Have you ever tried starting gedit when in full  
+</I>&gt;<i> desktop mode?  I would try that and then size it and then retry  
+</I>&gt;<i> using rootless.
+</I>
+To embed gedit in the web page, I must use rootless=false.
+
+I've tried what you've proposed, but it doesn't worked.
+
+
+ From John :
+&gt;<i> Is it safe to assume that you have detached the plugin window from the
+</I>&gt;<i> browser and then maximized it? - John
+</I>
+If I detach the window, I get the exact same thing, but detached.
+
+I wonder if embed or not really depends of rootless value.
+Either i set &quot;start session embedded inside website&quot; or not, I get the  
+same result.
+When I set rootless=true, the screen is detached, and rootless=false,  
+the screen is attached.
+
+But, are &quot;embed&quot; and &quot;rootless&quot; the same thing ?
+
+Actually, the result I expect is :
+- try rootless=false (detached, but the resizing works)
+- start the session with the window attached
+
+Is there a bug ? A lack of config option ?
+
+
+I could see something like this, for the x2go.server file:
+
+rootless=false
+embedded=true
+
+Heinz, any suggestion ? :)
+
+
+Regards,
+gml
+
+PS. sorry for my very ugly english...
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000896.html">[X2go-dev] x2go embedded doesn't fit screen
+</A></li>
+	<LI>Next message: <A HREF="000897.html">[X2go-dev] x2go embedded doesn't fit screen
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#904">[ date ]</a>
+              <a href="thread.html#904">[ thread ]</a>
+              <a href="subject.html#904">[ subject ]</a>
+              <a href="author.html#904">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goclient and ssh-agent
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20and%20ssh-agent&In-Reply-To=%3Cba3ff1f19fbe29667b707843c2222cd1%40oss.hboss.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002000.html">
+   <LINK REL="Next"  HREF="002098.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goclient and ssh-agent</H1>
+    <B>Heiko Baumann</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20and%20ssh-agent&In-Reply-To=%3Cba3ff1f19fbe29667b707843c2222cd1%40oss.hboss.de%3E"
+       TITLE="[X2go-dev] x2goclient and ssh-agent">heiko at oss.hboss.de
+       </A><BR>
+    <I>Fri Apr 22 21:30:13 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002000.html">[X2go-dev] x2goclient and ssh-agent
+</A></li>
+        <LI>Next message: <A HREF="002098.html">[X2go-dev] x2goclient and ssh-agent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2079">[ date ]</a>
+              <a href="thread.html#2079">[ thread ]</a>
+              <a href="subject.html#2079">[ subject ]</a>
+              <a href="author.html#2079">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> hi,
+
+ because no one cared about my request i tried to fix it by myself. 
+ attached is a patch which adds an --ssh-agent option to x2goclient. if 
+ x2goclient is called with this option it uses a running ssh-agent to 
+ connect to the x2goserver.
+
+ btw. i dont know anything about coding C++ nor anything about 
+ x2goclient development. so maybe this patch does break something else or 
+ may be a bad hack. however it works for me.
+
+ maybe the x2go devs could include it (or write a better one :)) in one 
+ of the next releases? this would be great because i now have SSO with my 
+ usb token for all important tools. ssh-agent is started at logon and 
+ everything works without entering my passphrase again (ssh/scp, sshfs, 
+ nxclient, x2goclient etc.).
+
+ regards
+ heiko
+
+ On Sat, 09 Apr 2011 14:59:35 +0200, Heiko Baumann &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heiko at oss.hboss.de</A>&gt; 
+ wrote:
+&gt;<i> hi all,
+</I>&gt;<i>
+</I>&gt;<i> is it still not possible to use x2goclient with a running ssh agent?
+</I>&gt;<i>
+</I>&gt;<i> regards
+</I>&gt;<i> heiko
+</I>&gt;<i>
+</I>&gt;<i> On Thu, 04 Nov 2010 16:28:45 +0100, Heiko Baumann 
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heiko at oss.hboss.de</A>&gt; wrote:
+</I>&gt;&gt;<i> do you use ssh-agent oder just a ssh key with passphrase? i my case 
+</I>&gt;&gt;<i> using a
+</I>&gt;&gt;<i> ssh key (with or without passphrase) works great but if run 
+</I>&gt;&gt;<i> something like
+</I>&gt;&gt;<i> this:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> eval `ssh-agent -s`
+</I>&gt;&gt;<i> ssh-add
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> before starting x2goclient from this shell it does not use the 
+</I>&gt;&gt;<i> running
+</I>&gt;&gt;<i> agent. if i do a simple &quot;ssh -l username sshhost&quot; from the same 
+</I>&gt;&gt;<i> shell it
+</I>&gt;&gt;<i> works without asking a password.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> it looks like x2goclient does not care about a running ssh-agent!?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> using it that way would be a great improvement in security imho and 
+</I>&gt;&gt;<i> makes
+</I>&gt;&gt;<i> single-sign-on possible if you start your ssh-agent at login 
+</I>&gt;&gt;<i> time.....
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> greetz
+</I>&gt;&gt;<i> heiko
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Thu, 04 Nov 2010 15:53:08 +0100, Philipp Huebner 
+</I>&gt;&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">debalance at debian.org</A>&gt;
+</I>&gt;&gt;<i> wrote:
+</I>&gt;&gt;&gt;<i> IIRC,
+</I>&gt;&gt;&gt;<i> it simply worked for me.
+</I>&gt;&gt;&gt;<i> Instead of a password, the passphrase was being asked.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> All I had to do was a normal login via SSH previously to get the
+</I>&gt;&gt;&gt;<i> known_hosts stuff sorted.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Regards,
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2go-dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: x2goclient-3.01.5-ssh-agent.patch
+Type: text/x-c++
+Size: 8083 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110422/ec739a82/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110422/ec739a82/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002000.html">[X2go-dev] x2goclient and ssh-agent
+</A></li>
+	<LI>Next message: <A HREF="002098.html">[X2go-dev] x2goclient and ssh-agent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2079">[ date ]</a>
+              <a href="thread.html#2079">[ thread ]</a>
+              <a href="subject.html#2079">[ subject ]</a>
+              <a href="author.html#2079">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

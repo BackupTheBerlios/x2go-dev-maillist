@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go with likewise-open (ldap) questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3C1292431674.3299.3.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001391.html">
+   <LINK REL="Next"  HREF="001389.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go with likewise-open (ldap) questions</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3C1292431674.3299.3.camel%40localhost%3E"
+       TITLE="[X2go-dev] x2go with likewise-open (ldap) questions">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Dec 15 17:47:54 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001391.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+        <LI>Next message: <A HREF="001389.html">[X2go-dev] x2go plugin and proxy?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1394">[ date ]</a>
+              <a href="thread.html#1394">[ thread ]</a>
+              <a href="subject.html#1394">[ subject ]</a>
+              <a href="author.html#1394">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2010-12-15 at 16:19 +0200, Ivan Boyadzhiev wrote:
+&gt;<i>         Bingo! 
+</I>&gt;<i>         
+</I>&gt;<i>         This above is the exact problem.
+</I>&gt;<i>         
+</I>&gt;<i>         I cleaned all the folders. Then I started new x2goclient
+</I>&gt;<i>         session. While the session was starting, I've created symbolic
+</I>&gt;<i>         folder without &quot;\&quot; symbol, in the next moment when the folder
+</I>&gt;<i>         with &quot;\&quot; appeared. As result I had 2 folders in ~/.x2go/ - the
+</I>&gt;<i>         one with &quot;\&quot; and symlink without &quot;\&quot;. Then the 3
+</I>&gt;<i>         files .pulse-cookie; .pulse-client.conf and cmdoutput
+</I>&gt;<i>         appeared, as well as the sound in my client!
+</I>&gt;<i>         
+</I>&gt;<i>         That is the problem then. Can you, please, provide fix?
+</I>&gt;<i>         
+</I>&gt;<i>         
+</I>&gt;<i> 
+</I>&gt;<i> Hi hi,
+</I>&gt;<i> although this issue is happening on the server side (located in Ubuntu
+</I>&gt;<i> x2goserver), the code is actually sending from the client - reverse
+</I>&gt;<i> ssh.
+</I>&gt;<i> 
+</I>&gt;<i> I'm using x2goclient 3.01-13 on my Windows 7, as 3.01-14 doesn't work
+</I>&gt;<i> properly. Still I've tested x2goclient 3.01-14 on VMWare Ubuntu, and
+</I>&gt;<i> it doesn't solve this issue, infact, it doesn't have sound at all. 
+</I>&gt;<i> I couldn't find x2goclient 3.01-13 sources, but I have found 3.01-14
+</I>&gt;<i> sources, so I made my investigations there.
+</I>&gt;<i> 
+</I>&gt;<i> Before we start dig in the source: 
+</I>&gt;<i>  1. We have problem with creating 3 files
+</I>&gt;<i> (.pulse-cookie; .pulse-client.conf, cmdoutput)
+</I>&gt;<i>  2. We have problem with not properly set environment
+</I>&gt;<i> (PULSE_CLIENTCONFIG)
+</I>&gt;<i> All these errors are because:
+</I>&gt;<i>  1. These files are located in non-existing folder (without &quot;\&quot;)
+</I>&gt;<i>  2. This environment is pointing to non-existing folder (without &quot;\&quot;)
+</I>&gt;<i> 
+</I>&gt;<i> We have 2 solutions: to use everywhere DOMAIN\user, or DOMAINuser.
+</I>&gt;<i> I think using everywhere DOMAIN\user is better, but it is complete up
+</I>&gt;<i> to you as development to decide.
+</I>&gt;<i> 
+</I>&gt;<i> Another problem: I've checked, and because of very same problem, sshfs
+</I>&gt;<i> can't map local folder with remote folder, because of
+</I>&gt;<i> non-existing /tmp/DOMAINuser_media folder.
+</I>&gt;<i> 
+</I>&gt;<i> Deep in the code: 
+</I>&gt;<i> All sources are in the file: onmainwindow.cpp. Searching
+</I>&gt;<i> for .pulse-cookie and PULSE_CLIENTCONFIG lead us to the first places
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> row 3,227:
+</I>&gt;<i>     if ( sndSystem==PULSE )
+</I>&gt;<i>     {
+</I>&gt;<i>         startSoundServer=false;
+</I>&gt;<i>         QString scmd;
+</I>&gt;<i>         if ( !sshSndTunnel )
+</I>&gt;<i>             scmd=&quot;echo \&quot;default-server=`echo &quot;
+</I>&gt;<i>                  &quot;$SSH_CLIENT | awk '{print $1}'`:&quot;+
+</I>&gt;<i>                  sndPort+
+</I>&gt;<i>                  &quot;\&quot;&gt; ~/.x2go/C-&quot;+
+</I>&gt;<i>                  resumingSession.sessionId+
+</I>&gt;<i>                  &quot;/.pulse-client.conf&quot;
+</I>&gt;<i>                  &quot;;echo \&quot;cookie-file=.x2go/C-&quot;+
+</I>&gt;<i>                  resumingSession.sessionId+
+</I>&gt;<i>                  &quot;/.pulse-cookie&quot;+
+</I>&gt;<i>                  &quot;\&quot;&gt;&gt; ~/.x2go/C-&quot;+
+</I>&gt;<i>                  resumingSession.sessionId+
+</I>&gt;<i>                  &quot;/.pulse-client.conf&quot;;
+</I>&gt;<i> 
+</I>&gt;<i> row 4,274:
+</I>&gt;<i>             cmd=&quot;PULSE_CLIENTCONFIG=~/.x2go/C-&quot;+
+</I>&gt;<i>                 resumingSession.sessionId+
+</I>&gt;<i>                 &quot;/.pulse-client.conf &quot;+cmd;
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Note: same variable: resumingSession.sessionId
+</I>&gt;<i> 
+</I>&gt;<i> Where is resumingSession initialise?
+</I>&gt;<i> 
+</I>&gt;<i> row 3,203:
+</I>&gt;<i>     if ( newSession )
+</I>&gt;<i>     {
+</I>&gt;<i>         QString sString=output.trimmed();
+</I>&gt;<i>         sString.replace ( '\n','|' );
+</I>&gt;<i>         host=resumingSession.server;
+</I>&gt;<i>         resumingSession=getNewSessionFromString ( sString );
+</I>&gt;<i> 
+</I>&gt;<i> getNewSessionFromString and sString:
+</I>&gt;<i> 
+</I>&gt;<i> row 4,160:
+</I>&gt;<i> x2goSession ONMainWindow::getNewSessionFromString ( const QString&amp;
+</I>&gt;<i> string )
+</I>&gt;<i> {
+</I>&gt;<i>     QStringList lst=string.split ( '|' );
+</I>&gt;<i>     x2goSession s;
+</I>&gt;<i>     s.display=lst[0];
+</I>&gt;<i>     s.cookie=lst[1];
+</I>&gt;<i>     s.agentPid=lst[2];
+</I>&gt;<i>     s.sessionId=lst[3];
+</I>&gt;<i> 
+</I>&gt;<i> row 3,205:
+</I>&gt;<i> sString comes from: output.trimmed();
+</I>&gt;<i> 
+</I>&gt;<i> Here is not possible for QT function trimmed() to remove &quot;\&quot; because
+</I>&gt;<i> this howto:
+</I>&gt;<i> <A HREF="http://doc.qt.nokia.com/4.7-snapshot/qstring.html#trimmed">http://doc.qt.nokia.com/4.7-snapshot/qstring.html#trimmed</A>
+</I>&gt;<i> 
+</I>&gt;<i> Then where is output coming from? - From the Method, which is: 
+</I>&gt;<i> 
+</I>&gt;<i> row 3,089:
+</I>&gt;<i> void ONMainWindow::slot_retResumeSess ( bool result,
+</I>&gt;<i>                                         QString output,
+</I>&gt;<i>                                         sshProcess* proc )
+</I>&gt;<i> 
+</I>&gt;<i> Where is slot_retResumeSess called from? Various places, but I think
+</I>&gt;<i> it is from here:
+</I>&gt;<i> 
+</I>&gt;<i> row 2,724:
+</I>&gt;<i>     connect ( proc,SIGNAL ( sshFinished ( bool,
+</I>&gt;<i> QString,sshProcess* ) ),
+</I>&gt;<i>               this,SLOT ( slot_retResumeSess ( bool, QString,
+</I>&gt;<i>                                                sshProcess* ) ) );
+</I>&gt;<i> 
+</I>&gt;<i> Still there is NO parameter given for second variable, which should
+</I>&gt;<i> come as output?!
+</I>&gt;<i> 
+</I>&gt;<i> Still working on ...
+</I>&lt;snip&gt;
+Thank you, Ivan, for all the detailed work you are doing to troubleshoot
+this - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001391.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+	<LI>Next message: <A HREF="001389.html">[X2go-dev] x2go plugin and proxy?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1394">[ date ]</a>
+              <a href="thread.html#1394">[ thread ]</a>
+              <a href="subject.html#1394">[ subject ]</a>
+              <a href="author.html#1394">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

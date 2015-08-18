@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Firefox Plugin (was  Desktop Sharing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Firefox%20Plugin%20%28was%20%20Desktop%20Sharing&In-Reply-To=%3C4BF2ED82.8080404%40x2go.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000466.html">
+   <LINK REL="Next"  HREF="000486.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Firefox Plugin (was  Desktop Sharing</H1>
+    <B>Heinz-M. Graesing</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Firefox%20Plugin%20%28was%20%20Desktop%20Sharing&In-Reply-To=%3C4BF2ED82.8080404%40x2go.org%3E"
+       TITLE="[X2go-dev] Firefox Plugin (was  Desktop Sharing">x2go-dev at x2go.org
+       </A><BR>
+    <I>Tue May 18 21:41:54 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000466.html">[X2go-dev] Firefox Plugin (was  Desktop Sharing
+</A></li>
+        <LI>Next message: <A HREF="000486.html">[X2go-dev] x2go browser plugin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#473">[ date ]</a>
+              <a href="thread.html#473">[ thread ]</a>
+              <a href="subject.html#473">[ subject ]</a>
+              <a href="author.html#473">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Jo-Erlend,
+
+Am 16.05.2010 18:26, schrieb Jo-Erlend Schinstad:
+&gt;<i> I thought this was important enough to open a new thread.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The x2goplugin is an firefox plugin and uses the xpi (firefox addon)
+</I>&gt;&gt;<i> installation routine. It makes it possible to embedd x2go session into
+</I>&gt;&gt;<i> websites itself or to show them outside the browser in an own window.
+</I>&gt;&gt;<i> Sessions can be resized - even inside the website - for example inside a
+</I>&gt;&gt;<i> resizeable &lt;div&gt;&lt;/div&gt;
+</I>&gt;<i> 
+</I>&gt;<i> And you actually do mean the NX session, not just the login/installer
+</I>&gt;<i> dialog like NX Web Companion? Wow. :)
+</I>
+Yes - the running session (KDE, Gnome,...) can be embedded into a website:
+
+&lt;div id=&quot;x2goplugin&quot; style=&quot;width: auto; hight: auto;&quot;&gt;
+&lt;--x2goplugin //--&gt;
+&lt;/div&gt;
+
+&gt;<i> It would be nice to have Mac OS too, but it's not very important to
+</I>&gt;<i> me. But you're saying PulseAudio would work nicely in Windows as well,
+</I>&gt;<i> so you can use two-way audio for VoIP, etc?
+</I>
+You can use bidirectional audio (<A HREF="http://www.youtube.com/watch?v=WxEsngE6qjc">http://www.youtube.com/watch?v=WxEsngE6qjc</A>)
+
+&gt;<i> Then I could make it so that the user only sees a password prompt, or
+</I>&gt;<i> could I even make it so that as long as they're logged into my website
+</I>&gt;<i> using OpenID, then the session would start automatically?
+</I>
+The properties file will lool like:
+
+session=phoca
+server=localhost
+user=verstandk
+sshport=22
+command=KDE
+rootless=false
+
+It can be created on server side via cgi or ssi (and so on). A second
+way of authentification will be receiving session information and
+credentials (ssh key) via <A HREF="https://">https://</A> . This will ensure that everybody can
+implement his/her own ideas.
+
+&gt;&gt;<i> We'll provide a *.js file which can ask the user to install the plugin.
+</I>&gt;&gt;<i> As it is at the moment not possible to host the plugin (only add ons)on
+</I>&gt;&gt;<i> the mozilla site, we'll make it accessible on our site.
+</I>&gt;<i> 
+</I>&gt;<i> Would it also be possible to host the plugin on our own apache sites
+</I>&gt;<i> without too much trouble?
+</I>
+Sure - but the xpi file will contain a update url (pointing to the
+mozilla service) to ensure that you'll be informed if there are plugin
+updates. This line can be removed or edited to point to your server.
+
+&gt;&gt;<i> I hope this will help - feel free to ask again.
+</I>&gt;<i> 
+</I>&gt;<i> Thank you, just one more thing. When will it be available, and can you
+</I>&gt;<i> please make it yesterday? :) This sounds awesome!
+</I>
+Yes we could make it yesterday :) -&gt; the plugin is completed but it
+refers to the new release - and there are still some issues preventing
+this to work without problems.
+
+best regards,
+
+Heinz
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000466.html">[X2go-dev] Firefox Plugin (was  Desktop Sharing
+</A></li>
+	<LI>Next message: <A HREF="000486.html">[X2go-dev] x2go browser plugin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#473">[ date ]</a>
+              <a href="thread.html#473">[ thread ]</a>
+              <a href="subject.html#473">[ subject ]</a>
+              <a href="author.html#473">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Goclient for Windows command options
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Goclient%20for%20Windows%20command%20options&In-Reply-To=%3C224783650.572.1289910712505.JavaMail.root%40office.splatnix.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001269.html">
+   <LINK REL="Next"  HREF="001271.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Goclient for Windows command options</H1>
+    <B>--[ UxBoD ]--</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Goclient%20for%20Windows%20command%20options&In-Reply-To=%3C224783650.572.1289910712505.JavaMail.root%40office.splatnix.net%3E"
+       TITLE="[X2go-dev] X2Goclient for Windows command options">uxbod at splatnix.net
+       </A><BR>
+    <I>Tue Nov 16 13:31:52 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001269.html">[X2go-dev] X2Goclient for Windows command options
+</A></li>
+        <LI>Next message: <A HREF="001271.html">[X2go-dev] X2Goclient for Windows command options
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1270">[ date ]</a>
+              <a href="thread.html#1270">[ thread ]</a>
+              <a href="subject.html#1270">[ subject ]</a>
+              <a href="author.html#1270">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Original Message -----
+&gt;<i> John A. Sullivan III schrieb:
+</I>&gt;<i> &gt; On Mon, 2010-11-15 at 02:09 +0200, Yitzhak Bar Geva wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; The current Windows client does not support full screen mode to the
+</I>&gt;<i> &gt; best
+</I>&gt;<i> &gt; of my knowledge. However, we are actively working on a patch to
+</I>&gt;<i> &gt; enable
+</I>&gt;<i> &gt; it and to use a different X server than Xming. We hope to have that
+</I>&gt;<i> &gt; ready to submit to the devs and the community soon - John
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> &gt; X2go-dev mailing list
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Please. take a look at this e-mail from Heinz:
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/pipermail/x2go-dev/2010-September/001126.html">https://lists.berlios.de/pipermail/x2go-dev/2010-September/001126.html</A>
+</I>&gt;<i> 
+</I>&gt;<i> regards
+</I>
+Hi Alex,
+
+That build does not compile :(
+
+g++ -enable-stdcall-fixup -Wl,-enable-auto-import -Wl,-enable-runtime-pseudo-reloc -Wl,-s -mthreads -Wl -Wl,-subsystem,windows -o release\x2goplugin.exe object_
+script.x2goplugin.Release  -L&quot;c:\Qt\2009.04\qt\lib&quot; -lmingw32 -lqtmain release\x2goclient_res.o -lwinspool -lQtSvg4 -lQtGui4 -lQtNetwork4 -lQtCore4
+c:\Qt\2009.04\qt\lib/libqtmain.a(qtmain_win.o):qtmain_win.cpp:(.text+0x20d): undefined reference to `qMain(int, char**)'
+collect2: ld returned 1 exit status
+mingw32-make[1]: *** [release\x2goplugin.exe] Error 1
+mingw32-make[1]: Leaving directory `C:/x2goclient-3.01'
+mingw32-make: *** [release] Error 2
+-- 
+Thanks, Phil
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001269.html">[X2go-dev] X2Goclient for Windows command options
+</A></li>
+	<LI>Next message: <A HREF="001271.html">[X2go-dev] X2Goclient for Windows command options
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1270">[ date ]</a>
+              <a href="thread.html#1270">[ thread ]</a>
+              <a href="subject.html#1270">[ subject ]</a>
+              <a href="author.html#1270">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

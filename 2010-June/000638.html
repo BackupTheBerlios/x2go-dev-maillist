@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] ENHANCEMENT-REQUEST: x2goclient -- option for reverse SSH port
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20ENHANCEMENT-REQUEST%3A%20x2goclient%20--%20option%20for%0A%20reverse%20SSH%20port&In-Reply-To=%3C1277498608.3423.7.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000634.html">
+   <LINK REL="Next"  HREF="000641.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] ENHANCEMENT-REQUEST: x2goclient -- option for reverse SSH port</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20ENHANCEMENT-REQUEST%3A%20x2goclient%20--%20option%20for%0A%20reverse%20SSH%20port&In-Reply-To=%3C1277498608.3423.7.camel%40localhost%3E"
+       TITLE="[X2go-dev] ENHANCEMENT-REQUEST: x2goclient -- option for reverse SSH port">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Jun 25 22:43:28 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000634.html">[X2go-dev] ENHANCEMENT-REQUEST: x2goclient -- option for reverse	SSH port
+</A></li>
+        <LI>Next message: <A HREF="000641.html">[X2go-dev] ENHANCEMENT-REQUEST: x2goclient -- option for reverse SSH port
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#638">[ date ]</a>
+              <a href="thread.html#638">[ thread ]</a>
+              <a href="subject.html#638">[ subject ]</a>
+              <a href="author.html#638">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2010-06-25 at 22:11 +0200, Mike Gabriel wrote:
+&gt;<i> Hi there,
+</I>&gt;<i> 
+</I>&gt;<i> in the current x2goclient package (3.01-5, Debian, Qt version) there  
+</I>&gt;<i> is need for an option to configure the reverse SSH port number (i.e.  
+</I>&gt;<i> the SSH daemon's port on the client side). This option should be a  
+</I>&gt;<i> client wide config option (not a per-session option).
+</I>&gt;<i> 
+</I>&gt;<i> Printing and file sharing (sshfs/fuse) build up a reverse port  
+</I>&gt;<i> forwarding tunnel from the x2goserver back to the client. This feature  
+</I>&gt;<i> is used for x2goprint and x2gomountdirs (if I understand the perl code  
+</I>&gt;<i> correctly) and could also be used for any other feature that could be  
+</I>&gt;<i> evoked by a reverse SSH connection...
+</I>&gt;<i> 
+</I>&gt;<i> The linux x2goclient, however, pre-requisites a running ssh daemon on  
+</I>&gt;<i> the client system. Its standard port is 22. The x2goclient will only  
+</I>&gt;<i> work if the client's SSH daemon runs on the default port 22. It will  
+</I>&gt;<i> fail if the port has been set to a custom (high) port.
+</I>&gt;<i> 
+</I>&gt;<i> Consider a client, whose system administrator has set the SSH port to  
+</I>&gt;<i> a high --- to potential intruders unknown --- port number (e.g.  
+</I>&gt;<i> 20222). With such an SSH setup, sshfs/fuse will fail...
+</I>&gt;<i> 
+</I>&gt;<i> Reproduce:
+</I>&gt;<i> 
+</I>&gt;<i>    o modify /etc/ssh/sshd_config
+</I>&gt;<i>    o set ,,Port 20222'' (or something else)
+</I>&gt;<i>    o /etc/init.d/ssh restart
+</I>&gt;<i>    o start x2goclient as some user and login to a remote x2goserver
+</I>&gt;<i>    o start a shell within the x2go session on the server
+</I>&gt;<i>    o type ,,mount | grep sshfs''
+</I>&gt;<i> 
+</I>&gt;<i> Suggestions:
+</I>&gt;<i> 
+</I>&gt;<i> (a)
+</I>&gt;<i> add a global SSH port number option to the x2goclient (linux-only).
+</I>&gt;<i> 
+</I>&gt;<i> (b)
+</I>&gt;<i> Another way for the x2goclient could be some autodetect code:
+</I>&gt;<i> lsof -ni  | egrep &quot;^sshd.*root.*IPv4&quot; | awk '{ print $8 }'
+</I>&gt;<i> 
+</I>&gt;<i> (c)
+</I>&gt;<i> Another way, similar to the windows client, could be to run a separate  
+</I>&gt;<i> ssh instance that binds to a random port on the localhost lo-device  
+</I>&gt;<i> only. That's where the reverse SSH tunnel (server -&gt; client) has its  
+</I>&gt;<i> endpoint.
+</I>&gt;<i> 
+</I>&gt;<i> sshd -o ListenAddress 127.0.0.1:&lt;someport&gt; -o &lt;someOtherOption&gt;
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Hope to be of help,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>Hi, Mike, and welcome to a great project.  As you suggest, it is a
+client and not a session setting hence it does not appear in the session
+definitions.  If you go to Options / Settings in the client menu, you
+will see an option to set the client side port.  We do always set this
+to a non-standard port for security reasons as you also suggest.  Thanks
+- John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000634.html">[X2go-dev] ENHANCEMENT-REQUEST: x2goclient -- option for reverse	SSH port
+</A></li>
+	<LI>Next message: <A HREF="000641.html">[X2go-dev] ENHANCEMENT-REQUEST: x2goclient -- option for reverse SSH port
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#638">[ date ]</a>
+              <a href="thread.html#638">[ thread ]</a>
+              <a href="subject.html#638">[ subject ]</a>
+              <a href="author.html#638">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

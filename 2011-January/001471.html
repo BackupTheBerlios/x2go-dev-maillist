@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2go Git now available at BerliOS
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20Git%20now%20available%20at%20BerliOS&In-Reply-To=%3C4D276950.8020505%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001470.html">
+   <LINK REL="Next"  HREF="001468.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2go Git now available at BerliOS</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20Git%20now%20available%20at%20BerliOS&In-Reply-To=%3C4D276950.8020505%40verizon.net%3E"
+       TITLE="[X2go-dev] X2go Git now available at BerliOS">greno at verizon.net
+       </A><BR>
+    <I>Fri Jan  7 20:28:16 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001470.html">[X2go-dev] X2go Git now available at BerliOS
+</A></li>
+        <LI>Next message: <A HREF="001468.html">[X2go-dev] X2go Git now available at BerliOS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1471">[ date ]</a>
+              <a href="thread.html#1471">[ thread ]</a>
+              <a href="subject.html#1471">[ subject ]</a>
+              <a href="author.html#1471">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 01/07/2011 02:03 PM, Gerry Reno wrote:
+&gt;<i> On 01/07/2011 12:04 PM, Gerry Reno wrote:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Heinz,
+</I>&gt;&gt;<i>     Ok, but is this really going to work?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     The various components that make up 'all' of x2go should be in their
+</I>&gt;&gt;<i> own project.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     So for example, x2goclient should be a separate project from x2goserver.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     This way each of them can have their own release version numbers.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     If you have the entire x2go under one project then the entire
+</I>&gt;&gt;<i> project, clients, servers, all of it will have a new version number
+</I>&gt;&gt;<i> (tag) each time you release any new part of the codebase.  DVCS operates
+</I>&gt;&gt;<i> on versioning the entire codebase and not on versioning separate files
+</I>&gt;&gt;<i> as was the case with CVS.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     So if you have a stable server, 3.0.1-XX, but you have new clients
+</I>&gt;&gt;<i> coming along and changing, the only way to prevent the server release
+</I>&gt;&gt;<i> from also incrementing is to have the clients and server separated into
+</I>&gt;&gt;<i> separate projects.  And that way each would have their own release
+</I>&gt;&gt;<i> numbering scheme.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Regards,
+</I>&gt;&gt;<i> Gerry
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   
+</I>&gt;&gt;<i>     
+</I>&gt;<i> Check here for an explanation of possible layouts:
+</I>&gt;<i>
+</I>&gt;<i>    
+</I>&gt;<i> <A HREF="http://stackoverflow.com/questions/2732020/git-repository-layout-for-server-with-multiple-projects">http://stackoverflow.com/questions/2732020/git-repository-layout-for-server-with-multiple-projects</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Gerry
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+
+My preference would be the &quot;One repo per project&quot; layout.  It's just
+simpler for people to understand and work with.
+
+So 'x2go' application would consist of projects such as 'x2goclient',
+'x2goserver', maybe 'x2gocommon'(if common is needed) each in its own
+git repository.  And if you want to separate the clients then make
+projects like  'x2goclient-qt', 'x2goclient-gtk', etc.
+
+So people would create a local 'x2go' work directory and then checkout
+all of the x2go projects underneath this 'x2go' directory:
+
+$ mkdir x2go
+$ cd x2go
+$ git checkout <A HREF="git://git.berlios.de/x2goclient">git://git.berlios.de/x2goclient</A>  x2goclient
+$ git checkout <A HREF="git://git.berlios.de/x2goserver">git://git.berlios.de/x2goserver</A> x2goserver
+
+
+Regards,
+Gerry
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001470.html">[X2go-dev] X2go Git now available at BerliOS
+</A></li>
+	<LI>Next message: <A HREF="001468.html">[X2go-dev] X2go Git now available at BerliOS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1471">[ date ]</a>
+              <a href="thread.html#1471">[ thread ]</a>
+              <a href="subject.html#1471">[ subject ]</a>
+              <a href="author.html#1471">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

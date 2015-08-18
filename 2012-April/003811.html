@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Traffic Shapping
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Traffic%20Shapping&In-Reply-To=%3C1352240.NJYO4Gzd8b%40zen64-mobile%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003810.html">
+   <LINK REL="Next"  HREF="003812.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Traffic Shapping</H1>
+    <B>Helmer Teles</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Traffic%20Shapping&In-Reply-To=%3C1352240.NJYO4Gzd8b%40zen64-mobile%3E"
+       TITLE="[X2Go-Dev] Traffic Shapping">helmer.teles at gmail.com
+       </A><BR>
+    <I>Thu Apr  5 20:02:35 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003810.html">[X2Go-Dev] Traffic Shapping
+</A></li>
+        <LI>Next message: <A HREF="003812.html">[X2Go-Dev] Traffic Shapping
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3811">[ date ]</a>
+              <a href="thread.html#3811">[ thread ]</a>
+              <a href="subject.html#3811">[ subject ]</a>
+              <a href="author.html#3811">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Stefan,
+
+
+On Thursday 05 April 2012 19:54:09 Stefan Baur wrote:
+&gt;<i> Am 05.04.2012 19:07, schrieb Helmer Teles:
+</I>&gt;<i> &gt; Hello ML.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Any of you guys have any experience in shaping x2go traffic to separate
+</I>&gt;<i> &gt; file &amp; printing sharing from normal session traffic?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Any way to identify both print &amp; file tunnels from the rest of the ssh
+</I>&gt;<i> &gt; stream?
+</I>&gt;<i> 
+</I>&gt;<i> I'd say that depends on your usage scenario. If you're running VPN
+</I>&gt;<i> connections or dedicated lines between several WAN sites (I'm assuming
+</I>&gt;<i> there's no need for traffic shaping within a LAN), then nothing forces
+</I>&gt;<i> you to use x2go's built-in file and print sharing.
+</I>&gt;<i> 
+</I>&gt;<i> In my particular use case, printing is done by CUPS connecting directly
+</I>&gt;<i> to ports 515 and 9100:
+</I>&gt;<i> - 515 for LPD on *nix and Windows (yes, Windows has an LPD server as
+</I>&gt;<i> well) and older network-attached printers,
+</I>&gt;<i> - 9100 for TCP/IP-socket-printing on newer network-attached printers.
+</I>&gt;<i> 
+</I>&gt;<i> Of course, if you're using x2go's SSH connection to avoid a full-blown
+</I>&gt;<i> VPN, that's not going to help you.
+</I>&gt;<i> 
+</I>&gt;<i> It *might* be possible to do throttling on the server side using some
+</I>&gt;<i> iptables magic, but I've never tried that.
+</I>&gt;<i> 
+</I>&gt;<i> -Stefan
+</I>
+
+I'm trying to evaluate how the traffic flows between x2go and my laptop within 
+a 3g connection, maybe i'm seeing it bad, but it seems that when connected to 
+a rdp server inside a x2gosession both the traffic when watching a youtube 
+video and transfering a 16MB file arrive at the same port, in my case both 
+connection when watched with iftop are receiving all traffic at my port 33349 
+and being transmitted at :44126 server port. Is this normal ?
+
+I've watched both at the server and at my end.
+
+Thanks for your reply
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120405/0dcc45e3/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120405/0dcc45e3/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003810.html">[X2Go-Dev] Traffic Shapping
+</A></li>
+	<LI>Next message: <A HREF="003812.html">[X2Go-Dev] Traffic Shapping
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3811">[ date ]</a>
+              <a href="thread.html#3811">[ thread ]</a>
+              <a href="subject.html#3811">[ subject ]</a>
+              <a href="author.html#3811">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

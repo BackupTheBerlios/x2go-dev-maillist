@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2go live-build based livesystems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2go%20live-build%20based%20livesystems&In-Reply-To=%3C878vrzet2b.fsf%40faui43f.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002453.html">
+   <LINK REL="Next"  HREF="002455.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2go live-build based livesystems</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2go%20live-build%20based%20livesystems&In-Reply-To=%3C878vrzet2b.fsf%40faui43f.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-Dev] x2go live-build based livesystems">siretart at tauware.de
+       </A><BR>
+    <I>Fri Jul 15 12:28:44 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002453.html">[X2go-Dev] x2go live-build based livesystems
+</A></li>
+        <LI>Next message: <A HREF="002455.html">[X2go-Dev] x2go live-build based livesystems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2454">[ date ]</a>
+              <a href="thread.html#2454">[ thread ]</a>
+              <a href="subject.html#2454">[ subject ]</a>
+              <a href="author.html#2454">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Jul 15, 2011 at 12:02:50 (CEST), Mike Gabriel wrote:
+
+&gt;<i> Hi Reinhard,
+</I>&gt;<i>
+</I>&gt;<i> On So 10 Jul 2011 11:35:41 CEST Reinhard Tartler wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Last friday we've been experimenting with creating thin clients using
+</I>&gt;&gt;<i> the live-build infrastructure. This is the infrastrucutre that is used
+</I>&gt;&gt;<i> by both debian live and from oneiric onwards, the ubuntu live cds. This
+</I>&gt;&gt;<i> worked included backporting relevant packages from oneiric to natty and
+</I>&gt;&gt;<i> fixing some annoying bugs for getting actual working packages.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Mainly as a self reminder for me, here some test instructions for
+</I>&gt;&gt;<i> *natty* systems. Feedback (as always) welcome:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> sudo add-apt-repository ppa:siretart
+</I>&gt;&gt;<i> sudo apt-get update
+</I>&gt;&gt;<i> sudo apt-get dist-upgrade
+</I>&gt;&gt;<i> sudo apt-get install live-build x2go-rootfs
+</I>&gt;&gt;<i> mkdir /tmp/build
+</I>&gt;&gt;<i> cd /tmp/build
+</I>&gt;&gt;<i> cp -rv /usr/share/x2go-livefs/auto .
+</I>
+btw, I've fixed the path, it's /usr/share/x2go-rootfs/auto now.
+
+&gt;&gt;<i> sudo lb clean
+</I>&gt;&gt;<i> lb config
+</I>&gt;&gt;<i> sudo lb build
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> after this, you should end up with a lubuntu/natty based live cd
+</I>&gt;&gt;<i> 'binary-hybrid.iso' that has an lxdm configured to autologin the user
+</I>&gt;&gt;<i> 'user'. Moreover, x2goclient and rdesktop should be available in the
+</I>&gt;&gt;<i> system. This binary-hybrid.iso is for me less than 500MiB in size and
+</I>&gt;&gt;<i> AFAIUI (but I didn't test myself) should also worke from an usb stick
+</I>&gt;&gt;<i> (dd if=binary-hybrid of=/dev/sdX).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> hints: /tmp/build is best done on a tmpfs. You'll need around 2gb space
+</I>&gt;&gt;<i> available there.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Cheers
+</I>&gt;<i>
+</I>&gt;<i> Would it make sense to provide the live-cd builder in the
+</I>&gt;<i> x2gothinclient.git project on code.x2go.org???
+</I>
+If x2go as a project decides to abandon the existing TCE effords in
+favor of live-build, sure, why not. Otherwise I don't think it makes
+makes sense to support both.
+
+Moreover, for your department thin client, I'm maintaining a copy with
+additional site-specific customizations. If there is indeed interest, I
+could see what can/should be merged back.
+
+live-build 3 is available in debian wheezy and later. For squeeze
+someone would have to backport it (and live-boot 3, and live-config 3),
+or redo the efford with live-build 2 from squeeze.
+
+&gt;<i> Others might also be interested in a live-cd image of the X2go Thin Client...
+</I>
+In that case I'd recommend to install the .debs from my PPA. 
+
+-- 
+Gruesse/greetings,
+Reinhard Tartler, KeyID 945348A4
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002453.html">[X2go-Dev] x2go live-build based livesystems
+</A></li>
+	<LI>Next message: <A HREF="002455.html">[X2go-Dev] x2go live-build based livesystems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2454">[ date ]</a>
+              <a href="thread.html#2454">[ thread ]</a>
+              <a href="subject.html#2454">[ subject ]</a>
+              <a href="author.html#2454">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

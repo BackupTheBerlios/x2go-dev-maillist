@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] remote proxy closed the connection
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20remote%20proxy%20closed%20the%20connection&In-Reply-To=%3C4D4D6287.7050108%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001718.html">
+   <LINK REL="Next"  HREF="001720.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] remote proxy closed the connection</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20remote%20proxy%20closed%20the%20connection&In-Reply-To=%3C4D4D6287.7050108%40verizon.net%3E"
+       TITLE="[X2go-dev] remote proxy closed the connection">greno at verizon.net
+       </A><BR>
+    <I>Sat Feb  5 15:45:27 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001718.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+        <LI>Next message: <A HREF="001720.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1719">[ date ]</a>
+              <a href="thread.html#1719">[ thread ]</a>
+              <a href="subject.html#1719">[ subject ]</a>
+              <a href="author.html#1719">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 02/05/2011 05:25 AM, Mike Gabriel wrote:
+&gt;<i> Hi Gerry,
+</I>&gt;<i>
+</I>&gt;<i> On Sa 05 Feb 2011 00:09:52 CET Gerry Reno wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> What's interesting is that it presents the menu and the process is shown
+</I>&gt;&gt;<i> as &quot;running&quot; so then your &quot;suspend&quot; it and &quot;resume&quot; it and you still get
+</I>&gt;&gt;<i> the &quot;remote proxy closed the connection&quot; error and NX proxy shows
+</I>&gt;&gt;<i> &quot;aborting&quot; but it does resume the session.  Very confusing to users but
+</I>&gt;&gt;<i> at least they get their session back.
+</I>&gt;<i>
+</I>&gt;<i> By what I read the issue really occurs around the port forwarding
+</I>&gt;<i> request. I try to sketch the mechanism...
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>   o client: sets up a forwarding tunnel to the server (for nxproxy
+</I>&gt;<i> traffic
+</I>&gt;<i>     which in our discussed scenario)
+</I>&gt;<i>   o server: thinks the tunnel is already/still set up (by the former
+</I>&gt;<i> request)
+</I>&gt;<i>             and denies the tunnel
+</I>&gt;<i>
+</I>&gt;<i>     -&gt; here PyHoca-GUI tries to push a cancel_port_forward request to
+</I>&gt;<i> the SSH
+</I>&gt;<i>        daemon which sometimes works but sometimes doesn't
+</I>&gt;<i>
+</I>&gt;<i>   o the x2goclient does not realize the failed tunnel (PyHoca-GUI btw.
+</I>&gt;<i> does and
+</I>&gt;<i>     reports an error)
+</I>&gt;<i>   o thus, x2goclient continues as planned
+</I>&gt;<i>   o client: call of server-side x2goresume-session script (which fails
+</I>&gt;<i> because
+</I>&gt;<i>     of the missing port forwarding tunnel)
+</I>&gt;<i>   o client: from x2goresum-session script the x2goresume script is called
+</I>&gt;<i>     (which updates the database and states that the new session is
+</I>&gt;<i> running
+</I>&gt;<i>     although the session resuming failed)
+</I>&gt;<i>
+</I>&gt;<i> The problem is that old port forwarding requests on the SSH server do
+</I>&gt;<i> not get properly cancelled by the clients. If a request does not get
+</I>&gt;<i> canceled the port is blocked/busy and another SSH client instance
+</I>&gt;<i> cannot request a port forwarding on this server port.
+</I>&gt;<i>
+</I>&gt;<i> Hope that sheds more light on the situation... If you can find an SSHd
+</I>&gt;<i> option that could fix this behaviour this would be really great!!!
+</I>&gt;<i>
+</I>&gt;<i> Greetings,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+Right now I'm working only with the browser-client.  I'm intentionally
+crashing the browser and then trying to resume the detached session.  So
+from the client perspective it's a whole new client process that doesn't
+know anything about an existing tunnel.
+
+What I'm thinking is that when this happens the server is not receiving
+an ACK and is putting the connection into TIME_WAIT state whose interval
+is defined as 2*MSL where MSL is the packet lifetime.  Most networks
+have MSL set to 30 seconds these days.  I think it used to be 120
+seconds.  So it looks like TIME_WAIT will last from 1 to 4 minutes
+depending upon the server network.
+
+So what happens is if the user just waits long enough then they can
+resume the detached session.  If they keep trying at intervals less than
+TIME_WAIT then it seems they never get reconnected.
+
+I'm not sure what type of experiments need to be constructed to account
+for all the scenarios that can happen between the different types of
+clients and the server.  But we need to think about that.  And then see
+if we can manually construct these scenarios just using terminals and
+try to tweak the settings until we have good behavior under each
+scenario.  Then try to determine how to get the client, nxproxy and the
+server to implement those behaviors.
+
+
+Regards,
+Gerry
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001718.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+	<LI>Next message: <A HREF="001720.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1719">[ date ]</a>
+              <a href="thread.html#1719">[ thread ]</a>
+              <a href="subject.html#1719">[ subject ]</a>
+              <a href="author.html#1719">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

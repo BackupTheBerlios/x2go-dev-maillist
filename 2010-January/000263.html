@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] OT: X2Go desktop distribution choices
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20OT%3A%20X2Go%20desktop%20distribution%20choices&In-Reply-To=%3C4B4444A0.7040304%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000260.html">
+   <LINK REL="Next"  HREF="000257.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] OT: X2Go desktop distribution choices</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20OT%3A%20X2Go%20desktop%20distribution%20choices&In-Reply-To=%3C4B4444A0.7040304%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] OT: X2Go desktop distribution choices">paul at vandervlis.nl
+       </A><BR>
+    <I>Wed Jan  6 09:06:56 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000260.html">[X2go-dev] OT: X2Go desktop distribution choices
+</A></li>
+        <LI>Next message: <A HREF="000257.html">[X2go-dev] Session Shadowing, Usb Device
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#263">[ date ]</a>
+              <a href="thread.html#263">[ thread ]</a>
+              <a href="subject.html#263">[ subject ]</a>
+              <a href="author.html#263">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>John A. Sullivan III schreef:
+
+&gt;<i> Thanks, Paul.  Do you or others have experience mixing stable +
+</I>&gt;<i> backports with testing using pinning? I've heard some say that is the
+</I>&gt;<i> best of all worlds and others say it is a terrible idea because testing
+</I>&gt;<i> pulls in new libraries which can badly break packages in stable. Thanks
+</I>
+Sometimes it works, sometimes you have the problem of the new libraries.
+You can easy try it.
+
+If it needs many new libraries and there is no backport available you
+can make your own backport. With a backport you don't need these new
+libraries in most cases. Download the Debian source package from testing
+or unstable, and build it on your system with &quot;dpkg-buildpackage -uc
+-us&quot;. In many cases this works really fine.
+
+But most of the time, I do not need to have the latest version, and I am
+glad to have such a stable platform with good security support.
+
+Some organisations like X2go have their own Debian repository, then you
+can have the latest version direct.
+
+For desktops, an important point is the support status for Mozilla
+products in Debian:
+<A HREF="http://www.debian.org/releases/lenny/i386/release-notes/ch-information.en.html#mozilla-security">http://www.debian.org/releases/lenny/i386/release-notes/ch-information.en.html#mozilla-security</A>
+This was the reality after the Lenny release at 14 Februari 2009:
+<A HREF="http://www.debian.org/security/2009/dsa-1753">http://www.debian.org/security/2009/dsa-1753</A>
+<A HREF="http://www.debian.org/security/2009/dsa-1830">http://www.debian.org/security/2009/dsa-1830</A>
+I think about switching to Epiphany and Evolution for this reason. But
+maybe it's better to be prepared and make a fast switch to a new stable
+version when it releases.
+
+With regards,
+Paul van der Vlis.
+
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000260.html">[X2go-dev] OT: X2Go desktop distribution choices
+</A></li>
+	<LI>Next message: <A HREF="000257.html">[X2go-dev] Session Shadowing, Usb Device
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#263">[ date ]</a>
+              <a href="thread.html#263">[ thread ]</a>
+              <a href="subject.html#263">[ subject ]</a>
+              <a href="author.html#263">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

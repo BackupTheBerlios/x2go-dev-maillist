@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Go Client Code Changes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20Client%20Code%20Changes&In-Reply-To=%3C1295727966.23595.101.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001548.html">
+   <LINK REL="Next"  HREF="001563.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Go Client Code Changes</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20Client%20Code%20Changes&In-Reply-To=%3C1295727966.23595.101.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] X2Go Client Code Changes">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat Jan 22 21:26:06 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001548.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+        <LI>Next message: <A HREF="001563.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1550">[ date ]</a>
+              <a href="thread.html#1550">[ thread ]</a>
+              <a href="subject.html#1550">[ subject ]</a>
+              <a href="author.html#1550">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, 2011-01-22 at 19:32 +0100, Mike Gabriel wrote:
+&gt;<i> Hi John, hi Alex, hi list,
+</I>&gt;<i> 
+</I>&lt;snip&gt;
+&gt;<i> If I understand it correctly the different setups require two  
+</I>&gt;<i> different XServer modes: fullscreen and multi-window mode.
+</I>&gt;<i> 
+</I>&gt;<i> The multi-window mode can handle many different sessions (desktop  
+</I>&gt;<i> type, rootless type), so these won't need separate XServer instances.  
+</I>&gt;<i> Thus only fullscreen sessions would need their own XServer instances.  
+</I>&gt;<i> How about that? (Or has anyone already provided this suggestion?).
+</I>&gt;<i> 
+</I>&gt;<i> I am thinking of choosing this approach for some later version of  
+</I>&gt;<i> pyhoca-gui. This would also be neat on Unix (have separate ttys for  
+</I>&gt;<i> local session and X2go sessions).
+</I>&gt;<i> 
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>Hi, Mike.  In discussing this with Phil, we decided on three.  The
+explicit rootless gives us &lt;ALT&gt;&lt;TAB&gt; capability while we suspect
+multi-window does not.  I'm guessing we will move the entire X launch
+until later in the process - once we have the session data.  We could
+start multi-window early and then only start a new session if it is
+rootless or fullscreen but that seems to be a waste. I'd imagine we will
+start a new X for each session even if they are all multi-window.  At
+least initially.  I'm not sure how complex it would be to check for an
+existing multi-window instance before launching a new multi-window
+instance.  Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001548.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+	<LI>Next message: <A HREF="001563.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1550">[ date ]</a>
+              <a href="thread.html#1550">[ thread ]</a>
+              <a href="subject.html#1550">[ subject ]</a>
+              <a href="author.html#1550">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

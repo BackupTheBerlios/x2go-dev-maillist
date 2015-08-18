@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Feature Request: update ssh public key fingerprint from	within x2goclient
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Feature%20Request%3A%20update%20ssh%20public%20key%20fingerprint%20from%0A%09within%20x2goclient&In-Reply-To=%3C4F3E58FE.1050502%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003462.html">
+   <LINK REL="Next"  HREF="003474.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Feature Request: update ssh public key fingerprint from	within x2goclient</H1>
+    <B>newsgroups.mail2 at stefanbaur.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Feature%20Request%3A%20update%20ssh%20public%20key%20fingerprint%20from%0A%09within%20x2goclient&In-Reply-To=%3C4F3E58FE.1050502%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Feature Request: update ssh public key fingerprint from	within x2goclient">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Fri Feb 17 14:41:18 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003462.html">[X2Go-Dev] x2goagent listening on public interface - how to make it listen on 127.0.0.1 only?
+</A></li>
+        <LI>Next message: <A HREF="003474.html">[X2Go-Dev] Feature Request: update ssh public key fingerprint from within x2goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3473">[ date ]</a>
+              <a href="thread.html#3473">[ thread ]</a>
+              <a href="subject.html#3473">[ subject ]</a>
+              <a href="author.html#3473">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi list,
+
+after swapping a server and trying to connect to it with X2Go, 
+x2goclient greets me with
+
+---------------------------
+Authentification failed
+---------------------------
+Host key for server changed.
+It is now: xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx:xx
+For security reasons, connection will be stopped
+---------------------------
+OK
+---------------------------
+
+In the same situation, the NX client would ask if the key should be updated.
+
+I can see that offering such a direct option is a good idea from a 
+usability viewpoint, but a bad one from a security viewpoint, as users 
+tend to click yes/allow on every popup they see.
+
+The current approach of x2goclient is the total opposite.
+
+A moderately experienced Linux user might figure out that ssh-keygen -R 
+&lt;hostip&gt; will help, but to a Windows user, this will be an unsolvable 
+mystery.
+
+I would like to suggest adding an option to remove/update the key from 
+within the X2Go-Client. However, to avoid &quot;user click-through&quot;, it 
+should be somewhere in the menu, and the popup message should be amended 
+with a note pointing to that menu.
+
+-Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003462.html">[X2Go-Dev] x2goagent listening on public interface - how to make it listen on 127.0.0.1 only?
+</A></li>
+	<LI>Next message: <A HREF="003474.html">[X2Go-Dev] Feature Request: update ssh public key fingerprint from within x2goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3473">[ date ]</a>
+              <a href="thread.html#3473">[ thread ]</a>
+              <a href="subject.html#3473">[ subject ]</a>
+              <a href="author.html#3473">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] new to the list, offering support
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20new%20to%20the%20list%2C%20offering%20support&In-Reply-To=%3C20100627165448.498855vtjdtugfug%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000649.html">
+   <LINK REL="Next"  HREF="000653.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] new to the list, offering support</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20new%20to%20the%20list%2C%20offering%20support&In-Reply-To=%3C20100627165448.498855vtjdtugfug%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] new to the list, offering support">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sun Jun 27 16:54:48 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000649.html">[X2go-dev] new to the list, offering support
+</A></li>
+        <LI>Next message: <A HREF="000653.html">[X2go-dev] new to the list, offering support
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#652">[ date ]</a>
+              <a href="thread.html#652">[ thread ]</a>
+              <a href="subject.html#652">[ subject ]</a>
+              <a href="author.html#652">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear Heinz, dear Alex, dear list-folks,
+
+On Sa 26 Jun 2010 22:35:56 CEST &quot;Heinz-M. Graesing&quot; wrote:
+
+&gt;<i> Am 25.06.2010 19:23, schrieb Mike Gabriel:
+</I>&gt;<i>
+</I>&gt;<i> Hello Mike - Thank you!
+</I>&gt;<i>
+</I>&gt;&gt;<i>   o vhosts for testing (on root servers, available sometime in
+</I>&gt;&gt;<i>     September/Octobre)
+</I>&gt;&gt;<i>     this year)
+</I>&gt;<i>
+</I>&gt;<i> This is interesting for public testing environments. There are some very
+</I>&gt;<i> intersting desktop project which should be seen by the world (cream
+</I>&gt;<i> desktop environment, sugar,...) of cause the world should also see
+</I>&gt;<i> x2goplugin. We are looking for sponsored public testing environments.
+</I>
+OK, I will put this into my calendar for Octobre this year (roughly).  
+--- In Octobre I will hire another root server that will have a couple  
+of spare resources. I will come back to you once the machine is up and  
+running... (cream desktop environment looks promising...).
+
+&gt;&gt;<i>   o skills in Perl, Python, PHP
+</I>
+I forgot heavy bashing...
+
+&gt;<i> The next administration interface will be build on a JSON-RPC api. We'll
+</I>&gt;<i> build an ajax interface, but there will sure be the need for other
+</I>&gt;<i> flavours of administration gui and some php examples (which we'll won't
+</I>&gt;<i> build).
+</I>
+I am planning to utilize GOsa&#178; for customers' infrastructure  
+management... I think a GOsa&#178; plugin for x2go management hasn't been  
+startet yet, has it? Thus, once you have the JSON-RPC api ready, a  
+management plugin for GOsa&#178; could be nice, couldn't it?
+
+&gt;&gt;<i>   o genuine skills in communication (at least I hope I have them)
+</I>&gt;<i>
+</I>&gt;<i> This might be the most needed help at the moment. As the discussion is
+</I>&gt;<i> already moving towards the help with the topic &quot;ubuntu&quot; I'll try to
+</I>&gt;<i> inform you about what is and was going on.
+</I>&gt;<i> We are developing on debian and we are building packages for debian
+</I>&gt;<i> (i386, aamd64, ppc). As we are administrators of x2go systems too, we'll
+</I>&gt;<i> go on building those packages as we'll need them.
+</I>
+OK, Debian is completely covered by you then. I read about the NX/Xorg  
+problem that hinders projects like freenx (rest-in-peace), neatx and  
+also x2go to move into official Debian repositories.
+
+Thus, staying with an own x2go .deb repository for Debian (and also a  
+Ubuntu ppa) will stay _the_ option until x2go is available in Debian  
+Sid.
+
+&gt;<i> After some people wanted to use x2go on ubuntu, we've asked them and
+</I>&gt;<i> some ubuntu members, how to build packages for ubuntu. There where some
+</I>&gt;<i> guidlines we should (needed to) follow and so we've developed a own
+</I>&gt;<i> version of x2go for ubuntu. This version was based on the unchanged
+</I>&gt;<i> nxlibs and some other changes to the normal branch of x2go. We've
+</I>&gt;<i> released those packages on launchpad and started a rfp.
+</I>
+OK...
+
+&gt;<i> Then there where a lot of discussions about how to proceed - which all
+</I>&gt;<i> would have lead to a totally incompatible version and to a lot of work
+</I>&gt;<i> on the webguis of canonical.
+</I>
+Could you specify on that?
+
+   o Why unchanged nxlibs?
+   o Why incompatible?
+   o Why a lot of web-gui work? What kind of work?
+
+&gt;<i> We've stopped the development of this version and added ubuntu
+</I>&gt;<i> compatibility to our debian version.
+</I>
+Which is sensible... Is it a problem to use your source code tree for  
+building Ubuntu packages on launchpad?
+
+&gt;<i> Later we introduced a meta package
+</I>&gt;<i> named &quot;x2goserver-home&quot; which should contain all needed modifications on
+</I>&gt;<i> x2go to work on ubuntu. We are testing x2go with the most recent ubuntu
+</I>&gt;<i> versions but we are no ubuntu users.
+</I>
+On Ubuntu Lucid and Karmic (I have no Jaunty instance around) x2go  
+works perfect. Only problematic is cross-distro usage of pulseaudio  
+(x2goserver on Ubuntu Lucid, x2goclient on Debian Lenny). Also  
+problematic is pulseaudio usage between Debian Squeeze (server) and  
+Lenny (client) ... (i.e. applications on the x2goserver that are  
+compiled against new libpulse libs and are then expected to run on an  
+old pulseaudio daemon on the x2goclient --- haven't tested the other  
+way round, yet...).
+
+pulseaudio has experienced quite some changes between the release of  
+Debian Lenny and Ubuntu Lucid / Debian Squeeze. Maintaining  
+compatibility of x2go multimedia features between Lenny and  
+Squeeze/Lucid from my point of view would mean also providing most a  
+very recent backport of pulseaudio (and many other libs like libsnd,  
+libvorbis, ...). I am currently compiling backport packages on my  
+Debian Lenny system to verify this...
+
+&gt;<i> Besides the packaging for ubuntu there was an rfp for debian - which is
+</I>&gt;<i> in our eyes very important to x2go. It is now closed and Jonas will
+</I>&gt;<i> start his work on x2go - thank you Jonas - thank you Skolelinux!
+</I>&gt;<i> If those packages will reach unstable, they will be accessible to ubuntu
+</I>&gt;<i> too.
+</I>
+This is good news... How did you ship around the duplication-of-code  
+issue in NX/Xorg??? (Very curious...). Could you please confirm my  
+repetition of your statement. x2go has been accepted in Debian and  
+will soon appear in Debian Sid!?! Is it already in Debian's  
+experimental repository?
+
+&gt;<i> So why I answered this on you lines of &quot;skills of communication&quot;? This
+</I>&gt;<i> is, because the described development caused a lot of emotional
+</I>&gt;<i> reactions. We receive a lot of emails of ubuntu users and they describe
+</I>&gt;<i> (some times not only polied) us their needs.
+</I>
+What are their needs, exactly??? It is possible to install your  
+3.0.1-x packages and also use them virtually flawlessly on Ubuntu  
+systems. To know people's needs is important to address them  
+adequately. Most people do not always want an answer, quite a couple  
+of them just want to _feel_ heard...
+
+&gt;<i> I wan't to add, that we've started the project with a lot of
+</I>&gt;<i> communication possibilities(forum/list/bugtracker/...) which lead to a
+</I>&gt;<i> lot of work and a lost focus. We reduced the communication to this list
+</I>&gt;<i> only and now everyting works fine despite the fact that there a some
+</I>&gt;<i> people who are afraid of &quot;mailing lists&quot;. There will be a forum for
+</I>&gt;<i> newbies soon too (operated by somebody involved in Linux4Afrika).
+</I>
+I was rather surprised to find such an advanced opensource software  
+project that was missing ,,standard'' facilities of communication.  
+Issues on the x2go-dev list are mostly x2go-users' issues, actual  
+discussion about coding, patch snippets etc. are not found in the  
+threads.
+
+Another point is that it feels like most of / all of the development  
+rests on yours and Alex's shoulders. This is OK, if it is really  
+intended. As I hear, there is a lot work to handle, many requests to  
+answer etc.
+
+I have the impulse to suggest a couple of things, but this needs  
+explicit allowance from your side. And maybe it's just that I do not  
+know enough of your internal project structures...
+
+&gt;<i> To get
+</I>&gt;<i> back to ubuntu: At the moment there are packages for Arch, Gentoo,
+</I>&gt;<i> Mandriva, SuSE,... all those ports a build with maintainers. We think
+</I>&gt;<i> this too would be a good idea for ubuntu. The packages could be build
+</I>&gt;<i> right out of our *tar.gzs without changes (they are prepared for debian
+</I>&gt;<i> package building). The maintainer could do this on launchpad, earn karma
+</I>&gt;<i> and do whatever the ubuntu folks wan't to see as success of a project.
+</I>&gt;<i> I don't think, that those packages will make their way into ubuntu, but
+</I>&gt;<i> a ppa reduced to the ubuntu compatible packages will help accepting x2go
+</I>&gt;<i> with ubuntu. Maybe it is a good idea to talk to LUG Ottobrunn which is
+</I>&gt;<i> very activly promoting x2go for ubuntu (they too have some experience on
+</I>&gt;<i> the topic &quot;communication/ubuntu&quot;).
+</I>
+OK. Is anyone of the LUG Ottobrunn listening to this list? PING!!! I  
+think a Ubuntu ppa for x2go is a really good idea. And, ike  
+neatx/formerly freenx, it does not need to enter Ubuntu directly.  
+Especially not, if you are working on official Debian entry anyway. A  
+Ubuntu ppa would just be temporary, wouldn't?
+
+So, do I get it right, LUG Ottobrunn hasn't started a Ubuntu ppa for  
+x2go, yet? Are they planning to? Who shall be addressed to clarify on  
+that. Just to avoid duplicate effort...
+
+&gt;&gt;<i> I live in Kiel, Germany and currently I am working on a SBC/Opensource
+</I>&gt;&gt;<i> concept for a couple of grammar schools herearound.
+</I>&gt;<i>
+</I>&gt;<i> As x2go is used in bavarian schools and with skolelinux in
+</I>&gt;<i> Rheinland-Pfalz, please contact me on this topic.
+</I>
+I will do that!
+
+Summary:
+
+   o root server coming up in Octobre... I will let you know when it is ready
+     for boarding...
+   o GOsa&#178; plugin sometime in the future...
+   o Formerly Ubuntu ppa: Why unchanged nxlibs in Ubuntu packages? Why
+     incompatible
+     with Debian? Why a lot of web-gui work? What kind of web-gui work?
+   o About Debian rfp: How did you ship around the duplication-of-code issue in
+     NX/Xorg???
+   o Allowance for suggesting some aspects of communication? On the list or
+     directly first? (Personally, I prefer list discussions)
+   o Status of Ubuntu ppa at LUG Ottobrunn? Contact partner there? Otherwise:
+     Mike becomes Ubuntu ppa maintainer?
+
+Many greetings,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+eMail-LeseSchreibStunde: wochentags 8h-10h
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000649.html">[X2go-dev] new to the list, offering support
+</A></li>
+	<LI>Next message: <A HREF="000653.html">[X2go-dev] new to the list, offering support
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#652">[ date ]</a>
+              <a href="thread.html#652">[ thread ]</a>
+              <a href="subject.html#652">[ subject ]</a>
+              <a href="author.html#652">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#77: Fwd: Bug report,	unknown package: X2Go corrupts CygWin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2377%3A%20Fwd%3A%20Bug%20report%2C%0A%09unknown%20package%3A%20X2Go%20corrupts%20CygWin&In-Reply-To=%3C20121206095821.23244ju0rz4iytyl%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004660.html">
+   <LINK REL="Next"  HREF="004664.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#77: Fwd: Bug report,	unknown package: X2Go corrupts CygWin</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2377%3A%20Fwd%3A%20Bug%20report%2C%0A%09unknown%20package%3A%20X2Go%20corrupts%20CygWin&In-Reply-To=%3C20121206095821.23244ju0rz4iytyl%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#77: Fwd: Bug report,	unknown package: X2Go corrupts CygWin">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Dec  6 09:58:21 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004660.html">[X2Go-Dev] Bug#76: Fails to use my local SSH agent
+</A></li>
+        <LI>Next message: <A HREF="004664.html">[X2Go-Dev] Bug#77: Fwd: Bug report,	unknown package: X2Go corrupts CygWin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4656">[ date ]</a>
+              <a href="thread.html#4656">[ thread ]</a>
+              <a href="subject.html#4656">[ subject ]</a>
+              <a href="author.html#4656">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Version: 3.99.2.2-win32
+Severity: normal
+
+forwarding this mail to X2Go BTS... found in my <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">git-admin at x2go.org</A> mails...
+
+@Anders: please use a body header for bug mails like the one above...
+
+Thanks,
+Mike
+
+----- Weitergeleitete Nachricht von <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Anders.Hallstrom at delaval.com</A> -----
+      Datum: Wed, 21 Nov 2012 14:54:31 +0100
+        Von: &quot;Hallstrom, Anders&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Anders.Hallstrom at delaval.com</A>&gt;
+    Betreff: Bug report, unknown package: X2Go corrupts CygWin
+         An: &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">git-admin at x2go.org</A>&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">git-admin at x2go.org</A>&gt;
+
+Hello.
+
+I am following the following advice from &#8220;How to report a Bug in X2Go&#8221;  
+(<A HREF="http://bugs.x2go.org/Reporting.html">http://bugs.x2go.org/Reporting.html</A>):
+
+&quot;If you can't seem to determine which package contains the problem,  
+please send e-mail to the <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">git-admin at x2go.org</A> asking for advice.&quot;
+
+Since I installed X2Go I have experienced that CygWin is rendered unusable.
+
+System: Windows XP Professional version 2002 SP 3
+
+X2Go: X2Go-client V. 3.99.2.2 (Qt - 4.8.1)
+(I had to type that! Why can't I select&amp;copy from the &quot;about&quot; window??)
+
+CygWin: CYGWIN_NT-5.1
+(Yes, that's really old, but &quot;so what&quot;...)
+
+What happens is that directories from the X2Go installation are
+suddenly mounted as /etc and /bin in CygWin.
+Since fundamental commands such as &quot;/bin/ls&quot; are thereby missing,  
+nothing works.
+
+To repair, I do the following:
+- Start a Windows command prompt (the cygwin path in Windows is still  
+working).
+- umount /etc
+- umount /bin
+Now CygWin is working normally.
+
+After this fix, I can still use X2Go without problems and without
+the mounts coming back, so I just cannot see why the mounts were
+necessary in the first place.
+
+Sometimes, however, the harmful mounts do come back.
+I cannot pinpoint exactly when this happens,
+but at least it is not every time I restart the computer and not every  
+time I run X2Go.
+
+Is this known?
+Could some developer explain what is happening?
+
+Best Regards
+Anders Hallstr&#246;m
+
+
+
+&quot;This is an e-mail from a DeLaval company. This e-mail is confidential
+and may also be privileged. Please delete the email and notify us
+immediately if you are not the intended recipient. DeLaval does not
+enter into contracts or contractual obligations via electronic mail,
+unless otherwise agreed in writing between parties concerned.
+Thank you.&quot;
+
+
+----- Ende der weitergeleiteten Nachricht -----
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121206/7343f381/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121206/7343f381/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004660.html">[X2Go-Dev] Bug#76: Fails to use my local SSH agent
+</A></li>
+	<LI>Next message: <A HREF="004664.html">[X2Go-Dev] Bug#77: Fwd: Bug report,	unknown package: X2Go corrupts CygWin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4656">[ date ]</a>
+              <a href="thread.html#4656">[ thread ]</a>
+              <a href="subject.html#4656">[ subject ]</a>
+              <a href="author.html#4656">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

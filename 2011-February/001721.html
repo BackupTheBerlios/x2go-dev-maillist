@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Errors in DOMAIN\Username behaviour / followup to LDAP	problems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Errors%20in%20DOMAIN%5CUsername%20behaviour%20/%20followup%20to%20LDAP%0A%09problems&In-Reply-To=%3C4D5053FE.1010900%40informatik.hu-berlin.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001702.html">
+   <LINK REL="Next"  HREF="001727.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Errors in DOMAIN\Username behaviour / followup to LDAP	problems</H1>
+    <B>Robert Schumann</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Errors%20in%20DOMAIN%5CUsername%20behaviour%20/%20followup%20to%20LDAP%0A%09problems&In-Reply-To=%3C4D5053FE.1010900%40informatik.hu-berlin.de%3E"
+       TITLE="[X2go-dev] Errors in DOMAIN\Username behaviour / followup to LDAP	problems">schumann at informatik.hu-berlin.de
+       </A><BR>
+    <I>Mon Feb  7 21:20:14 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001702.html">[X2go-dev] x2goserver 3.0.99: cannot terminate session from command line
+</A></li>
+        <LI>Next message: <A HREF="001727.html">[X2go-dev] VcXsrv
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1721">[ date ]</a>
+              <a href="thread.html#1721">[ thread ]</a>
+              <a href="subject.html#1721">[ subject ]</a>
+              <a href="author.html#1721">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+Hey guys,
+
+first of all - thanks a lot for making this software possible, it's
+definitely the best NX/Linux-Terminal connection software out there atm
+so please keep up the good work!
+
+My report is a followup to messages from mid december concerning LDAP
+user problems (e.g. with pulseaudio). I am using winbind authentication
+on an x2goserver so I have to deal with special characters in usernames
+as well like DOMAIN\username or <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">username at DOMAIN.</A> There's no workaround
+for that since I'm in a multi-trusted domain environment, no default
+possible.
+
+When I login as a local user e.g. sysop everything works fine (Ubuntu
+10.04 x64, latest x2goserver from heuler repo: 3.0.99 and latest client
+3.01-17 under Tinycore Linux, log attached). When I login as an winbind
+user USER\huhs01868030 miscellaneous files and directories are not
+created. I'm attaching a $ find .x2go for all cases.
+
+Among them are:
+.pulse-client.conf
+.pulse-cookie
+cmdoutput
+keys under ssh/
+link to spool directory
+
+It seems that there are problems when functions like ssh_scp_push_file()
+from libssh are called. Log shows they are called with double quotes for
+parameters (although IMHO it should be better to call them with single
+quotes - the difference lies in handling escape sequences as they are
+interpreted with double quotes and left out with single quotes, but
+that's a guess from me ;).
+
+I'm also attaching changes for sshmasterconnection.cpp which solved the
+problems to a certain degree by escaping the back slashes again before
+throwing them over to libssh. However spool directory and cmdoutput are
+still not created but that seems to be server related too.
+
+Another code fragment I don't understand and which causes errors in my
+case is the definition of dst in onmainwindow_part3.cpp on line 899.
+
+dst=&quot;~&quot;+uname +&quot;/.x2go/ssh&quot;+dst;
+
+According to the log this results in x2goclient trying to create keys in
+&quot;~USER\huhs01868030/.x2go/ssh&quot;, which is surely not working. Attached
+patch works for me with just letting uname out of dst.
+
+I can provide more details and tests if you like to see them.
+
+Best regards and greetings from Berlin,
+
+Robert
+
+- -- 
+
+|<i>-----------------------------------------------------address-+
+</I>|<i> work:   jacob-und-wilhelm-grimm-zentrum
+</I>|<i>         geschwister-scholl-str. 1, 10117 berlin
+</I>|<i> postal: humboldt-universit&#228;t zu berlin
+</I>|<i>         computer- und medienservice
+</I>|<i>         unter den linden 6
+</I>|<i>         10099 berlin
+</I>|<i>-----------------------------------------------------contact-+
+</I>|<i> mail:   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">schumann at informatik.hu-berlin.de</A>
+</I>|<i> icq:    93163687
+</I>|<i> xmpp:   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">betulichergutmensch at googlemail.com</A>
+</I>|<i> huchat: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">schumanr at chat.hu-berlin.de</A>
+</I>|<i> phone:  +49(0)30-2093-70133
+</I>|<i>-----------------------------------------------------gpg/pgp-+
+</I>|<i> key:    remembrance.de/gpg/0xA5A5FAA2.asc
+</I>|<i> fprint: 9220-9732-7390-7A0C-5623-3336-4233-FDF8-A5A5-FAA2
+</I>|<i>-------------------------------------------------------------+
+</I>
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+Comment: Using GnuPG with Fedora - <A HREF="http://enigmail.mozdev.org/">http://enigmail.mozdev.org/</A>
+
+iEYEARECAAYFAk1QU/4ACgkQQjP9+KWl+qKDkQCgkBnQr6GUsA2vC2/hR2inAqhp
+ip8An0r7bsv9l1YzOLsxGl8EEdzdZZJd
+=5TYo
+-----END PGP SIGNATURE-----
+-------------- next part --------------
+An embedded and charset-unspecified text was scrubbed...
+Name: x2goclient-3.01-17-logs.txt
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110207/65e5d705/attachment.txt">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110207/65e5d705/attachment.txt</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: x2goclient-3.01-17-logs.txt.sig
+Type: application/pgp-signature
+Size: 72 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110207/65e5d705/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110207/65e5d705/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001702.html">[X2go-dev] x2goserver 3.0.99: cannot terminate session from command line
+</A></li>
+	<LI>Next message: <A HREF="001727.html">[X2go-dev] VcXsrv
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1721">[ date ]</a>
+              <a href="thread.html#1721">[ thread ]</a>
+              <a href="subject.html#1721">[ subject ]</a>
+              <a href="author.html#1721">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Souce of Windows client available?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Souce%20of%20Windows%20client%20available%3F&In-Reply-To=%3C20100910162346.10263mbge4gcm204%40gotlinux.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001004.html">
+   <LINK REL="Next"  HREF="001022.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Souce of Windows client available?</H1>
+    <B>L&#233;on Keijser</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Souce%20of%20Windows%20client%20available%3F&In-Reply-To=%3C20100910162346.10263mbge4gcm204%40gotlinux.nl%3E"
+       TITLE="[X2go-dev] Souce of Windows client available?">leon at gotlinux.nl
+       </A><BR>
+    <I>Fri Sep 10 16:23:46 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001004.html">[X2go-dev] Souce of Windows client available?
+</A></li>
+        <LI>Next message: <A HREF="001022.html">[X2go-dev] Souce of Windows client available?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1005">[ date ]</a>
+              <a href="thread.html#1005">[ thread ]</a>
+              <a href="subject.html#1005">[ subject ]</a>
+              <a href="author.html#1005">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 10 Sep 2010 07:20:00 -0400, &quot;John A. Sullivan III&quot;  
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt; wrote:
+&gt;&gt;<i> There's a line in README.WINDOWS that says:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &quot;to build x2goclient for Windows you must replace x2goclient.pro with
+</I>&gt;&gt;<i> x2goclient.pro.windows&quot;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> but 'x2goclient.pro.windows' is not present
+</I>&gt;&gt;<i>
+</I>&gt;<i> Could they possibly mean to simply rename the file? - John
+</I>
+Maybe i wasn't too clear. It says i have to rename  
+x2goclient.pro.windows to x2goclient.pro. Unfortunately there is no  
+.windows file. So i have downloaded some older sources until i found  
+one that has the .windows file (it was 3.01-3) and copied it over.
+
+However, now when i run make it shows an error while building:
+
+./debug\printprocess.o:C:\x2go\x2goclient-3.01/printprocess.cpp:185:  
+undefined r
+eference to `wapiShellExecute(QString const&amp;, QString const&amp;, QString  
+const&amp;, QS
+tring const&amp;, HWND__*)'
+./debug\printwidget.o: In function `PrintWidget':
+C:\x2go\x2goclient-3.01/printwidget.cpp:46: undefined reference to  
+`wapiGetLocal
+Printers()'
+C:\x2go\x2goclient-3.01/printwidget.cpp:47: undefined reference to  
+`wapiGetDefau
+ltPrinter()'
+C:\x2go\x2goclient-3.01/printwidget.cpp:46: undefined reference to  
+`wapiGetLocal
+Printers()'
+C:\x2go\x2goclient-3.01/printwidget.cpp:47: undefined reference to  
+`wapiGetDefau
+ltPrinter()'
+collect2: ld returned 1 exit status
+mingw32-make[1]: *** [debug\x2goclient.exe] Error 1
+mingw32-make[1]: Leaving directory `C:/x2go/x2goclient-3.01'
+mingw32-make: *** [debug] Error 2
+
+
+Anyone? :)
+
+kind regards,
+
+L&#233;on
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001004.html">[X2go-dev] Souce of Windows client available?
+</A></li>
+	<LI>Next message: <A HREF="001022.html">[X2go-dev] Souce of Windows client available?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1005">[ date ]</a>
+              <a href="thread.html#1005">[ thread ]</a>
+              <a href="subject.html#1005">[ subject ]</a>
+              <a href="author.html#1005">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

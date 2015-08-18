@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Compiling x2go Windows client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Compiling%20x2go%20Windows%20client&In-Reply-To=%3C4CDD3354.8070008%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001261.html">
+   <LINK REL="Next"  HREF="001263.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Compiling x2go Windows client</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Compiling%20x2go%20Windows%20client&In-Reply-To=%3C4CDD3354.8070008%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] Compiling x2go Windows client">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Fri Nov 12 13:30:12 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001261.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+        <LI>Next message: <A HREF="001263.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1262">[ date ]</a>
+              <a href="thread.html#1262">[ thread ]</a>
+              <a href="subject.html#1262">[ subject ]</a>
+              <a href="author.html#1262">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>--[ UxBoD ]-- schrieb:
+&gt;&gt;<i> Yippee have built a cross compiled version of x2goclient by copying
+</I>&gt;&gt;<i> libQtSvg4.a to libQtSvg.a on the Windows VM plus doing the same for
+</I>&gt;&gt;<i> QtGui, QtNetwork and QtCore. Not sure why Windows and Linux are
+</I>&gt;&gt;<i> different with their filenames.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I copied the resulting binary across to the Windows VM and fired it
+</I>&gt;&gt;<i> up. That worked fine though once I entered my username and password
+</I>&gt;&gt;<i> the client crashed and was intercepted by Qt debugger.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This is so so frustrating as every step forward that is taken is
+</I>&gt;&gt;<i> countered by two back steps. Hopefully one of the developers will be
+</I>&gt;&gt;<i> able to help as we are really running out of time to get a functional
+</I>&gt;&gt;<i> X2Go client working. Mouse issues etc with Xming is causing us major
+</I>&gt;&gt;<i> issues and we need to test with VCXSRV ASAP.
+</I>&gt;<i> 
+</I>&gt;<i> Have tried with 3.01-13 and the unstable branch each one crashes as soon as the username and password is entered :(
+</I>
+Hallo Phil,
+since version 3.01-4 there is no project file for windows. Linux,mac and
+windows parts are merged in one &quot;x2goclient.pro&quot; file. We using Qt 4.5.3
+configured to make static release binaries on lenny to perform
+cross-platform builds of x2goclient. But with newer versions of qt on
+windows x2goclient although is working without a problem, no matter what
+you use to build x2goclient mingw or msvc. I think you have a problem,
+that some binaries are missing in your installation. Please try to
+install original x2goclient and try if it work. After that, replace
+x2goclient with your binary. Please be sure that your binary works in
+this installation before you make any changes in x2goclient code.
+
+Happy hacking,
+alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 260 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101112/9cb61b05/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101112/9cb61b05/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001261.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+	<LI>Next message: <A HREF="001263.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1262">[ date ]</a>
+              <a href="thread.html#1262">[ thread ]</a>
+              <a href="subject.html#1262">[ subject ]</a>
+              <a href="author.html#1262">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

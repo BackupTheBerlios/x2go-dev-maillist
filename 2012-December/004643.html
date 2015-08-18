@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20allow%20user%20to%20set%20his%20preferred%20applications%0A%20in%20%7E/.x2go/applications&In-Reply-To=%3C20121204151335.12571grq3rf6m1vz%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004642.html">
+   <LINK REL="Next"  HREF="004625.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20allow%20user%20to%20set%20his%20preferred%20applications%0A%20in%20%7E/.x2go/applications&In-Reply-To=%3C20121204151335.12571grq3rf6m1vz%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Dec  4 15:13:35 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004642.html">[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+</A></li>
+        <LI>Next message: <A HREF="004625.html">[X2Go-Dev] Command Fieid in GUI/Pass parameters
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4643">[ date ]</a>
+              <a href="thread.html#4643">[ thread ]</a>
+              <a href="subject.html#4643">[ subject ]</a>
+              <a href="author.html#4643">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Reinhard,
+
+On Di 04 Dez 2012 14:03:40 CET Reinhard Tartler wrote:
+
+&gt;<i> On Tue, Dec 4, 2012 at 1:58 PM, Mike Gabriel
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> I see a push for this patch is still pending. I have two comments on the
+</I>&gt;&gt;<i> patch (belated, sorry):
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It would be fine to have the default/preferred applications configurable
+</I>&gt;&gt;<i> system-wide and on a per-user basis. Can you add that?
+</I>&gt;<i>
+</I>&gt;<i> Err, the &quot;system-wide&quot; is currently hardcoded in the binary. Do you
+</I>&gt;<i> want to source additionally from some file in
+</I>&gt;<i> /etc/x2goserver/applications? What file should have precedence, the
+</I>&gt;<i> system-wide file or the file in the user home? And why?
+</I>
+As a file name: /etc/x2go/rootless-commands? ~/.x2go/rootless-commands?
+Or ,,default-applications'' at same locations? Your choice. Only  
+,,applications'' is already reserved. Config folders are either  
+/etc/x2go or ~/.x2go.
+
+About precedence: the common behaviour is that user configs supersede  
+system-wide configs, isn't it? So let's go that way...(?)
+
+&gt;&gt;<i> Then: the name applications in ~/.x2go and /etc/x2go is already reserved.
+</I>&gt;&gt;<i> Expected is a directory or dir-symlink that contains / points to a folder
+</I>&gt;&gt;<i> with .desktop files. This is used in the x2gogetapps script and is part of
+</I>&gt;&gt;<i> the X2Go Published Applications feature.
+</I>&gt;<i>
+</I>&gt;<i> Where is the specification/documentation for that? What would be the
+</I>
+ENO specs yet, or rather: they are inside the code... :-(
+
+&gt;<i> best place for this configuration setting?
+</I>
+see above...
+
+&gt;&gt;<i>
+</I>&gt;&gt;<i> Please consider using another name instead of ,,applications'' for the
+</I>&gt;&gt;<i> proposed environment file.
+</I>&gt;<i>
+</I>&gt;<i> For instance X2GO_DEFAULT_APP_WWWBROWSER?
+</I>
+prepending X2GO is surely a good idea. Actually, I like those variable  
+names...
+
+Mike
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121204/5a850409/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121204/5a850409/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004642.html">[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+</A></li>
+	<LI>Next message: <A HREF="004625.html">[X2Go-Dev] Command Fieid in GUI/Pass parameters
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4643">[ date ]</a>
+              <a href="thread.html#4643">[ thread ]</a>
+              <a href="subject.html#4643">[ subject ]</a>
+              <a href="author.html#4643">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2go Git now available at BerliOS
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20Git%20now%20available%20at%20BerliOS&In-Reply-To=%3C4D266C30.6030804%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001455.html">
+   <LINK REL="Next"  HREF="001457.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2go Git now available at BerliOS</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20Git%20now%20available%20at%20BerliOS&In-Reply-To=%3C4D266C30.6030804%40verizon.net%3E"
+       TITLE="[X2go-dev] X2go Git now available at BerliOS">greno at verizon.net
+       </A><BR>
+    <I>Fri Jan  7 02:28:16 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001455.html">[X2go-dev] X2go Git now available at BerliOS
+</A></li>
+        <LI>Next message: <A HREF="001457.html">[X2go-dev] X2go Git now available at BerliOS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1456">[ date ]</a>
+              <a href="thread.html#1456">[ thread ]</a>
+              <a href="subject.html#1456">[ subject ]</a>
+              <a href="author.html#1456">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 01/06/2011 08:24 PM, Gerry Reno wrote:
+&gt;<i> Nice work Mike!
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I just tried a clone using bzr's 'bzr-git' plugin and it worked.
+</I>&gt;<i>
+</I>&gt;<i> $ bzr branch <A HREF="git://git.berlios.de/x2go">git://git.berlios.de/x2go</A> x2go
+</I>&gt;<i> Branched 6 revision(s).      
+</I>&gt;<i>
+</I>&gt;<i> $ find . -maxdepth 2 -type d ! -ipath &quot;./.*&quot;
+</I>&gt;<i> .
+</I>&gt;<i> ./lib
+</I>&gt;<i> ./lib/nxcompshad
+</I>&gt;<i> ./lib/nxcompext
+</I>&gt;<i> ./lib/nxcomp
+</I>&gt;<i> ./client
+</I>&gt;<i> ./client/x2goclient-cli
+</I>&gt;<i> ./client/nxproxy
+</I>&gt;<i> ./client/x2goclient
+</I>&gt;<i> ./client/pinentry-x2go
+</I>&gt;<i> ./server
+</I>&gt;<i> ./server/cups-x2go
+</I>&gt;<i> ./server/x2goserver
+</I>&gt;<i> ./server/_kde_
+</I>&gt;<i> ./server/_ldap_
+</I>&gt;<i> ./server/_lxde_
+</I>&gt;<i> ./server/_gnome_
+</I>&gt;<i> ./server/x2goprint
+</I>&gt;<i> ./server/x2goserver-one
+</I>&gt;<i> ./server/x2goagent
+</I>&gt;<i> ./server/x2godesktopsharing
+</I>&gt;<i> ./server/x2gospyglass
+</I>&gt;<i> ./contrib
+</I>&gt;<i> ./contrib/windows
+</I>&gt;<i> ./tce
+</I>&gt;<i> ./tce/x2gousbmount
+</I>&gt;<i> ./tce/x2gothinclientsystem
+</I>&gt;<i> ./tce/x2gosmartcardrules
+</I>&gt;<i> ./tce/x2gocdmanager
+</I>&gt;<i> ./tce/x2gothinclient
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Looks like it pulled it ok.
+</I>&gt;<i>
+</I>&gt;<i> So it looks like I can work with the repo in bzr.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Gerry
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+Log looks right as well:
+
+$ bzr log
+------------------------------------------------------------
+revno: 6
+git commit: 1512f523a749251c09065da91f1865db30f89435
+committer: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>&gt;
+timestamp: Thu 2011-01-06 13:41:42 +0100
+message:
+  * removed test.txt
+------------------------------------------------------------
+revno: 5 [merge]
+git commit: 893258c42dd2b8c5b33dbe45f310d4964529ef24
+committer: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>&gt;
+timestamp: Thu 2011-01-06 13:41:33 +0100
+message:
+  Merge branch 'master' of <A HREF="ssh://git.berlios.de/gitroot/x2go">ssh://git.berlios.de/gitroot/x2go</A>
+------------------------------------------------------------
+revno: 4
+git commit: 12cb5201b8addbe106367680383fe77d5d369600
+committer: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>&gt;
+timestamp: Thu 2011-01-06 13:35:53 +0100
+message:
+  Merge branches 'develop' and 'master'
+------------------------------------------------------------
+revno: 3
+git commit: 9e9fb0007f40af26c1c98a8473531635100431ec
+committer: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>&gt;
+timestamp: Sun 2011-01-02 17:22:50 +0100
+message:
+  * filled branch develop with a copy of master
+------------------------------------------------------------
+revno: 2
+git commit: 80ca69563c3a3aeab9740410dcc7dcbd05a00ee9
+committer: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>&gt;
+timestamp: Sun 2011-01-02 17:19:55 +0100
+message:
+  * deleted folder named master
+  * pulled all dirs one dir level up
+------------------------------------------------------------
+revno: 1
+git commit: 15463510e29b5eb262323844747be0ec92598f1f
+committer: Heinz-M. Graesing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heinz-m.graesing at obviously-nice.de</A>&gt;
+timestamp: Thu 2010-12-16 21:51:10 +0100
+message:
+  Initial commit
+------------------------------------------------------------
+Use --include-merges or -n0 to see merged revisions.
+
+
+Regards,
+Gerry
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001455.html">[X2go-dev] X2go Git now available at BerliOS
+</A></li>
+	<LI>Next message: <A HREF="001457.html">[X2go-dev] X2go Git now available at BerliOS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1456">[ date ]</a>
+              <a href="thread.html#1456">[ thread ]</a>
+              <a href="subject.html#1456">[ subject ]</a>
+              <a href="author.html#1456">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

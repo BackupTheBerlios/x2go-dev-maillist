@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Multiple%20X2goclient%20instances%20fail&In-Reply-To=%3CCAAWyt1rjbF09SULoT2rVepiMpPPJndYiaLTqmKdNF8apdjPfrA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002600.html">
+   <LINK REL="Next"  HREF="002603.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail</H1>
+    <B>Daniel Lindgren</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Multiple%20X2goclient%20instances%20fail&In-Reply-To=%3CCAAWyt1rjbF09SULoT2rVepiMpPPJndYiaLTqmKdNF8apdjPfrA%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail">bd.dali at gmail.com
+       </A><BR>
+    <I>Fri Jul 29 07:24:40 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002600.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+        <LI>Next message: <A HREF="002603.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2601">[ date ]</a>
+              <a href="thread.html#2601">[ thread ]</a>
+              <a href="subject.html#2601">[ subject ]</a>
+              <a href="author.html#2601">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2011/7/28 John A. Sullivan III &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt;:
+&lt;snip&gt;
+&gt;&gt;<i> &gt; &gt; &gt; &gt; &gt;&gt;&gt; I believe I have tested this on both Linux and Windows - becoming a bit
+</I>&gt;&gt;<i> &gt; &gt; &gt; &gt; &gt;&gt;&gt; of a blur after a long hot day!. &#160;In previous versions of X2GoClient, I
+</I>&gt;&gt;<i> &gt; &gt; &gt; &gt; &gt;&gt;&gt; could open multiple instances and connect to multiple different X2Go
+</I>&gt;&gt;<i> &gt; &gt; &gt; &gt; &gt;&gt;&gt; Server simultaneously. &#160;It was not official and it generated a few
+</I>&gt;&gt;<i> &gt; &gt; &gt; &gt; &gt;&gt;&gt; errors but it worked. &#160;This is actually a highly desirable feature for a
+</I>&gt;&gt;<i> &gt; &gt; &gt; &gt; &gt;&gt;&gt; possible very large account of ours.
+</I>&gt;&gt;<i> &gt; &gt; &gt; &gt; &gt;&gt;&gt;
+</I>&gt;&gt;<i> &gt; &gt; &gt; &gt; &gt;&gt;&gt; For some reason, that has stopped working in 3.99. &#160;It did not work in
+</I>&gt;&gt;<i> &gt; &gt; &gt; &gt; &gt;&gt;&gt; 3.0.1.18 either. &#160;It does work in Pyhoca so I do not think it is an
+</I>&gt;&gt;<i> &gt; &gt; &gt; &gt; &gt;&gt;&gt; impossibility. &#160;If at all possible, we would like to see this
+</I>&gt;&gt;<i> &gt; &gt; &gt; &gt; &gt;&gt;&gt; functionality restored - preferably officially but even accidentally as
+</I>&gt;&gt;<i> &gt; &gt; &gt; &gt; &gt;&gt;&gt; it was would do :) &#160;Thanks - John
+</I>
+One thing I've had problems with in the past is TCP port conflicts.
+When x2go starts a session, it always uses a TCP port above 30000,
+decided by x2gostartagent on the server side. If you start multiple
+sessions from one client to several different servers, wouldn't that
+create a port conflict sooner or later? Maybe that is what you've
+seen, with conflicts causing sessions to terminate.
+
+Example, x2go on client CA connects (a ssh tunnel) to server SA on
+port 30001 (-L 30001:localhost:30001 <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user at SA</A>). You then start another
+session from client A to server B, also using port 30001 (-L
+30001:localhost:30001 <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user at SB</A>). Doesn't that create a port conflict on
+client CA? You have two separate ssh tunnels trying to use the same
+TCP port on the client.
+
+The problems I've seen have been when client CA has connected to
+server SA, which then has been used as a &quot;gateway client&quot; to connect
+to other servers. Sometimes the session between CA and SA used port
+30001 and the session(s) between SA and other server SB also used port
+30001. I could always set up the sessions, but if I tried to reconnect
+from client CA to SA I got an error message about &#8221;the remote proxy
+closed the connection while negotiating &#8230;&#8221;. My workaround was to
+separate the port ranges used by x2gostartagent on the servers; server
+SA now uses 30001-, server SB uses 30101-, server SC uses 30201- and
+so on. No more conflicts.
+
+I've been trying to think of some way to make x2go automatically only
+use free ports, but since there are possibly several clients and
+servers involved in multiple incoming and outgoing sessions, the only
+safe way I've come up with would be to register used ports (or reserve
+port ranges) on a shared resource somewhere, which would make all x2go
+clients and servers dependent on that one resource.
+
+Cheers,
+Daniel
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002600.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+	<LI>Next message: <A HREF="002603.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2601">[ date ]</a>
+              <a href="thread.html#2601">[ thread ]</a>
+              <a href="subject.html#2601">[ subject ]</a>
+              <a href="author.html#2601">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

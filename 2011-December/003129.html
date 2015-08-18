@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Can not use FreeNX alongside latest X2Go packages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Can%20not%20use%20FreeNX%20alongside%20latest%20X2Go%20packages&In-Reply-To=%3C4EED1A63.80705%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003126.html">
+   <LINK REL="Next"  HREF="003132.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Can not use FreeNX alongside latest X2Go packages</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Can%20not%20use%20FreeNX%20alongside%20latest%20X2Go%20packages&In-Reply-To=%3C4EED1A63.80705%40stefanbaur.de%3E"
+       TITLE="[X2go-Dev] Can not use FreeNX alongside latest X2Go packages">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Sat Dec 17 23:40:35 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003126.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages
+</A></li>
+        <LI>Next message: <A HREF="003132.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3129">[ date ]</a>
+              <a href="thread.html#3129">[ thread ]</a>
+              <a href="subject.html#3129">[ subject ]</a>
+              <a href="author.html#3129">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 17.12.2011 22:06, schrieb Mike Gabriel:
+&gt;<i>
+</I>&gt;&gt;<i> So I should add
+</I>&gt;&gt;<i> deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze heuler
+</I>&gt;&gt;<i> to my sources.list, is that correct?
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Yes!
+</I>
+Okay, so I guessed right...
+
+[snip]
+
+&gt;<i> I would try this:
+</I>&gt;<i>
+</I>&gt;<i> Purge everything NX'ish, X2Go'ish...
+</I>&gt;<i> Install NX packages from packages.x2go.org squeeze heuler
+</I>&gt;<i> Install FreeNX from Launchpad (lucid)
+</I>&gt;<i> Install the rest of X2Go from packages.x2go.org squeeze main (or heuler)
+</I>&gt;<i>
+</I>I tried something different (before I received your message), and that 
+seems to have helped:
+
+First, I changed the relevant lines of /etc/apt/sources.list like so:
+
+# X2go Repository
+deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze heuler
+deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze main
+# X2go Repository (sources)
+deb-src <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze main
+
+deb <A HREF="http://ppa.launchpad.net/freenx-team/ppa/ubuntu">http://ppa.launchpad.net/freenx-team/ppa/ubuntu</A> lucid main
+deb-src <A HREF="http://ppa.launchpad.net/freenx-team/ppa/ubuntu">http://ppa.launchpad.net/freenx-team/ppa/ubuntu</A> lucid main
+
+then I ran apt-get update
+
+I did *not* run apt-get upgrade or dist-upgrade, as this would probably 
+have pulled x2go* from heuler.
+Instead, I ran apt-get dist-upgrade -s to receive a list of the packages 
+that were to be upgraded, and made a note of all the freenx* and lib* 
+files listed.
+First, I tried apt-get install &lt;listofrelevantpackages&gt;, but that 
+wouldn't help, as again the system believed to already have the current 
+packages installed, so I tried apt-get remove &lt;listofrelevantpackages&gt; 
+followed by apt-get install &lt;listofrelevantpackages&gt;.
+
+Then I removed the heuler line from the /etc/apt/sources.list file and 
+ran apt-get update again (to make sure I don't accidentally pull stuff 
+from heuler on the next upgrade).
+
+That seems to have helped, I now have:
+ii cups-x2go 3.0.0.3-0~x2go1+squeeze~main~54~build1 X2GO printer for CUPS
+ii freenx 0.7.3.git110520.3884279-0ubuntu1ppa4 Remote 
+desktop/application/thin-client server
+rc freenx-media 0.7.3+teambzr104-0freenxteam1~intrepid1 Remote 
+desktop/application/thin-client server media support
+ii freenx-rdp 0.7.3.git110520.3884279-0ubuntu1ppa4 Remote 
+desktop/application/thin-client server RDP proxy
+ii freenx-server 0.7.3+teambzr104-0freenxteam1~intrepid1 Remote 
+desktop/application/thin-client server core features
+ii freenx-session-launcher 0.7.3.git110520.3884279-0ubuntu1ppa4 Remote 
+desktop/application/thin-client server ConsoleKit helper
+ii freenx-smb 0.7.3.git110520.3884279-0ubuntu1ppa4 Remote 
+desktop/application/thin-client server smb support
+ii freenx-vnc 0.7.3.git110520.3884279-0ubuntu1ppa4 Remote 
+desktop/application/thin-client server VNC proxy
+ii libnx-x11 2:3.5.0-0~x2go1+squeeze~heuler~20111206~128~build1 nx-X11 
+(NoMachine)
+ii libxcomp1 2.1.0dol1 NoMachine NX - NX compression library
+ii libxcomp3 2:3.5.0-0~x2go1+squeeze~heuler~20111206~128~build1 NX X 
+compression library
+ii libxcompext1 2.1.0dol1 NoMachine NX - NX compression library
+ii libxcompext3 2:3.5.0-0~x2go1+squeeze~heuler~20111206~128~build1 NX 
+X11 protocol compression extensions library
+ii libxcompshad3 2:3.5.0-0~x2go1+squeeze~heuler~20111206~128~build1 NX 
+shadowing library
+ii nx-common 0.3.1+svn59-0~ppa1~lucid1 NX server common package.
+ii nxagent 1:3.5.0-1-2-0ubuntu1ppa8 X server for remote access
+ii nxlibs 1:3.5.0-1-2-0ubuntu1ppa8 NX support libraries
+ii nxplugin 3.4.0-3 NX Web Companion
+ii x2go-keyring 2011.12.07+squeeze~main~12~build1 GnuPG keys of X2go 
+developers
+ii x2goagent 3.5.0.2-0~x2go1+squeeze~main~49~build1 Special X2go-ized X 
+agent, forked from NX-X11 (NoMachine)
+ii x2goserver 3.0.99.8-0~x2go1+squeeze~main~373~build1 X2go server 
+daemon scripts
+ii x2goserver-extensions 3.0.99.8-0~x2go1+squeeze~main~373~build1 X2go 
+server daemon scripts (extensions)
+ii x2goserver-printing 3.0.99.8-0~x2go1+squeeze~main~373~build1 X2go 
+server daemon scripts (printing)
+
+and both NX and X2go access is possible again.
+
+I noticed that freenx-server is listed as 
+&quot;0.7.3+teambzr104-0freenxteam1~intrepid1&quot; and trying an apt-get install 
+freenx-server attempts to replace sysvinit with upstart, giving me 
+apt-gets &quot;You are about to do something potentially harmful.&quot; warning, 
+but this may be due to the fact that I changed the entry in the 
+sources.list file from intrepid to lucid in an attempt to pull in newer 
+packages after the system was already hosed.
+
+I'll try restoring a pre-FUBAR backup some day soon, and check if things 
+are less messy when I keep the freenx repository on intrepid, only 
+upgrading the libs from heuler as Mike suggested - since the old libs 
+seem to be what messed up the machine.
+
+G'nite everyone ;-)
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003126.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages
+</A></li>
+	<LI>Next message: <A HREF="003132.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3129">[ date ]</a>
+              <a href="thread.html#3129">[ thread ]</a>
+              <a href="subject.html#3129">[ subject ]</a>
+              <a href="author.html#3129">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

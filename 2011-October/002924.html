@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] libssh, nagle, and performance issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20libssh%2C%20nagle%2C%20and%20performance%20issues&In-Reply-To=%3C1319032020.2766.13.camel%40jasiiieee.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002923.html">
+   <LINK REL="Next"  HREF="002925.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] libssh, nagle, and performance issues</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20libssh%2C%20nagle%2C%20and%20performance%20issues&In-Reply-To=%3C1319032020.2766.13.camel%40jasiiieee.pacifera.com%3E"
+       TITLE="[X2go-Dev] libssh, nagle, and performance issues">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Oct 19 15:47:00 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002923.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+        <LI>Next message: <A HREF="002925.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2924">[ date ]</a>
+              <a href="thread.html#2924">[ thread ]</a>
+              <a href="subject.html#2924">[ subject ]</a>
+              <a href="author.html#2924">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2011-10-18 at 19:05 -0400, John A. Sullivan III wrote: 
+&gt;<i> On Tue, 2011-09-20 at 06:37 -0400, John A. Sullivan III wrote: 
+</I>&gt;<i> &gt; On Mon, 2011-09-19 at 14:54 +0200, Mike Gabriel wrote:
+</I>&gt;<i> &gt; &gt; Hi Alex,
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; On Mo 19 Sep 2011 13:44:15 CEST Oleksandr Shneyder wrote:
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; &gt; hmmm, ok, seems you are right :) Can you apply this patch to source tree
+</I>&gt;<i> &gt; &gt; &gt; and I'll try to build a windows binary tomorrow.
+</I>&gt;<i> &gt; &gt; &gt;
+</I>&gt;<i> &gt; &gt; &gt; regards,
+</I>&gt;<i> &gt; &gt; &gt; Alex
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; patch has been committed. I'll build new packages for Debian tonight  
+</I>&gt;<i> &gt; &gt; (I am at a customer location right now).
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; Thanks,
+</I>&gt;<i> &gt; &gt; Mike
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &lt;snip&gt;
+</I>&gt;<i> &gt; I can confirm the significant improvement in performance.  For example,
+</I>&gt;<i> &gt; and what really made me think Nagle, my ping results display much
+</I>&gt;<i> &gt; better.  When doing ping tests previously, the results would stutter
+</I>&gt;<i> &gt; even though the response times were nearly even.  In fact, sometimes I
+</I>&gt;<i> &gt; would seem to miss a packet only to have two display the next second.
+</I>&gt;<i> &gt; They are now perfectly smooth.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; However, we still have a BIG problem.  X2Go client printing still
+</I>&gt;<i> &gt; segfaults the entire client every single time we try to print.  Phil has
+</I>&gt;<i> &gt; confirmed this independently from me.  Any ETA on that fix? Thanks -
+</I>&gt;<i> &gt; John
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> Mike, have we had a regression in the heuler code to reintroduce this
+</I>&gt;<i> problem? I'm noticing similar behavior.  I thought is was an Internet
+</I>&gt;<i> connectivity issue on my part as we were having issues but we spent
+</I>&gt;<i> hours today confirming that the circuits had been repaired and Internet
+</I>&gt;<i> performance is better than ever here in the test lab but we are still
+</I>&gt;<i> seeing the delayed screen painting.  The client is 3.99.0.2.  Thanks -
+</I>&gt;<i> John
+</I>I can confirm this again today - that annoying phenomenon that provokes
+constant typing errors when the last key (e.g., backspace or delete) is
+pressed and there is a several second delay before the effect is seen
+even on a blazing fast connection.
+
+In fact, I wonder if this is causing the Firefox problem.  As we
+reported earlier, only when using then newer versions of X2Go client, we
+have problems where Firefox hangs for roughly 16 seconds.  All other
+applications are functioning and it is not a Firefox issue; it is a
+screen updating issue.  Hmm . . . I suppose that means it would not be
+Nagle as other applications are working properly.  Oh well but, as an
+aside, we would consider the Firefox problem to be another critical
+error blocking production release.  Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002923.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+	<LI>Next message: <A HREF="002925.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2924">[ date ]</a>
+              <a href="thread.html#2924">[ thread ]</a>
+              <a href="subject.html#2924">[ subject ]</a>
+              <a href="author.html#2924">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

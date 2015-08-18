@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goclient and ssh-agent
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20and%20ssh-agent&In-Reply-To=%3Cd9c8a14271c65b549be65eddf05ac532%40oss.hboss.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002098.html">
+   <LINK REL="Next"  HREF="002002.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goclient and ssh-agent</H1>
+    <B>Heiko Baumann</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20and%20ssh-agent&In-Reply-To=%3Cd9c8a14271c65b549be65eddf05ac532%40oss.hboss.de%3E"
+       TITLE="[X2go-dev] x2goclient and ssh-agent">heiko at oss.hboss.de
+       </A><BR>
+    <I>Wed Apr 27 23:31:07 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002098.html">[X2go-dev] x2goclient and ssh-agent
+</A></li>
+        <LI>Next message: <A HREF="002002.html">[X2go-dev] [X2go-user] 10x printing speed increase for	x2go	printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2101">[ date ]</a>
+              <a href="thread.html#2101">[ thread ]</a>
+              <a href="subject.html#2101">[ subject ]</a>
+              <a href="author.html#2101">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> Hi Oleksandr,
+
+ thanks for the info. i tried the new version and ssh-agent login works 
+ great. but i've also hacked my patch yesterday to support agent 
+ forwarding. this way i can use sshfs to mount a remote directory without 
+ password into my x2gosession.
+
+ this does not work with the new version. the changelog shows that you 
+ now use libssh. is it possible to add this feature? would be really 
+ useful.
+
+ thanks
+ heiko
+
+ On Wed, 27 Apr 2011 13:51:24 +0200, Oleksandr Shneyder 
+ &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt; wrote:
+&gt;<i> Am 22.04.2011 21:30, schrieb Heiko Baumann:
+</I>&gt;&gt;<i> hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> because no one cared about my request i tried to fix it by myself.
+</I>&gt;&gt;<i> attached is a patch which adds an --ssh-agent option to x2goclient. 
+</I>&gt;&gt;<i> if
+</I>&gt;&gt;<i> x2goclient is called with this option it uses a running ssh-agent to
+</I>&gt;&gt;<i> connect to the x2goserver.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> btw. i dont know anything about coding C++ nor anything about 
+</I>&gt;&gt;<i> x2goclient
+</I>&gt;&gt;<i> development. so maybe this patch does break something else or may be 
+</I>&gt;&gt;<i> a
+</I>&gt;&gt;<i> bad hack. however it works for me.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> maybe the x2go devs could include it (or write a better one :)) in 
+</I>&gt;&gt;<i> one
+</I>&gt;&gt;<i> of the next releases? this would be great because i now have SSO 
+</I>&gt;&gt;<i> with my
+</I>&gt;&gt;<i> usb token for all important tools. ssh-agent is started at logon and
+</I>&gt;&gt;<i> everything works without entering my passphrase again (ssh/scp, 
+</I>&gt;&gt;<i> sshfs,
+</I>&gt;&gt;<i> nxclient, x2goclient etc.).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> regards
+</I>&gt;&gt;<i> heiko
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Hello Heiko,
+</I>&gt;<i>
+</I>&gt;<i> there is a &quot;Try auto login (ssh-agent or default ssh key)&quot; option in
+</I>&gt;<i> preferences of a X2Go-session since x2goclient-3.01-14
+</I>&gt;<i>
+</I>&gt;<i> regards,
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002098.html">[X2go-dev] x2goclient and ssh-agent
+</A></li>
+	<LI>Next message: <A HREF="002002.html">[X2go-dev] [X2go-user] 10x printing speed increase for	x2go	printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2101">[ date ]</a>
+              <a href="thread.html#2101">[ thread ]</a>
+              <a href="subject.html#2101">[ subject ]</a>
+              <a href="author.html#2101">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

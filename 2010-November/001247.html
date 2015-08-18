@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Compiling x2go Windows client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Compiling%20x2go%20Windows%20client&In-Reply-To=%3C4CDA418A.80902%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001246.html">
+   <LINK REL="Next"  HREF="001248.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Compiling x2go Windows client</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Compiling%20x2go%20Windows%20client&In-Reply-To=%3C4CDA418A.80902%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] Compiling x2go Windows client">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Wed Nov 10 07:54:02 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001246.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+        <LI>Next message: <A HREF="001248.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1247">[ date ]</a>
+              <a href="thread.html#1247">[ thread ]</a>
+              <a href="subject.html#1247">[ subject ]</a>
+              <a href="author.html#1247">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>--[ UxBoD ]-- schrieb:
+&gt;<i> ----- Original Message -----
+</I>&gt;&gt;<i> Hello,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Am 09.11.2010 16:45, schrieb --[ UxBoD ]--:
+</I>&gt;&gt;&gt;<i> ----- Original Message -----
+</I>&gt;&gt;&gt;<i> What I have noticed though it that the binary I compile is huge
+</I>&gt;&gt;&gt;<i> compared to the one that is shipped. Is that due to it being in some
+</I>&gt;&gt;&gt;<i> sort of debug mode or has the binary been stripped ?
+</I>&gt;&gt;<i> please configure Qt for building &quot;release&quot; binaries (it looks like
+</I>&gt;&gt;<i> you're building the client in debug mode).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> best regards,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Heinz
+</I>&gt;<i> 
+</I>&gt;<i> Thanks Heinz.
+</I>&gt;<i> 
+</I>&gt;<i> I have now compiled it as a release binary and it is a lot smaller now :) Still having the same problem though that when I launch x2goclient it starts up vcxsrv, sshd and pulse okay; the x2go status screen changes to say Connecting and then it hangs :( What I think is happening is that vcxsrv is ignoring the display parameter that is passed to it. If I run xcalc -display localhost:0 that works; though if I try xcalc -display:6000 it fails.  I am guessing the next step should be the NX libraries etc starting.  Any ideas ?
+</I>Hello,
+
+0 - Display number
+6000 - TCP port
+
+TCP port = Display number + 6000
+
+regards
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 260 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101110/0b0b3332/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101110/0b0b3332/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001246.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+	<LI>Next message: <A HREF="001248.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1247">[ date ]</a>
+              <a href="thread.html#1247">[ thread ]</a>
+              <a href="subject.html#1247">[ subject ]</a>
+              <a href="author.html#1247">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Ubuntu 9.10 and Kcontrol module
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Ubuntu%209.10%20and%20Kcontrol%20module&In-Reply-To=%3C4BB629C8.7030201%40x2go.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000399.html">
+   <LINK REL="Next"  HREF="000413.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Ubuntu 9.10 and Kcontrol module</H1>
+    <B>Heinz-M. Graesing</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Ubuntu%209.10%20and%20Kcontrol%20module&In-Reply-To=%3C4BB629C8.7030201%40x2go.org%3E"
+       TITLE="[X2go-dev] Ubuntu 9.10 and Kcontrol module">x2go-dev at x2go.org
+       </A><BR>
+    <I>Fri Apr  2 19:30:48 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000399.html">[X2go-dev] Ubuntu 9.10 and Kcontrol module
+</A></li>
+        <LI>Next message: <A HREF="000413.html">[X2go-dev] Ubuntu 9.10 and Kcontrol module
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#397">[ date ]</a>
+              <a href="thread.html#397">[ thread ]</a>
+              <a href="subject.html#397">[ subject ]</a>
+              <a href="author.html#397">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 01.04.2010 15:23, schrieb Cyril Vergne:
+&gt;<i> Hi Everyone,
+</I>&gt;<i>
+</I>&gt;<i> I'm new here. I don't have developper skills like most of you but
+</I>&gt;<i> there's no Web-Place to talk about this nice product X2go.
+</I>
+Hello Cyril,
+
+this is the right place to talk about x2go. We've focused our 
+communication on the list so that nothing gets lost or fragmented.
+
+
+&gt;<i> I read about linux4africa where I can find some ideas of implementation,
+</I>&gt;<i> the blog about x2go, but not enough to see the real functions of x2go.
+</I>
+x2go is a remote access protocoll with audio, file, print and display 
+support. It is modular and you can use it to access single programms, 
+whole desktops with the help of desktop clients, commandline clients and 
+pxe boot environments.
+
+&gt;<i> In my case for example, I love Ubuntu and I really want to propose it to
+</I>&gt;<i> my client. But there is a big problem about x2go on Ubuntu : No
+</I>&gt;<i> administration console.
+</I>
+A little &quot;administration help&quot; can be accessed via the 
+x2gognomebindings. After installing them, you can administrate 
+everything regarding your session inside your session. For example 
+session suspending, file sharing and printing.
+
+You can also use the commandline tools to administrate other users and 
+their sessions.
+
+As commandline tools are bound to the local system (Ok, you can access 
+them via ssh), we've decided that we will change the architecture of our 
+kcontrol modules. That will answer a lot of questions asked before like: 
+Why don't you have a php admninstration thing like phpmyadmin? Why don't 
+you have python/gtk administration guis so they look nice on ubuntu? Why 
+don't you have java administration tools, so you can deploy them via 
+webstart... (this too was asked for silverlight, mono, cocoa/mac, 
+IPhone, Android,...).
+
+In the release after baikal (that is the name of 3.1 - the upcomming 
+release - as always a place where you can find &quot;seehunde&quot;) will contain 
+an administration api accessible via JSON. So everybody can use this API 
+to write his own Idea of the &quot;best admin tool&quot; (or he can reduce it to 
+only needed commands).
+
+At the moment we don't know which architecture we'll use for our own 
+admin tools, but I think they will be Qt4 (but using the new api).
+
+
+&gt;<i> I read about the reason to not get a forum and I don't get it. The forum
+</I>&gt;<i> is easy to find an answer with the search module. And you don't have to
+</I>&gt;<i> go there everyday to see if there's some new topics or updates, you just
+</I>&gt;<i> have to configure the notifications.
+</I>
+We won't go back to multiple communication platforms - the reduction of 
+only one group has made things so much easier. But I really should give 
+more hints on the website how to use GMANE.
+
+There will be a site called &quot;x2go-community&quot; made by a member of 
+linux4afrika. This site will not be operated by us but maybe it is more 
+a beginners meeting place. Linux4Afrika is a great community and they 
+helped us a lot in the past. And we'll always help them to answer questions.
+
+
+And as you are all awaiting our next release:
+
+This is a screenshot of the changed artwork of the client:
+<A HREF="http://www.x2go.org/artwork/release_3_1_baikal/screenshots/x2go-artwork-neues-release.png">http://www.x2go.org/artwork/release_3_1_baikal/screenshots/x2go-artwork-neues-release.png</A>
+
+The last things that need to be done before the release are to fix some 
+minor issues and to paint the missing icons
+Yes there will be a Firefox Plugin any you'll be able to use it to 
+access x2goservers with all features and with &quot;full speed&quot;.
+
+best regards,
+
+Heinz
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000399.html">[X2go-dev] Ubuntu 9.10 and Kcontrol module
+</A></li>
+	<LI>Next message: <A HREF="000413.html">[X2go-dev] Ubuntu 9.10 and Kcontrol module
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#397">[ date ]</a>
+              <a href="thread.html#397">[ thread ]</a>
+              <a href="subject.html#397">[ subject ]</a>
+              <a href="author.html#397">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

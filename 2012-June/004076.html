@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Experiences with x2goserver on Wheezy
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Experiences%20with%20x2goserver%20on%20Wheezy&In-Reply-To=%3C20120613154258.11601g0p2ztngkwy%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004075.html">
+   <LINK REL="Next"  HREF="004077.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Experiences with x2goserver on Wheezy</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Experiences%20with%20x2goserver%20on%20Wheezy&In-Reply-To=%3C20120613154258.11601g0p2ztngkwy%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Experiences with x2goserver on Wheezy">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Jun 13 15:42:58 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004075.html">[X2Go-Dev] Experiences with x2goserver on Wheezy
+</A></li>
+        <LI>Next message: <A HREF="004077.html">[X2Go-Dev] pinentry-x2go reloaded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4076">[ date ]</a>
+              <a href="thread.html#4076">[ thread ]</a>
+              <a href="subject.html#4076">[ subject ]</a>
+              <a href="author.html#4076">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Paul,
+
+On Mi 13 Jun 2012 15:25:48 CEST Paul van der Vlis wrote:
+
+&gt;<i> Op 13-06-12 14:23, Mike Gabriel schreef:
+</I>&gt;&gt;<i> Hi Paul,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Mi 13 Jun 2012 14:09:44 CEST Paul van der Vlis wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hello,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Installing X2goserver on Wheezy works fine.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> But when I start a session from a client with Squeeze to a server with
+</I>&gt;&gt;&gt;<i> Wheezy and Gnome, I see short a black &quot;X2go&quot; window, but after that the
+</I>&gt;&gt;&gt;<i> session is gone.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I will add the /var/log/auth.log and /var/log/syslog (debug mode) at the
+</I>&gt;&gt;&gt;<i> end of this mail.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> With regards,
+</I>&gt;&gt;&gt;<i> Paul.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Please install from the heuler repos area. Does that work?
+</I>&gt;<i>
+</I>&gt;<i> Yes, is does work. I've used the normal x2goclient, but on the server I
+</I>&gt;<i> use the version from Heuler now.
+</I>&gt;<i>
+</I>&gt;<i> But starting is a bit slow, and after starting I see another desktop
+</I>&gt;<i> then normal. In the left on top I see &quot;applications&quot; and &quot;locations&quot;
+</I>&gt;<i> (translated from Dutch) and I can start applications and they are fast.
+</I>&gt;<i> But I cannot see minimized applications. Maybe this is Gnome3 in 2D....
+</I>
+Of course, X2Go can only launch the 2d variants of GNOME/UNITY.
+
+&gt;<i> I miss the &quot;user&quot; menu item on the right.
+</I>&gt;<i>
+</I>&gt;<i> My settings are 800x600, but what I see is my whole screen (not fullscreen).
+</I>&gt;<i>
+</I>&gt;<i> I don't see a way how to close the session, other then clicking the &quot;x&quot;.
+</I>&gt;<i> After starting it a second time I did not have a menu anymore.
+</I>
+Do you have x2goserver-xsession (package) installed on the server?
+
+Nowadays (wheezy+) this is a must with most desktop shells.
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120613/c729a6c1/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120613/c729a6c1/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004075.html">[X2Go-Dev] Experiences with x2goserver on Wheezy
+</A></li>
+	<LI>Next message: <A HREF="004077.html">[X2Go-Dev] pinentry-x2go reloaded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4076">[ date ]</a>
+              <a href="thread.html#4076">[ thread ]</a>
+              <a href="subject.html#4076">[ subject ]</a>
+              <a href="author.html#4076">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

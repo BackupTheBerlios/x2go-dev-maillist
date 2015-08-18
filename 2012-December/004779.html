@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#77: Fwd: Bug report,	unknown package: X2Go corrupts CygWin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2377%3A%20Fwd%3A%20Bug%20report%2C%0A%09unknown%20package%3A%20X2Go%20corrupts%20CygWin&In-Reply-To=%3CF423EC58E405884E8EB9ED5F6401D13170BA02FE9D%40SETUEX.delaval.local%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004669.html">
+   <LINK REL="Next"  HREF="004658.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#77: Fwd: Bug report,	unknown package: X2Go corrupts CygWin</H1>
+    <B>Hallstrom, Anders</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2377%3A%20Fwd%3A%20Bug%20report%2C%0A%09unknown%20package%3A%20X2Go%20corrupts%20CygWin&In-Reply-To=%3CF423EC58E405884E8EB9ED5F6401D13170BA02FE9D%40SETUEX.delaval.local%3E"
+       TITLE="[X2Go-Dev] Bug#77: Fwd: Bug report,	unknown package: X2Go corrupts CygWin">Anders.Hallstrom at delaval.com
+       </A><BR>
+    <I>Mon Dec 17 14:51:56 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004669.html">[X2Go-Dev] Bug#77: Fwd: Bug report,	unknown package: X2Go corrupts CygWin
+</A></li>
+        <LI>Next message: <A HREF="004658.html">[X2Go-Dev] Processed: your mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4779">[ date ]</a>
+              <a href="thread.html#4779">[ thread ]</a>
+              <a href="subject.html#4779">[ subject ]</a>
+              <a href="author.html#4779">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+[Note that I removed dev and submit from the send list and just kept <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">77 at bugs</A>, for right or wrong...]
+
+Thank you Stefan for your valuable advice, and I am sorry about the delay.
+
+I can now state the following.
+
+State 0: No cygwin or x2go running, presumably no cygwin1.dll loaded/active.
+
+State 1: cygwin running, cmd.exe -&gt; bash.exe -&gt; cygwin1.dll version 1001.8.0.0 (Wed Jan 31 16:09:39 2001). No x2go running.
+
+State 2: x2go running, x2goclient.exe -&gt; sshd.exe -&gt; cygwin1.dll version 1005.25.0.0 (Thu Jun 12 19:35:47 2008). No cygwin running.
+
+State 3: Both cygwin and x2go running.
+Process Viewer still reports
+cmd.exe -&gt; bash.exe -&gt; cygwin1.dll version 1001.8.0.0
+x2goclient.exe -&gt; sshd.exe -&gt; cygwin1.dll version 1005.25.0.0
+(So it seems different versions can be active simultaneously...)
+
+Repeatably, when I go from state 0 to 2,
+x2goclient causes its directories to be mounted in the cygwin environment;
+this remains in effect (stored in registry) until it is manually unmounted using umount in cmd.exe.
+Cygwin (bash.exe) is now crippled if it is started because fundamental commands are not found.
+
+When I go from state 0 to 1 and then to 3, this does not happen,
+and as far as I can see, x2go works fine anyway.
+So I use this strategy as workaround.
+
+I hope this was helpful.
+
+Regards,
+Anders
+
+&gt;<i> -----Original Message-----
+</I>&gt;<i> From: Stefan Baur [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>]
+</I>&gt;<i> Sent: den 6 december 2012 12:30
+</I>&gt;<i> To: Mike Gabriel; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">77 at bugs.x2go.org</A>; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i> Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">submit at bugs.x2go.org</A>; Hallstrom, Anders
+</I>&gt;<i> Subject: Re: [X2Go-Dev] Bug#77: Fwd: Bug report, unknown package: X2Go
+</I>&gt;<i> corrupts CygWin
+</I>&gt;<i>
+</I>&gt;<i> Am 06.12.2012 09:58, schrieb Anders Hallstr&#246;m:
+</I>&gt;<i> [...]
+</I>&gt;<i>
+</I>&gt;<i> &gt; What happens is that directories from the X2Go installation are
+</I>&gt;<i> &gt; suddenly mounted as /etc and /bin in CygWin.
+</I>&gt;<i> &gt; Since fundamental commands such as &quot;/bin/ls&quot; are thereby missing,
+</I>&gt;<i> &gt; nothing works.
+</I>&gt;<i>
+</I>&gt;<i> [...]
+</I>&gt;<i>
+</I>&gt;<i> &gt; After this fix, I can still use X2Go without problems and without
+</I>&gt;<i> &gt; the mounts coming back, so I just cannot see why the mounts were
+</I>&gt;<i> &gt; necessary in the first place.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Sometimes, however, the harmful mounts do come back.
+</I>&gt;<i> &gt; I cannot pinpoint exactly when this happens,
+</I>&gt;<i> &gt; but at least it is not every time I restart the computer and not every
+</I>&gt;<i> &gt; time I run X2Go.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Is this known?
+</I>&gt;<i> &gt; Could some developer explain what is happening?
+</I>&gt;<i>
+</I>&gt;<i> Well, X2Go uses some Cygwin code for its Windows client.
+</I>&gt;<i> I've seen weird things happen before when two applications brought their
+</I>&gt;<i> own set of Cygwin libraries and they belonged to different versions,
+</I>&gt;<i> maybe this is a similar issue.
+</I>&gt;<i> Probably something like whoever loads cygwin1.dll first &quot;wins&quot;, the
+</I>&gt;<i> other application is blocked from loading its own version of cygwin1.dll
+</I>&gt;<i> and just has to make do with whatever cygwin1.dll is already in memory.
+</I>&gt;<i>   After that, it's either an application from the old Cygwin failing
+</I>&gt;<i> because the newer cygwin1.dll is doing something unexpected, or it's a
+</I>&gt;<i> new application failing because the old cygwin1.dll doesn't offer the
+</I>&gt;<i> function that it is expecting.
+</I>&gt;<i>
+</I>&gt;<i> So, to debug this issue, it would be interesting to see what happens
+</I>&gt;<i> when you first run X2GoClient and keep it in the background, then try to
+</I>&gt;<i> rund your old Cygwin applications, and what happens when you run your
+</I>&gt;<i> old applications first (keeping at least one window of them open) and
+</I>&gt;<i> start X2GoClient afterwards.
+</I>&gt;<i> Also, be aware that it is wrong to assume that all X2Go tasks have been
+</I>&gt;<i> terminated just because you don't see an X2Go icon in your task bar.
+</I>&gt;<i> Running task manager after closing X2GoClient, you may still encounter a
+</I>&gt;<i> running pulseaudio, sshd and/or vcxsrv on your Windows client.
+</I>&gt;<i> If you see these, terminete them from within task manager before running
+</I>&gt;<i> your old cygwin applications and see if that helps.
+</I>&gt;<i> I'm not suggesting that this is the solution to your problem, but I am
+</I>&gt;<i> sure the results will be helpful for the devs to pinpoint the issue.
+</I>&gt;<i>
+</I>&gt;<i> -Stefan
+</I>
+&quot;This is an e-mail from a DeLaval company. This e-mail is confidential
+and may also be privileged. Please delete the email and notify us
+immediately if you are not the intended recipient. DeLaval does not
+enter into contracts or contractual obligations via electronic mail,
+unless otherwise agreed in writing between parties concerned.
+Thank you.&quot;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004669.html">[X2Go-Dev] Bug#77: Fwd: Bug report,	unknown package: X2Go corrupts CygWin
+</A></li>
+	<LI>Next message: <A HREF="004658.html">[X2Go-Dev] Processed: your mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4779">[ date ]</a>
+              <a href="thread.html#4779">[ thread ]</a>
+              <a href="subject.html#4779">[ subject ]</a>
+              <a href="author.html#4779">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

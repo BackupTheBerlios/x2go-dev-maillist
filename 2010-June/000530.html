@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Linuxtag
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Linuxtag&In-Reply-To=%3C4C0DE9D2.7090102%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000526.html">
+   <LINK REL="Next"  HREF="000520.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Linuxtag</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Linuxtag&In-Reply-To=%3C4C0DE9D2.7090102%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] Linuxtag">paul at vandervlis.nl
+       </A><BR>
+    <I>Tue Jun  8 08:57:22 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000526.html">[X2go-dev] Linuxtag
+</A></li>
+        <LI>Next message: <A HREF="000520.html">[X2go-dev] X2go-dev Digest, Vol 18, Issue 7
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#530">[ date ]</a>
+              <a href="thread.html#530">[ thread ]</a>
+              <a href="subject.html#530">[ subject ]</a>
+              <a href="author.html#530">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Heinz-M. Graesing schreef:
+&gt;<i> Hello Paul,
+</I>&gt;<i> 
+</I>&gt;<i> Jonas Smedegaard wants to do the packaging of x2go for the official
+</I>&gt;<i> sources. 
+</I>
+Many people have tried to package NX for Debian, it's not easy.
+
+&gt;<i> There are several things which need to be discussed, but he
+</I>&gt;<i> said - nothing would &quot;really&quot; prevent x2go on the long run (as we a
+</I>&gt;<i> trying to work on the issues):
+</I>&gt;<i> 
+</I>&gt;<i> The &quot;problems&quot; are part of the nxlibs and they are:
+</I>&gt;<i> 
+</I>&gt;<i> * There is duplicate Code inside the nxlibs - in fact it is a whole xorg
+</I>&gt;<i> server -&gt; as debian tries to avoid duplicate sources, this needs to be
+</I>&gt;<i> changed some time.
+</I>&gt;<i> * There is code inside the nxlibs which is unmaintained. This is again
+</I>&gt;<i> the xorg code which is outdated and again debian tries to avoid
+</I>&gt;<i> unmaintained code.
+</I>
+The Xorg-code is the biggest problem. I am not sure how it is with SSH,
+Cups, GKrellM or Samba (what was duplicated code too).
+
+Maybe good to tell something about &quot;what allready has been done to avoid
+code duplication&quot;.
+
+&gt;<i> Besides those two arguments I don't know about further problems but to
+</I>&gt;<i> avoid licence &quot;problems&quot; a nx &quot;redesign&quot; should be more look like an
+</I>&gt;<i> module for xorg.
+</I>
+But so far I know there is no module-infrastructure for this kind of
+plugins in X.org. And are the X.org people willing to add and maintain
+NX as a modules in X.org? Not sure. Other options are: a rewrite of NX
+under another license and talking to Nomachine about a license change.
+
+And there is maybe code duplication between Nomachine-NX and X2go-NX,
+because the libraries are not exactly the same. Some Nomachine-NX code
+is allready in Debian, like nxproxy. Maybe it's possible to have a
+NX-base and an splitted NX-X2go and NX-Nomachine, or make it
+configurable. But do you want to be &quot;upstream&quot; for the NX libs?
+
+Not easy, teamwork is needed, you can't do it all on your own. I would
+say: end the speach with that.
+
+What we need are people who know really know a lot about integrating
+libraries to avoid duplicated code, X.org specialists, maybe people who
+want to be upstream for changed NX libraries, and advocates who can talk
+to Nomachine and X.org people (or to Google for the &quot;summer of code&quot;).
+
+But first show the people how great X2go is ;-)
+
+With regards,
+Paul van der Vlis.
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000526.html">[X2go-dev] Linuxtag
+</A></li>
+	<LI>Next message: <A HREF="000520.html">[X2go-dev] X2go-dev Digest, Vol 18, Issue 7
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#530">[ date ]</a>
+              <a href="thread.html#530">[ thread ]</a>
+              <a href="subject.html#530">[ subject ]</a>
+              <a href="author.html#530">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

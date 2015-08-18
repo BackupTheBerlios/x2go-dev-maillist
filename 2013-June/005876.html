@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#241: [PATCH 22/22] Re: Bug#241: Changed host key	cannot be updated
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23241%3A%20%5BPATCH%2022/22%5D%20Re%3A%20Bug%23241%3A%20Changed%20host%20key%0A%09cannot%20be%20updated&In-Reply-To=%3C1371911686-15060-1-git-send-email-xypron.glpk%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005854.html">
+   <LINK REL="Next"  HREF="005878.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#241: [PATCH 22/22] Re: Bug#241: Changed host key	cannot be updated</H1>
+    <B>xypron.glpk at gmx.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23241%3A%20%5BPATCH%2022/22%5D%20Re%3A%20Bug%23241%3A%20Changed%20host%20key%0A%09cannot%20be%20updated&In-Reply-To=%3C1371911686-15060-1-git-send-email-xypron.glpk%40gmx.de%3E"
+       TITLE="[X2Go-Dev] Bug#241: [PATCH 22/22] Re: Bug#241: Changed host key	cannot be updated">xypron.glpk at gmx.de
+       </A><BR>
+    <I>Sat Jun 22 16:34:46 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005854.html">[X2Go-Dev] Bug#241: Bug#241: Bug#241: Changed host key cannot be	updated
+</A></li>
+        <LI>Next message: <A HREF="005878.html">[X2Go-Dev] Bug#241: Bug#241: [PATCH 22/22] Re: Bug#241: Changed	host key cannot be updated
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5876">[ date ]</a>
+              <a href="thread.html#5876">[ thread ]</a>
+              <a href="subject.html#5876">[ subject ]</a>
+              <a href="author.html#5876">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>From: Heinrich Schuchardt &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">xypron.glpk at gmx.de</A>&gt;
+
+The appended patch allows to updated changed host keys.
+
+It does not include the necessary changes for the translations.
+
+Best regards
+
+Heinrich Schuchardt
+
+Signed-off-by: Heinrich Schuchardt &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">xypron.glpk at gmx.de</A>&gt;
+---
+ onmainwindow.cpp |   67 +++++++++++++++++++++++++++++++++++++-----------------
+ 1 file changed, 46 insertions(+), 21 deletions(-)
+
+diff --git a/onmainwindow.cpp b/onmainwindow.cpp
+index b707d84..d0993f2 100644
+--- a/onmainwindow.cpp
++++ b/onmainwindow.cpp
+@@ -2953,33 +2953,58 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
+     {
+     case SSH_SERVER_KNOWN_CHANGED:
+         errMsg=tr ( &quot;Host key for server changed.\nIt is now: &quot; ) +sshMessage+&quot;\n&quot;+
+-               tr ( &quot;For security reasons, connection will be stopped&quot; );
+-        connection-&gt;writeKnownHosts(false);
+-        connection-&gt;wait();
+-        if(sshConnection &amp;&amp; sshConnection !=connection)
++               tr ( &quot;This can be an indication of a man-in-the-middle attack.\n&quot;
++                    &quot;Somebody might be eavesdropping on you.\n&quot;
++                    &quot;For security reasons, it is recommended to stop the connection.\n&quot;
++                    &quot;Do you want to terminate the connection?\n&quot; );
++        if ( !QMessageBox::warning( 0, tr( &quot;Host key verification failed&quot; ),
++                errMsg, tr( &quot;Yes&quot; ), tr( &quot;No&quot; ) ) != 0)
++            {
++            connection-&gt;writeKnownHosts(false);
++            connection-&gt;wait();
++            if(sshConnection &amp;&amp; sshConnection !=connection)
++            {
++                sshConnection-&gt;wait();
++                delete sshConnection;
++            }
++            slotSshUserAuthError ( tr ( &quot;Host key verification failed&quot; ) );
++            sshConnection=0;
++            return;
++        }
++        else
+         {
+-            sshConnection-&gt;wait();
+-            delete sshConnection;
++            errMsg = tr( &quot;If you accept the new host key the security of your &quot;
++                         &quot;connection may be compromised.\n&quot;
++                         &quot;Do you want to update the host key?&quot; );
+         }
+-        sshConnection=0;
+-        slotSshUserAuthError ( errMsg );
+-        return;
+-
++        break;
+     case SSH_SERVER_FOUND_OTHER:
+         errMsg=tr ( &quot;The host key for this server was not found but an other&quot;
+-                    &quot;type of key exists.An attacker might change the default server key to&quot;
+-                    &quot;confuse your client into thinking the key does not exist&quot; );
+-        connection-&gt;writeKnownHosts(false);
+-        connection-&gt;wait();
+-        if(sshConnection &amp;&amp; sshConnection !=connection)
++                    &quot;type of key exists. An attacker might change the default server key to &quot;
++                    &quot;confuse your client into thinking the key does not exist. \n&quot;
++                    &quot;For security reasons, it is recommended to stop the connection.\n&quot;
++                    &quot;Do you want to terminate the connection?\n&quot;);
++        if ( !QMessageBox::warning( 0, tr( &quot;Host key verification failed&quot; ),
++                errMsg, tr( &quot;Yes&quot; ), tr( &quot;No&quot; ) ) != 0)
++            {
++            connection-&gt;writeKnownHosts(false);
++            connection-&gt;wait();
++            if(sshConnection &amp;&amp; sshConnection !=connection)
++            {
++                sshConnection-&gt;wait();
++                delete sshConnection;
++            }
++            slotSshUserAuthError ( tr ( &quot;Host key verification failed&quot; ) );
++            sshConnection=0;
++            return;
++        }
++        else
+         {
+-            sshConnection-&gt;wait();
+-            delete sshConnection;
++            errMsg = tr( &quot;If you accept the new host key the security of your &quot;
++                         &quot;connection may be compromised.\n&quot;
++                         &quot;Do you want to update the host key?&quot; );
+         }
+-        sshConnection=0;
+-        slotSshUserAuthError ( errMsg );
+-        return ;
+-
++        break;
+     case SSH_SERVER_ERROR:
+         connection-&gt;writeKnownHosts(false);
+         connection-&gt;wait();
+-- 
+1.7.10.4
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005854.html">[X2Go-Dev] Bug#241: Bug#241: Bug#241: Changed host key cannot be	updated
+</A></li>
+	<LI>Next message: <A HREF="005878.html">[X2Go-Dev] Bug#241: Bug#241: [PATCH 22/22] Re: Bug#241: Changed	host key cannot be updated
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5876">[ date ]</a>
+              <a href="thread.html#5876">[ thread ]</a>
+              <a href="subject.html#5876">[ subject ]</a>
+              <a href="author.html#5876">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

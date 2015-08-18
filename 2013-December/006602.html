@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre02
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20Windows%20binary%204.0.1.2pre02&In-Reply-To=%3C20131211142023.Horde.14ORfU_9ult4l64UTiS3eg1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006601.html">
+   <LINK REL="Next"  HREF="006603.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre02</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20Windows%20binary%204.0.1.2pre02&In-Reply-To=%3C20131211142023.Horde.14ORfU_9ult4l64UTiS3eg1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre02">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Dec 11 15:20:23 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006601.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre02
+</A></li>
+        <LI>Next message: <A HREF="006603.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre02
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6602">[ date ]</a>
+              <a href="thread.html#6602">[ thread ]</a>
+              <a href="subject.html#6602">[ subject ]</a>
+              <a href="author.html#6602">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Stefan,
+
+On  Mi 11 Dez 2013 14:50:02 CET, Stefan Baur wrote:
+
+&gt;<i> Am 11.12.2013 01:43, schrieb Michael DePaulo:
+</I>&gt;&gt;<i> In preparation for the upcoming release of X2Go Client 4.0.1.2, a new
+</I>&gt;&gt;<i> nightly build of the Windows binary is available for download under:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> <A HREF="http://code.x2go.org/releases/binary-win32/x2goclient/previews/4.0.1.2/">http://code.x2go.org/releases/binary-win32/x2goclient/previews/4.0.1.2/</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Right now the current plan for 4.0.1.2's release is &quot;We've stopped
+</I>&gt;&gt;<i> making changes. If no showstopper bugs or regressions are reported,
+</I>&gt;&gt;<i> we'll release 4.0.1.2 on Friday.&quot; So while we want all bugs reported
+</I>&gt;&gt;<i> on <A HREF="http://bugs.x2go.org/">http://bugs.x2go.org/</A> , it is especially important that users
+</I>&gt;&gt;<i> report any regressions since the last stable version of X2Go Client
+</I>&gt;&gt;<i> for windows, 4.0.0.3, before Friday 2013-12-13.
+</I>&gt;<i>
+</I>&gt;<i> I just tried out x2goclient-4.0.1.2-pre02 and I'm a little disappointed.
+</I>&gt;<i>
+</I>&gt;<i> 1) There's no improvement on the sound issue (Flash videos sound  
+</I>&gt;<i> &quot;choppy&quot;), yet there's no additional download option where one could  
+</I>&gt;<i> download a copy of x2goclient-4.0.1.2-pre02-setup that is set to use  
+</I>&gt;<i> the old pulseaudio. :-( Showstopper for me, can't roll that out to  
+</I>&gt;<i> my customers.
+</I>&gt;<i>
+</I>&gt;<i> 2) Even with the newer Xserver that is included in  
+</I>&gt;<i> x2goclient-4.0.1.2-pre02-setup, Chromium and Chrome still crash at  
+</I>&gt;<i> random intervals. To be exact, they're not crashing themselves,  
+</I>&gt;<i> they're crashing the X server. Pausing and resuming a session lets  
+</I>&gt;<i> you continue where you stopped, yet, this is an instability that  
+</I>&gt;<i> users won't put up with since they quit Windows 98/Millennium for  
+</I>&gt;<i> good. It's only when X2Go is involved that these crashes occur - if  
+</I>&gt;<i> you export the display with ssh (from PuTTY) instead of using  
+</I>&gt;<i> x2goclient.exe, Chromium and Chrome behave well. Not a showstopper  
+</I>&gt;<i> (customers are using Iceweasel so far), but something where I had  
+</I>&gt;<i> hoped to see some improvement with the new Xserver. :-(
+</I>&gt;<i>
+</I>&gt;<i> 3) The two items above are connected in a way: Flash sound isn't  
+</I>&gt;<i> &quot;choppy&quot; in Chromium/Chrome, so if we'd get Chromium/Chrome to work,  
+</I>&gt;<i> I could try to migrate my users away from Iceweasel to avoid the  
+</I>&gt;<i> sound issue. On the other hand, if you are able to fix the sound  
+</I>&gt;<i> issue, I don't see a need to migrate to Chromium/Chrome.
+</I>&gt;<i>
+</I>&gt;<i> 4) New Eye Candy #1: The taskbar icon suddenly changes into the seal  
+</I>&gt;<i> icon once the connection is established. Please add a  
+</I>&gt;<i> checkbox/config file entry to disable this. I'm sure it will confuse  
+</I>&gt;<i> users who have previously used published application mode and look  
+</I>&gt;<i> for the &quot;Accelerated X&quot; icon that has just vanished. I'm kind of  
+</I>&gt;<i> disappointed that we're adding silly eye candy when there still are  
+</I>&gt;<i> serious bugs to fix.
+</I>&gt;<i>
+</I>&gt;<i> 5) New Eye Candy #2: Upon connection, an info bubble pops up,  
+</I>&gt;<i> containing a *totally cryptic session name* and disappearing after  
+</I>&gt;<i> five seconds or so. No non-technical user can make use of that  
+</I>&gt;<i> message, seriously. And even technical users will have a hard time  
+</I>&gt;<i> memorizing a cryptic session name within 5 seconds. Please, also add  
+</I>&gt;<i> an option to disable this popup, and seriously consider changing the  
+</I>&gt;<i> displayed info to something more userfriendly like &quot;Connection to  
+</I>&gt;<i> host &lt;host&gt;, session &lt;sessionname&gt; established as user &lt;user&gt;.&quot; It's  
+</I>&gt;<i> okay to add the cryptic string somewhere where techies can find it  
+</I>&gt;<i> if they need it, maybe in an About-Box or so, but please - think of  
+</I>&gt;<i> the chil^W ordinary non-technical end user.
+</I>&gt;<i> And again, I'm kind of disappointed that we're adding silly eye  
+</I>&gt;<i> candy when there still are serious bugs to fix.
+</I>&gt;<i>
+</I>&gt;<i> @Mike&amp;Mike (or is that Mike&#178;?):
+</I>&gt;<i> I'm guessing this should go into the bugtracker, somehow. Please  
+</I>&gt;<i> advise on how it should be tagged and I'll turn items 1, 2, 4, and 5  
+</I>&gt;<i> into four new bugtracker entries.
+</I>&gt;<i>
+</I>&gt;<i> -Stefan
+</I>
+Thanks for testing all that.
+
+Please send individual mails to <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">submit at bugs.x2go.org</A>
+
+User a proper subject line.
+
+Put
+
+&quot;&quot;&quot;
+Package: x2goclient
+Severity: wishlist
+Version: 4.0.1.2
+
+&quot;&quot;&quot;
+
+into that first lines of each mail and add the text passage of the  
+corresponding item below.
+
+Mike
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131211/0dd2fe14/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131211/0dd2fe14/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006601.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre02
+</A></li>
+	<LI>Next message: <A HREF="006603.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre02
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6602">[ date ]</a>
+              <a href="thread.html#6602">[ thread ]</a>
+              <a href="subject.html#6602">[ subject ]</a>
+              <a href="author.html#6602">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

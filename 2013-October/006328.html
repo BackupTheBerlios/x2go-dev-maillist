@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go-Dev Digest, Vol 58, Issue 7
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go-Dev%20Digest%2C%20Vol%2058%2C%20Issue%207&In-Reply-To=%3C45E52DE4-30F7-4840-9F7B-5453BD910E37%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006327.html">
+   <LINK REL="Next"  HREF="006329.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go-Dev Digest, Vol 58, Issue 7</H1>
+    <B>Madog</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go-Dev%20Digest%2C%20Vol%2058%2C%20Issue%207&In-Reply-To=%3C45E52DE4-30F7-4840-9F7B-5453BD910E37%40gmail.com%3E"
+       TITLE="[X2Go-Dev] X2Go-Dev Digest, Vol 58, Issue 7">madogdevelopment at gmail.com
+       </A><BR>
+    <I>Fri Oct 11 15:33:43 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006327.html">[X2Go-Dev] X2go browser plugin &amp; session broker
+</A></li>
+        <LI>Next message: <A HREF="006329.html">[X2Go-Dev] X2Go-Dev Digest, Vol 58, Issue 7
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6328">[ date ]</a>
+              <a href="thread.html#6328">[ thread ]</a>
+              <a href="subject.html#6328">[ subject ]</a>
+              <a href="author.html#6328">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Stefan:
+
+Thanks so much for the ping back&#8230;.my sense is while what you are suggesting is &quot;the right way&quot;, it's not practical for our user base (i.e., to ask them to generate an ssh key, email etc.).  
+
+So that might bring me back to the other parts of the email - can we work with some sort of encrypted tunnel without using ssh?
+
+- does the plugin approach work on Windows and OS X yet (I can't tell from the documentation - they may still only work on linux clients) such that would use SSL and some sort of user login page
+- or would the x2go-broker approach allow something similar, where a user goes to a web page, logs in, and has an SSL tunnel to connect to the x2go server&#8230;
+
+Thanks!
+
+
+On Oct 11, 2013, at 6:00 AM, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-request at lists.berlios.de</A> wrote:
+
+&gt;<i> Send X2Go-Dev mailing list submissions to
+</I>&gt;<i> 	<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> To subscribe or unsubscribe via the World Wide Web, visit
+</I>&gt;<i> 	<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> or, via email, send a message with subject or body 'help' to
+</I>&gt;<i> 	<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-request at lists.berlios.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> You can reach the person managing the list at
+</I>&gt;<i> 	<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-owner at lists.berlios.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> When replying, please edit your Subject line so it is more specific
+</I>&gt;<i> than &quot;Re: Contents of X2Go-Dev digest...&quot;
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Today's Topics:
+</I>&gt;<i> 
+</I>&gt;<i>   1. X2go browser plugin &amp; session broker (Ted Barnes)
+</I>&gt;<i>   2. Re: X2go browser plugin &amp; session broker (Stefan Baur)
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ----------------------------------------------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> Message: 1
+</I>&gt;<i> Date: Thu, 10 Oct 2013 20:17:47 +0000
+</I>&gt;<i> From: Ted Barnes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">madogdevelopment at gmail.com</A>&gt;
+</I>&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-user at lists.berlios.de</A>, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i> Subject: [X2Go-Dev] X2go browser plugin &amp; session broker
+</I>&gt;<i> Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">52570B6B.3040609 at gmail.com</A>&gt;
+</I>&gt;<i> Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+</I>&gt;<i> 
+</I>&gt;<i> Hi All:
+</I>&gt;<i> 
+</I>&gt;<i> Currently the people I support who use x2go connect over ssh and are 
+</I>&gt;<i> &quot;outside the firewall&quot;.   This means needing some secure way to get 
+</I>&gt;<i> remote users the ssh private key.
+</I>&gt;<i> 
+</I>&gt;<i> Q:  How do other people do this, where there is no secure connection 
+</I>&gt;<i> until the private ssh key is provided?  Email doesn't seem to be a great 
+</I>&gt;<i> way to send someone a key (e.g., as a password protected file)....maybe 
+</I>&gt;<i> try some sort of &quot;user login&quot; web page or drop box?  My understanding of 
+</I>&gt;<i> the documented way of giving someone a key assumes you are on the same 
+</I>&gt;<i> LAN....is that wrong?
+</I>&gt;<i> 
+</I>&gt;<i> Q:  Does x2go session broker still require ssh even if the initial 
+</I>&gt;<i> connection is made over HTTPS?  Would x2go session broker be a way to 
+</I>&gt;<i> avoid using SSH keys but still provide an encrypted connection?
+</I>&gt;<i> 
+</I>&gt;<i> Q:  Does the x2go plugin work on Windows and OS X at this point?  Would 
+</I>&gt;<i> the x2go plugin be a means to connect over HTTPS securely with a user 
+</I>&gt;<i> name and password and avoid SSH keys?
+</I>&gt;<i> 
+</I>&gt;<i> Any suggestions, please!
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> Message: 2
+</I>&gt;<i> Date: Thu, 10 Oct 2013 22:28:45 +0200
+</I>&gt;<i> From: Stefan Baur &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>&gt;
+</I>&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i> Subject: Re: [X2Go-Dev] X2go browser plugin &amp; session broker
+</I>&gt;<i> Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">52570DFD.9090608 at stefanbaur.de</A>&gt;
+</I>&gt;<i> Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+</I>&gt;<i> 
+</I>&gt;<i> Am 10.10.2013 22:17, schrieb Ted Barnes:
+</I>&gt;&gt;<i> Q: How do other people do this, where there is no secure connection 
+</I>&gt;&gt;<i> until the private ssh key is provided?  Email doesn't seem to be a 
+</I>&gt;&gt;<i> great way to send someone a key (e.g., as a password protected 
+</I>&gt;&gt;<i> file)....maybe try some sort of &quot;user login&quot; web page or drop box?  My 
+</I>&gt;&gt;<i> understanding of the documented way of giving someone a key assumes 
+</I>&gt;&gt;<i> you are on the same LAN....is that wrong?
+</I>&gt;<i> 
+</I>&gt;<i> Uh, no. You shouldn't create the private key for them. It's called a 
+</I>&gt;<i> &quot;private key&quot; for a reason. It's theirs, and theirs alone.
+</I>&gt;<i> Have your users create their private keys on their own machines. Then 
+</I>&gt;<i> have them send you their *public* keys via E-Mail, and verify the 
+</I>&gt;<i> fingerprint of the public key by transmitting it on a different channel 
+</I>&gt;<i> (SMS, phone call, snail-mail letter, fax, whatever).
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> -Stefan
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> 
+</I>&gt;<i> End of X2Go-Dev Digest, Vol 58, Issue 7
+</I>&gt;<i> ***************************************
+</I>
+</PRE>
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006327.html">[X2Go-Dev] X2go browser plugin &amp; session broker
+</A></li>
+	<LI>Next message: <A HREF="006329.html">[X2Go-Dev] X2Go-Dev Digest, Vol 58, Issue 7
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6328">[ date ]</a>
+              <a href="thread.html#6328">[ thread ]</a>
+              <a href="subject.html#6328">[ subject ]</a>
+              <a href="author.html#6328">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

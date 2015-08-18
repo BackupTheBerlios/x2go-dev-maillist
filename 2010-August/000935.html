@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Prevent session suspending and resuming
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Prevent%20session%20suspending%20and%20resuming&In-Reply-To=%3Ci3vdbv%24kqk%241%40dough.gmane.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000934.html">
+   <LINK REL="Next"  HREF="000953.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Prevent session suspending and resuming</H1>
+    <B>Sven Strickroth</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Prevent%20session%20suspending%20and%20resuming&In-Reply-To=%3Ci3vdbv%24kqk%241%40dough.gmane.org%3E"
+       TITLE="[X2go-dev] Prevent session suspending and resuming">sstrickroth at gym-oha.de
+       </A><BR>
+    <I>Thu Aug 12 01:56:47 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000934.html">[X2go-dev] Prevent session suspending and resuming
+</A></li>
+        <LI>Next message: <A HREF="000953.html">[X2go-dev] Prevent session suspending and resuming
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#935">[ date ]</a>
+              <a href="thread.html#935">[ thread ]</a>
+              <a href="subject.html#935">[ subject ]</a>
+              <a href="author.html#935">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+Am 09.08.2010 17:12 schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">contact at gmli.fr</A>:
+&gt;<i> - prevent users from resuming their session
+</I>&gt;<i> Is there a way to prevent this ? Or use some kind of &quot;filter&quot; command  
+</I>&gt;<i> automatically ?
+</I>
+I use a sshCommand overwriting for this, but it requires that you logon
+using a ssh-key.
+
+Maybe you can adopt it for your needs:
+
+.ssh/authorized_keys:
+command=&quot;/home/username/safe.pl&quot;,from=&quot;anzeiger??.domain&quot; ssh-rsa KEY
+
+/home/username/safe.pl:
+#!/usr/bin/perl
+
+$cmd = $ENV{'SSH_ORIGINAL_COMMAND'};
+
+#open(LOG,&quot;&gt;&gt;/home/username/x2gologs&quot;);
+#print LOG &quot;$cmd\n&quot;;
+#close(LOG);
+
+if ($cmd eq &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;) {
+  # no resume of sessions
+  exit;
+} elsif ($cmd =~ /^x2gocmdexitmessage username-[0-9]+-[a-z0-9A-Z_.]$/) {
+  system($cmd);
+} elsif ($cmd =~ /^x2gostartagent (\d+x\d+|fullscreen) [a-z]+ [a-z0-9-]+
+[a-z0-9_-]+ [a-z]{2,3} pc105\/[a-z]{2,3} [01]( R [a-z0-9-]+)?$/) {
+  system($cmd);
+} elsif ($cmd =~ /^(setsid x2goruncommand \d+ \d+
+username-\d+-\d+(?:_[a-zA-Z0-9_.-]+)? \d+)
+start-anzeiger-(NONE|[a-z0-9]{32}) ((?:nosnd R)?\s*&gt;&amp; \/dev\/null &amp;
+exit)\s*$/) {
+  system(&quot;$1 \&quot;/home/username/startanzeiger.sh\&quot; $3&quot;);
+} elsif ($cmd =~ /^(x2goterminate-session|x2gocmdexitmessage)
+username-\d+-\d+_[a-zA-Z0-9_.-]+$/) {
+  system($cmd);
+} else {
+  if ($cmd =~ /^mkdir/) { exit; }
+  open(LOG,&quot;&gt;&gt;/home/username/x2gologs&quot;);
+  print LOG &quot;NO: $cmd\n&quot;;
+  close(LOG);
+#  system($cmd);
+}
+
+startanzeiger.sh:
+#!/bin/bash
+PROFILEDIR=&quot;/home/username/.mozilla/firefox/&quot;
+TMPDIR=$(mktemp -d -p $PROFILEDIR)
+PROFILE=${TMPDIR:${#PROFILEDIR}}
+cp -a $PROFILEDIR/5jklba54.default/* $TMPDIR
+lockfile -5 -r-1 -L 20 $PROFILEDIR/lock.trg
+cat $PROFILEDIR/profiles-def.ini &gt; $PROFILEDIR/profiles.ini
+echo &quot;[Profile1]&quot; &gt;&gt; $PROFILEDIR/profiles.ini
+echo &quot;Name=$PROFILE&quot; &gt;&gt; $PROFILEDIR/profiles.ini
+echo &quot;IsRelative=1&quot; &gt;&gt; $PROFILEDIR/profiles.ini
+echo &quot;Path=$PROFILE&quot; &gt;&gt; $PROFILEDIR/profiles.ini
+echo &quot;Default=0&quot; &gt;&gt; $PROFILEDIR/profiles.ini
+iceweasel -P $PROFILE
+rm -rf $TMPDIR
+
+And I set up a cronjob for that user:
+# m h  dom mon dow   command
+3 6 * * 6 find /home/username/.nx /home/username/.x2go/ -mindepth 1
+-maxdepth 1 -mtime +5 -print0 | xargs -0 rm -rf
+
+
+-- 
+Best regards,
+ Sven Strickroth
+ ClamAV, a GPL anti-virus toolkit   <A HREF="http://www.clamav.net">http://www.clamav.net</A>
+ PGP key id F5A9D4C4 @ any key-server
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000934.html">[X2go-dev] Prevent session suspending and resuming
+</A></li>
+	<LI>Next message: <A HREF="000953.html">[X2go-dev] Prevent session suspending and resuming
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#935">[ date ]</a>
+              <a href="thread.html#935">[ thread ]</a>
+              <a href="subject.html#935">[ subject ]</a>
+              <a href="author.html#935">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

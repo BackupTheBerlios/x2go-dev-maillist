@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] new x2goserver package breakage
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20new%20x2goserver%20package%20breakage&In-Reply-To=%3C8762mhz980.fsf%40faui43f.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002620.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] new x2goserver package breakage</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20new%20x2goserver%20package%20breakage&In-Reply-To=%3C8762mhz980.fsf%40faui43f.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-Dev] new x2goserver package breakage">siretart at tauware.de
+       </A><BR>
+    <I>Mon Aug  1 13:01:35 CEST 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002620.html">[X2go-Dev] new x2goserver package breakage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2619">[ date ]</a>
+              <a href="thread.html#2619">[ thread ]</a>
+              <a href="subject.html#2619">[ subject ]</a>
+              <a href="author.html#2619">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+It seems to me that
+
+The current x2goserver package seems broken to me:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at sandy</A>:~# dpkg -i x2goserver_3.0.99.5-0~184~natty1_amd64.deb 
+Selecting previously deselected package x2goserver.
+(Reading database ... 353215 files and directories currently installed.)
+Unpacking x2goserver (from x2goserver_3.0.99.5-0~184~natty1_amd64.deb) ...
+Setting up x2goserver (3.0.99.5-0~184~natty1) ...
+Creating x2gouser group.
+Adding group `x2gouser' (GID 126) ...
+Done.
+Creating x2gouser user.
+Adding system user `x2gouser' (UID 117) ...
+Adding new user `x2gouser' (UID 117) with group `x2gouser' ...
+Not creating home directory `/var/lib/x2go'.
+chmod: cannot access `/usr/bin/x2gosqlitewrapper': No such file or directory
+dpkg-statoverride: warning: No override present.
+dpkg-statoverride: warning: No override present.
+Cleaning up stale x2go sessions.
+Processing triggers for ureadahead ...
+Processing triggers for man-db ...
+
+I guess this is because the x2gosqlitewrapper has moved:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at sandy</A>:~# dpkg-deb -c x2goserver_3.0.99.5-0~184~natty1_amd64.deb | grep sqlitewrapper
+-rwxr-xr-x root/root      6168 2011-07-31 04:02 ./usr/lib/x2go/x2gosqlitewrapper
+-rwxr-xr-x root/root     10579 2011-07-31 03:57 ./usr/lib/x2go/x2gosqlitewrapper.pl
+
+Interestingly, the permissions seem to be correct:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at sandy</A>:~# ls -l /usr/lib/x2go/x2gosqlitewrapper
+-rwxr-sr-x 1 root x2gouser 6168 Jul 31 04:02 /usr/lib/x2go/x2gosqlitewrapper
+
+The above messages may seem rather cosmetic. Still, the warning message
+above seem to indicate that something that was actually intended didn't
+work. Moreover, purging and reinstalling the package leaves
+dpkg-statoverride's database in a pretty unusable state:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at sandy</A>:~# dpkg -i x2goserver_3.0.99.5-0~184~natty1_amd64.deb 
+dpkg: unrecoverable fatal error, aborting:
+syntax error: unknown group 'x2gouser' in statoverride file
+
+Even a simple `dpkg-statoverride --list` fails now:
+
+This has impact on any package that uses dpkg-statoverride.
+
+-- 
+Gruesse/greetings,
+Reinhard Tartler, KeyID 945348A4
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002620.html">[X2go-Dev] new x2goserver package breakage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2619">[ date ]</a>
+              <a href="thread.html#2619">[ thread ]</a>
+              <a href="subject.html#2619">[ subject ]</a>
+              <a href="author.html#2619">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

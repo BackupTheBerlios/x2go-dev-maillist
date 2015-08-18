@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2gobroker without auth
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2gobroker%20without%20auth&In-Reply-To=%3CCAFJm-UMr62Giq1Yyh3iRyXHUHL2kFJs3j-YhWU5o4-QNG63aVA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005117.html">
+   <LINK REL="Next"  HREF="005131.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2gobroker without auth</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2gobroker%20without%20auth&In-Reply-To=%3CCAFJm-UMr62Giq1Yyh3iRyXHUHL2kFJs3j-YhWU5o4-QNG63aVA%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] x2gobroker without auth">abo at dsl.dk
+       </A><BR>
+    <I>Fri Mar  1 12:54:43 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005117.html">[X2Go-Dev] x2gobroker without auth
+</A></li>
+        <LI>Next message: <A HREF="005131.html">[X2Go-Dev] x2gobroker without auth
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5129">[ date ]</a>
+              <a href="thread.html#5129">[ thread ]</a>
+              <a href="subject.html#5129">[ subject ]</a>
+              <a href="author.html#5129">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2013/3/1 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+
+&gt;<i> Please use
+</I>&gt;&gt;<i>   x2goclient --broker-noauth --broker-url=&lt;URL&gt;
+</I>&gt;&gt;<i> For this to work, you have to set the check-credentials config option
+</I>&gt;&gt;<i>  x2gobroker.conf to false.
+</I>&gt;<i>
+</I>&gt;<i> I have checked this again and thought it through. As the broker needs to
+</I>&gt;<i> know the username on whose behalf to operate, you probably have to add the
+</I>&gt;<i> --auth-id cmdline switch:
+</I>&gt;<i>
+</I>&gt;<i>   x2goclient --auth-id=&lt;broker-user&gt; --broker-noauth --broker-url=&lt;URL&gt;
+</I>&gt;<i>
+</I>&gt;<i> This is ok with X2Go Client installations on some local/private machines.
+</I>&gt;<i> On thin clients (with no local login) this does not work as the thin client
+</I>&gt;<i> is not aware of the person's username sitting in front of the TC.
+</I>&gt;<i>
+</I>
+It works for me with just &quot;x2goclient --broker-noauth --broker-url=&lt;URL&gt;&quot;
+and check-credentials=false in x2gobroker.conf. I have tried with both
+users who exist on both the broker and terminal server and users who only
+exist on the terminal server.
+
+I get the available sessions and can just choose one. What I can't get to
+work though, is --session=&lt;SESSIONNAME&gt;. I have term-external and
+term-internal setup as available sessions in the broker, and I can choose
+term-internal and logon just fine. But I can't add --session and prechoose
+the session. Is this a bug in x2goclient or am I just doing it wrong?
+
+
+&gt;<i> Hmmm...
+</I>&gt;<i> The other option would be to automatize the SSH login once the user has
+</I>&gt;<i> authenticated against the broker. This feature is already implemented in
+</I>&gt;<i> X2Go Client but needs some extra work in the public X2Go Session Broker.
+</I>&gt;<i>
+</I>
+If that would mean that we could have just a single login dialog for both
+authenticating against the broker and the terminal server, then that would
+be great! Disabling authentication on the broker is suboptimal IMHO.
+
+
+&gt;<i> Another issue, I have to address later: The current broker implementations
+</I>&gt;<i> in X2GoClient expects that the broker user ID is identical with the SSH
+</I>&gt;<i> user ID (i.e. the X2Go user ID) of the targetting servers. This is
+</I>&gt;<i> suboptimal, IMHO.
+</I>
+
+Yes, there might be setups where one would want different user IDs for
+broker and terminal server. Although for our setup, I prefer them to be the
+same, so our users don't have to remember more than one set of credentials.
+So for us, it is low priority :)
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130301/37e2670a/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130301/37e2670a/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005117.html">[X2Go-Dev] x2gobroker without auth
+</A></li>
+	<LI>Next message: <A HREF="005131.html">[X2Go-Dev] x2gobroker without auth
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5129">[ date ]</a>
+              <a href="thread.html#5129">[ thread ]</a>
+              <a href="subject.html#5129">[ subject ]</a>
+              <a href="author.html#5129">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

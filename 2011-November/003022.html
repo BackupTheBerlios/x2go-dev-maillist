@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2goplugin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goplugin&In-Reply-To=%3C20111113103120.11003cay60gybe5k%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003021.html">
+   <LINK REL="Next"  HREF="003023.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2goplugin</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goplugin&In-Reply-To=%3C20111113103120.11003cay60gybe5k%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] x2goplugin">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sun Nov 13 10:31:20 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003021.html">[X2go-Dev] x2goplugin
+</A></li>
+        <LI>Next message: <A HREF="003023.html">[X2go-Dev] x2goplugin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3022">[ date ]</a>
+              <a href="thread.html#3022">[ thread ]</a>
+              <a href="subject.html#3022">[ subject ]</a>
+              <a href="author.html#3022">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Vasilica,
+
+On So 13 Nov 2011 00:28:22 CET Vasilica Petcu wrote:
+
+&gt;<i> Could you send the link in the wiki you used for reading about
+</I>&gt;<i> x2goplugin? Maybe it's not the newest version that gets referred to.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I searched again for that page, but couldn't find it, so I guess it  
+</I>&gt;<i> has been removed as you are in the process of wiki migration.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> x2goplugin is x2goclient compiled with diffferent options. So the
+</I>&gt;<i> plugin is found in x2goclient.git on git.x2go.org.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Could you tell me how to compile x2goclient for a x2goplugin ???
+</I>&gt;<i> I'm trying to get started with x2go and I could use some hints.
+</I>&gt;<i>
+</I>&gt;<i> Thank you
+</I>&gt;<i> Vasilica Petcu
+</I>
+What distro do you use? I am not an expert on x2goplugin and it  
+actually lacks documentation, currently. About installation /  
+compilation I can provide some knowledge:
+
+On Debian/Ubuntu:
+
+   1a. <A HREF="http://wiki.x2go.org/wiki:x2go-repository-debian">http://wiki.x2go.org/wiki:x2go-repository-debian</A>
+   1b. <A HREF="http://wiki.x2go.org/wiki:x2go-repository-ubuntu">http://wiki.x2go.org/wiki:x2go-repository-ubuntu</A>
+
+Then
+
+   $ apt-get update
+   $ apt-get install x2goplugin
+
+
+Other distros:
+
+   git clone <A HREF="git://code.x2go.org/x2goclient.git">git://code.x2go.org/x2goclient.git</A>
+   git checkout 3.99.0.1
+   make build_plugin &amp;&amp; make install_plugin
+
+On the first run, the build will probably fail because of missing  
+dependencies. The build-dependencies on Debian are:
+
+   debhelper (&gt;= 7.0.50~),
+   libqt4-dev,
+   libldap2-dev,
+   libssh-dev (&gt;= 0.4.7),
+   libcups2-dev,
+   libx11-dev,
+   doxygen,
+   man2html-base | man2html
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20111113/34b919e1/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20111113/34b919e1/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003021.html">[X2go-Dev] x2goplugin
+</A></li>
+	<LI>Next message: <A HREF="003023.html">[X2go-Dev] x2goplugin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3022">[ date ]</a>
+              <a href="thread.html#3022">[ thread ]</a>
+              <a href="subject.html#3022">[ subject ]</a>
+              <a href="author.html#3022">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] phantom sessions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20phantom%20sessions&In-Reply-To=%3C4CC619BA.4010702%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001188.html">
+   <LINK REL="Next"  HREF="001186.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] phantom sessions</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20phantom%20sessions&In-Reply-To=%3C4CC619BA.4010702%40verizon.net%3E"
+       TITLE="[X2go-dev] phantom sessions">greno at verizon.net
+       </A><BR>
+    <I>Tue Oct 26 01:58:50 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001188.html">[X2go-dev] phantom sessions
+</A></li>
+        <LI>Next message: <A HREF="001186.html">[X2go-dev] phantom sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1189">[ date ]</a>
+              <a href="thread.html#1189">[ thread ]</a>
+              <a href="subject.html#1189">[ subject ]</a>
+              <a href="author.html#1189">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 10/25/2010 06:33 PM, Gerry Reno wrote:
+&gt;<i> On 10/25/2010 06:19 PM, Gerry Reno wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Ok, I'm still finding many problems with phantom sessions when we 
+</I>&gt;&gt;<i> hammer the server with lots of sessions.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I've got many users with 2 sessions showing even though they only 
+</I>&gt;&gt;<i> started 1 session.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I've got sessions in the database but no corresponding session 
+</I>&gt;&gt;<i> processes.
+</I>&gt;<i> This console message might explain how this one happens:
+</I>&gt;<i> delete from  sessions     where 
+</I>&gt;<i> session_id='userQ6EN-65-1288043069_stDGNOME_dp24';
+</I>&gt;<i> SQL error: delete on table &quot;sessions&quot; violates foreign key on table 
+</I>&gt;<i> &quot;mounts&quot;
+</I>&gt;<i>
+</I>&gt;<i> Sounds like something gets out of sync.
+</I>Actually this is coming from x2golistsessions_sql
+
+# sudo  /usr/bin/x2golistsessions_sql myhost
+18865|ubuntu-50-1288040327_stDGNOME_dp24|50|myhost|R|25.10.10 
+20:58:47|aa5a19e48f063585397df2b7fb4398f9|XXX.XXX.XXX.XXX|30001|30002|25.10.10 
+20:58:47|ubuntu|10444|30003
+delete from  sessions     where 
+session_id='userQ6EN-65-1288043069_stDGNOME_dp24';
+SQL error: delete on table &quot;sessions&quot; violates foreign key on table &quot;mounts&quot;
+12483|userQ6EN-65-1288043069_stDGNOME_dp24|65|myhost|F|25.10.10 
+21:44:29|fc9b1981ce9c8ede372c7095960ed977|XXX.XXX.XXX.XXX|30045|30046|25.10.10 
+22:14:01|userQ6EN|7702|30047
+
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I've got session processes with no corresponding session in the 
+</I>&gt;&gt;<i> database.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I've got session listing script output showing  'tail &lt;some file&gt; no 
+</I>&gt;&gt;<i> such file'
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Ugh!!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Has anyone seen these problems?  Any solutions?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Regards,
+</I>&gt;&gt;<i> Gerry
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2go-dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001188.html">[X2go-dev] phantom sessions
+</A></li>
+	<LI>Next message: <A HREF="001186.html">[X2go-dev] phantom sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1189">[ date ]</a>
+              <a href="thread.html#1189">[ thread ]</a>
+              <a href="subject.html#1189">[ subject ]</a>
+              <a href="author.html#1189">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

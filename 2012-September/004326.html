@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2334%3A%20SSH_OPTIONS_FD&In-Reply-To=%3C50616F8C.2020600%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004325.html">
+   <LINK REL="Next"  HREF="004328.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#34: SSH_OPTIONS_FD</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2334%3A%20SSH_OPTIONS_FD&In-Reply-To=%3C50616F8C.2020600%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] Bug#34: SSH_OPTIONS_FD">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Tue Sep 25 10:47:08 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004325.html">[X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+</A></li>
+        <LI>Next message: <A HREF="004328.html">[X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4326">[ date ]</a>
+              <a href="thread.html#4326">[ thread ]</a>
+              <a href="subject.html#4326">[ subject ]</a>
+              <a href="author.html#4326">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 25.09.2012 10:25, schrieb Mike Gabriel:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> On Di 25 Sep 2012 05:08:19 CEST glpk xypron wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I am not aware of proxies being contacted over https.
+</I>&gt;<i> 
+</I>&gt;<i> Hmmm... this indeed is true... The feature will mostly be an
+</I>&gt;<i> inside-to-outside connection. Hmmm... To get it clear, would we send
+</I>&gt;<i> http-proxy authentication strings in cleartext to the proxy server or
+</I>&gt;<i> would we send the remote X2Go server credentials to the proxy in cleartext.
+</I>
+only proxy server authentication is in clear text. However, many setups
+have the same authentication for proxy-users as for system-users. Often
+such authentication is performed over central LDAP-Server. Sure, it is a
+fail of system administrator, if he allow such unecrypted authentication
+over Internet. But I don't even give them a possibility to make such
+mistake...
+
+&gt;<i> Sending proxy auth in cleartext probably is common practice (?). Most
+</I>&gt;<i> proxy setups do not even need an auth-against-the-proxy.
+</I>&gt;<i> 
+</I>&gt;<i> This feature clearly needs a good documentation so that we do not false
+</I>&gt;<i> security alarms on the mailing lists!!!
+</I>&gt;<i> 
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>
+Alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120925/9d3b6db5/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120925/9d3b6db5/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004325.html">[X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+</A></li>
+	<LI>Next message: <A HREF="004328.html">[X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4326">[ date ]</a>
+              <a href="thread.html#4326">[ thread ]</a>
+              <a href="subject.html#4326">[ subject ]</a>
+              <a href="author.html#4326">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

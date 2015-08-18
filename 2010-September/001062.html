@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Plugin building
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Plugin%20building&In-Reply-To=%3C1285197218.3097.702.camel%40asus%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001058.html">
+   <LINK REL="Next"  HREF="001036.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Plugin building</H1>
+    <B>J&#246;rg Sawatzki</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Plugin%20building&In-Reply-To=%3C1285197218.3097.702.camel%40asus%3E"
+       TITLE="[X2go-dev] Plugin building">joerg.sawatzki at web.de
+       </A><BR>
+    <I>Thu Sep 23 01:13:38 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001058.html">[X2go-dev] Plugin building
+</A></li>
+        <LI>Next message: <A HREF="001036.html">[X2go-dev] GPL violations
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1062">[ date ]</a>
+              <a href="thread.html#1062">[ thread ]</a>
+              <a href="subject.html#1062">[ subject ]</a>
+              <a href="author.html#1062">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alex,
+
+&gt;<i> <A HREF="http://x2go.obviously-nice.de/deb/pool-heuler/x2goclient/">http://x2go.obviously-nice.de/deb/pool-heuler/x2goclient/</A>
+</I>Great, thanks. And why did it take months and heaps of discussions to
+get this link? 
+
+&gt;<i> Q: Why x2goclient don't use libssh or shared ssh connection instead of
+</I>&gt;<i> starting a lot of ssh connections?
+</I>&gt;<i> A: There are several reasons not to use shared connections. X2go client
+</I>&gt;<i> starting ssh to run some commands on server. But also x2goclient
+</I>&gt;<i> starting a couple of ssh-tunnels and reverse ssh-tunnels. All client
+</I>&gt;<i> ssh-connections have the same options as a master connection. This make
+</I>&gt;<i> impossible to use shared ssh connections to create reverse tunnels. We
+</I>&gt;<i> are testing now if libssh can do all this stuff in one connection and
+</I>&gt;<i> how stable it running on all platforms. If all tests with multiply ssh
+</I>&gt;<i> tunnels and reverse tunnels running at the same time will be successful,
+</I>&gt;<i> we will integrate libssh in x2goclient.
+</I>Sorry, but have you ever checked out my little pyx2go project? It uses
+only one SSH connection and it is dimensions faster than your client!
+There's nothing impossible with forward/reverse tunnels and a shell on a
+single connection!
+&gt;<i> Q: Where is a git ????!!!!!!
+</I>&gt;<i> A: Coming soon. I promise.
+</I>Same statement came from Heinz on July 15th - can we expect to have GIT
+in the beginning of next year? *LOL*
+
+&gt;<i> Q: What is current status of project? What are you doing all this time?
+</I>&gt;<i> A: A lot of things. We are working hard to make x2go better.
+</I>Cool,and why don't you let others help you? Shall I fork it and develop
+it from scratch or is there a little chance that my work is honoured and
+I don't need to do all the work again but can help you??
+
+
+Thanks for sharing the information and thanks that (again) nothing
+changed. 
+
+J&#246;rg
+
+
+
+&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001058.html">[X2go-dev] Plugin building
+</A></li>
+	<LI>Next message: <A HREF="001036.html">[X2go-dev] GPL violations
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1062">[ date ]</a>
+              <a href="thread.html#1062">[ thread ]</a>
+              <a href="subject.html#1062">[ subject ]</a>
+              <a href="author.html#1062">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

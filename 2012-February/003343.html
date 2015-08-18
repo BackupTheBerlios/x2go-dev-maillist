@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] nx-libs breaks with libpng 1.5.x
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nx-libs%20breaks%20with%20libpng%201.5.x&In-Reply-To=%3CCAJBj3vfErJGYWpgsf5%2B5ZncLK0bE9yTbyKaWpygTnPwtTZbKaA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003344.html">
+   <LINK REL="Next"  HREF="003345.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] nx-libs breaks with libpng 1.5.x</H1>
+    <B>John Williams</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nx-libs%20breaks%20with%20libpng%201.5.x&In-Reply-To=%3CCAJBj3vfErJGYWpgsf5%2B5ZncLK0bE9yTbyKaWpygTnPwtTZbKaA%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] nx-libs breaks with libpng 1.5.x">jwilliams4200 at gmail.com
+       </A><BR>
+    <I>Mon Feb  6 05:22:01 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003344.html">[X2Go-Dev] X2Go Server + NXLibs
+</A></li>
+        <LI>Next message: <A HREF="003345.html">[X2Go-Dev] nx-libs breaks with libpng 1.5.x
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3343">[ date ]</a>
+              <a href="thread.html#3343">[ thread ]</a>
+              <a href="subject.html#3343">[ subject ]</a>
+              <a href="author.html#3343">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Archlinux just upgraded libpng 1.4.x to 1.5.8, and it appears to have
+broken nx-libs. With libpng 1.4.8, I was able to build nx-libs 3.5.0.9
+and successfully run it with x2goserver, but with libpng 1.5.8, when I
+try to build nx-libs it gets to compiling Pgn.cpp and fails with
+errors:
+
+g++ -c -O3 -fno-rtti -fno-exceptions -I../nx-X11/exports/include
+-Wno-deprecated -fPIC -DIN_ADDR_T=in_addr_t -DVERSION=\&quot;3.5.0\&quot;
+-DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot;
+-DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -Wall -Wpointer-arith
+Pgn.cpp
+
+Pgn.cpp: In function &#8216;int DecompressPng16(unsigned char*, int,
+unsigned int, unsigned int, unsigned char*, int)&#8217;:
+Pgn.cpp:417:15: error: invalid use of incomplete type &#8216;png_info {aka
+struct png_info_def}&#8217;
+/usr/include/png.h:720:16: error: forward declaration of &#8216;png_info
+{aka struct png_info_def}&#8217;
+
+Pgn.cpp: In function &#8216;int DecompressPng24(unsigned char*, int,
+unsigned int, unsigned int, unsigned char*, int)&#8217;:
+Pgn.cpp:568:15: error: invalid use of incomplete type &#8216;png_info {aka
+struct png_info_def}&#8217;
+/usr/include/png.h:720:16: error: forward declaration of &#8216;png_info
+{aka struct png_info_def}&#8217;
+
+Pgn.cpp: In function &#8216;int DecompressPng32(unsigned char*, int,
+unsigned int, unsigned int, unsigned char*, int)&#8217;:
+Pgn.cpp:712:15: error: invalid use of incomplete type &#8216;png_info {aka
+struct png_info_def}&#8217;
+/usr/include/png.h:720:16: error: forward declaration of &#8216;png_info
+{aka struct png_info_def}&#8217;
+
+
+On the libpng homepage, I found this note
+
+<A HREF="http://www.libpng.org/pub/png/libpng.html">http://www.libpng.org/pub/png/libpng.html</A>
+
+&quot;The libpng 1.5.x series continues the evolution of the libpng API,
+finally hiding the contents of the venerable and hoary png_struct and
+png_info data structures inside private (i.e., non-installed) header
+files. Instead of direct struct-access, applications should be using
+the various png_get_xxx() and png_set_xxx() accessor functions, which
+have existed for almost as long as libpng itself. (Apps that compiled
+against libpng 1.4 without warnings about deprecated features should
+happily compile against 1.5, too.)&quot;
+
+I don't see any warnings from my previous build logs with libpng
+1.4.8, but since the compiler was given the option &quot;-Wno-deprecated&quot;
+I'm not sure that the warnings would have shown up anyway.
+
+And it does appear that the Pgn.cpp functions DecompressPngXY() are
+trying to access the png_info struct, which is now private in libpng
+1.5.8.
+
+What do you think is the best way to fix this issue? Would an upstream
+bug report to the NX folks be likely to accomplish anything? I'm not
+sure how big a job it will be to patch all of the code in nx-libs that
+attempts to access png_info or png_struct.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003344.html">[X2Go-Dev] X2Go Server + NXLibs
+</A></li>
+	<LI>Next message: <A HREF="003345.html">[X2Go-Dev] nx-libs breaks with libpng 1.5.x
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3343">[ date ]</a>
+              <a href="thread.html#3343">[ thread ]</a>
+              <a href="subject.html#3343">[ subject ]</a>
+              <a href="author.html#3343">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

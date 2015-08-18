@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go TCE development
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20TCE%20development&In-Reply-To=%3C20110512123646.12072rsgvw43f1ha%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002154.html">
+   <LINK REL="Next"  HREF="002156.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go TCE development</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20TCE%20development&In-Reply-To=%3C20110512123646.12072rsgvw43f1ha%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] x2go TCE development">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu May 12 12:36:46 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002154.html">[X2go-dev] x2gothinclient write problem
+</A></li>
+        <LI>Next message: <A HREF="002156.html">[X2go-dev] x2go TCE development
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2155">[ date ]</a>
+              <a href="thread.html#2155">[ thread ]</a>
+              <a href="subject.html#2155">[ subject ]</a>
+              <a href="author.html#2155">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Morty,
+
+@ML: this mail was (probably by accident) only sent to me privately, I  
+re-include the list in my answer and fully quote Moritz's text passages
+
+On Mi 04 Mai 2011 12:50:53 CEST Moritz Struebe wrote:
+
+&gt;<i> On 2011-05-03 13:55, Mike Gabriel wrote:
+</I>&gt;<i>
+</I>&gt;<i> Hi Mike,
+</I>&gt;<i>
+</I>&gt;<i> I saw, you revived the x2gothinclient package. I was thinking of moving
+</I>&gt;<i> those scripts to x2gothinclientmanagement as the x2githinclient_init is
+</I>&gt;<i> the only script you might not want to adjust. I think it is easier to
+</I>&gt;<i> adjust those scripts outside the chroot and call the update-script to
+</I>&gt;<i> automatically update them within the chroot. That way you can delete the
+</I>&gt;<i> chroot without loosing the configuration.
+</I>
+OK, good point!!! But then let's move the whole TCE configuration to  
+/etc/x2go. Any file that is supposed to be modifyable by the  
+admin/user should rest in /etc/x2go, shouldn't it? Ok?
+
+&gt;<i> Maybe it is even better to set
+</I>&gt;<i> up a &quot;TCE-config&quot;-Folder to manage those configurations and have an
+</I>&gt;<i> x2go-TCEconf.sample folder.
+</I>
+Ah... OK. This answers my former question. I would provide a default  
+configuration in /etc/x2go and provide other possible configurations  
+in /usr/share/doc/x2gothinclientmanagement/examples
+
+&gt;<i> That way you can even put your different TCE
+</I>&gt;<i> configurations under version control.
+</I>
+That is by using e.g. etckeeper?!?
+
+&gt;<i> I'd also rather install
+</I>&gt;<i> x2gothinclinetmanagement to /opt as this is something quite special, and
+</I>&gt;<i> is used for very special purposes.
+</I>
+This will probably conflict with Debian's FHS (Reinhard? Comments?)  
+which would lead to conflicts or transition problems once the packages  
+move into Debian...
+
+&gt;<i> Cheers
+</I>&gt;<i> Morty
+</I>
+Sorry for the late reply (London was great!!!),
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110512/cf724693/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110512/cf724693/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002154.html">[X2go-dev] x2gothinclient write problem
+</A></li>
+	<LI>Next message: <A HREF="002156.html">[X2go-dev] x2go TCE development
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2155">[ date ]</a>
+              <a href="thread.html#2155">[ thread ]</a>
+              <a href="subject.html#2155">[ subject ]</a>
+              <a href="author.html#2155">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

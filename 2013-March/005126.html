@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#126: x2gobroker only works in debug-mode
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23126%3A%20x2gobroker%20only%20works%20in%20debug-mode&In-Reply-To=%3C20130301111541.11482ucvl9mbsoul%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005120.html">
+   <LINK REL="Next"  HREF="005127.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#126: x2gobroker only works in debug-mode</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23126%3A%20x2gobroker%20only%20works%20in%20debug-mode&In-Reply-To=%3C20130301111541.11482ucvl9mbsoul%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#126: x2gobroker only works in debug-mode">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Mar  1 11:15:41 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005120.html">[X2Go-Dev] Bug#126: x2gobroker only works in debug-mode
+</A></li>
+        <LI>Next message: <A HREF="005127.html">[X2Go-Dev] Processed: Re: Bug#126: x2gobroker only works in debug-mode
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5126">[ date ]</a>
+              <a href="thread.html#5126">[ thread ]</a>
+              <a href="subject.html#5126">[ subject ]</a>
+              <a href="author.html#5126">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>tag #126 pending
+tag #126 - wontfix
+retitle #126 Provide info in /etc/default config files about broker debug mode
+thanks
+
+Hi Anders, hi Morty,
+
+On Fr 01 M&#228;r 2013 10:30:11 CET Anders Bruun Olsen wrote:
+
+&gt;<i> 2013/2/28 Moritz Struebe &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Moritz.Struebe at informatik.uni-erlangen.de</A>&gt;
+</I>&gt;<i>
+</I>&gt;&gt;<i> &gt; Without X2GOBROKER_DEBUG mode (=0) the GET request is disable and
+</I>&gt;&gt;<i> &gt; result in 404 Not Found. X2Go Client however, will just work fine, as
+</I>&gt;&gt;<i> &gt; it issues a POST request.
+</I>&gt;&gt;<i> What is the rationale for this. While I don't work with the broker this
+</I>&gt;&gt;<i> seems odd.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> It could be related to REST. A POST request is usually what is used for
+</I>&gt;<i> giving input to a REST service. It means that caches do the right thing
+</I>&gt;<i> with the request, if one happens to be in between the service and the
+</I>&gt;<i> client. But it might be nice to have a comment in
+</I>&gt;<i> /etc/default/x2gobroker-daemon warning that enabling debug will enable GET
+</I>&gt;<i> requests to make using a browser for testing possible. Also we need
+</I>&gt;<i> documentation specifying that only POST requests are normally honored, but
+</I>&gt;<i> documentation probably should wait until the product is closer to being
+</I>&gt;<i> finished :)
+</I>
+I have just committed an attempt to make the X2GOBROKER_DEBUG usage  
+more clear:
+<A HREF="http://code.x2go.org/gitweb?p=x2gobroker.git;a=commitdiff;h=94323f6767cc8f3258f03a4160dba4cf6e166d07">http://code.x2go.org/gitweb?p=x2gobroker.git;a=commitdiff;h=94323f6767cc8f3258f03a4160dba4cf6e166d07</A>
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130301/236a18b4/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130301/236a18b4/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005120.html">[X2Go-Dev] Bug#126: x2gobroker only works in debug-mode
+</A></li>
+	<LI>Next message: <A HREF="005127.html">[X2Go-Dev] Processed: Re: Bug#126: x2gobroker only works in debug-mode
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5126">[ date ]</a>
+              <a href="thread.html#5126">[ thread ]</a>
+              <a href="subject.html#5126">[ subject ]</a>
+              <a href="author.html#5126">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

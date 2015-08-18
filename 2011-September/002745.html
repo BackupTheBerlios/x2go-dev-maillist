@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] cups-x2go and new x2goserver
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20cups-x2go%20and%20new%20x2goserver&In-Reply-To=%3C1315039748.26377.43.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002744.html">
+   <LINK REL="Next"  HREF="002768.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] cups-x2go and new x2goserver</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20cups-x2go%20and%20new%20x2goserver&In-Reply-To=%3C1315039748.26377.43.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] cups-x2go and new x2goserver">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat Sep  3 10:49:08 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002744.html">[X2go-Dev] cups-x2go and new x2goserver
+</A></li>
+        <LI>Next message: <A HREF="002768.html">[X2go-Dev] cups-x2go and new x2goserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2745">[ date ]</a>
+              <a href="thread.html#2745">[ thread ]</a>
+              <a href="subject.html#2745">[ subject ]</a>
+              <a href="author.html#2745">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, 2011-09-03 at 09:04 +0100, Moritz Str&#252;be wrote:
+&gt;<i> Am 25.08.2011 15:58, Mike Gabriel schrieb:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; That should be simple. But I won't have time to work on that before
+</I>&gt;<i> &gt; next week... If someone else (Morty?) wants to start on that before,
+</I>&gt;<i> &gt; feel free to do so.
+</I>&gt;<i> &gt;
+</I>&gt;<i> 
+</I>&gt;<i> Hi,
+</I>&gt;<i> I'm on holiday in Deutsch-S&#252;d-West-Afrika. I won't be able to do 
+</I>&gt;<i> anything before mid to end of September (conference). But I outlined two 
+</I>&gt;<i> different soultions in the wiki (as x2goprint IMO still is a security 
+</I>&gt;<i> issue it is in on the security assessment page). I personally prefer the 
+</I>&gt;<i> one where every user starts his own cups server, as this is the most 
+</I>&gt;<i> secure soultion. I already did some proof of concept experiments and I 
+</I>&gt;<i> see no problems here (at least in my scenarios printing using linux 
+</I>&gt;<i> sockets worked like a charm).
+</I>&lt;snip&gt;
+I am also very concerned about the security implications of x2goprint.
+However, I would prefer a solution which can use a single, central CUPS
+server it possible.  For example, in our model we are preparing for many
+hundreds of vserver based users on a single host and several of those
+hosts.  That would ultimately be hundreds to tens of thousands of CUPS
+processes running which would not have to be if they could be fed by a
+single CUPS server.  That's why we originally hacked the x2goprint
+solution to support multiple x2goservers.
+
+I do not know whether it is possible to resolve the security issues in
+such a way that preserves the ability of a single CUPS server.  Thanks -
+John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002744.html">[X2go-Dev] cups-x2go and new x2goserver
+</A></li>
+	<LI>Next message: <A HREF="002768.html">[X2go-Dev] cups-x2go and new x2goserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2745">[ date ]</a>
+              <a href="thread.html#2745">[ thread ]</a>
+              <a href="subject.html#2745">[ subject ]</a>
+              <a href="author.html#2745">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

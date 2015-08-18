@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] python-x2go questions when working on Ubuntu Sofware	Center
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20python-x2go%20questions%20when%20working%20on%20Ubuntu%20Sofware%0A%09Center&In-Reply-To=%3C20110528012559.21073d8b426e17nr%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002261.html">
+   <LINK REL="Next"  HREF="002263.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] python-x2go questions when working on Ubuntu Sofware	Center</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20python-x2go%20questions%20when%20working%20on%20Ubuntu%20Sofware%0A%09Center&In-Reply-To=%3C20110528012559.21073d8b426e17nr%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] python-x2go questions when working on Ubuntu Sofware	Center">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat May 28 01:25:59 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002261.html">[X2go-dev] python-x2go and IPv6 ?
+</A></li>
+        <LI>Next message: <A HREF="002263.html">[X2go-dev] python-x2go questions when working on Ubuntu Sofware Center
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2262">[ date ]</a>
+              <a href="thread.html#2262">[ thread ]</a>
+              <a href="subject.html#2262">[ subject ]</a>
+              <a href="author.html#2262">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi St&#233;phane,
+hi list,
+
+@List: St&#233;phane and I have had a private discussion (SORRY!) and I  
+have asked him to lead the discussion on the x2go-dev ML as it might  
+be of interest for other X2go developers and advanced users... I'll  
+quite the full mail around keyboard settings with X2go...
+
+On Do 26 Mai 2011 23:05:39 CEST St&#233;phane Graber wrote:
+
+&gt;<i> On Thu, 2011-05-26 at 22:51 +0200, Mike Gabriel wrote:
+</I>&gt;&gt;<i> Hi St&#233;phane,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Do 26 Mai 2011 20:06:16 CEST St&#233;phane Graber wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &gt; Yep, that was my problem actually as I can only find:
+</I>&gt;&gt;<i> &gt;  kblayout (str) - keyboard layout, e.g. us (default), de, fr, ...
+</I>&gt;&gt;<i> &gt;  kbtype (str) - keyboard type, e.g. pc105/us (default), pc105/de, ...
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; But not kbvariant (or similar). Which means my two usual keyboard
+</I>&gt;&gt;<i> &gt; layouts won't work ...
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; I'm using:
+</I>&gt;&gt;<i> &gt;  kblayout = us
+</I>&gt;&gt;<i> &gt;  kbtype = pc105
+</I>&gt;&gt;<i> &gt;  kbvariant = altgr-intl
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Good point. I have just looked at the x2goserver code a bit closer. As
+</I>&gt;&gt;<i> Python X2go is basically a wrapper it wraps around something: NX. And
+</I>&gt;&gt;<i> in NX there is only a kbtype option (nxproxy --help). This kbtype is
+</I>&gt;&gt;<i> set (with a bunch of other options) as the DISPLAY variable of the
+</I>&gt;&gt;<i> nxagent/x2goagent on the server.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Probably it might be best is to issue a setxkbmap command just before
+</I>&gt;&gt;<i> starting the actual session.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> What do you think, would that help? I can implement that in pyton-x2go
+</I>&gt;&gt;<i> directly (by also adding the kbvariant method parameter).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Greets,
+</I>&gt;&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i> Hi!
+</I>&gt;<i>
+</I>&gt;<i> Yep, that'd work for me.
+</I>&gt;<i>
+</I>&gt;<i> I had a quick look at the way it seems to work for my with qtnx +
+</I>&gt;<i> freenx.
+</I>&gt;<i> The options are:
+</I>&gt;<i> nx/nx,keyboard=defkeymap,kbtype=pc102/defkeymap,cache=64M,images=16M,link=adsl,nodelay=1,type=unix-desktop,clipboard=both,cleanup=10,product=LFE/None/LFEN/None,shmem=1,backingstore=when_requested,shpix=1,accept=127.0.0.1,cookie=01db5d8f49eb99cc24960b8e44ece0df,id=weblive-appserv02-2012-19B946687E199316F70C3C215EBFDE70,samba=0,media=0,menu=1:2012
+</I>&gt;<i>
+</I>&gt;<i> And I have a &quot;keyboard&quot; file in the NX session directory on the server
+</I>&gt;<i> containing:
+</I>&gt;<i> rules=evdev
+</I>&gt;<i> model=pc105
+</I>&gt;<i> layout=us
+</I>&gt;<i> variant=altgr-intl
+</I>&gt;<i> options=lv3:ralt_switch,grp:alts_toggle
+</I>&gt;<i>
+</I>&gt;<i> Which is identical to my laptop's settings at the time I started qtnx.
+</I>&gt;<i>
+</I>&gt;<i> I tried with the Swiss French keyboard and got the following &quot;keyboard&quot;
+</I>&gt;<i> file:
+</I>&gt;<i> rules=evdev
+</I>&gt;<i> model=pc105
+</I>&gt;<i> layout=ch
+</I>&gt;<i> variant=fr
+</I>&gt;<i> options=lv3:ralt_switch,grp:alts_toggle
+</I>&gt;<i>
+</I>
+I have added defkeymap / keyboard file support to python-x2go.  
+However, when I tested it with one of my X2go servers, it resulted in  
+this output:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at x2goserver</A>:/srv/homes/mike$ xprop -root _XKB_RULES_NAMES
+_XKB_RULES_NAMES(STRING) = &quot;xfree86&quot;, &quot;pc105&quot;, &quot;defkeymap&quot;, &quot;&quot;, &quot;&quot;
+
+Although my keyboard file looks like this:
+
+rules=evdev
+model=pc105
+layout=de
+variant=nodeadkeys
+options=
+
+I then grepped X2go's nxagent fork x2goagent:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at devsystem</A>:~/x2go-upstream/x2goagent$ grep -ri defkeymap *
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at devsystem</A>:~/x2go-upstream/x2goagent$
+
+-&gt; that is: it resulted in no output at all...
+
+@devs: is there any chance that we incorporate latest nxagent code  
+into x2goagent???? The handling of keyboard files would probably solve  
+quite a few bugs around keyboard/keymap problems...
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110528/7f79a15f/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110528/7f79a15f/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002261.html">[X2go-dev] python-x2go and IPv6 ?
+</A></li>
+	<LI>Next message: <A HREF="002263.html">[X2go-dev] python-x2go questions when working on Ubuntu Sofware Center
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2262">[ date ]</a>
+              <a href="thread.html#2262">[ thread ]</a>
+              <a href="subject.html#2262">[ subject ]</a>
+              <a href="author.html#2262">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

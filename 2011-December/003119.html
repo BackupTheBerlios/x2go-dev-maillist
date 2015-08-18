@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Client-side%20printing%20not%20working%20%28most%20likely%20due%20to%0A%20the%20x2goserver-printing%20package%20being%20unavailable%20for%20installation%29&In-Reply-To=%3C4EEB57AE.1000308%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003118.html">
+   <LINK REL="Next"  HREF="003120.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Client-side%20printing%20not%20working%20%28most%20likely%20due%20to%0A%20the%20x2goserver-printing%20package%20being%20unavailable%20for%20installation%29&In-Reply-To=%3C4EEB57AE.1000308%40stefanbaur.de%3E"
+       TITLE="[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Fri Dec 16 15:37:34 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003118.html">[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)
+</A></li>
+        <LI>Next message: <A HREF="003120.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages (was: Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation))
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3119">[ date ]</a>
+              <a href="thread.html#3119">[ thread ]</a>
+              <a href="subject.html#3119">[ subject ]</a>
+              <a href="author.html#3119">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>And again a self-reply...
+&gt;<i> Why the fnord is it trying to install 
+</I>&gt;<i> 3.0.99.8-0~x2go-bpo1+lenny~main~388~build1 - a Lenny package - when my 
+</I>&gt;<i> sources.list says
+</I>&gt;&gt;<i> [...]
+</I>&gt;&gt;<i> #Backports
+</I>&gt;&gt;<i> deb <A HREF="http://ftp.de.debian.org/debian-backports">http://ftp.de.debian.org/debian-backports</A> squeeze-backports main 
+</I>&gt;&gt;<i> contrib non-free
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> # X2go Repository
+</I>&gt;&gt;<i> deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze main
+</I>&gt;&gt;<i> # X2go Repository (sources)
+</I>&gt;&gt;<i> deb-src <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze main
+</I>&gt;<i>
+</I>&gt;<i> &quot;bpo&quot; would be an indication that the package is in the backports 
+</I>&gt;<i> repository, but even that one is set to squeeze, not lenny.
+</I>&gt;<i> What's going on here?
+</I>The problem seems to be that even though &quot;x2goserver 
+3.0.99.8-0~x2go-bpo1+lenny~main~388~build1 X2go server daemon scripts&quot; 
+is installed, &quot;apt-get install x2goserver&quot; claims it's already the 
+newest version, when &quot;x2goserver 
+3.0.99.8-0~x2go1+squeeze~main~373~build1 X2go server daemon scripts&quot; is 
+available.
+
+&quot;apt-get remove x2goserver x2goserver-extensions&quot; followed by &quot;apt-get 
+install x2goserver x2goserver-extensions&quot; installs the newer version.
+After that, I am able to install &quot;apt-get install x2goserver-printing&quot;.
+
+So while the problem regarding package installation seems to be solved 
+(still not sure if printing works, though), I'm still curious as to what 
+caused it.
+Any ideas?
+
+Kind Regards,
+Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003118.html">[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)
+</A></li>
+	<LI>Next message: <A HREF="003120.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages (was: Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation))
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3119">[ date ]</a>
+              <a href="thread.html#3119">[ thread ]</a>
+              <a href="subject.html#3119">[ subject ]</a>
+              <a href="author.html#3119">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] nxagent dependency problem on CentOS and SL
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nxagent%20dependency%20problem%20on%20CentOS%20and%20SL&In-Reply-To=%3C20130312134625.78163w7kvmb9je75%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005234.html">
+   <LINK REL="Next"  HREF="005255.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] nxagent dependency problem on CentOS and SL</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nxagent%20dependency%20problem%20on%20CentOS%20and%20SL&In-Reply-To=%3C20130312134625.78163w7kvmb9je75%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] nxagent dependency problem on CentOS and SL">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Mar 12 13:46:25 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005234.html">[X2Go-Dev] nxagent dependency problem on CentOS and SL
+</A></li>
+        <LI>Next message: <A HREF="005255.html">[X2Go-Dev] nxagent dependency problem on CentOS and SL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5252">[ date ]</a>
+              <a href="thread.html#5252">[ thread ]</a>
+              <a href="subject.html#5252">[ subject ]</a>
+              <a href="author.html#5252">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Daniel,
+
+On So 10 M&#228;r 2013 21:28:46 CET Daniel Gibbs wrote:
+
+&gt;&gt;&gt;<i> [...]
+</I>&gt;&gt;<i> [...]
+</I>
+&gt;&gt;<i> Looks like the build failed there, and the culprit is a known offender:
+</I>&gt;&gt;<i> broken debuginfo scripts part of ancient rpm releases.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> <A HREF="https://build.opensuse.org/package/live_build_log?arch=x86_64&amp;package=nx-">https://build.opensuse.org/package/live_build_log?arch=x86_64&amp;package=nx-</A>
+</I>&gt;<i> libs&amp;project=X11%3ARemoteDesktop%3Ax2go&amp;repository=RHEL_6
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I cannot believe this has still not been fixed! Do the developers of x2go
+</I>&gt;<i> realise
+</I>&gt;<i> that no one can install x2goserver on RHEL x64 and it variants currently? Its
+</I>&gt;<i> completely broken. I would of thought with an issue as serious as  
+</I>&gt;<i> this that it
+</I>&gt;<i> would be a number one priority. Almost 2 weeks and it has yet to be  
+</I>&gt;<i> fixed. This
+</I>&gt;<i> bug
+</I>&gt;<i> makes this really good project look bad. Does anyone know if this is  
+</I>&gt;<i> even being
+</I>&gt;<i> dealt with? If its going to take time to fix then maybe a post on your front
+</I>&gt;<i> page
+</I>&gt;<i> making people aware the developers are sorting it out.
+</I>&gt;<i> Thanks
+</I>
+May I suggest something?
+
+ From what I have read in this thread, the problem is:
+
+   o you want X2Go installable on RHEL
+   o the only person doing the RPMs does not have a machine with RHEL to test
+     his packages on
+
+@Jan: would it make sense that Daniel provided you with a login on a  
+RHEL machine? Whould that help?
+
+If so, can the two of you please get together?
+
+@Daniel: some background info.
+
+Unfortunately, the people coding X2Go (Alex, me, Heinz, Morty,  
+Reinhard, Arw, ...) tend to run on Debian (or Ubuntu) monoculture  
+sites, only. I personally changed over to .deb packaged distros more  
+than 10 years ago. On the other hand I have just become Debian  
+Developer, so that is the packaging style I focus on.
+
+Thanks to Jan and his employer (who pays for it) we have RPM packages  
+for concurrent RPM-based distros. Note that Jan at the time of writing  
+rather is on the periphery of the project, simply providing the RPMs  
+and (very good) patches. The packaging is not so much an upstream  
+issue, as you might guess.
+
+So, actually you are absolutely free (as an alternative) to package  
+for RHEL yourself and provide a download URL on our website. That is  
+one realm of possibilities. Another surely is to arrange with Jan to  
+cooperate on the RPM pacakges.
+
+I understand that you want X2Go to be spread around the global and  
+also make it available on business Linux distros (like RHEL). Thanks  
+for that disposition and maybe there is a niche for you to help out in  
+our project.
+
+light+love,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130312/81618f80/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130312/81618f80/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005234.html">[X2Go-Dev] nxagent dependency problem on CentOS and SL
+</A></li>
+	<LI>Next message: <A HREF="005255.html">[X2Go-Dev] nxagent dependency problem on CentOS and SL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5252">[ date ]</a>
+              <a href="thread.html#5252">[ thread ]</a>
+              <a href="subject.html#5252">[ subject ]</a>
+              <a href="author.html#5252">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

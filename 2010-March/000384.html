@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Desktop sharing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Desktop%20sharing&In-Reply-To=%3C1269468540.7895.25.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000383.html">
+   <LINK REL="Next"  HREF="000385.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Desktop sharing</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Desktop%20sharing&In-Reply-To=%3C1269468540.7895.25.camel%40localhost%3E"
+       TITLE="[X2go-dev] Desktop sharing">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Mar 24 23:09:00 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000383.html">[X2go-dev] Desktop sharing
+</A></li>
+        <LI>Next message: <A HREF="000385.html">[X2go-dev] Desktop sharing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#384">[ date ]</a>
+              <a href="thread.html#384">[ thread ]</a>
+              <a href="subject.html#384">[ subject ]</a>
+              <a href="author.html#384">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2010-03-24 at 18:40 +0100, Paul van der Vlis wrote:
+&gt;<i> John A. Sullivan III schreef:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Our solution was to use x11vnc.  It is about the ugliest GUI I have ever
+</I>&gt;<i> &gt; seen and is a bear to configure but it is blazingly fast and allows
+</I>&gt;<i> &gt; access to display :0.  We then chose xvnc4viewer as the viewer rather
+</I>&gt;<i> &gt; than Krdc.  Krdc evidenced some instability when used with X11vnc.
+</I>&gt;<i> 
+</I>&gt;<i> I've just tested Vino with Vinagre, this is the Gnome server/client for
+</I>&gt;<i> VNC. You can connect to :0, looks nice, but it's slow.
+</I>Yes - similar to Krfb/Krdc
+&gt;<i> 
+</I>&gt;<i> &gt; If it would be helpful, I can post our procedure and set up to the
+</I>&gt;<i> &gt; list.
+</I>&gt;<i> 
+</I>&gt;<i> Yes, I am interested. Do you maybe use the experimental &quot;ncache speedup
+</I>&gt;<i> feature&quot;? I have never seen a fast VNC connection, even to localhost
+</I>&gt;<i> it's real slow.
+</I>We did not use it.  All of our desktops are running on a limited number
+of very large VServer hosts - so we use virtual machine per virtual
+desktop.  Since it is a shared memory environment, we were concerned
+about inflating memory use.  We were not as concerned about performance
+because most of the traffic is literally inside the VServer host and
+does not even hit the Gb ethernet connections.
+&gt;<i> 
+</I>&gt;<i> Why don't you use xtightvncviewer or ssvnc? (x11vnc likes the tightvnc
+</I>&gt;<i> protocol).
+</I>We did not use ssvnc because we did not see it in the Lenny repository
+or in lenny-backports.  It also has a very ugly interface even though
+very powerful.  On the other hand, the xtightvncviewer interface was too
+minimal.  xvnc4viewer was a nice balance for our environment - it looked
+good and gave ready access to options.  We also did not have to
+specify :0 on the target - intuitive for techs but not for end users.
+Simply entering the target name without the display means fewer help
+desk calls.
+&lt;snip&gt;
+The biggest challenge for us was getting the right combination of the
+truly overwhelming x11vnc options.  The combination we eventually
+settled on is:
+
+x11vnc -display :50 -shared -accept &quot;popup&quot; -gone &quot;popup&quot; -noxdamage
+-gui start,simple,tray=setpass
+
+There are some caveats here.  Because the traffic is in an isolated data
+center with no users on the local network and because the traffic does
+not even tough the network in most cases, we did not implement ssl and
+we did not tunnel it through ssh to avoid the overhead.  We also found
+xvnc4viewer did not support ssl (although we did not try very hard since
+we did not need it).  We did want the users to set a password every time
+they started it.  The noxdamage apparently compensates for a bug and
+provides much better performance when disabled.
+
+The one thing I would like to change is that the user must click on
+enable remote connections in the password dialog.  I would like to
+default it to that.  We tried the unlock and nodeny options but seem to
+confuse the command line parser.
+
+So far, we have been very pleased with the results but we just
+implemented it a couple of days ago.  Hope this helps - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000383.html">[X2go-dev] Desktop sharing
+</A></li>
+	<LI>Next message: <A HREF="000385.html">[X2go-dev] Desktop sharing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#384">[ date ]</a>
+              <a href="thread.html#384">[ thread ]</a>
+              <a href="subject.html#384">[ subject ]</a>
+              <a href="author.html#384">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

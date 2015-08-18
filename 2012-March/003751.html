@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Feedback: Published Applications
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Feedback%3A%20Published%20Applications&In-Reply-To=%3C4F59BDFB.6060900%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003750.html">
+   <LINK REL="Next"  HREF="003752.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Feedback: Published Applications</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Feedback%3A%20Published%20Applications&In-Reply-To=%3C4F59BDFB.6060900%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] Feedback: Published Applications">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Fri Mar  9 09:23:23 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003750.html">[X2Go-Dev] Feedback: Published Applications
+</A></li>
+        <LI>Next message: <A HREF="003752.html">[X2Go-Dev] Feedback: Published Applications
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3751">[ date ]</a>
+              <a href="thread.html#3751">[ thread ]</a>
+              <a href="subject.html#3751">[ subject ]</a>
+              <a href="author.html#3751">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 09.03.2012 09:11, schrieb Mike Gabriel:
+&gt;<i> Hi Alex,
+</I>&gt;<i> 
+</I>&gt;<i> thanks for your feedback...
+</I>&gt;<i> 
+</I>&gt;<i> On Fr 09 M&#228;r 2012 08:44:12 CET Oleksandr Shneyder wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Am 08.03.2012 18:34, schrieb Mike Gabriel:
+</I>&gt;&gt;&gt;<i> [...]
+</I>&gt;<i> 
+</I>&gt;&gt;<i> BTW - this issues are not related to &quot;Published Applications&quot; feature, I
+</I>&gt;&gt;<i> think it is not correct to discuss them in topic with such subject.
+</I>&gt;<i> 
+</I>&gt;<i> Absolutely, only when testing the new features it really confused me as
+</I>&gt;<i> I now had buttons that I did not know the functionality of and had to
+</I>&gt;<i> select blindly.
+</I>&gt;<i> 
+</I>
+:<i>) I'll take care about it.
+</I>
+&gt;&gt;<i> the icons are transferred from the server, certainly. You can find a
+</I>&gt;&gt;<i> directory list, where X2Go server searching for icons in the
+</I>&gt;&gt;<i> &quot;x2gogetapps&quot;. If you just made a link /etc/x2go/applications -&gt;
+</I>&gt;&gt;<i> /usr/share/applications you will get a list with all possible desktops.
+</I>&gt;&gt;<i> Some of them are not in fact desktop applications and have no icons in
+</I>&gt;&gt;<i> directories like &quot;&lt;theme path&gt;/&lt;icon size&gt;/apps&quot;. I think, for 99% of
+</I>&gt;&gt;<i> applications, which you really want to publish on your server,
+</I>&gt;&gt;<i> x2gogetapps will find the icon. In all other cases administrator just
+</I>&gt;&gt;<i> should put the icon in one of generic icons directory - for example in
+</I>&gt;&gt;<i> /usr/share/icons/hicolor/22x22/apps/. If some one have a better idea
+</I>&gt;&gt;<i> about icon resolution algorithm, feel free to talk with me about it.
+</I>&gt;<i> 
+</I>&gt;<i> The problem (for me) rather is that many applications have icons in
+</I>&gt;<i> /usr/share/pixmaps in various formats. These icons should also be taken
+</I>&gt;<i> into account, I guess :-(
+</I>
+Actually, Qt should automatically recognize most icon formats. All
+icons, that I have in my system are displayed correctly. Send me
+(private) some example of icons, which not recognized from X2Go Client
+and I'll check them.
+
+&gt;&gt;&gt;<i>   - x2goclient is configure _not_ to minimize into the systray. After
+</I>&gt;&gt;&gt;<i>     establishing a published application session I see for buttons in
+</I>&gt;&gt;&gt;<i> the
+</I>&gt;&gt;&gt;<i>     center of the blue window area of x2goclient. The buttons do not
+</I>&gt;&gt;&gt;<i> fit in
+</I>&gt;&gt;&gt;<i>     there (they overlap).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I see, you font size is just too large. I'll think, how I can solve this
+</I>&gt;&gt;<i> problem. I should find another place for &quot;Applications...&quot; button.
+</I>
+
+&gt;<i> That might well be, And: people tend to customize their desktops, so we
+</I>&gt;<i> have to react to that with flexible widget geometry definitions.
+</I>&gt;<i> 
+</I>&gt;<i> It might also be a i18n issue (count('Ordner freigeben') &gt; count('Share
+</I>&gt;<i> folder')).
+</I>Yepp, It will be completely changed in new version of client.
+
+&gt;&gt;&gt;<i>   - Is there a concept for evaluating i18n parts of desktop files?
+</I>&gt;&gt;&gt;<i> Application
+</I>&gt;&gt;&gt;<i>     links appear in English still.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Actually, all localized strings from desktop files are transferred to
+</I>&gt;&gt;<i> client. For example, if you client localization is de_DE, the strings
+</I>&gt;&gt;<i> Name[de] and Comment[de] will be used to describe your application in
+</I>&gt;&gt;<i> x2goclient. If this fields are not present in &quot;desktop&quot; file, &quot;Name&quot; and
+</I>&gt;&gt;<i> &quot;Comment&quot; will be used.
+</I>&gt;<i> 
+</I>&gt;<i> Ok, I have tested again. Translation of menu items works.
+</I>&gt;<i> 
+</I>&gt;&gt;&gt;<i>   - Alex, whenever we are about to release the new code, we should make
+</I>&gt;&gt;&gt;<i> a call
+</I>&gt;&gt;&gt;<i>     for translation, so that i18n files are updated with the new version
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Good idea. But I don't think, that it is a target for developers. I
+</I>&gt;&gt;<i> think we should found a &quot;localization&quot; group, which will take care about
+</I>&gt;&gt;<i> localization. Volunteers?
+</I>&gt;<i> 
+</I>&gt;<i> A small team has already gathered:
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-i18n at lists.berlios.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> However, they (a) need dev support for committing their changes to Git
+</I>&gt;<i> and (b) the devs have to say: ,,Ok guys, all text elements are now in a
+</I>&gt;<i> state that they will not get changed again tomorrow, please translate.''
+</I>&gt;<i> The translators won't be able to know that by themselves. So: we
+</I>&gt;<i> developers send out the ,,call for translation''.
+</I>
+Okay
+
+
+&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>
+regards,
+Alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120309/b40a7a98/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120309/b40a7a98/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003750.html">[X2Go-Dev] Feedback: Published Applications
+</A></li>
+	<LI>Next message: <A HREF="003752.html">[X2Go-Dev] Feedback: Published Applications
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3751">[ date ]</a>
+              <a href="thread.html#3751">[ thread ]</a>
+              <a href="subject.html#3751">[ subject ]</a>
+              <a href="author.html#3751">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

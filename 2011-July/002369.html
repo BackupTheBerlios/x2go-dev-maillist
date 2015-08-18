@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2go and android tablets - some progress
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2go%20and%20android%20tablets%20-%20some%20progress&In-Reply-To=%3CBANLkTinW5ujTOmQ_eSOc24jEz%3DmEZMMDNA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="002370.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2go and android tablets - some progress</H1>
+    <B>brian mullan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2go%20and%20android%20tablets%20-%20some%20progress&In-Reply-To=%3CBANLkTinW5ujTOmQ_eSOc24jEz%3DmEZMMDNA%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] x2go and android tablets - some progress">bmullan.mail at gmail.com
+       </A><BR>
+    <I>Fri Jul  1 03:18:47 CEST 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="002370.html">[X2go-Dev] x2go and android tablets - some progress
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2369">[ date ]</a>
+              <a href="thread.html#2369">[ thread ]</a>
+              <a href="subject.html#2369">[ subject ]</a>
+              <a href="author.html#2369">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Pardon me for posting this to the x2go-dev list but I think this is
+important because of what x2go could do for tablet computers..
+
+I wanted to share this as I think I'm getting close to success.
+
+I recently was persuaded by a variety of reviews to buy the $249 (US $)
+Barnes and Noble Nook Color tablet.
+
+short list of features:
+
+   - 7 inch tablet
+   - OMAP3 processor defaults to 800Mhz but I've overclocked it to 1Ghz
+   (other folks go as high as 1.2Ghz)
+   - WIFI, bluetooth and 1 microUSB port
+
+
+Not to bore you with the details but I rooted the Nook tablet and then
+updated it to the latest version of Android 2.3.3 (version name =
+Gingerbread)
+
+Then I installed Ubuntu 10.10 successfully on it.   First with the LXDI but
+later switched it to Gnome (just because I'm more at home with Gnome)
+
+I added the Ubuntu x2go repository
+
+then
+      sudo apt-get update
+
+*Now... the interesting part...*
+
+Because this is an OMAP3 ARM processor any  &quot;sudo apt-get install xxxxxx&quot;
+where = xxxxxx package name
+Gets automatically redirected (by Launchpad I guess) to Canonical's ARMEL
+(ARM repository) to complete the download/install request.
+
+Therefore whatever you are requesting needs to have been built/added to that
+ARM repository.
+
+The 'sudo apt-get install x2goclient&quot; did successfully run but so far it
+only finds the following in the ARMEL repository for x2go:
+
+*p    python-x2go        - python module for X2go client support*
+*p    x2goserver          - x2go server daemon scripts*
+
+I took some pictures with my cell phone of the Nook Color terminal display
+above the above &amp; I'll attach them to this but they may be a bit hard to see
+in any detail.
+
+So... from my limited technical knowledge I &quot;think&quot; that its only a matter
+of time until the rest of the x2go and/or pyhoca-gui  x2go clients are
+supported in the Canonical the ARMEL repository.
+
+&gt;<i>From what I understand from the following 2 articles:
+</I>
+ <A HREF="http://www.thevarguy.com/2011/06/16/canonical-ubuntu-server-embracing-arm-architectures/&lt;%20http://www.thevarguy.com/2011/06/16/canonical-ubuntu-server-embracing-arm-architectures/">http://www.thevarguy.com/2011/06/16/canonical-ubuntu-server-embracing-arm-architectures/&lt;%20http://www.thevarguy.com/2011/06/16/canonical-ubuntu-server-embracing-arm-architectures/</A>&gt;
+
+A Canonical engineer at Canonical is/has built a custom 42 core ARM Cluster
+to in order to do have a a proper build environment and hardware that will
+allow contributors to submit and build the 20,000+ packages that make up the
+Linux distribution and to expedite Ubuntu development/porting to ARM
+architecture(s)... a guess at total build cost was about $4,854.
+
+The engineer ordered a custom rack in which to house 21 ARM PandaBoards. 20
+of them would be used for package building, with the 21st used as a master
+board for monitoring and controlling access for each user. Each board is
+also connected to a 300GB SATAII USB hard drive, giving a total of 6TB of
+storage in the server&lt;<A HREF="http://www.geek.com/articles/chips/canonical-builds-a-42-core-arm-cluster-server-box-for-ubuntu-20110613/#">http://www.geek.com/articles/chips/canonical-builds-a-42-core-arm-cluster-server-box-for-ubuntu-20110613/#</A>&gt;
+.
+
+The system works by allocating time on the server when a request is received
+from a user.
+
+The master board checks for a free PandaBoard, reboots that free board, and
+presents the user with a clean build environment in which to work.
+
+Once a build has been completed the board is flagged as free and the process
+is repeated.
+
+This project looks to be ongoing and you can follow its progress over at the
+dmtechtalk website &lt;<A HREF="http://dmtechtalk.wordpress.com/">http://dmtechtalk.wordpress.com/</A>&gt; where Mandella is
+regularly posting information and images.
+The Canonical engineer's got a blog that is posted here with his progress:
+
+<A HREF="http://dmtechtalk.wordpress.com/">http://dmtechtalk.wordpress.com/</A>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110630/40dcaef9/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110630/40dcaef9/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: IMG_20110630_195742.jpg
+Type: image/jpeg
+Size: 861702 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110630/40dcaef9/attachment.jpg">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110630/40dcaef9/attachment.jpg</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="002370.html">[X2go-Dev] x2go and android tablets - some progress
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2369">[ date ]</a>
+              <a href="thread.html#2369">[ thread ]</a>
+              <a href="subject.html#2369">[ subject ]</a>
+              <a href="author.html#2369">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

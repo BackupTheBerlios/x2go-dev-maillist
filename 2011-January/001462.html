@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2go Git now available at BerliOS
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20Git%20now%20available%20at%20BerliOS&In-Reply-To=%3C4D26EB26.6060700%40immerda.ch%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001468.html">
+   <LINK REL="Next"  HREF="001463.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2go Git now available at BerliOS</H1>
+    <B>kamerun at immerda.ch</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20Git%20now%20available%20at%20BerliOS&In-Reply-To=%3C4D26EB26.6060700%40immerda.ch%3E"
+       TITLE="[X2go-dev] X2go Git now available at BerliOS">kamerun at immerda.ch
+       </A><BR>
+    <I>Fri Jan  7 11:29:58 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001468.html">[X2go-dev] X2go Git now available at BerliOS
+</A></li>
+        <LI>Next message: <A HREF="001463.html">[X2go-dev] X2go Git now available at BerliOS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1462">[ date ]</a>
+              <a href="thread.html#1462">[ thread ]</a>
+              <a href="subject.html#1462">[ subject ]</a>
+              <a href="author.html#1462">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hello,
+
+i just browse and in the server part i don't see x2goserver-home, is any 
+reason for that?
+
+may be a stange question: can i use it to make a repository on my 
+machine and so not to go to internet to install x2go?
+
+michel
+
+
+On 01/06/2011 11:50 PM, Mike Gabriel wrote:
+&gt;<i> Dear X2go-folks,
+</I>&gt;<i>
+</I>&gt;<i> the X2go Git repository at BerliOS has been set up today. You can 
+</I>&gt;<i> browse the X2go-Git at BerliOS:
+</I>&gt;<i> <A HREF="http://git.berlios.de/cgi-bin/cgit.cgi/x2go/tree/?h=master">http://git.berlios.de/cgi-bin/cgit.cgi/x2go/tree/?h=master</A>
+</I>&gt;<i> <A HREF="http://git.berlios.de/cgi-bin/cgit.cgi/x2go/tree/?h=develop">http://git.berlios.de/cgi-bin/cgit.cgi/x2go/tree/?h=develop</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> META INFORMATION
+</I>&gt;<i> ================
+</I>&gt;<i> The master branch is the project's release branch. A commit to master 
+</I>&gt;<i> will be equivalent to an X2go release. The develop branch will be the 
+</I>&gt;<i> branch that you can derive your own branches from for features you 
+</I>&gt;<i> want to implement (and possibly propose for integration into X2go).
+</I>&gt;<i>
+</I>&gt;<i> Currently, the develop branch is a simple copy of the master branch. 
+</I>&gt;<i> Heinz and Alex have just finished a complete rewrite of the x2goclient 
+</I>&gt;<i> that will use libssh as opposed to ssh binary calls in the background. 
+</I>&gt;<i> Alex has proposed a patch to upstream libssh that got accepted and 
+</I>&gt;<i> once the new libssh version is released there will be a commit to the 
+</I>&gt;<i> develop branch containing the latest x2goclient code. This is expected 
+</I>&gt;<i> for the end of January 2011.
+</I>&gt;<i>
+</I>&gt;<i> We are also still discussing the Git branching model details. As a 
+</I>&gt;<i> template for the discussion we use this document (as proposed by 
+</I>&gt;<i> HedgeHog from the x2go-dev list):
+</I>&gt;<i> <A HREF="http://nvie.com/posts/a-successful-git-branching-model/">http://nvie.com/posts/a-successful-git-branching-model/</A>
+</I>&gt;<i>
+</I>&gt;<i> There will be some slight modifications to this model but the 
+</I>&gt;<i> discussion will take place along this very fine piece of work.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> USING X2go/Git:
+</I>&gt;<i> ===============
+</I>&gt;<i>
+</I>&gt;<i> You can anonymously clone a working copy of X2go Git with this command:
+</I>&gt;<i>
+</I>&gt;<i>   $ git clone <A HREF="git://git.berlios.de/x2go">git://git.berlios.de/x2go</A> x2go
+</I>&gt;<i>
+</I>&gt;<i> BerliOS users should also be able to clone a working copy with this 
+</I>&gt;<i> command:
+</I>&gt;<i>
+</I>&gt;<i>   $ git clone <A HREF="ssh://&lt;developername">ssh://&lt;developername</A>&gt;@git.berlios.de/gitroot/x2go x2go
+</I>&gt;<i>
+</I>&gt;<i> If you want to branch off of the develop branch for your own 
+</I>&gt;<i> implementation work, then do this after having cloned the BerliOS Git:
+</I>&gt;<i>
+</I>&gt;<i>   $ cd x2go
+</I>&gt;<i>   $ git checkout develop
+</I>&gt;<i>   $ git checkout -b branch_&lt;featurename&gt;
+</I>&gt;<i>
+</I>&gt;<i> ... where &lt;featurename&gt; is a short string of your choice (at least for 
+</I>&gt;<i> now) that describes the feature you are going to implement.
+</I>&gt;<i>
+</I>&gt;<i> If you intend working on a feature that you would like to become part 
+</I>&gt;<i> of X2go some time in the future then we should agree on some, e.g.:
+</I>&gt;<i>
+</I>&gt;<i>   1) please talk to Heinz and Alex about your ideas first, don't 
+</I>&gt;<i> simply start
+</I>&gt;<i>      working
+</I>&gt;<i>   2) make sure that you work in small portions, do not rewrite the 
+</I>&gt;<i> complete code
+</I>&gt;<i>      and expect a merge
+</I>&gt;<i>   3) document your work
+</I>&gt;<i>   4) ... ??? ...
+</I>&gt;<i>
+</I>&gt;<i> For now, feature branches will stay on your local file systems. Once, 
+</I>&gt;<i> we have finished our discussion on the Git branching model we will 
+</I>&gt;<i> inform you on how merge requests can be send to the project (probably 
+</I>&gt;<i> via a commit of your feature branch to BerliOS, but we will see...).
+</I>&gt;<i>
+</I>&gt;<i> Looking forward to a growing project and an active X2go community with 
+</I>&gt;<i> lots of fine contributions...
+</I>&gt;<i>
+</I>&gt;<i> light+love,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kamerun at immerda.ch</A>
+homepage:
+<A HREF="http://sokolo.cronopios.org">http://sokolo.cronopios.org</A>
+linux friends
+sokolo new road
+limbe / cameroun
+phone : (00237) 743 514 33
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110107/804ac885/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110107/804ac885/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001468.html">[X2go-dev] X2go Git now available at BerliOS
+</A></li>
+	<LI>Next message: <A HREF="001463.html">[X2go-dev] X2go Git now available at BerliOS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1462">[ date ]</a>
+              <a href="thread.html#1462">[ thread ]</a>
+              <a href="subject.html#1462">[ subject ]</a>
+              <a href="author.html#1462">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

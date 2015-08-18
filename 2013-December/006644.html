@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go Client - new features and bugfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20-%20new%20features%20and%20bugfix&In-Reply-To=%3CCAMKht8jNgD%3DJq%3DzLK_mcD3pUs1eaX1XL9CPjftT6wCxXKkcU9g%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006628.html">
+   <LINK REL="Next"  HREF="006649.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go Client - new features and bugfix</H1>
+    <B>Michael DePaulo</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20-%20new%20features%20and%20bugfix&In-Reply-To=%3CCAMKht8jNgD%3DJq%3DzLK_mcD3pUs1eaX1XL9CPjftT6wCxXKkcU9g%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] X2Go Client - new features and bugfix">mikedep333 at gmail.com
+       </A><BR>
+    <I>Fri Dec 13 02:25:30 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006628.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+        <LI>Next message: <A HREF="006649.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6644">[ date ]</a>
+              <a href="thread.html#6644">[ thread ]</a>
+              <a href="subject.html#6644">[ subject ]</a>
+              <a href="author.html#6644">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Dec 12, 2013 at 8:20 AM, Oleksandr Shneyder
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">o.shneyder at phoca-gmbh.de</A>&gt; wrote:
+&gt;<i> 1. Support for GSSApi (Kerberos 5) authentication.
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commit;h=a77d761dbb16d28206e7c2446654539935746e4e">http://code.x2go.org/gitweb?p=x2goclient.git;a=commit;h=a77d761dbb16d28206e7c2446654539935746e4e</A>
+</I>&gt;<i>
+</I>&gt;<i> It works on Linux, Windows (MIT Kerberos) and Mac. Unfortunately stable
+</I>&gt;<i> version of libssh not supporting gssapi yet. X2Go Client using OpenSSH
+</I>&gt;<i> client (ssh, scp) on Mac and Linux for GSSApi authentication. On Windows
+</I>&gt;<i> X2Go Client using CLI tools &quot;plink&quot; and &quot;pscp&quot;, which are the part of
+</I>&gt;<i> free and OS project PUTTY
+</I>&gt;<i> (<A HREF="http://www.chiark.greenend.org.uk/~sgtatham/putty/">http://www.chiark.greenend.org.uk/~sgtatham/putty/</A>)
+</I>&gt;<i>
+</I>&gt;<i> @Windows developers: please note that X2Go Client Windows build should
+</I>&gt;<i> include plink and pscp binaries, this binaries can be found here:
+</I>&gt;<i> <A HREF="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</A>
+</I>&gt;<i>
+</I>&gt;<i> As soon as gssapi support will be enabled in stable version of libssh,
+</I>&gt;<i> 3d-party ssh clients will be not used by X2Go Client any more.
+</I>
+Oleksandr,
+
+1st of all, thank you very much for implementing this! As someone with
+a windows AD domain at home and at work, this feature is extremely
+useful when it does work.
+
+2nd, as the new windows package maintainer, I uploaded
+x2goclient-4.0.1.2-pre03 (and x2goclient-4.0.1.2.interims-pre03) with
+the current plink.exe and pscp.exe (versions 0.63) to the x2go server.
+Mike Gabriel will most likely make this pre03 version available to
+publicly download tomorrow (he just went to bed.)
+
+3rd, it appears as if whenever plink has any sort of error, having
+GSSAPI auth enabled for the session crashes the Windows x2goclient. It
+took me a bunch of effort to make plink's GSSAPI authentication work,
+I intend to document this work on the wiki. Note that my setup is a
+Windows Server 2012 AD domain controller, x2goserver 4.0.1.9 from EPEL
+running on centos 6.4 64-bit with Samba 3.6's winbind for domain
+membership, and a Windows 8.1 64-bit domain member client (I also
+tested the x2goclient on my Windows Server 2012 DC also). But the
+bottom line is that I expect LOTS of Windows users to run into
+x2goclient crashes whenever they enable GSSAPI. They can avoid these
+crashes by disabling GSSAPI for the session (so it's not as severe a
+problem as bug #109), but I would strongly prefer if you could fix the
+crashes before we launch 4.0.1.2. If you can't make Windows x2goclient
+easily fall back to password auth when GSSAPI auth fails, at least
+give the user a message to disable GSSAPI auth.
+
+-Mike
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006628.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+	<LI>Next message: <A HREF="006649.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6644">[ date ]</a>
+              <a href="thread.html#6644">[ thread ]</a>
+              <a href="subject.html#6644">[ subject ]</a>
+              <a href="author.html#6644">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

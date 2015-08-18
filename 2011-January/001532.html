@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go not working on ubuntu 10.10?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20not%20working%20on%20ubuntu%2010.10%3F&In-Reply-To=%3C4D39660C.3070909%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001531.html">
+   <LINK REL="Next"  HREF="001535.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go not working on ubuntu 10.10?</H1>
+    <B>jmm</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20not%20working%20on%20ubuntu%2010.10%3F&In-Reply-To=%3C4D39660C.3070909%40gmail.com%3E"
+       TITLE="[X2go-dev] x2go not working on ubuntu 10.10?">jagermeistermeister at gmail.com
+       </A><BR>
+    <I>Fri Jan 21 11:55:08 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001531.html">[X2go-dev] x2go not working on ubuntu 10.10?
+</A></li>
+        <LI>Next message: <A HREF="001535.html">[X2go-dev] x2go not working on ubuntu 10.10?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1532">[ date ]</a>
+              <a href="thread.html#1532">[ thread ]</a>
+              <a href="subject.html#1532">[ subject ]</a>
+              <a href="author.html#1532">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The file /usr/bin/x2goagent looked like this:
+
+-e #!/bin/bash
+    X2GO_LIBS=/usr/lib/x2go LD_LIBRARY_PATH=/usr/lib/x2go exec 
+/usr/lib/x2go/x2goagent $@
+
+I removed the &quot;-e &quot; in front of the first line, but it did not have any 
+effect, the same error still persists.
+
+
+Oleksandr Shneyder wrote:
+&gt;<i> Am 21.01.2011 11:21, schrieb jmm:
+</I>&gt;<i>   
+</I>&gt;&gt;&gt;<i> $ cat session.log
+</I>&gt;&gt;&gt;<i> /usr/bin/x2goagent: line 1: -e: command not found
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;<i>
+</I>&gt;<i> please check, if your /usr/bin/x2goagent look so:
+</I>&gt;<i>
+</I>&gt;<i> #!/bin/bash
+</I>&gt;<i>     X2GO_LIBS=/usr/lib/x2go LD_LIBRARY_PATH=/usr/lib/x2go exec
+</I>&gt;<i> /usr/lib/x2go/x2goagent $@
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;<i> ------------------------------------------------------------------------
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>   
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/0277ab3e/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/0277ab3e/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001531.html">[X2go-dev] x2go not working on ubuntu 10.10?
+</A></li>
+	<LI>Next message: <A HREF="001535.html">[X2go-dev] x2go not working on ubuntu 10.10?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1532">[ date ]</a>
+              <a href="thread.html#1532">[ thread ]</a>
+              <a href="subject.html#1532">[ subject ]</a>
+              <a href="author.html#1532">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

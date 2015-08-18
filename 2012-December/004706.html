@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#84: DESTDIR and OPTFLAGS patches for nx-libs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2384%3A%20DESTDIR%20and%20OPTFLAGS%20patches%20for%20nx-libs&In-Reply-To=%3C20121212130320.10874vi4bmd2470o%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004705.html">
+   <LINK REL="Next"  HREF="004708.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#84: DESTDIR and OPTFLAGS patches for nx-libs</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2384%3A%20DESTDIR%20and%20OPTFLAGS%20patches%20for%20nx-libs&In-Reply-To=%3C20121212130320.10874vi4bmd2470o%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#84: DESTDIR and OPTFLAGS patches for nx-libs">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Dec 12 13:03:20 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004705.html">[X2Go-Dev] Processed: Patch has been applied to x2goclient.git
+</A></li>
+        <LI>Next message: <A HREF="004708.html">[X2Go-Dev] misc nx patches
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4706">[ date ]</a>
+              <a href="thread.html#4706">[ thread ]</a>
+              <a href="subject.html#4706">[ subject ]</a>
+              <a href="author.html#4706">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: nx-libs
+
+Patches attached for nx-libs:
+- bin/Makefile doesn't support DESTDIR.  The attached   
+nx-libs-destdir.patch partially addresses that.
+- The various nx*/configure.in files do not honor passed in compiler  
+flags. The attached nx-libs-optflags.patch fixes that.  Note also  
+though that CFLAGS is used in some and CPPFLAGS in others.
+
+
+----- Weitergeleitete Nachricht von <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at cora.nwra.com</A> -----
+      Datum: Tue, 11 Dec 2012 16:11:02 -0700
+        Von: Orion Poplawski &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at cora.nwra.com</A>&gt;
+Antwort an: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+    Betreff: [X2Go-Dev] x2go for Fedora packaging issues
+         An: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+
+[...]
+
+Thank you for your attention.
+
+- Orion
+
+
+-- 
+Orion Poplawski
+Technical Manager                     303-415-9701 x222
+NWRA, Boulder Office                  FAX: 303-415-9702
+3380 Mitchell Lane                       <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at nwra.com</A>
+Boulder, CO 80301                   <A HREF="http://www.nwra.com">http://www.nwra.com</A>
+
+
+----- Ende der weitergeleiteten Nachricht -----
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: nx-libs-destdir.patch
+Type: text/x-patch
+Size: 1381 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121212/3a2cf49c/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121212/3a2cf49c/attachment.bin</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: nx-libs-optflags.patch
+Type: text/x-patch
+Size: 2033 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121212/3a2cf49c/attachment-0001.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121212/3a2cf49c/attachment-0001.bin</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121212/3a2cf49c/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121212/3a2cf49c/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004705.html">[X2Go-Dev] Processed: Patch has been applied to x2goclient.git
+</A></li>
+	<LI>Next message: <A HREF="004708.html">[X2Go-Dev] misc nx patches
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4706">[ date ]</a>
+              <a href="thread.html#4706">[ thread ]</a>
+              <a href="subject.html#4706">[ subject ]</a>
+              <a href="author.html#4706">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

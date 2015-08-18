@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go client 3.01.18 crashing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20client%203.01.18%20crashing&In-Reply-To=%3C4DCBAF6F.2070500%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002150.html">
+   <LINK REL="Next"  HREF="002147.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go client 3.01.18 crashing</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20client%203.01.18%20crashing&In-Reply-To=%3C4DCBAF6F.2070500%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] x2go client 3.01.18 crashing">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Thu May 12 11:59:11 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002150.html">[X2go-dev] x2go client 3.01.18 crashing
+</A></li>
+        <LI>Next message: <A HREF="002147.html">[X2go-dev] Linuxtag 2011
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2151">[ date ]</a>
+              <a href="thread.html#2151">[ thread ]</a>
+              <a href="subject.html#2151">[ subject ]</a>
+              <a href="author.html#2151">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 2011-05-12 10:22, --[ UxBoD ]-- wrote:
+&gt;<i> ----- Original Message -----
+</I>&gt;&gt;<i> ----- Original Message -----
+</I>&gt;&gt;&gt;<i> ----- Original Message -----
+</I>&gt;&gt;&gt;&gt;<i> Has anybody experienced, under Windows XP, the latest client
+</I>&gt;&gt;&gt;&gt;<i> crashing
+</I>&gt;&gt;&gt;&gt;<i> when attempting to print ? On a clients computer the x2go print
+</I>&gt;&gt;&gt;&gt;<i> dialogue box pops up but if I try either to open the PDF in
+</I>&gt;&gt;&gt;&gt;<i> viewer
+</I>&gt;&gt;&gt;&gt;<i> or cancel it straight away terminates the connection to the
+</I>&gt;&gt;&gt;&gt;<i> server
+</I>&gt;&gt;&gt;&gt;<i> and the whole x2go client crashes leaving sshd.exe and
+</I>&gt;&gt;&gt;&gt;<i> pulseaudio.exe running in TaskManager.
+</I>&gt;&gt;&gt;<i> Right, I have tested from version 3.01.16 upwards, since
+</I>&gt;&gt;&gt;<i> onmainwindow.cpp was split into four parts, and for each release
+</I>&gt;&gt;&gt;<i> printing crashes the x2goclient under Windows XP :( Now to work out
+</I>&gt;&gt;&gt;<i> what is happening as it appears to be okay under Windows 7!
+</I>&gt;&gt;<i> Hello all,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Are any of you experiencing this issue with the latest client ? Under
+</I>&gt;&gt;<i> Windows XP as soon as you try a print the client crashes. This is
+</I>&gt;&gt;<i> not just on one machine but on a few we have tested on; including a
+</I>&gt;&gt;<i> clients :(
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i>
+</I>&gt;<i> Sorry, to keep bumping this but are we the only people experiencing the issue that printing crashes X2GO clients 3.01.16 upwards ? This is pretty the last element to stop a new client being rolled out with vcxsrv and finally squashing some of the xming annoying bugs.
+</I>
+I have that Problem with 3.01-14 on Win7. On an old single-core (no HT)
+I don't have any trouble. I assume that it is some kind of
+race-condition, as it does work after some retries. I have written a
+small startup-script using the sysinternals utilities to clean up the
+servers, that don't get killed due to the crash:
+
+---snip----
+pslist x2goclient
+IF ERRORLEVEL 1 GOTO clean
+goto startx2go
+
+:<i>clean
+</I>pskill pulseaudio
+pskill xming
+pskill sshd
+
+:<i>startx2go
+</I>x2goclient.exe
+---snip----
+
+Cheers
+Morty
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 5867 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110512/8161c970/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110512/8161c970/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002150.html">[X2go-dev] x2go client 3.01.18 crashing
+</A></li>
+	<LI>Next message: <A HREF="002147.html">[X2go-dev] Linuxtag 2011
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2151">[ date ]</a>
+              <a href="thread.html#2151">[ thread ]</a>
+              <a href="subject.html#2151">[ subject ]</a>
+              <a href="author.html#2151">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

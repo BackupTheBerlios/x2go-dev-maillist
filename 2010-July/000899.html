@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] BUG: when sharing local folders ~/media symlinks not as expected
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BUG%3A%20when%20sharing%20local%20folders%20%7E/media%20symlinks%20not%0A%20as%20expected&In-Reply-To=%3C1280001194.7689.1.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000874.html">
+   <LINK REL="Next"  HREF="000792.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] BUG: when sharing local folders ~/media symlinks not as expected</H1>
+    <B>Milan Kn&#237;&#382;ek</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BUG%3A%20when%20sharing%20local%20folders%20%7E/media%20symlinks%20not%0A%20as%20expected&In-Reply-To=%3C1280001194.7689.1.camel%40localhost%3E"
+       TITLE="[X2go-dev] BUG: when sharing local folders ~/media symlinks not as expected">knizek.confy at volny.cz
+       </A><BR>
+    <I>Sat Jul 24 21:53:14 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000874.html">[X2go-dev] BUG: when sharing local folders ~/media symlinks not as expected
+</A></li>
+        <LI>Next message: <A HREF="000792.html">[X2go-dev] SSH Ident File
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#899">[ date ]</a>
+              <a href="thread.html#899">[ thread ]</a>
+              <a href="subject.html#899">[ subject ]</a>
+              <a href="author.html#899">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>John,
+
+thanks for quite a long description, I will try to look into it.
+
+regards,
+
+Milan
+-- 
+
+John A. Sullivan III p&#237;&#353;e v &#268;t 22. 07. 2010 v 09:43 -0400:
+&gt;<i> On Wed, 2010-07-21 at 06:12 +0200, Milan Kn&#237;&#382;ek wrote:
+</I>&gt;<i> &gt; Mike Gabriel p&#237;&#353;e v &#218;t 13. 07. 2010 v 13:02 +0200:
+</I>&gt;<i> &gt; &gt; Hi there,
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; Hello,
+</I>&gt;<i> &gt; &gt; 2.
+</I>&gt;<i> &gt; &gt; When suspending an x2go session the local shared directory gets  
+</I>&gt;<i> &gt; &gt; unmounted properly on the server, but the desktop link (GNOME) remains  
+</I>&gt;<i> &gt; &gt; on the desktop. After having resumed a session the desktop link is  
+</I>&gt;<i> &gt; &gt; still there but it is invalid. I have to remove it manually, to get  
+</I>&gt;<i> &gt; &gt; rid of it.
+</I>&gt;<i> &gt; Similar here:
+</I>&gt;<i> &gt; Archlinux: x2goserver-one 3.0.1_5-2, GNOME 2.30.2
+</I>&gt;<i> &gt; Ubuntu Lucid: x2goclient-gtk 3.01-8
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The shared dir from client is mounted properly to /tmp/, a symlink
+</I>&gt;<i> &gt; created in $HOME/media linking to /tmp/mu_media.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Additionally, there is a file:
+</I>&gt;<i> &gt; $ cat $HOME/Desktop/_home_mu\(sshfs-disk\) 
+</I>&gt;<i> &gt; /tmp/mu_media/_home_mu
+</I>&gt;<i> &gt; mu-50-1279683154_stDGNOME_dp32
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; but this second file is unrecognised by GNOME - no applications
+</I>&gt;<i> &gt; assigned. Do I need to install the GNOME addons for x2go (these seems to
+</I>&gt;<i> &gt; be missing in Arch AUR repository).
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Anyway, after logout from the session, the two above files remain in the
+</I>&gt;<i> &gt; user's directory and must be deleted manually.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Regards,
+</I>&gt;<i> &gt; Milan
+</I>&gt;<i> &gt; 
+</I>&gt;<i> I believe this is handled by the /usr/bin/x2goumount_session perl
+</I>&gt;<i> script.  You might add some debugging to see where it is breaking.  I
+</I>&gt;<i> believe the general process is something like:
+</I>&gt;<i> 
+</I>&gt;<i> x2goumount_session first gets the display for the session in the format
+</I>&gt;<i> |50| and then a list of mounts for the session in the format:
+</I>&gt;<i> 
+</I>&gt;<i> 127.0.0.1 | /tmp/spool_simple1/simple1-50-1267649844_stDKDE_dp24
+</I>&gt;<i> 
+</I>&gt;<i> It next dumps a copy of /etc/mtab into an array.
+</I>&gt;<i> 
+</I>&gt;<i> It then loops through the list of mounts.
+</I>&gt;<i> 
+</I>&gt;<i> Within that loop, it loops through the contents of /etc/mtab to see if
+</I>&gt;<i> there is an sshfs mount which matches the mount listed in the database.
+</I>&gt;<i> 
+</I>&gt;<i> If it finds a match, it stores the remote device (e.g.,
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at 127.0.0.1</A>:/home/jsullivan/) for the sshfs in a variable named
+</I>&gt;<i> remote and then breaks out of the inner loop. It then attempts to umount
+</I>&gt;<i> the mount point retrieved from the database. If it fails, it generates
+</I>&gt;<i> an error message to the user and continues with the next item in the
+</I>&gt;<i> outer loop.
+</I>&gt;<i> 
+</I>&gt;<i> Whether or not it found anything in mtab, as long as it did not error
+</I>&gt;<i> when trying to unmount, it tries to clean up any artifacts from the
+</I>&gt;<i> session. It deletes the device icons from the user's Desktop directory.
+</I>&gt;<i> These devices have the format of a modification of the remote variable
+</I>&gt;<i> stored above (&quot;/&quot; replaced with &quot;_&quot;) followed by any of (sshfs-disk),
+</I>&gt;<i> (sshfs-removable), or (sshfs-cdrom). It then calls sudo x2gopgwrapper
+</I>&gt;<i> deletemount passing it the session name and the mount point which
+</I>&gt;<i> deletes the entry from the mounts database table.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> 
+</I>
+-- 
+Milan Knizek
+knizek (dot) confy (at) volny (dot) cz
+<A HREF="http://www.milan-knizek.net">http://www.milan-knizek.net</A> - About linux and photography (Czech
+language only)
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000874.html">[X2go-dev] BUG: when sharing local folders ~/media symlinks not as expected
+</A></li>
+	<LI>Next message: <A HREF="000792.html">[X2go-dev] SSH Ident File
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#899">[ date ]</a>
+              <a href="thread.html#899">[ thread ]</a>
+              <a href="subject.html#899">[ subject ]</a>
+              <a href="author.html#899">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

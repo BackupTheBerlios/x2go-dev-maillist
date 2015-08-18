@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] allow user to set his preferred applications in	~/.x2go/applications
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20allow%20user%20to%20set%20his%20preferred%20applications%20in%0A%09%7E/.x2go/applications&In-Reply-To=%3C1354372305-30396-1-git-send-email-siretart%40tauware.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004623.html">
+   <LINK REL="Next"  HREF="004627.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] allow user to set his preferred applications in	~/.x2go/applications</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20allow%20user%20to%20set%20his%20preferred%20applications%20in%0A%09%7E/.x2go/applications&In-Reply-To=%3C1354372305-30396-1-git-send-email-siretart%40tauware.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] allow user to set his preferred applications in	~/.x2go/applications">siretart at tauware.de
+       </A><BR>
+    <I>Sat Dec  1 15:31:45 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004623.html">[X2Go-Dev] Bug#68: X2goclient &amp; OTP
+</A></li>
+        <LI>Next message: <A HREF="004627.html">[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4624">[ date ]</a>
+              <a href="thread.html#4624">[ thread ]</a>
+              <a href="subject.html#4624">[ subject ]</a>
+              <a href="author.html#4624">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>This file is sourced by the shell. Applications can be specified e.g. like this:
+WWWBROWSER=/usr/bin/google-chrome
+MAILCLIENT=/local/thunderbird/bin/thunderbird
+
+If the application does not exist, or is not specified, the hard coded
+list will be consulted
+---
+ x2goserver/bin/x2goruncommand |   20 ++++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
+
+diff --git a/x2goserver/bin/x2goruncommand b/x2goserver/bin/x2goruncommand
+index b88c3b9..7d826b5 100755
+--- a/x2goserver/bin/x2goruncommand
++++ b/x2goserver/bin/x2goruncommand
+@@ -31,6 +31,10 @@ X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
++if [ $HOME/.x2go/applications ]; then
++    . $HOME/.x2go/applications
++fi
++
+ export DISPLAY
+ export X2GO_AGENT_PID
+ export X2GO_SESSION
+@@ -131,7 +135,9 @@ elif [ &quot;$cmd&quot; == &quot;TRINITY&quot; ]; then
+ fi
+ 
+ if [ &quot;$cmd&quot; == &quot;WWWBROWSER&quot; ]; then
+-	if [ -e &quot;/usr/bin/firefox&quot; ]; then
++	if [ -n &quot;$WWWBROWSER&quot; ] &amp;&amp; [ -e &quot;$WWWBROWSER&quot; ]; then
++		cmd=&quot;$WWWBROWSER&quot;
++	elif [ -e &quot;/usr/bin/firefox&quot; ]; then
+ 		cmd=&quot;/usr/bin/firefox&quot;
+ 	elif  [ -e &quot;/usr/bin/iceweasel&quot; ]; then
+ 		cmd=&quot;/usr/bin/iceweasel&quot;
+@@ -147,7 +153,9 @@ if [ &quot;$cmd&quot; == &quot;WWWBROWSER&quot; ]; then
+ fi
+ 
+ if [ &quot;$cmd&quot; == &quot;MAILCLIENT&quot; ]; then
+-	if [ -e &quot;/usr/bin/thunderbird&quot; ]; then
++	if [ -n &quot;$MAILCLIENT&quot; ] &amp;&amp; [ -e &quot;$MAILCLIENT&quot; ]; then
++		cmd=&quot;$MAILCLIENT&quot;
++	elif [ -e &quot;/usr/bin/thunderbird&quot; ]; then
+ 		cmd=&quot;/usr/bin/thunderbird&quot;
+ 	elif  [ -e &quot;/usr/bin/icedove&quot; ]; then
+ 		cmd=&quot;/usr/bin/icedove&quot;
+@@ -159,7 +167,9 @@ if [ &quot;$cmd&quot; == &quot;MAILCLIENT&quot; ]; then
+ fi
+ 
+ if [ &quot;$cmd&quot; == &quot;OFFICE&quot; ]; then
+-	if [ -e &quot;/usr/bin/loffice&quot; ]; then
++	if [ -n &quot;$OFFICE&quot; ] &amp;&amp; [ -e &quot;$OFFICE&quot; ]; then
++		cmd=&quot;$OFFICE&quot;
++	elif [ -e &quot;/usr/bin/loffice&quot; ]; then
+ 		cmd=&quot;/usr/bin/loffice&quot;
+ 	elif [ -e &quot;/usr/bin/ooffice&quot; ]; then
+ 		cmd=&quot;/usr/bin/ooffice&quot;
+@@ -168,7 +178,9 @@ fi
+ 
+ if [ &quot;$cmd&quot; == &quot;TERMINAL&quot; ]; then
+ 	IMEXIT=&quot;true&quot;
+-	if [ -e &quot;/usr/bin/konsole&quot; ]; then
++	if [ -n &quot;$TERMINAL&quot; ] &amp;&amp; [ -e &quot;$TERMINAL&quot; ]; then
++		cmd=&quot;$TERMINAL&quot;
++	elif [ -e &quot;/usr/bin/konsole&quot; ]; then
+ 		cmd=&quot;/usr/bin/konsole&quot;
+ 		# KDE4 konsole behaves differently from other terminals
+ 		IMEXIT=&quot;false&quot;
+-- 
+1.7.9.5
+
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004623.html">[X2Go-Dev] Bug#68: X2goclient &amp; OTP
+</A></li>
+	<LI>Next message: <A HREF="004627.html">[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4624">[ date ]</a>
+              <a href="thread.html#4624">[ thread ]</a>
+              <a href="subject.html#4624">[ subject ]</a>
+              <a href="author.html#4624">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

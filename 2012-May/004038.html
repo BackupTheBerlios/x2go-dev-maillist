@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] [NX] Add patch: 052_nxcomp_macos10-nxauth-location.full+lite, change nxauth search location on Mac OS X to $NX_SYSTEM/nxauth to facilitate application bundle building.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20%5BNX%5D%20Add%20patch%3A%0A%20052_nxcomp_macos10-nxauth-location.full%2Blite%2C%0A%20change%20nxauth%20search%20location%20on%20Mac%20OS%20X%20to%20%24NX_SYSTEM/nxauth%20to%20facilitate%0A%20application%20bundle%20building.&In-Reply-To=%3C4FC11C06.1090401%40ionic.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004037.html">
+   <LINK REL="Next"  HREF="004025.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] [NX] Add patch: 052_nxcomp_macos10-nxauth-location.full+lite, change nxauth search location on Mac OS X to $NX_SYSTEM/nxauth to facilitate application bundle building.</H1>
+    <B>Mihai Moldovan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20%5BNX%5D%20Add%20patch%3A%0A%20052_nxcomp_macos10-nxauth-location.full%2Blite%2C%0A%20change%20nxauth%20search%20location%20on%20Mac%20OS%20X%20to%20%24NX_SYSTEM/nxauth%20to%20facilitate%0A%20application%20bundle%20building.&In-Reply-To=%3C4FC11C06.1090401%40ionic.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] [NX] Add patch: 052_nxcomp_macos10-nxauth-location.full+lite, change nxauth search location on Mac OS X to $NX_SYSTEM/nxauth to facilitate application bundle building.">ionic at ionic.de
+       </A><BR>
+    <I>Sat May 26 20:08:06 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004037.html">[X2Go-Dev] [PATCH] [NX] Add patch: 052_nxcomp_macos10-nxauth-location.full+lite, change nxauth search location on Mac OS X to $NX_SYSTEM/nxauth to facilitate application bundle building.
+</A></li>
+        <LI>Next message: <A HREF="004025.html">[X2Go-Dev] [PATCH 0/7] Accumulated changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4038">[ date ]</a>
+              <a href="thread.html#4038">[ thread ]</a>
+              <a href="subject.html#4038">[ subject ]</a>
+              <a href="author.html#4038">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>* On 26.05.2012 02:07 PM, Mike Gabriel wrote:
+&gt;<i> do you need nxauth for client-side X2Go on Mac? Currently, nxauth only builds
+</I>&gt;<i> with the server-side nx-libs build (nx-libs-full). Or am I missing something? 
+</I>
+nxauth is used as the local/client side X server authentication program
+(basically getting the auth cookie) on both Windows and Mac OS X, instead of
+xauth, by nxproxy. nxproxy *can* work without it by generating fake cookies, but
+I found it much more reliable with nxauth (and for what it's worth, on 10.4
+using nxauth seems to be mandatory to connect to the X server.)
+
+Yeah, sadly, nxauth builds within nx-X11 which is the &quot;full&quot; X server, but
+building it, pulling the binary + libNX_Xau.dylib out and redistributing is not
+a big deal.
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4493 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120526/7944486a/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120526/7944486a/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004037.html">[X2Go-Dev] [PATCH] [NX] Add patch: 052_nxcomp_macos10-nxauth-location.full+lite, change nxauth search location on Mac OS X to $NX_SYSTEM/nxauth to facilitate application bundle building.
+</A></li>
+	<LI>Next message: <A HREF="004025.html">[X2Go-Dev] [PATCH 0/7] Accumulated changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4038">[ date ]</a>
+              <a href="thread.html#4038">[ thread ]</a>
+              <a href="subject.html#4038">[ subject ]</a>
+              <a href="author.html#4038">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

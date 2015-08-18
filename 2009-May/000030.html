@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] keyboard not working quite right in gtk client...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20keyboard%20not%20working%20quite%20right%20in%20gtk%20client...&In-Reply-To=%3C1243377190.21989.23.camel%40mattotaupa.wohnung.familie-menzel.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000029.html">
+   <LINK REL="Next"  HREF="000032.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] keyboard not working quite right in gtk client...</H1>
+    <B>Paul Menzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20keyboard%20not%20working%20quite%20right%20in%20gtk%20client...&In-Reply-To=%3C1243377190.21989.23.camel%40mattotaupa.wohnung.familie-menzel.net%3E"
+       TITLE="[X2go-dev] keyboard not working quite right in gtk client...">paulepanter at users.sourceforge.net
+       </A><BR>
+    <I>Wed May 27 00:33:10 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000029.html">[X2go-dev] keyboard not working quite right in gtk client...
+</A></li>
+        <LI>Next message: <A HREF="000032.html">[X2go-dev] keyboard not working quite right in gtk client...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#30">[ date ]</a>
+              <a href="thread.html#30">[ thread ]</a>
+              <a href="subject.html#30">[ subject ]</a>
+              <a href="author.html#30">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear Douglas,
+
+
+Am Dienstag, den 26.05.2009, 14:04 -0400 schrieb Douglas M. Stanley:
+
+[&#8230;]
+
+&gt;<i> I recently set up x2go in a xen guest, and when I try to connect to it with the
+</I>&gt;<i> gtk client, the keyboard isn't right. Everything seems to work, except the arrow
+</I>&gt;<i> keys. If I turn numlock on/off, then the arrows on the keypad seem to work, but
+</I>&gt;<i> not the normal arrow keys. I've tried everything I can think of to set the keyboard
+</I>&gt;<i> both on the client and on the actual host. Everything is set to 105key qwerty US,
+</I>&gt;<i> but the arrow keys still don't work.
+</I>&gt;<i> 
+</I>&gt;<i> The maemo client using the directional pad seemed to work fine simulating the arrow
+</I>&gt;<i> keys, so I'm not sure if it would work with the QT client or not as I haven't tried
+</I>&gt;<i> that client yet.
+</I>&gt;<i> 
+</I>&gt;<i> Anyone else run into this issue yet? It may very well be due to the machine running
+</I>&gt;<i> under xen, so I'm not sure if anyone else is doing something similar or not.
+</I>
+I do have the same problem and I believe it is related to FreeNX and not
+XEN.
+
+Which desktop environment do you use? Have you tried this with other
+X2go clients? I use x2goclient_gtk and GNOME (on the remote machine). In
+the beginning I get an error from gnome-settings-daemon 2.24 (it
+crashed) [1].
+
+The up-arrow is mapped to print and so on. (You can check this with
+xev.)
+
+This bug with FreeNX is being discussed on [2]. Unfortunately I have not
+had time to try this out because the fixed gnome-settings-daemon has not
+entered Debian Sid yet.
+
+
+Thanks,
+
+Paul
+
+
+[1] <A HREF="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=528499">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=528499</A>
+[2] <A HREF="http://lists.kde.org/?l=freenx-knx&amp;m=123072320912229&amp;w=2">http://lists.kde.org/?l=freenx-knx&amp;m=123072320912229&amp;w=2</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: Dies ist ein digital signierter Nachrichtenteil
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090527/8e7c2c73/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090527/8e7c2c73/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000029.html">[X2go-dev] keyboard not working quite right in gtk client...
+</A></li>
+	<LI>Next message: <A HREF="000032.html">[X2go-dev] keyboard not working quite right in gtk client...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#30">[ date ]</a>
+              <a href="thread.html#30">[ thread ]</a>
+              <a href="subject.html#30">[ subject ]</a>
+              <a href="author.html#30">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

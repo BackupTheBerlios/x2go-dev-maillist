@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Segfault issue with x2goserver.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Segfault%20issue%20with%20x2goserver.&In-Reply-To=%3C20120531234331.45532ljv27e9t9fn%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004052.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Segfault issue with x2goserver.</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Segfault%20issue%20with%20x2goserver.&In-Reply-To=%3C20120531234331.45532ljv27e9t9fn%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Segfault issue with x2goserver.">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu May 31 23:43:31 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004052.html">[X2Go-Dev] Segfault issue with x2goserver.
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4053">[ date ]</a>
+              <a href="thread.html#4053">[ thread ]</a>
+              <a href="subject.html#4053">[ subject ]</a>
+              <a href="author.html#4053">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Do 31 Mai 2012 22:55:48 CEST Nable 80 wrote:
+
+&gt;<i> Good daytime for everyone.
+</I>&gt;<i>
+</I>&gt;<i> Since 2010 I've been using nxserver (freenx-0.7.3 + nxserver-3.4.0,
+</I>&gt;<i> installed into /opt/NX ) on my Debian6 32-bit server ( currently
+</I>&gt;<i> kernel 2.6.32-45, here is my /etc/apt/sources.list:
+</I>&gt;<i> <A HREF="http://pastebin.ca/2156639">http://pastebin.ca/2156639</A> ).
+</I>&gt;<i> I didn't use is for about 2-3 months and today I found that when I try
+</I>&gt;<i> to connect to my server, it draws some initial graphics and then
+</I>&gt;<i> connection interrupts.
+</I>&gt;<i> In dmesg i see:
+</I>&gt;<i> [4573539.498493] nxagent[5736]: segfault at 0 ip 080e3f03 sp bf9e6900
+</I>&gt;<i> error 4 in nxagent[8048000+438000]
+</I>&gt;<i> [4573581.591042] nxagent[6371]: segfault at 0 ip 080e3f03 sp bf9a1d90
+</I>&gt;<i> error 4 in nxagent[8048000+438000]
+</I>&gt;<i> ... (same EIP each time)
+</I>&gt;<i>
+</I>&gt;<i> I've thought that some update of X11 libs lead it to broke and
+</I>&gt;<i> remembered that some some time ago in Debian repos appeared some NX
+</I>&gt;<i> libs, so i've looked what depends on them. So, i've found x2goserver.
+</I>&gt;<i> I've installed it ( as it described here:
+</I>&gt;<i> <A HREF="http://wiki.x2go.org/doku.php/wiki:x2go-repository-debian">http://wiki.x2go.org/doku.php/wiki:x2go-repository-debian</A> ), installed
+</I>&gt;<i> x2goclient on my Win32 notebook but when i try to connect, i see the
+</I>&gt;<i> same thing: X client application (i use openbox+lxpanel there) do some
+</I>&gt;<i> requests, in ~/.xsession-errors i can see smth like:
+</I>&gt;<i> XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server &quot;:0.0&quot;
+</I>&gt;<i>       after 1070 requests (1070 known processed) with 0 events remaining.
+</I>&gt;<i> and then no data comes to client. In dmesg i see:
+</I>&gt;<i> [4578741.547603] x2goagent[18222]: segfault at 0 ip 080e87b1 sp
+</I>&gt;<i> bfe1afd0 error 4 in nxagent[8048000+460000]
+</I>&gt;<i> [4578947.507016] x2goagent[20046]: segfault at 0 ip 080e87b1 sp
+</I>&gt;<i> bfbf80c0 error 4 in nxagent[8048000+460000]
+</I>&gt;<i> ... (same EIP each time)
+</I>&gt;<i>
+</I>&gt;<i> I've used objdump and found that there program tries to read byte from
+</I>&gt;<i> pointer (and doesn't check that it's not NULL) but there are no
+</I>&gt;<i> debugging symbols, so i even don't catch what function is it.
+</I>&gt;<i>
+</I>&gt;<i> Then i've tried installing x2goserver to my new Debian6 64bit server
+</I>&gt;<i> (it's almost pure Debian installation) but when i try to connect to
+</I>&gt;<i> it, the only application that works is fluxbox, if I try to start
+</I>&gt;<i> anything like lxterminal, x2goagent fails at the code that looks very
+</I>&gt;<i> similar to 32bit variant:
+</I>&gt;<i> [794878.270330] x2goagent[29210]: segfault at 0 ip 00000000004a9bb0 sp
+</I>&gt;<i> 00007fff41ee6f60 error 4 in nxagent[400000+4f7000]
+</I>&gt;<i> [795053.995418] x2goagent[30256]: segfault at 0 ip 00000000004a9bb0 sp
+</I>&gt;<i> 00007fff8ae42160 error 4 in nxagent[400000+4f7000]
+</I>&gt;<i>
+</I>&gt;<i> If anyone cares, i'll try to send as much additional info as I can,
+</I>&gt;<i> just tell what are you interested in. I can even try to debug it but i
+</I>&gt;<i> still haven't understood how to build x2go utils from sources.
+</I>
+The issue is known and also NoMachine is heavily working on that. It  
+relates to an upgrade of libcairo (1.12.x) that is very commonly used  
+in many GTK applications.
+
+There is a maintenance release of nxagent from NoMachine (3.5.0-9)  
+that addresses this issue. We have incorporated nxagent-3.5.0-9 in  
+nx-libs.git (the NX base we ship with X2Go):
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=222a4a22214608b7f89691eee1c57873c2631705">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=222a4a22214608b7f89691eee1c57873c2631705</A>
+
+However, the fix drew in two other problems:
+
+   0. good thing: with nxagent 3.5.0-9 from NoMachine the crashes are gone
+   1. BUT: sessions do not resume properly if
+   2. BUT: since libcairo 1.10.x (I think) many GTK based applications
+      have become so slow!!! Amongst others: gnome-terminal (scrolling!!!)
+      and firefox/iceweasel and thunderbird/icedove
+
+Whereas NoMachine has taken notice of (1.), we (that is: Alex) is  
+currently investigating the sluggishness described in (2.).
+
+To circumvent the crashes (but have the problems under (1.) and (2.)  
+you can install nx-libs (x2goagent, nxagent, libnx-x11) from this URL:
+
+deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> wheezy heuler
+
+(The word ,,heuler'' stands for a baby seal which is the logo of X2Go  
+and means that the packages there are fresh out of the oven / nightly  
+built).
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120531/280420d7/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120531/280420d7/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004052.html">[X2Go-Dev] Segfault issue with x2goserver.
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4053">[ date ]</a>
+              <a href="thread.html#4053">[ thread ]</a>
+              <a href="subject.html#4053">[ subject ]</a>
+              <a href="author.html#4053">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

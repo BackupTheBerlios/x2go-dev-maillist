@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] nx-libs 3.5.0.16 break make install
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nx-libs%203.5.0.16%20break%20make%20install&In-Reply-To=%3C20121110215850.51e6b791%40laptop64.home%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004556.html">
+   <LINK REL="Next"  HREF="004549.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] nx-libs 3.5.0.16 break make install</H1>
+    <B>Andreas Radke</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nx-libs%203.5.0.16%20break%20make%20install&In-Reply-To=%3C20121110215850.51e6b791%40laptop64.home%3E"
+       TITLE="[X2Go-Dev] nx-libs 3.5.0.16 break make install">a.radke at arcor.de
+       </A><BR>
+    <I>Sat Nov 10 21:58:50 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004556.html">[X2Go-Dev] [X2Go-Announcement] New X2Go releases: x2goserver, x2goclient, nx-libs aka x2goagent
+</A></li>
+        <LI>Next message: <A HREF="004549.html">[X2Go-Dev] nx-libs 3.5.0.16 break make install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4548">[ date ]</a>
+              <a href="thread.html#4548">[ thread ]</a>
+              <a href="subject.html#4548">[ subject ]</a>
+              <a href="author.html#4548">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The new 001_add-main-makefile.full+lite.patch breaks the build here
+when not running make install as root, e.g. when building a package
+with make DESTDIR=&quot;foo&quot; install:
+
+make[1]: Leaving directory `/build/src/nx-libs-3.5.0.16/nx-X11'
+if test -f bin/Makefile; then make -C bin install; fi
+make[1]: Entering directory `/build/src/nx-libs-3.5.0.16/bin'
+install -d -o root -g root -m 755 /usr/local/lib/x2go/bin/
+install: cannot create directory '/usr/local/lib/x2go': Permission denied
+make[1]: *** [install] Error 1
+
+
+This seems to be the cause:
+
++INSTALL_DIR=install&#160;-d&#160;-o&#160;root&#160;-g&#160;root&#160;-m&#160;755
++INSTALL_FILE=install&#160;-o&#160;root&#160;-g&#160;root&#160;-m&#160;644
++INSTALL_PROGRAM=install&#160;-o&#160;root&#160;-g&#160;root&#160;-m&#160;755
+
+
+
+-Andy
+ArchLinux
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004556.html">[X2Go-Dev] [X2Go-Announcement] New X2Go releases: x2goserver, x2goclient, nx-libs aka x2goagent
+</A></li>
+	<LI>Next message: <A HREF="004549.html">[X2Go-Dev] nx-libs 3.5.0.16 break make install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4548">[ date ]</a>
+              <a href="thread.html#4548">[ thread ]</a>
+              <a href="subject.html#4548">[ subject ]</a>
+              <a href="author.html#4548">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

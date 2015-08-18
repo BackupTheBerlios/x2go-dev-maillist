@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goclient hangs on login
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20hangs%20on%20login&In-Reply-To=%3C20091021122618.228040%40gmx.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000130.html">
+   <LINK REL="Next"  HREF="000132.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goclient hangs on login</H1>
+    <B>Sauron99 at gmx.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20hangs%20on%20login&In-Reply-To=%3C20091021122618.228040%40gmx.net%3E"
+       TITLE="[X2go-dev] x2goclient hangs on login">Sauron99 at gmx.de
+       </A><BR>
+    <I>Wed Oct 21 14:26:18 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000130.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+        <LI>Next message: <A HREF="000132.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#131">[ date ]</a>
+              <a href="thread.html#131">[ thread ]</a>
+              <a href="subject.html#131">[ subject ]</a>
+              <a href="author.html#131">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi there,
+so I think this is a basic Problem I have here. The User is member of x2gousers and fuse. I have made something definitely wrong.
+
+So here is me actual
+
+ /etc/hosts
+127.0.0.1       localhost
+127.0.1.1       GSN-EDU.GSN2    GSN-EDU
+192.168.1.24 GSN-EDU.GSN2 GSN-EDU
+
+This is what I have filled in for genoconf:
+
+# ./genconf GSN-EDU Stadt de EDU GSN-EDU (Should I type GSN-EDU EDU EDU GSN-EDU instead? Without &quot;de&quot; and EDU insted of Stadt?)
+
+Same thing with ./makeCA and ./makenewcert... So my problem is that my LAN has no .de .com .org .local or what else. It's just GSN2. My syslog gives me some strange output and I also have to enter the root password twice to log in, but without any error messages. Is this a LDAP related thing?
+
+Oct 21 14:20:48 GSN-EDU slapd[2653]: &lt;= bdb_equality_candidates: (uid) not indexed
+Oct 21 14:20:48 GSN-EDU slapd[2653]: conn=32582 op=1 SEARCH RESULT tag=101 err=0 nentries=1 text=
+Oct 21 14:20:48 GSN-EDU slapd[2653]: conn=32582 op=2 SRCH base=&quot;ou=Group,o=Stadt,c=de&quot; scope=1 deref=0 filter=&quot;(&amp;(objectClass=posixGroup)(|(memberUid=root)(uniqueMember=uid=root,ou=people,o=Stadt,c=de)))&quot;
+Oct 21 14:20:48 GSN-EDU slapd[2653]: conn=32582 op=2 SRCH attr=gidNumber
+Oct 21 14:20:48 GSN-EDU slapd[2653]: &lt;= bdb_equality_candidates: (memberUid) not indexed
+Oct 21 14:20:48 GSN-EDU slapd[2653]: &lt;= bdb_equality_candidates: (uniqueMember) not indexed
+Oct 21 14:20:48 GSN-EDU slapd[2653]: conn=32582 op=2 SEARCH RESULT tag=101 err=0 nentries=1 text=
+Oct 21 14:20:48 GSN-EDU slapd[2653]: conn=32582 op=3 SRCH base=&quot;ou=Group,o=Stadt,c=de&quot; scope=1 deref=0 filter=&quot;(&amp;(objectClass=posixGroup)(uniqueMember=cn=domain admins,ou=group,o=Stadt,c=de))&quot;
+Oct 21 14:20:48 GSN-EDU slapd[2653]: conn=32582 op=3 SRCH attr=gidNumber
+Oct 21 14:20:48 GSN-EDU slapd[2653]: &lt;= bdb_equality_candidates: (uniqueMember) not indexed
+Oct 21 14:20:48 GSN-EDU slapd[2653]: conn=32582 op=3 SEARCH RESULT tag=101 err=0 nentries=0 text=
+Oct 21 14:20:48 GSN-EDU slapd[2653]: conn=32582 fd=18 closed (connection lost)
+
+
+Greetings
+
+
+-------- Original-Nachricht --------
+&gt;<i> Datum: Wed, 21 Oct 2009 13:03:48 +0200
+</I>&gt;<i> Von: Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+</I>&gt;<i> An: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Sauron99 at gmx.de</A>
+</I>&gt;<i> CC: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i> Betreff: Re: [X2go-dev] x2goclient hangs on login
+</I>
+&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Sauron99 at gmx.de</A> schrieb:
+</I>&gt;<i> &gt; Hello list,
+</I>&gt;<i> &gt; this is my very first post to this list and Im quite sure a few will
+</I>&gt;<i> follow ;). Anyway I have a Problem with the configuration of X2goserver. Im
+</I>&gt;<i> finished with the LDAP stuff and so on and want to try it out now. But for
+</I>&gt;<i> some reason after logging in with the X2goclient it hangs right after
+</I>&gt;<i> clicking on &quot;Ok&quot;. On serverside some processes starting up but nothing happens...
+</I>&gt;<i> I haven&#180;t complete the PXE, ATFTPD and DHCP stuff and so on but the normal
+</I>&gt;<i> connect via x2goclient should work, right?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Do I have to add the clients that are able to connect to X2GO somewhere
+</I>&gt;<i> first??
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Greetings
+</I>&gt;<i> hello,
+</I>&gt;<i> 
+</I>&gt;<i> check your sudo configuration. Check also if user is a meber of a group
+</I>&gt;<i> x2gousers
+</I>&gt;<i> 
+</I>&gt;<i> Have a nice day
+</I>&gt;<i> -- 
+</I>&gt;<i> Oleksandr Shneyder
+</I>&gt;<i> Dipl. Informatik
+</I>&gt;<i> X2go Core Developer Team
+</I>&gt;<i> 
+</I>&gt;<i> email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+</I>&gt;<i> web: www.obviously-nice.de
+</I>&gt;<i> 
+</I>&gt;<i> --&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+</I>&gt;<i> 
+</I>
+-- 
+Jetzt kostenlos herunterladen: Internet Explorer 8 und Mozilla Firefox 3.5 -
+sicherer, schneller und einfacher! <A HREF="http://portal.gmx.net/de/go/atbrowser">http://portal.gmx.net/de/go/atbrowser</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000130.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+	<LI>Next message: <A HREF="000132.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#131">[ date ]</a>
+              <a href="thread.html#131">[ thread ]</a>
+              <a href="subject.html#131">[ subject ]</a>
+              <a href="author.html#131">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

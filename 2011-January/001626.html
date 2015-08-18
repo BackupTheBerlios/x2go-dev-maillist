@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] VcXsrv
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20VcXsrv&In-Reply-To=%3C1296332355.25381.7.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001625.html">
+   <LINK REL="Next"  HREF="001627.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] VcXsrv</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20VcXsrv&In-Reply-To=%3C1296332355.25381.7.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] VcXsrv">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat Jan 29 21:19:15 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001625.html">[X2go-dev] VcXsrv
+</A></li>
+        <LI>Next message: <A HREF="001627.html">[X2go-dev] VcXsrv
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1626">[ date ]</a>
+              <a href="thread.html#1626">[ thread ]</a>
+              <a href="subject.html#1626">[ subject ]</a>
+              <a href="author.html#1626">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, 2011-01-29 at 21:09 +0100, Mike Gabriel wrote:
+&gt;<i> Hi Alex,
+</I>&gt;<i> 
+</I>&gt;<i> On Fr 28 Jan 2011 13:47:23 CET Oleksandr Shneyder wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I've made some tests on Windows XP and Windows 7 to see if Xming can be
+</I>&gt;<i> &gt; replaced with VcXsrv.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; [... test results ...]
+</I>&gt;<i> 
+</I>&gt;<i> Your test results fully match my experiences with PyHoca-GUI.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; What we can do now:
+</I>&gt;<i> &gt; - We can provide x2goclient with Xming, but make it configurable to
+</I>&gt;<i> &gt; launch other Xserver.
+</I>&gt;<i> 
+</I>&gt;<i> Configurability is great! (that is a +1 for me for this last option).
+</I>&gt;<i> 
+</I>&gt;<i> In PyHoca-GUI I already do that. I have introduced a x2config  
+</I>&gt;<i> configuration file in ~/.x2goclient (without discussing it before). I  
+</I>&gt;<i> drop this in now and maybe you like it and we find a common solution  
+</I>&gt;<i> for XServer configuration on Windows.
+</I>&gt;<i> 
+</I>&gt;<i> Greetings,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> &lt;quote&gt;
+</I>&gt;<i> [XServers]
+</I>&gt;<i> 
+</I>&gt;<i> # known XServers, ordered by preference...
+</I>&gt;<i> # the first found XServer gets started (Pythonian list syntax -&gt; turn into
+</I>&gt;<i> # string, maybe)
+</I>&gt;<i> known_xservers = ['VcXsrv', 'Xming', 'Cygwin-X']
+</I>&gt;<i> 
+</I>&gt;<i> [VcXsrv]
+</I>&gt;<i> test_installed = C:\Programme\VcXsrv\vcxsrv.exe
+</I>&gt;<i> process_name = vcxsrv.exe
+</I>&gt;<i> # the parameters syntax is Pythonian, maybe turn this into a normal
+</I>&gt;<i> # string...
+</I>&gt;<i> parameters = [':40', '-clipboard', '-multiwindow', '-notrayicon',  
+</I>&gt;<i> '-nowinkill']
+</I>&gt;<i> display = localhost:40
+</I>&gt;<i> run_command = C:\Programme\VcXsrv\vcxsrv.exe
+</I>&gt;<i> 
+</I>&gt;<i> [Cygwin-X]
+</I>&gt;<i> test_installed = C:\cygwin\bin\XWin.exe
+</I>&gt;<i> process_name = XWin.exe
+</I>&gt;<i> # the parameters syntax is Pythonian, maybe turn this into a normal
+</I>&gt;<i> # string...
+</I>&gt;<i> parameters = [':40', '-clipboard', '-multiwindow', '-notrayicon',  
+</I>&gt;<i> '-nowinkill']
+</I>&gt;<i> display = localhost:40
+</I>&gt;<i> run_command = C:\cygwin\bin\XWin.exe
+</I>&gt;<i> 
+</I>&gt;<i> [Xming]
+</I>&gt;<i> test_installed = C:\Programme\Xming\Xming.exe
+</I>&gt;<i> process_name = Xming.exe
+</I>&gt;<i> # the parameters syntax is Pythonian, maybe turn this into a normal
+</I>&gt;<i> # string...
+</I>&gt;<i> parameters = [':40', '-clipboard', '-multiwindow', '-notrayicon',  
+</I>&gt;<i> '-nowinkill']
+</I>&gt;<i> display = localhost:40
+</I>&gt;<i> run_command = C:\Programme\Xming\Xming.exe
+</I>&gt;<i> &lt;/quote&gt;
+</I>&lt;snip&gt;
+Just as a reminder, we probably want to move this code to after the
+session parameters are chosen and allow passing the -fullscreen and
+-rootless (available area) parameters.  Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001625.html">[X2go-dev] VcXsrv
+</A></li>
+	<LI>Next message: <A HREF="001627.html">[X2go-dev] VcXsrv
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1626">[ date ]</a>
+              <a href="thread.html#1626">[ thread ]</a>
+              <a href="subject.html#1626">[ subject ]</a>
+              <a href="author.html#1626">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

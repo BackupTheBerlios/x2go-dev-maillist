@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] sudo permissions?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20sudo%20permissions%3F&In-Reply-To=%3CAANLkTi%3DAWpy_ZN63SU1wVGu%2BbjG_sQ3Kh-e6YLJVQo%3D5%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001132.html">
+   <LINK REL="Next"  HREF="001136.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] sudo permissions?</H1>
+    <B>Rob Lemley</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20sudo%20permissions%3F&In-Reply-To=%3CAANLkTi%3DAWpy_ZN63SU1wVGu%2BbjG_sQ3Kh-e6YLJVQo%3D5%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] sudo permissions?">roblemley at gmail.com
+       </A><BR>
+    <I>Sat Oct  2 10:52:35 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001132.html">[X2go-dev] Python X2go rewrite from scratch,	first drafts available online
+</A></li>
+        <LI>Next message: <A HREF="001136.html">[X2go-dev] sudo permissions?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1133">[ date ]</a>
+              <a href="thread.html#1133">[ thread ]</a>
+              <a href="subject.html#1133">[ subject ]</a>
+              <a href="author.html#1133">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hey folks,
+
+I've been toying around with x2go a bit, and I'm really liking it.
+&gt;<i>From what I've seen, the overall architecture is cleaner than freenx
+</I>and even neatx. Certainly none of that insanity of netcat's and
+fdcopy's.
+
+I was a rather disturbed by the x2goserver package adding a line in my
+sudoers file to allow anyone in the x2gousers group to run
+x2gopgwrapper as root. I checked out that script and the three scripts
+it can potentially call, x2gopgwrapper_{local,net,sqlite}. Other than
+the _net script I see no reason why root access is required. All these
+scripts do is access a database and run queries. The _net script as
+written probably needs root access, but there's no reason why with
+some permission adjustments on the postgres database server that it
+can't run unprivileged as well.
+
+As I'm just using sqlite on a single system, I did a little experiment
+and made some changes to run that script as an unprivileged user.
+
+I created an unprivileged x2go user with no password:  (The defaults
+with this particular invocation of useradd are adequate, but the
+account can be restricted some more)
+useradd -r x2go
+
+So the sudoers entry becomes:
+#### X2GO section
+%x2gousers ALL=(x2go) NOPASSWD: /usr/bin/x2gopgwrapper
+
+Then permissions on the sqlite database need changing so our x2go user
+can run its queries:
+cd /var/db
+sudo chown -R x2go.x2go x2go
+
+Finally, the scripts in /usr/bin need to be changed so that
+x2gopgwrapper runs at x2go:
+for i in x2go*; do sed -ibak -e 's/sudo x2gopgwrapper/sudo -u x2go
+x2gopgwrapper/' $i; done
+
+I made these changes on my system and have not had any issues
+connecting. I am only using the x2goserver package at the moment; it's
+just this one script that gets executed as root, I don't know about
+any of the other packages.
+
+There's also the matter of the x2gocleansessions cleanup script...
+There's a couple of sudo calls in there as well, I didn't change that
+just yet as I've just disabled it altogether to prevent the spam it
+sends to my syslog.
+
+I apologize if this topic has been brought up before or is discussed
+in the documentation someplace; I looked around and didn't see
+anything. I simply bring this up in the interest of system security.
+The fewer things that run as root the better.
+
+The changes I describe above are my quick hack-n-fix. If I get a
+chance in the next few days I can throw together a proper fix and
+submit a patch. (And please add my vote to the yes-please git
+repository crowd.)
+
+
+X2go seems to have a lot of possibilities and potential. Thanks to
+Heinz and Alex for their hard work.
+
+^_^ rob
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001132.html">[X2go-dev] Python X2go rewrite from scratch,	first drafts available online
+</A></li>
+	<LI>Next message: <A HREF="001136.html">[X2go-dev] sudo permissions?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1133">[ date ]</a>
+              <a href="thread.html#1133">[ thread ]</a>
+              <a href="subject.html#1133">[ subject ]</a>
+              <a href="author.html#1133">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

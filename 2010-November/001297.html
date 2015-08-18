@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Compiling x2go Windows client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Compiling%20x2go%20Windows%20client&In-Reply-To=%3C20101121185909.19025csw1uxpi38t%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001241.html">
+   <LINK REL="Next"  HREF="001242.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Compiling x2go Windows client</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Compiling%20x2go%20Windows%20client&In-Reply-To=%3C20101121185909.19025csw1uxpi38t%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] Compiling x2go Windows client">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sun Nov 21 18:59:09 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001241.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+        <LI>Next message: <A HREF="001242.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1297">[ date ]</a>
+              <a href="thread.html#1297">[ thread ]</a>
+              <a href="subject.html#1297">[ subject ]</a>
+              <a href="author.html#1297">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Phil, dear list,
+
+On Di 09 Nov 2010 16:45:39 CET &quot;--[ UxBoD ]--&quot; wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> I am attempting to compile the win client and have installed the QT  
+</I>&gt;<i> SDK, MinGw and the x2goclient sources.  They have been added to the  
+</I>&gt;<i> environment path to allow the compilation binaries to be found.  The  
+</I>&gt;<i> readme says that one should rename x2goclient.pro with  
+</I>&gt;<i> x2goclient.pro.windows yet the latter file does not exist?
+</I>&gt;<i>
+</I>&gt;<i> I decided to press on and ran qmake followed by make which completed  
+</I>&gt;<i> without any errors.  I found the x2goclient.exe within the debug  
+</I>&gt;<i> directory and once I ran it the normal client screen popped up but  
+</I>&gt;<i> was immediately followed by the error  &quot;Runtime Error!&quot; from the  
+</I>&gt;<i> Microsoft Visual C++ Runtime Library.
+</I>&gt;<i>
+</I>&gt;<i> Would very much appreciate some help in resolving the problem please.
+</I>&gt;<i> --
+</I>&gt;<i> Thanks, Phil
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+This might add some knowledge to the VcXsrv testing for X2go.
+
+I have just got PyHoca-CLI running on Windows. PyHoca-CLI is a  
+command-line X2go client. The only X-Server stuff that is used with it  
+is nxproxy.exe (from the most recent X2goClient).
+
+We have to differentiate the different XServer modes:
+
+   o multiple windows
+   o fullscreen
+   o one large window
+   o one large window without title bar
+
+Whereas sessions start well under Xming 6.9.x with all these modes,  
+nxproxy lets VcXsrv crash in multiple window mode. With the other  
+quasi-fullscreen modes the session starts up pretty fine (I have not  
+had any time to test stability and long term duration...). With all  
+the tests I had native GL support turned off in VcXsrv. I tested in  
+KVM VNC-DisplayConsole and in Rdesktop Windows (as I do not have real  
+Windows hardware around).
+
+That is, to my guess, the problem is not an X2go client problem. I'd  
+rather suppose, that the core problem is with nxproxy in conjunction  
+with VcXsrv.
+
+Maybe someone competent can contact the VcXsrv developer(s) and ask  
+for their opionion?
+
+Greetings,
+Mike
+
+@Dick: please not that this is an update to my former mail I sent to  
+you privately...
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001241.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+	<LI>Next message: <A HREF="001242.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1297">[ date ]</a>
+              <a href="thread.html#1297">[ thread ]</a>
+              <a href="subject.html#1297">[ subject ]</a>
+              <a href="author.html#1297">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

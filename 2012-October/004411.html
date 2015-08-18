@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2go unmount dirs problem?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20unmount%20dirs%20problem%3F&In-Reply-To=%3C1754553.iHNgjQZlNJ%40zen-mobile%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004410.html">
+   <LINK REL="Next"  HREF="004412.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2go unmount dirs problem?</H1>
+    <B>Helmer Teles</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20unmount%20dirs%20problem%3F&In-Reply-To=%3C1754553.iHNgjQZlNJ%40zen-mobile%3E"
+       TITLE="[X2Go-Dev] x2go unmount dirs problem?">helmer.teles at gmail.com
+       </A><BR>
+    <I>Tue Oct  2 12:43:26 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004410.html">[X2Go-Dev] x2go unmount dirs problem?
+</A></li>
+        <LI>Next message: <A HREF="004412.html">[X2Go-Dev] new features and fixes in X2Go Client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4411">[ date ]</a>
+              <a href="thread.html#4411">[ thread ]</a>
+              <a href="subject.html#4411">[ subject ]</a>
+              <a href="author.html#4411">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tuesday 02 October 2012 11:25:25 Mike Gabriel wrote:
+&gt;<i> Hi Helmer,
+</I>&gt;<i> 
+</I>&gt;<i> On Mo 01 Okt 2012 19:22:44 CEST Helmer Teles wrote:
+</I>&gt;<i> &gt; P.S: Also, i couldn't get any script working at *-terminate.d
+</I>&gt;<i> 
+</I>&gt;<i> This file handles the execution of the X2Go Server extensions:
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=blob;f=x2goserver-extensions/">http://code.x2go.org/gitweb?p=x2goserver.git;a=blob;f=x2goserver-extensions/</A>
+</I>&gt;<i> bin/x2goserver-run-extensions
+</I>&gt;<i> 
+</I>&gt;<i> In line 36 (regexp in egrep command) you can see that files in the
+</I>&gt;<i> extension dirs have to obey to this rule: ,,[0-9]{3}_[[:alnum:]]+''
+</I>&gt;<i> 
+</I>&gt;<i>   &lt;123&gt;_&lt;scriptname&gt;
+</I>&gt;<i> 
+</I>&gt;<i> Mike
+</I>
+Hi Mike, hello list.
+
+the problem  happens at least in pre-terminate.d &amp; post-terminate.d, 
+nevertheless i've managed to do what i want to do, calling a script instead of 
+the kde desktop startkde session.
+
+This is what i'm doing:
+
+these scripts are running okay and doing what i want to accomplish, and it 
+will be easy for you to understand what they do.
+
+pre-suspend.d/001_suspend-session.sh
+#!/bin/bash
+
+/usr/local/bin/fn_cleanpclocal.sh
+
+sleep 2
+
+exit 0
+
+post-suspend.d/002_suspend-session.sh
+#!/bin/bash
+
+/usr/local/bin/fn_cleanprinter.sh
+
+sleep 2
+
+exit 0
+
+
+pre-resume.d/001_resume-session.sh
+#!/bin/bash
+
+lock_screen()
+{
+
+SESSIONDP=`x2golistdesktops |cut -d : -f 2`
+
+export DISPLAY=:${SESSIONDP}
+
+/usr/lib/kde4/libexec/kscreenlocker --forcelock --showunlock --blank &amp;
+
+}
+
+lock_screen
+
+sleep 10  &amp;&amp; /usr/local/bin/fn_getmounts.sh &amp;
+
+exit 0
+
+
+So, it goes as this. Every-time a user logins i call screenlock to have the 
+user to input his password just to complement the ssh key authentication.
+Next i will check if the printer and disk tunnels are mounted and will provide 
+the user with a Drive icon to the mount point and provide a printer to that 
+user. I do this because sometimes a user when resuming a session in another 
+workstation some of the tunnels might not be available or missing like the 
+shared drive, so i have to check this stuff at session starting, ending, 
+suspending and resuming.
+
+What i have found is that at post-terminate.d &amp; pre-terminate.d the scripts 
+don't run. So i have to call a custom desktop instead of KDE that calls start 
+kde and at the end of the script i put there the calls to 
+/usr/local/bin/fn_cleanpclocal.sh &amp; /usr/local/bin/fn_cleanprinter.sh but 
+those scripts are working okay when suspending and resuming session.
+I've managed to solve the problem this way, but i think that we have a bug in 
+there.
+
+
+For anyone interested here goes part of the script to check the tunnels.
+
+
+
+#!/bin/bash
+
+
+GetPRINTER()
+{
+
+PTUNEL=`x2golistmounts ${MYSESSION} |grep -i spool  | wc -l`
+PRINTERNAME=&quot;${USER}_Printer&quot;
+
+
+if [ &quot;$PTUNEL&quot; = &quot;1&quot; ]; then
+
+/usr/sbin/lpadmin -p ${PRINTERNAME} -E -v cups-x2go:/ -u allow:&quot;$USER&quot; -D 
+&quot;Impressora Virtual&quot;  -o PageSize=A4
+
+kdialog --passivepopup 'Liga&#231;&#227;o Com Impressora Local Estabelecida Com Sucesso' 
+5
+
+fi
+
+}
+
+GetPCLOCAL()
+{
+
+STUNEL=`x2golistmounts ${MYSESSION} |grep -i disk  | wc -l`
+
+if [ &quot;$STUNEL&quot; = &quot;1&quot; ]; then
+
+LINK=`x2golistmounts ${MYSESSION} |grep -i disk  |cut -d '|' -f 2`
+
+rmdir ~/media/rm
+rmdir ~/media/cd
+rm ~/media
+rm ~/mounts.log
+
+
+mkdir ~/Desktop/PCLOCAL
+
+cat &gt; ~/Desktop/PCLOCAL/.directory &lt;&lt; EOF
+[Desktop Entry]
+Icon=drive-removable-media-usb
+Name[es]=
+Name[pt]=PCLOCAL
+EOF
+
+ln -s $LINK ~/Desktop/PCLOCAL/
+
+kdialog --passivepopup 'Liga&#231;&#227;o com Drive Local Estabelecida com sucesso' 5
+
+else
+
+rmdir ~/media/rm
+rmdir ~/media/cd
+rm ~/media
+rm ~/mounts.log
+rm ~/Desktop/PCLOCAL/$LINK
+
+fi
+
+}
+
+
+MYSESSION=`x2golistsessions |cut -d '|' -f2`
+SESSIONDP=`x2golistdesktops |cut -d : -f 2`
+export DISPLAY=:${SESSIONDP}
+
+GetPCLOCAL
+GetPRINTER
+
+exit 0
+
+ 
+
+
+
+
+
+
+
+
+
+-- 
+
+
+Com os melhores cumprimentos,
+
+Helmer Teles 
+
+<A HREF="http://hteles.wordpress.com">http://hteles.wordpress.com</A>
+
+&#8220;Sent from My Linux Operating System&#8221;
+
+
+Please don't send me proprietary file formats, use ISO standard ODF instead 
+(ISO/IEC 26300)
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121002/8f7b817b/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121002/8f7b817b/attachment.html</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004410.html">[X2Go-Dev] x2go unmount dirs problem?
+</A></li>
+	<LI>Next message: <A HREF="004412.html">[X2Go-Dev] new features and fixes in X2Go Client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4411">[ date ]</a>
+              <a href="thread.html#4411">[ thread ]</a>
+              <a href="subject.html#4411">[ subject ]</a>
+              <a href="author.html#4411">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

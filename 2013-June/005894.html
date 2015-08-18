@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] build x2GoServer for mandriva 2010.0
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20build%20x2GoServer%20for%20mandriva%202010.0&In-Reply-To=%3CCA%2BdW2FDkv-u3uMx-0aMd-HC%3DqmSDnx2KuvdBQ3K2QLyjpvDZhg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005891.html">
+   <LINK REL="Next"  HREF="005895.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] build x2GoServer for mandriva 2010.0</H1>
+    <B>carlos andres perez lopez</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20build%20x2GoServer%20for%20mandriva%202010.0&In-Reply-To=%3CCA%2BdW2FDkv-u3uMx-0aMd-HC%3DqmSDnx2KuvdBQ3K2QLyjpvDZhg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] build x2GoServer for mandriva 2010.0">carlinchisart at gmail.com
+       </A><BR>
+    <I>Thu Jun 27 17:30:10 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005891.html">[X2Go-Dev] build x2GoServer for mandriva 2010.0
+</A></li>
+        <LI>Next message: <A HREF="005895.html">[X2Go-Dev] build x2GoServer for mandriva 2010.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5894">[ date ]</a>
+              <a href="thread.html#5894">[ thread ]</a>
+              <a href="subject.html#5894">[ subject ]</a>
+              <a href="author.html#5894">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>HI all,
+
+I to the exercise in a opensuse again, but when i have to make is stop in
+the same part, so i found this page
+<A HREF="http://new.x2go.org/doku.php?id=wiki:development:buildguide">http://new.x2go.org/doku.php?id=wiki:development:buildguide</A>
+i see one package call man2html-base so i search for opensuse and found one
+package called hxtools, after install this package and do the make the
+command work ok, and i can to continue.
+
+so is posible one dependence is out of the guide?
+
+thanks.
+
+
+2013/6/25 carlos andres perez lopez &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">carlinchisart at gmail.com</A>&gt;
+
+&gt;<i> thanks Nable,
+</I>&gt;<i>
+</I>&gt;<i> I exectute ps waiting one hour afert run the make command, and see the
+</I>&gt;<i> same task in the same file ... :(
+</I>&gt;<i>
+</I>&gt;<i> so, i doed the first of your ideas, in my folder that i have x2go server i
+</I>&gt;<i> run the command
+</I>&gt;<i>
+</I>&gt;<i> /usr/bin/perl -w /usr/bin/man2html man/man5/x2goserver.conf.5 &gt;
+</I>&gt;<i> .buid_man2html/html/man5/x2goserver.conf.5.html
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> but the answer was
+</I>&gt;<i>
+</I>&gt;<i> bash: .build_man2html/html/man5/x2goserver.conf.5.html: no such file or
+</I>&gt;<i> directory
+</I>&gt;<i>
+</I>&gt;<i> i have to do this line in other pwd? or .build_man2html is a variable?
+</I>&gt;<i>
+</I>&gt;<i> Thanks
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> 2013/6/25 Nable 80 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">nable.maininbox at googlemail.com</A>&gt;
+</I>&gt;<i>
+</I>&gt;&gt;<i> Thanks for your information, although it doesn't seem that any process
+</I>&gt;&gt;<i> went to sleep or busy-loop.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In your text one can see that current task is
+</I>&gt;&gt;<i> /usr/bin/perl /usr/bin/man2html man/man5/x2goserver.conf.5
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Did you try to wait for some time and then call ps again? It system is
+</I>&gt;&gt;<i> still processing man/man5/x2goserver.conf.5, then ok, it's a possible
+</I>&gt;&gt;<i> failing target. If the system moves to another file then you should
+</I>&gt;&gt;<i> wait more.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> If the problem is in this file then I have some ideas about debugging
+</I>&gt;&gt;<i> this issue but they don't seem to be good.
+</I>&gt;&gt;<i> The first idea is to run the following line
+</I>&gt;&gt;<i> /usr/bin/perl -w /usr/bin/man2html man/man5/x2goserver.conf.5 &gt;
+</I>&gt;&gt;<i> .build_man2html/html/man5/x2goserver.conf.5.html
+</I>&gt;&gt;<i> manually and to look at stderr. If it hangs silently, oh.. May be you
+</I>&gt;&gt;<i> can debug it by yourself, else it's better to wait until some
+</I>&gt;&gt;<i> developer tests what's happening.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> 2013/6/26, carlos andres perez lopez &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">carlinchisart at gmail.com</A>&gt;:
+</I>&gt;&gt;<i> &gt; HI Nable,
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Thanks for your answer, attach the file that generate wen i do make for
+</I>&gt;&gt;<i> &gt; x2goserver.
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Thanks
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; 2013/6/25 Nable 80 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">nable.maininbox at googlemail.com</A>&gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt;&gt; Hi, Carlos.
+</I>&gt;&gt;<i> &gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt; Sorry, I don't have time to try to reproduce your setup right now but
+</I>&gt;&gt;<i> &gt;&gt; as a first attempt to debug this issue you can do
+</I>&gt;&gt;<i> &gt;&gt; ps ux -eH &gt; somefile.txt
+</I>&gt;&gt;<i> &gt;&gt; and find what is the exact commandline that waits for something.
+</I>&gt;&gt;<i> &gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt; 2013/6/25, carlos andres perez lopez &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">carlinchisart at gmail.com</A>&gt;:
+</I>&gt;&gt;<i> &gt;&gt; &gt; Hi all,
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt; i'm following this guide
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt;
+</I>&gt;&gt;<i> <A HREF="http://wiki.x2go.org/doku.php/wiki:development:build-howto-linux:x2goserver">http://wiki.x2go.org/doku.php/wiki:development:build-howto-linux:x2goserver</A>
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt; to compile and install x2goServer in mandriva 2010.0, the all
+</I>&gt;&gt;<i> &gt;&gt; dependences i
+</I>&gt;&gt;<i> &gt;&gt; &gt; compile and install, when i try to install nx-libraries I used the
+</I>&gt;&gt;<i> &gt;&gt; package
+</I>&gt;&gt;<i> &gt;&gt; &gt; full ( <A HREF="http://code.x2go.org/releases/source/nx-libs/">http://code.x2go.org/releases/source/nx-libs/</A>) and install
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt; but when i do the 12 point, Install x2goserver from git, when i do
+</I>&gt;&gt;<i> make
+</I>&gt;&gt;<i> &gt;&gt; &gt; command i see this message
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt; make[1]: Entering directory
+</I>&gt;&gt;<i> &gt;&gt; `/home/carlinchis/x2goserver/x2goserver-common'
+</I>&gt;&gt;<i> &gt;&gt; &gt; mkdir -p .build_man2html/html
+</I>&gt;&gt;<i> &gt;&gt; &gt; for man_page in `cd man &amp;&amp; find * -type f`; do mkdir -p `dirname
+</I>&gt;&gt;<i> &gt;&gt; &gt; .build_man2html/html/$man_page`; done
+</I>&gt;&gt;<i> &gt;&gt; &gt; for man_page in `cd man &amp;&amp; find * -type f`; do man2html
+</I>&gt;&gt;<i> man/$man_page &gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt; .build_man2html/html/$man_page.html; done
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt; and the make command not stop but noting happend,  the comand wait
+</I>&gt;&gt;<i> &gt;&gt; &gt; someting, but noting happend.
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt; I follow the same guide in a opensuse 12.2 and i have the same
+</I>&gt;&gt;<i> problem
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt; Can any helpme?
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt; if i don't have one package, or other topic.
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt; Thanks
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt; P.D: Sorry for my English i speak Spanish.
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt; Carlos Perez.
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt; --
+</I>&gt;&gt;<i> &gt;&gt; &gt; todo se puede mi warrior
+</I>&gt;&gt;<i> &gt;&gt; &gt; C.A.P.L
+</I>&gt;&gt;<i> &gt;&gt; &gt;
+</I>&gt;&gt;<i> &gt;&gt; _______________________________________________
+</I>&gt;&gt;<i> &gt;&gt; X2Go-Dev mailing list
+</I>&gt;&gt;<i> &gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> &gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;<i> &gt;&gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; --
+</I>&gt;&gt;<i> &gt; todo se puede mi warrior
+</I>&gt;&gt;<i> &gt; C.A.P.L
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2Go-Dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> todo se puede mi warrior
+</I>&gt;<i> C.A.P.L
+</I>&gt;<i>
+</I>
+
+
+-- 
+todo se puede mi warrior
+C.A.P.L
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130627/faff64b9/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130627/faff64b9/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005891.html">[X2Go-Dev] build x2GoServer for mandriva 2010.0
+</A></li>
+	<LI>Next message: <A HREF="005895.html">[X2Go-Dev] build x2GoServer for mandriva 2010.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5894">[ date ]</a>
+              <a href="thread.html#5894">[ thread ]</a>
+              <a href="subject.html#5894">[ subject ]</a>
+              <a href="author.html#5894">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

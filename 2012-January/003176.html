@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Building nx-libs (nx-X11) from tarballs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Building%20nx-libs%20%28nx-X11%29%20from%20tarballs&In-Reply-To=%3C20120110220636.1947398j4vzq838c%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003175.html">
+   <LINK REL="Next"  HREF="003177.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Building nx-libs (nx-X11) from tarballs</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Building%20nx-libs%20%28nx-X11%29%20from%20tarballs&In-Reply-To=%3C20120110220636.1947398j4vzq838c%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] Building nx-libs (nx-X11) from tarballs">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Jan 10 22:06:36 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003175.html">[X2go-Dev] Building nx-libs (nx-X11) from tarballs
+</A></li>
+        <LI>Next message: <A HREF="003177.html">[X2go-Dev] Building nx-libs (nx-X11) from tarballs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3176">[ date ]</a>
+              <a href="thread.html#3176">[ thread ]</a>
+              <a href="subject.html#3176">[ subject ]</a>
+              <a href="author.html#3176">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi John,
+
+during the last two days Reinhard and I discussed loads of things  
+around your request and thoughs.
+
+The result is a new project for the X2Go Developer Team: NX (redistributed).
+
+On Sa 07 Jan 2012 21:11:51 CET John Williams wrote:
+
+&gt;<i> 2) no one has successfully built and used the nx-libs with x2goserver
+</I>&gt;<i> from the tarballs at <A HREF="http://code.x2go.org/releases/source/">http://code.x2go.org/releases/source/</A>
+</I>
+Please take a look here for first test-building:
+<A HREF="http://code.x2go.org/releases/source/nx-libs">http://code.x2go.org/releases/source/nx-libs</A>
+
+We have provided two tarballs:
+
+   nx-libs_&lt;version&gt;-full.tar.gz
+   nx-libs_&lt;version&gt;-lite.tar.gz
+
+&gt;<i> then I guess there currently does not exist a stable release of
+</I>&gt;<i> x2goserver that can be built from source tarballs.
+</I>
+That is about tho change with these tarballs.
+
+&gt;<i> In that case, perhaps I can assist with getting a stable source
+</I>&gt;<i> tarball release together, but I will need some assistance.
+</I>
+Assistance could be:
+
+   - test our Makefiles and Makefile patches
+   - installation should put files /usr/local by default
+     (however, there are hard-coded paths in NX, that we have
+     to eliminate. Please take a look at the patches we already apply.
+   - uninstallation should work cleanly, as well
+
+Please send patches to the x2go-dev ML. And ask for anything you need  
+there, as well.
+
+Thanks,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120110/19a3e98d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120110/19a3e98d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003175.html">[X2go-Dev] Building nx-libs (nx-X11) from tarballs
+</A></li>
+	<LI>Next message: <A HREF="003177.html">[X2go-Dev] Building nx-libs (nx-X11) from tarballs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3176">[ date ]</a>
+              <a href="thread.html#3176">[ thread ]</a>
+              <a href="subject.html#3176">[ subject ]</a>
+              <a href="author.html#3176">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

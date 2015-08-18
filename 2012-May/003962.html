@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] unscheduled bugfix release of ,,NX (redistributed)''
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20unscheduled%20bugfix%20release%20of%20%2C%2CNX%20%28redistributed%29%27%27&In-Reply-To=%3C20120512001212.154377jm3c94ljng%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003970.html">
+   <LINK REL="Next"  HREF="003966.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] unscheduled bugfix release of ,,NX (redistributed)''</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20unscheduled%20bugfix%20release%20of%20%2C%2CNX%20%28redistributed%29%27%27&In-Reply-To=%3C20120512001212.154377jm3c94ljng%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] unscheduled bugfix release of ,,NX (redistributed)''">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat May 12 00:12:12 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003970.html">[X2Go-Dev] Broken glyphs and icons after suspending a session
+</A></li>
+        <LI>Next message: <A HREF="003966.html">[X2Go-Dev] unscheduled bugfix release of , , NX (redistributed)''
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3962">[ date ]</a>
+              <a href="thread.html#3962">[ thread ]</a>
+              <a href="subject.html#3962">[ subject ]</a>
+              <a href="author.html#3962">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear all,
+
+due to the great contribution of Jim Burnes we are able to bump an  
+unscheduled bugfix release of NX (redistributed) aka x2goagent that  
+fixes recently observed crashes of X2Go occuring on systems that had  
+been upgraded to libcairo &gt;= 1.12.1.
+
+The patch--as stated by its author--is still in alpha development  
+state but it definitely fixes crashes of GTK applications under KDE,  
+resp. startup failures of the GNOME3 fallback desktop of recent Debian  
+wheezy/sid X2Go installations.
+
+@Developers: the patch still needs some reviewing and possibly  
+improvements, so please take a look:
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=blob;f=debian/patches/120_nxagent_libcairo-null-source-drawables.full.patch">http://code.x2go.org/gitweb?p=nx-libs.git;a=blob;f=debian/patches/120_nxagent_libcairo-null-source-drawables.full.patch</A>
+
+Greets,
+Mike
+
+
+nx-libs (2:3.5.0.13-0) RELEASE; urgency=low
+
+   [ Mike Gabriel ]
+   * Let nxagent Debian package depend on xfonts-base.
+
+   [ Jim Burnes ]
+   * Add patch: 120_nxagent_libcairo-null-source-drawables.full.patch, solves
+     crashes of GTK applications based on libcairo 1.12.1+.
+
+  -- Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+     Fri, 11 May 2012 23:51:35 +0200
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120512/ae087a62/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120512/ae087a62/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003970.html">[X2Go-Dev] Broken glyphs and icons after suspending a session
+</A></li>
+	<LI>Next message: <A HREF="003966.html">[X2Go-Dev] unscheduled bugfix release of , , NX (redistributed)''
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3962">[ date ]</a>
+              <a href="thread.html#3962">[ thread ]</a>
+              <a href="subject.html#3962">[ subject ]</a>
+              <a href="author.html#3962">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

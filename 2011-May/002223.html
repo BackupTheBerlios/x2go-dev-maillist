@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] NX bug: AltGr gets stuck when pressed once
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20NX%20bug%3A%20AltGr%20gets%20stuck%20when%20pressed%20once&In-Reply-To=%3CBANLkTimaNy3wunsS8rwvfi9njZTS92DwKg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002222.html">
+   <LINK REL="Next"  HREF="002224.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] NX bug: AltGr gets stuck when pressed once</H1>
+    <B>Daniel Lindgren</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20NX%20bug%3A%20AltGr%20gets%20stuck%20when%20pressed%20once&In-Reply-To=%3CBANLkTimaNy3wunsS8rwvfi9njZTS92DwKg%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] NX bug: AltGr gets stuck when pressed once">bd.dali at gmail.com
+       </A><BR>
+    <I>Thu May 19 18:17:11 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002222.html">[X2go-dev] NX bug: AltGr gets stuck when pressed once
+</A></li>
+        <LI>Next message: <A HREF="002224.html">[X2go-dev] NX bug: AltGr gets stuck when pressed once
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2223">[ date ]</a>
+              <a href="thread.html#2223">[ thread ]</a>
+              <a href="subject.html#2223">[ subject ]</a>
+              <a href="author.html#2223">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>If you're using Linux on the client, try installing
+xserver-xorg-input-kbd and add this to xorg.conf:
+
+Section &quot;ServerFlags&quot;
+    [...]
+    Option         &quot;AutoAddDevices&quot; &quot;false&quot;
+EndSection
+
+Section &quot;InputDevice&quot;
+    [...]
+    Driver         &quot;kbd&quot;
+    [...]
+EndSection
+
+Cheers,
+Daniel
+
+2011/5/19 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;:
+&gt;<i> hi all,
+</I>&gt;<i>
+</I>&gt;<i> today i have encoutered this bug with X2go:
+</I>&gt;<i> <A HREF="http://www.nomachine.com/tr/view.php?id=TR02H02327">http://www.nomachine.com/tr/view.php?id=TR02H02327</A>
+</I>&gt;<i>
+</I>&gt;<i> What can be done about this????
+</I>&gt;<i>
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;<i> fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0xB588399B
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002222.html">[X2go-dev] NX bug: AltGr gets stuck when pressed once
+</A></li>
+	<LI>Next message: <A HREF="002224.html">[X2go-dev] NX bug: AltGr gets stuck when pressed once
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2223">[ date ]</a>
+              <a href="thread.html#2223">[ thread ]</a>
+              <a href="subject.html#2223">[ subject ]</a>
+              <a href="author.html#2223">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

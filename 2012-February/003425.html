@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] ATTN: Alex - Questions regarding x2goclient.exe --portable and session specification
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20ATTN%3A%20Alex%20-%20Questions%20regarding%20x2goclient.exe%0A%20--portable%20and%20session%20specification&In-Reply-To=%3C4F3BC3FD.5090108%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003426.html">
+   <LINK REL="Next"  HREF="003446.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] ATTN: Alex - Questions regarding x2goclient.exe --portable and session specification</H1>
+    <B>newsgroups.mail2 at stefanbaur.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20ATTN%3A%20Alex%20-%20Questions%20regarding%20x2goclient.exe%0A%20--portable%20and%20session%20specification&In-Reply-To=%3C4F3BC3FD.5090108%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] ATTN: Alex - Questions regarding x2goclient.exe --portable and session specification">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Wed Feb 15 15:41:01 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003426.html">[X2Go-Dev] ATTN: Alex - Questions regarding x2goclient.exe --portable and session specification
+</A></li>
+        <LI>Next message: <A HREF="003446.html">[X2Go-Dev] ATTN: Alex - Questions regarding x2goclient.exe --portable and session specification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3425">[ date ]</a>
+              <a href="thread.html#3425">[ thread ]</a>
+              <a href="subject.html#3425">[ subject ]</a>
+              <a href="author.html#3425">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 15.02.2012 13:54, schrieb Oleksandr Shneyder:
+&gt;<i>
+</I>&gt;<i> if running with --portable option, x2goclient should not save data in
+</I>&gt;<i> registry. But you should also specify a &quot;--home&quot; parameter.
+</I>&gt;<i>
+</I>&gt;&gt;<i> Is it possible to specify the location of the session file?
+</I>&gt;<i> Yes, with &quot;--home&quot; parameter you can specify a folder, that should be
+</I>&gt;<i> used as home directory. All X2Go data (ssh files, x2goclient settings,
+</I>&gt;<i> sessions, etc) will be read from this directory and written into this
+</I>&gt;<i> directory. On windows, if using this parameter, for x2goclient settings
+</I>&gt;<i> will be used not registry, but the ini files in &quot;home&quot;/.x2goclient/
+</I>&gt;<i> (same way as for x2goclient on linux).
+</I>&gt;<i> [...]
+</I>&gt;<i> I plan to change many options
+</I>&gt;<i> and implement some new in next release of x2goclient. The same is for
+</I>&gt;<i> documentation.
+</I>
+Thanks for the info, but this brings up a few more questions:
+
+Is there a preferred way to make pre-configured sessions available to 
+all users on the client, especially on Windows?
+I'm asking because the registry entries are written to 
+&quot;HKEY_CURRENT_USER&quot;, and the --portable --home=storage-directory-here 
+options *probably* require write access to the storage directory beause 
+of the cache files - or am I wrong?
+
+I was hoping I could dump the sessions file into a central folder, say, 
+c:\program files\x2goclient\, but that won't work if cache files will be 
+stored in the same directory.
+
+-Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003426.html">[X2Go-Dev] ATTN: Alex - Questions regarding x2goclient.exe --portable and session specification
+</A></li>
+	<LI>Next message: <A HREF="003446.html">[X2Go-Dev] ATTN: Alex - Questions regarding x2goclient.exe --portable and session specification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3425">[ date ]</a>
+              <a href="thread.html#3425">[ thread ]</a>
+              <a href="subject.html#3425">[ subject ]</a>
+              <a href="author.html#3425">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

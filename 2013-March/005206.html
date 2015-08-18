@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#142: x2goclient output on stdout
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23142%3A%20x2goclient%20output%20on%20stdout&In-Reply-To=%3CCAHeJaPKG2ndmoMFEn3kH91uMzTg3gQAhi-A26Le%3DY5cfsHBq-g%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005205.html">
+   <LINK REL="Next"  HREF="005207.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#142: x2goclient output on stdout</H1>
+    <B>Kjell Otto</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23142%3A%20x2goclient%20output%20on%20stdout&In-Reply-To=%3CCAHeJaPKG2ndmoMFEn3kH91uMzTg3gQAhi-A26Le%3DY5cfsHBq-g%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#142: x2goclient output on stdout">otto.kjell at gmail.com
+       </A><BR>
+    <I>Thu Mar  7 13:51:25 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005205.html">[X2Go-Dev] Bug#141: X2Gobroker: session autologin does not work
+</A></li>
+        <LI>Next message: <A HREF="005207.html">[X2Go-Dev] Bug#142: x2goclient output on stdout
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5206">[ date ]</a>
+              <a href="thread.html#5206">[ thread ]</a>
+              <a href="subject.html#5206">[ subject ]</a>
+              <a href="author.html#5206">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Version: 4.0.0.4
+
+The x2goclient has extreme output on stdout while running. It's more
+noise then signal and therefor, I've wrapped all the printouts with
+#ifdef DEBUG and a #undef DEBUG on the onmainwindow.cpp file.
+
+Then I've added in printout statements that are parsable with numbered
+output and category so that a normal run of the x2goclient would
+output like this:
+
+$ ./client_build/x2goclient --session=x2goserver_RZ --add-to-known-hosts --hide
+x2go-INFO-001&gt; Starting x2goclient...
+x2go-WARN-001&gt; Can't load translator: :/x2goclient_en_us
+x2go-WARN-002&gt; Can't load translator: :/qt_en_US
+x2go-INFO-004&gt; Started  x2goclient.
+x2go-INFO-005&gt; $HOME=/home/kjellski
+x2go-INFO-029&gt; Starting connection to server: 10.3.0.20:22
+x2go-INFO-031&gt; SSH connection established.
+x2go-INFO-011&gt; Closing x2goclient...
+x2go-INFO-018&gt; Waiting for the SSH connection to finish...
+x2go-INFO-019&gt; Waited  for the SSH connection to finish.
+x2go-INFO-028&gt; Closed  x2goclient.
+$
+
+No GUI will be shown and no try Icons appear. This reflects a bit more
+the --hide param and can be used to make a shortcut to the client that
+will just open the window.
+
+Also I've added a log method and provided a script that lets you show
+all outputs on the file.
+
+All changes can be found on this repository in the branch stdout-cleanup:
+
+<A HREF="https://github.com/kjellski/x2goclient/tree/stdout-cleanup">https://github.com/kjellski/x2goclient/tree/stdout-cleanup</A>
+
+If any additional help from my side is required, please contact me and
+I try to support the process.
+</PRE>
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005205.html">[X2Go-Dev] Bug#141: X2Gobroker: session autologin does not work
+</A></li>
+	<LI>Next message: <A HREF="005207.html">[X2Go-Dev] Bug#142: x2goclient output on stdout
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5206">[ date ]</a>
+              <a href="thread.html#5206">[ thread ]</a>
+              <a href="subject.html#5206">[ subject ]</a>
+              <a href="author.html#5206">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

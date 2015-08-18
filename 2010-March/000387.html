@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] SSH Key issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20SSH%20Key%20issues&In-Reply-To=%3C1269552815.26071.12.camel%40Family.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000386.html">
+   <LINK REL="Next"  HREF="000377.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] SSH Key issues</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20SSH%20Key%20issues&In-Reply-To=%3C1269552815.26071.12.camel%40Family.pacifera.com%3E"
+       TITLE="[X2go-dev] SSH Key issues">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu Mar 25 22:33:35 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000386.html">[X2go-dev] SSH Key issues
+</A></li>
+        <LI>Next message: <A HREF="000377.html">[X2go-dev] Out of order key strokes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#387">[ date ]</a>
+              <a href="thread.html#387">[ thread ]</a>
+              <a href="subject.html#387">[ subject ]</a>
+              <a href="author.html#387">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2010-03-25 at 19:51 +0000, brian mullan wrote:
+&gt;<i> John A. Sullivan III &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at ...</A>&gt; writes:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Hello, all.  We recently recreated an X2Go Server and found we had
+</I>&gt;<i> &gt; serious ssh key issues when we tried to connect from the previously
+</I>&gt;<i> &gt; existing X2Go clients.  We're still working these through so I'll list
+</I>&gt;<i> &gt; them in the order we find them.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The GUI key popping up Accept Key dialogs with Yes and No options but no
+</I>&gt;<i> &gt; text.  It was only when we canceled that we saw the error message about
+</I>&gt;<i> &gt; there being an old, conflicting key.  By the way, we use both hashed
+</I>&gt;<i> &gt; known_host files and non-default ssh ports.  This created a problem when
+</I>&gt;<i> &gt; we went to remove the offending keys in that the syntax ssh-keygen -R
+</I>&gt;<i> &gt; &lt;server name&gt; did not work.  We needed to use ssh-keygen -R [&lt;server
+</I>&gt;<i> &gt; name&gt;]:&lt;port number&gt; (note the brackets).
+</I>&gt;<i>  
+</I>&gt;<i> 
+</I>&gt;<i> I've seen one of the symptoms you describe:
+</I>&gt;<i> 
+</I>&gt;<i>   The GUI key popping up Accept Key dialogs with Yes and No options but no
+</I>&gt;<i>   text.  It was only when we canceled that we saw the error message about
+</I>&gt;<i>   there being an old, conflicting key.  
+</I>&gt;<i> 
+</I>&gt;<i> I used vi to remove the entry in my hosts file.   But that blank pop up
+</I>&gt;<i> that just asks: YES NO 
+</I>&gt;<i> and nothing else ??   Selecting YES didn't seem to do anything.  NO at least
+</I>&gt;<i> popped up an error message in another window.
+</I>&lt;snip&gt;
+You may have a second conflict.  There are sometimes entries for both
+the host by name and IP address.  One needs to remove both to avoid any
+error messages (perhaps X2Go is only capturing stdout and these messages
+are written to stderr - just a guess - I've yet to look at the code).
+You can probably tell by opening a command line ssh session and seeing
+what message it gives you.
+
+Let's say we have x2gohost.me.com at 1.2.3.4. one would need to do
+ssh-keygen -R x2gohost.me.com
+ssh-keygen -R 1.2.3.4
+
+If one uses non-standard ssh ports (an excellent security idea), then
+the names must be in brackets with the port, e.g., 
+ssh-keygen -R [x2gohost.me.com]:222
+ssh-keygen -R [1.2.3.4]:222
+
+At least, that's how it was for us.  Hope this helps - John
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000386.html">[X2go-dev] SSH Key issues
+</A></li>
+	<LI>Next message: <A HREF="000377.html">[X2go-dev] Out of order key strokes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#387">[ date ]</a>
+              <a href="thread.html#387">[ thread ]</a>
+              <a href="subject.html#387">[ subject ]</a>
+              <a href="author.html#387">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

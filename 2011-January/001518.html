@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go security Issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20security%20Issues&In-Reply-To=%3C20110120143953.GL17099%40cip.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001517.html">
+   <LINK REL="Next"  HREF="001519.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go security Issues</H1>
+    <B>Alexander Wuerstlein</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20security%20Issues&In-Reply-To=%3C20110120143953.GL17099%40cip.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] x2go security Issues">snalwuer at cip.informatik.uni-erlangen.de
+       </A><BR>
+    <I>Thu Jan 20 15:39:54 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001517.html">[X2go-dev] x2go security Issues
+</A></li>
+        <LI>Next message: <A HREF="001519.html">[X2go-dev] x2go security Issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1518">[ date ]</a>
+              <a href="thread.html#1518">[ thread ]</a>
+              <a href="subject.html#1518">[ subject ]</a>
+              <a href="author.html#1518">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 11-01-20 14:48, Alexander Wuerstlein &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">snalwuer at cip.informatik.uni-erlangen.de</A>&gt; wrote:
+&gt;<i> On 11-01-20 11:06, Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt; wrote:
+</I>&gt;<i> &gt; Am 20.01.2011 10:24, schrieb Moritz Struebe:
+</I>&gt;<i> &gt; &gt; Hi,
+</I>&gt;<i> &gt; &gt; Morning,
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; Besides that, one of our admins did quite a few security patches to
+</I>&gt;<i> &gt; &gt; avoid x2gowrapper having to run as root. At the moment this only works
+</I>&gt;<i> &gt; &gt; for Postgres. None the less I must say that I'm not happy running
+</I>&gt;<i> &gt; &gt; x2gowrapper, which is easy to exploit using SQL-Injections, as root. It
+</I>&gt;<i> &gt; &gt; should at least do a &quot;sudo -u x2go&quot; or similar. This user only needs
+</I>&gt;<i> &gt; &gt; access to the database. That way worst case the db is corrupted and not
+</I>&gt;<i> &gt; &gt; the whole system.
+</I>&gt;<i> &gt; You are quite right about pgwrapper. Changing &quot;sudo&quot; to &quot;sudo -u x2go&quot;
+</I>&gt;<i> &gt; is on top of our todo list and will be made in the next version of
+</I>&gt;<i> &gt; x2goserver. But I don't think, that it is so easy to use x2gowrapper to
+</I>&gt;<i> &gt; do something bad with a system. Sure, if you can show me a working
+</I>&gt;<i> &gt; exploit, I will put all other things I have to do on ice and concentrate
+</I>&gt;<i> &gt; on this problem. In all cases I'll change behavior of x2goserver very soon.
+</I>&gt;<i> Also, in /usr/bin/x2golistsessions line 31, the perl system() function
+</I>&gt;<i> is used together with sudo in an insecure way. I'm currently not totally
+</I>&gt;<i> sure, how this can be used to execute arbitrary commands as root but it
+</I>&gt;<i> surely looks very suspicious.
+</I>
+Forget that, /usr/bin/x2gopgwrapper is of course trivially exploitable
+to get root in 2 ways:
+- in the current git version, set 'startshadowagent' as the first
+  parameter. Choose the 11th parameter in a way such that SHADOW_USER is
+  set to 'root'. Set the second parameter ($CLIENT) to something like
+  'foo ; rm -fr /'. Profit.
+- in the git as well as the stable version, when the database is sqlite:
+  the x2gopgwrapper_sqlite runs as root meaning that any sql injection
+  into sqlite would run as root. One possible injection would set the
+  sqlite output file to /etc/shadow (via .output /etc/shadow) and
+  overwrite it with a customized version including a new root password
+  chosen by the attacker. Profit.
+
+
+
+
+Ciao,
+
+Alexander Wuerstlein.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001517.html">[X2go-dev] x2go security Issues
+</A></li>
+	<LI>Next message: <A HREF="001519.html">[X2go-dev] x2go security Issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1518">[ date ]</a>
+              <a href="thread.html#1518">[ thread ]</a>
+              <a href="subject.html#1518">[ subject ]</a>
+              <a href="author.html#1518">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

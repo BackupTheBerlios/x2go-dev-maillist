@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] KDE applications causing session crash with latest builds
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20KDE%20applications%20causing%20session%20crash%20with%20latest%0A%20builds&In-Reply-To=%3C20120122005115.138222z69laeygs3%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003216.html">
+   <LINK REL="Next"  HREF="003218.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] KDE applications causing session crash with latest builds</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20KDE%20applications%20causing%20session%20crash%20with%20latest%0A%20builds&In-Reply-To=%3C20120122005115.138222z69laeygs3%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] KDE applications causing session crash with latest builds">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sun Jan 22 00:51:15 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003216.html">[X2go-Dev] KDE applications causing session crash with latest builds
+</A></li>
+        <LI>Next message: <A HREF="003218.html">[X2go-Dev] KDE applications causing session crash with latest builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3217">[ date ]</a>
+              <a href="thread.html#3217">[ thread ]</a>
+              <a href="subject.html#3217">[ subject ]</a>
+              <a href="author.html#3217">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On So 22 Jan 2012 00:47:21 CET Mike Gabriel wrote:
+
+&gt;<i> Hi Stefan, hi all,
+</I>&gt;<i>
+</I>&gt;<i> On Sa 21 Jan 2012 23:12:25 CET &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>&quot; wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hi list,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> after upgrading to the latest Debian packages, I can no longer run   
+</I>&gt;&gt;<i> KDE applications in rootless mode - neither with NX nor with X2Go.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Steps to reproduce:
+</I>&gt;&gt;<i> 1. Run Terminal as single application (not in a full-blown desktop  
+</I>&gt;&gt;<i> -  everything works fine there)
+</I>&gt;&gt;<i> 2. Type: kdialog --yesno &quot;Test&quot;
+</I>&gt;&gt;<i> 3. Session will crash
+</I>&gt;<i>
+</I>&gt;<i> I can reproduce this with squeeze as X2Go server and Ubuntu lucid as  
+</I>&gt;<i>  client system (PyHoca-GUI).
+</I>
+and here are the last line of an strace output just before the crash occurs...
+
+
+Greets,
+Mike
+
+&quot;&quot;&quot;
+[...]
+open(&quot;/usr/lib/libtiff.so.4&quot;, O_RDONLY) = 10
+read(10,  
+&quot;\177ELF\2\1\1\0\0\0\0\0\0\0\0\0\3\0&gt;\0\1\0\0\0P\200\0\0\0\0\0\0&quot;...,  
+832) = 832
+fstat(10, {st_mode=S_IFREG|0644, st_size=404936, ...}) = 0
+mmap(NULL, 2501224, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE,  
+10, 0) = 0x7f2d43abe000
+mprotect(0x7f2d43b1f000, 2093056, PROT_NONE) = 0
+mmap(0x7f2d43d1e000, 12288, PROT_READ|PROT_WRITE,  
+MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 10, 0x60000) = 0x7f2d43d1e000
+close(10)                               = 0
+munmap(0x7f2d51dbd000, 131065)          = 0
+lseek(9, 0, SEEK_SET)                   = 0
+close(9)                                = 0
+poll([{fd=7, events=POLLIN|POLLOUT}], 1, -1) = 1 ([{fd=7, revents=POLLOUT}])
+writev(7,  
+[{&quot;\22\0\f\0\34\0\200\0'\0\0\0\3\1\0\0\10\0\0\0\27\0\0\0Frage  
+\33%&quot;..., 252},  
+{&quot;\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0&quot;...,  
+16384}, {&quot;&quot;, 0}], 3) = 16636
+lstat(&quot;/var/tmp/kdecache-mike/kpc/kde-icon-cache.lock&quot;,  
+0x7fff1401d130) = -1 ENOENT (No such file or directory)
+stat(&quot;/tmp/kde-mike/&quot;, {st_mode=S_IFDIR|0700, st_size=4096, ...}) = 0
+stat(&quot;/var/tmp/kdecache-mike/kpc&quot;, {st_mode=S_IFDIR|0700,  
+st_size=4096, ...}) = 0
+open(&quot;/var/tmp/kdecache-mike/kpc/kde-icon-cache.lock.k24836&quot;,  
+O_RDWR|O_CREAT|O_EXCL|O_CLOEXEC, 0600) = 9
+fcntl(9, F_SETFD, FD_CLOEXEC)           = 0
+fchmod(9, 0644)                         = 0
+uname({sys=&quot;Linux&quot;, node=&quot;fylgja.das-netzwerkteam.de&quot;, ...}) = 0
+fstat(9, {st_mode=S_IFREG|0644, st_size=0, ...}) = 0
+write(9, &quot;24836\n&quot;, 6)                  = 6
+write(9, &quot;kdialog\n&quot;, 8)                = 8
+write(9, &quot;fylgja.das-netzwerkteam.de\n&quot;, 27) = 27
+link(&quot;/var/tmp/kdecache-mike/kpc/kde-icon-cache.lock.k24836&quot;,  
+&quot;/var/tmp/kdecache-mike/kpc/kde-icon-cache.lock&quot;) = 0
+lstat(&quot;/var/tmp/kdecache-mike/kpc/kde-icon-cache.lock.k24836&quot;,  
+{st_mode=S_IFREG|0644, st_size=41, ...}) = 0
+lstat(&quot;/var/tmp/kdecache-mike/kpc/kde-icon-cache.lock&quot;,  
+{st_mode=S_IFREG|0644, st_size=41, ...}) = 0
+lseek(9, 0, SEEK_SET)                   = 0
+close(9)                                = 0
+unlink(&quot;/var/tmp/kdecache-mike/kpc/kde-icon-cache.lock.k24836&quot;) = 0
+stat(&quot;/var/tmp/kdecache-mike/kpc/kde-icon-cache.data&quot;,  
+{st_mode=S_IFREG|0644, st_size=16240640, ...}) = 0
+stat(&quot;/var/tmp/kdecache-mike/kpc/kde-icon-cache.data&quot;,  
+{st_mode=S_IFREG|0644, st_size=16240640, ...}) = 0
+stat(&quot;/var/tmp/kdecache-mike/kpc/kde-icon-cache.data&quot;,  
+{st_mode=S_IFREG|0644, st_size=16240640, ...}) = 0
+stat(&quot;/var/tmp/kdecache-mike/kpc/kde-icon-cache.data&quot;,  
+{st_mode=S_IFREG|0644, st_size=16240640, ...}) = 0
+stat(&quot;/var/tmp/kdecache-mike/kpc/kde-icon-cache.data&quot;,  
+{st_mode=S_IFREG|0644, st_size=16240640, ...}) = 0
+poll([{fd=7, events=POLLIN|POLLOUT}], 1, -1) = 1 ([{fd=7, revents=POLLOUT}])
+writev(7,  
+[{&quot;&lt;\0\2\0#\0\200\0I\2\5\0!\0\200\0\0\0\0\0@\0@\0\377\377\377\377&quot;,  
+28}, {NULL, 0}, {&quot;&quot;, 0}], 3) = 28
+poll([{fd=7, events=POLLIN}], 1, -1)    = 1 ([{fd=7,  
+revents=POLLIN|POLLERR|POLLHUP}])
+read(7, 0x8ece04, 4096)                 = -1 ECONNRESET (Connection  
+reset by peer)
+write(2, &quot;kdialog: Fatal IO error: client &quot;..., 39kdialog: Fatal IO  
+error: client killed
+) = 39
+munmap(0x7f2d4817e000, 4296704)         = 0
+munmap(0x7f2d47201000, 16240640)        = 0
+writev(8,  
+[{&quot;l\1\1\1d\0\0\0\t\0\0\0\177\0\0\0\1\1o\0\25\0\0\0/org/fre&quot;..., 144},  
+{&quot;_\0\0\0type='signal',path='/KGlobal&quot;..., 100}], 2) = 244
+close(8)                                = 0
+write(6, &quot;@&quot;, 1)                        = 1
+close(6)                                = 0
+close(5)                                = 0
+rt_sigaction(SIGCHLD, {SIG_DFL, [], SA_RESTORER|SA_NOCLDSTOP,  
+0x7f2d4ed4d1e0}, {0x7f2d501c3ef0, [], SA_RESTORER|SA_NOCLDSTOP,  
+0x7f2d4ed4d1e0}, 8) = 0
+exit_group(1)                           = ?
+&quot;&quot;&quot;
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120122/53b7a682/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120122/53b7a682/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003216.html">[X2go-Dev] KDE applications causing session crash with latest builds
+</A></li>
+	<LI>Next message: <A HREF="003218.html">[X2go-Dev] KDE applications causing session crash with latest builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3217">[ date ]</a>
+              <a href="thread.html#3217">[ thread ]</a>
+              <a href="subject.html#3217">[ subject ]</a>
+              <a href="author.html#3217">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

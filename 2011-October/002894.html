@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] [X2go-User] Crashing X2go sessions (was Re: x2gobasepath and Debian Lenny)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BX2go-User%5D%20Crashing%20X2go%20sessions%20%28was%20Re%3A%0A%20x2gobasepath%20and%20Debian%20Lenny%29&In-Reply-To=%3C4E8B5FE7.9050808%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002892.html">
+   <LINK REL="Next"  HREF="002893.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] [X2go-User] Crashing X2go sessions (was Re: x2gobasepath and Debian Lenny)</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BX2go-User%5D%20Crashing%20X2go%20sessions%20%28was%20Re%3A%0A%20x2gobasepath%20and%20Debian%20Lenny%29&In-Reply-To=%3C4E8B5FE7.9050808%40vandervlis.nl%3E"
+       TITLE="[X2go-Dev] [X2go-User] Crashing X2go sessions (was Re: x2gobasepath and Debian Lenny)">paul at vandervlis.nl
+       </A><BR>
+    <I>Tue Oct  4 21:35:03 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002892.html">[X2go-Dev] [X2go-User] Crashing X2go sessions (was Re: x2gobasepath and Debian Lenny)
+</A></li>
+        <LI>Next message: <A HREF="002893.html">[X2go-Dev] [X2go-User] Crashing sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2894">[ date ]</a>
+              <a href="thread.html#2894">[ thread ]</a>
+              <a href="subject.html#2894">[ subject ]</a>
+              <a href="author.html#2894">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Op 04-10-11 11:14, Mike Gabriel schreef:
+&gt;<i> Hi all,
+</I>&gt;<i> 
+</I>&gt;<i> On Fr 30 Sep 2011 01:15:57 CEST Mike Gabriel wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> ... cross-posting this mail to x2go-user ML, seems we have a solution 
+</I>&gt;&gt;<i> for the crashing situation of x2goagent... Mike
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hi Peter,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Fr 30 Sep 2011 00:32:07 CEST Peter Henn wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> However I tried that &quot;self compiled&quot; and &quot;self packaged&quot; way, because
+</I>&gt;&gt;&gt;<i> I run crazy about reproducible session crashes of my xfce4 desktop of my
+</I>&gt;&gt;&gt;<i> 64bit server.
+</I>&gt;&gt;&gt;<i> X2goagent seems to die without any hint in the session logs, if I use
+</I>&gt;&gt;&gt;<i> that one from the Lenny repo: <A HREF="http://packages.x2go.org/debian/,">http://packages.x2go.org/debian/,</A> when I
+</I>&gt;&gt;&gt;<i> close a synaptic, gimp, eclipse, HP-toolbox .... and other tools.
+</I>&gt;&gt;&gt;<i> Unfortunately the number of tools seem to become an increasing number
+</I>&gt;&gt;&gt;<i> the last weeks. Interesting was that it depends on:
+</I>&gt;&gt;&gt;<i> a) when that critical tool was started (e.g. just after the session
+</I>&gt;&gt;&gt;<i> startup or later)
+</I>&gt;&gt;&gt;<i> b) if I used the start menu or a terminal (e.g. sudo synaptic worked
+</I>&gt;&gt;&gt;<i> fine, but starting from menu crashes the session often)
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> The self compiled stuff seems to be now more stable for these first
+</I>&gt;&gt;&gt;<i> hours (finger crossed). So either it depends on the compile machine and
+</I>&gt;&gt;&gt;<i> some library dependencies or it may be a heap memory problem of
+</I>&gt;&gt;&gt;<i> x2goagent. And yes, I know that you wrote the stability might have
+</I>&gt;&gt;&gt;<i> something to do with the old X-server compiled-in into the x2goagent ...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> What you describe here (and what we in depth have discussed on  
+</I>&gt;&gt;<i> x2go-user ML) might indeed relate to this issue report (marked as  
+</I>&gt;&gt;<i> ,,serious'' by NoMachine):
+</I>&gt;&gt;<i> <A HREF="http://www.nomachine.com/tr/view.php?id=TR0202420">http://www.nomachine.com/tr/view.php?id=TR0202420</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> And this obviously has been fixed in nxagent-3.5.0-2:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;quote&gt;
+</I>&gt;&gt;<i> ChangeLog:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> nx-X11-3.5.0-2
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> - Fixed TR0202420. XKB utility functions wrote out of bounds.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> - Upgraded RandR server extension to version 1.2.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> nx-X11-3.5.0-1
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> - Opened the 3.5.0 branch based on nx-X11-3.4.0-4.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> - Updated copyright to year 2011.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> [...]
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;/quote&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> @Alex: do you think you could pull the nxagent patches into
+</I>&gt;&gt;<i> x2goagent?   That would be fabulous!!!
+</I>&gt;<i> 
+</I>&gt;<i> Alex has just provided a new x2goagent version (3.5.0.5) in X2go Git.
+</I>&gt;<i> This new version is based on
+</I>&gt;<i> 
+</I>&gt;<i>     nx-X11-3.5.0-2
+</I>&gt;<i>     nxagent-3.5.0-5
+</I>&gt;<i>     nxauth-3.5.0-1
+</I>&gt;<i> 
+</I>&gt;<i> and we hope it fixes the problem of irregularly crashing sessions.
+</I>&gt;<i> 
+</I>&gt;<i> Please everybody who sees these weird session crashes, please test the
+</I>&gt;<i> new x2goagent version (currently building for Debian, building for
+</I>&gt;<i> Ubuntu tonight) and give us feedback ASAP.
+</I>
+I've tested it, it's maybe a bit better, but I still saw a crash after
+17 tries.
+
+On the client I use X2go stable. On the server heuler.
+
+The OS is in both cases Debian Squeeze. The server has a 32-bit OS, the
+client 64-bit.
+
+With regards,
+Paul.
+
+grep x2go /var/log/syslog
+(...)
+Oct  4 21:13:06 jet2 /usr/bin/x2golistsessions[2426]: x2golistsessions
+has been called with no option
+Oct  4 21:13:07 jet2 /usr/bin/x2golistsessions[2439]: x2golistsessions
+has been called with no option
+Oct  4 21:13:34 jet2 /usr/bin/x2golistsessions[2541]: x2golistsessions
+has been called with no option
+Oct  4 21:13:35 jet2 /usr/bin/x2golistsessions[2554]: x2golistsessions
+has been called with no option
+Oct  4 21:13:35 jet2 /usr/bin/x2gostartagent: x2gostartagent called with
+options: 800x600 adsl 16m-jpeg-9 unix-kde-depth_24 us pc105/us 1 D GNOME
+Oct  4 21:13:36 jet2 /usr/bin/x2gosessionlimit[2598]: x2gosessionlimit
+has been called
+Oct  4 21:13:36 jet2 /usr/bin/x2golistsessions[2603]: x2golistsessions
+has been called with options: --all-servers
+Oct  4 21:13:36 jet2 /usr/lib/x2go/x2gogetdisplays[2626]: db_getdisplays
+called, server: jet2; return value: |63|
+Oct  4 21:13:37 jet2 /usr/lib/x2go/x2goinsertsession[2653]:
+db_insertsession called, session ID: paul-50-1317755616_stDGNOME_dp24,
+server: jet2, session ID: paul-50-1317755616_stDGNOME_dp24
+Oct  4 21:13:37 jet2 /usr/lib/x2go/x2gogetports[2665]: db_getports
+called, server: jet2; return value: |30040| |30041| |30042|
+Oct  4 21:13:37 jet2 /usr/lib/x2go/x2goinsertport[2688]: db_insertport
+called, session ID: paul-50-1317755616_stDGNOME_dp24, server: jet2, SSH
+port: 30001
+Oct  4 21:13:38 jet2 /usr/lib/x2go/x2goinsertport[2706]: db_insertport
+called, session ID: paul-50-1317755616_stDGNOME_dp24, server: jet2, SSH
+port: 30002
+Oct  4 21:13:38 jet2 /usr/lib/x2go/x2goinsertport[2724]: db_insertport
+called, session ID: paul-50-1317755616_stDGNOME_dp24, server: jet2, SSH
+port: 30003
+Oct  4 21:13:38 jet2 /usr/bin/x2gofeature: x2gofeature called with
+options: X2GO_RUN_EXTENSIONS
+Oct  4 21:13:39 jet2
+/usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+x2goserver-extensions.features called with options: X2GO_RUN_EXTENSIONS
+Oct  4 21:13:39 jet2 /usr/bin/x2goserver-run-extensions:
+x2goserver-run-extensions called with options:
+paul-50-1317755616_stDGNOME_dp24 pre-start
+Oct  4 21:13:39 jet2 /usr/bin/x2gostartagent: successfully started X2go
+agent session with ID paul-50-1317755616_stDGNOME_dp24
+Oct  4 21:13:39 jet2 /usr/bin/x2gofeature: x2gofeature called with
+options: X2GO_RUN_EXTENSIONS
+Oct  4 21:13:39 jet2
+/usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+x2goserver-extensions.features called with options: X2GO_RUN_EXTENSIONS
+Oct  4 21:13:39 jet2 /usr/bin/x2goserver-run-extensions:
+x2goserver-run-extensions called with options:
+paul-50-1317755616_stDGNOME_dp24 post-start
+Oct  4 21:13:40 jet2 /usr/lib/x2go/x2gocreatesession[2833]:
+db_createsession called, session ID: paul-50-1317755616_stDGNOME_dp24,
+cookie: a87b5a823ec3225d0e1d3ce825159138, client: 83.160.123.102, pid:
+2791, graphics port: 30001, sound port: 30002, file sharing port: 30003
+Oct  4 21:13:41 jet2 /usr/bin/x2goruncommand: x2goruncommand called with
+options: 50 2791 paul-50-1317755616_stDGNOME_dp24 30002 gnome-session
+pulse D
+Oct  4 21:13:41 jet2 /usr/bin/x2gofeature: x2gofeature called with
+options: X2GO_RUN_EXTENSIONS
+Oct  4 21:13:41 jet2
+/usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+x2goserver-extensions.features called with options: X2GO_RUN_EXTENSIONS
+Oct  4 21:13:41 jet2 /usr/bin/x2goserver-run-extensions:
+x2goserver-run-extensions called with options: pre-runcommand
+Oct  4 21:13:42 jet2 /usr/bin/x2goruncommand: running command
+/usr/bin/gnome-session
+Oct  4 21:15:36 jet2 /usr/bin/x2gofeature: x2gofeature called with
+options: X2GO_RUN_EXTENSIONS
+Oct  4 21:15:36 jet2
+/usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+x2goserver-extensions.features called with options: X2GO_RUN_EXTENSIONS
+Oct  4 21:15:36 jet2 /usr/bin/x2goserver-run-extensions:
+x2goserver-run-extensions called with options: post-runcommand
+Oct  4 21:15:36 jet2 /usr/bin/x2gofeature: x2gofeature called with
+options: X2GO_DESKTOPSHARING
+Oct  4 21:15:36 jet2
+/usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+x2goserver-extensions.features called with options: X2GO_DESKTOPSHARING
+Oct  4 21:15:36 jet2 /usr/share/x2go/x2gofeature.d/x2goserver.features:
+x2goserver.features called with options: X2GO_DESKTOPSHARING
+Oct  4 21:15:37 jet2 /usr/lib/x2go/x2gochangestatus[4033]:
+db_changestatus called, session ID: paul-50-1317755616_stDGNOME_dp24,
+new status: F
+Oct  4 21:15:37 jet2 /usr/bin/x2goumount-session[4044]:
+x2goumount-session has been called with options:
+paul-50-1317755616_stDGNOME_dp24
+Oct  4 21:15:37 jet2 /usr/bin/x2goumount-session[4044]: db_getdisplay
+called, session ID: paul-50-1317755616_stDGNOME_dp24; return value: 50
+Oct  4 21:15:37 jet2 /usr/bin/x2goumount-session[4044]: db_getmounts
+called, session ID: paul-50-1317755616_stDGNOME_dp24; return value:
+Oct  4 21:15:38 jet2 /usr/lib/x2go/x2golistsessions_sql[4062]: Purging
+finished session from X2go db, session ID: paul-50-1317755616_stDGNOME_dp24
+Oct  4 21:15:39 jet2 /usr/bin/x2goumount-session[4088]:
+x2goumount-session has been called with options:
+paul-50-1317755616_stDGNOME_dp24
+Oct  4 21:15:39 jet2 /usr/bin/x2goumount-session[4088]: db_getdisplay
+called, session ID: paul-50-1317755616_stDGNOME_dp24; return value:
+Oct  4 21:15:39 jet2 /usr/bin/x2goumount-session[4088]: db_getmounts
+called, session ID: paul-50-1317755616_stDGNOME_dp24; return value:
+
+jet2:~# aptitude -F '%p %V' --disable-columns search x2go
+cups-x2go 3.0.0.2-0~x2go2+squeeze~heuler~20110917~52~build1
+pinentry-x2go 0.7.5.1-0~x2go1+squeeze~heuler~20110930~16~build1
+plasma-widget-x2go 3.0.1.2-0~x2go1+squeeze~heuler~20110917~8~build1
+python-x2go 0.1.2.0-0~x2go1+squeeze~heuler~20110929~604~build1
+x2go-keyring 2011.04.19+squeeze~heuler~20110608~10~build1
+x2goadmincenter 0.0.0.1-0~x2go1+squeeze~heuler~20110922~9~build1
+x2goadminserver 0.0.0.1-0~x2go1+squeeze~heuler~20110922~9~build1
+x2goagent 3.5.0.5-0~x2go1+squeeze~heuler~20111004~57~build1
+x2goagent-dbg 3.5.0.5-0~x2go1+squeeze~heuler~20111004~57~build1
+x2gocdmanager 1.0.1.3-0~x2go1+squeeze~heuler~20110918~269~build1
+x2goclient 3.99.0.1-0~x2go1+squeeze~heuler~20110922~107~build1
+x2godesktopsharing 3.0.1.3-0~x2go1+squeeze~heuler~20110929~59~build1
+x2gognomebindings 2.0.1.3-0~x2go1+squeeze~heuler~20110926~45~build1
+x2golxdebindings 1.0.1.0-0~x2go1+squeeze~heuler~20110926~14~build1
+x2goplugin 3.99.0.1-0~x2go1+squeeze~heuler~20110922~107~build1
+x2goserver 3.0.99.6-0~x2go1+squeeze~heuler~20111004~343~build1
+x2goserver-compat 3.0.99.6-0~x2go1+squeeze~heuler~20111004~343~build1
+x2goserver-extensions 3.0.99.6-0~x2go1+squeeze~heuler~20111004~343~build1
+x2goserver-printing 3.0.99.6-0~x2go1+squeeze~heuler~20111004~343~build1
+x2gosmartcardrules 1.0.1.3-0~x2go1+squeeze~heuler~20110918~269~build1
+x2gothinclient 1.0.1.3-0~x2go1+squeeze~heuler~20110918~269~build1
+x2gothinclientmanagement 1.0.1.3-0~x2go1+squeeze~heuler~20110918~269~build1
+x2gothinshutdown 1.0.1.3-0~x2go1+squeeze~heuler~20110918~269~build1
+x2gotrinitybindings 0.0.0.1+squeeze~heuler~20110917~10~build1
+x2gousbmount 1.0.1.3-0~x2go1+squeeze~heuler~20110918~269~build1
+
+
+-- 
+Paul van der Vlis Linux systeembeheer, Groningen
+<A HREF="http://www.vandervlis.nl">http://www.vandervlis.nl</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002892.html">[X2go-Dev] [X2go-User] Crashing X2go sessions (was Re: x2gobasepath and Debian Lenny)
+</A></li>
+	<LI>Next message: <A HREF="002893.html">[X2go-Dev] [X2go-User] Crashing sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2894">[ date ]</a>
+              <a href="thread.html#2894">[ thread ]</a>
+              <a href="subject.html#2894">[ subject ]</a>
+              <a href="author.html#2894">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

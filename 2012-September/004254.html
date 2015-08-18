@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev]  Printing, x2go, Vservers
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%20Printing%2C%20x2go%2C%20Vservers&In-Reply-To=%3C8CF624C2FFAB995-D24-716FC%40webmail-d081.sysops.aol.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004253.html">
+   <LINK REL="Next"  HREF="004255.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev]  Printing, x2go, Vservers</H1>
+    <B>senrabdet at aol.com</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%20Printing%2C%20x2go%2C%20Vservers&In-Reply-To=%3C8CF624C2FFAB995-D24-716FC%40webmail-d081.sysops.aol.com%3E"
+       TITLE="[X2Go-Dev]  Printing, x2go, Vservers">senrabdet at aol.com
+       </A><BR>
+    <I>Sun Sep 16 19:59:44 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004253.html">[X2Go-Dev] Bug#30: http broker client in X2Go Client: setpass task	does not require old password
+</A></li>
+        <LI>Next message: <A HREF="004255.html">[X2Go-Dev] Printing, x2go, Vservers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4254">[ date ]</a>
+              <a href="thread.html#4254">[ thread ]</a>
+              <a href="subject.html#4254">[ subject ]</a>
+              <a href="author.html#4254">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi All:
+
+Thanks John, Mike.  Thanks for the responses.
+
+1)  Apologize, but don't know how to respond to threads other than to write a new email - assume this is the wrong way to do this.  May be way we set up our profile?  We don't get email responses to questions, and go to archive to retrieve them.  Fix this?
+
+2)  Mike's Response
+
+&quot;Have you read this tutorial? I guess, it still is up-to-date...
+<A HREF="http://www.x2go.org/doku.php/wiki:advanced:multi-node:x2goserver-printing">http://www.x2go.org/doku.php/wiki:advanced:multi-node:x2goserver-printing</A>&quot;
+
+Hi Mike - great suggestion - have seen this tutorial, but didn't occur to us to try it.  We're going to spend a bit more time trying to get single node to work, as figure that may come in handy...but think your suggestion is going to be the way for us to go.
+
+
+3)  John's Response
+
+&quot;Does the CUPS server have rights to write to the client's spool
+directory? Good luck - John&quot;
+
+
+Hi John - how are you?  Good question...spent some time trying to check by comparing server where we connect directly to the x2go server vs. x2go running on a Vserver guest including on both:
+/tmp/.x2go-user1/spool/C-user1-50-1347811312_stDGNOME_dp24 (see below)
+/var/spool/cups
+
+Even if we (assuming no mistakes) make the permissions comparable on both the x2go to x2go server and the x2go to x2go server on Vserver guest on these folders, no joy.
+
+This may be the right track, though....a couple of observations/questions:
+a)  On the box where we connect directly the x2go server (no vserver involved), in the .x2go folder for the user there is a healthy &quot;spool&quot; link - on the vserver example, this link exists but is broken (they both point at /tmp); Bertl at Vserver says this is OK.
+b)  When we try to print, on the working x2goclient to x2goserver (again, no vserver), the /tmp/.x2go-user1/spool/C-user1-50-1347811312_stDGNOME_dp24 folder gets created along with the pdf for the print job.  NOTE:  this does not happen on the x2go client to x2go server on Vserver guest.  I.e., no comparable folder is created.  So this folder which we think gets generated on the fly, only gets generated on the x2go to x2go server (not the instance where we connect to the x2go server on the vserver guest).
+
+Q:  would this be because of permissions?
+
+c)  we get entries in the error_log on the x2go client to x2go server on Vserver guest of:
+E [16/Sep/2012:16:56:12 +0000] Unable to open listen socket for address ::1:631 - Address family not supported by protocol.
+E [16/Sep/2012:16:56:13 +0000] Unable to bind broadcast socket - Address already in use.
+
+Our understanding is that this has to do with IPv6 not working or being set up.  However, when we think we disabled IPv6 using &quot;echo 'blacklist ipv6' &gt;&gt; /etc/modprobe.d/blacklist&quot; the errors disappear but we still can't print.  Does this matter?
+
+We also tried adding some entries to /etc/cups/cupsd.conf like:
+Allow from 127.0.0.1
+Allow from 192.168.1.0/24 #your ip area.
+
+...but nothing changed.
+
+As always, any suggestions appreciated.
+
+Best,
+
+Ted
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120916/00b96de5/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120916/00b96de5/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004253.html">[X2Go-Dev] Bug#30: http broker client in X2Go Client: setpass task	does not require old password
+</A></li>
+	<LI>Next message: <A HREF="004255.html">[X2Go-Dev] Printing, x2go, Vservers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4254">[ date ]</a>
+              <a href="thread.html#4254">[ thread ]</a>
+              <a href="subject.html#4254">[ subject ]</a>
+              <a href="author.html#4254">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

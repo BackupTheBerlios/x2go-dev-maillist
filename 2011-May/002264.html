@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] python-x2go questions when working on Ubuntu Sofware Center
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20python-x2go%20questions%20when%20working%20on%20Ubuntu%20Sofware%0A%20Center&In-Reply-To=%3C1306613805.4069.15.camel%40castiana.lan.sherb.stgraber.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002263.html">
+   <LINK REL="Next"  HREF="002265.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] python-x2go questions when working on Ubuntu Sofware Center</H1>
+    <B>St&#233;phane Graber</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20python-x2go%20questions%20when%20working%20on%20Ubuntu%20Sofware%0A%20Center&In-Reply-To=%3C1306613805.4069.15.camel%40castiana.lan.sherb.stgraber.net%3E"
+       TITLE="[X2go-dev] python-x2go questions when working on Ubuntu Sofware Center">stgraber at ubuntu.com
+       </A><BR>
+    <I>Sat May 28 22:16:34 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002263.html">[X2go-dev] python-x2go questions when working on Ubuntu Sofware Center
+</A></li>
+        <LI>Next message: <A HREF="002265.html">[X2go-dev] added x2goversion script in x2goserver package
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2264">[ date ]</a>
+              <a href="thread.html#2264">[ thread ]</a>
+              <a href="subject.html#2264">[ subject ]</a>
+              <a href="author.html#2264">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, 2011-05-28 at 13:03 +0200, Mike Gabriel wrote:
+&gt;<i> Hi devs,
+</I>&gt;<i> 
+</I>&gt;<i> as you might have observed, Stephane and I are currently trying to get  
+</I>&gt;<i> xkbmap settings through to the server-side x2goagent (Python X2go on  
+</I>&gt;<i> the client-side).
+</I>&gt;<i> 
+</I>&gt;<i> The work is partially python-x2go specific, but also worth a change of  
+</I>&gt;<i> concept, as many X2go users have problems with keyboard settings.
+</I>&gt;<i> 
+</I>&gt;<i> Today I have set up a system with a patched x2gostartagent script. The  
+</I>&gt;<i> script abuses the not-used option $X2GO_KB_LAYOUT. If its value is set  
+</I>&gt;<i> to defkeymap. The x2goagent options file gets changed in this way  
+</I>&gt;<i> (patch for x2gostartagent at the end of this mail):
+</I>&gt;<i> 
+</I>&gt;<i>    o keyboard=defkeymap is added as option
+</I>&gt;<i>    o kbtype=pc105/defkeymap is used
+</I>&gt;<i>    o a keyboard file is placed into ~/.x2go/C-&lt;session_id&gt; on the X2go server
+</I>&gt;<i> 
+</I>&gt;<i> On Sa 28 Mai 2011 01:25:59 CEST Mike Gabriel wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&gt; And I have a &quot;keyboard&quot; file in the NX session directory on the server
+</I>&gt;<i> &gt;&gt; containing:
+</I>&gt;<i> &gt;&gt; rules=evdev
+</I>&gt;<i> &gt;&gt; model=pc105
+</I>&gt;<i> &gt;&gt; layout=us
+</I>&gt;<i> &gt;&gt; variant=altgr-intl
+</I>&gt;<i> &gt;&gt; options=lv3:ralt_switch,grp:alts_toggle
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Which is identical to my laptop's settings at the time I started qtnx.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; I tried with the Swiss French keyboard and got the following &quot;keyboard&quot;
+</I>&gt;<i> &gt;&gt; file:
+</I>&gt;<i> &gt;&gt; rules=evdev
+</I>&gt;<i> &gt;&gt; model=pc105
+</I>&gt;<i> &gt;&gt; layout=ch
+</I>&gt;<i> &gt;&gt; variant=fr
+</I>&gt;<i> &gt;&gt; options=lv3:ralt_switch,grp:alts_toggle
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> 
+</I>&gt;<i> @Stephane: last night my x2goagent options line was still buggy, I  
+</I>&gt;<i> have fixed this now, but no success so far:
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at x2goserver</A>:~/.x2go/C-mike-117-1306579861_stDGNOME_dp24$ cat keyboard
+</I>&gt;<i> rules=evdev
+</I>&gt;<i> model=pc105
+</I>&gt;<i> layout=de
+</I>&gt;<i> variant=nodeadkeys
+</I>&gt;<i> options=
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at x2goserver</A>:~/.x2go/C-mike-117-1306579861_stDGNOME_dp24$ cat options
+</I>&gt;<i> nx/nx,link=adsl,pack=16m-jpeg-9,limit=0,root=/home/mike/.x2go/C-mike-117-1306579861_stDGNOME_dp24,cache=8M,images=32M,type=unix-kde-depth_24,id=mike-117-1306579861_stDGNOME_dp24,cookie=17bdec4e439b3ba0bd8fd0b7cca3659c,errors=/home/mike/.x2go/C-mike-117-1306579861_stDGNOME_dp24/session.log,geometry=1024x768,resize=0,fullscreen=0,accept=localhost,listen=30202,client=linux,menu=0,keyboard=defkeymap,kbtype=pc105/defkeymap:117
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at x2goserver</A>:~/.x2go/C-mike-117-1306579861_stDGNOME_dp24$ xprop  
+</I>&gt;<i> -root _XKB_RULES_NAMES
+</I>&gt;<i> _XKB_RULES_NAMES(STRING) = &quot;xfree86&quot;, &quot;pc105&quot;, &quot;defkeymap&quot;, &quot;&quot;, &quot;&quot;
+</I>&gt;<i> 
+</I>&gt;<i> Do you have a clue with which nxagent version the ,,keyboard'' file  
+</I>&gt;<i> has been introduced into NX?
+</I>&gt;<i> 
+</I>&gt;<i> Best,
+</I>&gt;<i> Mike
+</I>
+Hi,
+
+I just spent a bit of time grepping through the code of the nxagent I
+have on my servers.
+
+Apparently the keyboard file is some trick that was added as a patch in
+FreeNX's code to dump the keyboard configuration received by the agent,
+so not really that useful. (Attached the patch in question to this mail
+if that helps).
+
+So then I played a bit with setxkbmap on my X2go server to check exactly
+what should be set to:
+ 1) Fix the alt-gr issue
+ 2) Make my weird keyboard layouts work (-layout ch -variant fr and
+-layout us and -variant altgr-intl)
+
+Each time playing with setxkbmap and re-checking &quot;xprop -root&quot; to look
+at the result.
+
+First test with my laptop using the US international + alt-gr dead keys
+layout (-layout us -variant altgr-intl):
+ - Initial value on x2go is: &quot;xfree86&quot;, &quot;pc105&quot;, &quot;us&quot;, &quot;&quot;, &quot;&quot;. Layout is
+regular US and alt-gr is broken (acts like ALT is pressed all the time)
+ - setxkbmap -layout us -variant altgr-intl: Dead keys work now but
+alt-gr is still acting like it's pressed all the time.
+ - setxkbmap -rules xfree86: Fixes the alt-gr issue giving me the right
+layout and behaviour.
+
+&quot;xfree86&quot;, &quot;pc105&quot;, &quot;us&quot;, &quot;altgr-intl&quot;, &quot;&quot; is the end working result.
+This can be achieved by running: setxkbmap -layout us -variant
+altgr-intl -rules xfree86
+
+I then tried again with the Swiss French layout, using:
+setxkbmap -layout ch -variant fr -rules xfree86
+
+Which gave a similar result. Adding that line in my .bashrc solved
+pretty much all my layout issues.
+
+Hope it helps!
+
+
+
+Hope it helps!
+
+-- 
+St&#233;phane Graber
+Ubuntu developer
+<A HREF="http://www.ubuntu.com">http://www.ubuntu.com</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 93_export_remote_keyboard_config.dpatch
+Type: application/x-shellscript
+Size: 3056 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110528/4cde58c8/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110528/4cde58c8/attachment.bin</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110528/4cde58c8/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110528/4cde58c8/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002263.html">[X2go-dev] python-x2go questions when working on Ubuntu Sofware Center
+</A></li>
+	<LI>Next message: <A HREF="002265.html">[X2go-dev] added x2goversion script in x2goserver package
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2264">[ date ]</a>
+              <a href="thread.html#2264">[ thread ]</a>
+              <a href="subject.html#2264">[ subject ]</a>
+              <a href="author.html#2264">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

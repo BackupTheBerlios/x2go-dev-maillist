@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] bug#18: bug#18: Connecting via SSH proxy fails after a	control session got disconnected due to network timeouts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20bug%2318%3A%20bug%2318%3A%20Connecting%20via%20SSH%20proxy%20fails%20after%20a%0A%09control%20session%20got%20disconnected%20due%20to%20network%20timeouts&In-Reply-To=%3C1347379783.10456.21.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004206.html">
+   <LINK REL="Next"  HREF="004207.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] bug#18: bug#18: Connecting via SSH proxy fails after a	control session got disconnected due to network timeouts</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20bug%2318%3A%20bug%2318%3A%20Connecting%20via%20SSH%20proxy%20fails%20after%20a%0A%09control%20session%20got%20disconnected%20due%20to%20network%20timeouts&In-Reply-To=%3C1347379783.10456.21.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2Go-Dev] bug#18: bug#18: Connecting via SSH proxy fails after a	control session got disconnected due to network timeouts">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Sep 11 18:09:43 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004206.html">[X2Go-Dev] bug#18: Connecting via SSH proxy fails after a control	session got disconnected due to network timeouts
+</A></li>
+        <LI>Next message: <A HREF="004207.html">[X2Go-Dev] bug#19: Windows version of PyHoca-GUI: test with MS	terminal server as client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4227">[ date ]</a>
+              <a href="thread.html#4227">[ thread ]</a>
+              <a href="subject.html#4227">[ subject ]</a>
+              <a href="author.html#4227">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2012-09-11 at 09:35 +0200, Mike Gabriel wrote:
+&gt;<i> Package: python-x2go
+</I>&gt;<i> Version 0.2.0.9
+</I>&gt;<i> Severity: normal
+</I>&gt;<i> 
+</I>&gt;<i> Python X2Go crashes sometimes...
+</I>&gt;<i> 
+</I>&gt;<i>   1. session established
+</I>&gt;<i>   2. network fails
+</I>&gt;<i>   3. session receives a network timeout
+</I>&gt;<i>   4. session and connection will get taken down by python-x2go code
+</I>&gt;<i>   5. on re-connect and then session restart/resume the below exception pops up
+</I>&gt;<i> 
+</I>&gt;<i> The problem is often seen when SSH proxy connections are used. Not  
+</I>&gt;<i> seen yet with direct SSH connections.
+</I>&gt;<i> 
+</I>&lt;snip&gt;
+It may not be the same problem but there are problems with the
+x2goclient 3.99.2.3 (and 3.0.1-4) with direct SSH connections when the
+network connection drops.  One must wait several minutes before one is
+able to reconnect without problems.  I have not taken the time to
+isolate it yet - John
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004206.html">[X2Go-Dev] bug#18: Connecting via SSH proxy fails after a control	session got disconnected due to network timeouts
+</A></li>
+	<LI>Next message: <A HREF="004207.html">[X2Go-Dev] bug#19: Windows version of PyHoca-GUI: test with MS	terminal server as client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4227">[ date ]</a>
+              <a href="thread.html#4227">[ thread ]</a>
+              <a href="subject.html#4227">[ subject ]</a>
+              <a href="author.html#4227">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

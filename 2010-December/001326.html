@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2GO and SSH
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2GO%20and%20SSH&In-Reply-To=%3C1291308599.3344.7.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001323.html">
+   <LINK REL="Next"  HREF="001333.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2GO and SSH</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2GO%20and%20SSH&In-Reply-To=%3C1291308599.3344.7.camel%40localhost%3E"
+       TITLE="[X2go-dev] X2GO and SSH">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu Dec  2 17:49:59 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001323.html">[X2go-dev] X2GO and SSH
+</A></li>
+        <LI>Next message: <A HREF="001333.html">[X2go-dev] X2GO and SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1326">[ date ]</a>
+              <a href="thread.html#1326">[ thread ]</a>
+              <a href="subject.html#1326">[ subject ]</a>
+              <a href="author.html#1326">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2010-12-02 at 08:10 +0100, Oleksandr Shneyder wrote:
+&gt;<i> --[ UxBoD ]-- schrieb:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Alex, what do the two includes patches to SSH actually do ? I see they set ASKPASS to a different value ?
+</I>&gt;<i> 
+</I>&gt;<i> It force ssh to use program specified in SSH_ASKPASS environment
+</I>&gt;<i> variable  as &quot;askpass&quot; program. In Unix you can do this setting DISPLAY
+</I>&gt;<i> variable and starting ssh with setsid. But in windows the only way was
+</I>&gt;<i> to patch ssh. I think, in release x2go will use libssh instead of ssh.
+</I>&lt;snip&gt;
+Very interesting.  I wonder if that explains the errors Uxbod was
+encountering when trying to use newer ssh versions on Windows.
+
+Uxbod, does plink provide a Windows based ASKPASS facility?
+
+Alex and Heinz, is there any version of X2Go available yet with libssh?
+Using plink (assuming it supports ASKPASS) would require an awful amount
+of hacking and conditional formatting of parameters.  A consistent,
+cross-platform API would be so much easier.  Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001323.html">[X2go-dev] X2GO and SSH
+</A></li>
+	<LI>Next message: <A HREF="001333.html">[X2go-dev] X2GO and SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1326">[ date ]</a>
+              <a href="thread.html#1326">[ thread ]</a>
+              <a href="subject.html#1326">[ subject ]</a>
+              <a href="author.html#1326">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

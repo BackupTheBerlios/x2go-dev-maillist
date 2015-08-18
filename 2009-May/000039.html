@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Testing X2go3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Testing%20X2go3&In-Reply-To=%3C4A1D232C.6070106%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000035.html">
+   <LINK REL="Next"  HREF="000025.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Testing X2go3</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Testing%20X2go3&In-Reply-To=%3C4A1D232C.6070106%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] Testing X2go3">paul at vandervlis.nl
+       </A><BR>
+    <I>Wed May 27 13:25:32 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000035.html">[X2go-dev] Testing X2go3
+</A></li>
+        <LI>Next message: <A HREF="000025.html">[X2go-dev] Contact of X2go-community
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#39">[ date ]</a>
+              <a href="thread.html#39">[ thread ]</a>
+              <a href="subject.html#39">[ subject ]</a>
+              <a href="author.html#39">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Paul van der Vlis schreef:
+&gt;<i> Brian Moss schreef:
+</I>&gt;&gt;<i> Paul did you sort out your problems with resolution?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I tested connecting, not to local host but to an Amazon EC2 instance, and
+</I>&gt;&gt;<i> the text was the same size regardless of the resolution. I tested with
+</I>&gt;&gt;<i> 600x800, 1280x1024 and fullscreen with the Qt client.
+</I>&gt;<i> 
+</I>&gt;<i> Using a resolution of 1280x1024 or full-screen works fine. The 1280x1024
+</I>&gt;<i> resolution ends &quot;maximized&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> So I can start the client full-screen or maximized, but not smaller.
+</I>&gt;<i> When I start it smaller the quality of the fonts is not OK (too big or
+</I>&gt;<i> too small fonts). With both QT and GTK client.
+</I>
+It seems to be an NX problem, and maybe it has to do with the fact that
+I have a resolution of 1680x1050 setting in Gnome.
+
+When I run &quot;xlsfonts | wc -l&quot; on my machine directly and inside an
+x2go-session, I get less fonts inside the session.
+
+I found some information at the Nomachine site about this issue:
+<A HREF="http://www.nomachine.com/tr/view.php?id=TR07F02091">http://www.nomachine.com/tr/view.php?id=TR07F02091</A>
+<A HREF="http://www.nomachine.com/ar/view.php?ar_id=AR04C00198">http://www.nomachine.com/ar/view.php?ar_id=AR04C00198</A>
+
+Newer FreeNX versions have the same problem.
+
+Tomorrow I installed the latest version of FreeNX server on my machine.
+It lookslike it is no problem to run FreeNX and X2go on the same machine.
+
+With regards,
+Paul van der Vlis.
+
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000035.html">[X2go-dev] Testing X2go3
+</A></li>
+	<LI>Next message: <A HREF="000025.html">[X2go-dev] Contact of X2go-community
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#39">[ date ]</a>
+              <a href="thread.html#39">[ thread ]</a>
+              <a href="subject.html#39">[ subject ]</a>
+              <a href="author.html#39">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20concept%20for%20X2go%20session%20lock-down%20to%20kiosk-mode%0A%20%28was%20Re%3A%20X2go%20is%20insecure%29&In-Reply-To=%3C20110401103151.11923egp2csa0dbr%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001973.html">
+   <LINK REL="Next"  HREF="001976.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20concept%20for%20X2go%20session%20lock-down%20to%20kiosk-mode%0A%20%28was%20Re%3A%20X2go%20is%20insecure%29&In-Reply-To=%3C20110401103151.11923egp2csa0dbr%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Apr  1 10:31:51 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001973.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+        <LI>Next message: <A HREF="001976.html">[X2go-dev] concept for X2go session lock-down to	kiosk-mode	(was Re: X2go is insecure)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1975">[ date ]</a>
+              <a href="thread.html#1975">[ thread ]</a>
+              <a href="subject.html#1975">[ subject ]</a>
+              <a href="author.html#1975">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alex, hi Dick,
+
+On Fr 01 Apr 2011 10:07:15 CEST Alexander Wuerstlein wrote:
+
+&gt;&gt;<i> &gt; Maybe this can be achieved also by apparmor, but it looks to me that
+</I>&gt;&gt;<i> &gt; apparmor is intended to secure the entire system which is really not
+</I>&gt;&gt;<i> &gt; what I want. (Or maybe I am mistaken because of lack of knowledge of
+</I>&gt;&gt;<i> &gt; apparmor)
+</I>&gt;<i>
+</I>&gt;<i> I don't think this could be achieved by apparmor. You could try
+</I>&gt;<i> SELinux and I'm sure something working and secure will come out, but its
+</I>&gt;<i> very complex. Imagine the original SSH process (i think you can
+</I>&gt;<i> configure that with pam_selinux) setting a restricted security context
+</I>&gt;<i> that only allows to execute a very restricted set of commands to set up
+</I>&gt;<i> an x2go session (i.e. label all those commands executable for that
+</I>&gt;<i> security context, but not anything else). That x2go session setup then
+</I>&gt;<i> needs the capability to elevate its security context to something more
+</I>&gt;<i> permissive such that a normal application could do its job. But since
+</I>&gt;<i> quite a handful of x2go is written in shell or perl, you will also need
+</I>&gt;<i> to allow those for the restricted security context while ensuring that
+</I>&gt;<i> the user can't do anything out of line. Could work, but its very hard
+</I>&gt;<i> and complex to achieve.
+</I>
+Sorry, I mixed both systems up. I want to refer to SELinux... I  
+haven't work with any of them, and only know them from reading.  
+However, I think the time being invested by someone in a wrapper  
+script (-&gt;Dick...) it could be an alternative option to invest time  
+into SELinux investigation and a generic configuration that hardens  
+the security of an X2go server...
+
+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110401/552e851b/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110401/552e851b/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001973.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+	<LI>Next message: <A HREF="001976.html">[X2go-dev] concept for X2go session lock-down to	kiosk-mode	(was Re: X2go is insecure)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1975">[ date ]</a>
+              <a href="thread.html#1975">[ thread ]</a>
+              <a href="subject.html#1975">[ subject ]</a>
+              <a href="author.html#1975">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

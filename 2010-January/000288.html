@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go client seg fault
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20client%20seg%20fault&In-Reply-To=%3C11638554.261.1264094677783.JavaMail.root%40office.splatnix.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000287.html">
+   <LINK REL="Next"  HREF="000289.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go client seg fault</H1>
+    <B>--[ UxBoD ]--</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20client%20seg%20fault&In-Reply-To=%3C11638554.261.1264094677783.JavaMail.root%40office.splatnix.net%3E"
+       TITLE="[X2go-dev] x2go client seg fault">uxbod at splatnix.net
+       </A><BR>
+    <I>Thu Jan 21 18:24:37 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000287.html">[X2go-dev] x2go client seg fault
+</A></li>
+        <LI>Next message: <A HREF="000289.html">[X2go-dev] x2go client seg fault
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#288">[ date ]</a>
+              <a href="thread.html#288">[ thread ]</a>
+              <a href="subject.html#288">[ subject ]</a>
+              <a href="author.html#288">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- &quot;--[ UxBoD ]--&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">uxbod at splatnix.net</A>&gt; wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> Received latest Ubuntu Karmic patches and X2Go no longer launches :
+</I>&gt;<i> 
+</I>&gt;<i> x2goclient 
+</I>&gt;<i> Can't load translator (:/x2goclient_en_gb) !
+</I>&gt;<i> 
+</I>&gt;<i> Can't load translator (:/qt_en_GB) !
+</I>&gt;<i> 
+</I>&gt;<i> Segmentation fault
+</I>&gt;<i> 
+</I>&gt;<i> My laptop kernel is :
+</I>&gt;<i> 
+</I>&gt;<i> uname -a
+</I>&gt;<i> Linux cyborg 2.6.31-17-generic #54-Ubuntu SMP Thu Dec 10 17:01:44 UTC
+</I>&gt;<i> 2009 x86_64 GNU/Linux
+</I>&gt;<i> 
+</I>&gt;<i> and installed X2Go binaries :
+</I>&gt;<i> 
+</I>&gt;<i> dpkg -l | grep x2go
+</I>&gt;<i> ii  nxcompshad                            3.4.0-1-1                   
+</I>&gt;<i>               nx based library needed by the x2go system
+</I>&gt;<i> ii  pinentry-x2go                         0.7.5-2                     
+</I>&gt;<i>               Qt4-based PIN or pass-phrase entry dialog fo
+</I>&gt;<i> ii  x2goagent                             3.4.0-3-1                   
+</I>&gt;<i>               Special NX-ized client, was developed by NoM
+</I>&gt;<i> ii  x2goclient                            3.01-5                      
+</I>&gt;<i>               x2goclient qt4 client
+</I>&gt;<i> ii  x2goprint                             3.0.0-1                     
+</I>&gt;<i>               x2goprint command
+</I>&gt;<i> ii  x2goserver                            3.0.1-5                     
+</I>&gt;<i>               x2goserver (daemon and tools)
+</I>&gt;<i> 
+</I>&gt;<i> Anyway to capture a backtrace ?
+</I>&gt;<i> 
+</I>
+Stracing the process I see :
+
+[    7f0b2acd1e85] stat(&quot;/home/uxbod/.x2go/ssh/socaskpass-j16226&quot;, 0x2d129b8) = -1 ENOENT (No such file or directory)
+[    7f0b2acd1f25] lstat(&quot;/home/uxbod/.x2go/ssh/socaskpass-j16226&quot;, 0x7fff81a1c730) = -1 ENOENT (No such file or directory)
+[    7f0b2acd41c7] unlink(&quot;/home/uxbod/.x2go/ssh/socaskpass-j16226&quot;) = -1 ENOENT (No such file or directory)
+[    7f0b2acd41c7] unlink(&quot;/home/uxbod/.x2go/ssh/socaskpass-j16226.log&quot;) = 0
+[    7f0b2acd1e85] stat(&quot;/home/uxbod/.x2goclient/sessions&quot;, {st_mode=S_IFREG|0644, st_size=1041, ...}) = 0
+[    7f0b2acd273b] open(&quot;/home/uxbod/.x2goclient/sessions&quot;, O_RDONLY) = 20
+[    7f0b2acd1ed4] fstat(20, {st_mode=S_IFREG|0644, st_size=1041, ...}) = 0
+[    7f0b2b7291f7] fcntl(20, F_SETFD, FD_CLOEXEC) = 0
+[    7f0b2acd2a10] close(20)            = 0
+[    7f0b2acd1e85] stat(&quot;/home/uxbod/.x2goclient/sessions&quot;, {st_mode=S_IFREG|0644, st_size=1041, ...}) = 0
+[    7f0b2acd1e85] stat(&quot;/home/uxbod/.x2goclient/sessions&quot;, {st_mode=S_IFREG|0644, st_size=1041, ...}) = 0
+[    7f0b2acd1e85] stat(&quot;/etc/localtime&quot;, {st_mode=S_IFREG|0644, st_size=3661, ...}) = 0
+[    7f0b2b9d8767] --- SIGSEGV (Segmentation fault) @ 0 (0) ---
+upeek: ptrace(PTRACE_PEEKUSER,16226,128,0): No such process
+[????????????????] +++ killed by SIGSEGV +++
+
+-- 
+Thanks, Phil
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000287.html">[X2go-dev] x2go client seg fault
+</A></li>
+	<LI>Next message: <A HREF="000289.html">[X2go-dev] x2go client seg fault
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#288">[ date ]</a>
+              <a href="thread.html#288">[ thread ]</a>
+              <a href="subject.html#288">[ subject ]</a>
+              <a href="author.html#288">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

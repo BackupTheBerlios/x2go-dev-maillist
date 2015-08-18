@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20concept%20for%20X2go%20session%20lock-down%20to%20kiosk-mode%0A%20%28was%20Re%3A%20X2go%20is%20insecure%29&In-Reply-To=%3Cvmime.4d951fdd.80e.4126aced5222fb9b%40mail.pl20%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001970.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)</H1>
+    <B>Dick Kniep</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20concept%20for%20X2go%20session%20lock-down%20to%20kiosk-mode%0A%20%28was%20Re%3A%20X2go%20is%20insecure%29&In-Reply-To=%3Cvmime.4d951fdd.80e.4126aced5222fb9b%40mail.pl20%3E"
+       TITLE="[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)">dick.kniep at lindix.nl
+       </A><BR>
+    <I>Fri Apr  1 02:44:13 CEST 2011</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001970.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1969">[ date ]</a>
+              <a href="thread.html#1969">[ thread ]</a>
+              <a href="subject.html#1969">[ subject ]</a>
+              <a href="author.html#1969">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi list,
+
+&#160;
+
+Reading all comments on my stone in the pond I still think it is not really clear what the problem is (and my proposed solution)
+
+
+I do not want to secure the entire server. I only want a door that can be locked. So I allow a user to use the terminal. Okay he is allowed to use the terminal and so he can do anything he likes. No problem. 
+
+&#160;
+
+Or I say on the server the user may only use program XYZ. XYZ starts and that is all. If XYZ deletes my system that is Okay by me. The user had access to that program and that is it.
+
+&#160;
+
+This can be enforced by my simple solution. From the client a command is sent, say &quot;Start terminal&quot;. Then in the wrapper, the user is matched with the command and if the match exists, the command is allowed and is executed. If not, the request is rejected.
+
+&#160;
+
+Maybe this can be achieved also by apparmor, but it looks to me that apparmor is intended to secure the entire system which is really not what I want. (Or maybe I am mistaken because of lack of knowledge of apparmor)
+
+&#160;
+
+Dick Kniep
+
+&#160;
+&#160;
+-----Oorspronkelijk bericht-----
+Van: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+Verzonden: wo 30-03-11 20:22:45
+Aan: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>; Dick Kniep &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">dick.kniep at lindix.nl</A>&gt;; 
+Onderwerp: Re: [X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+
+Hi Dick,
+
+On Mi 30 M&#228;r 2011 18:46:49 CEST Dick Kniep wrote:
+
+&gt;<i> We have developed the wrapper that does exactly what I describe &#160;
+</I>&gt;<i> here. Currently it is lacking a screen where an authorized user can &#160;
+</I>&gt;<i> change the authorization db, but that will come on short notice.
+</I>&gt;<i>
+</I>&gt;<i> I hope it is a little clearer now what the problem is and how it can &#160;
+</I>&gt;<i> be solved.
+</I>
+What I have been thinking the last day is that it might be much more &#160;
+generic and by far more effective to use the apparmor tool for this &#160;
+kind of lock-down. However, I have never played with apparmor, only in &#160;
+cases when the rules package maintainers had included in their &#160;
+packages were too strict...
+
+Greets,
+Mike
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A> 
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110401/5249156c/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110401/5249156c/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001970.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1969">[ date ]</a>
+              <a href="thread.html#1969">[ thread ]</a>
+              <a href="subject.html#1969">[ subject ]</a>
+              <a href="author.html#1969">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

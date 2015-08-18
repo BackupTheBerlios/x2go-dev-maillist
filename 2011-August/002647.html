@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] rename of x2godesktopsharing group
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20rename%20of%20x2godesktopsharing%20group&In-Reply-To=%3C20110802165948.11765tp7ek0bdzok%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002646.html">
+   <LINK REL="Next"  HREF="002648.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] rename of x2godesktopsharing group</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20rename%20of%20x2godesktopsharing%20group&In-Reply-To=%3C20110802165948.11765tp7ek0bdzok%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] rename of x2godesktopsharing group">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Aug  2 16:59:48 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002646.html">[X2go-Dev] rename of x2godesktopsharing group
+</A></li>
+        <LI>Next message: <A HREF="002648.html">[X2go-Dev] rename of x2godesktopsharing group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2647">[ date ]</a>
+              <a href="thread.html#2647">[ thread ]</a>
+              <a href="subject.html#2647">[ subject ]</a>
+              <a href="author.html#2647">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Di 02 Aug 2011 16:46:56 CEST Reinhard Tartler wrote:
+
+&gt;<i> On Tue, Aug 02, 2011 at 15:41:55 (CEST), Mike Gabriel wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hi Morty,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Di 02 Aug 2011 15:28:57 CEST Moritz Struebe wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> What is the rationale for the extra group? Is there a good reason for
+</I>&gt;&gt;&gt;<i> disallowing someone to share his/her desktop?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> the desktopsharing is a tricky feature anyway as it grants many ways
+</I>&gt;&gt;<i> for a user who is allowed to share another's desktop to manipulate the
+</I>&gt;&gt;<i> user profile.
+</I>&gt;<i>
+</I>&gt;<i> This sounds to me as desktop sharing was a somewhat insecure feature
+</I>&gt;<i> anyway. In this case, why do you rely on a system group instead of for
+</I>&gt;<i> instance maintaining a /etc/x2go/allowdesktopshareing.users file that
+</I>&gt;<i> contains all users that are allowed to use the feature?
+</I>
+x2godesktopsharing falls into a daemon (in user space) and a client  
+(the systray)--I think it is this way around. And these two  
+communicate via a socket file. And the write access is granted by  
+group membership. No group membership, no desktop access.
+
+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110802/91f8ce28/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110802/91f8ce28/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002646.html">[X2go-Dev] rename of x2godesktopsharing group
+</A></li>
+	<LI>Next message: <A HREF="002648.html">[X2go-Dev] rename of x2godesktopsharing group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2647">[ date ]</a>
+              <a href="thread.html#2647">[ thread ]</a>
+              <a href="subject.html#2647">[ subject ]</a>
+              <a href="author.html#2647">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

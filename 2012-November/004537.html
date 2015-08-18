@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2go without root on server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20without%20root%20on%20server&In-Reply-To=%3C20121109101216.74731p1de2b3nxm8%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004536.html">
+   <LINK REL="Next"  HREF="004538.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2go without root on server</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20without%20root%20on%20server&In-Reply-To=%3C20121109101216.74731p1de2b3nxm8%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] x2go without root on server">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Nov  9 10:12:16 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004536.html">[X2Go-Dev] x2go without root on server
+</A></li>
+        <LI>Next message: <A HREF="004538.html">[X2Go-Dev] x2go without root on server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4537">[ date ]</a>
+              <a href="thread.html#4537">[ thread ]</a>
+              <a href="subject.html#4537">[ subject ]</a>
+              <a href="author.html#4537">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Ralf,
+
+On Fr 09 Nov 2012 09:56:19 CET Ralf Hemmecke wrote:
+
+&gt;&gt;&gt;<i> Now could you even tell me approximatly in which files I would  
+</I>&gt;&gt;&gt;<i> have to look?
+</I>&gt;<i>
+</I>&gt;&gt;<i> /usr/lib/x2go/* They are less then 2000 lines of code!
+</I>&gt;<i>
+</I>&gt;<i> Oh, I thought, you would rather point me to the respective source files
+</I>&gt;<i> which (most probably) lives in x2goserver.git.
+</I>
+x2goserver.git/x2goserver/lib/ for the 3.1.1.x release series (Git branch).
+
+Note that in current master I currently refactor the code into proper  
+Perl modules. This will be easier to fork for user space X2Go, I  
+presume. I'd recommend to stick to the 3.1.1.x stuff for now.
+
+&gt;<i> If I want to provide a patch for upstream, I should probably look there.
+</I>
+If you want to provide a patch, then you have to handle the Perl  
+module based code in the master branch, I guess. However, this is in  
+the middle of transition, currently.
+
+&gt;<i> Since the install procedure might put quite a lot of (even unrelated)
+</I>&gt;<i> things into /usr/lib/ , may I ask whether there is (apart from the
+</I>&gt;<i> debian binary installation procedure) some script or Makefile that is
+</I>&gt;<i> responsible for putting everything in place?
+</I>
+Yes, there is a Makefile:
+
+   x2goserver.git/x2goserver/Makefile
+
+&gt;<i> In fact, I'd like to know what the usual way to *compile* and to
+</I>&gt;<i> *install* x2goserver (or anything that I would need for userspace
+</I>&gt;<i> installation) actually is. I'd like to start compiling and installing
+</I>&gt;<i> x2goserver from the git repository sources as foouser in his $HOME. So
+</I>&gt;<i> as a first step I'd like to disregard all debian specific installation
+</I>&gt;<i> parts.
+</I>
+   $ git clone <A HREF="git://code.x2go.org/x2goserver.git">git://code.x2go.org/x2goserver.git</A>
+   $ cd x2goserver
+   $ make &amp;&amp; sudo make install
+
+&gt;<i> Am I right that x2goserver uses the standard
+</I>&gt;<i>
+</I>&gt;<i>   cd x2goserver; ./configure &amp;&amp; make &amp;&amp; make install
+</I>
+No configure script, yet!!!
+
+&gt;<i> ? The INSTALL file in that directory doesn't say something about
+</I>&gt;<i> &quot;configure&quot;, but that's probably because it refers to the enduser that
+</I>&gt;<i> extracts x2goserver from a tar.gz file and not from the git repository.
+</I>
+The enduser hopefully can install X2Go server from one of the  
+available distro archives...
+
+&gt;<i> Anyway, I'll probably have to introduce a configure file to later allow
+</I>&gt;<i> &quot;--prefix=/installation/directory&quot; as argument. Can upstream live with
+</I>&gt;<i> that our should it rather be avoided?
+</I>
+If the configure file works for system-wide installations, then yes.
+
+I guess, that you are aware that you have to test both cases (user  
+space X2Go and system-wide X2Go). So, I guess, now it is time to power  
+up your virtualization software and get x2goserver installed before  
+starting to re-code it.
+
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121109/e12632a1/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121109/e12632a1/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004536.html">[X2Go-Dev] x2go without root on server
+</A></li>
+	<LI>Next message: <A HREF="004538.html">[X2Go-Dev] x2go without root on server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4537">[ date ]</a>
+              <a href="thread.html#4537">[ thread ]</a>
+              <a href="subject.html#4537">[ subject ]</a>
+              <a href="author.html#4537">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

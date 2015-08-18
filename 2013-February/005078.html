@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go Session Broker development release 0.0.0.3 -&gt; happy testing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Session%20Broker%20development%20release%200.0.0.3%20-%3E%0A%20happy%20testing&In-Reply-To=%3CCAFJm-UPcjF0Xc%2BwmVFpM7BJWit%2BQN_Eame_3LPJZLUoGT84p1Q%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005073.html">
+   <LINK REL="Next"  HREF="005085.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go Session Broker development release 0.0.0.3 -&gt; happy testing</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Session%20Broker%20development%20release%200.0.0.3%20-%3E%0A%20happy%20testing&In-Reply-To=%3CCAFJm-UPcjF0Xc%2BwmVFpM7BJWit%2BQN_Eame_3LPJZLUoGT84p1Q%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] X2Go Session Broker development release 0.0.0.3 -&gt; happy testing">abo at dsl.dk
+       </A><BR>
+    <I>Wed Feb 27 10:43:24 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005073.html">[X2Go-Dev] X2Go Session Broker development release 0.0.0.3 -&gt; happy testing
+</A></li>
+        <LI>Next message: <A HREF="005085.html">[X2Go-Dev] X2Go Session Broker development release 0.0.0.3 -&gt; happy testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5078">[ date ]</a>
+              <a href="thread.html#5078">[ thread ]</a>
+              <a href="subject.html#5078">[ subject ]</a>
+              <a href="author.html#5078">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On a freshly installed Ubuntu 12.04:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">abo at x2go-broker</A>:~$ sudo aptitude install x2gobroker-daemon
+The following NEW packages will be installed:
+  libpq5{a} python-cheetah{a} python-egenix-mxdatetime{a}
+python-egenix-mxtools{a} python-flup{a} python-netaddr{a} python-pampy{a}
+python-psycopg2{a} python-setproctitle{a} python-webpy{a}
+  python-x2gobroker{a} x2gobroker{a} x2gobroker-authservice{a}
+x2gobroker-daemon
+0 packages upgraded, 14 newly installed, 0 to remove and 0 not upgraded.
+Need to get 2.045 kB of archives. After unpacking 9.460 kB will be used.
+Do you want to continue? [Y/n/?]
+Get: 1 <A HREF="http://dk.archive.ubuntu.com/ubuntu/">http://dk.archive.ubuntu.com/ubuntu/</A> precise-updates/main libpq5
+amd64 9.1.8-0ubuntu12.04 [97,5 kB]
+Get: 2 <A HREF="http://dk.archive.ubuntu.com/ubuntu/">http://dk.archive.ubuntu.com/ubuntu/</A> precise/main python-cheetah
+amd64 2.4.4-2ubuntu3 [174 kB]
+Get: 3 <A HREF="http://dk.archive.ubuntu.com/ubuntu/">http://dk.archive.ubuntu.com/ubuntu/</A> precise/main
+python-egenix-mxtools amd64 3.2.1-1ubuntu1 [89,1 kB]
+Get: 4 <A HREF="http://dk.archive.ubuntu.com/ubuntu/">http://dk.archive.ubuntu.com/ubuntu/</A> precise/main
+python-egenix-mxdatetime amd64 3.2.1-1ubuntu1 [79,3 kB]
+Get: 5 <A HREF="http://ppa.launchpad.net/x2go/ppa/ubuntu/">http://ppa.launchpad.net/x2go/ppa/ubuntu/</A> precise/main python-pampy
+all 0.1.4-0~2~precise1 [5.038 B]
+Get: 6 <A HREF="http://dk.archive.ubuntu.com/ubuntu/">http://dk.archive.ubuntu.com/ubuntu/</A> precise/universe python-flup
+all 1.0.2-1 [48,4 kB]
+Get: 7 <A HREF="http://ppa.launchpad.net/x2go/ppa/ubuntu/">http://ppa.launchpad.net/x2go/ppa/ubuntu/</A> precise/main python-webpy
+all 1:0.37+20120626-0~2+build2~precise1 [96,1 kB]
+Get: 8 <A HREF="http://dk.archive.ubuntu.com/ubuntu/">http://dk.archive.ubuntu.com/ubuntu/</A> precise/main python-netaddr all
+0.7.5-4build2 [1.181 kB]
+Get: 9 <A HREF="http://dk.archive.ubuntu.com/ubuntu/">http://dk.archive.ubuntu.com/ubuntu/</A> precise/main python-psycopg2
+amd64 2.4.5-1 [153 kB]
+Get: 10 <A HREF="http://dk.archive.ubuntu.com/ubuntu/">http://dk.archive.ubuntu.com/ubuntu/</A> precise/universe
+python-setproctitle amd64 1.0.1-1ubuntu1 [9.486 B]
+Get: 11 <A HREF="http://ppa.launchpad.net/x2go/ppa/ubuntu/">http://ppa.launchpad.net/x2go/ppa/ubuntu/</A> precise/main
+python-x2gobroker all 0.0.0.4-0~222~precise1 [50,3 kB]
+Get: 12 <A HREF="http://ppa.launchpad.net/x2go/ppa/ubuntu/">http://ppa.launchpad.net/x2go/ppa/ubuntu/</A> precise/main x2gobroker
+all 0.0.0.4-0~222~precise1 [21,7 kB]
+Get: 13 <A HREF="http://ppa.launchpad.net/x2go/ppa/ubuntu/">http://ppa.launchpad.net/x2go/ppa/ubuntu/</A> precise/main
+x2gobroker-authservice all 0.0.0.4-0~222~precise1 [20,4 kB]
+Get: 14 <A HREF="http://ppa.launchpad.net/x2go/ppa/ubuntu/">http://ppa.launchpad.net/x2go/ppa/ubuntu/</A> precise/main
+x2gobroker-daemon all 0.0.0.4-0~222~precise1 [19,0 kB]
+Fetched 2.045 kB in 0s (6.529 kB/s)
+Selecting previously unselected package libpq5.
+(Reading database ... 49411 files and directories currently installed.)
+Unpacking libpq5 (from .../libpq5_9.1.8-0ubuntu12.04_amd64.deb) ...
+Selecting previously unselected package python-cheetah.
+Unpacking python-cheetah (from .../python-cheetah_2.4.4-2ubuntu3_amd64.deb)
+...
+Selecting previously unselected package python-egenix-mxtools.
+Unpacking python-egenix-mxtools (from
+.../python-egenix-mxtools_3.2.1-1ubuntu1_amd64.deb) ...
+Selecting previously unselected package python-egenix-mxdatetime.
+Unpacking python-egenix-mxdatetime (from
+.../python-egenix-mxdatetime_3.2.1-1ubuntu1_amd64.deb) ...
+Selecting previously unselected package python-flup.
+Unpacking python-flup (from .../python-flup_1.0.2-1_all.deb) ...
+Selecting previously unselected package python-netaddr.
+Unpacking python-netaddr (from .../python-netaddr_0.7.5-4build2_all.deb) ...
+Selecting previously unselected package python-pampy.
+Unpacking python-pampy (from .../python-pampy_0.1.4-0~2~precise1_all.deb)
+...
+Selecting previously unselected package python-psycopg2.
+Unpacking python-psycopg2 (from .../python-psycopg2_2.4.5-1_amd64.deb) ...
+Selecting previously unselected package python-webpy.
+Unpacking python-webpy (from
+.../python-webpy_1%3a0.37+20120626-0~2+build2~precise1_all.deb) ...
+Selecting previously unselected package python-x2gobroker.
+Unpacking python-x2gobroker (from
+.../python-x2gobroker_0.0.0.4-0~222~precise1_all.deb) ...
+Selecting previously unselected package python-setproctitle.
+Unpacking python-setproctitle (from
+.../python-setproctitle_1.0.1-1ubuntu1_amd64.deb) ...
+Selecting previously unselected package x2gobroker.
+Unpacking x2gobroker (from .../x2gobroker_0.0.0.4-0~222~precise1_all.deb)
+...
+Selecting previously unselected package x2gobroker-authservice.
+Unpacking x2gobroker-authservice (from
+.../x2gobroker-authservice_0.0.0.4-0~222~precise1_all.deb) ...
+Selecting previously unselected package x2gobroker-daemon.
+Unpacking x2gobroker-daemon (from
+.../x2gobroker-daemon_0.0.0.4-0~222~precise1_all.deb) ...
+Processing triggers for man-db ...
+Processing triggers for ureadahead ...
+ureadahead will be reprofiled on next reboot
+Setting up libpq5 (9.1.8-0ubuntu12.04) ...
+Setting up python-cheetah (2.4.4-2ubuntu3) ...
+Setting up python-egenix-mxtools (3.2.1-1ubuntu1) ...
+Setting up python-egenix-mxdatetime (3.2.1-1ubuntu1) ...
+Setting up python-flup (1.0.2-1) ...
+Setting up python-netaddr (0.7.5-4build2) ...
+Setting up python-pampy (0.1.4-0~2~precise1) ...
+Setting up python-psycopg2 (2.4.5-1) ...
+Setting up python-webpy (1:0.37+20120626-0~2+build2~precise1) ...
+Setting up python-x2gobroker (0.0.0.4-0~222~precise1) ...
+Setting up python-setproctitle (1.0.1-1ubuntu1) ...
+Setting up x2gobroker (0.0.0.4-0~222~precise1) ...
+Setting up x2gobroker-authservice (0.0.0.4-0~222~precise1) ...
+chown: invalid user: `nogroup:x2gobroker'
+invoke-rc.d: initscript x2gobroker-authservice, action &quot;start&quot; failed.
+dpkg: error processing x2gobroker-authservice (--configure):
+ subprocess installed post-installation script returned error exit status 1
+Setting up x2gobroker-daemon (0.0.0.4-0~222~precise1) ...
+Creating x2gobroker group.
+Adding group `x2gobroker' (GID 113) ...
+Done.
+Creating x2gobroker user.
+Adding system user `x2gobroker' (UID 106) ...
+Adding new user `x2gobroker' (UID 106) with group `x2gobroker' ...
+Creating home directory `/var/lib/x2go' ...
+ * Starting X2Go Session Broker standalone daemon x2gobroker
+
+                                               [ OK ]
+Processing triggers for libc-bin ...
+ldconfig deferred processing now taking place
+Processing triggers for python-support ...
+Errors were encountered while processing:
+ x2gobroker-authservice
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+A package failed to install.  Trying to recover:
+Setting up x2gobroker-authservice (0.0.0.4-0~222~precise1) ...
+ * Starting X2Go Broker Authentication Service x2gobroker-authservice
+
+                                              [ OK ]
+
+I have tracked down the problem to line 41 in the source:
+debian/x2gobroker-authservice.init:
+
+ 40 if ! getent group $X2GOBROKER_DAEMON_GROUP 1&gt;/dev/null 2&gt;/dev/null; then
+ 41         X2GOBROKER_DAEMON_USER=nogroup
+ 42 fi
+
+It should set X2GOBROKER_DAEMON_GROUP, not X2GOBROKER_DAEMON_USER.
+
+
+
+2013/2/23 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+
+&gt;<i> Hi Jan,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Sa 23 Feb 2013 13:08:48 CET Jan Engelhardt wrote:
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i> On Thursday 2013-02-21 22:33, Mike Gabriel wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I have today released another development release of the generic X2Go
+</I>&gt;&gt;&gt;<i> Session
+</I>&gt;&gt;&gt;<i> Broker.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Executing(%build): /bin/sh -e /var/tmp/rpm-tmp.vQN91z
+</I>&gt;&gt;<i> + umask 022
+</I>&gt;&gt;<i> + cd /home/abuild/rpmbuild/BUILD
+</I>&gt;&gt;<i> + /usr/bin/rm -rf /home/abuild/rpmbuild/**BUILDROOT/x2gobroker-0.0.0.3-**
+</I>&gt;&gt;<i> 0.x86_64
+</I>&gt;&gt;<i> ++ dirname /home/abuild/rpmbuild/**BUILDROOT/x2gobroker-0.0.0.3-**
+</I>&gt;&gt;<i> 0.x86_64
+</I>&gt;&gt;<i> + /usr/bin/mkdir -p /home/abuild/rpmbuild/**BUILDROOT
+</I>&gt;&gt;<i> + /usr/bin/mkdir /home/abuild/rpmbuild/**BUILDROOT/x2gobroker-0.0.0.3-**
+</I>&gt;&gt;<i> 0.x86_64
+</I>&gt;&gt;<i> + cd x2gobroker-0.0.0.3
+</I>&gt;&gt;<i> + make -j10
+</I>&gt;&gt;<i> rm -f lib/x2gobroker-agent
+</I>&gt;&gt;<i> make -f Makefile.perl realclean
+</I>&gt;&gt;<i> cc -fPIE -pie -o lib/x2gobroker-agent src/x2gobroker-agent.c
+</I>&gt;&gt;<i> make[1]: Entering directory `/home/abuild/rpmbuild/BUILD/**
+</I>&gt;&gt;<i> x2gobroker-0.0.0.3'
+</I>&gt;&gt;<i> make[1]: Makefile.perl: No such file or directory
+</I>&gt;&gt;<i> make[1]: warning: jobserver unavailable: using -j1.  Add `+' to parent
+</I>&gt;&gt;<i> make rule.
+</I>&gt;&gt;<i> make[1]: *** No rule to make target `Makefile.perl'.  Stop.
+</I>&gt;&gt;<i> make[1]: Leaving directory `/home/abuild/rpmbuild/BUILD/**
+</I>&gt;&gt;<i> x2gobroker-0.0.0.3'
+</I>&gt;&gt;<i> make: [clean_indep] Error 2 (ignored)
+</I>&gt;&gt;<i> + exit 0
+</I>&gt;&gt;<i> Executing(%install): /bin/sh -e /var/tmp/rpm-tmp.tYyr9H
+</I>&gt;&gt;<i> + umask 022
+</I>&gt;&gt;<i> + cd /home/abuild/rpmbuild/BUILD
+</I>&gt;&gt;<i> + cd x2gobroker-0.0.0.3
+</I>&gt;&gt;<i> + make install DESTDIR=/home/abuild/rpmbuild/**
+</I>&gt;&gt;<i> BUILDROOT/x2gobroker-0.0.0.3-**0.x86_64
+</I>&gt;&gt;<i> make -f Makefile.perl install
+</I>&gt;&gt;<i> make[1]: Entering directory `/home/abuild/rpmbuild/BUILD/**
+</I>&gt;&gt;<i> x2gobroker-0.0.0.3'
+</I>&gt;&gt;<i> make[1]: Makefile.perl: No such file or directory
+</I>&gt;&gt;<i> make[1]: *** No rule to make target `Makefile.perl'.  Stop.
+</I>&gt;&gt;<i> make[1]: Leaving directory `/home/abuild/rpmbuild/BUILD/**
+</I>&gt;&gt;<i> x2gobroker-0.0.0.3'
+</I>&gt;&gt;<i> make: *** [install] Error 2
+</I>&gt;&gt;<i> error: Bad exit status from /var/tmp/rpm-tmp.tYyr9H (%install)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> RPM build errors:
+</I>&gt;&gt;<i>     Bad exit status from /var/tmp/rpm-tmp.tYyr9H (%install)
+</I>&gt;&gt;<i> ______________________________**_________________
+</I>&gt;&gt;<i> X2Go-Dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/**mailman/listinfo/x2go-dev&lt;https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/**mailman/listinfo/x2go-dev&lt;https://lists.berlios.de/mailman/listinfo/x2go-dev</A>&gt;
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> The Makefile is totally incomplete. Before packaging it for other (more
+</I>&gt;<i> Makefile dependend) distros (than distros with the .deb format), we have to
+</I>&gt;<i> write the Makefile.
+</I>&gt;<i>
+</I>&gt;<i> I will do this later, however, if you provide a patch, I will be very
+</I>&gt;<i> happy.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+</I>&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130227/a32d1633/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130227/a32d1633/attachment.html</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005073.html">[X2Go-Dev] X2Go Session Broker development release 0.0.0.3 -&gt; happy testing
+</A></li>
+	<LI>Next message: <A HREF="005085.html">[X2Go-Dev] X2Go Session Broker development release 0.0.0.3 -&gt; happy testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5078">[ date ]</a>
+              <a href="thread.html#5078">[ thread ]</a>
+              <a href="subject.html#5078">[ subject ]</a>
+              <a href="author.html#5078">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

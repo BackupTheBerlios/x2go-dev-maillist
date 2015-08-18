@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go with likewise-open (ldap) questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CAANLkTik_s63cF2k8YcdsHjsmAtKvuedPg1-FTUbnN_Ar%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001404.html">
+   <LINK REL="Next"  HREF="001406.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go with likewise-open (ldap) questions</H1>
+    <B>Ivan Boyadzhiev</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CAANLkTik_s63cF2k8YcdsHjsmAtKvuedPg1-FTUbnN_Ar%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] x2go with likewise-open (ldap) questions">ivancho.b at gmail.com
+       </A><BR>
+    <I>Fri Dec 17 15:47:52 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001404.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+        <LI>Next message: <A HREF="001406.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1405">[ date ]</a>
+              <a href="thread.html#1405">[ thread ]</a>
+              <a href="subject.html#1405">[ subject ]</a>
+              <a href="author.html#1405">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Neil,
+
+2010/12/17 Neil W. Hunt &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">nwhunt at vsticorp.com</A>&gt;
+
+&gt;<i> Ok, another update after 24 hours more of trial-and-error:
+</I>&gt;<i>
+</I>&gt;<i> I have tried many combinations and STILL no gnome desktop for Likewise
+</I>&gt;<i> users! I don't understand it, I have tried:
+</I>&gt;<i> -10.10 maverick with Likewise 6.0 and x2goserver-one 3.01-1
+</I>&gt;<i> -10.10 maverick with Likewise 5.3 and x2goserver-home 3.01-1
+</I>&gt;<i> -10.04 lucid with Likewise 5.4 and x2goserver 3.01-5
+</I>&gt;<i>
+</I>&gt;<i> Also, I have tried using unspecified domain and default domain (e.g. either
+</I>&gt;<i> &quot;DOMAIN\username&quot; or just &quot;username&quot; when using default domain), same result
+</I>&gt;<i> either way. Authentiction is successful, but no desktop!
+</I>&gt;<i>
+</I>&gt;<i> And every time, perfect success with local users (full GNOME desktop),
+</I>&gt;<i> blank/black screen with Likewise users, no matter what x2go client (Linux,
+</I>&gt;<i> Mac, Windows, 3.01-04 all the way through latest 3.01-14)
+</I>&gt;<i>
+</I>&gt;<i> Ivan, you are for certain using 10.10 maverick and LW 5.4 and x2goserver
+</I>&gt;<i> (not home/one) and you have never seen this black screen issue at all?
+</I>&gt;<i>
+</I>&gt;<i> I'm determined to get this working as I know we will have audio if we can
+</I>&gt;<i> get it!
+</I>&gt;<i>
+</I>&gt;<i>
+</I>I've finally managed to reproduce your problem :). I've just received black
+screen, no sound just after my login. Test it, and it is happening every
+time under specific circumstances. What are they?
+I'm using:
+- Ubuntu 10.10 x2goserver 3.01-5 and 3.01-1 as written above as server
+- Likewise-open 6.0.0-1 (dpkg -l | grep likewise) as LDAP, joined with
+default Domain
+- Windows 7 with x2goclient 3.01-13 as client
+
+As result when I login with:
+* <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">USERNAME at DOMAIN</A> (although it is already defined as default in
+Likewise-open), I face black screen, no sound, and the display at the title
+is nowhere in the server side
+* USERNAME, I can login successfully with sound, folder share, terminate,
+etc...
+
+Please, check at your end. I have never faced this problem with
+Likewise-open 5, even when I had always to login with <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">USERNAME at DOMAIN</A> there,
+as there doesn't have default domain join.
+
+P.S. It is good side that I had experienced that, and that I can reproduce
+it, as I could make future investigations of your problem.
+
+Best Regards
+Ivan
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101217/8c176ae3/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101217/8c176ae3/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001404.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+	<LI>Next message: <A HREF="001406.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1405">[ date ]</a>
+              <a href="thread.html#1405">[ thread ]</a>
+              <a href="subject.html#1405">[ subject ]</a>
+              <a href="author.html#1405">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

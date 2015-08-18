@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] RPMs for RH6
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20RPMs%20for%20RH6&In-Reply-To=%3CE789B060-2944-4627-8D37-B011054294CA%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003248.html">
+   <LINK REL="Next"  HREF="003267.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] RPMs for RH6</H1>
+    <B>Bogdan-Andrei Taru</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20RPMs%20for%20RH6&In-Reply-To=%3CE789B060-2944-4627-8D37-B011054294CA%40gmail.com%3E"
+       TITLE="[X2go-Dev] RPMs for RH6">bogdan.taru at gmail.com
+       </A><BR>
+    <I>Fri Jan 27 14:54:43 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003248.html">[X2go-Dev] RPMs for RH6
+</A></li>
+        <LI>Next message: <A HREF="003267.html">[X2go-Dev] RPMs for RH6
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3265">[ date ]</a>
+              <a href="thread.html#3265">[ thread ]</a>
+              <a href="subject.html#3265">[ subject ]</a>
+              <a href="author.html#3265">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+
+thanks for the fast answer! I can package the X2GO Server all rite, but I run into the following error after installing it (I'm trying to test it). I'm a newbie to X2Go, so sorry for asking obvious questions.
+
+I've installed X2GO, Postgres, I created the DB and User with x2godbadmin --createdb and --adduser, and I'm trying to connect with this user, but this results in the following error:
+
+&quot;x2gostartagent 800x600 adsl 16m-jpeg-9 unix-kde-depth_24 de pc105/de 1 D KDE&quot; 
+
+search proxy win:  &quot;X2GO-&quot; 
+search proxy win:  &quot;X2GO-&quot; 
+search proxy win:  &quot;X2GO-&quot; 
+search proxy win:  &quot;X2GO-&quot; 
+search proxy win:  &quot;X2GO-&quot; 
+search proxy win:  &quot;X2GO-&quot; 
+Agent output: &quot;51
+b07796551fc3a7d0a558f21dc508e724
+5841
+bgd-51-1327672132_stDKDE_dp24
+30006
+30007
+30008
+&quot; 
+starting nxproxy with:  &quot;nxproxy -S nx/nx,options=/root/.x2go/S-bgd-51-1327672132_stDKDE_dp24/options:51&quot; 
+
+&quot;
+NXPROXY - Version 3.3.0
+
+Copyright (C) 2001, 2007 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Proxy running in client mode with pid '5900'.
+Session: Starting session at 'Fri Jan 27 14:48:53 2012'.
+Info: Connecting to remote host 'localhost:31006'.
+Info: Connection to remote proxy 'localhost:31006' established.
+&quot; 
+
+search proxy win:  &quot;X2GO-bgd-51-1327672132_stDKDE_dp24&quot; 
+&quot;channel_open_forward failed&quot; :  &quot;Channel opening failure: channel 47 error (2) Connection refused&quot; 
+
+&quot;channel_write failed&quot;  -  &quot;Remote channel is closed&quot; 
+
+&quot;Error: The remote NX proxy closed the connection.
+&quot; 
+
+&quot;Error: Failure negotiating the session in stage '7'.
+Error: Wrong version or invalid session authentication cookie.
+Session: Terminating session at 'Fri Jan 27 14:48:53 2012'.
+Session: Session terminated at 'Fri Jan 27 14:48:53 2012'.
+&quot; 
+
+deleting proxy 
+
+nxproxy not running 
+
+proxy deleted 
+
+check command message 
+
+
+Any ideas?
+
+Thx,
+Bogdan
+
+
+
+On 27.01.2012, at 09:18, Mike Gabriel wrote:
+
+&gt;<i> Hi Bogdan-Andrei,
+</I>&gt;<i> 
+</I>&gt;<i> thanks a lot for your e-Mail.
+</I>&gt;<i> 
+</I>&gt;<i> On Fr 27 Jan 2012 09:07:27 CET Bogdan-Andrei Taru wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Hello everyone,
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> I'm fairly new to x2go, but I'm trying to package X2Go Client &amp; Server for RedHat6 and I have the following suggestion/problem:
+</I>&gt;<i> 
+</I>&gt;<i> Awesome!!!
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Server: it's hard to package the X2GO Server as RPM because some paths (/etc/x2go) are hardcoded into the Makefiles and a &quot;make PREFIX=/path install&quot; still installs the files under /etc/x2go. Could anyone please change the Makefile so that the PREFIX option works?
+</I>&gt;<i> 
+</I>&gt;<i> You can definitely accelerate the process if you send a tested patch. Please send patches that apply for your code base in X2Go Git. To clone a project use
+</I>&gt;<i> 
+</I>&gt;<i> git clone <A HREF="git://code.x2go.org/x2goserver.git">git://code.x2go.org/x2goserver.git</A>
+</I>&gt;<i> git clone <A HREF="git://code.x2go.org/x2goclient.git">git://code.x2go.org/x2goclient.git</A>
+</I>&gt;<i> etc.
+</I>&gt;<i> 
+</I>&gt;<i> Modify the code and send the output of ,,git diff'' to this mailing list.
+</I>&gt;<i> 
+</I>&gt;<i> I will take a look at the Makefiles, but if you find time to send a patch, that will probably much quicker!!!
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Client: in order to compile the client I downloaded the libssh-0.5.0-1 and libssh-devel-0.5.0-1 as RPMs and installed them (it's the same library as Debian's libssh-4, just a newer Version -- the one from Debian Squeeze is the version 0.4.5-3). The client basically works, but segfaults sometimes (not always) in &quot;exception&quot; cases, for example false authentication to the X2GO server.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> [...]
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Heinz suggested that I use the x2golistsessions, x2goruncommand, x2goagent over SSH (btw, the X2GO Server runs on Ubuntu, and the other clients work OK) and log their return codes -- but how can I do that? Just SSH in to the Ubuntu server and call these 3 tools from the command line, with echo $? after?
+</I>&gt;<i> 
+</I>&gt;<i> The segfaulting seems like Alex should take a look at that. Could you send exact versions (of every X2Go component) that you use for testing and packaging?
+</I>&gt;<i> 
+</I>&gt;<i> The manual testing with x2gostartagent, x2goruncommand etc. is possible but I cannot explain that without digging into the client code.
+</I>&gt;<i> 
+</I>&gt;<i> @Heinz+Alex: if you can provide a manual session startup workflow, could you please document that in the wiki???
+</I>&gt;<i> 
+</I>&gt;<i> Thanks+Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> 
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;<i> fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;<i> 
+</I>&gt;<i> GnuPG Key ID 0xB588399B
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120127/379810ee/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120127/379810ee/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003248.html">[X2go-Dev] RPMs for RH6
+</A></li>
+	<LI>Next message: <A HREF="003267.html">[X2go-Dev] RPMs for RH6
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3265">[ date ]</a>
+              <a href="thread.html#3265">[ thread ]</a>
+              <a href="subject.html#3265">[ subject ]</a>
+              <a href="author.html#3265">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

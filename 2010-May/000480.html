@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Does X2GO have support for scanning using	a	client-side scanner?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Does%20X2GO%20have%20support%20for%20scanning%20using%0A%09a%09client-side%20scanner%3F&In-Reply-To=%3C1274278956.13861.14.camel%40Family.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000479.html">
+   <LINK REL="Next"  HREF="000490.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Does X2GO have support for scanning using	a	client-side scanner?</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Does%20X2GO%20have%20support%20for%20scanning%20using%0A%09a%09client-side%20scanner%3F&In-Reply-To=%3C1274278956.13861.14.camel%40Family.pacifera.com%3E"
+       TITLE="[X2go-dev] Does X2GO have support for scanning using	a	client-side scanner?">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed May 19 16:22:36 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000479.html">[X2go-dev] Does X2GO have support for scanning using a client-side	scanner?
+</A></li>
+        <LI>Next message: <A HREF="000490.html">[X2go-dev] Does X2GO have support for scanning using	a	client-side scanner?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#480">[ date ]</a>
+              <a href="thread.html#480">[ thread ]</a>
+              <a href="subject.html#480">[ subject ]</a>
+              <a href="author.html#480">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2010-05-19 at 15:42 +0200, Jo-Erlend Schinstad wrote:
+&gt;<i> One thing I've been longing for, is the possibility of scanning on the
+</I>&gt;<i> remote server using a scanner connected to the client. I noticed that
+</I>&gt;<i> 2X now supports this. Is it possible using x2go, or will it be
+</I>&gt;<i> possible in the future? Do you only implement stuff that can be done
+</I>&gt;<i> on all platforms, or will you make it possible using ubuntu clients
+</I>&gt;<i> even if it's not easily done for windows clients?
+</I>&lt;snip&gt;
+That's interesting.  I would think to enable scanning from the physical
+desktop directly to the virtual desktop, i.e., from client to server,
+one would have to expose the server's file system to the client (as
+opposed to the current file sharing which exposes the client's file
+system to the server).  That would have some very serious security
+issues I think.  One of the advantages of X2Go we are selling to our
+clients is the isolation of the virtual desktop from the physical thus
+providing a (imperfect but helpful) barrier to malware trying to jump
+from the less protected physical desktop to our highly secure virtual
+desktops.
+
+The way we do this now is an awkward, two step process of creating a
+local share, scanning to that local share from the physical desktop, and
+then moving the file from the share on the virtual desktop to wherever
+we want it in the virtual desktop file system - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000479.html">[X2go-dev] Does X2GO have support for scanning using a client-side	scanner?
+</A></li>
+	<LI>Next message: <A HREF="000490.html">[X2go-dev] Does X2GO have support for scanning using	a	client-side scanner?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#480">[ date ]</a>
+              <a href="thread.html#480">[ thread ]</a>
+              <a href="subject.html#480">[ subject ]</a>
+              <a href="author.html#480">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

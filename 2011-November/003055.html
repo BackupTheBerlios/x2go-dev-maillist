@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20New%20session%20param%20for%20.x2goclient/sessions%20file%20%28was%0A%20Re%3A%20Change%20Title%20of%20Frontend%20of%20Pyhoca%29&In-Reply-To=%3C4ED5FB25.6090400%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003054.html">
+   <LINK REL="Next"  HREF="003056.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20New%20session%20param%20for%20.x2goclient/sessions%20file%20%28was%0A%20Re%3A%20Change%20Title%20of%20Frontend%20of%20Pyhoca%29&In-Reply-To=%3C4ED5FB25.6090400%40obviously-nice.de%3E"
+       TITLE="[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Wed Nov 30 10:45:09 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003054.html">[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+</A></li>
+        <LI>Next message: <A HREF="003056.html">[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3055">[ date ]</a>
+              <a href="thread.html#3055">[ thread ]</a>
+              <a href="subject.html#3055">[ subject ]</a>
+              <a href="author.html#3055">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 30.11.2011 10:00, schrieb Mike Gabriel:
+&gt;<i> Hi Alex, hi Edwin,
+</I>&gt;<i> 
+</I>&gt;<i> On Fr 25 Nov 2011 12:56:02 CET Edwin Hern&#225;n Hurtado Cruz wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> That's Great!!!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> That solution works perfect for me!!!!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Anyway, I was wondering If its possible to change it in the
+</I>&gt;&gt;<i> client-side...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thanks!!!
+</I>&gt;<i> 
+</I>&gt;<i> Today I have improved client-side session title renaming in
+</I>&gt;<i> x2gostartagent (package: x2goserver).
+</I>&gt;<i> 
+</I>&gt;<i> And: I have added a session profile parameter to .x2goclient/sessions
+</I>&gt;<i> when using pyhoca-gui (python-x2go).
+</I>&gt;<i> 
+</I>&gt;<i> The new session profile parameter's name is: sessiontitle.
+</I>&gt;<i> 
+</I>&gt;<i> If sessiontitle is set to a non-empty string, python-x2go will export
+</I>&gt;<i> the env variable ,,X2GO_SESSION_WINDOW_TITLE before calling
+</I>&gt;<i> x2gostartagent on the server-side.
+</I>&gt;<i> 
+</I>&gt;<i> The x2gostartagent script will notice that $X2GO_SESSION_WINDOW_TITLE is
+</I>&gt;<i> defined and it will use this string as the session window title (+
+</I>&gt;<i> X2GO-&lt;session_id&gt; in parentheses).
+</I>&gt;<i> 
+</I>&gt;<i> @Alex: could you please take a look at my latest x2goserver commits?
+</I>&gt;<i> Maybe such a feature could be interesting for x2goclient itself. It
+</I>&gt;<i> would be nice if we could use the same session profile parameter (i.e.
+</I>&gt;<i> ,,sessiontitle'').
+</I>
+x2go client and plugin using window title for searching window with
+agent session. That will be needed if client should change parameters of
+such window, for example - hide window decorations, resize window or
+embed it in other window. Allowing user to change a window title can
+break functionality of x2go client and plugin.
+
+&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20111130/fc1e8331/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20111130/fc1e8331/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003054.html">[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+</A></li>
+	<LI>Next message: <A HREF="003056.html">[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3055">[ date ]</a>
+              <a href="thread.html#3055">[ thread ]</a>
+              <a href="subject.html#3055">[ subject ]</a>
+              <a href="author.html#3055">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

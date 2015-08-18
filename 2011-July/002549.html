@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Clean sessions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Clean%20sessions&In-Reply-To=%3C20110725232405.196013wncznzmk8l%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002547.html">
+   <LINK REL="Next"  HREF="002550.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Clean sessions</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Clean%20sessions&In-Reply-To=%3C20110725232405.196013wncznzmk8l%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] Clean sessions">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Jul 25 23:24:05 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002547.html">[X2go-Dev] Clean sessions
+</A></li>
+        <LI>Next message: <A HREF="002550.html">[X2go-Dev] Clean sessions (Was: Allow users to edit their *own* sessions only)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2549">[ date ]</a>
+              <a href="thread.html#2549">[ thread ]</a>
+              <a href="subject.html#2549">[ subject ]</a>
+              <a href="author.html#2549">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+On Mo 25 Jul 2011 15:12:32 CEST Moritz Struebe wrote:
+
+&gt;&gt;&gt;<i> The first is probably better done as daemon/cron-job. The daemon needs
+</I>&gt;&gt;&gt;<i> extended rights, because it needs access to all sessions (this is
+</I>&gt;&gt;&gt;<i> relevant due to the postgres-implementation), and needs to run on every
+</I>&gt;&gt;&gt;<i> server. Running as x2gouser should do the trick, though.
+</I>&gt;<i>
+</I>&gt;&gt;<i> Why can't this run in user context? I mean the user has priviledges to
+</I>&gt;&gt;<i> create sessions, why can't he clean up after himself?
+</I>&gt;<i>
+</I>&gt;<i> He can, of course. But we also want to clean up sessions of people who
+</I>&gt;<i> only log in once in a while.
+</I>
+One reason for keeping a house keeper (someone who cleans up after  
+you) is that you can fulfil your own tasks as quickly as possible.  
+Most of the x2goserver scripts do not fork to background: the clients  
+calls that script and waits for a return value. Each operation issued  
+in that way should be really fast.
+
+&gt;&gt;&gt;<i> The second is probably best placed in x2gocreatesession, as the user
+</I>&gt;&gt;&gt;<i> should have the rights to clean up it's old sessions (root normally may
+</I>&gt;&gt;&gt;<i> not access foreign homes via NFS).
+</I>&gt;&gt;<i> Why is this cleanup better done at 'create session' time rather than at
+</I>&gt;&gt;<i> 'listing sessions' time?
+</I>&gt;<i>
+</I>&gt;<i> List session should list sessions. You don't want it to have strange
+</I>&gt;<i> side-effects (IMO deleting files is such a strange side-effect).
+</I>
+I agree here fully. Esp. x2golistsessions has to come up with results  
+quickly. One reason we use a database for querying session information  
+opposed to collecting the details from the system state (ps aux etc.).
+
+The problem that occurs, however, is that we indeed have home  
+locations (NFS+Krb5, AFS, CIFS) that might not be accessible by some  
+generic local user (such as root). Thus: the clean process for files  
+in $HOME has to run as x2go user and should not delay any  
+communication between server and client.
+
+My suggestion is to fork such a cleanup daemon in user space that  
+intellegently cleans up after the session has started up...
+
+   x2gostartagent
+   ... sleep for 20 seconds -&gt; then launch x2gocleanup-session
+
+This is only necessary once per logged in user (you do not want a  
+session cleaner for each of multiple rootless applications, started on  
+the server).
+
+&gt;<i> While
+</I>&gt;<i> not perfect, x2gocreatesession (and x2goresumesession?) is rather
+</I>&gt;<i> something you expect to do more, as it also creates a profile folder.
+</I>&gt;<i> You might even want it to wait a week before it cleans up, so you can
+</I>&gt;<i> &quot;debug&quot; your session.
+</I>
+Indeed! Or at least have an option for that...
+
+&gt;<i> Cheers
+</I>&gt;<i> Morty
+</I>
+Greetings,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110725/08a19384/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110725/08a19384/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002547.html">[X2go-Dev] Clean sessions
+</A></li>
+	<LI>Next message: <A HREF="002550.html">[X2go-Dev] Clean sessions (Was: Allow users to edit their *own* sessions only)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2549">[ date ]</a>
+              <a href="thread.html#2549">[ thread ]</a>
+              <a href="subject.html#2549">[ subject ]</a>
+              <a href="author.html#2549">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

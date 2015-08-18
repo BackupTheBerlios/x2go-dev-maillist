@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Mac OS X 10.4 Tiger
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Mac%20OS%20X%2010.4%20Tiger&In-Reply-To=%3C4FC0622B.5090806%40ionic.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004035.html">
+   <LINK REL="Next"  HREF="004039.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Mac OS X 10.4 Tiger</H1>
+    <B>Mihai Moldovan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Mac%20OS%20X%2010.4%20Tiger&In-Reply-To=%3C4FC0622B.5090806%40ionic.de%3E"
+       TITLE="[X2Go-Dev] Mac OS X 10.4 Tiger">ionic at ionic.de
+       </A><BR>
+    <I>Sat May 26 06:55:07 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004035.html">[X2Go-Dev] [PATCHv2] [NX] Add patch: 052_nxcomp_macos10-nxauth-location.full+lite.patch, change nxauth search location on Mac OS X to $NX_SYSTEM/nxauth to facilitate application bundle building.
+</A></li>
+        <LI>Next message: <A HREF="004039.html">[X2Go-Dev] Updated Mac OS X packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4036">[ date ]</a>
+              <a href="thread.html#4036">[ thread ]</a>
+              <a href="subject.html#4036">[ subject ]</a>
+              <a href="author.html#4036">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+with the latest changes, x2goclient will also run on Mac OS X 10.4. However, it
+will not be officially supported.
+
+While x2go is generally &quot;use at own risk&quot;, this one is &quot;use at own risk and
+don't expect it to work properly.&quot;
+
+Mac OS 10.4 is really old and unsupported even by Apple Inc. - not even with
+security updates.
+
+The X11 server version bundled with 10.4 is also old and known to cause color
+problems. The X11 server is not meant to be updated by users in an easy and
+convenient way, or at all. X11 server releases for 10.5 can't be installed on 10.4.
+
+Generally, starting an X11 application on 10.5 and higher will automatically
+launch the X11 server, if installed. This is due to structural changes in X11
+integration implemented by Apple. On user login, an environmental variable
+called &quot;$DISPLAY&quot; is set and points to a UNIX socket monitored by the system
+daemon launchd. Whenever something tries to connect to this socket, the X11
+binary is started.
+
+This is not true for 10.4. On those systems, $DISPLAY is not automatically set
+and thus not available from the initial environment.
+
+Starting X11 manually will spawn an xterm instance with this env. var. set. From
+this terminal application, other X11 applications could be launched just fine.
+However, non-child-processes still won't be able to communicate with the X11 server.
+
+Also, there is no easy way to know if an X11 server is already running, and if
+it is, on which socket it's listening. My first idea was to implement some kind
+of autodetection/probing for X11 sockets and connect to them in order to
+determine whether they work or not. This said, at the same time valid security
+concerns were raised. Connecting to unknown sockets is potentially dangerous,
+and as the place those sockets are placed in is world-writable, anyone could put
+a prepared socket in there. For obvious reasons, I dismissed this idea.
+
+Instead, I am now probing for a free display number and launching a separate X11
+server instance whenever it is needed. Existing instances/sockets won't be
+re-used. This works fine, but obviously means that for every session a separate
+X11 server is launched and the user has to clean up those instances by hand
+(luckily each instance is shown as a normal application, so terminating those
+processes is not a problem at all.)
+
+This seemed like the safest, fastest and easiest way to go.
+
+Another way would be searching the currently running processes for X11 and
+examining the open files to find the socket, but this is way more complicated
+and not really worth the effort.
+
+Aside from that, the X11 server is listening for TCP connections by default and
+there is no way/option to turn this behavior off, unlike in 10.5 and higher.
+While the X protocol does have some security model based on the authcookies, I'm
+really not too happy with exposing my X11 server to the whole network. At the
+very least, evil users could crash the server. Evil geniuses may even obtain
+root access in some way or another, especially with such an old and unmaintained
+version.
+
+I've only been rudimentary testing remote sessions, but as far as I see, opening
+a new session, resuming and terminating works, at least with xterm as the remote
+application. I can't really test this more thoroughly, as my test system seems
+somewhat borked in X11 mode and is pressing &quot;escape&quot; after every key press. This
+is also happening in local xterm sessions for me, but I haven't found any
+information to this kind of misbehavior.
+Not being able to test this stuff is just another good reason to not support it
+officially.
+
+This said, I guess I will publish new versions for 10.4 from time to time, for
+those users who are bound to it and brave enough to use it. But again, if it
+opens up anything visible, this is far more than you should even expect.
+
+Best regards,
+
+
+Mihai
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4493 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120526/62be17e1/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120526/62be17e1/attachment.bin</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004035.html">[X2Go-Dev] [PATCHv2] [NX] Add patch: 052_nxcomp_macos10-nxauth-location.full+lite.patch, change nxauth search location on Mac OS X to $NX_SYSTEM/nxauth to facilitate application bundle building.
+</A></li>
+	<LI>Next message: <A HREF="004039.html">[X2Go-Dev] Updated Mac OS X packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4036">[ date ]</a>
+              <a href="thread.html#4036">[ thread ]</a>
+              <a href="subject.html#4036">[ subject ]</a>
+              <a href="author.html#4036">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

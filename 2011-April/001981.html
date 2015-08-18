@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2gothinclient w/o LDAP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2gothinclient%20w/o%20LDAP&In-Reply-To=%3C4D9C6449.6080405%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001979.html">
+   <LINK REL="Next"  HREF="001982.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2gothinclient w/o LDAP</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2gothinclient%20w/o%20LDAP&In-Reply-To=%3C4D9C6449.6080405%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] x2gothinclient w/o LDAP">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Wed Apr  6 15:02:01 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001979.html">[X2go-dev] x2gothinclient w/o LDAP
+</A></li>
+        <LI>Next message: <A HREF="001982.html">[X2go-dev] x2gothinclient w/o LDAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1981">[ date ]</a>
+              <a href="thread.html#1981">[ thread ]</a>
+              <a href="subject.html#1981">[ subject ]</a>
+              <a href="author.html#1981">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+
+Am 06.04.2011 14:38, schrieb Mike Gabriel:
+&gt;<i> Hi Morty,
+</I>&gt;<i>
+</I>&gt;<i> I have a customer that has patched the x2gothinclient to use local 
+</I>&gt;<i> session profile files. On the way he discovered that X2go thin client 
+</I>&gt;<i> systems do not have the loop network device set up. Could you give 
+</I>&gt;<i> your opinion on that?
+</I>&gt;<i>
+</I>&gt;<i> File: &quot;/etc/init.d/ramdrive&quot;
+</I>&gt;<i>
+</I>&gt;<i> after:  cat /proc/mounts&gt;  /ramdrive/mtab
+</I>&gt;<i>         # setup lo interface
+</I>&gt;<i>         ifconfig lo 127.0.0.1 netmask 255.0.0.0
+</I>
+A loopback scold be available. [1]
+
+
+&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> He also has modified the thinclient script in a way that you can run 
+</I>&gt;<i> x2goclient on the thin client without LDAP. He provides a session 
+</I>&gt;<i> profile ,,sessions file'' and puts that into ~/.x2goclient/sessions. 
+</I>&gt;<i> But he also need some fixes for that.
+</I>
+Yes. I did that manually. :)
+
+&gt;<i>
+</I>&gt;<i> Maybe we see an option to incorporate this in the x2gothinclient, so 
+</I>&gt;<i> that both methods are available in the code and it merely needs some 
+</I>&gt;<i> commenting and uncommenting or whatsoever to enable/disable 
+</I>&gt;<i> LDAP/sessions-file.
+</I>
+I am very inn  favour of that.
+
+&gt;<i>
+</I>&gt;<i> Here are the changes he proposes:
+</I>&gt;<i>
+</I>&gt;<i> ############################################################################### 
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Datei &quot;/etc/default/x2gothinclient&quot;
+</I>&gt;<i>
+</I>&gt;<i> x2goclient --external-login=/ramdrive/logins --no-menu --maximize 
+</I>&gt;<i> --link=lan --kbd-layout=de --kbd-type=pc105/de --set-kbd=1 
+</I>&gt;<i> --geometry=fullscreen --add-to-known-hosts 
+</I>&gt;<i> --read-exports-from=/ramdrive/export
+</I>
+Actually you want to get rid of all the ramdrive-stuff and put that into 
+the x2go-home (My script mounts that using tmpfs). Also you probably 
+want &quot;--no-session-edit&quot;.
+
+
+&gt;<i>
+</I>&gt;<i> ############################################################################### 
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> mkdir -p /home/image/x2goclient/.x2goclient/
+</I>&gt;<i> Create file: /home/image/x2goclient/.x2goclient/sessions (s.below)
+</I>&gt;<i>
+</I>&gt;<i> [...]
+</I>
+Yea. Something like that. One should probably just have a 
+reference-folder which get's copied to the user home.
+
+
+
+&gt;<i>
+</I>&gt;<i> ################################################################################ 
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> File: &quot;/etc/init.d/ramdrive&quot;
+</I>&gt;<i>
+</I>&gt;<i> nach: cat /proc/mounts&gt;  /ramdrive/mtab
+</I>&gt;<i>         # setup lo interface
+</I>&gt;<i>         ifconfig lo 127.0.0.1 netmask 255.0.0.0
+</I>&gt;<i>         # copy configs
+</I>&gt;<i>         cp -a /home/image/* /ramdrive/
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+See [1].  This shouldn't be needed any more. Basically I want to get rid 
+of the thinclientsystem and x2gothinclient-package and replace them by 
+an creation script. I believe that this will make it easier to adjust 
+your thinclient to  your needs. It's probaly worth replacing the 
+inline-cats with explicit files.
+
+
+Morty
+
+
+[1] 
+<A HREF="http://i4git.informatik.uni-erlangen.de/x2gothinclientsystem.git/blob/b0260af3bba3dad5dcbe593a57757554b67a2667:/x2gothinclient_helper/x2gothinclient_create#l9">http://i4git.informatik.uni-erlangen.de/x2gothinclientsystem.git/blob/b0260af3bba3dad5dcbe593a57757554b67a2667:/x2gothinclient_helper/x2gothinclient_create#l9</A>
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 5867 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110406/603c5468/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110406/603c5468/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001979.html">[X2go-dev] x2gothinclient w/o LDAP
+</A></li>
+	<LI>Next message: <A HREF="001982.html">[X2go-dev] x2gothinclient w/o LDAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1981">[ date ]</a>
+              <a href="thread.html#1981">[ thread ]</a>
+              <a href="subject.html#1981">[ subject ]</a>
+              <a href="author.html#1981">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

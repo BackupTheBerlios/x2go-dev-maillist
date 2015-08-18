@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#323: Bug#323: x2go server refuses client with	'Error: Wrong version or invalid session authentication cookie.'
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23323%3A%20Bug%23323%3A%20x2go%20server%20refuses%20client%20with%0A%09%27Error%3A%20Wrong%20version%20or%20invalid%20session%20authentication%20cookie.%27&In-Reply-To=%3C20131029084250.Horde.wrqyIPx3-qgWKraKeUMMTQ1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006335.html">
+   <LINK REL="Next"  HREF="006383.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#323: Bug#323: x2go server refuses client with	'Error: Wrong version or invalid session authentication cookie.'</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23323%3A%20Bug%23323%3A%20x2go%20server%20refuses%20client%20with%0A%09%27Error%3A%20Wrong%20version%20or%20invalid%20session%20authentication%20cookie.%27&In-Reply-To=%3C20131029084250.Horde.wrqyIPx3-qgWKraKeUMMTQ1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#323: Bug#323: x2go server refuses client with	'Error: Wrong version or invalid session authentication cookie.'">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Oct 29 09:42:50 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006335.html">[X2Go-Dev] Bug#323: x2go server refuses client with 'Error: Wrong	version or invalid session authentication cookie.'
+</A></li>
+        <LI>Next message: <A HREF="006383.html">[X2Go-Dev] Processed: Re: Bug#323: x2go server refuses client with 'Error: Wrong version or invalid session authentication cookie.'
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6382">[ date ]</a>
+              <a href="thread.html#6382">[ thread ]</a>
+              <a href="subject.html#6382">[ subject ]</a>
+              <a href="author.html#6382">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>tag 323 moreinfo
+thanks
+
+Hi Harry,
+
+On  Mo 14 Okt 2013 06:34:07 CEST, harry mangalam wrote:
+
+&gt;<i> Package: x2goserver
+</I>&gt;<i> Version: 4.0.1
+</I>&gt;<i> x86_64, CentOS 6.4, kernel 2.6.32-358.18.1.el6.centos.plus.x86_64
+</I>&gt;<i>
+</I>&gt;<i> (also x2go version 4.0.1.6 (self-compiled) on the same platform)
+</I>&gt;<i>
+</I>&gt;<i> Problem:
+</I>&gt;<i> After a server OS lockup and reboot, the previously working x2goserver would
+</I>
+ok... so there was a server crash. Of course, X2Go Server should  
+handle crashes in most occasions, but sometimes the X2Go session DB  
+indeed can become corrupt.
+
+Please try
+
+   $ sudo rm -f /var/lib/x2go/x2go_sessions
+   $ sudo x2godbadmin --createdb
+
+Does that solve your problems?
+
+&gt;<i> not allow client connections from Mac, Linux, Windows.  After re-installing
+</I>&gt;<i> x2gserver (x2goserver-4.0.1.6-1.1.x86_64) and x2goagent
+</I>&gt;<i> (x2goagent-3.5.0.20-4.1.x86_64), it refused to connect with the client-side
+</I>&gt;<i> message:
+</I>&gt;<i>
+</I>&gt;<i> ===
+</I>&gt;<i> Session: Starting session at 'Fri Oct 11 18:11:36 2013'.
+</I>&gt;<i> Info: Connecting to remote host 'localhost:31030'.
+</I>&gt;<i> Info: Connection to remote proxy 'localhost:31030' established.
+</I>&gt;<i> Error: The remote NX proxy closed the connection.
+</I>&gt;<i> Error: Failure negotiating the session in stage '7'.
+</I>&gt;<i> Error: Wrong version or invalid session authentication cookie.
+</I>&gt;<i> Session: Terminating session at 'Fri Oct 11 18:11:37 2013'.
+</I>&gt;<i> Session: Session terminated at 'Fri Oct 11 18:11:37 2013'.
+</I>&gt;<i> ===
+</I>&gt;<i> (dont know if this is complete since the popup only lasts 2s.)
+</I>&gt;<i> This error has been cited multiple times in various fora and lists,  
+</I>&gt;<i> but no one
+</I>&gt;<i> seems to have been able to solve it.
+</I>&gt;<i>
+</I>&gt;<i> I can passwordlessly ssh to both servers just fine from other Linux clients.
+</I>&gt;<i>
+</I>&gt;<i> If I don't use the ssh keys, I can enter my password and the result is the
+</I>&gt;<i> same.
+</I>&gt;<i>
+</I>&gt;<i> The server seems to be initializing the session since if I try to log in
+</I>&gt;<i> multiple times, there are new sessions listed, but I'm not allowed to connect
+</I>&gt;<i> to them. I can only terminate or suspend them.
+</I>&gt;<i>
+</I>&gt;<i> Terminating them does appear to work since they are not listed on following
+</I>&gt;<i> sessions if I do.
+</I>&gt;<i>
+</I>&gt;<i> The problem does seem to be related to authentication or  
+</I>&gt;<i> authorization; we use
+</I>&gt;<i> ldap-based auth on the server and it's working fine otherwise, except for
+</I>&gt;<i> x2go.
+</I>
+Is every user affected??? Can you test with a fresh user account on  
+the server??? We need to pin down, whether something on the server is  
+broken system wide or if the issue is a user profile problem.
+
+&gt;<i> Thanks for your work!
+</I>
+Welcome :-)
+
+Mike
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-keys
+Size: 7251 bytes
+Desc: ?ffentlicher PGP-Schl?ssel
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/cfe8b2e7/attachment.key">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/cfe8b2e7/attachment.key</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/cfe8b2e7/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/cfe8b2e7/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006335.html">[X2Go-Dev] Bug#323: x2go server refuses client with 'Error: Wrong	version or invalid session authentication cookie.'
+</A></li>
+	<LI>Next message: <A HREF="006383.html">[X2Go-Dev] Processed: Re: Bug#323: x2go server refuses client with 'Error: Wrong version or invalid session authentication cookie.'
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6382">[ date ]</a>
+              <a href="thread.html#6382">[ thread ]</a>
+              <a href="subject.html#6382">[ subject ]</a>
+              <a href="author.html#6382">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

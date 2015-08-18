@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [X2go-User] Problem with xfreerdp ( any version )
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2go-User%5D%20Problem%20with%20xfreerdp%20%28%20any%20version%20%29&In-Reply-To=%3C20120214120650.520129bzg744s8y2%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003417.html">
+   <LINK REL="Next"  HREF="003421.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [X2go-User] Problem with xfreerdp ( any version )</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2go-User%5D%20Problem%20with%20xfreerdp%20%28%20any%20version%20%29&In-Reply-To=%3C20120214120650.520129bzg744s8y2%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [X2go-User] Problem with xfreerdp ( any version )">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Feb 14 12:06:50 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003417.html">[X2Go-Dev] [X2go-User] Problem with xfreerdp ( any version )
+</A></li>
+        <LI>Next message: <A HREF="003421.html">[X2Go-Dev] [X2go-User] Problem with xfreerdp ( any version )
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3418">[ date ]</a>
+              <a href="thread.html#3418">[ thread ]</a>
+              <a href="subject.html#3418">[ subject ]</a>
+              <a href="author.html#3418">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alex, Helmer,
+
+I have forwarded the mail for freerdp-devel, let's see if I am lucky.  
+I am subscribed to the list so there is a chance...
+
+Mike
+
+On Di 14 Feb 2012 10:24:06 CET Oleksandr Shneyder wrote:
+
+&gt;<i> Am 10.02.2012 11:34, schrieb Helmer Teles:
+</I>&gt;&gt;<i> On Friday 10 February 2012 08:47:56 Oleksandr Shneyder wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Am 03.02.2012 17:33, schrieb Helmer Teles:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &gt; Hello List,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &gt; I'm still having the same problem with latest windows client and latest
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &gt; x2go Linux Client.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &gt; Problem still exists with X2goclient 3.99.1.0 Win32 Client running on
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &gt; Windows XP, both with xinerama on or off.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &gt; Best wishes,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &gt; helmer.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hello Helmer,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Yes, I can reproduce it. I don't think that it is a X2Go error, but
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> issue with nxagent or xfreerdp. I'll try to found the error, but it will
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> take some time.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> regards,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> alex
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i> [...............]
+</I>&gt;<i>
+</I>&gt;<i> Hello Helmer,
+</I>&gt;<i>
+</I>&gt;<i> I found a problem in xfreerdp code. I have tried several times to post a
+</I>&gt;<i> problem description (inclusive solution and patch) to freerdp-devel
+</I>&gt;<i> mailing list. Unfortunately my posts are not published in list, though I
+</I>&gt;<i> got no error messages from mail-robot on
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">freerdp-devel at lists.sourceforge.net.</A> I giving up. Please try to repost
+</I>&gt;<i> it, if you have access to freerdp mailing-list:
+</I>&gt;<i>
+</I>&gt;<i> MAIL==============
+</I>&gt;<i> Hello Developers,
+</I>&gt;<i>
+</I>&gt;<i> one of X2Go users in our mailing list have reported, that there is a
+</I>&gt;<i> issue running xfreerdp on such X-Servers as nxagent or x2goagent. I
+</I>&gt;<i> spent some time for investigations, and found, that the way how xfreerdp
+</I>&gt;<i> searching for visual to create desktop window, working not for all
+</I>&gt;<i> X-Servers.
+</I>&gt;<i>
+</I>&gt;<i> in FreeRDP/client/X11/xfreerdp.c:395
+</I>&gt;<i>
+</I>&gt;<i> if (vi-&gt;depth == xfi-&gt;depth)
+</I>&gt;<i> {
+</I>&gt;<i> 	xfi-&gt;visual = vi-&gt;visual;
+</I>&gt;<i> 	break;
+</I>&gt;<i> }
+</I>&gt;<i>
+</I>&gt;<i> As we can see, the first visual, which have the same colour depth as our
+</I>&gt;<i> screen will be chosen here. Unfortunately, such behaviour is not for
+</I>&gt;<i> every X-Server correct. Choosing wrong visual make function
+</I>&gt;<i> XCreateWindow() in FreeRDP/client/X11/xf_window.c:280 fail with error
+</I>&gt;<i> message:
+</I>&gt;<i>
+</I>&gt;<i> X Error of failed request:  BadMatch (invalid parameter attributes)
+</I>&gt;<i>   Major opcode of failed request:  1 (X_CreateWindow)
+</I>&gt;<i>   Serial number of failed request:  31
+</I>&gt;<i>   Current serial number in output stream:  35
+</I>&gt;<i>
+</I>&gt;<i> To avoid this, I propose to get correct visual from properties of a root
+</I>&gt;<i> window.
+</I>&gt;<i>
+</I>&gt;<i> patch is attached.
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Alex
+</I>&gt;<i> =====================
+</I>&gt;<i> PATCH================
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/client/X11/xfreerdp.c b/client/X11/xfreerdp.c
+</I>&gt;<i> index de58122..ddd8e5b 100644
+</I>&gt;<i> --- a/client/X11/xfreerdp.c
+</I>&gt;<i> +++ b/client/X11/xfreerdp.c
+</I>&gt;<i> @@ -353,6 +353,7 @@ boolean xf_get_pixmap_info(xfInfo* xfi)
+</I>&gt;<i>  	XVisualInfo template;
+</I>&gt;<i>  	XPixmapFormatValues* pf;
+</I>&gt;<i>  	XPixmapFormatValues* pfs;
+</I>&gt;<i> +	XWindowAttributes window_attributes_return;
+</I>&gt;<i>
+</I>&gt;<i>  	pfs = XListPixmapFormats(xfi-&gt;display, &amp;pf_count);
+</I>&gt;<i>
+</I>&gt;<i> @@ -379,6 +380,13 @@ boolean xf_get_pixmap_info(xfInfo* xfi)
+</I>&gt;<i>  	template.class = TrueColor;
+</I>&gt;<i>  	template.screen = xfi-&gt;screen_number;
+</I>&gt;<i>
+</I>&gt;<i> +
+</I>&gt;<i> if(XGetWindowAttributes(xfi-&gt;display,RootWindowOfScreen(xfi-&gt;screen),&amp;window_attributes_return)==0)
+</I>&gt;<i> +	{
+</I>&gt;<i> +		printf(&quot;xf_get_pixmap_info: XGetWindowAttributes failed\n&quot;);
+</I>&gt;<i> +		return false;
+</I>&gt;<i> +	}
+</I>&gt;<i> +
+</I>&gt;<i> +
+</I>&gt;<i>  	vis = XGetVisualInfo(xfi-&gt;display, VisualClassMask | VisualScreenMask,
+</I>&gt;<i> &amp;template, &amp;vi_count);
+</I>&gt;<i>
+</I>&gt;<i>  	if (vis == NULL)
+</I>&gt;<i> @@ -392,7 +400,7 @@ boolean xf_get_pixmap_info(xfInfo* xfi)
+</I>&gt;<i>  	{
+</I>&gt;<i>  		vi = vis + i;
+</I>&gt;<i>
+</I>&gt;<i> -		if (vi-&gt;depth == xfi-&gt;depth)
+</I>&gt;<i> +		if (vi-&gt;visual == window_attributes_return.visual)
+</I>&gt;<i>  		{
+</I>&gt;<i>  			xfi-&gt;visual = vi-&gt;visual;
+</I>&gt;<i>  			break;
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> ============================
+</I>&gt;<i>
+</I>&gt;<i> regards,
+</I>&gt;<i> Alex
+</I>&gt;<i> --
+</I>&gt;<i> Oleksandr Shneyder
+</I>&gt;<i> Dipl. Informatik
+</I>&gt;<i> X2go Core Developer Team
+</I>&gt;<i>
+</I>&gt;<i> email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+</I>&gt;<i> web: www.obviously-nice.de
+</I>&gt;<i>
+</I>&gt;<i> --&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120214/fb505b04/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120214/fb505b04/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003417.html">[X2Go-Dev] [X2go-User] Problem with xfreerdp ( any version )
+</A></li>
+	<LI>Next message: <A HREF="003421.html">[X2Go-Dev] [X2go-User] Problem with xfreerdp ( any version )
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3418">[ date ]</a>
+              <a href="thread.html#3418">[ thread ]</a>
+              <a href="subject.html#3418">[ subject ]</a>
+              <a href="author.html#3418">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go-home
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go-home&In-Reply-To=%3CAANLkTi%3Dd7NxRwSK7j8pOgytDM7dei14AAPpCn_eYS-0S%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000937.html">
+   <LINK REL="Next"  HREF="000939.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go-home</H1>
+    <B>Alexander Cr&#246;ssmann</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go-home&In-Reply-To=%3CAANLkTi%3Dd7NxRwSK7j8pOgytDM7dei14AAPpCn_eYS-0S%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] x2go-home">alexander.croessmann at gmail.com
+       </A><BR>
+    <I>Fri Aug 13 12:55:01 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000937.html">[X2go-dev] x2go-home
+</A></li>
+        <LI>Next message: <A HREF="000939.html">[X2go-dev] x2go-home
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#938">[ date ]</a>
+              <a href="thread.html#938">[ thread ]</a>
+              <a href="subject.html#938">[ subject ]</a>
+              <a href="author.html#938">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sorry for the post in German. The password error message is different,
+I tried that. I am not aware of any other differences to a normal 9.10
+apart from the ssh port. The first ssh contact appears to work. I am
+asked if the ssh host key is not verified.
+
+I deleted the content of.x2go, which did not help.
+
+The individual session logs look like this.
+
+/usr/bin/x2goagent: Zeile 1: -e: Kommando nicht gefunden.
+
+NXAGENT - Version 3.4.0
+
+Copyright (C) 2001, 2007 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Agent running with pid '9489'.
+Session: Starting session at 'Fri Aug 13 12:37:25 2010'.
+Info: Proxy running in server mode with pid '9489'.
+Info: Waiting for connection from 'localhost' on port '30001'.
+Info: Accepted connection from '127.0.0.1'.
+Error: The remote NX proxy closed the connection.
+Error: Failure negotiating the session in stage '7'.
+Error: Aborting session with 'X2goagent: Unable to open display
+'nx/nx,options=/home/alex/.x2go/C-alex-50-1281695845_stRTERMINAL_dp24/options:50''.
+Session: Aborting session at 'Fri Aug 13 12:37:25 2010'.
+Session: Session aborted at 'Fri Aug 13 12:37:25 2010'.
+
+-----------
+Loop: PANIC! The remote NX proxy closed the connection.
+Loop: PANIC! Failure negotiating the session in stage '7'.
+Loop: PANIC! Wrong version or invalid session authentication cookie.
+------------
+
+I found the following errors in In /var/log/auth.log
+
+Aug 13 12:37:26 adler sshd[9891]: error: bind: Address already in use
+Aug 13 12:37:26 adler sshd[9891]: error: channel_setup_fwd_listener:
+cannot listen to port: 30002
+Aug 13 12:37:26 adler sshd[9513]: pam_unix(sshd:session): session
+closed for user alex
+Aug 13 12:37:26 adler sshd[9906]: error: connect_to localhost port
+30001: failed.
+
+Any other ideas anyone?
+
+
+
+
+2010/8/13 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>&gt;:
+&gt;<i> Hi Alexander,
+</I>&gt;<i>
+</I>&gt;<i> please post in English to this list as there are several competent people
+</I>&gt;<i> listening on this list that do not speak German.
+</I>&gt;<i>
+</I>&gt;<i> On Fr 13 Aug 2010 10:32:52 CEST Alexander Cr&#246;ssmann wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hallo,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &quot;The remote proxy closed the connection while negotiating the session.
+</I>&gt;&gt;<i> This may be due to the wrong authentication credentials passed to the
+</I>&gt;&gt;<i> server.&quot;.
+</I>&gt;<i>
+</I>&gt;<i> This error occurs indeed if your password is not typed in correctly. I
+</I>&gt;<i> sometimes also get this error (no idea why...), even if I am really sure
+</I>&gt;<i> that I typed my pw in correctly... But this error should not be permanent
+</I>&gt;<i> and it occurs rather rarely.
+</I>&gt;<i>
+</I>&gt;<i> On your x2goserver system take a look at /var/log/auth.log while you try to
+</I>&gt;<i> login.
+</I>&gt;<i>
+</I>&gt;<i> As well the client as the x2goserver produces log output in your local and
+</I>&gt;<i> your remote home dir (~/.x2go). Also check output and information there...
+</I>&gt;<i>
+</I>&gt;&gt;<i> Ab und zu sehe ich noch das hier
+</I>&gt;&gt;<i> &quot;
+</I>&gt;&gt;<i> NXPROXY - Version 3.4.0
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Copyright (C) 2001, 2007 NoMachine.
+</I>&gt;&gt;<i> See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Info: Proxy running in client mode with pid '25163'.
+</I>&gt;&gt;<i> Session: Starting session at 'Fri Aug 13 10:29:55 2010'.
+</I>&gt;&gt;<i> Info: Connecting to remote host 'localhost:30002'.
+</I>&gt;&gt;<i> Info: Connection to remote proxy 'localhost:30002' established.
+</I>&gt;&gt;<i> Error: The remote NX proxy closed the connection.
+</I>&gt;&gt;<i> Error: Failure negotiating the session in stage '7'.
+</I>&gt;&gt;<i> Error: Wrong version or invalid session authentication cookie.
+</I>&gt;&gt;<i> Session: Terminating session at 'Fri Aug 13 10:29:56 2010'.
+</I>&gt;&gt;<i> Session: Session terminated at 'Fri Aug 13 10:29:56 2010'.
+</I>&gt;<i>
+</I>&gt;<i> Maybe you should clean up the sessions
+</I>&gt;<i> (C-&lt;uid&gt;-&lt;displayno&gt;-&lt;long-alnum-string&gt;) in your remote ~/.x2go dir.
+</I>&gt;<i>
+</I>&gt;<i> In a nutshell:
+</I>&gt;<i>
+</I>&gt;<i> &#160;watch /var/log/auth.log
+</I>&gt;<i> &#160;clear local .x2go dir
+</I>&gt;<i> &#160;clear remote .x2go dir
+</I>&gt;<i> &#160;look at individual session logs in .x2go (remotely+locally)
+</I>&gt;<i> &#160;post your insights
+</I>&gt;<i>
+</I>&gt;<i> Normal x2goserver-home works out of the box on Ubuntu karmic (my
+</I>&gt;<i> experience). Do you have a firewall running? Any other tweaks / differences
+</I>&gt;<i> from a standard ubuntu desktop?
+</I>&gt;<i>
+</I>&gt;<i> Greets and good luck,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;<i> fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;<i>
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000937.html">[X2go-dev] x2go-home
+</A></li>
+	<LI>Next message: <A HREF="000939.html">[X2go-dev] x2go-home
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#938">[ date ]</a>
+              <a href="thread.html#938">[ thread ]</a>
+              <a href="subject.html#938">[ subject ]</a>
+              <a href="author.html#938">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

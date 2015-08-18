@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Multiple%20X2goclient%20instances%20fail&In-Reply-To=%3C1311922597.32147.0.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002601.html">
+   <LINK REL="Next"  HREF="002604.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Multiple%20X2goclient%20instances%20fail&In-Reply-To=%3C1311922597.32147.0.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Jul 29 08:56:37 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002601.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+        <LI>Next message: <A HREF="002604.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2603">[ date ]</a>
+              <a href="thread.html#2603">[ thread ]</a>
+              <a href="subject.html#2603">[ subject ]</a>
+              <a href="author.html#2603">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2011-07-29 at 07:24 +0200, Daniel Lindgren wrote:
+&gt;<i> 2011/7/28 John A. Sullivan III &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt;:
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> &gt;&gt; &gt; &gt; &gt; &gt; &gt;&gt;&gt; I believe I have tested this on both Linux and Windows - becoming a bit
+</I>&gt;<i> &gt;&gt; &gt; &gt; &gt; &gt; &gt;&gt;&gt; of a blur after a long hot day!.  In previous versions of X2GoClient, I
+</I>&gt;<i> &gt;&gt; &gt; &gt; &gt; &gt; &gt;&gt;&gt; could open multiple instances and connect to multiple different X2Go
+</I>&gt;<i> &gt;&gt; &gt; &gt; &gt; &gt; &gt;&gt;&gt; Server simultaneously.  It was not official and it generated a few
+</I>&gt;<i> &gt;&gt; &gt; &gt; &gt; &gt; &gt;&gt;&gt; errors but it worked.  This is actually a highly desirable feature for a
+</I>&gt;<i> &gt;&gt; &gt; &gt; &gt; &gt; &gt;&gt;&gt; possible very large account of ours.
+</I>&gt;<i> &gt;&gt; &gt; &gt; &gt; &gt; &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt; &gt; &gt; &gt; &gt; &gt;&gt;&gt; For some reason, that has stopped working in 3.99.  It did not work in
+</I>&gt;<i> &gt;&gt; &gt; &gt; &gt; &gt; &gt;&gt;&gt; 3.0.1.18 either.  It does work in Pyhoca so I do not think it is an
+</I>&gt;<i> &gt;&gt; &gt; &gt; &gt; &gt; &gt;&gt;&gt; impossibility.  If at all possible, we would like to see this
+</I>&gt;<i> &gt;&gt; &gt; &gt; &gt; &gt; &gt;&gt;&gt; functionality restored - preferably officially but even accidentally as
+</I>&gt;<i> &gt;&gt; &gt; &gt; &gt; &gt; &gt;&gt;&gt; it was would do :)  Thanks - John
+</I>&gt;<i> 
+</I>&gt;<i> One thing I've had problems with in the past is TCP port conflicts.
+</I>&gt;<i> When x2go starts a session, it always uses a TCP port above 30000,
+</I>&gt;<i> decided by x2gostartagent on the server side. If you start multiple
+</I>&gt;<i> sessions from one client to several different servers, wouldn't that
+</I>&gt;<i> create a port conflict sooner or later? Maybe that is what you've
+</I>&gt;<i> seen, with conflicts causing sessions to terminate.
+</I>&gt;<i> 
+</I>&gt;<i> Example, x2go on client CA connects (a ssh tunnel) to server SA on
+</I>&gt;<i> port 30001 (-L 30001:localhost:30001 <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user at SA</A>). You then start another
+</I>&gt;<i> session from client A to server B, also using port 30001 (-L
+</I>&gt;<i> 30001:localhost:30001 <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user at SB</A>). Doesn't that create a port conflict on
+</I>&gt;<i> client CA? You have two separate ssh tunnels trying to use the same
+</I>&gt;<i> TCP port on the client.
+</I>&gt;<i> 
+</I>&gt;<i> The problems I've seen have been when client CA has connected to
+</I>&gt;<i> server SA, which then has been used as a &quot;gateway client&quot; to connect
+</I>&gt;<i> to other servers. Sometimes the session between CA and SA used port
+</I>&gt;<i> 30001 and the session(s) between SA and other server SB also used port
+</I>&gt;<i> 30001. I could always set up the sessions, but if I tried to reconnect
+</I>&gt;<i> from client CA to SA I got an error message about &#8221;the remote proxy
+</I>&gt;<i> closed the connection while negotiating &#8230;&#8221;. My workaround was to
+</I>&gt;<i> separate the port ranges used by x2gostartagent on the servers; server
+</I>&gt;<i> SA now uses 30001-, server SB uses 30101-, server SC uses 30201- and
+</I>&gt;<i> so on. No more conflicts.
+</I>&gt;<i> 
+</I>&gt;<i> I've been trying to think of some way to make x2go automatically only
+</I>&gt;<i> use free ports, but since there are possibly several clients and
+</I>&gt;<i> servers involved in multiple incoming and outgoing sessions, the only
+</I>&gt;<i> safe way I've come up with would be to register used ports (or reserve
+</I>&gt;<i> port ranges) on a shared resource somewhere, which would make all x2go
+</I>&gt;<i> clients and servers dependent on that one resource.
+</I>&lt;snip&gt;
+Yes, but I believe in the past it has always managed to magically pick
+another set of ports.  That seems to have stopped happening - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002601.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+	<LI>Next message: <A HREF="002604.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2603">[ date ]</a>
+              <a href="thread.html#2603">[ thread ]</a>
+              <a href="subject.html#2603">[ subject ]</a>
+              <a href="author.html#2603">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

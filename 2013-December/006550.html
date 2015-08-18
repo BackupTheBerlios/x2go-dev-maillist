@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23354%3A%20Bug%23354%3A%20Make%20x2goagent%20listening%20to%20TCP%0A%09connections%20configurable%20in%20x2goserver.conf&In-Reply-To=%3C52A21285.7090407%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006548.html">
+   <LINK REL="Next"  HREF="006552.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23354%3A%20Bug%23354%3A%20Make%20x2goagent%20listening%20to%20TCP%0A%09connections%20configurable%20in%20x2goserver.conf&In-Reply-To=%3C52A21285.7090407%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Fri Dec  6 19:08:05 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006548.html">[X2Go-Dev] Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf
+</A></li>
+        <LI>Next message: <A HREF="006552.html">[X2Go-Dev] Bug#354: Bug#354: Bug#354: Make x2goagent listening to	TCP connections configurable in x2goserver.conf
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6550">[ date ]</a>
+              <a href="thread.html#6550">[ thread ]</a>
+              <a href="subject.html#6550">[ subject ]</a>
+              <a href="author.html#6550">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 06.12.2013 18:44, schrieb Nick Ingegneri:
+
+&gt;<i> Whatever solution we choose has to work within the existing environment
+</I>&gt;<i> and support the existing workflow. Our current workflow uses a mixture
+</I>&gt;<i> of xhost and xauth to allow xclients to connect to xservers. While &quot;ssh
+</I>&gt;<i> -Y&quot; may technically be an elegant solution, requiring it would break our
+</I>&gt;<i> existing tools, processes, and scripts.
+</I>
+Well, guys, it's 2013, almost 2014, and we live in the Post-NSA-Scandal 
+world. The times of using &quot;xhost +&quot; and not having to worry about it are 
+long over. Do yourself a favor and change your scripts.
+
+
+&gt;<i> I acknowledge that there is a security issue with TCP connections in
+</I>&gt;<i> X11, but that is an architectural issue with X11 itself and not with
+</I>&gt;<i> X2Go per se. If the developers of X2Go were to make TCP connections
+</I>&gt;<i> impossible then effectively the defined security model of X11 (as
+</I>&gt;<i> documented in places like the XSecurity and Xauth man pages) would be
+</I>&gt;<i> broken. TCP is part of how X11 works.
+</I>
+As a side-note, I hope you're aware that those newfangled GUI thingies 
+like Wayland and Mir are ditching TCP in their core design?  Just sayin' 
+(I don't like them, either) - not that that comes to bite you in the 
+lower back in a few years when you don't expect it.
+
+
+&gt;<i> Once it became apparent in our testing that exporting displays didn't
+</I>&gt;<i> work as expected, the system administrator who installed it went through
+</I>&gt;<i> the configuration files and documentation looking for a solution. He
+</I>&gt;<i> couldn't find one, so he escalated it to me to look into. If we hadn't
+</I>&gt;<i> been able to find a fix it would have ruled out X2Go from further
+</I>&gt;<i> consideration, which would have been unfortunate as it is currently our
+</I>&gt;<i> leading choice for this particular need.
+</I>
+In my opinion, Mike is a bit too customer-friendly here by turning your 
+request into a wishlist item that lets every newbie shoot him-/herself 
+in the foot, security-wise, by toggling a setting in the configuration.
+Sorry, but I've seen way too many people go &quot;chmod 777 -R /*&quot; as soon as 
+something doesn't work as expected, and I'm fearing the same for an 
+easily reachable option to allow TCP connections - because &quot;xhost +&quot; is 
+the X/TCP equivalent of &quot;chmod 777 -R /*&quot; in the filesystem.
+
+Of course, everybody is free to shoot him-/herself in the foot, that's 
+why it's Linux - but merely leaving a &quot;this is dangerous&quot; note next to 
+the parameter is like sticking a tag &quot;please don't use this unless you 
+know what you're doing&quot; on a loaded 12-gauge in a room full of toddlers.
+
+
+&gt;<i> Hopefully the above helps persuade you that there is a need for some
+</I>&gt;<i> users to be able to continue to support the existing X11 security model
+</I>&gt;<i> (including TCP).
+</I>
+Sorry, but you don't have me convinced that this is something anyone 
+should use for a prolonged period of time.
+
+
+&gt;<i> If you accept that point, then it seems there should be a more elegant
+</I>&gt;<i> way of enabling TCP than editing the x2gostartagent file. As someone
+</I>&gt;<i> brand new to looking at the project, files like x2goagent.options or
+</I>&gt;<i> x2goserver.conf are the obvious places I would expect to find an option
+</I>&gt;<i> to make this change.
+</I>
+My understanding of the issue is: It's possible to allow TCP 
+connections, and the fact that it's not easily reachable - but can be 
+reached - is a Good Thing(TM).
+We should leave it that way.
+You can manually allow TCP connections in your environment to ease 
+transition to X2Go - but by all means, go ahead and fix your scripts so 
+they use ssh -X/-Y, and do that soon. And reconfigure X2Go to &quot;nolisten 
+TCP&quot; the second you're done fixing your scripts.
+
+-Stefan
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006548.html">[X2Go-Dev] Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf
+</A></li>
+	<LI>Next message: <A HREF="006552.html">[X2Go-Dev] Bug#354: Bug#354: Bug#354: Make x2goagent listening to	TCP connections configurable in x2goserver.conf
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6550">[ date ]</a>
+              <a href="thread.html#6550">[ thread ]</a>
+              <a href="subject.html#6550">[ subject ]</a>
+              <a href="author.html#6550">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

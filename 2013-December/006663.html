@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go Client - new features and bugfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20-%20new%20features%20and%20bugfix&In-Reply-To=%3C20131214211502.Horde.RJY6ZZ9Q7l1BVTWTrsmKgA1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006658.html">
+   <LINK REL="Next"  HREF="006690.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go Client - new features and bugfix</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20-%20new%20features%20and%20bugfix&In-Reply-To=%3C20131214211502.Horde.RJY6ZZ9Q7l1BVTWTrsmKgA1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] X2Go Client - new features and bugfix">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Dec 14 22:15:02 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006658.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+        <LI>Next message: <A HREF="006690.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6663">[ date ]</a>
+              <a href="thread.html#6663">[ thread ]</a>
+              <a href="subject.html#6663">[ subject ]</a>
+              <a href="author.html#6663">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Michael,
+
+On  Sa 14 Dez 2013 03:47:12 CET, Michael DePaulo wrote:
+
+&gt;<i> Alex,
+</I>&gt;<i>
+</I>&gt;<i> Your patch successfully fixed the problem of X2goClient crashing when
+</I>&gt;<i> a username is not entered. Good job on that.
+</I>&gt;<i>
+</I>&gt;<i> And I tested it on my Windows XP SP3 32-bit VM (in addition to my
+</I>&gt;<i> desktop with Win 8.1 64-bit), the GSSAPI / Kerberos auth works there
+</I>&gt;<i> too.
+</I>&gt;<i>
+</I>&gt;<i> However, I still managed to produce one more crash on Windows, albeit
+</I>&gt;<i> an obscure one.
+</I>&gt;<i>
+</I>&gt;<i> If GSSAPI authentication is enabled, and you connect through an SSH
+</I>&gt;<i> proxy, that SSH proxy must also use GSSAPI. It prompts you for a
+</I>&gt;<i> password, but it seems to ignore it. I've entered an incorrect
+</I>&gt;<i> password and still connects. This is not that bad of a bug and I think
+</I>&gt;<i> we can launch 4.0.1.2 despite it.
+</I>&gt;<i>
+</I>&gt;<i> If that proxy does successfully authenticate using GSSAPI, and you
+</I>&gt;<i> successfully connect to the x2goserver via GSSAPI, the session opens
+</I>&gt;<i> and works as far as I've tested it. However, on disconnect, the
+</I>&gt;<i> x2goclient crashes.
+</I>&gt;<i>
+</I>&gt;<i> I do not know if this crash would be realistically produced. After
+</I>&gt;<i> all, if the entire point of the proxy is to connect through a
+</I>&gt;<i> firewall, would you really be using Kerberos auth to both the proxy
+</I>&gt;<i> and the x2goserver? I do not think this crash bug has to be fixed
+</I>&gt;<i> before 4.0.1.2, but I thought I'd mention it and the former bug. (I
+</I>&gt;<i> will put them in the bug tracker if we do launch with these bugs.)
+</I>&gt;<i>
+</I>&gt;<i> -Mike
+</I>
+Put the above bug description in the bug tracker anyway. Even if we  
+fix it for 4.0.1.2, it is good to have it officially documented.
+
+Mike
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131214/aded881c/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131214/aded881c/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006658.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+	<LI>Next message: <A HREF="006690.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6663">[ date ]</a>
+              <a href="thread.html#6663">[ thread ]</a>
+              <a href="subject.html#6663">[ subject ]</a>
+              <a href="author.html#6663">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

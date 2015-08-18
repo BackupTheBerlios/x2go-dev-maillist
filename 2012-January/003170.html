@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Building nx-libs (nx-X11) from tarballs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Building%20nx-libs%20%28nx-X11%29%20from%20tarballs&In-Reply-To=%3CCAJBj3vcPVF6NoeGQ93ZVK%2BU585a1BSUPd9DQqkXr0x3xnsB4UA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003169.html">
+   <LINK REL="Next"  HREF="003171.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Building nx-libs (nx-X11) from tarballs</H1>
+    <B>John Williams</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Building%20nx-libs%20%28nx-X11%29%20from%20tarballs&In-Reply-To=%3CCAJBj3vcPVF6NoeGQ93ZVK%2BU585a1BSUPd9DQqkXr0x3xnsB4UA%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] Building nx-libs (nx-X11) from tarballs">jwilliams4200 at gmail.com
+       </A><BR>
+    <I>Sat Jan  7 11:50:01 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003169.html">[X2go-Dev] Building nx-libs (nx-X11) from tarballs
+</A></li>
+        <LI>Next message: <A HREF="003171.html">[X2go-Dev] Building nx-libs (nx-X11) from tarballs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3170">[ date ]</a>
+              <a href="thread.html#3170">[ thread ]</a>
+              <a href="subject.html#3170">[ subject ]</a>
+              <a href="author.html#3170">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Jan 7, 2012 at 2:45 AM, Mike Gabriel
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+&gt;<i> I recommend the following procedure (you need git and quilt for this):
+</I>&gt;<i>
+</I>&gt;<i> $ git clone <A HREF="git://code.x2go.org/nx-libs.git">git://code.x2go.org/nx-libs.git</A>
+</I>&gt;<i> $ QUILT_PATCHES=debian/patches quilt push -a
+</I>&gt;<i> $ make &amp;&amp; make install
+</I>&gt;<i>
+</I>&gt;<i> Please take a closer look at the patches as some of them replace
+</I>&gt;<i> installation paths in a hard coded manner. If you do not want to install to
+</I>&gt;<i> /usr/ (rather to /usr/local/) it needs some work of yours. Please contribute
+</I>&gt;<i> your patches and fixes.
+</I>&gt;<i>
+</I>&gt;<i> Please try the above in a chroot first (before bugging your build server).
+</I>&gt;<i> Esp. the ,,make install'' is untested yet. So prepare for being a tester.
+</I>
+I think you misunderstand me. I want to build a release version of
+x2goserver (and dependencies) from tarballs, not the git development
+branch. And I have no idea what quilt is, or why you think I have
+patches to contribute. I'm just trying to build the release from
+sources! :-/
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003169.html">[X2go-Dev] Building nx-libs (nx-X11) from tarballs
+</A></li>
+	<LI>Next message: <A HREF="003171.html">[X2go-Dev] Building nx-libs (nx-X11) from tarballs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3170">[ date ]</a>
+              <a href="thread.html#3170">[ thread ]</a>
+              <a href="subject.html#3170">[ subject ]</a>
+              <a href="author.html#3170">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] remote proxy closed the connection
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20remote%20proxy%20closed%20the%20connection&In-Reply-To=%3C4D4A1798.3030303%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001670.html">
+   <LINK REL="Next"  HREF="001707.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] remote proxy closed the connection</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20remote%20proxy%20closed%20the%20connection&In-Reply-To=%3C4D4A1798.3030303%40verizon.net%3E"
+       TITLE="[X2go-dev] remote proxy closed the connection">greno at verizon.net
+       </A><BR>
+    <I>Thu Feb  3 03:48:56 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001670.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+        <LI>Next message: <A HREF="001707.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1671">[ date ]</a>
+              <a href="thread.html#1671">[ thread ]</a>
+              <a href="subject.html#1671">[ subject ]</a>
+              <a href="author.html#1671">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 02/02/2011 09:35 PM, Gerry Reno wrote:
+&gt;<i> I'm seeing the following errors trying to connect to a new machine
+</I>&gt;<i> running server version 3.0.99 using the browser client:
+</I>&gt;<i>
+</I>&gt;<i> Feb  3 02:20:33 newmachine su[16393]: pam_unix(su:session): session
+</I>&gt;<i> opened for user ubuntu by (uid=0)
+</I>&gt;<i> Feb  3 02:20:33 newmachine sudo:   ubuntu : TTY=unknown ; PWD=/ ;
+</I>&gt;<i> USER=root ; COMMAND=/usr/bin/touch /root/firstlogin_done
+</I>&gt;<i> Feb  3 02:20:33 newmachine sshd[16319]: Accepted publickey for ubuntu
+</I>&gt;<i> from XXX.XXX.XXX.XXX port 51610 ssh2
+</I>&gt;<i> Feb  3 02:20:33 newmachine sshd[16319]: pam_unix(sshd:session): session
+</I>&gt;<i> opened for user ubuntu by (uid=0)
+</I>&gt;<i> Feb  3 02:20:33 newmachine sshd[16320]: Accepted publickey for ubuntu
+</I>&gt;<i> from XXX.XXX.XXX.XXX port 51609 ssh2
+</I>&gt;<i> Feb  3 02:20:33 newmachine sshd[16320]: pam_unix(sshd:session): session
+</I>&gt;<i> opened for user ubuntu by (uid=0)
+</I>&gt;<i> Feb  3 02:20:33 newmachine sshd[16441]: error: bind: Address already in use
+</I>&gt;<i> Feb  3 02:20:33 newmachine sshd[16441]: error:
+</I>&gt;<i> channel_setup_fwd_listener: cannot listen to port: 30008
+</I>&gt;<i> Feb  3 02:20:33 newmachine sshd[16234]: pam_unix(sshd:session): session
+</I>&gt;<i> closed for user ubuntu
+</I>&gt;<i> Feb  3 02:20:33 newmachine su[16393]: pam_unix(su:session): session
+</I>&gt;<i> closed for user ubuntu
+</I>&gt;<i> Feb  3 02:20:33 newmachine sshd[16524]: error: connect_to localhost port
+</I>&gt;<i> 30007: failed.
+</I>&gt;<i> Feb  3 02:20:33 newmachine sshd[16232]: pam_unix(sshd:session): session
+</I>&gt;<i> closed for user ubuntu
+</I>&gt;<i> Feb  3 02:20:33 newmachine sshd[29561]: channel 2: open failed: connect
+</I>&gt;<i> failed: Connection refused
+</I>&gt;<i> Feb  3 02:20:33 newmachine sudo:   ubuntu : TTY=unknown ;
+</I>&gt;<i> PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/touch /root/firstlogin_done
+</I>&gt;<i> Feb  3 02:20:33 newmachine sudo:   ubuntu : TTY=unknown ;
+</I>&gt;<i> PWD=/home/ubuntu ; USER=root ; COMMAND=/usr/bin/touch /root/firstlogin_done
+</I>&gt;<i> Feb  3 02:20:33 newmachine sshd[16233]: pam_unix(sshd:session): session
+</I>&gt;<i> closed for user ubuntu
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> The client reports:
+</I>&gt;<i>     Resuming
+</I>&gt;<i>     Aborting
+</I>&gt;<i>     Error message appears:
+</I>&gt;<i>
+</I>&gt;<i>     The remote proxy closed the connection while negotiating
+</I>&gt;<i>     the session. This may be due to the wrong authentication
+</I>&gt;<i>     credentials passed to the server.
+</I>&gt;<i>
+</I>&gt;<i>     Finished
+</I>&gt;<i>
+</I>&gt;<i> I ran a check for sessions and there is only one existing session.
+</I>&gt;<i>
+</I>&gt;<i> I've triple-checked the credentials and logged in on command line using
+</I>&gt;<i> them.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+Here's what we have for x2go processes:
+
+ubuntu    3219     1  0 Feb02 ?        00:00:50 /usr/lib/x2go/x2goagent
+-dpi 96 -D -auth /home/ubuntu/.Xauthority -geometry 1005x552+113+232
+-name X2GO-ubuntu-51-1296672519_stDGNOME_dp24 :51
+ubuntu    3690     1  0 Feb02 ?        00:00:00 /bin/bash
+/usr/bin/x2goruncommand 51 3219 ubuntu-51-1296672519_stDGNOME_dp24 30008
+gnome-session nosnd D
+root     15119     1  0 Feb02 ?        00:00:04 /usr/bin/perl
+/usr/sbin/x2gocleansessions
+
+So there is an existing session.  I got detached from it when the
+browser crashed.
+
+It seems as though the client should either automatically attach to the
+session or present the user with the list of sessions to take some action.
+
+
+Regards,
+Gerry
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001670.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+	<LI>Next message: <A HREF="001707.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1671">[ date ]</a>
+              <a href="thread.html#1671">[ thread ]</a>
+              <a href="subject.html#1671">[ subject ]</a>
+              <a href="author.html#1671">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

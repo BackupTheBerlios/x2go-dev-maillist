@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#141: X2Gobroker: session autologin does not work
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23141%3A%20X2Gobroker%3A%20session%20autologin%20does%20not%20work&In-Reply-To=%3CCAFJm-UODjWseVb-r9U-s1tQPHCteeNmsumwepNAcH0i6GVoc2Q%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005200.html">
+   <LINK REL="Next"  HREF="005204.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#141: X2Gobroker: session autologin does not work</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23141%3A%20X2Gobroker%3A%20session%20autologin%20does%20not%20work&In-Reply-To=%3CCAFJm-UODjWseVb-r9U-s1tQPHCteeNmsumwepNAcH0i6GVoc2Q%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#141: X2Gobroker: session autologin does not work">abo at dsl.dk
+       </A><BR>
+    <I>Thu Mar  7 10:50:13 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005200.html">[X2Go-Dev] Processed: Reported issues solved in X2Go Session Broker	0.0.0.7
+</A></li>
+        <LI>Next message: <A HREF="005204.html">[X2Go-Dev] Bug#141: X2Gobroker: session autologin does not work
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5202">[ date ]</a>
+              <a href="thread.html#5202">[ thread ]</a>
+              <a href="subject.html#5202">[ subject ]</a>
+              <a href="author.html#5202">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2gobroker
+Version: 0.0.0.7
+
+When broker-session-autologin=true is set for a profile, a temp
+ssh-key-pair is generated. The pubkey is added to %h/.x2go/authorized_keys
+on the term-server and the private key is given to x2goclient.
+Unfortunately this does not seem to work for us. When we try to login this
+way, a dialog box is shown, asking for a &quot;passphrase to decrypt a key&quot;.
+At first in our test-setup we thought this worked, because I already had
+password-less login to the terminal-servers using ssh-keys. As soon as I
+move my .ssh dir, this other problem occurs. It also occurs for for users
+without any ssh-keys setup. I can see that the pubkey is successfully added
+(and removed after 20 seconds) on the term-server in
+$HOME/.x2go/authorized_keys. The sshd on the term-server is set to also
+look in %h/.x2go/authorized_keys.
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130307/fda88d19/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130307/fda88d19/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005200.html">[X2Go-Dev] Processed: Reported issues solved in X2Go Session Broker	0.0.0.7
+</A></li>
+	<LI>Next message: <A HREF="005204.html">[X2Go-Dev] Bug#141: X2Gobroker: session autologin does not work
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5202">[ date ]</a>
+              <a href="thread.html#5202">[ thread ]</a>
+              <a href="subject.html#5202">[ subject ]</a>
+              <a href="author.html#5202">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

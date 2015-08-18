@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] PulseAudio and X2go (was Re: Looking for information on the future of x2go (and some other x2go-related stuff))
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20PulseAudio%20and%20X2go%20%28was%20Re%3A%20Looking%20for%20information%0A%20on%20the%20future%20of%20x2go%20%28and%20some%20other%20x2go-related%20stuff%29%29&In-Reply-To=%3C1299084795.27156.59.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001833.html">
+   <LINK REL="Next"  HREF="001837.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] PulseAudio and X2go (was Re: Looking for information on the future of x2go (and some other x2go-related stuff))</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20PulseAudio%20and%20X2go%20%28was%20Re%3A%20Looking%20for%20information%0A%20on%20the%20future%20of%20x2go%20%28and%20some%20other%20x2go-related%20stuff%29%29&In-Reply-To=%3C1299084795.27156.59.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] PulseAudio and X2go (was Re: Looking for information on the future of x2go (and some other x2go-related stuff))">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Mar  2 17:53:15 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001833.html">[X2go-dev] PulseAudio and X2go (was Re: Looking for information on the future of x2go (and some other x2go-related stuff))
+</A></li>
+        <LI>Next message: <A HREF="001837.html">[X2go-dev] PulseAudio and X2go (was Re: Looking for information on the future of x2go (and some other x2go-related stuff))
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1835">[ date ]</a>
+              <a href="thread.html#1835">[ thread ]</a>
+              <a href="subject.html#1835">[ subject ]</a>
+              <a href="author.html#1835">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2011-03-02 at 17:38 +0100, Mike Gabriel wrote:
+&gt;<i> Hi Stefan,
+</I>&gt;<i> 
+</I>&gt;<i> On Mi 02 M&#228;r 2011 17:32:02 CET Stefan Baur wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; ALSA lib confmisc.c:392:(snd_func_concat) error evaluating strings
+</I>&gt;<i> &gt; ALSA lib conf.c:4170:(_snd_config_evaluate) function snd_func_concat  
+</I>&gt;<i> &gt; returned error: Datei oder Verzeichnis nicht gefunden
+</I>&gt;<i> &gt; ALSA lib confmisc.c:1251:(snd_func_refer) error evaluating name
+</I>&gt;<i> &gt; ALSA lib conf.c:4170:(_snd_config_evaluate) function snd_func_refer  
+</I>&gt;<i> &gt; returned error: Datei oder Verzeichnis nicht gefunden
+</I>&gt;<i> &gt; ALSA lib conf.c:4649:(snd_config_expand) Evaluate error: Datei oder  
+</I>&gt;<i> &gt; Verzeichnis nicht gefunden
+</I>&gt;<i> &gt; ALSA lib pcm.c:2190:(snd_pcm_open_noupdate) Unknown PCM default
+</I>&gt;<i> &gt; ALSA lib pcm_hw.c:1401:(_snd_pcm_hw_open) Invalid value for card
+</I>&gt;<i> &gt; ALSA lib confmisc.c:768:(parse_card) cannot find card '0'
+</I>&gt;<i> &gt; ALSA lib conf.c:4170:(_snd_config_evaluate) function  
+</I>&gt;<i> &gt; snd_func_card_driver returned error: Datei oder Verzeichnis nicht  
+</I>&gt;<i> &gt; gefunden
+</I>&gt;<i> &gt; ALSA lib confmisc.c:392:(snd_func_concat) error evaluating strings
+</I>&gt;<i> &gt; ALSA lib conf.c:4170:(_snd_config_evaluate) function snd_func_concat  
+</I>&gt;<i> &gt; returned error: Datei oder Verzeichnis nicht gefunden
+</I>&gt;<i> &gt; ALSA lib confmisc.c:1251:(snd_func_refer) error evaluating name
+</I>&gt;<i> &gt; ALSA lib conf.c:4170:(_snd_config_evaluate) function snd_func_refer  
+</I>&gt;<i> &gt; returned error: Datei oder Verzeichnis nicht gefunden
+</I>&gt;<i> &gt; ALSA lib conf.c:4649:(snd_config_expand) Evaluate error: Datei oder  
+</I>&gt;<i> &gt; Verzeichnis nicht gefunden
+</I>&gt;<i> &gt; ALSA lib pcm.c:2190:(snd_pcm_open_noupdate) Unknown PCM default
+</I>&gt;<i> &gt; ALSA lib pcm_hw.c:1401:(_snd_pcm_hw_open) Invalid value for card
+</I>&gt;<i> 
+</I>&gt;<i> This hints that firefox is not using PulseAudio. Maybe this  
+</I>&gt;<i> documentation helps a bit...
+</I>&gt;<i> <A HREF="https://wiki.ubuntu.com/PulseAudio">https://wiki.ubuntu.com/PulseAudio</A>
+</I>&gt;<i> 
+</I>&lt;snip&gt;
+I'll dig a little deeper for you if the information in this email does
+not help.  A couple of items:
+
+If you are testing only with Firefox, you do need to edit
+the /etc/firefox/firefoxrc file:
+
+# which /dev/dsp wrapper to use
+ICEWEASEL_DSP=&quot;esddsp&quot;
+#ICEWEASEL_DSP=&quot;padsp&quot;
+
+padsp does work in Squeeze (I believe it caused a segfault in Lenny). We
+still use esddsp because our Trinity desktops fail with padsp and we
+haven't taken time to troubleshoot it.
+
+If you are using very recent versions of the X2Go client, viz., those
+which use libssh, you may need to manually create a .ssh directory.  I
+forget exactly where it is needed but there should be something in the
+mail list archives from Phil (uxbod) about this issue.  Not having that
+causes the reverse ssh connections to fail.  Hope that helps - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001833.html">[X2go-dev] PulseAudio and X2go (was Re: Looking for information on the future of x2go (and some other x2go-related stuff))
+</A></li>
+	<LI>Next message: <A HREF="001837.html">[X2go-dev] PulseAudio and X2go (was Re: Looking for information on the future of x2go (and some other x2go-related stuff))
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1835">[ date ]</a>
+              <a href="thread.html#1835">[ thread ]</a>
+              <a href="subject.html#1835">[ subject ]</a>
+              <a href="author.html#1835">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

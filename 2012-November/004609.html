@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#63: Current Cairo test suite segfaults x2goagent
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2363%3A%20Current%20Cairo%20test%20suite%20segfaults%20x2goagent&In-Reply-To=%3C50B642E7.3010000%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004608.html">
+   <LINK REL="Next"  HREF="004610.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#63: Current Cairo test suite segfaults x2goagent</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2363%3A%20Current%20Cairo%20test%20suite%20segfaults%20x2goagent&In-Reply-To=%3C50B642E7.3010000%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] Bug#63: Current Cairo test suite segfaults x2goagent">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Wed Nov 28 17:59:19 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004608.html">[X2Go-Dev] NEW: #x2go on IRC (freenode)
+</A></li>
+        <LI>Next message: <A HREF="004610.html">[X2Go-Dev] Bug#64:
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4609">[ date ]</a>
+              <a href="thread.html#4609">[ thread ]</a>
+              <a href="subject.html#4609">[ subject ]</a>
+              <a href="author.html#4609">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goagent
+Version: 3.5.0.16-0
+
+x2goagant segfaults when running the cairo test suite. (The current
+version only compiles on Wheezy)
+
+This can be reproduced running:
+git clone <A HREF="git://anongit.freedesktop.org/git/cairo">git://anongit.freedesktop.org/git/cairo</A>
+cd cairo
+./autogen.sh
+./configure
+make
+make test
+
+
+As quite few tests fail Bugs #62 and #35 might be related to Cairo.
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 5005 bytes
+Desc: S/MIME Kryptografische Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121128/b8205039/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121128/b8205039/attachment.bin</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004608.html">[X2Go-Dev] NEW: #x2go on IRC (freenode)
+</A></li>
+	<LI>Next message: <A HREF="004610.html">[X2Go-Dev] Bug#64:
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4609">[ date ]</a>
+              <a href="thread.html#4609">[ thread ]</a>
+              <a href="subject.html#4609">[ subject ]</a>
+              <a href="author.html#4609">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Patch cleanliness (was: Re: libssh changes. Information for package maintainers)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Patch%20cleanliness%20%28was%3A%20Re%3A%20libssh%20changes.%20Information%0A%20for%20package%20maintainers%29&In-Reply-To=%3C20140124145232.Horde.KhGIR7WEkT4Ub_MAAsDeHQ1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006866.html">
+   <LINK REL="Next"  HREF="006869.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Patch cleanliness (was: Re: libssh changes. Information for package maintainers)</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Patch%20cleanliness%20%28was%3A%20Re%3A%20libssh%20changes.%20Information%0A%20for%20package%20maintainers%29&In-Reply-To=%3C20140124145232.Horde.KhGIR7WEkT4Ub_MAAsDeHQ1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Patch cleanliness (was: Re: libssh changes. Information for package maintainers)">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jan 24 15:52:32 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006866.html">[X2Go-Dev] libssh changes. Information for package maintainers
+</A></li>
+        <LI>Next message: <A HREF="006869.html">[X2Go-Dev] Bug#411: Fix ppc64 build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6867">[ date ]</a>
+              <a href="thread.html#6867">[ thread ]</a>
+              <a href="subject.html#6867">[ subject ]</a>
+              <a href="author.html#6867">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alex,
+
+&gt;<i> You can find a patch here:
+</I>&gt;<i> <A HREF="http://code.x2go.org/releases/libssh/libssh-0.5.x-unblock.patch">http://code.x2go.org/releases/libssh/libssh-0.5.x-unblock.patch</A>
+</I>
+The patch has an unnecessary patch block in it (extra line feed). This  
+brings up a topic about patch cleanliness that becomes important for  
+X2Go Client now that we have to maintain two release branches for some  
+time...
+
+I have just split up X2Go Client into two branches (main development  
+branch on Git master and a release/4.0.1.x Git branch).
+
+Until all current distros have the required libssh patch, I will  
+release two versions of X2Go Client (4.0.1.x / Baikal LTS /  
+release/4.0.1.x Git branch) and 4.0.2.x (Stable release / Git master).
+
+Completely new features will only go into the Stable release branch  
+(4.0.2.x / Git master).
+
+Bugfixes will go into release/4.0.1.x branch and be cherry-picked to  
+the master branch.
+
+@Alex and all patch contributors: In order to be able to maintain  
+these two release series I need very clean commits/patches on X2Go  
+Client code while we are in this dual release phase. I will only  
+cherry-pick patches between branches if they are very very clean. This  
+means: no indentation changes where it is not necessary, no whitespace  
+fixes, no new empty lines, etc.
+
+Thanks!!!
+
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20140124/f7182e5e/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20140124/f7182e5e/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006866.html">[X2Go-Dev] libssh changes. Information for package maintainers
+</A></li>
+	<LI>Next message: <A HREF="006869.html">[X2Go-Dev] Bug#411: Fix ppc64 build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6867">[ date ]</a>
+              <a href="thread.html#6867">[ thread ]</a>
+              <a href="subject.html#6867">[ subject ]</a>
+              <a href="author.html#6867">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

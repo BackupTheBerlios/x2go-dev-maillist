@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go-home
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go-home&In-Reply-To=%3C20100813114510.17405srte83m6y3q%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000936.html">
+   <LINK REL="Next"  HREF="000938.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go-home</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go-home&In-Reply-To=%3C20100813114510.17405srte83m6y3q%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] x2go-home">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Aug 13 11:45:10 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000936.html">[X2go-dev] x2go-home
+</A></li>
+        <LI>Next message: <A HREF="000938.html">[X2go-dev] x2go-home
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#937">[ date ]</a>
+              <a href="thread.html#937">[ thread ]</a>
+              <a href="subject.html#937">[ subject ]</a>
+              <a href="author.html#937">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alexander,
+
+please post in English to this list as there are several competent  
+people listening on this list that do not speak German.
+
+On Fr 13 Aug 2010 10:32:52 CEST Alexander Cr&#246;ssmann wrote:
+
+&gt;<i> Hallo,
+</I>&gt;<i>
+</I>&gt;<i> &quot;The remote proxy closed the connection while negotiating the session.
+</I>&gt;<i> This may be due to the wrong authentication credentials passed to the
+</I>&gt;<i> server.&quot;.
+</I>
+This error occurs indeed if your password is not typed in correctly. I  
+sometimes also get this error (no idea why...), even if I am really  
+sure that I typed my pw in correctly... But this error should not be  
+permanent and it occurs rather rarely.
+
+On your x2goserver system take a look at /var/log/auth.log while you  
+try to login.
+
+As well the client as the x2goserver produces log output in your local  
+and your remote home dir (~/.x2go). Also check output and information  
+there...
+
+&gt;<i> Ab und zu sehe ich noch das hier
+</I>&gt;<i> &quot;
+</I>&gt;<i> NXPROXY - Version 3.4.0
+</I>&gt;<i>
+</I>&gt;<i> Copyright (C) 2001, 2007 NoMachine.
+</I>&gt;<i> See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+</I>&gt;<i>
+</I>&gt;<i> Info: Proxy running in client mode with pid '25163'.
+</I>&gt;<i> Session: Starting session at 'Fri Aug 13 10:29:55 2010'.
+</I>&gt;<i> Info: Connecting to remote host 'localhost:30002'.
+</I>&gt;<i> Info: Connection to remote proxy 'localhost:30002' established.
+</I>&gt;<i> Error: The remote NX proxy closed the connection.
+</I>&gt;<i> Error: Failure negotiating the session in stage '7'.
+</I>&gt;<i> Error: Wrong version or invalid session authentication cookie.
+</I>&gt;<i> Session: Terminating session at 'Fri Aug 13 10:29:56 2010'.
+</I>&gt;<i> Session: Session terminated at 'Fri Aug 13 10:29:56 2010'.
+</I>
+Maybe you should clean up the sessions  
+(C-&lt;uid&gt;-&lt;displayno&gt;-&lt;long-alnum-string&gt;) in your remote ~/.x2go dir.
+
+In a nutshell:
+
+   watch /var/log/auth.log
+   clear local .x2go dir
+   clear remote .x2go dir
+   look at individual session logs in .x2go (remotely+locally)
+   post your insights
+
+Normal x2goserver-home works out of the box on Ubuntu karmic (my  
+experience). Do you have a firewall running? Any other tweaks /  
+differences from a standard ubuntu desktop?
+
+Greets and good luck,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000936.html">[X2go-dev] x2go-home
+</A></li>
+	<LI>Next message: <A HREF="000938.html">[X2go-dev] x2go-home
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#937">[ date ]</a>
+              <a href="thread.html#937">[ thread ]</a>
+              <a href="subject.html#937">[ subject ]</a>
+              <a href="author.html#937">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

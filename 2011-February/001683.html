@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] [Pkg-x2go-devel] Getting things started with x2goclient
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%5BPkg-x2go-devel%5D%20Getting%20things%20started%20with%0A%20x2goclient&In-Reply-To=%3C1296743337.17566.10.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001679.html">
+   <LINK REL="Next"  HREF="001656.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] [Pkg-x2go-devel] Getting things started with x2goclient</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%5BPkg-x2go-devel%5D%20Getting%20things%20started%20with%0A%20x2goclient&In-Reply-To=%3C1296743337.17566.10.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] [Pkg-x2go-devel] Getting things started with x2goclient">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu Feb  3 15:28:57 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001679.html">[X2go-dev] [Pkg-x2go-devel] Getting things started with x2goclient
+</A></li>
+        <LI>Next message: <A HREF="001656.html">[X2go-dev] X2go GIT Repo - Patches?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1683">[ date ]</a>
+              <a href="thread.html#1683">[ thread ]</a>
+              <a href="subject.html#1683">[ subject ]</a>
+              <a href="author.html#1683">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2011-02-03 at 08:00 -0500, John A. Sullivan III wrote:
+&gt;<i> On Thu, 2011-02-03 at 10:42 +0100, Erik Auerswald wrote:
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; What I tried with some kind of success across an analog modem link years ago
+</I>&gt;<i> &gt; was the Differential X Protocoll Compressor (dxpc)
+</I>&gt;<i> &gt; <A HREF="http://www.vigor.nu/dxpc/">http://www.vigor.nu/dxpc/</A> .
+</I>&gt;<i> Just took a very quick look at this and it looks very interesting!
+</I>&gt;<i> Thanks for digging it out - John
+</I>&gt;<i> &lt;snip&gt;
+</I>&lt;snip&gt;
+Had a chance to read a bit more and it looks quite nice.  The only thing
+that concerns me from their DESIGN document is this statement:
+
+Image Compression
+-----------------
+
+dxpc compresses images differently, depending upon their type:
+
+  * For monochrome images with width-to-height ratios greater than 10
+    and heights less than or equal to 32, it transposes the images from
+    row-major to column-major representation and applies a variant of
+the
+    text-compression algorithm using 'h'-bit &quot;characters,&quot; where 'h' is
+    the image height.  (Why would it do something so strange?  Well...
+    FrameMaker draws bitmapped text one line at a time, and this
+algorithm
+    compresses the bitmapped text much more effectively than anything
+else
+    I could come up with.)
+
+  * For other monochrome images, it uses a variant of Group 4 FAX
+encoding.
+
+  * For 8-bit color images, it uses a CharCache to hold previous pixel
+    values and encodes them using technique 4.
+
+  * For anything else, it sends the whole image, uncompressed.
+
+I do not know how NX compresses images but it seemed like there were a
+wealth of settings (I know we found best results with 16m-png-jpeg) so
+this might be a big step backwards.  I'll defer to those who know more
+than I - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001679.html">[X2go-dev] [Pkg-x2go-devel] Getting things started with x2goclient
+</A></li>
+	<LI>Next message: <A HREF="001656.html">[X2go-dev] X2go GIT Repo - Patches?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1683">[ date ]</a>
+              <a href="thread.html#1683">[ thread ]</a>
+              <a href="subject.html#1683">[ subject ]</a>
+              <a href="author.html#1683">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Compiling x2go Windows client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Compiling%20x2go%20Windows%20client&In-Reply-To=%3C1717242760.489.1289565993821.JavaMail.root%40office.splatnix.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001262.html">
+   <LINK REL="Next"  HREF="001264.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Compiling x2go Windows client</H1>
+    <B>--[ UxBoD ]--</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Compiling%20x2go%20Windows%20client&In-Reply-To=%3C1717242760.489.1289565993821.JavaMail.root%40office.splatnix.net%3E"
+       TITLE="[X2go-dev] Compiling x2go Windows client">uxbod at splatnix.net
+       </A><BR>
+    <I>Fri Nov 12 13:46:33 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001262.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+        <LI>Next message: <A HREF="001264.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1263">[ date ]</a>
+              <a href="thread.html#1263">[ thread ]</a>
+              <a href="subject.html#1263">[ subject ]</a>
+              <a href="author.html#1263">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Original Message -----
+&gt;<i> --[ UxBoD ]-- schrieb:
+</I>&gt;<i> &gt;&gt; Yippee have built a cross compiled version of x2goclient by copying
+</I>&gt;<i> &gt;&gt; libQtSvg4.a to libQtSvg.a on the Windows VM plus doing the same for
+</I>&gt;<i> &gt;&gt; QtGui, QtNetwork and QtCore. Not sure why Windows and Linux are
+</I>&gt;<i> &gt;&gt; different with their filenames.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; I copied the resulting binary across to the Windows VM and fired it
+</I>&gt;<i> &gt;&gt; up. That worked fine though once I entered my username and password
+</I>&gt;<i> &gt;&gt; the client crashed and was intercepted by Qt debugger.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; This is so so frustrating as every step forward that is taken is
+</I>&gt;<i> &gt;&gt; countered by two back steps. Hopefully one of the developers will
+</I>&gt;<i> &gt;&gt; be
+</I>&gt;<i> &gt;&gt; able to help as we are really running out of time to get a
+</I>&gt;<i> &gt;&gt; functional
+</I>&gt;<i> &gt;&gt; X2Go client working. Mouse issues etc with Xming is causing us
+</I>&gt;<i> &gt;&gt; major
+</I>&gt;<i> &gt;&gt; issues and we need to test with VCXSRV ASAP.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Have tried with 3.01-13 and the unstable branch each one crashes as
+</I>&gt;<i> &gt; soon as the username and password is entered :(
+</I>&gt;<i> 
+</I>&gt;<i> Hallo Phil,
+</I>&gt;<i> since version 3.01-4 there is no project file for windows. Linux,mac
+</I>&gt;<i> and
+</I>&gt;<i> windows parts are merged in one &quot;x2goclient.pro&quot; file. We using Qt
+</I>&gt;<i> 4.5.3
+</I>&gt;<i> configured to make static release binaries on lenny to perform
+</I>&gt;<i> cross-platform builds of x2goclient. But with newer versions of qt on
+</I>&gt;<i> windows x2goclient although is working without a problem, no matter
+</I>&gt;<i> what
+</I>&gt;<i> you use to build x2goclient mingw or msvc. I think you have a problem,
+</I>&gt;<i> that some binaries are missing in your installation. Please try to
+</I>&gt;<i> install original x2goclient and try if it work. After that, replace
+</I>&gt;<i> x2goclient with your binary. Please be sure that your binary works in
+</I>&gt;<i> this installation before you make any changes in x2goclient code.
+</I>&gt;<i> 
+</I>&gt;<i> Happy hacking,
+</I>&gt;<i> alex
+</I>
+Hello Alex, really appreciate your response :) I have taken the Windows X2GO 3.01-11 and installed that on Windows XP 32 bit.  I backed up x2goclient.exe and the proceeded to compile the same version of x2goclient using MinGW and Qt 4.7.1 (this could be where the problem is arising!) using the steps; qmake followed by mingw32-make release and that created the binary.  I copied that to c:\program files\x2goclient and ran it. It started fine and I connected to my existing session, once I entered my username and password it then crashed. This happens the same with both build under Linux and Windows. Using QtCreator I did manage to get some kind of debug information which said:
+
+Creating desktop:  x2go_Administrator 
+
+ASSERT failure in QWidget: &quot;Widgets must be created in the GUI thread.&quot;, file kernel\qwidget.cpp, line 1231
+QObject::killTimers: timers cannot be stopped from another thread
+C:\x2goclient-3.01\debug\x2goclient.exe exited with code 3
+
+I will try downloading the same release of Qt that you are using.  Just to be clear I am assuming that you export your Windows Qt install to your Linux box and then compile using those libraries ?
+-- 
+Thanks, Phil
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001262.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+	<LI>Next message: <A HREF="001264.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1263">[ date ]</a>
+              <a href="thread.html#1263">[ thread ]</a>
+              <a href="subject.html#1263">[ subject ]</a>
+              <a href="author.html#1263">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

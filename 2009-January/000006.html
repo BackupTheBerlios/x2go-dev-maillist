@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Go --&gt; Ldap
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20--%3E%20Ldap&In-Reply-To=%3C200901221604.42161.joachim%40falaba.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Go --&gt; Ldap</H1>
+    <B>Joachim Langenbach</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20--%3E%20Ldap&In-Reply-To=%3C200901221604.42161.joachim%40falaba.de%3E"
+       TITLE="[X2go-dev] X2Go --&gt; Ldap">joachim at falaba.de
+       </A><BR>
+    <I>Thu Jan 22 16:04:39 CET 2009</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6">[ date ]</a>
+              <a href="thread.html#6">[ thread ]</a>
+              <a href="subject.html#6">[ subject ]</a>
+              <a href="author.html#6">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hallo!
+
+I'am trying to install an ldap environment for x2go at gentoo. I'm using the 
+ebuilds at <A HREF="http://bugs.gentoo.org/show_bug.cgi?id=249600">http://bugs.gentoo.org/show_bug.cgi?id=249600</A> (I want to test the 
+ebuilds, so that they can go into the overlay).
+But I'am not really satisfied with the installation.
+
+I removed my x2go-BaseDn.
+
+1) The x2go-kcontrol-modules not uses the rootbinddn, but everytime they use
+    cn=ldapadmin,x2goBaseDN
+2) It is somehow possible to specify a different dn for the different sections  
+    (users, groups, hosts, ON)? Because I use an ldap structure where groups, 
+    hosts and users are below different ou,s. At libnss-ldap.conf it is 
+    possible, but is it possible to use with x2go-kcontrol-modules too?
+3) Which options can I specify at /etc/x2go/x2goldaptools.conf
+4) The create process of a user at kcontrol doesn't work for me. Ldap says:
+    &quot;bdb_dn2id(&quot;uid=test,ou=people,x2goBaseDN&quot;)
+    &lt;= bdb_dn2id: get failed: DB_NOTFOUND: No matching key/data pair found  
+       (-30989)
+    bdb_modify: dn2entry failed (-30989)&quot;
+    But creating groups and hosts works fine.
+5) It is possible to specify a login with passwort for the ldap server at the 
+    qt-client?
+
+So I would be grateful for any help!
+
+Yours' sincerly,
+
+Joachim Langenbach
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090122/68e441d7/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090122/68e441d7/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6">[ date ]</a>
+              <a href="thread.html#6">[ thread ]</a>
+              <a href="subject.html#6">[ subject ]</a>
+              <a href="author.html#6">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

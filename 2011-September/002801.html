@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] libssh, nagle, and performance issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20libssh%2C%20nagle%2C%20and%20performance%20issues&In-Reply-To=%3C4E772CFE.6030206%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002798.html">
+   <LINK REL="Next"  HREF="002799.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] libssh, nagle, and performance issues</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20libssh%2C%20nagle%2C%20and%20performance%20issues&In-Reply-To=%3C4E772CFE.6030206%40obviously-nice.de%3E"
+       TITLE="[X2go-Dev] libssh, nagle, and performance issues">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Mon Sep 19 13:52:30 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002798.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+        <LI>Next message: <A HREF="002799.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2801">[ date ]</a>
+              <a href="thread.html#2801">[ thread ]</a>
+              <a href="subject.html#2801">[ subject ]</a>
+              <a href="author.html#2801">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 19.09.2011 13:18, schrieb John A. Sullivan III:
+&gt;<i> On Mon, 2011-09-19 at 09:51 +0200, Oleksandr Shneyder wrote: 
+</I>&gt;&gt;<i> Am 17.09.2011 03:39, schrieb John A. Sullivan III:
+</I>&gt;&gt;<i> &lt;snip&gt;&gt;&gt;&gt; Hello, all.  Since moving to the newer clients using libssh, I've
+</I>&gt;&gt;&gt;&gt;&gt;<i> noticed what appears to be a performance degradation.  It smells like
+</I>&gt;&gt;&gt;&gt;&gt;<i> Nagle coalescing packets, e.g., most of the screen will paint, then it
+</I>&gt;&gt;&gt;&gt;&gt;<i> will pause a moment, and then the rest will paint.  Is there any chance
+</I>&gt;&gt;&gt;&gt;&gt;<i> we have neglected to disable Nagle when invoking libssh?
+</I>&gt;<i> &lt;snip&gt; 
+</I>&gt;&gt;<i> I can imagine, that it can be problem in libssh on Windows. Can you try
+</I>&gt;&gt;<i> to build a new libssh.dll on your system? However, I still cannot
+</I>&gt;&gt;<i> reproduce your issue on my windows client :(
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> regards,
+</I>&gt;&gt;<i> Alex
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> Thanks, Alex, although I see the problem in Linux, though not as badly.
+</I>&gt;<i> I can give a new libssh.dll a try.  Any pointers on how I build myself a
+</I>&gt;<i> new one? Thanks - John
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+As I can remember, you need a cmake and mingw. for other dependencies
+you will be informed by cmake.
+
+regards,
+Alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110919/c9012915/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110919/c9012915/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002798.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+	<LI>Next message: <A HREF="002799.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2801">[ date ]</a>
+              <a href="thread.html#2801">[ thread ]</a>
+              <a href="subject.html#2801">[ subject ]</a>
+              <a href="author.html#2801">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

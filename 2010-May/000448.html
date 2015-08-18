@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Larger-scale X2GO installations - experience?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Larger-scale%20X2GO%20installations%20-%20experience%3F&In-Reply-To=%3C1272934745.17004.79.camel%40Family.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000445.html">
+   <LINK REL="Next"  HREF="000449.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Larger-scale X2GO installations - experience?</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Larger-scale%20X2GO%20installations%20-%20experience%3F&In-Reply-To=%3C1272934745.17004.79.camel%40Family.pacifera.com%3E"
+       TITLE="[X2go-dev] Larger-scale X2GO installations - experience?">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue May  4 02:59:05 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000445.html">[X2go-dev] Larger-scale X2GO installations - experience?
+</A></li>
+        <LI>Next message: <A HREF="000449.html">[X2go-dev] (no subject)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#448">[ date ]</a>
+              <a href="thread.html#448">[ thread ]</a>
+              <a href="subject.html#448">[ subject ]</a>
+              <a href="author.html#448">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, 2010-05-02 at 03:24 -0700, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">sm8ps-x2go1 at yahoo.com</A> wrote:
+&gt;<i> Dear all,
+</I>&gt;<i> 
+</I>&gt;<i> I have been looking for a suitable set-up for our high school (Swiss Gymnasium, grades 10 through 13, 400 students, 60 teachers) that would allow our students to use their own netbook/laptop in class as well as at home. Conditions are:
+</I>&gt;<i> 1. no technical support for users' computers (therefore no installing  individual applications, no passing out images etc.)
+</I>&gt;<i> 2. must work on computers in any state, even with broken OS, browser whatever (so must allow terminal server solution as fall-back)
+</I>&gt;<i> 3. plattform independent (win/mac/linux and independent of individual computer models)
+</I>&gt;<i> 4. must work over WLAN
+</I>&gt;<i> 5. should be available on- as well as off-site
+</I>&gt;<i> 
+</I>&gt;<i> A couple of years ago I started looking more closely into LTSP and I have set up a test lab that works just fine. Though, the local nature of that makes it less suitable to our needs. Clearly, I have studied NX and now I have followed the development of X2GO more or less closely. I feel that X2GO is the perfect candidate and I want to set up a larger-scale test network. Before doing so, however, I would like to hear other people's experience with such set-ups.
+</I>&gt;<i> 
+</I>We also initially looked at LTSP but realized it would not meet our
+remote access requirements.  We were planning to use NoMachine's
+solution even though we would have liked a fully open source solution
+but found major issues with sound (esd based).  We then thought of
+wrapping NX inside of some scripting and using pulseaudio for sound
+outside of NX and that's when we stumbled across X2Go.
+
+We are planning a very substantial installation but are still quite
+small - about 15 to 18 desktops.  We are planning to scale to many
+thousands.  Our environment is a bit different.  X2Go is normally used
+as one server to many desktops.  We were concerned about how certain
+protocols would behave in the shared desktop environment, e.g., SIP and
+VNC.  We did not want to invest in building an entire company around
+many-to-one service only to find a necessary protocol failed in such an
+environment.
+
+Thus, we combined X2Go with VServer to create a one-to-one ratio between
+X2Go servers and clients.  The VServer hashification feature means we
+add minimal disk and RAM overhead per X2Go server.
+
+Our first server was quite - two quad core CPUs, 32GB RAM, an iSCSI SAN.
+The current load is barely taxing the CPU.  RAM is a little more of a
+concern as we are chewing through it faster than expected.  We were
+originally told by an NX consultant that we could get 20 users per GB or
+RAM.  We thought that was pushing it and estimated 10.  However, we are
+finding individual users using 300 - 1000 MB each.  I'm not sure if the
+per user value will drop as we add more users.  The VServer
+hashification is supposed to enable a single page in memory for all
+duplicates.  We did notice that much of this memory is the X2Go cache.
+I do not yet know if this is tunable and may be the disadvantage of the
+1-to-1 server/client ratio, i.e., potentially hundreds of caches when we
+would have had one.  I have not investigated creating a shared cache and
+am concerned of the security implications of such a thing.  I should
+mention that the dedicated 1:1 approach with fixed IP addresses is very
+nice for schools so violations of access policy can be accurately
+tracked to a user without trying to match logs with DHCP lease times.
+
+We have rewritten some of the scripts to combine processes.  We stopped
+the x2gocleansessions process on all clients and created one master
+process on the vserver host to clean all the clients.  We also altered
+the printing scripts to enable the central cups print server to service
+multiple x2go servers.
+
+Finally, we run a single database instance for all clients.  This also
+involved some patching of the scripts as we did not want the clients
+accessing the database as the postgres super-user.
+
+Out first deployment is almost finished and we hope to share our
+configurations with the community soon.
+&gt;<i> I have compiled a preliminary list of questions (s.b.). If you have any experience with larger scale X2GO set-ups, I would really appreciate your input and I think others might be interested as well. Thanks a lot for sharing your expertise! If you would like to communicate in German or French, I can cope with both.
+</I>&gt;<i> 
+</I>&gt;<i> Cheers!
+</I>&gt;<i> St. M&#252;ller, Switzerland
+</I>&gt;<i> 
+</I>&gt;<i> QUESTIONS (yes/no, experience?)
+</I>&gt;<i> 1) Local OS:
+</I>We have successfully run using several distributions of Linux and
+Windows.  We have done some preliminary testing with Mac and it seemed
+to work after tweaking a couple of the X settings - I don't recall which
+right now although one was to enable full screen.
+
+We are having a problem with full screen mode in Windows - it does not
+work.  I suspect there is some kind of --fullscreen parameter which is
+not being passed to Xming.  I haven't looked at this yet but need to do
+so soon as it is confusing the Windows users and prevents iterating over
+open windows in the X2Go desktop by using the alt-tab key.
+&gt;<i> a) Copy/Paste from/to local OS
+</I>Works reasonably well with Linux local OS with some inconsistencies.  It
+is virtually unusable in Windows.
+&gt;<i> b) Accessing local file systems
+</I>This seems to work very reliably although we had to do major hacking of
+the scripts to get it to work in the VServer environment because we
+intentionally limit the POSIX capabilities of the x2go client vservers.
+We posted an possible issue with Windows systems earlier today on the
+list. It is not properly cleaning up the created desktop icons.  This
+may be peculiar to our environment.
+
+We have noticed that file transfers to the X2Go server are producing
+inordinate I/O wait.  I believe this is not an X2Go issue but is
+peculiar to our iSCSI intiator.  I'd be very curious to know if others
+are seeing this.
+
+We also have noticed a problem with Windows profiles.  One client has
+stored Windows user directories (e.g., My Documents) on their server.
+The data store is not reference by a drive letter and shows up in the
+X2Go client file system browser simply as My Documents.  It will not
+share with the x2go server.  Anything with a drive letter including
+network drives and removable media shares fine. 
+&gt;<i> c) Support of local USB devices
+</I>This is a very nice feature in X2Go - particularly how one can create
+the share dynamically within a session.  One problem we have in the
+VServer environment is that we cannot unmount them from within the x2go
+client.  The fusermount -u command requires a namespace capability that
+we cannot grant without granting the SYS_ADMIN capability which we
+refuse to do for security reasons.  This may be fixed in newer kernels.
+we are running 2.6.28.
+&gt;<i> d) Sound
+</I>This can be a maddening problem.  The short answer is that it works
+well.  However, it is almost application by application warfare.  For
+example, Kaffeine defaulted to using pulseaudio and worked almost out of
+the box.  The shortcomings were, again, our virtualized infrastructure
+where the underlying guest did not have direct access to the sound
+hardware.  KDE sounds did not work even when we set artSd to use ESD.
+Instead, we manually edited the knotifyrc file to call paplay instead of
+esdplay and upgraded the libsndfile1 to the Squeeze version (the Lenny
+version did not play .ogg files).  Once we did that, KDE sounds jumped
+to life.  On the other hand, we have yet to get Firefox/Iceweasel to
+play sounds.  Any time we make the recommended changes to use pulse
+audio or alsa as the default sound system, firefox seg faults.
+Flash did seem to work but has since stopped working.  We suspect that
+is because another required package from Squeeze disabled libasound32
+and that package may be required for the flash plugin sound.
+&gt;<i> e) Printing on local printer
+</I>The cups-x2go printer is an excellent solution.  We are picking up a few
+issues.  On Windows systems, it seems not matter what printer we choose,
+the print job is opened by whatever application is associated with pdf
+files.  We have not yet started to troubleshoot this issue.  We also
+noticed that the x2goclient printing is NOT seeing the printers provided
+by the local Windows print server.  It is seeing locally installed
+network printers.
+&gt;<i> f) Printing on local network printer / on remote network printer
+</I>See previous answer
+&gt;<i> 2) Set-Up, Administration:
+</I>&gt;<i> a) number of server / user (50, 100, 150
+</I>&gt;<i> concurrent sessions)
+</I>&gt;<i> b) Load Balancing, Cluster
+</I>This is a near term project but we have not yet addressed clustering and
+load balancing.  We may try to do this at the VServer rather than X2Go
+level.
+&gt;<i> c) Manageability of several parallel servers in administration
+</I>&gt;<i> 
+</I>&gt;<i> d) Band with
+</I>We have been a little surprised by bandwidth requirements.  When
+tethering via cell phone to an EDGE network, we are noticing very, very
+sluggish performance.  Of course, most other solutions would not be
+usable at all! X2Go seems more latency sensitive than bandwidth
+sensitive.  That may be more the issue with the EDGE networks.
+
+We have seen X2Go perform well with up to around 3% packet loss.  Higher
+than that and it starts to lag badly from upper layer retransmissions.
+Between 10% and 15%, it starts to become unusable.  Again, other
+solutions break completely well before then.
+
+We have noticed problems in highly congested networks.  It is almost as
+if the packets are delivered out of order as the typed sequences are out
+of order.  However, we also noticed that the sequences are out of order
+with repeating characters.  Since it is highly unlikely that TCP is
+ultimately delivering packets our of sequence, we wonder if this is some
+kind of compression or optimization logic gone awry.
+
+We have not done analysis on it but it anecdotally appears that wireless
+network can show serious degradation over wired networks.  I suppose
+this is probably due to packet loss on a wireless network which, for
+normal data transfers is not noticeable but, since each keystroke is a
+data packet (I assume), lost packets can result in delayed character
+display.  This can be annoying to fast typists or those who type by
+sight.
+&gt;<i> 
+</I>&gt;<i> e)  Multimedia (Flash)
+</I>As others have mentioned, X2Go is not well suited to delivering video.
+My limited understanding is that the algorithms used to optimize the
+kind of screen refresh required for passing typical application screens
+is very different from that used to transmit video (besides the sheer
+bandwidth issue).  We have noticed that changing the compression setting
+from the default 16m-jpeg to 16m-png-jpeg seems to make a substantial
+difference in both clarity and performance.  We are continuing to
+investigate optimizing the somewhat laggard screen refresh offered by
+NX.
+&gt;<i> f) Compatibility with Terminal Server
+</I>&gt;<i> (LTSP) on same server or is X2GO usable also as directly as terminal server?
+</I>&gt;<i> g) Mounting homes from data server
+</I>This is where the X2Go/Vserver combination shines.  Because VServer
+provides a single file system, we do not use a separate file server.
+The data is stored on an iSCSI SAN and mounted as a local file system on
+the VServer host.  This is then remounted using mount bind to all the
+various guests so that the file system semantics are always those of a
+local file system and we never encounter NFS/SMB issues.  We have had to
+battle latency issues on the SAN because of the default 4KB page size in
+Linux.
+&gt;<i> h) Compatibility with administration servers (LDAP, ADS etc.)
+</I>&gt;<i> i) Acess protection, security
+</I>We are not using much security within X2Go.  We have not restricted
+users in x2goserver.conf.  We do completely isolate users from the
+server farm with as needed, micro-perimeter security via the ISCS
+project (<A HREF="http://iscs.sourceforge.net">http://iscs.sourceforge.net</A>).  We are able to identify users by
+IP address as these are fixed per virtual machine and each X2Go desktop
+is tied to a specific virtual machine.  We also severely limit the POSIX
+capabilities of each virtual machine (e.g., they cannot put interfaces
+into promiscuous mode, have limited access to /proc, etc.) and do not
+allow root access even via sudo (which has created some interesting work
+arounds where applications assume root access is available).
+
+I hope that gives some idea of the capabilities and limitations of X2Go.
+It is an outstanding project and we look forward to it improving with
+age and as the development community grows - John
+&gt;<i> 
+</I>&lt;snip&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000445.html">[X2go-dev] Larger-scale X2GO installations - experience?
+</A></li>
+	<LI>Next message: <A HREF="000449.html">[X2go-dev] (no subject)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#448">[ date ]</a>
+              <a href="thread.html#448">[ thread ]</a>
+              <a href="subject.html#448">[ subject ]</a>
+              <a href="author.html#448">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

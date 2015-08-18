@@ -1,0 +1,372 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [X2Go-User] Kde4 and Plasma Mess - Is anyone working	with it?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2Go-User%5D%20Kde4%20and%20Plasma%20Mess%20-%20Is%20anyone%20working%0A%09with%20it%3F&In-Reply-To=%3C4465184.6EWdooQqKG%40zen-mobile%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004436.html">
+   <LINK REL="Next"  HREF="004438.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [X2Go-User] Kde4 and Plasma Mess - Is anyone working	with it?</H1>
+    <B>Helmer Teles</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2Go-User%5D%20Kde4%20and%20Plasma%20Mess%20-%20Is%20anyone%20working%0A%09with%20it%3F&In-Reply-To=%3C4465184.6EWdooQqKG%40zen-mobile%3E"
+       TITLE="[X2Go-Dev] [X2Go-User] Kde4 and Plasma Mess - Is anyone working	with it?">helmer.teles at gmail.com
+       </A><BR>
+    <I>Wed Oct 17 10:22:13 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004436.html">[X2Go-Dev] [X2Go-User] Kde4 and Plasma Mess - Is anyone working	with it?
+</A></li>
+        <LI>Next message: <A HREF="004438.html">[X2Go-Dev] [X2Go-User] Kde4 and Plasma Mess - Is anyone working	with it?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4437">[ date ]</a>
+              <a href="thread.html#4437">[ thread ]</a>
+              <a href="subject.html#4437">[ subject ]</a>
+              <a href="author.html#4437">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wednesday 17 October 2012 09:43:17 Mike Gabriel wrote:
+&gt;<i> Hi Helmer,
+</I>&gt;<i> 
+</I>&gt;<i> I tested on KDE4 (4.8.4, Debian sid).
+</I>&gt;<i> 
+</I>&gt;<i> On Di 16 Okt 2012 17:32:03 CEST Helmer Teles wrote:
+</I>&gt;<i> &gt; As anybody knows KDE4 has lots of problems with sizing and resizing of
+</I>&gt;<i> &gt; plasma panels, screen geometry and other stuff as usal.
+</I>&gt;<i> 
+</I>&gt;<i> Same with GNOME3 btw.
+</I>&gt;<i> 
+</I>
+&gt;<i> 
+</I>&gt;<i> Please send the scripts to the x2go-dev list. Note: resizing of a
+</I>&gt;<i> plasma desktop works fine in KDE4 on Debian wheezy/sid.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; My problem is that for plasma to assume the new resolution you have
+</I>&gt;<i> &gt; to kill it
+</I>&gt;<i> &gt; and start-it once again after you change plasma-desktop-appletsrc
+</I>&gt;<i> &gt; with the new
+</I>&gt;<i> &gt; values. So, when  you do this after resuming the session, every time you
+</I>&gt;<i> &gt; move/maximize/minimize a window they slow to a crawl.
+</I>&gt;<i> 
+</I>&gt;<i> ahaaaa... this is not so here... Note: there is quite a big difference
+</I>&gt;<i> between the Ubuntu KDE4 and the Debian KDE4. Ubuntu has (at least one)
+</I>&gt;<i> xrandr patches that break KDE4 nearly completely with X2Go (KWin
+</I>&gt;<i> crashes regularly).
+</I>&gt;<i> 
+</I>
+&gt;<i> &gt; How to test/reproduce this sympton.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; If you have a x2goserver installed with a kde4 session, kubuntu or other,
+</I>&gt;<i> &gt; start a session, go to konsole and do:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; kquitapp plasma-desktop &amp;&amp;  plasma-desktop &amp;
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; after plasma start if you try to move any window around everything will be
+</I>&gt;<i> &gt; allright and fast as before.
+</I>&gt;<i> 
+</I>&gt;<i> ok...
+</I>&gt;<i> 
+</I>&gt;<i> &gt; After that do the same thing but after a x2gosuspend and in a runing
+</I>&gt;<i> &gt; resumed session try to move your konsole window around the desktop, it
+</I>&gt;<i> &gt; will lag like hell.
+</I>&gt;<i> &gt; If you this on a real display on your laptop, or in a running session
+</I>&gt;<i> &gt; everything will run fast as before.
+</I>&gt;<i> 
+</I>&gt;<i> Not so here on Debian. It must be some Ubuntu specific issue.
+</I>&gt;<i> 
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>
+Hi, Mike,
+hi list members.
+
+I'm still debugging what the hell is going on.
+
+what i have gathered so far is that is if i run the scripts inside a konsole 
+after resuming the session, everything will work as fast as before.
+If i run-it from any script from x2go scripts it has the problem of lagging a 
+lot.
+I think that it has to do with dbus.
+
+All Scripts below. There are two kind of scripts: 
+
+One is for locking the session after a user suspend the session for security 
+concerns, i also developed a login gui  with lazarus so that a user has to 
+enter his password before starting is session. 
+The others are to resize kde panel and display geometry, also to adjust 
+wallpaper to the screen. All of this things are not working in kubuntu when 
+you connect with different resolutions. I'm testint in a kvm windows xp with 
+rdp client with two different users, which one with is resolution.
+
+
+Some of the scripts doesn't make sense to put here. :-D
+
+/usr/local/bin/startkde
+
+#!/bin/bash
+
+
+fn_start_session()
+{
+
+/usr/local/bin/fn_resizepanel.sh
+/usr/local/bin/fn_getmounts.sh &amp;
+/usr/bin/startkde
+/usr/local/bin/fn_cleanpclocal.sh
+/usr/local/bin/fn_cleanprinter.sh
+
+}
+
+fn_abort_session()
+{
+
+x2goterminate-session $MYSESSION
+
+exit 0
+
+}
+
+MYSESSION=`x2golistsessions |cut -d '|' -f2`
+SESSIONDP=`x2golistdesktops |cut -d : -f 2`
+export DISPLAY=:${SESSIONDP}
+xli  -fillscreen -onroot /usr/share/wallpapers/spikepwd.jpg &amp;
+
+
+# Call the login lazarus app
+/usr/local/bin/Spikepwd
+retval=&quot;$?&quot;
+
+
+if [ &quot;$retval&quot; == &quot;0&quot; ]; then fn_start_session
+ else
+  if [ &quot;$retval&quot; == &quot;255&quot; ]; then fn_abort_session
+  fi
+fi
+
+exit 0
+----------------------------------------------------------------------------------------------------------
+
+/usr/local/bin/fn_post-resume.sh -&gt; this one it is called at post-resume.d
+
+#!/bin/bash
+
+
+resize_screen()
+{
+
+SESSIONDP=`x2golistdesktops |cut -d : -f 2`
+export DISPLAY=:${SESSIONDP}
+
+/usr/lib/kde4/libexec/kscreenlocker --forcelock --showunlock --blank &amp;
+
+kquitapp plasma-desktop
+
+sleep 2
+
+/usr/local/bin/fn_resizepanel.sh
+
+sleep 1
+
+plasma-desktop
+kdialog --passivepopup 'Por favor aguarde, a restaurar a sua sess&#227;o ... ' 10
+
+}
+
+resize_screen &amp;
+/usr/local/bin/fn_getmounts.sh
+
+exit 0
+
+P.S: this is the problem that i'm facing. if you open a konsole or xterm and 
+call this script kwin will run greatly and fast, but when called from 
+x2goscripts it lags when moving, minimizing, restoring windows
+
+----------------------------------------------------------------------------------------------------------
+
+pre-runcommand.d
+
+
+#!/bin/bash
+
+
+MYSESSION=`x2golistsessions |cut -d '|' -f2`
+myCMD=`x2gocmdexitmessage $MYSESSION`
+
+if [ &quot;$myCMD&quot; != &quot;exec startkde&quot; ]; then
+ /usr/bin/logger -t HACKING_ATTEMPT $USER tried to  $myCMD
+ x2goterminate-session $MYSESSION
+fi
+
+exit 0
+
+
+----------------------------------------------------------------------------------------------------------
+
+pre-suspend.d
+
+#!/bin/bash
+
+
+kdialog --passivepopup 'Por favor aguarde, a suspender a sua sess&#227;o actual ... 
+' 5 &amp;
+
+
+/usr/local/bin/fn_cleanpclocal.sh
+/usr/local/bin/fn_cleanprinter.sh
+
+sleep 1
+
+SESSIONDP=`x2golistdesktops |cut -d : -f 2`
+export DISPLAY=:${SESSIONDP}
+
+/usr/lib/kde4/libexec/kscreenlocker --dontlock --blank &amp;
+
+exit 0
+
+
+----------------------------------------------------------------------------------------------------------
+scripts end
+----------------------------------------------------------------------------------------------------------
+
+Been triying messing with dbus but to no avail till now.
+
+
+All my testing till now, commented and not commentd but still the same 
+problem.
+
+-+++++++++ +++++  ~.bash_profile   +++++++++++++++++++++++++++++++++++++++++++
+#!/bIn/bash
+
+
+
+alias getdbus=&quot;export DBUS_SESSION_BUS_ADDRESS=`cat /proc/$(pidof 
+kded4)/environ | tr '\0' '\n' | grep DBUS_SESSION_BUS_ADDRESS | cut -d '=' -
+f2-`&quot;
+
+
+export $(cat /proc/$(pgrep &quot;kded4&quot; -u &quot;$USER&quot;)/environ | grep -z 
+&quot;^DBUS_SESSION_BUS_ADDRESS=&quot;)
+
+DID=`echo $DBUS_SESSION_BUS_ADDRESS |cut -d '=' -f 3 `
+
+export DID
+
+
+remember: whatever i do, this process always works when after resuming you 
+open a konsole and exec fn_post-resume.sh
+
+++++++++++++     fn_post-resume.sh desperate testing version  
++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+#!/bin/bash
+
+
+. ~/.bash_profile
+
+
+SESSIONDP=`x2golistdesktops | cut -d &quot;:&quot; -f 2`
+export DISPLAY=:$SESSIONDP
+#DBUS_SESSION_BUS_ADDRESS=`dbus-launch | grep ADDRESS`
+#export $(dbus-launch)
+
+#export $(cat /proc/$(pgrep &quot;kded4&quot; -u &quot;$USER&quot;)/environ | grep -z 
+&quot;^DBUS_SESSION_BUS_ADDRESS=&quot;)
+#DID=`echo $DBUS_SESSION_BUS_ADDRESS |cut -d '=' -f 3`
+#export $DID
+
+
+#/usr/lib/kde4/libexec/kscreenlocker --forcelock --showunlock --blank &amp;
+#/usr/lib/kde4/libexec/kscreenlocker --dontlock --blank &amp;
+
+
+#export DBUS_SESSION_BUS_ADDRESS=`cat /proc/$(pidof kded4)/environ | tr '\0' 
+'\n' | grep DBUS_SESSION_BUS_ADDRESS | cut -d '=' -f2-`
+
+qdbus org.kde.plasma-desktop /MainApplication quit
+
+#kquitapp plasma-desktop
+
+sleep 2
+
+#/usr/local/bin/fn_resizepanel.sh
+
+#sleep 2
+
+#declare -x LD_LIBRARY_PATH=&quot;/usr/lib/nx/X11/Xinerama:/usr/lib/nx/X11&quot;
+#declare -x QT_GRAPHICSSYSTEM=&quot;native&quot;
+#export `dbus-launch | grep ADDRESS`
+#export `dbus-launch | grep PID`
+#export DBUS_SESSION_BUS_ADDRESS
+
+#ck-launch-session dbus-launch  plasma-desktop
+
+dbus-launch  --autolaunch $DID plasma-desktop            
+
+#dbus-launch  plasma-desktop
+#plasma-desktop &amp;
+
+kdialog --passivepopup 'Por favor aguarde, a restaurar a sua sess&#227;o ... ' 10
+
+#/usr/local/bin/fn_getmounts.sh
+
+exit 0
+
+
+-- 
+
+
+regards,
+
+Helmer Teles 
+
+<A HREF="http://hteles.wordpress.com">http://hteles.wordpress.com</A>
+
+&#8220;Sent from My Linux Operating System&#8221;
+
+
+Please don't send me proprietary file formats, use ISO standard ODF instead 
+(ISO/IEC 26300)
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121017/497cd122/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121017/497cd122/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004436.html">[X2Go-Dev] [X2Go-User] Kde4 and Plasma Mess - Is anyone working	with it?
+</A></li>
+	<LI>Next message: <A HREF="004438.html">[X2Go-Dev] [X2Go-User] Kde4 and Plasma Mess - Is anyone working	with it?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4437">[ date ]</a>
+              <a href="thread.html#4437">[ thread ]</a>
+              <a href="subject.html#4437">[ subject ]</a>
+              <a href="author.html#4437">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

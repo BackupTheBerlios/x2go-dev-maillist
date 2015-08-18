@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#200: Bug#200: Bug#200: When user-directories do not	exist, saving sqlpass with x2godbadmin is not possible
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23200%3A%20Bug%23200%3A%20Bug%23200%3A%20When%20user-directories%20do%20not%0A%09exist%2C%20saving%20sqlpass%20with%20x2godbadmin%20is%20not%20possible&In-Reply-To=%3C518966E5.40800%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005587.html">
+   <LINK REL="Next"  HREF="005592.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#200: Bug#200: Bug#200: When user-directories do not	exist, saving sqlpass with x2godbadmin is not possible</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23200%3A%20Bug%23200%3A%20Bug%23200%3A%20When%20user-directories%20do%20not%0A%09exist%2C%20saving%20sqlpass%20with%20x2godbadmin%20is%20not%20possible&In-Reply-To=%3C518966E5.40800%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Bug#200: Bug#200: Bug#200: When user-directories do not	exist, saving sqlpass with x2godbadmin is not possible">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Tue May  7 22:41:09 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005587.html">[X2Go-Dev] Bug#200: AW: Bug#200: Bug#200: When user-directories do	not exist, saving sqlpass with x2godbadmin is not possible
+</A></li>
+        <LI>Next message: <A HREF="005592.html">[X2Go-Dev] Bug#200: Bug#200: Bug#200: When user-directories do not	exist, saving sqlpass with x2godbadmin is not possible
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5589">[ date ]</a>
+              <a href="thread.html#5589">[ thread ]</a>
+              <a href="subject.html#5589">[ subject ]</a>
+              <a href="author.html#5589">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 07.05.2013 22:14, schrieb Michael Kromer:
+&gt;<i> Well, I don't mind fixing this to be safe with special chars ...;)
+</I>&gt;<i> I however really doubt administrators to set homedirs to something with spaces or special chars.
+</I>
+I could imagine that it may well happen in a mixed 
+Windows/Linux-Environment, where user management is done in an 
+ActiveDirectory, and certain PAM modules are used for authentication and 
+automatic creation of homedirs.  Pimplefaced Joe Random Winadmin might 
+use &quot;Firstname Lastname&quot; as account naming scheme on the Windows side. 
+If you have a PAM mechanism in place that creates missing homedirs and 
+simply use /home/usernamepassedfromwindows, you may end up with spaces 
+in that directory name. Or, in a multi-domain environment, with 
+subdirectories like /home/domain1/sampleuser and /home/domain2/johndoe. 
+  And it *might* even be possible to use a special char as a domain 
+separator instead of creating subdirectories, like 
+/home/domain1+johndoeindomain1 /home/domain2+johndoeindomain2.  I've 
+never tried that with PAM and autocreating home directories, but I 
+remember that &quot;back in the days&quot; there were issues when connecting to 
+multiple AD domains and thus it was recommended to use a special char as 
+separator between AD domain and user name, rather than the standard one.
+
+Just a few words of warning from an old geezer. ;-)
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005587.html">[X2Go-Dev] Bug#200: AW: Bug#200: Bug#200: When user-directories do	not exist, saving sqlpass with x2godbadmin is not possible
+</A></li>
+	<LI>Next message: <A HREF="005592.html">[X2Go-Dev] Bug#200: Bug#200: Bug#200: When user-directories do not	exist, saving sqlpass with x2godbadmin is not possible
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5589">[ date ]</a>
+              <a href="thread.html#5589">[ thread ]</a>
+              <a href="subject.html#5589">[ subject ]</a>
+              <a href="author.html#5589">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

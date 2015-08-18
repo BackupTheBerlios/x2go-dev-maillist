@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] nx-libs-3.5.0.17 whacky install
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nx-libs-3.5.0.17%20whacky%20install&In-Reply-To=%3C50F5D7AD.1030100%40cora.nwra.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004898.html">
+   <LINK REL="Next"  HREF="004826.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] nx-libs-3.5.0.17 whacky install</H1>
+    <B>Orion Poplawski</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nx-libs-3.5.0.17%20whacky%20install&In-Reply-To=%3C50F5D7AD.1030100%40cora.nwra.com%3E"
+       TITLE="[X2Go-Dev] nx-libs-3.5.0.17 whacky install">orion at cora.nwra.com
+       </A><BR>
+    <I>Tue Jan 15 23:26:53 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004898.html">[X2Go-Dev] nx-libs-3.5.0.17 whacky install
+</A></li>
+        <LI>Next message: <A HREF="004826.html">[X2Go-Dev] nx-libs-3.5.0.17 whacky install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4899">[ date ]</a>
+              <a href="thread.html#4899">[ thread ]</a>
+              <a href="subject.html#4899">[ subject ]</a>
+              <a href="author.html#4899">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 01/15/2013 03:13 PM, Orion Poplawski wrote:
+&gt;<i> On 01/07/2013 02:46 AM, Mike Gabriel wrote:
+</I>&gt;&gt;<i> Hi Jan
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On So 06 Jan 2013 19:30:15 CET Jan Engelhardt wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Why do I get two Xcomp shared libraries (Xcomp.so.1 and Xcomp.so.3) that
+</I>&gt;&gt;&gt;<i>  are equal anyway?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> /usr/PFX/lib/nx/X11/libXcomp.so /usr/PFX/lib/nx/X11/libXcomp.so.1
+</I>&gt;&gt;&gt;<i> /usr/lib64/nx/libXcomp.a /usr/lib64/nx/libXcomp.so
+</I>&gt;&gt;&gt;<i> /usr/lib64/nx/libXcomp.so.3 /usr/lib64/nx/libXcomp.so.3.5.0 -rw-r--r-- 1
+</I>&gt;&gt;&gt;<i>  abuild abuild 1200469 Jan  6 18:25 ./usr/PFX/lib/nx/X11/libXcomp.so
+</I>&gt;&gt;&gt;<i> lrwxrwxrwx 1 abuild abuild      11 Jan  6 18:25
+</I>&gt;&gt;&gt;<i> ./usr/PFX/lib/nx/X11/libXcomp.so.1 -&gt; libXcomp.so lrwxrwxrwx 1 abuild
+</I>&gt;&gt;&gt;<i> abuild      17 Jan  6 18:20 ./usr/lib64/nx/libXcomp.so -&gt;
+</I>&gt;&gt;&gt;<i> libXcomp.so.3.5.0 lrwxrwxrwx 1 abuild abuild      17 Jan  6 18:20
+</I>&gt;&gt;&gt;<i> ./usr/lib64/nx/libXcomp.so.3 -&gt; libXcomp.so.3.5.0 -rw-r--r-- 1 abuild
+</I>&gt;&gt;&gt;<i> abuild 1200469 Jan  6 18:25 ./usr/lib64/nx/libXcomp.so.3.5.0
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This looks interesting. Seems like the libXcomp.so.1 file gets created
+</I>&gt;&gt;<i> somewhere during the nx-X11 build. I will check on that. Not sure how to
+</I>&gt;&gt;<i> solve this atm.
+</I>&gt;<i>
+</I>&gt;<i> Seems to be in ./nx-X11/lib/X11/Imakefile:
+</I>&gt;<i>
+</I>&gt;<i> $(NX_XCOMPDEPTARGET):
+</I>&gt;<i>          ln -s $(NX_XCOMPLIBDIR)/$(NX_XCOMPLIBNAME)
+</I>&gt;<i> $(BUILDLIBDIR)/$(NX_XCOMPLIBNAME)
+</I>&gt;<i>          ln -s $(NX_XCOMPLIBDIR)/$(NX_XCOMPLIBNAME).1
+</I>&gt;<i> $(BUILDLIBDIR)/$(NX_XCOMPLIBNAME).1
+</I>&gt;<i>
+</I>&gt;<i> clean::
+</I>&gt;<i>          rm -f $(BUILDLIBDIR)/$(NX_XCOMPLIBNAME)
+</I>&gt;<i>          rm -f $(BUILDLIBDIR)/$(NX_XCOMPLIBNAME).1
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+The attached seems to work for me.
+
+-- 
+Orion Poplawski
+Technical Manager                     303-415-9701 x222
+NWRA, Boulder Office                  FAX: 303-415-9702
+3380 Mitchell Lane                       <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at nwra.com</A>
+Boulder, CO 80301                   <A HREF="http://www.nwra.com">http://www.nwra.com</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: nx-libs-xcomp1.patch
+Type: text/x-patch
+Size: 1142 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130115/4d53d3ee/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130115/4d53d3ee/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004898.html">[X2Go-Dev] nx-libs-3.5.0.17 whacky install
+</A></li>
+	<LI>Next message: <A HREF="004826.html">[X2Go-Dev] nx-libs-3.5.0.17 whacky install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4899">[ date ]</a>
+              <a href="thread.html#4899">[ thread ]</a>
+              <a href="subject.html#4899">[ subject ]</a>
+              <a href="author.html#4899">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Printing-related question for Windows X2go client users
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Printing-related%20question%20for%20Windows%20X2go%20client%0A%20users&In-Reply-To=%3C1323532141.3159.116.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003095.html">
+   <LINK REL="Next"  HREF="003099.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Printing-related question for Windows X2go client users</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Printing-related%20question%20for%20Windows%20X2go%20client%0A%20users&In-Reply-To=%3C1323532141.3159.116.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] Printing-related question for Windows X2go client users">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat Dec 10 16:49:01 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003095.html">[X2go-Dev] Printing-related question for Windows X2go client users
+</A></li>
+        <LI>Next message: <A HREF="003099.html">[X2go-Dev] Printing-related question for Windows X2go client users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3096">[ date ]</a>
+              <a href="thread.html#3096">[ thread ]</a>
+              <a href="subject.html#3096">[ subject ]</a>
+              <a href="author.html#3096">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, 2011-12-10 at 14:36 +0100, Stefan Baur (newsgroups-Kontakt)
+wrote:
+&gt;<i> Hi list,
+</I>&gt;<i> 
+</I>&gt;<i> this question goes out to all the Windows users of the X2go-Client:
+</I>&gt;<i> 
+</I>&gt;<i> Has anybody ever tried to use &quot;Sumatra PDF&quot; as a PDF endpoint on the 
+</I>&gt;<i> Windows client, instead of Adobe Reader?
+</I>&gt;<i> 
+</I>&gt;<i> It seems rather interesting, as it is GNU licensed, offers commandline 
+</I>&gt;<i> options to print a file to the default printer (or show a print dialog) 
+</I>&gt;<i> and auto-terminate itself after printing has finished (look for 
+</I>&gt;<i> &quot;Command-line arguments&quot; in the online manual linked below).
+</I>&gt;<i> 
+</I>&gt;<i> Info in English:
+</I>&gt;<i> <A HREF="http://en.wikipedia.org/wiki/Sumatra_PDF">http://en.wikipedia.org/wiki/Sumatra_PDF</A>
+</I>&gt;<i> <A HREF="http://blog.kowalczyk.info/software/sumatrapdf/manual.html">http://blog.kowalczyk.info/software/sumatrapdf/manual.html</A>
+</I>&gt;<i> 
+</I>&gt;<i> Info in German:
+</I>&gt;<i> <A HREF="http://de.wikipedia.org/wiki/Sumatra_PDF">http://de.wikipedia.org/wiki/Sumatra_PDF</A>
+</I>&gt;<i> <A HREF="http://blog.kowalczyk.info/software/sumatrapdf/manual-de.html">http://blog.kowalczyk.info/software/sumatrapdf/manual-de.html</A>
+</I>&gt;<i> 
+</I>&gt;<i> I'd love to try it out myself, but I haven't managed to get 
+</I>&gt;<i> printing/showing a PDF on the Client to work at all so far, thus testing 
+</I>&gt;<i> Sumatra PDF doesn't really make sense on my client yet.
+</I>&gt;<i> 
+</I>&gt;<i> So here's to crowdsourcing - anybody ever tried it, anybody with a 
+</I>&gt;<i> working client printer setup willing to try?
+</I>&lt;snip&gt;
+It looks very interesting and we'd be interested in trying it.  However,
+PDFs have been a real sore spot in our VDI work and our offering both
+Linux and Windows desktops for those who would like to leave the Windows
+world for any of several reasons.  Not only is there nothing even close
+to Acrobat for editing PDFs in the open source world, the readers also
+have serious shortcomings.
+
+Believe me, I am no Adobe fan and wish things were different.  One of
+our clients is a construction company who handle very large numbers of
+very large PDFs - their construction drawings.  Last we tested, there
+were serious bugs in every single non-Adobe PDF reader on Linux which
+refused to properly print the larger drawings.  They always shrunk them
+to the default paper size.
+
+Moreover and more to the point at hand, none of the open source PDF
+readers were able to support all the features we frequently encountered
+among these and other documents.  If the reader only handles 85% of
+documents and has trouble printing, one is required to keep the Acrobat
+Reader around.  Most of our users would prefer to not deal with two
+applications.  I suspect that Sumatra, being lightweight by design, will
+fall into the same category.
+
+Not that Acrobat Reader is not without problems.  Besides its bloat, the
+Linux reader has hard coded the permissions of set files to 644 wreaking
+havoc on our shared directories where everything is setgid with a 770
+umask so that shared documents can be edited by the group.
+
+So, the point of it all is that I suspect there will be problems using
+Sumatra - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003095.html">[X2go-Dev] Printing-related question for Windows X2go client users
+</A></li>
+	<LI>Next message: <A HREF="003099.html">[X2go-Dev] Printing-related question for Windows X2go client users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3096">[ date ]</a>
+              <a href="thread.html#3096">[ thread ]</a>
+              <a href="subject.html#3096">[ subject ]</a>
+              <a href="author.html#3096">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

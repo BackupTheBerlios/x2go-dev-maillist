@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Multiple%20X2goclient%20instances%20fail&In-Reply-To=%3C1312224203.10301.104.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002626.html">
+   <LINK REL="Next"  HREF="002629.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Multiple%20X2goclient%20instances%20fail&In-Reply-To=%3C1312224203.10301.104.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Mon Aug  1 20:43:23 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002626.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+        <LI>Next message: <A HREF="002629.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2627">[ date ]</a>
+              <a href="thread.html#2627">[ thread ]</a>
+              <a href="subject.html#2627">[ subject ]</a>
+              <a href="author.html#2627">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2011-08-01 at 14:38 -0400, John A. Sullivan III wrote:
+&gt;<i> On Mon, 2011-08-01 at 13:30 -0400, John A. Sullivan III wrote:
+</I>&gt;<i> &gt; On Fri, 2011-07-29 at 10:21 +0200, Mike Gabriel wrote:
+</I>&gt;<i> &gt; &gt; Hi Daniel,
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; On Fr 29 Jul 2011 07:24:40 CEST Daniel Lindgren wrote:
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; &gt; [...]
+</I>&gt;<i> &gt; &gt; &gt;
+</I>&gt;<i> &gt; &gt; &gt; I've been trying to think of some way to make x2go automatically only
+</I>&gt;<i> &gt; &gt; &gt; use free ports, but since there are possibly several clients and
+</I>&gt;<i> &gt; &gt; &gt; servers involved in multiple incoming and outgoing sessions, the only
+</I>&gt;<i> &gt; &gt; &gt; safe way I've come up with would be to register used ports (or reserve
+</I>&gt;<i> &gt; &gt; &gt; port ranges) on a shared resource somewhere, which would make all x2go
+</I>&gt;<i> &gt; &gt; &gt; clients and servers dependent on that one resource.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; What you have been describing above is the old, well known  
+</I>&gt;<i> &gt; &gt; NXServer/NXClient problem.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; To my experience it does not exist with X2go (at least not with  
+</I>&gt;<i> &gt; &gt; pyhoca-gui ;-) ).
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; The connecting stuff is a bit tricky...
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt;    - x2goclient connects via SSH and launches either x2gostartagent or
+</I>&gt;<i> &gt; &gt;      x2goresume-session
+</I>&gt;<i> &gt; &gt;    - x2gostartagent will try to detect a free server-side port &gt;30000.
+</I>&gt;<i> &gt; &gt;      This port is put into the session database table. (Make sure you do
+</I>&gt;<i> &gt; &gt;      not have other server-side stuff running that claims ports between
+</I>&gt;<i> &gt; &gt;      30000 and 30000++.
+</I>&gt;<i> &gt; &gt;    - x2goresume-session will pick the formerly detected port from the session
+</I>&gt;<i> &gt; &gt;      database table (i.e. SQLite or postgres) and presume it is still unused
+</I>&gt;<i> &gt; &gt;      (as it should be, unless unused by X2go -&gt; x2gostartagent avoids claiming
+</I>&gt;<i> &gt; &gt;      ports that are in the database marked with S (suspended) or R (running)
+</I>&gt;<i> &gt; &gt;      state
+</I>&gt;<i> &gt; &gt;    - say we detect a free server-side port: 30015: x2gostartagent will  
+</I>&gt;<i> &gt; &gt; launch the
+</I>&gt;<i> &gt; &gt;      XNest-like x2goagent XServer, listening for incoming connections on port
+</I>&gt;<i> &gt; &gt;      localhost:300015.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt;    - x2goclient now tries to set up a forwarding tunnel from
+</I>&gt;<i> &gt; &gt;      client to server (-L 30000:localhost:30015)
+</I>&gt;<i> &gt; &gt;    - if the local port 30000 (the first one in the above expression) is already
+</I>&gt;<i> &gt; &gt;      in use, it simply selects another port. Each selected port is  
+</I>&gt;<i> &gt; &gt; probed before
+</I>&gt;<i> &gt; &gt;      usage. That is done by x2goclient.
+</I>&gt;<i> &gt; &gt;    - say we end up with -L 30028:localhost:30015
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; The problem you observe: &#8221;the remote proxy closed the connection while  
+</I>&gt;<i> &gt; &gt; negotiating &#8230;&#8221; to my point of view stems from uncleanly closed SSH  
+</I>&gt;<i> &gt; &gt; connections. Try to restart the SSH daemon when this error occurs and  
+</I>&gt;<i> &gt; &gt; you should be able to connect again. This error can also be caused by  
+</I>&gt;<i> &gt; &gt; the sound/sshfs tunnels. Here the same cause applies: unclean shutdown  
+</I>&gt;<i> &gt; &gt; of SSH connections.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; Reasons may be:
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt;    o unclean x2goclient/pyhoca-gui code
+</I>&gt;<i> &gt; &gt;    o line failures (so the clients do not get the chance to cancel the port
+</I>&gt;<i> &gt; &gt;      forwarding requests...)
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; You may do the following to debug:
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt;    o try if the problem occurs in the same way when you use pyhoca-gui/-cli
+</I>&gt;<i> &gt; &gt;    o pyhoca-gui (i.e. python-x2go) tries to restore the mal-closure of SSH
+</I>&gt;<i> &gt; &gt;      port forwardings... You may try to resume a session twice, the second
+</I>&gt;<i> &gt; &gt;      time you should get a session window
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; The addressed issue was a big problem for Python X2go before version  
+</I>&gt;<i> &gt; &gt; 0.1.0.0. It took me quite some sleepness nights to get rid of it by  
+</I>&gt;<i> &gt; &gt; 90%+.
+</I>&gt;<i> &gt; &lt;snip&gt;
+</I>&gt;<i> &gt; I continue to have a devil of a time with this.  It seems like
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;    - x2goclient now tries to set up a forwarding tunnel from
+</I>&gt;<i> &gt;      client to server (-L 30000:localhost:30015)
+</I>&gt;<i> &gt;    - if the local port 30000 (the first one in the above expression) is
+</I>&gt;<i> &gt; already
+</I>&gt;<i> &gt;      in use, it simply selects another port. Each selected port is  
+</I>&gt;<i> &gt; probed before
+</I>&gt;<i> &gt;      usage. That is done by x2goclient.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; isn't working.  In the past, using older clients, we would generate
+</I>&gt;<i> &gt; error messages about a problem connecting on port 30001 but the sessions
+</I>&gt;<i> &gt; would all still work.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; We are no longer seeing those errors.  Instead, the sessions are rudely
+</I>&gt;<i> &gt; dropped.  I've restarted all the X2Go servers and clients after deleting
+</I>&gt;<i> &gt; all the old session directories on both.  Still no success.  Here are
+</I>&gt;<i> &gt; the details.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; In our environment, we have a single PostgreSQL database for all the
+</I>&gt;<i> &gt; X2Go servers. There is one X2Go server for each user (x2go client).
+</I>&gt;<i> &gt; I connect to the first server and I start a valid session.  I am using
+</I>&gt;<i> &gt; ports 30001 - 30003 on the server side and 30004 on the client side:
+</I>&gt;<i> &gt; tcp        0      0 0.0.0.0:30004           0.0.0.0:*               LISTEN
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Server           User              Status  Last Connection           Run Time  Display  Client             GP      SP      FP  Context   Load       RSS      VSZ
+</I>&gt;<i> &gt; jasiii           jasiii            S       01.08.11 12:45:12       0d  0h  2m       51  74.75.231.235   30001   30002   30003    40016   0.04   434.2Mb    8.4Gb
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I start a second x2goclient to connect to the second server.  The client
+</I>&gt;<i> &gt; is listening on port 30005:
+</I>&gt;<i> &gt; tcp        0      0 0.0.0.0:30004           0.0.0.0:*               LISTEN
+</I>&gt;<i> &gt; tcp        0      0 0.0.0.0:30005           0.0.0.0:*               LISTEN
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The server side is using the same ports as the other x2go server:
+</I>&gt;<i> &gt; Server           User              Status  Last Connection           Run Time  Display  Client             GP      SP      FP  Context   Load       RSS      VSZ
+</I>&gt;<i> &gt; ----------------------------------------------------------------------------------------------------------------------------------------------------------------
+</I>&gt;<i> &gt; cuser-a6         cuser-a6          R       01.08.11 12:45:06       0d  0h  1m       53  74.75.231.235   30001   30002   30003    40046   0.01   315.3Mb    5.9Gb
+</I>&gt;<i> &gt; jasiii           jasiii            S       01.08.11 12:45:12       0d  0h  2m       51  74.75.231.235   30001   30002   30003    40016   0.04   434.2Mb    8.4Gb
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; This is where the original session dies.  If I understand the logic,
+</I>&gt;<i> &gt; shouldn't there be a mapping from 30004 to localhost:30001 for the first
+</I>&gt;<i> &gt; session and another from 30005 to localhost:30001 for the second
+</I>&gt;<i> &gt; session? Why is the first session dropped as if there was no network
+</I>&gt;<i> &gt; connectivity?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; This is what the server side session.log says:
+</I>&gt;<i> &gt; Error: Failure reading from the peer proxy.
+</I>&gt;<i> &gt; Error: Connection with remote peer broken.
+</I>&gt;<i> &gt; Error: Please check the state of your network and retry.
+</I>&gt;<i> &gt; Session: Display failure detected at 'Mon Aug  1 12:45:07 2011'.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Sometimes, it can get really ugly:
+</I>&gt;<i> &gt; Error: Failure reading from the peer proxy.
+</I>&gt;<i> &gt; Error: Connection with remote peer broken.
+</I>&gt;<i> &gt; Error: Please check the state of your network and retry.
+</I>&gt;<i> &gt; nxagentReconnectFailedFonts: WARNING! Font server tunneling not
+</I>&gt;<i> &gt; retrieved.
+</I>&gt;<i> &gt; *** glibc detected *** /usr/lib/x2go/x2goagent: corrupted double-linked
+</I>&gt;<i> &gt; list: 0x0000000001131d10 ***
+</I>&gt;<i> &gt; ======= Backtrace: =========
+</I>&gt;<i> &gt; /lib/libc.so.6(+0x71ad6)[0x7f05278fbad6]
+</I>&gt;<i> &gt; /lib/libc.so.6(+0x71f4d)[0x7f05278fbf4d]
+</I>&gt;<i> &gt; /lib/libc.so.6(+0x73418)[0x7f05278fd418]
+</I>&gt;<i> &gt; /lib/libc.so.6(cfree+0x6c)[0x7f052790084c]
+</I>&gt;<i> &gt; /usr/lib/x2go/libX11.so.6(XFreeFontPath+0x1d)[0x7f05295ff8dd]
+</I>&gt;<i> &gt; /usr/lib/x2go/x2goagent[0x485af8]
+</I>&gt;<i> &gt; /usr/lib/x2go/x2goagent[0x4ab421]
+</I>&gt;<i> &gt; /usr/lib/x2go/x2goagent[0x4ab840]
+</I>&gt;<i> &gt; /usr/lib/x2go/x2goagent[0x4ab95b]
+</I>&gt;<i> &gt; /usr/lib/x2go/x2goagent[0x48cb75]
+</I>&gt;<i> &gt; /usr/lib/x2go/x2goagent[0x450bbb]
+</I>&gt;<i> &gt; /usr/lib/x2go/x2goagent[0x45c65e]
+</I>&gt;<i> &gt; /usr/lib/x2go/x2goagent[0x429595]
+</I>&gt;<i> &gt; /usr/lib/x2go/x2goagent[0x455863]
+</I>&gt;<i> &gt; /lib/libc.so.6(__libc_start_main+0xfd)[0x7f05278a8c4d]
+</I>&gt;<i> &gt; /usr/lib/x2go/x2goagent[0x40aa69]
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The client side says this:
+</I>&gt;<i> &gt; Loop: WARNING! Connected to remote version 3.4.0 with local version
+</I>&gt;<i> &gt; 3.5.0.
+</I>&gt;<i> &gt; Loop: WARNING! Unrecognized session type 'unix-kde-depth_24'. Assuming
+</I>&gt;<i> &gt; agent session.
+</I>&gt;<i> &gt; Proxy: PANIC! Failure reading from the peer proxy on FD#5.
+</I>&gt;<i> &gt; Loop: PANIC! No shutdown of proxy link performed by remote proxy.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; So what changed? Is this an issue with libssh? Thanks - John
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> I'm not sure where it is coming from but sometimes, not all the time, we
+</I>&gt;<i> receive a message such as:
+</I>&gt;<i> 
+</I>&gt;<i> channel_open_session failed - Received SSH_MSG_DISCONNECT: Received ieof
+</I>&gt;<i> for nonexistent channel 0
+</I>&gt;<i> 
+</I>&gt;<i> Lots of Internet research didn't produce a lot of helpful information on
+</I>&gt;<i> the error.
+</I>&gt;<i> 
+</I>&gt;<i> On the server side ssh logs I see:
+</I>&gt;<i> Aug  1 12:45:07 jasiii sshd[22977]: error: connect_to localhost port
+</I>&gt;<i> 30001: failed.
+</I>&gt;<i> Aug  1 12:45:07 jasiii sshd[22977]: channel_by_id: 0: bad id: channel
+</I>&gt;<i> free
+</I>&gt;<i> 
+</I>&gt;<i> I do not see anything of interest in the client ssh logs.
+</I>&gt;<i> 
+</I>&gt;<i> Out of curiosity, I tried reproducing this manually.  Both systems where
+</I>&gt;<i> I can reliably reproduce this problem have a local smtp daemon.  I did a
+</I>&gt;<i> &quot;ssh -p &lt;some hidden port&gt; -L 40015:localhost:25 <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user1 at machine1</A>&quot; and a
+</I>&gt;<i> &quot;ssh -p &lt;some hidden port&gt; -L 40016:localhost:25 <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user2 at machine2</A>&quot;.  I was
+</I>&gt;<i> able to telnet to each on port 40015 and 40016 without an issue or one
+</I>&gt;<i> disconnecting the other. Could there be a problem in the way libssh is
+</I>&gt;<i> handling multiple channels? - John
+</I>&gt;<i> 
+</I>&gt;<i> _&lt;snip&gt;
+</I>Correction - we are getting error messages about the connection on
+30001:
+
+Aug  1 12:32:21 jasiii sshd[11630]: error: connect_to localhost port
+30001: failed.
+Aug  1 12:32:21 jasiii sshd[11630]: channel_by_id: 0: bad id: channel
+free
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002626.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+	<LI>Next message: <A HREF="002629.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2627">[ date ]</a>
+              <a href="thread.html#2627">[ thread ]</a>
+              <a href="subject.html#2627">[ subject ]</a>
+              <a href="author.html#2627">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

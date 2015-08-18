@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#272: [X2Go-User] Session resume fails with AFS home	directories
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23272%3A%20%5BX2Go-User%5D%20Session%20resume%20fails%20with%20AFS%20home%0A%09directories&In-Reply-To=%3C51F64CBA.8020209%40gip.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005994.html">
+   <LINK REL="Next"  HREF="005995.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#272: [X2Go-User] Session resume fails with AFS home	directories</H1>
+    <B>Sebastian Flothow</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23272%3A%20%5BX2Go-User%5D%20Session%20resume%20fails%20with%20AFS%20home%0A%09directories&In-Reply-To=%3C51F64CBA.8020209%40gip.com%3E"
+       TITLE="[X2Go-Dev] Bug#272: [X2Go-User] Session resume fails with AFS home	directories">sebastian.flothow at gip.com
+       </A><BR>
+    <I>Mon Jul 29 13:06:34 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005994.html">[X2Go-Dev] Bug#272: [X2Go-User] Session resume fails with AFS home	directories
+</A></li>
+        <LI>Next message: <A HREF="005995.html">[X2Go-Dev] Bug#268: X2Go issue (in src:x2goserver) has been marked	as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6015">[ date ]</a>
+              <a href="thread.html#6015">[ thread ]</a>
+              <a href="subject.html#6015">[ subject ]</a>
+              <a href="author.html#6015">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 26.07.2013 16:40, schrieb Mike Gabriel:
+&gt;<i> Package: x2goserver
+</I>&gt;<i> Version: 4.0.1.3
+</I>
+By now it's 4.0.1.6-0~x2go1+wheezy~main~712~build1, but the problem 
+persists.
+
+
+&gt;<i> Is there any environment variable that we have to set before we can
+</I>&gt;<i> access the home directory of the user?
+</I>&gt;<i>
+</I>&gt;<i> My guess is that we have to set at least
+</I>&gt;<i>
+</I>&gt;<i>    export KRB5CCNAME=???
+</I>&gt;<i>
+</I>&gt;<i> Maybe any other env var for the AFS token?
+</I>
+No, that should not be necessary. KRB5CCNAME is set by pam_krb5.so. 
+pam_afs_session.so in turn uses this to obtain an AFS token, then 
+associates it with a new Process Authentication Group. The PAG ID is 
+stored in the group array for the session, i.e. &quot;id&quot; shows an additional 
+artificial group id. In fact this all works flawlessly on initial login, 
+it's only on resume where it fails.
+
+It occurs to me now that both KRB5CCNAME and PAG are per-session rather 
+than per-user, so that might be the cause for this problem (but I'm 
+really just guessing here).
+
+Is there a detailed description of the resume process? Does it involve 
+any shell scripts or similar I could hook into in order to log 
+additional information?
+
+
+I'm attaching /var/log/user.log as well as the client output from a 
+failed resume attempt, maybe this offers some clues.
+
+Thanks,
+Sebastian
+-------------- next part --------------
+ONMainWindow constructor 
+
+primary screen geometry:  QRect(0,0 1280x1024) 
+ONMainWindows constructor finished, home Directory is: &quot;/afs/gip.local/home/flothow&quot; 
+
+read  2  sessions from config file 
+start new ssh connection to server: &quot;login1.gip.local&quot; : &quot;22&quot; krb:  false 
+
+ssh connection ok 
+
+continue normal x2go session 
+
+executing remote command:  &quot;sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;&quot; 
+
+executing remote command:  &quot;sh -c &quot;x2goresume-session flothow-50-1375090659_stDGNOME_dp24 800x600 adsl 16m-jpeg-9 de pc105/de 1&quot;&quot; 
+
+Agent output: &quot;gr_port=30001
+sound_port=30002
+fs_port=30003
+&quot; 
+new gr_port:  &quot;30001&quot; 
+
+new sound_port:  &quot;30002&quot; 
+
+new fs_port:  &quot;30003&quot; 
+
+starting nxproxy with:  &quot;nxproxy -S nx/nx,options=/afs/gip.local/home/flothow/.x2go/S-flothow-50-1375090659_stDGNOME_dp24/options:50&quot; 
+
+&quot;
+NXPROXY - Version 3.2.0
+
+Copyright (C) 2001, 2007 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Proxy running in client mode with pid '4536'.
+Session: Starting session at 'Mon Jul 29 11:42:01 2013'.
+Info: Connecting to remote host 'localhost:31001'.
+Info: Connection to remote proxy 'localhost:31001' established.
+&quot; 
+
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+&quot;Channel Schreibfehler&quot;  -  &quot;Remote channel is closed&quot; 
+
+&quot;Error: The remote NX proxy closed the connection.
+Error: Failure negotiating the session in stage '7'.
+Error: Wrong version or invalid session authentication cookie.
+Session: Terminating session at 'Mon Jul 29 11:42:02 2013'.
+Session: Session terminated at 'Mon Jul 29 11:42:02 2013'.
+&quot; 
+
+deleting proxy 
+
+nxproxy not running 
+
+proxy deleted 
+
+check command message 
+
+executing remote command:  &quot;sh -c &quot;x2gocmdexitmessage flothow-50-1375090659_stDGNOME_dp24&quot;&quot; 
+
+&quot;channel_open_session schlug fehl&quot; :  &quot;Writing packet: error on socket (or connection closed): Die Operation ist jetzt in Bearbeitung&quot; 
+
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-flothow-50-1375090659_stDGNOME_dp24&quot; 
+close event 
+saving settings 
+done 
+waiting sshConnection to finish
+ 
+sshConnection is closed
+ 
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: user.log
+Type: text/x-log
+Size: 68663 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130729/0d791e3d/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130729/0d791e3d/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005994.html">[X2Go-Dev] Bug#272: [X2Go-User] Session resume fails with AFS home	directories
+</A></li>
+	<LI>Next message: <A HREF="005995.html">[X2Go-Dev] Bug#268: X2Go issue (in src:x2goserver) has been marked	as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6015">[ date ]</a>
+              <a href="thread.html#6015">[ thread ]</a>
+              <a href="subject.html#6015">[ subject ]</a>
+              <a href="author.html#6015">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

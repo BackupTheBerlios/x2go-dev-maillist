@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Default umask when mounting sshfs tunnel
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Default%20umask%20when%20mounting%20sshfs%20tunnel&In-Reply-To=%3C20131023082728.Horde.CZvHypeVmvDIIVKaEigfEA1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006357.html">
+   <LINK REL="Next"  HREF="006359.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Default umask when mounting sshfs tunnel</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Default%20umask%20when%20mounting%20sshfs%20tunnel&In-Reply-To=%3C20131023082728.Horde.CZvHypeVmvDIIVKaEigfEA1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Default umask when mounting sshfs tunnel">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Oct 23 10:27:28 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006357.html">[X2Go-Dev] Default umask when mounting sshfs tunnel
+</A></li>
+        <LI>Next message: <A HREF="006359.html">[X2Go-Dev] Bug#331: Default umask when mounting sshfs tunnel
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6358">[ date ]</a>
+              <a href="thread.html#6358">[ thread ]</a>
+              <a href="subject.html#6358">[ subject ]</a>
+              <a href="author.html#6358">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Helmer,
+
+On  Di 22 Okt 2013 18:53:20 CEST, Helmer Teles wrote:
+
+&gt;<i> Just had a problem that when a user moves or copy a file from the mounted
+</I>&gt;<i> sshfs dir to a shared directory on the x2goserver, if this is a shared
+</I>&gt;<i> folder for a group with respective ACL's we've got a problem with the final
+</I>&gt;<i> permissions.
+</I>&gt;<i>
+</I>&gt;<i> The easy way to solve this is to change the x2gomountdirs to include the
+</I>&gt;<i> umask param.
+</I>&gt;<i>
+</I>&gt;<i> My diff is below.
+</I>&gt;<i> Is there any other way ( missed /etc/x2go/* param  that i've missed to
+</I>&gt;<i> solve this problem?
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> 34,35d33
+</I>&gt;<i> &lt; my $umask=&quot;0117&quot;;
+</I>&gt;<i> &lt;
+</I>&gt;<i> 277c275
+</I>&gt;<i> &lt;               $msg = &quot;sshfs $code_conv -o idmap=user,uid=`id -u`,gid=`id
+</I>&gt;<i> -g`,umask=$umask,ServerAliveInterval=300,Cipher=blowfish,IdentityFile=$key,UserKnownHostsFile=$key.ident
+</I>&gt;<i> \&quot;$user\&quot;\@$host:\&quot;@dirs[$i]\&quot; \&quot;$mntpath\&quot; -p $port&quot;;
+</I>&gt;<i> ---
+</I>&gt;&gt;<i>               $msg = &quot;sshfs $code_conv -o idmap=user,uid=`id -u`,gid=`id
+</I>&gt;<i> -g`,ServerAliveInterval=300,Cipher=blowfish,IdentityFile=$key,UserKnownHostsFile=$key.ident
+</I>&gt;<i> \&quot;$user\&quot;\@$host:\&quot;@dirs[$i]\&quot; \&quot;$mntpath\&quot; -p $port&quot;;
+</I>&gt;<i> 280c278
+</I>&gt;<i> &lt;               if (system(&quot;sshfs  $code_conv -o idmap=user,uid=`id
+</I>&gt;<i> -u`,gid=`id
+</I>&gt;<i> -g`,umask=$umask,ServerAliveInterval=300,Cipher=blowfish,IdentityFile=$key,UserKnownHostsFile=$key.ident
+</I>&gt;<i> \&quot;$user\&quot;\@$host:\&quot;@dirs[$i]\&quot; \&quot;$mntpath\&quot; -p $port 2&gt;&gt;~/mounts.log&quot;)==0)
+</I>&gt;<i> ---
+</I>&gt;&gt;<i>               if (system(&quot;sshfs  $code_conv -o idmap=user,uid=`id
+</I>&gt;<i> -u`,gid=`id
+</I>&gt;<i> -g`,ServerAliveInterval=300,Cipher=blowfish,IdentityFile=$key,UserKnownHostsFile=$key.ident
+</I>&gt;<i> \&quot;$user\&quot;\@$host:\&quot;@dirs[$i]\&quot; \&quot;$mntpath\&quot; -p $port 2&gt;&gt;~/mounts.log&quot;)==0)
+</I>
+Could you resend your patch to the X2Go BTS [1]? Also, please generate  
+your diffs with &quot;diff -u&quot; (they then become more readable for the  
+human eye). And: please attach the patch as a patch file, don't  
+copy+paste it into your mail.
+
+About the configurability of the umask. This could be done in  
+/etc/x2go/x2goserver.conf.
+
+Once I have received your patch as a bug report, I will take a look at it.
+
+Greets,
+Mike (you tries to standardize patch our workflows...)
+
+[1] <A HREF="http://wiki.x2go.org/doku.php/wiki:bugs">http://wiki.x2go.org/doku.php/wiki:bugs</A>
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-keys
+Size: 7251 bytes
+Desc: ?ffentlicher PGP-Schl?ssel
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131023/b6335a7e/attachment.key">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131023/b6335a7e/attachment.key</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131023/b6335a7e/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131023/b6335a7e/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006357.html">[X2Go-Dev] Default umask when mounting sshfs tunnel
+</A></li>
+	<LI>Next message: <A HREF="006359.html">[X2Go-Dev] Bug#331: Default umask when mounting sshfs tunnel
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6358">[ date ]</a>
+              <a href="thread.html#6358">[ thread ]</a>
+              <a href="subject.html#6358">[ subject ]</a>
+              <a href="author.html#6358">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

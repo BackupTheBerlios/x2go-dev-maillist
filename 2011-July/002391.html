@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] sound on x2gothinclient
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20sound%20on%20x2gothinclient&In-Reply-To=%3C20110704125721.14835jpa3c8e76vl%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002390.html">
+   <LINK REL="Next"  HREF="002389.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] sound on x2gothinclient</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20sound%20on%20x2gothinclient&In-Reply-To=%3C20110704125721.14835jpa3c8e76vl%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] sound on x2gothinclient">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Jul  4 12:57:21 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002390.html">[X2go-Dev] sound on x2gothinclient
+</A></li>
+        <LI>Next message: <A HREF="002389.html">[X2go-Dev] Windows Client Issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2391">[ date ]</a>
+              <a href="thread.html#2391">[ thread ]</a>
+              <a href="subject.html#2391">[ subject ]</a>
+              <a href="author.html#2391">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Coco,
+
+On Mo 04 Jul 2011 05:27:41 CEST Coco wrote:
+
+&gt;<i> I just install the x2go TCE on squeeze, everything is working like a charm
+</I>&gt;<i> after some minor modifications :
+</I>
+Great!
+
+&gt;<i> - Delete pcspkr from blacklist because we hear it click if not.
+</I>
+This is hardware dependent!!!
+
+&gt;<i> - Link the /dev/shm on TCE server with the x2go /etc/network/run
+</I>&gt;<i> to avoid an error message (ifupdown failed) at startup
+</I>
+The problem with some systems is that sometimes (my systems here) the  
+mountall script is called first, then networking. A customer has  
+observed the same as you did. The symlink is a nice workaround for that.
+
+&gt;<i> It still remain one problem wich is quite important because it's all  
+</I>&gt;<i> about sound.
+</I>
+&gt;<i> I can't get any sound from my soundcard and it's hard to know why.
+</I>&gt;<i> Do you have any idea ?
+</I>
+In the current x2goclient version (3.0.1.18) there is a problem with  
+the default sndport setting. If you choose to use pulseaudio's default  
+snd port then audio will fail. If you specifiy port 4713 explicitly,  
+then it will work.
+
+This should be fixed with the next x2goclient version, which we plan  
+to upload to X2go Git on Tuesday night.
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110704/21490796/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110704/21490796/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002390.html">[X2go-Dev] sound on x2gothinclient
+</A></li>
+	<LI>Next message: <A HREF="002389.html">[X2go-Dev] Windows Client Issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2391">[ date ]</a>
+              <a href="thread.html#2391">[ thread ]</a>
+              <a href="subject.html#2391">[ subject ]</a>
+              <a href="author.html#2391">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

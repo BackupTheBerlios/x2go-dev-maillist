@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Possible bug with autologin-feature in x2gobroker
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Possible%20bug%20with%20autologin-feature%20in%20x2gobroker&In-Reply-To=%3CCAFJm-UNGGePHabeKFyoPA0ya63d-AOLuquVDZGw_KbSJejE3JQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005454.html">
+   <LINK REL="Next"  HREF="005457.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Possible bug with autologin-feature in x2gobroker</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Possible%20bug%20with%20autologin-feature%20in%20x2gobroker&In-Reply-To=%3CCAFJm-UNGGePHabeKFyoPA0ya63d-AOLuquVDZGw_KbSJejE3JQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Possible bug with autologin-feature in x2gobroker">abo at dsl.dk
+       </A><BR>
+    <I>Thu Apr 18 16:16:05 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005454.html">[X2Go-Dev] Possible bug with autologin-feature in x2gobroker
+</A></li>
+        <LI>Next message: <A HREF="005457.html">[X2Go-Dev] Possible bug with autologin-feature in x2gobroker
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5455">[ date ]</a>
+              <a href="thread.html#5455">[ thread ]</a>
+              <a href="subject.html#5455">[ subject ]</a>
+              <a href="author.html#5455">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have a guess as to the possible reason for the behavior of the
+thinclient: the filesystem is of course read-only (nfs-shared root), so no
+generated ssh private key, needed for the autologin, can be placed there.
+If this is indeed the reason, then the fact that it just shows a passphrase
+dialog box is very confusing and this behaviour should be changed.
+Although my guess could be entirely wrong.
+
+
+2013/4/18 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+
+&gt;<i> Hi Anders,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Do 18 Apr 2013 15:56:51 CEST Anders Bruun Olsen wrote:
+</I>&gt;<i>
+</I>&gt;<i>  Hi Mike,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Having setup a thinclient environment with x2gothinclient the bug we were
+</I>&gt;&gt;<i> talking about during our development sprint in march, where a dialog box
+</I>&gt;&gt;<i> appears, asking for a passphrase for a key, when being auto-logged-in over
+</I>&gt;&gt;<i> a broker. Pressing cancel allows me to be logged in anyway. We suspected
+</I>&gt;&gt;<i> it
+</I>&gt;&gt;<i> might be the way my machine is setup, but on the newly created
+</I>&gt;&gt;<i> thinclient-environment I now have, it also happens. Only on this setup,
+</I>&gt;&gt;<i> pressing cancel does not help. The dialog box just reappears. This means
+</I>&gt;&gt;<i> that currently, our thinclients can't login using a broker with
+</I>&gt;&gt;<i> auto-login.
+</I>&gt;&gt;<i> Any idea how to debug this problem?
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I will cross-check with Alex first (he might know a solution) and then (if
+</I>&gt;<i> not) take a closer look at the x2goclient code.
+</I>&gt;<i>
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+</I>&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;<i>
+</I>
+
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130418/690dd9db/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130418/690dd9db/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005454.html">[X2Go-Dev] Possible bug with autologin-feature in x2gobroker
+</A></li>
+	<LI>Next message: <A HREF="005457.html">[X2Go-Dev] Possible bug with autologin-feature in x2gobroker
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5455">[ date ]</a>
+              <a href="thread.html#5455">[ thread ]</a>
+              <a href="subject.html#5455">[ subject ]</a>
+              <a href="author.html#5455">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

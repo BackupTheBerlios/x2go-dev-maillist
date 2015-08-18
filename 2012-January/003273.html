@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] X2goclient doesn't run Trinity
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20X2goclient%20doesn%27t%20run%20Trinity&In-Reply-To=%3C4F230BE0.7010506%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003307.html">
+   <LINK REL="Next"  HREF="003276.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] X2goclient doesn't run Trinity</H1>
+    <B>newsgroups.mail2 at stefanbaur.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20X2goclient%20doesn%27t%20run%20Trinity&In-Reply-To=%3C4F230BE0.7010506%40stefanbaur.de%3E"
+       TITLE="[X2go-Dev] X2goclient doesn't run Trinity">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Fri Jan 27 21:41:04 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003307.html">[X2Go-Dev] [X2go-Dev] [PATCH] Traditional Chinese(zh_TW) translation for x2goclient
+</A></li>
+        <LI>Next message: <A HREF="003276.html">[X2go-Dev] X2goclient doesn't run Trinity
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3273">[ date ]</a>
+              <a href="thread.html#3273">[ thread ]</a>
+              <a href="subject.html#3273">[ subject ]</a>
+              <a href="author.html#3273">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I run Trinity, the KDE3-fork, on one of my servers.
+When connecting to it with the NXclient, I set it to run the following 
+custom command in fullscreen:
+/opt/trinity/bin/startkde
+and everything works as expected.
+
+I tried the same with the latest X2goclient, and it doesn't work. I can 
+see the screen background with the logo for a few moments, then it 
+closes again and returns me to the login window.
+I tried both the &quot;custom command&quot; as well as the &quot;other desktop 
+environment&quot; options and supplied the same path.
+Neither works.
+
+This came as a bit of a (negative) surprise as I remember there was an 
+X2goclient that came with a preset for Trinity, so there has been a time 
+when it worked.
+
+To debug the issue, I decided to launch the console in both NXclient and 
+X2goclient, and run the above command there.
+
+Here's what happens in X2go:
+
+[startkde] Starting startkde.
+[startkde] KDEHOME is not set.
+[startkde] Set KDEHOME to /home/sbaur/.trinity.
+[startkde] kdehome: /home/sbaur/.trinity
+[startkde] KDEDIR: /opt/trinity/
+[startkde] KDEDIRS: /opt/trinity/:/usr/:/opt/trinity/:/usr/
+[startkde] kdedirs_first: /opt/trinity/
+xset:  bad font path element (#119), possible causes are:
+     Directory does not exist or has wrong permissions
+     Directory missing fonts.dir
+     Incorrect font server address or syntax
+[startkde] Starting Trinity...
+terminate called after throwing an instance of 'std::bad_alloc'
+   what():  std::bad_alloc
+Aborted
+terminate called after throwing an instance of 'std::bad_alloc'
+   what():  std::bad_alloc
+Aborted
+[startkde] TDE_FULL_SESSION: true
+[startkde] KDE_SESSION_UID:
+kdeinit: Launched DCOPServer, pid = 31906 result = 0
+kdeinit: Launched KLauncher, pid = 31911 result = 0
+kdeinit: Communication error with launcher. Exiting!
+[startkde] kdeinit started successfully.
+[trinity kinit] Warning: connect() failed: : Connection refused
+terminate called after throwing an instance of 'std::bad_alloc'
+   what():  std::bad_alloc
+Aborted
+[startkde] Shutting down Trinity...
+[trinity kinit] Warning: connect() failed: : Connection refused
+[trinity kinit] Error: Can't contact kdeinit!
+[startkde] Running Trinity shutdown scripts...
+[startkde] Trinity shutdown complete.
+
+
+
+
+While this is what NXclient does:
+
+startkde] Starting startkde.
+[startkde] KDEHOME is not set.
+[startkde] Set KDEHOME to /home/sbaur/.trinity.
+[startkde] kdehome: /home/sbaur/.trinity
+[startkde] KDEDIR: /opt/trinity/
+[startkde] KDEDIRS: /opt/trinity/:/usr/:/opt/trinity/:/usr/
+[startkde] kdedirs_first: /opt/trinity/
+xset:  bad font path element (#91), possible causes are:
+     Directory does not exist or has wrong permissions
+     Directory missing fonts.dir
+     Incorrect font server address or syntax
+[startkde] Starting Trinity...
+kdeinit: Launched DCOPServer, pid = 31289 result = 0
+kdeinit: Launched KLauncher, pid = 31294 result = 0
+kdeinit: opened connection to :1000.0
+kdeinit: Launched KDED, pid = 31295 result = 0
+kdeinit: Got EXT_EXEC 'kbuildsycoca' from launcher.
+kbuildsycoca running...
+DCOP Cleaning up dead connections.
+kdeinit: PID 31297 terminated.
+kdeinit: Got EXEC_NEW 'kconf_update' from launcher.
+kdeinit: PID 31298 terminated.
+kdeinit: PID 31295 terminated.
+reading '/home/sbaur/.kompmgr.pid' as kompmgr pidfile
+
+[startkde] TDE_FULL_SESSION: true
+[startkde] KDE_SESSION_UID:
+kdeinit: Shutting down running client.
+kdeinit: Killing kdeinit/klauncher.
+kdeinit: Launched DCOPServer, pid = 31307 result = 0
+---------------------------------
+It looks like dcopserver is already running. If you are sure
+that it is not already running, remove 
+/home/sbaur/.DCOPserver_appserv2__1000
+and start dcopserver again.
+---------------------------------
+
+kdeinit: Launched KLauncher, pid = 31308 result = 0
+kdeinit: opened connection to :1000.0
+kdeinit: Launched KDED, pid = 31310 result = 0
+KDE Daemon (kded) already running.
+kdeinit: Got EXT_EXEC 'kbuildsycoca' from launcher.
+kbuildsycoca running...
+Reusing existing ksycoca
+DCOP Cleaning up dead connections.
+kdeinit: PID 31312 terminated.
+kdeinit: PID 31310 terminated.
+kdeinit: Launched 'kcminit_startup', pid = 31313 result = 0
+kdeinit: Got SETENV 'KDE_MULTIHEAD=false' from klauncher.
+kdeinit: PID 31313 terminated.
+[startkde] kdeinit started successfully.
+kdeinit: Got KWRAPPER 'ksmserver' from socket.
+kdeinit: PID 31316 terminated.
+_IceTransSocketOpenCOTSServer: Unable to open socket for inet6
+_IceTransOpen: transport open failed for inet6/appserv2:
+_IceTransMakeAllCOTSServerListeners: failed to open listener for inet6
+kdeinit: Got SETENV 
+'SESSION_MANAGER=local/appserv2:@/tmp/.ICE-unix/31317,unix/appserv2:/tmp/.ICE-unix/31317,inet/appserv2:45932' 
+from klauncher.
+kdeinit: Got EXEC_NEW 'kwin' from launcher.
+kdeinit: Got EXEC_NEW 'kdesktop' from launcher.
+kdeinit: PID 31320 terminated.
+kdeinit: Got EXEC_NEW 'kicker' from launcher.
+kdeinit: Got EXEC_NEW 'kicker' from launcher.
+Cannot connect socket '/var/run/xdmctl/dmctl-:1000/socket'.
+kdeinit detected
+^Mkdeinit: Got EXEC_NEW 'kio_file' from launcher.
+kdeinit: Got EXEC_NEW 'kio_file' from launcher.
+kdeinit: PID 31323 terminated.
+X Error: BadWindow (invalid Window parameter) 3
+   Major opcode:  18
+   Minor opcode:  0
+   Resource id:  0x1c00006
+X Error: BadWindow (invalid Window parameter) 3
+   Major opcode:  19
+   Minor opcode:  0
+   Resource id:  0x1c00006
+kdeinit: Got EXEC_NEW 'kaccess' from launcher.
+kdeinit: PID 31329 terminated.
+/tmp/kde-sbaur/kcminitpkWFpz.tmp:467:24: warning: missing terminating ' 
+character
+/tmp/kde-sbaur/kcminitpkWFpz.tmp:484:28: warning: missing terminating ' 
+character
+xrdb: colon missing on line 410, ignoring line
+kdeinit: Got SETENV 
+'GTK_RC_FILES=/etc/gtk/gtkrc:/home/sbaur/.gtkrc:/home/sbaur/.trinity/share/config/gtkrc' 
+from klauncher.
+kdeinit: Got SETENV 
+'GTK2_RC_FILES=/etc/gtk-2.0/gtkrc:/home/sbaur/.gtkrc-2.0:/home/sbaur/.trinity/share/config/gtkrc-2.0' 
+from klauncher.
+kdeinit: Got SETENV 'XCURSOR_THEME=default' from klauncher.
+kdeinit: Got EXEC_NEW 'artswrapper' from launcher.
+Could not load library! Trying exec....
+kdeinit: Got EXEC_NEW 'kmixctrl' from launcher.
+kdeinit: Got EXEC_NEW 'nepomukserver' from launcher.
+Could not find 'nepomukserver' executable.
+kdeinit: PID 31340 terminated.
+kdeinit: Got EXEC_NEW 'start-pulseaudio-kde' from launcher.
+Could not load library! Trying exec....
+kdeinit: Got EXT_EXEC 'knotify' from launcher.
+kdeinit: Got EXEC_NEW 'ktip' from launcher.
+E: main.c: Start des Daemons fehlgeschlagen.
+Could not load library! Trying exec....
+kdeinit: PID 31343 terminated.
+kdeinit: PID 31339 terminated.
+kdeinit: Got EXEC_NEW 'start-pulseaudio-kde' from launcher.
+Could not load library! Trying exec....
+kdeinit: Got EXEC_NEW 'klipper' from launcher.
+kdeinit: PID 31344 terminated.
+E: main.c: Start des Daemons fehlgeschlagen.
+kdeinit: PID 31352 terminated.
+kdeinit: PID 31348 terminated.
+kdeinit: PID 31354 terminated.
+X Error: BadWindow (invalid Window parameter) 3
+   Major opcode:  20
+   Minor opcode:  0
+   Resource id:  0x1a00006
+X Error: BadWindow (invalid Window parameter) 3
+   Major opcode:  20
+   Minor opcode:  0
+   Resource id:  0x1a00006
+X Error: BadWindow (invalid Window parameter) 3
+   Major opcode:  20
+   Minor opcode:  0
+   Resource id:  0x1a00006
+X Error: BadWindow (invalid Window parameter) 3
+   Major opcode:  19
+   Minor opcode:  0
+   Resource id:  0x1a00006
+ICE default IO error handler doing an exit(), pid = 31319, errno = 11
+reading '/home/sbaur/.kompmgr.pid' as kompmgr pidfile
+
+Any idea what's going on here?
+
+Kind Regards,
+Stefan
+
+-- 
+BAUR-ITCS UG (haftungsbeschr&#228;nkt)
+Gesch&#228;ftsf&#252;hrer: Stefan Baur
+Eichen&#228;ckerweg 10, 89081 Ulm | Registergericht Ulm, HRB 724364
+Fon/Fax 0731 40 34 66-36/-35 | USt-IdNr.: DE268653243
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003307.html">[X2Go-Dev] [X2go-Dev] [PATCH] Traditional Chinese(zh_TW) translation for x2goclient
+</A></li>
+	<LI>Next message: <A HREF="003276.html">[X2go-Dev] X2goclient doesn't run Trinity
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3273">[ date ]</a>
+              <a href="thread.html#3273">[ thread ]</a>
+              <a href="subject.html#3273">[ subject ]</a>
+              <a href="author.html#3273">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

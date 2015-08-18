@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#66: pstree output after first startup
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2366%3A%20pstree%20output%20after%20first%20startup&In-Reply-To=%3C20121129214051.85207erco1kde0r7%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004618.html">
+   <LINK REL="Next"  HREF="004620.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#66: pstree output after first startup</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2366%3A%20pstree%20output%20after%20first%20startup&In-Reply-To=%3C20121129214051.85207erco1kde0r7%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#66: pstree output after first startup">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Nov 29 21:40:51 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004618.html">[X2Go-Dev] Bug#66: pstree output after first startup
+</A></li>
+        <LI>Next message: <A HREF="004620.html">[X2Go-Dev] Bug#67: Bug when you mount more 1 folder at login
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4619">[ date ]</a>
+              <a href="thread.html#4619">[ thread ]</a>
+              <a href="subject.html#4619">[ subject ]</a>
+              <a href="author.html#4619">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Raphael,
+
+thanks for reporting this issue.
+
+On Do 29 Nov 2012 18:28:29 CET Raphael Lechner wrote:
+
+&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at x2gothinclient</A>:~# pstree -l
+</I>&gt;<i> init-+-acpid
+</I>&gt;<i>      |-console-kit-dae---63*[{console-kit-da}]
+</I>&gt;<i>      |-cron
+</I>&gt;<i>      |-dbus-daemon
+</I>&gt;<i>      |-6*[getty]
+</I>&gt;<i>      |-logsave
+</I>&gt;<i>      |-pulseaudio---2*[{pulseaudio}]
+</I>&gt;<i>      |-rsyslogd---3*[{rsyslogd}]
+</I>&gt;<i>      |-sshd---sshd---bash---pstree
+</I>&gt;<i>      |-udevd---2*[udevd]
+</I>&gt;<i>      |-x2gocdmanager
+</I>&gt;<i>      `-x2gothinclientd---72*[sh]
+</I>&gt;<i>
+</I>&gt;<i> The number of [sh] processes are increased every 3 seconds and no
+</I>&gt;<i> login window is visible.
+</I>
+There has been a lot of work been done on the current HEAD of code in  
+Vcs Git (x2gothinclient.git on <A HREF="http://git.x2go.org">http://git.x2go.org</A>).
+
+I am sure I have seen these zombies, as well, already, and I am sure,  
+I fixed it at some other place in the script.
+
+I will keep this bug open to make sure, the issue will be gone with  
+the next generation (2.x.y.z) of the TCE.
+
+Greets,
+Mike
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121129/8d8cb102/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121129/8d8cb102/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004618.html">[X2Go-Dev] Bug#66: pstree output after first startup
+</A></li>
+	<LI>Next message: <A HREF="004620.html">[X2Go-Dev] Bug#67: Bug when you mount more 1 folder at login
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4619">[ date ]</a>
+              <a href="thread.html#4619">[ thread ]</a>
+              <a href="subject.html#4619">[ subject ]</a>
+              <a href="author.html#4619">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

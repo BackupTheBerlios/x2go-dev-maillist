@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2go without root on server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20without%20root%20on%20server&In-Reply-To=%3C20121110131726.609933gq1cuouhue%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004538.html">
+   <LINK REL="Next"  HREF="004544.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2go without root on server</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20without%20root%20on%20server&In-Reply-To=%3C20121110131726.609933gq1cuouhue%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] x2go without root on server">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Nov 10 13:17:26 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004538.html">[X2Go-Dev] x2go without root on server
+</A></li>
+        <LI>Next message: <A HREF="004544.html">[X2Go-Dev] x2go without root on server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4540">[ date ]</a>
+              <a href="thread.html#4540">[ thread ]</a>
+              <a href="subject.html#4540">[ subject ]</a>
+              <a href="author.html#4540">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Ralf,
+
+On Sa 10 Nov 2012 02:59:12 CET Ralf Hemmecke wrote:
+
+&gt;&gt;<i> If you want to provide a patch, then you have to handle the Perl module
+</I>&gt;&gt;<i> based code in the master branch, I guess. However, this is in the middle
+</I>&gt;&gt;<i> of transition, currently.
+</I>&gt;<i>
+</I>&gt;<i> Is master in a working state or temporarily broken? I'd rather like
+</I>&gt;<i> rebasing my code on top of master than building on soon-to-be-obsolete code.
+</I>
+The code on master is working (I always aim at that), but it is not  
+yet complete. To much Perl code in the individual scripts of X2Go  
+Server. All intelligence will be moved into the Perl module/package API.
+
+But that should not make to much of a difference for you. Please  
+rebase against master.
+
+&gt;<i> In what time scale do you expect to be finished with your refactoring?
+</I>
+No time frame. I am doing the refactoring development in my scarce spare time.
+
+&gt;&gt;<i> No configure script, yet!!!
+</I>&gt;<i>
+</I>&gt;&gt;&gt;<i> ? The INSTALL file in that directory doesn't say something about
+</I>&gt;&gt;&gt;<i> &quot;configure&quot;, but that's probably because it refers to the enduser that
+</I>&gt;&gt;&gt;<i> extracts x2goserver from a tar.gz file and not from the git repository.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The enduser hopefully can install X2Go server from one of the available
+</I>&gt;&gt;<i> distro archives...
+</I>&gt;<i>
+</I>&gt;<i> Installing via distro mechanisms requires root priviledges. Userspace
+</I>&gt;<i> installation must certainly be done via &quot;configure --prefix=... &amp;&amp; make
+</I>&gt;<i> &amp;&amp; make install&quot;.
+</I>
+Yes.
+
+&gt;<i> If ever I come that far than the behaviour for the current (root)
+</I>&gt;<i> installation shouldn't be in any way any different.
+</I>&gt;<i>
+</I>&gt;&gt;<i> If the configure file works for system-wide installations, then yes.
+</I>&gt;<i>
+</I>&gt;<i> Well, that goes without saying.
+</I>
+Fine.
+
+&gt;&gt;<i> I guess, that you are aware that you have to test both cases (user space
+</I>&gt;&gt;<i> X2Go and system-wide X2Go).
+</I>&gt;<i>
+</I>&gt;<i> What do you mean by &quot;test&quot;? I haven't yet found that 'make check' would
+</I>&gt;<i> be available inside the x2goserver directory.
+</I>
+By testing I meant: install it on a machine where you have root  
+access, so that you understand the functionality of the server more.
+
+Talking about make check... That actually should be your first task:  
+write a set of check stanzas for the Makefiles so that you can verify  
+correct functionality for system-wide installation once you have  
+started taking the Makefiles apart and added configure functionality.
+
+Your contribution will be very valuable to X2Go as it allows to make  
+the server code ,,portable''.
+
+For your approach: please start on x2goserver first. Install x2goagent  
+locally as root first and focus on adapting x2goserver. Once that  
+works with configure, make, make install, only then it makes sense to  
+start thinking about x2goagent.
+
+Thanks
+
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121110/b60d936f/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121110/b60d936f/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004538.html">[X2Go-Dev] x2go without root on server
+</A></li>
+	<LI>Next message: <A HREF="004544.html">[X2Go-Dev] x2go without root on server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4540">[ date ]</a>
+              <a href="thread.html#4540">[ thread ]</a>
+              <a href="subject.html#4540">[ subject ]</a>
+              <a href="author.html#4540">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

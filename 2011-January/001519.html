@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go security Issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20security%20Issues&In-Reply-To=%3C4D3851F3.4080309%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001518.html">
+   <LINK REL="Next"  HREF="001520.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go security Issues</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20security%20Issues&In-Reply-To=%3C4D3851F3.4080309%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] x2go security Issues">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Thu Jan 20 16:17:07 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001518.html">[X2go-dev] x2go security Issues
+</A></li>
+        <LI>Next message: <A HREF="001520.html">[X2go-dev] x2go security Issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1519">[ date ]</a>
+              <a href="thread.html#1519">[ thread ]</a>
+              <a href="subject.html#1519">[ subject ]</a>
+              <a href="author.html#1519">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 20.01.2011 15:39, schrieb Alexander Wuerstlein:
+
+&gt;<i> Forget that, /usr/bin/x2gopgwrapper is of course trivially exploitable
+</I>&gt;<i> to get root in 2 ways:
+</I>&gt;<i> - in the current git version, set 'startshadowagent' as the first
+</I>&gt;<i>   parameter. Choose the 11th parameter in a way such that SHADOW_USER is
+</I>&gt;<i>   set to 'root'. Set the second parameter ($CLIENT) to something like
+</I>&gt;<i>   'foo ; rm -fr /'. Profit.
+</I>&gt;<i> - in the git as well as the stable version, when the database is sqlite:
+</I>&gt;<i>   the x2gopgwrapper_sqlite runs as root meaning that any sql injection
+</I>&gt;<i>   into sqlite would run as root. One possible injection would set the
+</I>&gt;<i>   sqlite output file to /etc/shadow (via .output /etc/shadow) and
+</I>&gt;<i>   overwrite it with a customized version including a new root password
+</I>&gt;<i>   chosen by the attacker. Profit.
+</I>
+I see, thank you Alexander. We'll fix it as quick as possible.
+Regards,
+
+alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110120/c03a4e9f/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110120/c03a4e9f/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001518.html">[X2go-dev] x2go security Issues
+</A></li>
+	<LI>Next message: <A HREF="001520.html">[X2go-dev] x2go security Issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1519">[ date ]</a>
+              <a href="thread.html#1519">[ thread ]</a>
+              <a href="subject.html#1519">[ subject ]</a>
+              <a href="author.html#1519">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

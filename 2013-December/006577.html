@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20Windows%20binary%204.0.1.2pre01&In-Reply-To=%3CCAMKht8i82COmUEMsWWsKjJZGcOZf-vSHk_bQET6Nnsn4nN6AyQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006575.html">
+   <LINK REL="Next"  HREF="006578.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01</H1>
+    <B>Michael DePaulo</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20Windows%20binary%204.0.1.2pre01&In-Reply-To=%3CCAMKht8i82COmUEMsWWsKjJZGcOZf-vSHk_bQET6Nnsn4nN6AyQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01">mikedep333 at gmail.com
+       </A><BR>
+    <I>Mon Dec  9 00:21:29 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006575.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+</A></li>
+        <LI>Next message: <A HREF="006578.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6577">[ date ]</a>
+              <a href="thread.html#6577">[ thread ]</a>
+              <a href="subject.html#6577">[ subject ]</a>
+              <a href="author.html#6577">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Dec 8, 2013 at 5:41 PM, Stefan Baur
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>&gt; wrote:
+&gt;<i> Am 08.12.2013 23:37, schrieb John Williams:
+</I>&gt;<i>
+</I>&gt;&gt;&gt;<i> - It is still compatible with Windows XP! It bundles VcXsrv 1.14.2.1
+</I>&gt;&gt;&gt;<i> (2013-07-26) because all later versions of VcXsrv (starting with
+</I>&gt;&gt;&gt;<i> 1.14.3, released 2013-09-20) are incompatible with Windows XP.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Are there any plans to split off a version for Windows XP
+</I>&gt;&gt;<i> compatibility, and to let the main version continue to get VcXsrv
+</I>&gt;&gt;<i> updates?
+</I>
+That sounds like the best approach, but I would like to ask other
+project members what they think. And I am open to other ideas. After
+all, I think the only way to get VcXsrv security updates is to install
+the latest major version of VcXsrv. That means upgrading to VcXSrv to
+1.14 now, to 1.15 when it comes out,, and so on. At least X2Go does
+not use every feature of VcXsrv (e.g., unsecured TCP connections), so
+not every security vulnerability in VcXsrv would actually affect X2Go.
+
+Also, remember that the build instructions for X2Go Client for Windows
+consist of just installing VcXsrv to your program files folder and
+then copying and pasting VcXsrv's folder into the x2goclient folder.
+We do not link against VcXsrv. So feel free to replace the
+x2gofolder\VcXsrv folder with a newer version of VcXsrv. Doing so may
+not be officially supported by the X2Go project, but it is very likely
+to &quot;just work&quot;(TM).
+
+&gt;<i> Given that Microsoft's XP security support ends in April 2014, I'm guessing
+</I>&gt;<i> that X2Go support for XP could be dropped in May 2014.
+</I>
+This is something that I wanted to discuss on this mailing list.
+Personally, I think it sounds like a &quot;killer use case&quot; of X2Go Client
+to use it on Windows XP machines after May 2014. The XP machines could
+be secured by sysadmins by having their firewall turned on (to allow
+no incoming traffic), and their unpatched apps like IE blocked. The XP
+machines could then be used securely as dumb clients to X2Go Servers
+or RDP servers running Firefox, office suites, etc with all the latest
+patches installed. Of course, the machines could just be reformatted
+to run Linux. But many sysadmins are less comfortable with Linux, or
+their ill-informed bosses might order them to not reformat any XP
+machines.
+
+&gt;<i> [...]
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i> By the way, Michael DePaulo, thanks for your work on the Windows x2go
+</I>&gt;&gt;<i> client! It is nice to see it getting a bit more attention than it has
+</I>&gt;&gt;<i> in the past.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> +1!
+</I>
+Thanks guys! Like most unpaid open source developers I am contributing
+for fun (AKA, &quot;Intellectual Stimulation&quot;, see Lakhani and Wolf'
+(2005)). I chose the Windows X2Go Client because I use it both at work
+and at home. (My home network is very sophisticated. In fact, I tested
+x2goclient on Windows XP 32-bit SP3 by installing XP onto a VM. I
+hosted the VM using virt-manager on a Fedora 19 machine that I use
+exclusively for hosting VMs. I then used virt-viewer + the spice
+protocol to access the XP VM's desktop at 32-bit color. (I couldn't
+use RDP because the XP RDP server defaults to 16-bit color or less,
+and the max you can raise it to is 24-bit.))
+
+-Mike
+</PRE>
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006575.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+</A></li>
+	<LI>Next message: <A HREF="006578.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6577">[ date ]</a>
+              <a href="thread.html#6577">[ thread ]</a>
+              <a href="subject.html#6577">[ subject ]</a>
+              <a href="author.html#6577">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

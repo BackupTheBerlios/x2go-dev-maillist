@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Problems with AltGr
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Problems%20with%20AltGr&In-Reply-To=%3Cjtq4lh%24p29%241%40dough.gmane.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004136.html">
+   <LINK REL="Next"  HREF="004138.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Problems with AltGr</H1>
+    <B>Sven K&#246;hler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Problems%20with%20AltGr&In-Reply-To=%3Cjtq4lh%24p29%241%40dough.gmane.org%3E"
+       TITLE="[X2Go-Dev] Problems with AltGr">sven.koehler at gmail.com
+       </A><BR>
+    <I>Fri Jul 13 23:45:40 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004136.html">[X2Go-Dev] Problems with AltGr
+</A></li>
+        <LI>Next message: <A HREF="004138.html">[X2Go-Dev] Problems with AltGr
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4137">[ date ]</a>
+              <a href="thread.html#4137">[ thread ]</a>
+              <a href="subject.html#4137">[ subject ]</a>
+              <a href="author.html#4137">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 13.07.2012 13:13, schrieb Mike Gabriel:
+&gt;<i> please send the output of ,,setxkbmap -print&quot; (called from within the
+</I>&gt;<i> session).
+</I>
+That's the output:
+
+$ setxkbmap -print
+Couldn't interpret _XKB_RULES_NAMES property
+Use defaults: rules - 'base' model - 'pc105' layout - 'us'
+xkb_keymap {
+        xkb_keycodes  { include &quot;xfree86+aliases(qwerty)&quot;       };
+        xkb_types     { include &quot;complete&quot;      };
+        xkb_compat    { include &quot;complete&quot;      };
+        xkb_symbols   { include &quot;pc+us+inet(pc105)&quot;     };
+        xkb_geometry  { include &quot;pc(pc105)&quot;     };
+};
+
+After executing &quot;setxkbmap de&quot; inside the session, the issues goes away
+and the output is:
+$ setxkbmap -print
+xkb_keymap {
+	xkb_keycodes  { include &quot;xfree86+aliases(qwertz)&quot;	};
+	xkb_types     { include &quot;complete&quot;	};
+	xkb_compat    { include &quot;complete&quot;	};
+	xkb_symbols   { include &quot;pc+de+inet(pc105)&quot;	};
+	xkb_geometry  { include &quot;pc(pc105)&quot;	};
+};
+
+
+Regards,
+  Sven
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004136.html">[X2Go-Dev] Problems with AltGr
+</A></li>
+	<LI>Next message: <A HREF="004138.html">[X2Go-Dev] Problems with AltGr
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4137">[ date ]</a>
+              <a href="thread.html#4137">[ thread ]</a>
+              <a href="subject.html#4137">[ subject ]</a>
+              <a href="author.html#4137">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Extra functions requested in x2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Extra%20functions%20requested%20in%20x2go&In-Reply-To=%3Cvmime.4c20d1dc.810.4f44fb4339cbebb5%40mail.pl20%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000594.html">
+   <LINK REL="Next"  HREF="000610.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Extra functions requested in x2go</H1>
+    <B>Dick Kniep</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Extra%20functions%20requested%20in%20x2go&In-Reply-To=%3Cvmime.4c20d1dc.810.4f44fb4339cbebb5%40mail.pl20%3E"
+       TITLE="[X2go-dev] Extra functions requested in x2go">dick at lindix.nl
+       </A><BR>
+    <I>Tue Jun 22 17:08:12 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000594.html">[X2go-dev] Extra functions requested in x2go
+</A></li>
+        <LI>Next message: <A HREF="000610.html">[X2go-dev] Extra functions requested in x2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#609">[ date ]</a>
+              <a href="thread.html#609">[ thread ]</a>
+              <a href="subject.html#609">[ subject ]</a>
+              <a href="author.html#609">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi List,
+&#160;
+
+Well, actually it is not that difficult to export from the server to the client. In fact, as the user directory is mounted and the user is logged on to the server and is executing our system, it is quite easy. From our system we write the file to the mounted directory and voila it is on the client. No problems with authorization either, because the user himself is writing to the mounted directory.
+
+&#160;
+
+The next part is trickier. If we want to start the application on the client we should have a command in x2go so that it signals the x2goclient to start the specific file. So no polling, but simply an extra command that is called on the server and sends a message to the client. Now this means a change in the client, and a protocol for the message that is used. Furthermore a command on the server should be there to signal the start of the program on the client. This could be something like &quot;x2gorunclient path-to-the-file&quot;
+
+&#160;
+
+Added is a drawing of the different parts of the extension. I hope it clears any misunderstanding of what I want. The yellow marked boxes are to be changed, so the x2gorunclient command is to be created and the client has to be changed so it will understand the signal of the x2gorunclient command, interpret it and start the file.
+&#160;
+
+Cheers,
+
+Dick
+-----Oorspronkelijk bericht-----
+Van: John A. Sullivan III &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt;
+Verzonden: di 22-06-10 14:07:09
+Aan: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>; 
+Onderwerp: Re: [X2go-dev] Extra functions requested in x2go
+
+On Tue, 2010-06-22 at 12:37 +0200, Dick Kniep wrote:
+&gt;<i> Hi LIst, 
+</I>&gt;<i> &#160;
+</I>&gt;<i> 
+</I>&gt;<i> A little more explanation. We publish our application from Linux, but
+</I>&gt;<i> NO desktop. So the user double-clicks an icon on his desktop and the
+</I>&gt;<i> application starts in its own window powered by x2go (currently
+</I>&gt;<i> GoGlobal). So for the user it is simply an application on his own
+</I>&gt;<i> windows/mac/linux desktop.
+</I>&gt;<i> 
+</I>&gt;<i> &#160;
+</I>&gt;<i> 
+</I>&gt;<i> In our application there is a menu option to export a list to Excel.
+</I>&gt;<i> So I would like to be able to do several things from our application:
+</I>&gt;<i> 
+</I>&gt;<i> &#160;
+</I>&gt;<i> 
+</I>&gt;<i> 1. Copy the file to the shared directory of the client
+</I>&gt;<i> 
+</I>&gt;<i> 2. Start that file (based on the mime type) on the client
+</I>&gt;<i> 
+</I>&gt;<i> &#160;
+</I>&gt;<i> 
+</I>&gt;<i> I hope this clears things up.
+</I>&lt;snip&gt;
+Yes, I think I'm getting it. &#160;So your application runs on a a Linux X2Go
+Server. &#160;The user clicks the icon on their desktop and launches an X2Go
+Client which presents your application as a window on their physical
+desktop. &#160;You then want your application to be able to copy an excel
+spreadsheet to the physical computer where it will automatically open
+using whatever application on the physical computer is associated with
+the mime-type. &#160;Is that correct?
+
+If so, I'd imagine there is a way but it might be a little tricky. &#160;The
+full client (as opposed to the Firefox plugin I've been testing) allows
+one to automount local shares. &#160;I suppose one could do this to a
+consistent place (that might present some cross platform difficulties).
+I'm not sure how one would automate the process of copying to that local
+share mounted in /tmp/&lt;uid_media which is soft links to ~/media. &#160;I'm
+also not sure if there will be permissions issues trying to copy to the
+physical computer unless the copy is done as the user.
+
+I'm also not sure how one would get it to auto-open upon copy. &#160;I
+suppose one could write some sort of script to poll the directory where
+the files are stored. &#160;Certainly getting out of my depth now! Hope this
+helps at least a little bit - John
+
+_______________________________________________
+X2go-dev mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+
+!DSPAM:4c20a76d290751343511188!
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100622/85adda65/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100622/85adda65/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: X2go extension.pdf
+Type: application/pdf
+Size: 66250 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100622/85adda65/attachment.pdf">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100622/85adda65/attachment.pdf</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000594.html">[X2go-dev] Extra functions requested in x2go
+</A></li>
+	<LI>Next message: <A HREF="000610.html">[X2go-dev] Extra functions requested in x2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#609">[ date ]</a>
+              <a href="thread.html#609">[ thread ]</a>
+              <a href="subject.html#609">[ subject ]</a>
+              <a href="author.html#609">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

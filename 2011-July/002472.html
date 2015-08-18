@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2goserver package with setuidwrapper
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20package%20with%20setuidwrapper&In-Reply-To=%3C87livvbxoz.fsf%40faui43f.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002464.html">
+   <LINK REL="Next"  HREF="002473.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2goserver package with setuidwrapper</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20package%20with%20setuidwrapper&In-Reply-To=%3C87livvbxoz.fsf%40faui43f.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-Dev] x2goserver package with setuidwrapper">siretart at tauware.de
+       </A><BR>
+    <I>Mon Jul 18 14:06:04 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002464.html">[X2go-Dev] x2goserver package with setuidwrapper
+</A></li>
+        <LI>Next message: <A HREF="002473.html">[X2go-Dev] x2goserver package with setuidwrapper
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2472">[ date ]</a>
+              <a href="thread.html#2472">[ thread ]</a>
+              <a href="subject.html#2472">[ subject ]</a>
+              <a href="author.html#2472">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Jul 17, 2011 at 13:41:05 (CEST), Mike Gabriel wrote:
+
+[...]
+
+&gt;<i>
+</I>&gt;&gt;<i>  - /usr/lib/x2go/x2gosqlitewrapper.pl is still installed suid, while
+</I>&gt;&gt;<i>    /usr/bin/x2gosqlitewrapper is not. Is this really intended? If it is,
+</I>&gt;&gt;<i>    then the whole design is somewhat mysterious to me.
+</I>&gt;<i>
+</I>&gt;<i>   o /usr/bin/x2gosqlitewrapper is the setuidwrapper and is started as
+</I>&gt;<i> the user,
+</I>&gt;<i>     who runs the X2go session (e.g. user foo), this C binary has to be set
+</I>&gt;<i>     root:root:0755.
+</I>&gt;<i>   o /usr/lib/x2go/x2gosqlitewrapper.pl is the actual Perl script that has to
+</I>&gt;<i>     run as user ,,x2guser''. This file has to be set x2gouser:x2gousers:6755.
+</I>
+I'm surprised that this works at all. Calling
+/usr/lib/x2go/x2gosqlitewrapper.pl now directly leads to this error:
+
+&gt;&gt;<i> /usr/lib/x2go/x2gosqlitewrapper.pl
+</I>Can't do setuid (cannot exec sperl)
+zsh: exit 2     /usr/lib/x2go/x2gosqlitewrapper.pl
+
+Which is expected, because perl-suid is not installed.
+
+&gt;<i> As user foo I execute /usr/bin/x2gosqlitewrapper, this wraps an  execvpe
+</I>&gt;<i> call around the Perl script  /usr/lib/x2go/x2gosqlitewrapper.pl. The
+</I>&gt;<i> execvpe call
+</I>&gt;<i> evokes a change of the effective UID/GID as
+</I>&gt;<i> /usr/lib/x2go/x2gosqlitewrapper.pl has its setuid bit set.
+</I>
+So this trick effectively disables perls internal suid check somehow,
+and I currently don't see what this non-suid wrapper does differently
+than the shell that tries to execute the script.
+
+
+&gt;<i> What you can try out is: do a chmod 6755 /usr/bin/X2gosqlitewrapper  and
+</I>&gt;<i> a chown x2gouser:x2gousers /usr/bin/x2gosqlitewrapper and then  call
+</I>&gt;<i> x2golistsessions (on a server that uses sqlite as X2go db  backend). You
+</I>&gt;<i> will get a kernel complaint (or libc) that this is not  allowed with the
+</I>&gt;<i> current kernel configuration.
+</I>
+I just did:
+-rwsr-sr-x 1 x2gouser x2gousers  5388 2011-07-18 00:12 /usr/bin/x2gosqlitewrapper*
+-rwxr-xr-x 1 x2gouser x2gousers 10094 2011-07-18 00:02 /usr/lib/x2go/x2gosqlitewrapper.pl*
+
+And everything works as expected. You need to become more specific what
+you observed.
+
+Now after reading the perlsec manpage, let me quote this part:
+
+,----
+|<i>    Security Bugs
+</I>|<i> 
+</I>|<i>        Beyond the obvious problems that stem from giving special
+</I>|<i>        privileges to systems as flexible as scripts, on many versions of
+</I>|<i>        Unix, set-id scripts are inherently insecure right from the
+</I>|<i>        start.  The problem is a race condition in the kernel.  Between
+</I>|<i>        the time the kernel opens the file to see which interpreter to
+</I>|<i>        run and when the (now-set-id) interpreter turns around and
+</I>|<i>        reopens the file to interpret it, the file in question may have
+</I>|<i>        changed, especially if you have symbolic links on your system.
+</I>|<i>        [...]
+</I>|<i>
+</I>|<i>        The use of suidperl is considered deprecated, and will be
+</I>|<i>        removed in Perl 5.12.0.  It is strongly recommended that all
+</I>|<i>        code uses the simplier and more secure C-wrappers described
+</I>|<i>        below.
+</I>|<i>
+</I>|<i>        If the kernel set-id script feature isn't disabled, Perl will
+</I>|<i>        complain loudly that your set-id script is insecure.  You'll
+</I>|<i>        need to either disable the kernel set-id script feature, or put
+</I>|<i>        a C wrapper around the script.  A C wrapper is just a compiled
+</I>|<i>        program that does nothing except call your Perl program.
+</I>|<i>        Compiled programs are not subject to the kernel bug that
+</I>|<i>        plagues set-id scripts.
+</I>`----
+
+Followed is a small example with the recommendation to make the wrapper
+suid and not the script.
+
+In any case, I guess no file should be made actually writeable by the
+x2gouser. Moreover, is the script run in tainted mode this way? AFAIUI
+no, but we can (and should) set it forcefully in the perl script.
+
+-- 
+Gruesse/greetings,
+Reinhard Tartler, KeyID 945348A4
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002464.html">[X2go-Dev] x2goserver package with setuidwrapper
+</A></li>
+	<LI>Next message: <A HREF="002473.html">[X2go-Dev] x2goserver package with setuidwrapper
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2472">[ date ]</a>
+              <a href="thread.html#2472">[ thread ]</a>
+              <a href="subject.html#2472">[ subject ]</a>
+              <a href="author.html#2472">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

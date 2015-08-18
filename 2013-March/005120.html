@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#126: x2gobroker only works in debug-mode
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23126%3A%20x2gobroker%20only%20works%20in%20debug-mode&In-Reply-To=%3CCAFJm-UORT6HS%2Bz6gM73ngxtBjV-tdg_ZS1gEQtE%3DkAifYf5MfA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005124.html">
+   <LINK REL="Next"  HREF="005126.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#126: x2gobroker only works in debug-mode</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23126%3A%20x2gobroker%20only%20works%20in%20debug-mode&In-Reply-To=%3CCAFJm-UORT6HS%2Bz6gM73ngxtBjV-tdg_ZS1gEQtE%3DkAifYf5MfA%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#126: x2gobroker only works in debug-mode">abo at dsl.dk
+       </A><BR>
+    <I>Fri Mar  1 10:30:11 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005124.html">[X2Go-Dev] Bug#127: x2gobroker-daemon deb package reinstall/upgrade	fails
+</A></li>
+        <LI>Next message: <A HREF="005126.html">[X2Go-Dev] Bug#126: x2gobroker only works in debug-mode
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5120">[ date ]</a>
+              <a href="thread.html#5120">[ thread ]</a>
+              <a href="subject.html#5120">[ subject ]</a>
+              <a href="author.html#5120">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2013/2/28 Moritz Struebe &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Moritz.Struebe at informatik.uni-erlangen.de</A>&gt;
+
+&gt;<i> &gt; Without X2GOBROKER_DEBUG mode (=0) the GET request is disable and
+</I>&gt;<i> &gt; result in 404 Not Found. X2Go Client however, will just work fine, as
+</I>&gt;<i> &gt; it issues a POST request.
+</I>&gt;<i> What is the rationale for this. While I don't work with the broker this
+</I>&gt;<i> seems odd.
+</I>&gt;<i>
+</I>
+It could be related to REST. A POST request is usually what is used for
+giving input to a REST service. It means that caches do the right thing
+with the request, if one happens to be in between the service and the
+client. But it might be nice to have a comment in
+/etc/default/x2gobroker-daemon warning that enabling debug will enable GET
+requests to make using a browser for testing possible. Also we need
+documentation specifying that only POST requests are normally honored, but
+documentation probably should wait until the product is closer to being
+finished :)
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130301/7a780552/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130301/7a780552/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005124.html">[X2Go-Dev] Bug#127: x2gobroker-daemon deb package reinstall/upgrade	fails
+</A></li>
+	<LI>Next message: <A HREF="005126.html">[X2Go-Dev] Bug#126: x2gobroker only works in debug-mode
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5120">[ date ]</a>
+              <a href="thread.html#5120">[ thread ]</a>
+              <a href="subject.html#5120">[ subject ]</a>
+              <a href="author.html#5120">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

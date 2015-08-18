@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev]  X2go, printing, Vserver, PostgreSQL  - PS
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%20X2go%2C%20printing%2C%20Vserver%2C%20PostgreSQL%20%20-%20PS&In-Reply-To=%3C8CF694EAB2D46BE-1038-26D21%40webmail-m079.sysops.aol.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004342.html">
+   <LINK REL="Next"  HREF="004354.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev]  X2go, printing, Vserver, PostgreSQL  - PS</H1>
+    <B>senrabdet at aol.com</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%20X2go%2C%20printing%2C%20Vserver%2C%20PostgreSQL%20%20-%20PS&In-Reply-To=%3C8CF694EAB2D46BE-1038-26D21%40webmail-m079.sysops.aol.com%3E"
+       TITLE="[X2Go-Dev]  X2go, printing, Vserver, PostgreSQL  - PS">senrabdet at aol.com
+       </A><BR>
+    <I>Tue Sep 25 18:05:08 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004342.html">[X2Go-Dev] Processed: Closing X2Go bugs after release of X2Go	Server 3.1.1.4
+</A></li>
+        <LI>Next message: <A HREF="004354.html">[X2Go-Dev] X2go, printing, Vserver, PostgreSQL  - PS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4348">[ date ]</a>
+              <a href="thread.html#4348">[ thread ]</a>
+              <a href="subject.html#4348">[ subject ]</a>
+              <a href="author.html#4348">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi All (Hi John):
+
+John, thanks so much for the input - we're trying to use the instructions from: 
+<A HREF="http://www.x2go.org/doku.php/wiki:advanced:multi-node:x2goserver-pgsql">http://www.x2go.org/doku.php/wiki:advanced:multi-node:x2goserver-pgsql</A>
+<A HREF="http://www.x2go.org/doku.php/wiki:advanced:multi-node:x2goserver-printing">http://www.x2go.org/doku.php/wiki:advanced:multi-node:x2goserver-printing</A>
+
+...and given that we cannot get do a manual ssh command line connection from the cups server/Vserver Host (which is this design we assume is the &quot;ssh client&quot;) to the x2go server/Vserver Guest (which would then be the &quot;ssh server&quot;) that that is probably where the problem lies (which we think is what John is suggesting).
+
+FYI  though we cannot ping the Vserver guest from the host or visa versa by domain name (each can resolve to itself if we ping within the respective environments...i.e., in the Vserver host, if we ping &quot;servername.myhost.com&quot; the ip resolves),  we think this is some sort of network protocol/firewall issue (the inability to ping by domain name) and not the source of the problem, but could be wrong.
+
+Are guessing this is an ssh issue and are working to sort that.  We have some security concerns about have an active ssh between Vserver guests and hosts, but figure we want to get the printing working first and then think about possible security issues.
+
+SO...when we first try to connect via ssh commands from the cups server on the vserver host to the x2go server on the Vserver guest with the postgreSQL back end per <A HREF="http://www.x2go.org/doku.php/wiki:advanced:multi-node:x2goserver-printing,">http://www.x2go.org/doku.php/wiki:advanced:multi-node:x2goserver-printing,</A> we get...
+
+RSA key fingerprint is dd:04:0f:56:5f:23:a8:71:e6:d8:aa:64:4c:91:16:0d.
+Are you sure you want to continue connecting (yes/no)? yesWarning: Permanently added '192.168.1.112' (RSA) to the list of known hosts.
+Permission denied (publickey).
+
+We couldn't get the initial &quot;here's how you move the public key from the client to the authorized_keys on the server&quot;, so we created /home/x2goprint/.ssh and added the public key info to authorized_keys there by hand....this also may be the source of the problem.  We've tried checking the permissions and ownership on /home/x2goprint and it's .ssh and authorized_keys, as well as the x2go servers sshd_config file but no joy yet.  Interestingly, our attempts do create a know_hosts file so we think some level of connection occurs.
+
+What's interesting, is that the print jobs show up in the /var/spool/cups logs on the cups server (Vserver host), so there seems to be some level of connection....sowe're guessing the the correct ssh connection is &quot;the problem&quot; we need to fix for x2goprint (the script) to work.
+
+Thanks for the input - may write back with questions, or hopefully &quot;this is how we solved this&quot;...
+
+Best,
+
+Ted
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120925/dd89b5ab/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120925/dd89b5ab/attachment.html</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004342.html">[X2Go-Dev] Processed: Closing X2Go bugs after release of X2Go	Server 3.1.1.4
+</A></li>
+	<LI>Next message: <A HREF="004354.html">[X2Go-Dev] X2go, printing, Vserver, PostgreSQL  - PS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4348">[ date ]</a>
+              <a href="thread.html#4348">[ thread ]</a>
+              <a href="subject.html#4348">[ subject ]</a>
+              <a href="author.html#4348">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

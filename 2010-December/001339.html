@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2GO and SSH
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2GO%20and%20SSH&In-Reply-To=%3C1191765204.379.1291913353617.JavaMail.root%40office.splatnix.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001338.html">
+   <LINK REL="Next"  HREF="001340.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2GO and SSH</H1>
+    <B>--[ UxBoD ]--</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2GO%20and%20SSH&In-Reply-To=%3C1191765204.379.1291913353617.JavaMail.root%40office.splatnix.net%3E"
+       TITLE="[X2go-dev] X2GO and SSH">uxbod at splatnix.net
+       </A><BR>
+    <I>Thu Dec  9 17:49:13 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001338.html">[X2go-dev] X2GO and SSH
+</A></li>
+        <LI>Next message: <A HREF="001340.html">[X2go-dev] X2GO and SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1339">[ date ]</a>
+              <a href="thread.html#1339">[ thread ]</a>
+              <a href="subject.html#1339">[ subject ]</a>
+              <a href="author.html#1339">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Original Message -----
+&gt;<i> --[ UxBoD ]-- schrieb:
+</I>&gt;<i> &gt; ----- Original Message -----
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&gt; mingw32-make[1]: Entering directory `C:/x2goclient-3.01'
+</I>&gt;<i> &gt;&gt; g++ -enable-stdcall-fixup -Wl,-enable-auto-import
+</I>&gt;<i> &gt;&gt; -Wl,-enable-runtime-pseudo-reloc -Wl,-s -mthreads -Wl
+</I>&gt;<i> &gt;&gt; -Wl,-subsystem,windows -o release\x2goplugin.exe
+</I>&gt;<i> &gt;&gt; object_script.x2goplugin.Release -L&quot;c:\Qt-Static\qt\lib&quot; -lmingw32
+</I>&gt;<i> &gt;&gt; -lqtmain release\x2goclient_res.o -lQtSvg -lQtNetwork -lQtGui
+</I>&gt;<i> &gt;&gt; -lgdi32
+</I>&gt;<i> &gt;&gt; -lcomdlg32 -loleaut32 -limm32 -lwinmm -lwinspool -lmsimg32 -lQtCore
+</I>&gt;<i> &gt;&gt; -lkernel32 -luser32 -lshell32 -luuid -lole32 -ladvapi32 -lws2_32
+</I>&gt;<i> &gt;&gt; -L\cygwin\openssl\lib
+</I>&gt;<i> &gt;&gt; c:\Qt-Static\qt\lib/libqtmain.a(qtmain_win.o):qtmain_win.cpp:(.text+0x204):
+</I>&gt;<i> &gt;&gt; undefined reference to `qMain(int, char**)'
+</I>&gt;<i> &gt;&gt; collect2: ld returned 1 exit status
+</I>&gt;<i> &gt;&gt; mingw32-make[1]: *** [release\x2goplugin.exe] Error 1
+</I>&gt;<i> &gt;&gt; mingw32-make[1]: Leaving directory `C:/x2goclient-3.01'
+</I>&gt;<i> &gt;&gt; mingw32-make: *** [release] Error 2
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Qt compiled fine and reported no errors so am at a bit of a loss at
+</I>&gt;<i> &gt;&gt; the moment. It would be so hopefully to us is you were able to
+</I>&gt;<i> &gt;&gt; provide
+</I>&gt;<i> &gt;&gt; help in getting a duplicate environment as to what you use built.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Right then, laptop is about to been thrown cleanly straight out of
+</I>&gt;<i> &gt; the window as I have spent to much of my companies, and my own time,
+</I>&gt;<i> &gt; attempting to compile the x2goclient. Well to qualify that it has
+</I>&gt;<i> &gt; been more of the case of compiling Qt and libssh under Windows. Qt
+</I>&gt;<i> &gt; and trying to make it static was a complete failure, and libssh
+</I>&gt;<i> &gt; under Cygwin falls into a heap aswell.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I am now going down the Linux route which in some ways appears to be
+</I>&gt;<i> &gt; just as difficult especially when attempting to build the Mingw
+</I>&gt;<i> &gt; toolchain due to my OS (64 bit Ubuntu 10.10). I believe it needs to
+</I>&gt;<i> &gt; be building as mingw-i686 and therefore 32 bit which is giving all
+</I>&gt;<i> &gt; sorts of library issues.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Am really reaching out to the devs to try and understand how they
+</I>&gt;<i> &gt; have built their own environments; as we will be attempting to also
+</I>&gt;<i> &gt; use the latest version of Qt and get X2goclient to work with it.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Please please help as my hair is short enough and cannot take
+</I>&gt;<i> &gt; anymore being pulled out ;)
+</I>&gt;<i> 
+</I>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> To build newest version of x2goclient under windows you need:
+</I>&gt;<i> 
+</I>&gt;<i> 1. Qt SDK. I didn't tested newest version. 2009.04 and 2010.04 work.
+</I>&gt;<i> Use
+</I>&gt;<i> mingw version. You can also use msvc version, but you should build
+</I>&gt;<i> libssh using msvc and I have not experience how to do this. If you
+</I>&gt;<i> want
+</I>&gt;<i> link Qt statically you must reconfigure and rebuild Qt. Don't forget
+</I>&gt;<i> include ssl support by configuration of Qt.
+</I>&gt;<i> 
+</I>&gt;<i> 2. Get master branch of libssh:
+</I>&gt;<i> <A HREF="http://git.libssh.org/projects/libssh/libssh.git/snapshot/master.zip">http://git.libssh.org/projects/libssh/libssh.git/snapshot/master.zip</A>
+</I>&gt;<i> To compile it your need cmake, libssl and zlib. You need master
+</I>&gt;<i> branch,
+</I>&gt;<i> release libssh 0.4.6 will not work with x2goclient. If you don't want
+</I>&gt;<i> to
+</I>&gt;<i> build libssh by yourself, you can download working version here:
+</I>&gt;<i> <A HREF="http://x2go.obviously-nice.de/deb/libssh/libssh-x2go.zip">http://x2go.obviously-nice.de/deb/libssh/libssh-x2go.zip</A>
+</I>&gt;<i> unpack this file and install libssh in mingw directory which shipped
+</I>&gt;<i> with Qt SDK.
+</I>&gt;<i> 
+</I>&gt;<i> include/libssh/* -&gt; mingw/include/libssh/
+</I>&gt;<i> lib/libssh.dll.a -&gt; mingw/lib/
+</I>&gt;<i> 
+</I>&gt;<i> you must provide libssh.dll and zlib1.dll with your build of
+</I>&gt;<i> x2goclient
+</I>&gt;<i> 
+</I>&gt;<i> 3. Configure x2goclient to build client, not plugin. Edit file
+</I>&gt;<i> x2goclientconfig.pri:
+</I>&gt;<i> 
+</I>&gt;<i> CONFIG += client
+</I>&gt;<i> 
+</I>&gt;<i> #uncomment this line to build x2goclient plugin
+</I>&gt;<i> #CONFIG += plugin
+</I>&gt;<i> 
+</I>&gt;<i> plugin {
+</I>&gt;<i> CONFIG -= client
+</I>&gt;<i> }
+</I>&gt;<i> 
+</I>&gt;<i> run qmake to create Makefile and mingw32-make to build x2goclient
+</I>&gt;<i> 
+</I>&gt;<i> That's all
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> --
+</I>&gt;<i> Oleksandr Shneyder
+</I>&gt;<i> Dipl. Informatik
+</I>&gt;<i> X2go Core Developer Team
+</I>&gt;<i> 
+</I>&gt;<i> email: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+</I>&gt;<i> web: www.obviously-nice.de
+</I>&gt;<i> 
+</I>&gt;<i> --&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+</I>
+Hi Alex,
+
+Thank you for the detailed steps. May I ask if you rebuilt Qt, statically, under Windows or has all your work been performed under Linux ? I have tried both of those Qt versions and ran configure.exe -static -openssl -I&lt;path_to_openssl_include&gt; -L&lt;path_to_openssl_libs&gt; and it failed to compile when running mingw32-make sub-src.
+
+I must be doing something crazily wrong in the way I am rebuilding Qt :(
+-- 
+Thanks, Phil
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001338.html">[X2go-dev] X2GO and SSH
+</A></li>
+	<LI>Next message: <A HREF="001340.html">[X2go-dev] X2GO and SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1339">[ date ]</a>
+              <a href="thread.html#1339">[ thread ]</a>
+              <a href="subject.html#1339">[ subject ]</a>
+              <a href="author.html#1339">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] 3.99 Testing - Very serious issues with image packing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Very%20serious%20issues%20with%20image%20packing&In-Reply-To=%3C20110722000038.96915yu2xvbwtyti%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002519.html">
+   <LINK REL="Next"  HREF="002522.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] 3.99 Testing - Very serious issues with image packing</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Very%20serious%20issues%20with%20image%20packing&In-Reply-To=%3C20110722000038.96915yu2xvbwtyti%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] 3.99 Testing - Very serious issues with image packing">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jul 22 00:00:38 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002519.html">[X2go-Dev] 3.99 Testing - Very serious issues with image packing
+</A></li>
+        <LI>Next message: <A HREF="002522.html">[X2go-Dev] 3.99 Testing - Very serious issues with image packing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2521">[ date ]</a>
+              <a href="thread.html#2521">[ thread ]</a>
+              <a href="subject.html#2521">[ subject ]</a>
+              <a href="author.html#2521">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi John,
+
+On Do 21 Jul 2011 23:45:25 CEST John Williams wrote:
+
+&gt;<i> Is there some way to enable debugging or very detailed logging with
+</I>&gt;<i> the Windows x2go client? With all the different problems people are
+</I>&gt;<i> seeing, it seems the only chance at solving them is to have detailed
+</I>&gt;<i> logs.
+</I>
+Actually, there come a lot of parts together:
+
+   x2goclient -&gt; NX application launcher
+   nxproxy, x2goagent, NX libs
+   vcxsrv
+
+&gt;<i> The problem is bizarre. When running firefox (4 or 5), if I have one
+</I>&gt;<i> tab open with gmail, and another tab, then sometimes the firefox menus
+</I>&gt;<i> and toolbar almost completely freeze up and firefox stops responding
+</I>&gt;<i> (technically, it seems to be responding once every minute or so, one
+</I>&gt;<i> click at a time). At first I thought this was a firefox bug, but then
+</I>&gt;<i> I found that after firefox started freezing, sometimes it would freeze
+</I>&gt;<i> up the rest of my applications (gnome-terminal, thunderbird, etc.) and
+</I>&gt;<i> then release them again in a minute. Also, it NEVER happens with
+</I>&gt;<i> x2goclient 3.01-13. I can install 3.99, start a session, have the
+</I>&gt;<i> problem, then suspend the session, install 3.01-13, resume the
+</I>&gt;<i> session, and the problem is gone. But if I resume the session again in
+</I>&gt;<i> 3.99, sometimes the freezes happen again. And sometimes not. I haven't
+</I>&gt;<i> figured out a repeatable way to get the freezes, but they do seem to
+</I>&gt;<i> require a firefox tab with gmail open.
+</I>
+This sounds like there are different threads (one that launches  
+nxproxy, some that handle SSH tunnels, etc.) and it feels as if these  
+threads get not as much CPU attention as necessary.
+
+@Alex: hope you are reading all of this...
+
+Cheers,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110722/aec7dd14/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110722/aec7dd14/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002519.html">[X2go-Dev] 3.99 Testing - Very serious issues with image packing
+</A></li>
+	<LI>Next message: <A HREF="002522.html">[X2go-Dev] 3.99 Testing - Very serious issues with image packing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2521">[ date ]</a>
+              <a href="thread.html#2521">[ thread ]</a>
+              <a href="subject.html#2521">[ subject ]</a>
+              <a href="author.html#2521">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

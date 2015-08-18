@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#187: Bug#187: Destroying SshMasterConnection off the	main thread leads to a diagnostic from Qt debug libs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23187%3A%20Bug%23187%3A%20Destroying%20SshMasterConnection%20off%20the%0A%09main%20thread%20leads%20to%20a%20diagnostic%20from%20Qt%20debug%20libs&In-Reply-To=%3C9673C820-6299-4262-80F3-06AD5BB74B16%40surfcrew.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005542.html">
+   <LINK REL="Next"  HREF="005534.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#187: Bug#187: Destroying SshMasterConnection off the	main thread leads to a diagnostic from Qt debug libs</H1>
+    <B>Gary Kratkin</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23187%3A%20Bug%23187%3A%20Destroying%20SshMasterConnection%20off%20the%0A%09main%20thread%20leads%20to%20a%20diagnostic%20from%20Qt%20debug%20libs&In-Reply-To=%3C9673C820-6299-4262-80F3-06AD5BB74B16%40surfcrew.com%3E"
+       TITLE="[X2Go-Dev] Bug#187: Bug#187: Destroying SshMasterConnection off the	main thread leads to a diagnostic from Qt debug libs">gary at surfcrew.com
+       </A><BR>
+    <I>Wed Apr 24 02:02:41 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005542.html">[X2Go-Dev] Processed: Re: Bug#187: Destroying SshMasterConnection off the main thread leads to a diagnostic from Qt debug libs
+</A></li>
+        <LI>Next message: <A HREF="005534.html">[X2Go-Dev] Bug#154: X2Go issue #154 (src:x2gobroker) has been	marked as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5543">[ date ]</a>
+              <a href="thread.html#5543">[ thread ]</a>
+              <a href="subject.html#5543">[ subject ]</a>
+              <a href="author.html#5543">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike, thanks for getting back to me so quickly.  Applying the patch from bug #101 does NOT fix the problem.  
+
+Note that this isn't a blocker for me. 
+
+Regards,
+Gary
+
+On Apr 23, 2013, at 2:10 PM, Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+
+&gt;<i> tag #187 moreinfo
+</I>&gt;<i> thanks
+</I>&gt;<i> 
+</I>&gt;<i> Hi Gary,
+</I>&gt;<i> 
+</I>&gt;<i> thanks for reporting your bug and welcome to X2Go.
+</I>&gt;<i> 
+</I>&gt;<i> On Di 23 Apr 2013 21:15:18 CEST Gary Kratkin wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Package: x2goclient
+</I>&gt;&gt;<i> Version: 4.0.1.0
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Note: I'm running a debug build from 4.0.1.0 sources, linked against Qt debug libs.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> When shutting down a connection (e.g. by closing the x2goclient window), the debug build of Qt gives two diagnostics when two SshMasterConnection objects are destructed:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> [...]
+</I>&gt;<i> 
+</I>&gt;<i> Can you check, if the described issue gets fixed by a patch in bug report #101?
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="http://bugs.x2go.org/cgi-bin/bugreport.cgi?bug=101#15">http://bugs.x2go.org/cgi-bin/bugreport.cgi?bug=101#15</A>
+</I>&gt;<i> 
+</I>&gt;<i> Thanks,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> 
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+</I>&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;<i> 
+</I>&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I></PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005542.html">[X2Go-Dev] Processed: Re: Bug#187: Destroying SshMasterConnection off the main thread leads to a diagnostic from Qt debug libs
+</A></li>
+	<LI>Next message: <A HREF="005534.html">[X2Go-Dev] Bug#154: X2Go issue #154 (src:x2gobroker) has been	marked as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5543">[ date ]</a>
+              <a href="thread.html#5543">[ thread ]</a>
+              <a href="subject.html#5543">[ subject ]</a>
+              <a href="author.html#5543">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

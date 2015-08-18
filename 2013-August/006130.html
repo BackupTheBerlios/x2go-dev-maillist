@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Automating the installation of the X2Go-TCE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Automating%20the%20installation%20of%20the%20X2Go-TCE&In-Reply-To=%3C20130829163645.909824aaenys1jel%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006118.html">
+   <LINK REL="Next"  HREF="006117.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Automating the installation of the X2Go-TCE</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Automating%20the%20installation%20of%20the%20X2Go-TCE&In-Reply-To=%3C20130829163645.909824aaenys1jel%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Automating the installation of the X2Go-TCE">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Aug 29 16:36:45 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006118.html">[X2Go-Dev] Automating the installation of the X2Go-TCE
+</A></li>
+        <LI>Next message: <A HREF="006117.html">[X2Go-Dev] Automating the installation of the X2Go-TCE and the problems when trying to do so
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6130">[ date ]</a>
+              <a href="thread.html#6130">[ thread ]</a>
+              <a href="subject.html#6130">[ subject ]</a>
+              <a href="author.html#6130">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Arnold,
+
+On Sa 24 Aug 2013 14:00:30 CEST Arnold Krille wrote:
+
+&gt;<i> Hi all,
+</I>&gt;<i>
+</I>&gt;<i> I spent most of yesterdays working hours automating the setup of a  
+</I>&gt;<i> TCE-nfs+tftp server. We use Chef (www.opscode.com) for that. And I  
+</I>&gt;<i> will most likely publish the cookbook/recipe soon. The main reason I  
+</I>&gt;<i> started this is that we want to automate more and more of the setup.  
+</I>&gt;<i> And thus ease setting up our customers systems.
+</I>&gt;<i>
+</I>&gt;<i> Two problems I encountered:
+</I>&gt;<i>
+</I>&gt;<i> 1) The x2gothinclient_create skript assumes interactive usage and  
+</I>&gt;<i> has no option of running non-interactive. I adopted this by removing  
+</I>&gt;<i> the single &quot;read&quot; (so it doesn't anymore ask for confirmation and by  
+</I>&gt;<i> trying to set the locale without running &quot;dpkg-reconfigure locales&quot;.  
+</I>&gt;<i> So that part worked.
+</I>&gt;<i>
+</I>&gt;<i> 2) I got the client-machines (tested with a virtual machine and  
+</I>&gt;<i> checked with an atom-based netbook) to boot of the pxe+tftp+nfs as  
+</I>&gt;<i> wanted and am presented with x2goclient. But on the way there, the  
+</I>&gt;<i> mouse and keyboard are lost and motivation on friday just before the  
+</I>&gt;<i> weekend got a little low-point. Any tips where to look at what  
+</I>&gt;<i> happened? Keyboard and mouse seem to be gone for good, I could  
+</I>&gt;<i> neither move the pointer nor enter anything in x2goclient. Also I  
+</I>&gt;<i> couldn't do Ctrl+Alt+F1 to switch to a text-console.
+</I>&gt;<i>
+</I>&gt;<i> I also copied the x2gothinclient_shell-skript to create an  
+</I>&gt;<i> x2gothinclient_execute which takes arguments and just executes these  
+</I>&gt;<i> inside the tce-chroot instead of running an interactive bash. I  
+</I>&gt;<i> don't know whether that is something I should prepare a patch for  
+</I>&gt;<i> x2go for? It sure is very great for example for installing the  
+</I>&gt;<i> kernel inside the chroot from the chef-recipe. And probably for  
+</I>&gt;<i> other stuff I didn't yet need.
+</I>
+Nearly forgot to comment on this!
+
+If there is anything useful for upstream X2Go component  
+x2gothinclient, please start sending patches to X2Go BTS [1].
+
+Thanks,
+Mike
+
+[1] <A HREF="http://wiki.x2go.org/doku.php/wiki:bugs">http://wiki.x2go.org/doku.php/wiki:bugs</A>
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130829/34b50f11/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130829/34b50f11/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006118.html">[X2Go-Dev] Automating the installation of the X2Go-TCE
+</A></li>
+	<LI>Next message: <A HREF="006117.html">[X2Go-Dev] Automating the installation of the X2Go-TCE and the problems when trying to do so
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6130">[ date ]</a>
+              <a href="thread.html#6130">[ thread ]</a>
+              <a href="subject.html#6130">[ subject ]</a>
+              <a href="author.html#6130">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

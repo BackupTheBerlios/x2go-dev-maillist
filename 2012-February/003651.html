@@ -1,0 +1,388 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] Switch to DISPLAY env. var. and UNIX socket connection on OS X.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Switch%20to%20DISPLAY%20env.%20var.%20and%20UNIX%20socket%0A%20connection%20on%20OS%20X.&In-Reply-To=%3C4F4B06E3.5040303%40ionic.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003654.html">
+   <LINK REL="Next"  HREF="003652.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] Switch to DISPLAY env. var. and UNIX socket connection on OS X.</H1>
+    <B>Mihai Moldovan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Switch%20to%20DISPLAY%20env.%20var.%20and%20UNIX%20socket%0A%20connection%20on%20OS%20X.&In-Reply-To=%3C4F4B06E3.5040303%40ionic.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] Switch to DISPLAY env. var. and UNIX socket connection on OS X.">ionic at ionic.de
+       </A><BR>
+    <I>Mon Feb 27 05:30:27 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003654.html">[X2Go-Dev] @Alex: Mihai's patches
+</A></li>
+        <LI>Next message: <A HREF="003652.html">[X2Go-Dev] [PATCHv2] Switch to DISPLAY env. var. and UNIX socket connection on OS, X.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3651">[ date ]</a>
+              <a href="thread.html#3651">[ thread ]</a>
+              <a href="subject.html#3651">[ subject ]</a>
+              <a href="author.html#3651">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Detect the current X11 socket by examining the DISPLAY environment
+variable, which is set to some UNIX socket path by launchd on each
+user login.
+
+Do a connection test via this UNIX socket.
+
+Let nxproxy use the X server via the provided UNIX socket, instead
+of connecting via TCP.
+
+This allows users to shutdown network connections for X11, which is
+a potential security risk. Even more so, if connection authentication
+is turned off, which is required for &quot;strange&quot; setups via ssh tunnels,
+it opens up your machine to any other computer it is reachable by
+with no authentication.
+
+Signed-off-by: Mihai Moldovan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">ionic at ionic.de</A>&gt;
+---
+ onmainwindow.cpp       |   36 +++++++++---------
+ onmainwindow_part2.cpp |    9 +++-
+ onmainwindow_part3.cpp |  100
+++++++++++++++++--------------------------------
+ onmainwindow_part4.cpp |    2 +
+ onmainwindow_privat.h  |    6 +-
+ 5 files changed, 63 insertions(+), 90 deletions(-)
+
+diff --git a/onmainwindow.cpp b/onmainwindow.cpp
+index 344c993..6118f1f 100644
+--- a/onmainwindow.cpp
++++ b/onmainwindow.cpp
+@@ -1,22 +1,22 @@
+ /***************************************************************************
+-*   Copyright (C) 2005-2012 by Oleksandr Shneyder   *
+-*   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>   *
+-*                                                                         *
+-*   This program is free software; you can redistribute it and/or modify  *
+-*   it under the terms of the GNU General Public License as published
+by  F*
+-*   the Free Software Foundation; either version 2 of the License, or     *
+-*   (at your option) any later version.                                   *
+-*                                                                         *
+-*   This program is distributed in the hope that it will be useful,       *
+-*   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+-*   GNU General Public License for more details.                          *
+-*                                                                         *
+-*   You should have received a copy of the GNU General Public License     *
+-*   along with this program; if not, write to the                         *
+-*   Free Software Foundation, Inc.,                                       *
+-*   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+-***************************************************************************/
++ *   Copyright (C) 2005-2012 by Oleksandr
+Shneyder                         *
++ *  
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>                                  *
++
+*                                                                         *
++ *   This program is free software; you can redistribute it and/or
+modify  *
++ *   it under the terms of the GNU General Public License as published
+by  *
++ *   the Free Software Foundation; either version 2 of the License,
+or     *
++ *   (at your option) any later
+version.                                   *
++
+*                                                                         *
++ *   This program is distributed in the hope that it will be
+useful,       *
++ *   but WITHOUT ANY WARRANTY; without even the implied warranty
+of        *
++ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See
+the         *
++ *   GNU General Public License for more
+details.                          *
++
+*                                                                         *
++ *   You should have received a copy of the GNU General Public
+License     *
++ *   along with this program; if not, write to
+the                         *
++ *   Free Software Foundation,
+Inc.,                                       *
++ *   59 Temple Place - Suite 330, Boston, MA  02111-1307,
+USA.             *
++
+***************************************************************************/
+ 
+ #include &quot;onmainwindow_privat.h&quot;
+ 
+diff --git a/onmainwindow_part2.cpp b/onmainwindow_part2.cpp
+index f43c179..e8df279 100644
+--- a/onmainwindow_part2.cpp
++++ b/onmainwindow_part2.cpp
+@@ -1900,12 +1900,17 @@ void ONMainWindow::slotTunnelOk()
+     env &lt;&lt; &quot;NX_CLIENT=&quot;+QCoreApplication::applicationFilePath ();
+ 
+ #if defined ( Q_OS_WIN ) || defined ( Q_OS_DARWIN )
++    // On Mac OS X, we want to make sure that DISPLAY is set to a
+proper value,
++    // but at the same time don't want to set the value ourselves but keep
++    // the provided one.
+     QString disp=getXDisplay();
+     if ( disp==QString::null )
+     {
+         //slotProxyerror ( QProcess::FailedToStart );
+         return;
+     }
++#endif // Q_OS_WIN || Q_OS_DARWIN
++#if defined ( Q_OS_WIN )
+     if ( dispInd==-1 )
+     {
+         env &lt;&lt;&quot;DISPLAY=localhost:&quot;+disp;
+@@ -1917,8 +1922,8 @@ void ONMainWindow::slotTunnelOk()
+         /*        x2goDebug&lt;&lt;&quot;existing env DISPLAY(&quot;&lt;&lt;dispInd&lt;&lt;
+                 &quot;) DISPLAY=localhost:&quot;+disp&lt;&lt;endl;*/
+     }
+-#endif
+-#ifdef Q_OS_DARWIN
++#endif // Q_OS_WIN
++#if defined ( Q_OS_DARWIN )
+     //setting /usr/X11/bin to find xauth
+     env.insert (
+         0,
+diff --git a/onmainwindow_part3.cpp b/onmainwindow_part3.cpp
+index fb6a3ba..7eb14f3 100644
+--- a/onmainwindow_part3.cpp
++++ b/onmainwindow_part3.cpp
+@@ -1,22 +1,22 @@
+ /***************************************************************************
+-*   Copyright (C) 2005-2012 by Oleksandr Shneyder   *
+-*   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>   *
+-*                                                                         *
+-*   This program is free software; you can redistribute it and/or modify  *
+-*   it under the terms of the GNU General Public License as published
+by  F*
+-*   the Free Software Foundation; either version 2 of the License, or     *
+-*   (at your option) any later version.                                   *
+-*                                                                         *
+-*   This program is distributed in the hope that it will be useful,       *
+-*   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+-*   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+-*   GNU General Public License for more details.                          *
+-*                                                                         *
+-*   You should have received a copy of the GNU General Public License     *
+-*   along with this program; if not, write to the                         *
+-*   Free Software Foundation, Inc.,                                       *
+-*   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+-***************************************************************************/
++ *   Copyright (C) 2005-2012 by Oleksandr
+Shneyder                         *
++ *  
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>                                  *
++
+*                                                                         *
++ *   This program is free software; you can redistribute it and/or
+modify  *
++ *   it under the terms of the GNU General Public License as published
+by  *
++ *   the Free Software Foundation; either version 2 of the License,
+or     *
++ *   (at your option) any later
+version.                                   *
++
+*                                                                         *
++ *   This program is distributed in the hope that it will be
+useful,       *
++ *   but WITHOUT ANY WARRANTY; without even the implied warranty
+of        *
++ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See
+the         *
++ *   GNU General Public License for more
+details.                          *
++
+*                                                                         *
++ *   You should have received a copy of the GNU General Public
+License     *
++ *   along with this program; if not, write to
+the                         *
++ *   Free Software Foundation,
+Inc.,                                       *
++ *   59 Temple Place - Suite 330, Boston, MA  02111-1307,
+USA.             *
++
+***************************************************************************/
+ 
+ #include &quot;onmainwindow_privat.h&quot;
+ 
+@@ -2054,63 +2054,29 @@ bool ONMainWindow::checkAgentProcess()
+ #if defined ( Q_OS_DARWIN )
+ QString ONMainWindow::getXDisplay()
+ {
+-    QTcpSocket tcpSocket ( this );
+-    uint dispNumber=0;
+-    QString xname,xdir,xopt;
+-    dispNumber=0;
+-    xdir=ConfigDialog::getXDarwinDirectory();
+-    xname=xdir+&quot;/Contents/MacOS/X11&quot;;
+-    xopt=&quot; -rootless :0&quot;;
++    QLocalSocket unixSocket (this);
++    QString xsocket (getenv (&quot;DISPLAY&quot;));
+ 
+-    //for newer versions of XQuartz start startx instead of X11.app
+-    xname=&quot;/usr/X11/bin/startx&quot;;
+-    xopt=&quot;&quot;;
+-    tcpSocket.connectToHost ( &quot;127.0.0.1&quot;,6000+dispNumber );
+-
+-    if ( tcpSocket.waitForConnected ( 3000 ) )
+-    {
+-        tcpSocket.close();
+-        return QString::number ( dispNumber );
+-    }
+-    if ( xname==QString::null )
++    // OS X starts the X11 server automatically, as soon as the launchd
+UNIX socket
++    // is accessed.
++    // On user login, the DISPLAY environment variable is set to this
+said existing
++    // socket.
++    // By now, we should have a socket. Test, if connecting works.
++    if ((!xsocket.isEmpty ()))
+     {
+-        QMessageBox::critical (
+-            this,tr ( &quot;Can't connect to X-Server&quot; ),
+-            tr (
+-                &quot;Can't connect to X-Server\nPlease check your settings&quot;
+-            ) );
+-        slotConfig();
+-        return QString::null;
+-    }
+-    QProcess* pr=new QProcess ( this );
+-    pr-&gt;setWorkingDirectory ( xdir );
+-    pr-&gt;start ( xname+&quot; &quot;+xopt,QIODevice::NotOpen );
+-    if ( pr-&gt;waitForStarted ( 3000 ) )
+-    {
+-#ifdef Q_OS_DARWIN
+-        //FIXME: the call of unistd.h sleep() do not work on all
+-        // Mac OS X systems
+-        system ( &quot;sleep 3&quot; );
+-#endif
++        unixSocket.connectToServer (xsocket);
+ 
+-        tcpSocket.connectToHost ( &quot;127.0.0.1&quot;,6000+dispNumber );
+-        if ( tcpSocket.waitForConnected ( 1000 ) )
++        if (unixSocket.waitForConnected (10000))
+         {
+-            tcpSocket.close();
+-            return QString::number ( dispNumber );
++            unixSocket.disconnectFromServer ();
++            return (xsocket);
+         }
+-        QMessageBox::critical (
+-            this,tr ( &quot;Can't connect to X-Server&quot; ),
+-            tr (
+-                &quot;Can't connect to X-Server\nPlease check your settings&quot;
+-            ) );
+-        slotConfig();
+-        return QString::null;
+     }
++    // And if not, error out.
+     QMessageBox::critical (
+-        this,QString::null,
++        this,tr ( &quot;Can't connect to X server\nPlease check your
+settings&quot; ),
+         tr (
+-            &quot;Can't start X Server\nPlease check your settings&quot; ) );
++            &quot;Can't start X server\nPlease check your settings&quot; ) );
+     slotConfig();
+     return QString::null;
+ }
+diff --git a/onmainwindow_part4.cpp b/onmainwindow_part4.cpp
+index 25ca9a1..240d39a 100644
+--- a/onmainwindow_part4.cpp
++++ b/onmainwindow_part4.cpp
+@@ -19,6 +19,7 @@
+ ***************************************************************************/
+ 
+ #include &quot;onmainwindow_privat.h&quot;
++#include &lt;iostream&gt;
+ 
+ void ONMainWindow::startX2goMount()
+ {
+@@ -971,6 +972,7 @@ void ONMainWindow::setProxyWinTitle()
+     else
+         title=getCurrentUname()+&quot;@&quot;+resumingSession.server;
+ 
++    std::cout &lt;&lt; &quot;Using QPixmap on thread ID: &quot; &lt;&lt;
+QThread::currentThreadId() &lt;&lt; endl;
+     QPixmap pixmap;
+ 
+     if (useLdap)
+diff --git a/onmainwindow_privat.h b/onmainwindow_privat.h
+index 9e4375a..aa049f7 100644
+--- a/onmainwindow_privat.h
++++ b/onmainwindow_privat.h
+@@ -1,6 +1,6 @@
+ /***************************************************************************
+- *   Copyright (C) 2005-2012 by Oleksandr Shneyder   *
+- *   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>   *
++ *   Copyright (C) 2005-2012 by Oleksandr
+Shneyder                         *
++ *  
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>                                  *
+ 
+*                                                                         *
+  *   This program is free software; you can redistribute it and/or
+modify  *
+  *   it under the terms of the GNU General Public License as published
+by  *
+@@ -66,7 +66,7 @@
+ #include &lt;QFileDialog&gt;
+ #include &lt;QHttp&gt;
+ #include &lt;QUrl&gt;
+-#include &lt;QTcpSocket&gt;
++#include &lt;QLocalSocket&gt;
+ #include &lt;QPlastiqueStyle&gt;
+ #include &quot;sshprocess.h&quot;
+ #include &quot;imgframe.h&quot;
+-- 
+1.7.9
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4369 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120227/b9ffc828/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120227/b9ffc828/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003654.html">[X2Go-Dev] @Alex: Mihai's patches
+</A></li>
+	<LI>Next message: <A HREF="003652.html">[X2Go-Dev] [PATCHv2] Switch to DISPLAY env. var. and UNIX socket connection on OS, X.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3651">[ date ]</a>
+              <a href="thread.html#3651">[ thread ]</a>
+              <a href="subject.html#3651">[ subject ]</a>
+              <a href="author.html#3651">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

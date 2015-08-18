@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] X2go real life usage
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20X2go%20real%20life%20usage&In-Reply-To=%3C20110707174039.53982nkrk60z9e9j%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002417.html">
+   <LINK REL="Next"  HREF="002419.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] X2go real life usage</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20X2go%20real%20life%20usage&In-Reply-To=%3C20110707174039.53982nkrk60z9e9j%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] X2go real life usage">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Jul  7 17:40:39 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002417.html">[X2go-Dev] X2go real life usage
+</A></li>
+        <LI>Next message: <A HREF="002419.html">[X2go-Dev] X2go real life usage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2418">[ date ]</a>
+              <a href="thread.html#2418">[ thread ]</a>
+              <a href="subject.html#2418">[ subject ]</a>
+              <a href="author.html#2418">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Martin,
+
+On Do 07 Jul 2011 12:34:55 CEST Martin Oehler wrote:
+
+&gt;<i> after an update to the current set of packages there are some
+</I>&gt;<i> points that should be (at least in my opinion) discussed.
+</I>
+Thanks for testing the packages. Your feedback on our work on X2go  
+will sure be valuable.
+
+@list: note that Martin is one of the guys who are responsible for  
+regular releases and maintenance of Knoppix ;-)
+
+&gt;<i> 1) Session Administration
+</I>&gt;<i>
+</I>&gt;<i> At the moment, I can't see a user-friendly replacement of x2go-
+</I>&gt;<i> sessionadministration. This tool is crucial for network usage
+</I>&gt;<i> of x2go since your local administrator needs to be able to reset
+</I>&gt;<i> sessions, connect to an users session and all that stuff.
+</I>
+It is possible to handle sessions via the command line, but that, of  
+course, is not an option.
+
+&gt;<i> Would the old code compiled against the qt3-libs in Debian Squeeze
+</I>&gt;<i> lead to a working solution?
+</I>&gt;<i>
+</I>&gt;<i> Is there another tool that I wasn't able to find? x2godesktop-
+</I>&gt;<i> sharing is of course not useable if the user session did freeze.
+</I>
+There is a new tool that is at most in alpha-state yet (@Alex: correct  
+me if that has changed recently):
+<A HREF="http://wiki.x2go.org/x2goadmincenter">http://wiki.x2go.org/x2goadmincenter</A>
+
+Heinz has presented that tool on the Debian Edu Zweibr&#252;cken meeting in  
+Feb 2011, you may remember that.
+
+&gt;<i> Was is the recommended way of stopping an users session (please
+</I>&gt;<i> read topic two before answering, it's not that easy)?
+</I>It should be ok:
+
+   - to logout from the desktop (desktop mode)
+   - to close a window (rootless mode)
+   - to issue the command x2goterminate-session on a console from within the
+     session
+   - or from a terminal outside the session
+   - I am not sure if in X2go clusters it is also possible to terminate a
+     session from another host in the cluster (I do not think so)
+
+&gt;<i> 2) Database handling
+</I>&gt;<i>
+</I>&gt;<i> How is the database cleanup of the sqlite3 database
+</I>&gt;<i>
+</I>&gt;<i>   /var/lib/x2go/x2go_sessions
+</I>&gt;<i>
+</I>&gt;<i> supposed to work? From my point of view this database is constantly
+</I>&gt;<i> growing. I can't see that old sessions are cleaned up.
+</I>&gt;<i>
+</I>&gt;<i> If a user connects to a LXDE of Debian Squeeze and performs a logout
+</I>&gt;<i> via the menu, his session is still listed inside the database. So
+</I>&gt;<i> this database is constantly growing what is definitely not what one
+</I>&gt;<i> wants.
+</I>
+I have also observed that but did not bother looking at it. It is  
+definitely a bug. A side effect of this is that the port is rising to  
+heaven (I have a server that has been up for quite a while and my  
+display number is :332, it started off at :50.
+
+&gt;<i> Another problem with this are hanging or crashed sessions. The database
+</I>&gt;<i> gets very quickly inconsistent with the real system state. The user
+</I>&gt;<i> sees a lot of session that are marked active at login but the processes
+</I>&gt;<i> belonging to these sessions do not exist anymore. I found manually
+</I>&gt;<i> cleaning up the database worked but this isn't comfortable at all
+</I>&gt;<i> (i.e. not possible to do for everyone).
+</I>&gt;<i>
+</I>&gt;<i> x2gocleansession is running but doesn't seem to be able to clean up
+</I>&gt;<i> the database (permissions are correct, new sessions are inserted).
+</I>
+This should also be addressed before Baikal. I suppose that most  
+people with prefer sqlite for its simpleness. So we should make sure  
+that the X2go sqlite db backend works. Feel free to contribute with  
+patches etc.
+
+&gt;<i> 3) Smartcard usage
+</I>&gt;<i>
+</I>&gt;<i> This might be a separate topic which leads to a bug, but somehow the
+</I>&gt;<i> timing between x2go und the scdaemon messed up. If a user does a
+</I>&gt;<i> session suspend via smartcard and puts his card in again after the
+</I>&gt;<i> card is available he gets an &quot;invalid card&quot; error message. If one
+</I>&gt;<i> is a bit more patient and waits for 5-6 seconds it works again.
+</I>&gt;<i>
+</I>&gt;<i> Did someone else experience this?
+</I>&gt;<i>
+</I>&gt;<i> I can live with this at the moment.
+</I>
+I cannot say anything about the smartcard stuff. I haven been working  
+on the X2go TCE (thin client env) lately, but I virtually did not  
+touch the smartcard part, as I do not have a device to test that with.
+
+&gt;<i> At the moment I'm really struggling to get to the point where x2go
+</I>&gt;<i> was in terms of usability at &quot;qt3-times&quot; (I know they are gone).
+</I>
+Whatever you have to contribute, please do so. We could check with  
+Heinz to even give you access on certain projects in X2go Git.
+
+Thanks+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110707/cdf18313/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110707/cdf18313/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002417.html">[X2go-Dev] X2go real life usage
+</A></li>
+	<LI>Next message: <A HREF="002419.html">[X2go-Dev] X2go real life usage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2418">[ date ]</a>
+              <a href="thread.html#2418">[ thread ]</a>
+              <a href="subject.html#2418">[ subject ]</a>
+              <a href="author.html#2418">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

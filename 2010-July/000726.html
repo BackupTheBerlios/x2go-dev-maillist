@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Single application gets suspended with mouse move and click on window decoration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Single%20application%20gets%20suspended%20with%20mouse%20move%0A%20and%20click%20on%20window%20decoration&In-Reply-To=%3C20100701121757.42f5483a%40lucy%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000728.html">
+   <LINK REL="Next"  HREF="000729.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Single application gets suspended with mouse move and click on window decoration</H1>
+    <B>Hein-Pieter van Braam</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Single%20application%20gets%20suspended%20with%20mouse%20move%0A%20and%20click%20on%20window%20decoration&In-Reply-To=%3C20100701121757.42f5483a%40lucy%3E"
+       TITLE="[X2go-dev] Single application gets suspended with mouse move and click on window decoration">hp at tmm.cx
+       </A><BR>
+    <I>Thu Jul  1 12:17:57 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000728.html">[X2go-dev] New plugin properties - was: Re:  Account on wiki
+</A></li>
+        <LI>Next message: <A HREF="000729.html">[X2go-dev] x2go client for mac osx
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#726">[ date ]</a>
+              <a href="thread.html#726">[ thread ]</a>
+              <a href="subject.html#726">[ subject ]</a>
+              <a href="author.html#726">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 22 Jun 2010 18:00:18 +1000
+Max Chao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">yochaos at gmail.com</A>&gt; wrote:
+
+&gt;<i> Hi all,
+</I>&gt;<i> 
+</I>&gt;<i> I have a weird issue with x2go on Lucid in single application mode.
+</I>&gt;<i> Whenever I start an application and move mouse and click on the
+</I>&gt;<i> window decoration, the client gets disappeared. Seems session gets
+</I>&gt;<i> suspended on the client side. I can resume it late. But it will
+</I>&gt;<i> suspended again if I move mouse and click on the window decoration
+</I>&gt;<i> again.
+</I>&gt;<i> 
+</I>&gt;<i> After some investigation, I find that when I move mouse and click on
+</I>&gt;<i> the window decoration, x2gosuspend-agent was called. So I comment the
+</I>&gt;<i> &quot;export NX_CLIENT=/usr/bin/x2gosuspend-agent&quot; in x2gostartagent. The
+</I>&gt;<i> issue disappear.  I also check the nxcomp source code, find that
+</I>&gt;<i> client path will point to &quot;/usr/NX/bin/nxclient&quot; if NX_CLIENT
+</I>&gt;<i> environment is not set, which confuse me.
+</I>&gt;<i> 
+</I>&gt;<i> My questions is what is the usage of NX_CLIENT? Why set it as
+</I>&gt;<i> x2gosuspend-agent?
+</I>
+&gt;<i> Thanks!
+</I>&gt;<i> 
+</I>&gt;<i> Max
+</I>
+I can verify the same problem on Debian Sid 64bit with Wmaker, xfce and
+gnome window managers. I also commented out the line and single
+applications now work as I expect.
+
+I brought this issue up before but I never could quite figure out what
+the problem was. Thanks!
+
+- HP
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000728.html">[X2go-dev] New plugin properties - was: Re:  Account on wiki
+</A></li>
+	<LI>Next message: <A HREF="000729.html">[X2go-dev] x2go client for mac osx
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#726">[ date ]</a>
+              <a href="thread.html#726">[ thread ]</a>
+              <a href="subject.html#726">[ subject ]</a>
+              <a href="author.html#726">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

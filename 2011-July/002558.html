@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Command line alternatives to x2goclient-cli
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Command%20line%20alternatives%20to%20x2goclient-cli&In-Reply-To=%3C20110727115509.13154c75g2kfloxp%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002555.html">
+   <LINK REL="Next"  HREF="002559.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Command line alternatives to x2goclient-cli</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Command%20line%20alternatives%20to%20x2goclient-cli&In-Reply-To=%3C20110727115509.13154c75g2kfloxp%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] Command line alternatives to x2goclient-cli">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Jul 27 11:55:09 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002555.html">[X2go-Dev] Command line alternatives to x2goclient-cli
+</A></li>
+        <LI>Next message: <A HREF="002559.html">[X2go-Dev] Command line alternatives to x2goclient-cli
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2558">[ date ]</a>
+              <a href="thread.html#2558">[ thread ]</a>
+              <a href="subject.html#2558">[ subject ]</a>
+              <a href="author.html#2558">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Daniel,
+
+On Mi 27 Jul 2011 09:13:35 CEST Daniel Lindgren wrote:
+
+&gt;<i> If I've interpreted recent mail traffic (and roadmap in wiki)
+</I>&gt;<i> correctly, x2goclient-cli is deprecated and will no longer be actively
+</I>&gt;<i> develeoped. As far as I can see there currently are two alternatives
+</I>&gt;<i> to using x2goclient-cli:
+</I>
+x2goclient-cli is rather an explicatory proof of concept from now on  
+and is actually not actively maintained any more. This might change in  
+the future, but currently, there seems to be noone really interested  
+in the continuation of the work.
+
+&gt;<i> - An option to automatically resume an existing session if there is
+</I>&gt;<i> one or create a new one if there isn't.
+</I><A HREF="http://code.x2go.org/horde4/whups/ticket/?id=86">http://code.x2go.org/horde4/whups/ticket/?id=86</A>
+
+&gt;<i> - An option to suspend a running session if the windows is closed, not
+</I>&gt;<i> terminate it. Makes it possible to start pyhoca-cli in the background.
+</I>
+This is actually the case. It now depends on the session mode you use:  
+desktop, shadow or rootless.
+
+If you close a rootless session window (e.g. a firefox running on the  
+X2go server), then of course the firefox application gets close and  
+thus the session terminated.
+
+If you close a desktop session window (e.g. a GNOME desktop) then the  
+session gets suspended...
+
+If you close a window with a shadow session (option --share-desktop)  
+then the shadow session gets terminated, but not so the session that  
+the shadow session was connected to.
+
+Hope that helps,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110727/7ac7bee5/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110727/7ac7bee5/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002555.html">[X2go-Dev] Command line alternatives to x2goclient-cli
+</A></li>
+	<LI>Next message: <A HREF="002559.html">[X2go-Dev] Command line alternatives to x2goclient-cli
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2558">[ date ]</a>
+              <a href="thread.html#2558">[ thread ]</a>
+              <a href="subject.html#2558">[ subject ]</a>
+              <a href="author.html#2558">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

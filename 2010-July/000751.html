@@ -1,0 +1,270 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] use thin client CPU resources
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20use%20thin%20client%20CPU%20resources&In-Reply-To=%3C20100702221059.198245kqasimiksz%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000750.html">
+   <LINK REL="Next"  HREF="000752.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] use thin client CPU resources</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20use%20thin%20client%20CPU%20resources&In-Reply-To=%3C20100702221059.198245kqasimiksz%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] use thin client CPU resources">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jul  2 22:10:59 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000750.html">[X2go-dev] use thin client CPU resources
+</A></li>
+        <LI>Next message: <A HREF="000752.html">[X2go-dev] latest plugin testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#751">[ date ]</a>
+              <a href="thread.html#751">[ thread ]</a>
+              <a href="subject.html#751">[ subject ]</a>
+              <a href="author.html#751">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Heinz,
+
+On Fr 02 Jul 2010 20:33:19 CEST &quot;Heinz-M. Graesing&quot; wrote:
+
+&gt;<i> Hello Mike,
+</I>&gt;<i>
+</I>&gt;<i> Am 02.07.2010 15:20, schrieb Mike Gabriel:
+</I>&gt;&gt;<i> Hi x2go-folks,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> here is another question to the developers...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> When talking to school teachers here in Kiel, there was a very central
+</I>&gt;&gt;<i> demand to thin client work stations: run application on the thin client
+</I>&gt;&gt;<i> hardware.
+</I>&gt;<i>
+</I>&gt;&gt;<i>   o start firefox locally (but with the user's profile), esp. because of
+</I>&gt;&gt;<i> flash
+</I>&gt;&gt;<i>     media, but also animations on websites
+</I>&gt;&gt;<i> As I know, in LTSP there is a solution for that
+</I>&gt;<i>
+</I>&gt;<i> LTSP is using (so far as I know) the local X-server on the Thin Client
+</I>&gt;<i> as native display. X2go is using x2goagent als natvive display so the
+</I>&gt;<i> window manager is running on another display (number).
+</I>&gt;<i> So there is the question how the local apps window should be managed,
+</I>&gt;<i> for example how it should be placed behind other applications, get the
+</I>&gt;<i> focus.
+</I>
+As I understand x2go the x2goclient and also the x2go session window  
+(if not fullscreen) are running on one X display (x2goclienthost:0.0).
+
+Within the x2go session window encapsulated there is the x2goagent  
+session that provides an X display applications running on the  
+x2goserver (e.g. appserver:50.0).
+
+=&gt; different hosts, different displays... this must be faced, good  
+point indeed!!
+
+I have recently looked at an eagle TC more closely. An alternative  
+approach for x2go thin clients could be to provide a simple desktop  
+(e.g. cream desktop environment) on the thin client (I am talking  
+about Linux only for now... the approach should work on mixed setups  
+i386/amd64/ppc).
+
+On these thin clients x2goclient does not run in full screen mode, it  
+rather runs as one of many client apps.
+
+To provide local apps on the TC there are two possibilities:
+
+   1.
+   provide local apps on the thin client that use the TC's default  
+user profile:
+
+     disadvantage:
+         - thin client users work anonymously with these applications
+         - no individual user profiles are available
+
+     advantage:
+         - offered applications have pre-configured standard profiles
+         - sensible for multimedia software
+         - internet blockage can be an option (iptables/SELinux
+           on the thin client)
+
+   2.
+   login to an x2go session: the session login will add desktop icons/startmenu
+   entries to the thin client and provide further local applications, that can
+   now be run with user privileges
+
+         - the user's home dir will be mounted on the thin client through
+           x2go (reverse sshfs)
+         - thus, the user profile will be available on the TC
+         - local apps can with use privs can be started by clicking a desktop
+           icon on the cream desktop
+         - the local CPU resources are available to these applications
+         - also is the local hardware available
+         - users are indentifiable on the network (e.g. for  
+firefox/dansguardian)
+
+Consequently, using such a thin client would be like this:
+
+  o turn on TC
+  o boot the TC image from the net (NBD rather than NFS???)
+  o optional: boot a TC image that also installs a thin client image on the
+    local -&gt; netbooks with wireless network could be used as TCs
+  o the user is offered a cream desktop with an x2goclient, mplayer, ...
+  o the user starts x2goclient
+  o and initiate an x2go client session (LDAP based, x2gocluster
+    auto-assignment)
+  o x2go now does in the background:
+        - pulseaudio: server -&gt; client
+        - cupsprinting: server -&gt; client (actually this is filesharing: client
+                        -&gt; server)
+        - filesharing: client -&gt; server
+        - homesharing: server -&gt; client (sshfs)
+        - x2go extends thin client cream desktop: icons, startmenu entries
+
+  o you now can choose while you work:
+        1. run apps within the x2go session (windows within a window)
+        2. run anonymous local apps (app windows, x2goclient main window and #
+           x2go session window share one desktop)
+        3. run other local apps under your server uid
+
+&gt;<i> There are further questions like: &quot;what is happening on session
+</I>&gt;<i> suspend,
+</I>
+   o speakout a warning...
+   o kill local TC apps that run under the user's server uid
+   o disconnect home dir (reverse sshfs unmount)
+   o disconnect everything else (pulse, fileshares, ...)
+
+&gt;<i> concurring audio input,
+</I>
+What exactly do you mean by this?
+
+&gt;<i> a different client cpu architecture,...
+</I>
+Thinclient arch and server arch can differ. Of course your thinclients  
+and the provided thinclient images must match in architecture... (i386  
+mostly).
+
+&gt;<i> This is not a &quot;not possible&quot; answer, we sure will add this feature to
+</I>&gt;<i> the whislist. But it is not a easy task and maybe some other ideas will
+</I>&gt;<i> help to archive the same result.
+</I>
+The above differs from my original idea as I had not taken the window  
+management of local apps that much into account. Thus, it got a bit  
+complexer now, blown up by a cream desktop.
+
+If you have other ideas to make local CPU resources accessible let me know.
+
+&gt;&gt;<i> My question: is there also an idea or an approach for x2go how local CPU
+</I>&gt;&gt;<i> usage of thin clients could be implemented? I suppose, there is no
+</I>&gt;&gt;<i> implementation yet, is it?
+</I>&gt;<i>
+</I>&gt;<i> The local machine is used for input device handling, as print server and
+</I>&gt;<i> the local X-Server is responsible for the display response user experience.
+</I>
+The great advantage of this approach is clarity!!! One machine is the  
+server, the other machine is the client. The approach is very valuable  
+but also has its limits when it comes to
+
+   o running CPU intensive processes (yukky Flashplayer e.g.)
+   o accessing local hardware in schools' computer labs
+   o playing movies from local devices
+
+&gt;&gt;<i> As this is probably the most needed feature herearound I'd love to go
+</I>&gt;&gt;<i> into detail with this issue sometime in August/September.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Plz let me know what you think,
+</I>&gt;&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i> I think it is a very difficult task and if you don't want to offer it to
+</I>&gt;<i> all target devices available it might be possible for LAN usage. But it
+</I>&gt;<i> is sure a lot of work.
+</I>
+1.
+LAN usage should definitely be the first target.
+
+2.
+Next could be a backgrounded thinclient image installer for Netbook  
+Thinclients:
+
+   o all LAN-clients receive a thinclient only image
+   o but now you plugin one of the schools netbooks that also shall be able
+     to use Wireless LAN
+   o these netbooks that get recognized by its mac address retrieve the
+     thinclient+background-installer image
+   o while the session is running, a local thinclient image is installed to the
+     hard or solidstate disk of the netbook
+   o shutdown
+   o unplug LAN
+   o boot netbook from disk
+   o thinclient starts from disk with WiFi support
+   o upgrade your netbook TC image: plugin on LAN again, boot from the net...
+
+3.
+Difficult on Windows Systems (Home dir useless, sucking registry ...).  
+It might be possible to find solutions for individual applications  
+(e.g. firefox).
+
+4.
+MacOS is a Unix derivative... But I have not played with Macs that  
+often. Magic like this should be possible on Macs rather than on  
+windows clients
+
+One demand probably is that software versions on thinclients and on  
+the terminalserver should not differ too much, if you want to use the  
+user profiled local application thing. For admins this will mean that  
+they have to keep their thinclient images rather up-to-date (i.e. run  
+same distroversion as the servers). Thin clients then also need  
+security updates regularly...
+
+&gt;<i> best regards,
+</I>&gt;<i>
+</I>&gt;<i> Heinz
+</I>
+Thanks for your input!!!
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+eMail-LeseSchreibStunde: wochentags 8h-10h
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000750.html">[X2go-dev] use thin client CPU resources
+</A></li>
+	<LI>Next message: <A HREF="000752.html">[X2go-dev] latest plugin testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#751">[ date ]</a>
+              <a href="thread.html#751">[ thread ]</a>
+              <a href="subject.html#751">[ subject ]</a>
+              <a href="author.html#751">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

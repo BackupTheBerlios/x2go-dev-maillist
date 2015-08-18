@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] keyboard not working quite right in gtk client...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20keyboard%20not%20working%20quite%20right%20in%20gtk%20client...&In-Reply-To=%3C4A1CE330.3020700%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000038.html">
+   <LINK REL="Next"  HREF="000033.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] keyboard not working quite right in gtk client...</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20keyboard%20not%20working%20quite%20right%20in%20gtk%20client...&In-Reply-To=%3C4A1CE330.3020700%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] keyboard not working quite right in gtk client...">paul at vandervlis.nl
+       </A><BR>
+    <I>Wed May 27 08:52:32 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000038.html">[X2go-dev] keyboard not working quite right in gtk client...
+</A></li>
+        <LI>Next message: <A HREF="000033.html">[X2go-dev] x2goclient-cli single application problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#36">[ date ]</a>
+              <a href="thread.html#36">[ thread ]</a>
+              <a href="subject.html#36">[ subject ]</a>
+              <a href="author.html#36">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Douglas M. Stanley schreef:
+&gt;<i> Hello list, I appologize ahead of time if this has already been brought up, but
+</I>&gt;<i> I couldn't find anything about this yet.
+</I>&gt;<i> 
+</I>&gt;<i> I recently set up x2go in a xen guest, and when I try to connect to it with the
+</I>&gt;<i> gtk client, the keyboard isn't right. Everything seems to work, except the arrow
+</I>&gt;<i> keys. If I turn numlock on/off, then the arrows on the keypad seem to work, but
+</I>&gt;<i> not the normal arrow keys. I've tried everything I can think of to set the keyboard
+</I>&gt;<i> both on the client and on the actual host. Everything is set to 105key qwerty US,
+</I>&gt;<i> but the arrow keys still don't work.
+</I>&gt;<i> 
+</I>&gt;<i> The maemo client using the directional pad seemed to work fine simulating the arrow
+</I>&gt;<i> keys, so I'm not sure if it would work with the QT client or not as I haven't tried
+</I>&gt;<i> that client yet.
+</I>&gt;<i> 
+</I>&gt;<i> Anyone else run into this issue yet? It may very well be due to the machine running
+</I>&gt;<i> under xen, so I'm not sure if anyone else is doing something similar or not.
+</I>&gt;<i> 
+</I>&gt;<i> Any help would be greatly appreciated.
+</I>
+Hello,
+
+I don't have this problem with X2go, but I had it in the past in FreeNX.
+(I am running FreeNX for many years on many machines with Debian Sarge
+and Etch).
+
+In FreeNX you can tell what to do when you want to start KDE or Gnome,
+in my case Gnome. I configured it so that not Gnome was starting
+directly, but a script, what started Gnome. In that script I did put
+things like this:
+----------
+umask 0002   (setting the umask)
+export TESTVAR=test21   (setting environment)
+. ~/.gnomerc  (running scripts)
+/usr/bin/X11/setxkbmap -rules xfree86 -model pc104 -layout us -option &quot;&quot;
+/usr/bin/gnome-session  (start gnome)
+----------
+
+The setxkbmap option helped against the keyboard problems. Maybe this
+can help you in finding the problem.
+
+With regards,
+Paul van der Vlis.
+
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000038.html">[X2go-dev] keyboard not working quite right in gtk client...
+</A></li>
+	<LI>Next message: <A HREF="000033.html">[X2go-dev] x2goclient-cli single application problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#36">[ date ]</a>
+              <a href="thread.html#36">[ thread ]</a>
+              <a href="subject.html#36">[ subject ]</a>
+              <a href="author.html#36">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

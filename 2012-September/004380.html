@@ -1,0 +1,654 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#41: Tarballs installation of nx-libs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2341%3A%20Tarballs%20installation%20of%20nx-libs&In-Reply-To=%3C20120928100854.10815suy47bbn40m%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004377.html">
+   <LINK REL="Next"  HREF="004384.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#41: Tarballs installation of nx-libs</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2341%3A%20Tarballs%20installation%20of%20nx-libs&In-Reply-To=%3C20120928100854.10815suy47bbn40m%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#41: Tarballs installation of nx-libs">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Sep 28 10:08:54 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004377.html">[X2Go-Dev] Bug#41: Tarballs installation of nx-libs
+</A></li>
+        <LI>Next message: <A HREF="004384.html">[X2Go-Dev] Bug#41: Tarballs installation of nx-libs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4380">[ date ]</a>
+              <a href="thread.html#4380">[ thread ]</a>
+              <a href="subject.html#4380">[ subject ]</a>
+              <a href="author.html#4380">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Jan,
+
+On Do 27 Sep 2012 22:05:59 CEST Jan Engelhardt wrote:
+
+&gt;<i> On Thursday 2012-09-27 21:21, Mike Gabriel wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Package: x2goagent
+</I>&gt;&gt;<i> Severity: minor
+</I>&gt;&gt;<i> Version: 3.5.0.15
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The installation from tarball is quite broken in nx-libs (I guess we never
+</I>&gt;&gt;<i> addressed it as we have the Debian packaging).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> the code in nx-X11 is installed to /usr/lib/NX3. It should get installed to
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> $(PREFIX)/lib/nx
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Putting this in my queue...
+</I>&gt;<i>
+</I>&gt;<i> I don't see the problem here.
+</I>&gt;<i>
+</I>&gt;<i> /usr/lib/NX3 is the replacement location for /usr/X11R6 to please
+</I>&gt;<i> FHS check scripts, which would reject /usr/NX3.
+</I>&gt;<i>
+</I>&gt;<i> So, the XFree/NX binaries go into /usr/lib/NX3/bin and the libs
+</I>&gt;<i> into /usr/lib/NX3/lib(/nx).
+</I>&gt;<i>
+</I>&gt;<i> Of course you can try to use /usr as prefix instead of /usr/lib/NX3,
+</I>&gt;<i> but then the binaries would collide with the Xorg ones.
+</I>&gt;<i>
+</I>
+This is Ok for native NX tarballs. The NX-redist tarball installation  
+should purely install into /usr/local.
+
+The packaging should happen (from my perspective) in /usr.
+
+The paths for installation under /usr (i.e. via package) are these:
+
+/.
+/usr
+/usr/lib
+/usr/lib/nx
+/usr/lib/nx/X11
+/usr/lib/nx/X11/&lt;libfiles&gt;
+
+/.
+/usr
+/usr/include
+/usr/include/nx
+/usr/include/nx/X11
+/usr/include/nx/X11/extensions
+/usr/include/nx/X11/extensions/Xinerama.h
+/usr/include/nx/X11/expat.h
+/usr/include/nx/X11/fontconfig
+/usr/include/nx/X11/fontconfig/fcfreetype.h
+/usr/include/nx/X11/fontconfig/fcprivate.h
+/usr/include/nx/X11/fontconfig/fontconfig.h
+/usr/include/nx/X11/freetype2
+/usr/include/nx/X11/freetype2/freetype
+/usr/include/nx/X11/freetype2/freetype/freetype.h
+/usr/include/nx/X11/freetype2/freetype/ftbbox.h
+/usr/include/nx/X11/freetype2/freetype/ftbdf.h
+/usr/include/nx/X11/freetype2/freetype/ftcache.h
+/usr/include/nx/X11/freetype2/freetype/ftchapters.h
+/usr/include/nx/X11/freetype2/freetype/fterrdef.h
+/usr/include/nx/X11/freetype2/freetype/fterrors.h
+/usr/include/nx/X11/freetype2/freetype/ftglyph.h
+/usr/include/nx/X11/freetype2/freetype/ftgzip.h
+/usr/include/nx/X11/freetype2/freetype/ftimage.h
+/usr/include/nx/X11/freetype2/freetype/ftincrem.h
+/usr/include/nx/X11/freetype2/freetype/ftlist.h
+/usr/include/nx/X11/freetype2/freetype/ftmac.h
+/usr/include/nx/X11/freetype2/freetype/ftmm.h
+/usr/include/nx/X11/freetype2/freetype/ftmoderr.h
+/usr/include/nx/X11/freetype2/freetype/ftmodapi.h
+/usr/include/nx/X11/freetype2/freetype/ftoutln.h
+/usr/include/nx/X11/freetype2/freetype/ftpfr.h
+/usr/include/nx/X11/freetype2/freetype/ftrender.h
+/usr/include/nx/X11/freetype2/freetype/ftsizes.h
+/usr/include/nx/X11/freetype2/freetype/ftsnames.h
+/usr/include/nx/X11/freetype2/freetype/ftstroke.h
+/usr/include/nx/X11/freetype2/freetype/ftsynth.h
+/usr/include/nx/X11/freetype2/freetype/ftsysio.h
+/usr/include/nx/X11/freetype2/freetype/ftsysmem.h
+/usr/include/nx/X11/freetype2/freetype/ftsystem.h
+/usr/include/nx/X11/freetype2/freetype/fttrigon.h
+/usr/include/nx/X11/freetype2/freetype/fttypes.h
+/usr/include/nx/X11/freetype2/freetype/ftwinfnt.h
+/usr/include/nx/X11/freetype2/freetype/ftxf86.h
+/usr/include/nx/X11/freetype2/freetype/t1tables.h
+/usr/include/nx/X11/freetype2/freetype/ftlzw.h
+/usr/include/nx/X11/freetype2/freetype/ttnameid.h
+/usr/include/nx/X11/freetype2/freetype/tttables.h
+/usr/include/nx/X11/freetype2/freetype/tttags.h
+/usr/include/nx/X11/freetype2/freetype/ttunpat.h
+/usr/include/nx/X11/freetype2/freetype/config
+/usr/include/nx/X11/freetype2/freetype/config/ftconfig.h
+/usr/include/nx/X11/freetype2/freetype/config/ftheader.h
+/usr/include/nx/X11/freetype2/freetype/config/ftmodule.h
+/usr/include/nx/X11/freetype2/freetype/config/ftoption.h
+/usr/include/nx/X11/freetype2/freetype/config/ftstdlib.h
+/usr/include/nx/X11/freetype2/freetype/cache
+/usr/include/nx/X11/freetype2/freetype/cache/ftccache.h
+/usr/include/nx/X11/freetype2/freetype/cache/ftccmap.h
+/usr/include/nx/X11/freetype2/freetype/cache/ftcglyph.h
+/usr/include/nx/X11/freetype2/freetype/cache/ftcimage.h
+/usr/include/nx/X11/freetype2/freetype/cache/ftcmanag.h
+/usr/include/nx/X11/freetype2/freetype/cache/ftcsbits.h
+/usr/include/nx/X11/freetype2/freetype/cache/ftcmru.h
+/usr/include/nx/X11/freetype2/freetype/internal
+/usr/include/nx/X11/freetype2/freetype/internal/autohint.h
+/usr/include/nx/X11/freetype2/freetype/internal/ftcalc.h
+/usr/include/nx/X11/freetype2/freetype/internal/ftdebug.h
+/usr/include/nx/X11/freetype2/freetype/internal/ftdriver.h
+/usr/include/nx/X11/freetype2/freetype/internal/ftgloadr.h
+/usr/include/nx/X11/freetype2/freetype/internal/ftmemory.h
+/usr/include/nx/X11/freetype2/freetype/internal/ftobjs.h
+/usr/include/nx/X11/freetype2/freetype/internal/ftrfork.h
+/usr/include/nx/X11/freetype2/freetype/internal/ftserv.h
+/usr/include/nx/X11/freetype2/freetype/internal/ftstream.h
+/usr/include/nx/X11/freetype2/freetype/internal/fttrace.h
+/usr/include/nx/X11/freetype2/freetype/internal/internal.h
+/usr/include/nx/X11/freetype2/freetype/internal/pcftypes.h
+/usr/include/nx/X11/freetype2/freetype/internal/psaux.h
+/usr/include/nx/X11/freetype2/freetype/internal/pshints.h
+/usr/include/nx/X11/freetype2/freetype/internal/sfnt.h
+/usr/include/nx/X11/freetype2/freetype/internal/t1types.h
+/usr/include/nx/X11/freetype2/freetype/internal/tttypes.h
+/usr/include/nx/X11/freetype2/freetype/internal/services
+/usr/include/nx/X11/freetype2/freetype/internal/services/svbdf.h
+/usr/include/nx/X11/freetype2/freetype/internal/services/svmm.h
+/usr/include/nx/X11/freetype2/freetype/internal/services/svpostnm.h
+/usr/include/nx/X11/freetype2/freetype/internal/services/svpsinfo.h
+/usr/include/nx/X11/freetype2/freetype/internal/services/svwinfnt.h
+/usr/include/nx/X11/freetype2/freetype/internal/services/svgldict.h
+/usr/include/nx/X11/freetype2/freetype/internal/services/svpfr.h
+/usr/include/nx/X11/freetype2/freetype/internal/services/svpscmap.h
+/usr/include/nx/X11/freetype2/freetype/internal/services/svsfnt.h
+/usr/include/nx/X11/freetype2/freetype/internal/services/svttcmap.h
+/usr/include/nx/X11/freetype2/freetype/internal/services/svxf86nm.h
+/usr/include/nx/X11/ft2build.h
+/usr/include/nx/X11/GL
+/usr/include/nx/X11/GL/gl.h
+/usr/include/nx/X11/GL/glext.h
+/usr/include/nx/X11/GL/glu.h
+/usr/include/nx/X11/GL/glx.h
+/usr/include/nx/X11/GL/glxint.h
+/usr/include/nx/X11/GL/glxmd.h
+/usr/include/nx/X11/GL/glxproto.h
+/usr/include/nx/X11/GL/glxtokens.h
+/usr/include/nx/X11/GL/osmesa.h
+/usr/include/nx/X11/GL/glxext.h
+/usr/include/nx/X11/X11
+/usr/include/nx/X11/X11/DECkeysym.h
+/usr/include/nx/X11/X11/HPkeysym.h
+/usr/include/nx/X11/X11/Sunkeysym.h
+/usr/include/nx/X11/X11/X.h
+/usr/include/nx/X11/X11/XF86keysym.h
+/usr/include/nx/X11/X11/XWDFile.h
+/usr/include/nx/X11/X11/Xalloca.h
+/usr/include/nx/X11/X11/Xarch.h
+/usr/include/nx/X11/X11/Xatom.h
+/usr/include/nx/X11/X11/Xdefs.h
+/usr/include/nx/X11/X11/Xfuncproto.h
+/usr/include/nx/X11/X11/Xfuncs.h
+/usr/include/nx/X11/X11/Xmd.h
+/usr/include/nx/X11/X11/Xos.h
+/usr/include/nx/X11/X11/Xos_r.h
+/usr/include/nx/X11/X11/Xosdefs.h
+/usr/include/nx/X11/X11/Xpoll.h
+/usr/include/nx/X11/X11/Xproto.h
+/usr/include/nx/X11/X11/Xprotostr.h
+/usr/include/nx/X11/X11/Xthreads.h
+/usr/include/nx/X11/X11/ap_keysym.h
+/usr/include/nx/X11/X11/keysym.h
+/usr/include/nx/X11/X11/keysymdef.h
+/usr/include/nx/X11/X11/bitmaps
+/usr/include/nx/X11/X11/bitmaps/1x1
+/usr/include/nx/X11/X11/bitmaps/2x2
+/usr/include/nx/X11/X11/bitmaps/black
+/usr/include/nx/X11/X11/bitmaps/boxes
+/usr/include/nx/X11/X11/bitmaps/calculator
+/usr/include/nx/X11/X11/bitmaps/cntr_ptr
+/usr/include/nx/X11/X11/bitmaps/cntr_ptrmsk
+/usr/include/nx/X11/X11/bitmaps/cross_weave
+/usr/include/nx/X11/X11/bitmaps/dimple1
+/usr/include/nx/X11/X11/bitmaps/dimple3
+/usr/include/nx/X11/X11/bitmaps/dot
+/usr/include/nx/X11/X11/bitmaps/dropbar7
+/usr/include/nx/X11/X11/bitmaps/dropbar8
+/usr/include/nx/X11/X11/bitmaps/escherknot
+/usr/include/nx/X11/X11/bitmaps/flagdown
+/usr/include/nx/X11/X11/bitmaps/flagup
+/usr/include/nx/X11/X11/bitmaps/flipped_gray
+/usr/include/nx/X11/X11/bitmaps/gray
+/usr/include/nx/X11/X11/bitmaps/gray1
+/usr/include/nx/X11/X11/bitmaps/gray3
+/usr/include/nx/X11/X11/bitmaps/grid2
+/usr/include/nx/X11/X11/bitmaps/grid4
+/usr/include/nx/X11/X11/bitmaps/grid8
+/usr/include/nx/X11/X11/bitmaps/grid16
+/usr/include/nx/X11/X11/bitmaps/hlines2
+/usr/include/nx/X11/X11/bitmaps/hlines3
+/usr/include/nx/X11/X11/bitmaps/icon
+/usr/include/nx/X11/X11/bitmaps/keyboard16
+/usr/include/nx/X11/X11/bitmaps/left_ptr
+/usr/include/nx/X11/X11/bitmaps/left_ptrmsk
+/usr/include/nx/X11/X11/bitmaps/letters
+/usr/include/nx/X11/X11/bitmaps/light_gray
+/usr/include/nx/X11/X11/bitmaps/mailempty
+/usr/include/nx/X11/X11/bitmaps/mailemptymsk
+/usr/include/nx/X11/X11/bitmaps/mailfull
+/usr/include/nx/X11/X11/bitmaps/mailfullmsk
+/usr/include/nx/X11/X11/bitmaps/mensetmanus
+/usr/include/nx/X11/X11/bitmaps/menu6
+/usr/include/nx/X11/X11/bitmaps/menu8
+/usr/include/nx/X11/X11/bitmaps/menu10
+/usr/include/nx/X11/X11/bitmaps/menu12
+/usr/include/nx/X11/X11/bitmaps/menu16
+/usr/include/nx/X11/X11/bitmaps/noletters
+/usr/include/nx/X11/X11/bitmaps/opendot
+/usr/include/nx/X11/X11/bitmaps/opendotMask
+/usr/include/nx/X11/X11/bitmaps/plaid
+/usr/include/nx/X11/X11/bitmaps/right_ptr
+/usr/include/nx/X11/X11/bitmaps/right_ptrmsk
+/usr/include/nx/X11/X11/bitmaps/root_weave
+/usr/include/nx/X11/X11/bitmaps/scales
+/usr/include/nx/X11/X11/bitmaps/sipb
+/usr/include/nx/X11/X11/bitmaps/star
+/usr/include/nx/X11/X11/bitmaps/starMask
+/usr/include/nx/X11/X11/bitmaps/stipple
+/usr/include/nx/X11/X11/bitmaps/target
+/usr/include/nx/X11/X11/bitmaps/terminal
+/usr/include/nx/X11/X11/bitmaps/tie_fighter
+/usr/include/nx/X11/X11/bitmaps/vlines2
+/usr/include/nx/X11/X11/bitmaps/vlines3
+/usr/include/nx/X11/X11/bitmaps/weird_size
+/usr/include/nx/X11/X11/bitmaps/wide_weave
+/usr/include/nx/X11/X11/bitmaps/wingdogs
+/usr/include/nx/X11/X11/bitmaps/woman
+/usr/include/nx/X11/X11/bitmaps/xfd_icon
+/usr/include/nx/X11/X11/bitmaps/xlogo11
+/usr/include/nx/X11/X11/bitmaps/xlogo16
+/usr/include/nx/X11/X11/bitmaps/xlogo32
+/usr/include/nx/X11/X11/bitmaps/xlogo64
+/usr/include/nx/X11/X11/bitmaps/xsnow
+/usr/include/nx/X11/X11/extensions
+/usr/include/nx/X11/X11/extensions/Xext.h
+/usr/include/nx/X11/X11/extensions/xcmiscstr.h
+/usr/include/nx/X11/X11/extensions/MITMisc.h
+/usr/include/nx/X11/X11/extensions/mitmiscstr.h
+/usr/include/nx/X11/X11/extensions/bigreqstr.h
+/usr/include/nx/X11/X11/extensions/extutil.h
+/usr/include/nx/X11/X11/extensions/XI.h
+/usr/include/nx/X11/X11/extensions/XInput.h
+/usr/include/nx/X11/X11/extensions/XIproto.h
+/usr/include/nx/X11/X11/extensions/XTest.h
+/usr/include/nx/X11/X11/extensions/xtestext1.h
+/usr/include/nx/X11/X11/extensions/xteststr.h
+/usr/include/nx/X11/X11/extensions/XKB.h
+/usr/include/nx/X11/X11/extensions/XKBgeom.h
+/usr/include/nx/X11/X11/extensions/XKBproto.h
+/usr/include/nx/X11/X11/extensions/XKBstr.h
+/usr/include/nx/X11/X11/extensions/XKBsrv.h
+/usr/include/nx/X11/X11/extensions/Xdbe.h
+/usr/include/nx/X11/X11/extensions/Xdbeproto.h
+/usr/include/nx/X11/X11/extensions/Xag.h
+/usr/include/nx/X11/X11/extensions/Xagstr.h
+/usr/include/nx/X11/X11/extensions/Xagsrv.h
+/usr/include/nx/X11/X11/extensions/XShm.h
+/usr/include/nx/X11/X11/extensions/shmstr.h
+/usr/include/nx/X11/X11/extensions/xf86misc.h
+/usr/include/nx/X11/X11/extensions/xf86mscstr.h
+/usr/include/nx/X11/X11/extensions/xf86bigfont.h
+/usr/include/nx/X11/X11/extensions/xf86bigfstr.h
+/usr/include/nx/X11/X11/extensions/xf86vmode.h
+/usr/include/nx/X11/X11/extensions/xf86vmstr.h
+/usr/include/nx/X11/X11/extensions/xf86dga.h
+/usr/include/nx/X11/X11/extensions/xf86dgastr.h
+/usr/include/nx/X11/X11/extensions/xf86dga1.h
+/usr/include/nx/X11/X11/extensions/xf86dga1str.h
+/usr/include/nx/X11/X11/extensions/Xinerama.h
+/usr/include/nx/X11/X11/extensions/panoramiXext.h
+/usr/include/nx/X11/X11/extensions/panoramiXproto.h
+/usr/include/nx/X11/X11/extensions/XLbx.h
+/usr/include/nx/X11/X11/extensions/lbxbuf.h
+/usr/include/nx/X11/X11/extensions/lbxbufstr.h
+/usr/include/nx/X11/X11/extensions/lbxdeltastr.h
+/usr/include/nx/X11/X11/extensions/lbximage.h
+/usr/include/nx/X11/X11/extensions/lbxopts.h
+/usr/include/nx/X11/X11/extensions/lbxstr.h
+/usr/include/nx/X11/X11/extensions/lbxzlib.h
+/usr/include/nx/X11/X11/extensions/Xv.h
+/usr/include/nx/X11/X11/extensions/Xvlib.h
+/usr/include/nx/X11/X11/extensions/Xvproto.h
+/usr/include/nx/X11/X11/extensions/XvMC.h
+/usr/include/nx/X11/X11/extensions/XvMClib.h
+/usr/include/nx/X11/X11/extensions/XvMCproto.h
+/usr/include/nx/X11/X11/extensions/vldXvMC.h
+/usr/include/nx/X11/X11/extensions/render.h
+/usr/include/nx/X11/X11/extensions/renderproto.h
+/usr/include/nx/X11/X11/extensions/randr.h
+/usr/include/nx/X11/X11/extensions/randrproto.h
+/usr/include/nx/X11/X11/extensions/xfixeswire.h
+/usr/include/nx/X11/X11/extensions/xfixesproto.h
+/usr/include/nx/X11/X11/extensions/damagewire.h
+/usr/include/nx/X11/X11/extensions/damageproto.h
+/usr/include/nx/X11/X11/extensions/composite.h
+/usr/include/nx/X11/X11/extensions/compositeproto.h
+/usr/include/nx/X11/X11/extensions/Xevie.h
+/usr/include/nx/X11/X11/extensions/Xeviestr.h
+/usr/include/nx/X11/X11/extensions/xtrapbits.h
+/usr/include/nx/X11/X11/extensions/xtrapddmi.h
+/usr/include/nx/X11/X11/extensions/xtrapdi.h
+/usr/include/nx/X11/X11/extensions/xtrapemacros.h
+/usr/include/nx/X11/X11/extensions/xtraplib.h
+/usr/include/nx/X11/X11/extensions/xtraplibp.h
+/usr/include/nx/X11/X11/extensions/xtrapproto.h
+/usr/include/nx/X11/X11/extensions/XRes.h
+/usr/include/nx/X11/X11/extensions/XResproto.h
+/usr/include/nx/X11/X11/extensions/dmxext.h
+/usr/include/nx/X11/X11/extensions/dmxproto.h
+/usr/include/nx/X11/X11/extensions/multibuf.h
+/usr/include/nx/X11/X11/extensions/multibufst.h
+/usr/include/nx/X11/X11/extensions/record.h
+/usr/include/nx/X11/X11/extensions/recordstr.h
+/usr/include/nx/X11/X11/extensions/security.h
+/usr/include/nx/X11/X11/extensions/securstr.h
+/usr/include/nx/X11/X11/extensions/shape.h
+/usr/include/nx/X11/X11/extensions/shapestr.h
+/usr/include/nx/X11/X11/extensions/sync.h
+/usr/include/nx/X11/X11/extensions/syncstr.h
+/usr/include/nx/X11/X11/extensions/Print.h
+/usr/include/nx/X11/X11/extensions/Printstr.h
+/usr/include/nx/X11/X11/extensions/Xcup.h
+/usr/include/nx/X11/X11/extensions/Xcupstr.h
+/usr/include/nx/X11/X11/extensions/dpms.h
+/usr/include/nx/X11/X11/extensions/dpmsstr.h
+/usr/include/nx/X11/X11/extensions/XEVI.h
+/usr/include/nx/X11/X11/extensions/XEVIstr.h
+/usr/include/nx/X11/X11/extensions/XKBfile.h
+/usr/include/nx/X11/X11/extensions/XKM.h
+/usr/include/nx/X11/X11/extensions/XKMformat.h
+/usr/include/nx/X11/X11/extensions/XKBrules.h
+/usr/include/nx/X11/X11/extensions/XKBconfig.h
+/usr/include/nx/X11/X11/extensions/XKBbells.h
+/usr/include/nx/X11/X11/extensions/Xrender.h
+/usr/include/nx/X11/X11/extensions/Xrandr.h
+/usr/include/nx/X11/X11/extensions/Xfixes.h
+/usr/include/nx/X11/X11/extensions/Xdamage.h
+/usr/include/nx/X11/X11/extensions/Xcomposite.h
+/usr/include/nx/X11/X11/fonts
+/usr/include/nx/X11/X11/fonts/FS.h
+/usr/include/nx/X11/X11/fonts/FSproto.h
+/usr/include/nx/X11/X11/fonts/font.h
+/usr/include/nx/X11/X11/fonts/fontstruct.h
+/usr/include/nx/X11/X11/fonts/fsmasks.h
+/usr/include/nx/X11/X11/fonts/FSlib.h
+/usr/include/nx/X11/X11/fonts/bdfint.h
+/usr/include/nx/X11/X11/fonts/pcf.h
+/usr/include/nx/X11/X11/fonts/bitmap.h
+/usr/include/nx/X11/X11/fonts/bufio.h
+/usr/include/nx/X11/X11/fonts/fntfil.h
+/usr/include/nx/X11/X11/fonts/fntfilio.h
+/usr/include/nx/X11/X11/fonts/fntfilst.h
+/usr/include/nx/X11/X11/fonts/fontenc.h
+/usr/include/nx/X11/X11/fonts/fontencc.h
+/usr/include/nx/X11/X11/fonts/fontmisc.h
+/usr/include/nx/X11/X11/fonts/fontmod.h
+/usr/include/nx/X11/X11/fonts/fontshow.h
+/usr/include/nx/X11/X11/fonts/fontutil.h
+/usr/include/nx/X11/X11/fonts/fontxlfd.h
+/usr/include/nx/X11/X11/Xtrans
+/usr/include/nx/X11/X11/Xtrans/Xtrans.h
+/usr/include/nx/X11/X11/Xtrans/Xtrans.c
+/usr/include/nx/X11/X11/Xtrans/Xtransdnet.c
+/usr/include/nx/X11/X11/Xtrans/Xtransint.h
+/usr/include/nx/X11/X11/Xtrans/Xtranslcl.c
+/usr/include/nx/X11/X11/Xtrans/Xtransos2.c
+/usr/include/nx/X11/X11/Xtrans/Xtranssock.c
+/usr/include/nx/X11/X11/Xtrans/Xtranstli.c
+/usr/include/nx/X11/X11/Xtrans/Xtransutil.c
+/usr/include/nx/X11/X11/Xtrans/transport.c
+/usr/include/nx/X11/X11/Xauth.h
+/usr/include/nx/X11/X11/Xdmcp.h
+/usr/include/nx/X11/X11/Xlib.h
+/usr/include/nx/X11/X11/Xresource.h
+/usr/include/nx/X11/X11/Xutil.h
+/usr/include/nx/X11/X11/cursorfont.h
+/usr/include/nx/X11/X11/Xlibint.h
+/usr/include/nx/X11/X11/Xcms.h
+/usr/include/nx/X11/X11/Xlocale.h
+/usr/include/nx/X11/X11/XKBlib.h
+/usr/include/nx/X11/X11/XlibConf.h
+/usr/include/nx/X11/X11/Xregion.h
+/usr/include/nx/X11/X11/ImUtil.h
+/usr/include/nx/X11/X11/X10.h
+/usr/include/nx/X11/X11/ICE
+/usr/include/nx/X11/X11/ICE/ICE.h
+/usr/include/nx/X11/X11/ICE/ICEconn.h
+/usr/include/nx/X11/X11/ICE/ICEproto.h
+/usr/include/nx/X11/X11/ICE/ICElib.h
+/usr/include/nx/X11/X11/ICE/ICEmsg.h
+/usr/include/nx/X11/X11/ICE/ICEutil.h
+/usr/include/nx/X11/X11/SM
+/usr/include/nx/X11/X11/SM/SM.h
+/usr/include/nx/X11/X11/SM/SMproto.h
+/usr/include/nx/X11/X11/SM/SMlib.h
+/usr/include/nx/X11/X11/Composite.h
+/usr/include/nx/X11/X11/CompositeP.h
+/usr/include/nx/X11/X11/Constraint.h
+/usr/include/nx/X11/X11/ConstrainP.h
+/usr/include/nx/X11/X11/Core.h
+/usr/include/nx/X11/X11/CoreP.h
+/usr/include/nx/X11/X11/Intrinsic.h
+/usr/include/nx/X11/X11/IntrinsicP.h
+/usr/include/nx/X11/X11/Object.h
+/usr/include/nx/X11/X11/ObjectP.h
+/usr/include/nx/X11/X11/RectObj.h
+/usr/include/nx/X11/X11/RectObjP.h
+/usr/include/nx/X11/X11/Shell.h
+/usr/include/nx/X11/X11/ShellP.h
+/usr/include/nx/X11/X11/StringDefs.h
+/usr/include/nx/X11/X11/Vendor.h
+/usr/include/nx/X11/X11/VendorP.h
+/usr/include/nx/X11/X11/CallbackI.h
+/usr/include/nx/X11/X11/ConvertI.h
+/usr/include/nx/X11/X11/CreateI.h
+/usr/include/nx/X11/X11/EventI.h
+/usr/include/nx/X11/X11/HookObjI.h
+/usr/include/nx/X11/X11/InitialI.h
+/usr/include/nx/X11/X11/IntrinsicI.h
+/usr/include/nx/X11/X11/PassivGraI.h
+/usr/include/nx/X11/X11/ResourceI.h
+/usr/include/nx/X11/X11/SelectionI.h
+/usr/include/nx/X11/X11/ShellI.h
+/usr/include/nx/X11/X11/ThreadsI.h
+/usr/include/nx/X11/X11/TranslateI.h
+/usr/include/nx/X11/X11/VarargsI.h
+/usr/include/nx/X11/X11/Xmu
+/usr/include/nx/X11/X11/Xmu/Xmu.h
+/usr/include/nx/X11/X11/Xmu/Atoms.h
+/usr/include/nx/X11/X11/Xmu/CharSet.h
+/usr/include/nx/X11/X11/Xmu/CloseHook.h
+/usr/include/nx/X11/X11/Xmu/Converters.h
+/usr/include/nx/X11/X11/Xmu/CurUtil.h
+/usr/include/nx/X11/X11/Xmu/CvtCache.h
+/usr/include/nx/X11/X11/Xmu/DisplayQue.h
+/usr/include/nx/X11/X11/Xmu/Drawing.h
+/usr/include/nx/X11/X11/Xmu/Editres.h
+/usr/include/nx/X11/X11/Xmu/EditresP.h
+/usr/include/nx/X11/X11/Xmu/Error.h
+/usr/include/nx/X11/X11/Xmu/ExtAgent.h
+/usr/include/nx/X11/X11/Xmu/Initer.h
+/usr/include/nx/X11/X11/Xmu/Lookup.h
+/usr/include/nx/X11/X11/Xmu/Misc.h
+/usr/include/nx/X11/X11/Xmu/StdSel.h
+/usr/include/nx/X11/X11/Xmu/StdCmap.h
+/usr/include/nx/X11/X11/Xmu/SysUtil.h
+/usr/include/nx/X11/X11/Xmu/WidgetNode.h
+/usr/include/nx/X11/X11/Xmu/WinUtil.h
+/usr/include/nx/X11/X11/Xmu/Xct.h
+/usr/include/nx/X11/X11/xpm.h
+/usr/include/nx/X11/X11/Xaw
+/usr/include/nx/X11/X11/Xaw/AllWidgets.h
+/usr/include/nx/X11/X11/Xaw/AsciiSink.h
+/usr/include/nx/X11/X11/Xaw/AsciiSinkP.h
+/usr/include/nx/X11/X11/Xaw/AsciiSrc.h
+/usr/include/nx/X11/X11/Xaw/AsciiSrcP.h
+/usr/include/nx/X11/X11/Xaw/AsciiText.h
+/usr/include/nx/X11/X11/Xaw/AsciiTextP.h
+/usr/include/nx/X11/X11/Xaw/Box.h
+/usr/include/nx/X11/X11/Xaw/BoxP.h
+/usr/include/nx/X11/X11/Xaw/Cardinals.h
+/usr/include/nx/X11/X11/Xaw/Command.h
+/usr/include/nx/X11/X11/Xaw/CommandP.h
+/usr/include/nx/X11/X11/Xaw/Dialog.h
+/usr/include/nx/X11/X11/Xaw/DialogP.h
+/usr/include/nx/X11/X11/Xaw/Form.h
+/usr/include/nx/X11/X11/Xaw/FormP.h
+/usr/include/nx/X11/X11/Xaw/Grip.h
+/usr/include/nx/X11/X11/Xaw/GripP.h
+/usr/include/nx/X11/X11/Xaw/Label.h
+/usr/include/nx/X11/X11/Xaw/LabelP.h
+/usr/include/nx/X11/X11/Xaw/List.h
+/usr/include/nx/X11/X11/Xaw/ListP.h
+/usr/include/nx/X11/X11/Xaw/MenuButton.h
+/usr/include/nx/X11/X11/Xaw/MenuButtoP.h
+/usr/include/nx/X11/X11/Xaw/MultiSrc.h
+/usr/include/nx/X11/X11/Xaw/MultiSrcP.h
+/usr/include/nx/X11/X11/Xaw/MultiSink.h
+/usr/include/nx/X11/X11/Xaw/MultiSinkP.h
+/usr/include/nx/X11/X11/Xaw/Paned.h
+/usr/include/nx/X11/X11/Xaw/PanedP.h
+/usr/include/nx/X11/X11/Xaw/Panner.h
+/usr/include/nx/X11/X11/Xaw/PannerP.h
+/usr/include/nx/X11/X11/Xaw/Porthole.h
+/usr/include/nx/X11/X11/Xaw/PortholeP.h
+/usr/include/nx/X11/X11/Xaw/Repeater.h
+/usr/include/nx/X11/X11/Xaw/RepeaterP.h
+/usr/include/nx/X11/X11/Xaw/Reports.h
+/usr/include/nx/X11/X11/Xaw/Scrollbar.h
+/usr/include/nx/X11/X11/Xaw/ScrollbarP.h
+/usr/include/nx/X11/X11/Xaw/Simple.h
+/usr/include/nx/X11/X11/Xaw/SimpleP.h
+/usr/include/nx/X11/X11/Xaw/SimpleMenu.h
+/usr/include/nx/X11/X11/Xaw/SimpleMenP.h
+/usr/include/nx/X11/X11/Xaw/Sme.h
+/usr/include/nx/X11/X11/Xaw/SmeP.h
+/usr/include/nx/X11/X11/Xaw/SmeBSB.h
+/usr/include/nx/X11/X11/Xaw/SmeBSBP.h
+/usr/include/nx/X11/X11/Xaw/SmeLine.h
+/usr/include/nx/X11/X11/Xaw/SmeLineP.h
+/usr/include/nx/X11/X11/Xaw/StripChart.h
+/usr/include/nx/X11/X11/Xaw/StripCharP.h
+/usr/include/nx/X11/X11/Xaw/Template.c
+/usr/include/nx/X11/X11/Xaw/Template.h
+/usr/include/nx/X11/X11/Xaw/TemplateP.h
+/usr/include/nx/X11/X11/Xaw/Text.h
+/usr/include/nx/X11/X11/Xaw/TextP.h
+/usr/include/nx/X11/X11/Xaw/TextSink.h
+/usr/include/nx/X11/X11/Xaw/TextSinkP.h
+/usr/include/nx/X11/X11/Xaw/TextSrc.h
+/usr/include/nx/X11/X11/Xaw/TextSrcP.h
+/usr/include/nx/X11/X11/Xaw/Tip.h
+/usr/include/nx/X11/X11/Xaw/TipP.h
+/usr/include/nx/X11/X11/Xaw/Toggle.h
+/usr/include/nx/X11/X11/Xaw/ToggleP.h
+/usr/include/nx/X11/X11/Xaw/Tree.h
+/usr/include/nx/X11/X11/Xaw/TreeP.h
+/usr/include/nx/X11/X11/Xaw/VendorEP.h
+/usr/include/nx/X11/X11/Xaw/Viewport.h
+/usr/include/nx/X11/X11/Xaw/ViewportP.h
+/usr/include/nx/X11/X11/Xaw/XawImP.h
+/usr/include/nx/X11/X11/Xaw/XawInit.h
+/usr/include/nx/X11/X11/Xft
+/usr/include/nx/X11/X11/Xft/Xft.h
+/usr/include/nx/X11/X11/Xft/XftCompat.h
+/usr/include/nx/X11/X11/Xcursor
+/usr/include/nx/X11/X11/Xcursor/Xcursor.h
+/usr/include/nx/X11/X11/os.h
+/usr/include/nx/X11/X11/misc.h
+
+/.
+/usr
+/usr/bin
+/usr/bin/nxagent
+/usr/lib
+/usr/lib/nx
+/usr/lib/nx/nxagent
+/usr/share
+/usr/share/nx
+/usr/share/nx/rgb
+/usr/share/pixmaps
+/usr/share/pixmaps/nxagent.xpm
+/usr/share/doc
+/usr/share/doc/nxagent
+/usr/share/doc/nxagent/copyright
+/usr/share/doc/nxagent/changelog.gz
+/usr/share/doc/nxagent/changelog.Debian.gz
+/usr/share/man
+/usr/share/man/man1
+/usr/share/man/man1/nxagent.1.gz
+/usr/share/lintian
+/usr/share/lintian/overrides
+/usr/share/lintian/overrides/nxagent
+/etc
+/etc/nxagent
+/etc/nxagent/nxagent.keyboard
+
+etc.pp.
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120928/0b8a02d1/attachment-0002.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120928/0b8a02d1/attachment-0002.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004377.html">[X2Go-Dev] Bug#41: Tarballs installation of nx-libs
+</A></li>
+	<LI>Next message: <A HREF="004384.html">[X2Go-Dev] Bug#41: Tarballs installation of nx-libs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4380">[ date ]</a>
+              <a href="thread.html#4380">[ thread ]</a>
+              <a href="subject.html#4380">[ subject ]</a>
+              <a href="author.html#4380">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

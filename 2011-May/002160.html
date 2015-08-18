@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2go app integration into application menu
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20app%20integration%20into%20application%20menu&In-Reply-To=%3C20110513002955.3968488r3fhdht9f%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002168.html">
+   <LINK REL="Next"  HREF="002161.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2go app integration into application menu</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20app%20integration%20into%20application%20menu&In-Reply-To=%3C20110513002955.3968488r3fhdht9f%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] X2go app integration into application menu">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri May 13 00:29:55 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002168.html">[X2go-dev] python-x2goserver API
+</A></li>
+        <LI>Next message: <A HREF="002161.html">[X2go-dev] python-x2goserver API
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2160">[ date ]</a>
+              <a href="thread.html#2160">[ thread ]</a>
+              <a href="subject.html#2160">[ subject ]</a>
+              <a href="author.html#2160">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hi all, hi esp. devs,
+
+the LinDix company in the Netherlands has asked me to work on another   
+project in the context of X2go.
+
+A couple of weeks ago we discussed possibilities of approaching the   
+usage of X2go in SaaS environemts (that is: not ,,Desktop as a   
+Serice'', but Software as a Service, meaning single, dedicated   
+applications in this context).
+
+The vision is:
+
+   (a) to have a server-side X2goSSH service similar to OpenSSH that can be
+       configured via ACLs so that remote application can be granted/denied to
+       specific users and/or specific groups. Opposed to OpenSSH this X2go
+       service will be able to restrict the execution of remote (server-side)
+       commands very pedantically.
+
+   (b) to provider X2go remote apps through the programmes' menu on your local
+       desktop
+
+In this mail I will address vision (b) in detail:
+
+====================
+
+For embedding X2go Apps (single remote application provided via X2go  
+in rootless mode) into the desktop application menu or for providing  
+them as desktop links the basic ideas could be listed as follows:
+
+   o all desktop links / menu links to X2go apps will launch an instance of
+     pyhoca-gui
+   o only the first click on such an X2go app will load the full pyhoca-gui
+     application (as first pyhoca-gui instance)
+   o all other clicks will launch pyhoca-gui in interprocess-communication
+     mode
+
+       - every secondly started pyhoca-gui will notify the firstly started
+         pyhoca-gui about what to do
+       - this will probably be approached via UDP communication (so  
+that it will
+         be available on Windows as well, no unix file sockets on Windows)
+
+   o the first pyhoca-gui instance will listen to incoming requests and process
+     them, such as
+
+        - connect to another server and...
+        - (...) start application A or B or C
+
+With X2go embedded apps it will be possible to compose a desktop as a  
+mixture of locally installed applications and remote (SaaS)  
+applications on Windows and Linux.
+
+Greetings + Request for Comments,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110513/f71fbb5e/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110513/f71fbb5e/attachment.pgp</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110513/f71fbb5e/attachment-0001.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110513/f71fbb5e/attachment-0001.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002168.html">[X2go-dev] python-x2goserver API
+</A></li>
+	<LI>Next message: <A HREF="002161.html">[X2go-dev] python-x2goserver API
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2160">[ date ]</a>
+              <a href="thread.html#2160">[ thread ]</a>
+              <a href="subject.html#2160">[ subject ]</a>
+              <a href="author.html#2160">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

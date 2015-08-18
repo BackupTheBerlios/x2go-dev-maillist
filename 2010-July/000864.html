@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] cleaning sessions [logs, automatically]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20cleaning%20sessions%20%5Blogs%2C%20automatically%5D&In-Reply-To=%3Calpine.LRH.1.00.1007200539200.8525%40oebafba.bjyevire.pbz%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000858.html">
+   <LINK REL="Next"  HREF="000865.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] cleaning sessions [logs, automatically]</H1>
+    <B>R P Herrold</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20cleaning%20sessions%20%5Blogs%2C%20automatically%5D&In-Reply-To=%3Calpine.LRH.1.00.1007200539200.8525%40oebafba.bjyevire.pbz%3E"
+       TITLE="[X2go-dev] cleaning sessions [logs, automatically]">herrold at owlriver.com
+       </A><BR>
+    <I>Tue Jul 20 11:58:30 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000858.html">[X2go-dev] cleaning sessions
+</A></li>
+        <LI>Next message: <A HREF="000865.html">[X2go-dev] cleaning sessions [logs, automatically]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#864">[ date ]</a>
+              <a href="thread.html#864">[ thread ]</a>
+              <a href="subject.html#864">[ subject ]</a>
+              <a href="author.html#864">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 20 Jul 2010, Mike Gabriel wrote:
+
+&gt;&gt;<i> earlier: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">contact at gmli.fr</A> asked:
+</I>
+&gt;&gt;<i> this night my server went off. Here is the reason :
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> # du -h --max-depth=1 .
+</I>&gt;&gt;<i> 856K	./C-test-50-1279548701_stDstartxfce4_dp24
+</I>    ... snip 20 instances
+&gt;&gt;<i> 8,0K	./ssh
+</I>
+&gt;&gt;<i> Could someone tells me how to auto-clean client sessions ? :)
+</I>
+On Tue, 20 Jul 2010, Mike Gabriel wrote:
+&gt;<i> Is there a reason to keep the session folders of terminated sessions? It is 
+</I>&gt;<i> nice to have some logs of terminated sessions but for production this is not 
+</I>&gt;<i> really feasible...
+</I>
+Note in passing: It is curious that there is a './ssh/&quot; rather 
+than a /.ssh/ &quot;invisible 'dotfile' directory&quot;
+
+
+There are diagnostic reasons to save such log files for 
+perhaps a week --- it would seem that these should be in a per 
+user subdirectory, such as ~/.logs/ or such, but ...
+
+That to one side, it should be posible to 'age' and expire 
+these using the 'find' command at startup
+
+We initially see:
+
+ 	find path/to/logfiles -name &quot;C-test*1279583278_st[DR]*&quot; \
+ 		-a -exec rm {} \;
+
+   ... I see the '/seconds since epoch value there which is 
+useful to reduce ...
+
+ 	find path/to/logfiles -name &quot;C-test*[0-9][0-9]{11}_st[DR]*&quot; \
+ 		-a -exec rm {} \;
+
+which says:
+
+starting at the path indicated, and travelling down the 
+filesystem, look for a file with a name of the pattern:
+ 	&quot;C-test*[0-9][0-9]{11}_st[DR]*&quot;
+and when found, remove it.  That needs a qualified, however, 
+to save perhaps only the last seven day's matches, so that one 
+can do diagnostics ...
+
+so let's add a symbolic minimum retention time, which might 
+be overridden by passing in a valie as an option (here: 
+arg1), and put this into a script
+
+#!/bin/sh
+#
+#	age out old diagnostic matter, for the x2go project
+#
+#	license: GPLv3+
+#	Copyright :R P Herrold &lt;info at owlriver dot com&gt;
+#
+#	default number of days back to retain log files for 
+AGE=7
+#	and permit a command line number passed in to alter 
+#	this
+[ 0${1} -gt 0] &amp;&amp; {
+ 	export AGE=${1}
+ 	}
+#
+LOGPATH=&quot;~&quot;
+#
+find ${LOGPATH} -name &quot;C-test*[0-9][0-9]{11}_st[DR]*&quot; \
+ 	-atime $AGE  -a -exec rm {} \;
+#
+
+This is not immediately tested as I am away from my office at 
+the moment, but it should work.  Note that in testing the 
+candidates for removal, oue might substitute:
+ 	echo
+for the:
+ 	rm
+in that command to see what would happen in a 'dry run'
+
+Hope this helps ...
+
+-- Russ herrold
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000858.html">[X2go-dev] cleaning sessions
+</A></li>
+	<LI>Next message: <A HREF="000865.html">[X2go-dev] cleaning sessions [logs, automatically]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#864">[ date ]</a>
+              <a href="thread.html#864">[ thread ]</a>
+              <a href="subject.html#864">[ subject ]</a>
+              <a href="author.html#864">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

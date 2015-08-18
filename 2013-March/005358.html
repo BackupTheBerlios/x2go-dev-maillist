@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Can't connect after latest updates
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Can%27t%20connect%20after%20latest%20updates&In-Reply-To=%3CCAAWyt1p%3DPKae3xzhiMzf%3Db0-R4GbjdKTumHk_bvh5%2BiMStBcfw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005357.html">
+   <LINK REL="Next"  HREF="005360.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Can't connect after latest updates</H1>
+    <B>Daniel Lindgren</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Can%27t%20connect%20after%20latest%20updates&In-Reply-To=%3CCAAWyt1p%3DPKae3xzhiMzf%3Db0-R4GbjdKTumHk_bvh5%2BiMStBcfw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Can't connect after latest updates">bd.dali at gmail.com
+       </A><BR>
+    <I>Thu Mar 28 15:31:14 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005357.html">[X2Go-Dev] Can't connect after latest updates
+</A></li>
+        <LI>Next message: <A HREF="005360.html">[X2Go-Dev] Bug#152: Add status={S,	R] to session profile list items when returned through X2Go Session	Broker
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5358">[ date ]</a>
+              <a href="thread.html#5358">[ thread ]</a>
+              <a href="subject.html#5358">[ subject ]</a>
+              <a href="author.html#5358">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike, here's the link info:
+
+ls -al /usr/lib/nx/../x2go/bin/x2goagent
+
+lrwxrwxrwx 1 root root 83 mar 28 10:02 /usr/lib/nx/../x2go/bin/x2goagent -&gt;
+/var/cache/pbuilder/pbuilder-mnt/nx-libs-3.5.0.19/debian/tmp/usr/lib/nx/bin/nxagent
+
+I can check the other info too if you still need it.
+
+Cheers,
+Daniel
+
+
+2013/3/28 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+
+&gt;<i> HI Daniel,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Do 28 M&#228;r 2013 14:15:48 CET Mike Gabriel wrote:
+</I>&gt;<i>
+</I>&gt;<i>  Hi Daniel,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Do 28 M&#228;r 2013 13:17:08 CET Daniel Lindgren wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>  Reinstalled x2goserver, still no luck. This is logged in the session file
+</I>&gt;&gt;&gt;<i> on the client:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> NXPROXY - Version 3.5.0
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Copyright (C) 2001, 2010 NoMachine.
+</I>&gt;&gt;&gt;<i> See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Info: Proxy running in client mode with pid '6152'.
+</I>&gt;&gt;&gt;<i> Session: Starting session at 'Thu Mar 28 13:12:52 2013'.
+</I>&gt;&gt;&gt;<i> Info: Connecting to remote host 'localhost:30201'.
+</I>&gt;&gt;&gt;<i> Info: Connection to remote proxy 'localhost:30201' established.
+</I>&gt;&gt;&gt;<i> Loop: PANIC! The remote NX proxy closed the connection.
+</I>&gt;&gt;&gt;<i> Error: The remote NX proxy closed the connection.
+</I>&gt;&gt;&gt;<i> Loop: PANIC! Failure negotiating the session in stage '7'.
+</I>&gt;&gt;&gt;<i> Error: Failure negotiating the session in stage '7'.
+</I>&gt;&gt;&gt;<i> Loop: PANIC! Wrong version or invalid session authentication cookie.
+</I>&gt;&gt;&gt;<i> Error: Wrong version or invalid session authentication cookie.
+</I>&gt;&gt;&gt;<i> Session: Terminating session at 'Thu Mar 28 13:12:52 2013'.
+</I>&gt;&gt;&gt;<i> Session: Session terminated at 'Thu Mar 28 13:12:52 2013'.
+</I>&gt;&gt;&gt;<i> NXTransDialog: WARNING! Couldn't start '/usr/NX/bin/nxclient'. Error is 2
+</I>&gt;&gt;&gt;<i> 'No such file or directory'.
+</I>&gt;&gt;&gt;<i> Warning: Couldn't start '/usr/NX/bin/nxclient'. Error is 2 'No such file
+</I>&gt;&gt;&gt;<i> or
+</I>&gt;&gt;&gt;<i> directory'.
+</I>&gt;&gt;&gt;<i> NXTransDialog: WARNING! Trying with path
+</I>&gt;&gt;&gt;<i> '/usr/NX/bin:/opt/NX/bin:/usr/**local/NX/bin:/usr/local/bin:/**
+</I>&gt;&gt;&gt;<i> usr/bin:/bin:/usr/local/games:**/usr/games'.
+</I>&gt;&gt;&gt;<i> Warning: Trying with path
+</I>&gt;&gt;&gt;<i> '/usr/NX/bin:/opt/NX/bin:/usr/**local/NX/bin:/usr/local/bin:/**
+</I>&gt;&gt;&gt;<i> usr/bin:/bin:/usr/local/games:**/usr/games'.
+</I>&gt;&gt;&gt;<i> NXTransDialog: WARNING! Couldn't start 'nxclient'. Error is 2 'No such
+</I>&gt;&gt;&gt;<i> file
+</I>&gt;&gt;&gt;<i> or directory'.
+</I>&gt;&gt;&gt;<i> Warning: Couldn't start 'nxclient'. Error is 2 'No such file or
+</I>&gt;&gt;&gt;<i> directory'.
+</I>&gt;&gt;&gt;<i> NXTransDialog: WARNING! Trying with path
+</I>&gt;&gt;&gt;<i> '/usr/NX/bin:/opt/NX/bin:/usr/**local/NX/bin:/usr/NX/bin:/opt/**
+</I>&gt;&gt;&gt;<i> NX/bin:/usr/local/NX/bin:/usr/**local/bin:/usr/bin:/bin:/usr/**
+</I>&gt;&gt;&gt;<i> local/games:/usr/games'.
+</I>&gt;&gt;&gt;<i> Warning: Trying with path
+</I>&gt;&gt;&gt;<i> '/usr/NX/bin:/opt/NX/bin:/usr/**local/NX/bin:/usr/NX/bin:/opt/**
+</I>&gt;&gt;&gt;<i> NX/bin:/usr/local/NX/bin:/usr/**local/bin:/usr/bin:/bin:/usr/**
+</I>&gt;&gt;&gt;<i> local/games:/usr/games'.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Cheers,
+</I>&gt;&gt;&gt;<i> Daniel
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i> I can confirm this issue.
+</I>&gt;<i>
+</I>&gt;<i> Do a
+</I>&gt;<i>
+</I>&gt;<i>   ls -al /usr/lib/nx/../x2go/bin/**x2goagent
+</I>&gt;<i>
+</I>&gt;<i> to see what the problem is. This symlink somehow gets set wrongly during
+</I>&gt;<i> the package build process.
+</I>&gt;<i>
+</I>&gt;<i> Will check in a minute.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+</I>&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130328/ebe70a62/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130328/ebe70a62/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005357.html">[X2Go-Dev] Can't connect after latest updates
+</A></li>
+	<LI>Next message: <A HREF="005360.html">[X2Go-Dev] Bug#152: Add status={S,	R] to session profile list items when returned through X2Go Session	Broker
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5358">[ date ]</a>
+              <a href="thread.html#5358">[ thread ]</a>
+              <a href="subject.html#5358">[ subject ]</a>
+              <a href="author.html#5358">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

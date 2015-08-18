@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Desktop sharing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Desktop%20sharing&In-Reply-To=%3C4BF000EB.9030903%40x2go.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000463.html">
+   <LINK REL="Next"  HREF="000457.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Desktop sharing</H1>
+    <B>Heinz-M. Graesing</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Desktop%20sharing&In-Reply-To=%3C4BF000EB.9030903%40x2go.org%3E"
+       TITLE="[X2go-dev] Desktop sharing">x2go-dev at x2go.org
+       </A><BR>
+    <I>Sun May 16 16:27:55 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000463.html">[X2go-dev] Desktop sharing
+</A></li>
+        <LI>Next message: <A HREF="000457.html">[X2go-dev] Wow!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#464">[ date ]</a>
+              <a href="thread.html#464">[ thread ]</a>
+              <a href="subject.html#464">[ subject ]</a>
+              <a href="author.html#464">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Jo-Erlend,
+
+Am 15.05.2010 14:45, schrieb Jo-Erlend Schinstad:
+
+&gt;<i> Could you elaborate a bit on the Firefox plugin? Will it be something
+</I>&gt;<i> like Nomachines NX Web Companion that enables you to download and
+</I>&gt;<i> install a userspace NX client and use it directly from the web? Will
+</I>&gt;<i> this plugin work on all platforms?
+</I>&gt;<i> 
+</I>
+The x2goplugin is an firefox plugin and uses the xpi (firefox addon)
+installation routine. It makes it possible to embedd x2go session into
+websites itself or to show them outside the browser in an own window.
+Sessions can be resized - even inside the website - for example inside a
+resizeable &lt;div&gt;&lt;/div&gt;
+It is executed in userspace. All components will be inside the
+extensions directory. It will be listed as add on and can easily be removed.
+It'll be available for windows 32 and linux 64 and 32 bit. I don't know
+at the moment if the macOS version will be possible - maybe as a reduced
+version (no pulseaudio, no website embedding,...)
+The configuration can be delivered via the webserver (as an *.x2go file)
+and every feature of x2go is supported (bidirectional audio, sshfs,
+x2goprint,...).
+We'll provide a *.js file which can ask the user to install the plugin.
+As it is at the moment not possible to host the plugin (only add ons)on
+the mozilla site, we'll make it accessible on our site.
+
+I hope this will help - feel free to ask again.
+
+best regards,
+
+Heinz
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000463.html">[X2go-dev] Desktop sharing
+</A></li>
+	<LI>Next message: <A HREF="000457.html">[X2go-dev] Wow!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#464">[ date ]</a>
+              <a href="thread.html#464">[ thread ]</a>
+              <a href="subject.html#464">[ subject ]</a>
+              <a href="author.html#464">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

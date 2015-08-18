@@ -1,0 +1,263 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] Prettify x2goclient.pro. Build universal on OS X.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Prettify%20x2goclient.pro.%20Build%20universal%20on%20OS%20X.&In-Reply-To=%3C4F4A0AD3.3020400%40ionic.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003671.html">
+   <LINK REL="Next"  HREF="003666.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] Prettify x2goclient.pro. Build universal on OS X.</H1>
+    <B>Mihai Moldovan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Prettify%20x2goclient.pro.%20Build%20universal%20on%20OS%20X.&In-Reply-To=%3C4F4A0AD3.3020400%40ionic.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] Prettify x2goclient.pro. Build universal on OS X.">ionic at ionic.de
+       </A><BR>
+    <I>Sun Feb 26 11:34:59 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003671.html">[X2Go-Dev] Sending patches (Was: Fix compilation of nxcomp on Mac OS X 10.5.)
+</A></li>
+        <LI>Next message: <A HREF="003666.html">[X2Go-Dev] [PATCH] Prettify x2goclient.pro. Build universal on OS X.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3645">[ date ]</a>
+              <a href="thread.html#3645">[ thread ]</a>
+              <a href="subject.html#3645">[ subject ]</a>
+              <a href="author.html#3645">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Use the Mac OS X 10.5 SDK instead 10.6 to remain compatible with
+Leopard.
+
+Signed-off-by: Mihai Moldovan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">ionic at ionic.de</A>&gt;
+---
+ x2goclient.pro |  141
+++++++++++++++++++++++++++++---------------------------
+ 1 files changed, 72 insertions(+), 69 deletions(-)
+
+diff --git a/x2goclient.pro b/x2goclient.pro
+index 5c96688..2bb7cdc 100755
+--- a/x2goclient.pro
++++ b/x2goclient.pro
+@@ -33,76 +33,76 @@ HEADERS += configdialog.h \
+            userbutton.h \
+        x2goclientconfig.h \
+        x2gologdebug.h \
+- printprocess.h \
+- cupsprint.h \
+- cupsprintwidget.h \
+- cupsprintersettingsdialog.h \
+- printwidget.h \
+- printercmddialog.h \
+- printdialog.h \
+- wapi.h \
+- sessionwidget.h \
+- configwidget.h \
+- connectionwidget.h \
+- settingswidget.h \
+- sharewidget.h \
+- clicklineedit.h \
+- httpbrokerclient.h \
+- ongetpass.h \
+- onmainwindow_privat.h \
+- x2gosettings.h \
+- brokerpassdlg.h \
+- contest.h \
+- xsettingswidget.h
++           printprocess.h \
++           cupsprint.h \
++           cupsprintwidget.h \
++           cupsprintersettingsdialog.h \
++           printwidget.h \
++           printercmddialog.h \
++           printdialog.h \
++           wapi.h \
++           sessionwidget.h \
++           configwidget.h \
++           connectionwidget.h \
++           settingswidget.h \
++           sharewidget.h \
++           clicklineedit.h \
++           httpbrokerclient.h \
++           ongetpass.h \
++           onmainwindow_privat.h \
++           x2gosettings.h \
++           brokerpassdlg.h \
++           contest.h \
++           xsettingswidget.h
+ 
+ SOURCES += sharewidget.cpp \
+- settingswidget.cpp\
+- configwidget.cpp \
+- sessionwidget.cpp \
+- connectionwidget.cpp \
+- configdialog.cpp \
+- editconnectiondialog.cpp \
+- exportdialog.cpp \
+- imgframe.cpp \
+- LDAPSession.cpp \
+- onmainwindow.cpp \
+- onmainwindow_part2.cpp \
+- onmainwindow_part3.cpp \
+- onmainwindow_part4.cpp \
+- sessionbutton.cpp \
+- sessionmanagedialog.cpp \
+- sshmasterconnection.cpp \
+- sshprocess.cpp \
+- SVGFrame.cpp \
+- userbutton.cpp \
+- x2gologdebug.cpp \
+- printprocess.cpp \
+- cupsprint.cpp \
+- cupsprintwidget.cpp \
+- cupsprintersettingsdialog.cpp \
+- printwidget.cpp \
+- printercmddialog.cpp \
+- printdialog.cpp \
+- wapi.cpp \
+- clicklineedit.cpp \
+- httpbrokerclient.cpp \
+- ongetpass.cpp \
+- x2gosettings.cpp \
+- brokerpassdlg.cpp \
+- contest.cpp \
+- xsettingswidget.cpp
++           settingswidget.cpp\
++           configwidget.cpp \
++           sessionwidget.cpp \
++           connectionwidget.cpp \
++           configdialog.cpp \
++           editconnectiondialog.cpp \
++           exportdialog.cpp \
++           imgframe.cpp \
++           LDAPSession.cpp \
++           onmainwindow.cpp \
++           onmainwindow_part2.cpp \
++           onmainwindow_part3.cpp \
++           onmainwindow_part4.cpp \
++           sessionbutton.cpp \
++           sessionmanagedialog.cpp \
++           sshmasterconnection.cpp \
++           sshprocess.cpp \
++           SVGFrame.cpp \
++           userbutton.cpp \
++           x2gologdebug.cpp \
++           printprocess.cpp \
++           cupsprint.cpp \
++           cupsprintwidget.cpp \
++           cupsprintersettingsdialog.cpp \
++           printwidget.cpp \
++           printercmddialog.cpp \
++           printdialog.cpp \
++           wapi.cpp \
++           clicklineedit.cpp \
++           httpbrokerclient.cpp \
++           ongetpass.cpp \
++           x2gosettings.cpp \
++           brokerpassdlg.cpp \
++           contest.cpp \
++           xsettingswidget.cpp
+ 
+ LIBS += -lssh
+ 
+ plugin {
+-TARGET = x2goplugin
++    TARGET = x2goplugin
+ }
+-else{
+-RC_FILE = x2goclient.rc
+-SOURCES += x2goclient.cpp
+-TARGET = x2goclient
+-DEFINES += CFGCLIENT
+-message(if you want to build x2goplugin you should export
+X2GO_CLIENT_TARGET=plugin)
++else {
++    RC_FILE = x2goclient.rc
++    SOURCES += x2goclient.cpp
++    TARGET = x2goclient
++    DEFINES += CFGCLIENT
++    message(if you want to build x2goplugin you should export
+X2GO_CLIENT_TARGET=plugin)
+ }
+ 
+ TEMPLATE = app
+@@ -127,7 +127,8 @@ x2go_linux_static {
+ 
+ macx {
+     message(building $$TARGET with ldap and cups)
+-    LIBS += -lldap -lcups
++    LIBS += -framework LDAP -lcups -lcrypto -lssl -lz
++    CONFIG += x86 x86_64
+ }
+ win32-* {
+     message(building $$TARGET for windows without ldap and cups)
+@@ -135,13 +136,14 @@ win32-* {
+     CONFIG += static release
+ }
+ QT += svg network
+-ICON =icons/x2go-mac.icns
+-QMAKE_MAC_SDK =/Developer/SDKs/MacOSX10.6.sdk
++ICON = icons/x2go-mac.icns
++QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.5.sdk
++QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.5
+ 
+ 
+-plugin{
++plugin {
++   DEFINES += CFGPLUGIN
+ 
+-DEFINES += CFGPLUGIN
+    linux-g++ {
+       include(qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
+    }
+@@ -153,5 +155,6 @@ DEFINES += CFGPLUGIN
+          CONFIG += qaxserver
+          include(qtbrowserplugin-2.4_1-opensource/src/qtbrowserplugin.pri)
+    }
+-RC_FILE = x2goplugin.rc
++
++   RC_FILE = x2goplugin.rc
+ }
+-- 
+1.7.9
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4369 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120226/e8dcede7/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120226/e8dcede7/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003671.html">[X2Go-Dev] Sending patches (Was: Fix compilation of nxcomp on Mac OS X 10.5.)
+</A></li>
+	<LI>Next message: <A HREF="003666.html">[X2Go-Dev] [PATCH] Prettify x2goclient.pro. Build universal on OS X.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3645">[ date ]</a>
+              <a href="thread.html#3645">[ thread ]</a>
+              <a href="subject.html#3645">[ subject ]</a>
+              <a href="author.html#3645">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

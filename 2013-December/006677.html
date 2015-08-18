@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Do we really need an x2gouser
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Do%20we%20really%20need%20an%20x2gouser&In-Reply-To=%3CCAJ0cceb5vH5uTsKVHXWDMsbSzqg3GXs0VDi6nG4FMCra3giwYQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006676.html">
+   <LINK REL="Next"  HREF="006680.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Do we really need an x2gouser</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Do%20we%20really%20need%20an%20x2gouser&In-Reply-To=%3CCAJ0cceb5vH5uTsKVHXWDMsbSzqg3GXs0VDi6nG4FMCra3giwYQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Do we really need an x2gouser">siretart at gmail.com
+       </A><BR>
+    <I>Sun Dec 15 00:48:33 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006676.html">[X2Go-Dev] Do we really need an x2gouser
+</A></li>
+        <LI>Next message: <A HREF="006680.html">[X2Go-Dev] Do we really need an x2gouser
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6677">[ date ]</a>
+              <a href="thread.html#6677">[ thread ]</a>
+              <a href="subject.html#6677">[ subject ]</a>
+              <a href="author.html#6677">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Oleksandr,
+
+Thank you very much for your email. I see the confusion. Yes, my site
+has a centralized user management in the sense that all users are in
+/etc/passwd but distributed via some configuration mechanism. This
+means that we do not use LDAP, and the user database is imported from
+somewhere else. I hesitate to use postgres because I feel it is quite
+complex to setup. Also, we use dedicated VMs for each user, so there
+is no need server pooling or the like.
+
+I understand from your email that the sqlite database is used to
+figure out what are the free X11 display ports. Is this correct? Would
+probing for a free port work as well? If yes, then let's have every
+user have its own sqlite.
+
+Please let me know what you think.
+Reinhard
+
+
+On Sat, Dec 14, 2013 at 6:26 PM, Oleksandr Shneyder
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">o.shneyder at phoca-gmbh.de</A>&gt; wrote:
+&gt;<i> Hello Reinhard,
+</I>&gt;<i>
+</I>&gt;<i> in central DB different sessions information is stored. For example,
+</I>&gt;<i> used display numbers and ports. x2gostartagent look in the DB when
+</I>&gt;<i> assigning display and ports for new sessions. Historical x2ho has only
+</I>&gt;<i> postgresql support. In postgres version users have access only to his
+</I>&gt;<i> own entries in sessions table. sqlite support was developed for small
+</I>&gt;<i> one-server installation wheres installing of postgresql is oversized. To
+</I>&gt;<i> avoid users modify session data only user &quot;x2gouser&quot; has direct access
+</I>&gt;<i> to DB. For complex setups with central user administrations you should
+</I>&gt;<i> use postgresql instead of sqlite.
+</I>&gt;<i>
+</I>&gt;<i> regards
+</I>&gt;<i> Alex
+</I>&gt;<i>
+</I>&gt;<i> Am 14.12.2013 23:26, schrieb Reinhard Tartler:
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> can someone please remind me again why we need a sqlite database that
+</I>&gt;&gt;<i> is shared for all users? It allows users to see what other users are
+</I>&gt;&gt;<i> currently having running sessions, which I frankly don't consider very
+</I>&gt;&gt;<i> important. It could even be considered a privacy issue.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> If there isn't a good reason for a shared database, why don't we have
+</I>&gt;&gt;<i> x2go users have their own sqlite database in their home directory?
+</I>&gt;&gt;<i> This would allow to get rid of the x2go user and all suid/sgid
+</I>&gt;&gt;<i> complexity that comes with it.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Background, I'm trying to have my new employer deploy x2go, and I'm
+</I>&gt;&gt;<i> currently having trouble to explain this point. I understand that the
+</I>&gt;&gt;<i> current printing implementation requires the x2goprint user, but
+</I>&gt;&gt;<i> that's not an issue right now.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thanks, and greetings from NYC!
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> ----------------------------------------------------
+</I>&gt;<i> Oleksandr Shneyder  | Email: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">o.shneyder at phoca-gmbh.de</A>
+</I>&gt;<i> phoca GmbH          | Tel. : 0911 - 14870374 0
+</I>&gt;<i> Br&#228;uhausgasse 9     | Fax. : 0911 - 14870374 9
+</I>&gt;<i> D-82205 Gilching    | Mobil: 0163 - 49 64 461
+</I>&gt;<i>
+</I>&gt;<i> Gesch&#228;ftsf&#252;hrung:
+</I>&gt;<i> Dipl.-Inf. Oleksandr Shneyder
+</I>&gt;<i>
+</I>&gt;<i> Amtsgericht M&#252;nchen | <A HREF="http://www.phoca-gmbh.de">http://www.phoca-gmbh.de</A>
+</I>&gt;<i> HRB 196 658         | <A HREF="http://www.x2go.org">http://www.x2go.org</A>
+</I>&gt;<i> USt-IdNr.: DE281977973
+</I>&gt;<i> ----------------------------------------------------
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+
+-- 
+regards,
+    Reinhard
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006676.html">[X2Go-Dev] Do we really need an x2gouser
+</A></li>
+	<LI>Next message: <A HREF="006680.html">[X2Go-Dev] Do we really need an x2gouser
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6677">[ date ]</a>
+              <a href="thread.html#6677">[ thread ]</a>
+              <a href="subject.html#6677">[ subject ]</a>
+              <a href="author.html#6677">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

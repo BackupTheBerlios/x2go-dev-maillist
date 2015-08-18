@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#375: Bug#375: Bug#375: x2gothinclient does not	install 686 kernel
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23375%3A%20Bug%23375%3A%20Bug%23375%3A%20x2gothinclient%20does%20not%0A%09install%20686%20kernel&In-Reply-To=%3CCAFJm-UN8%2BkA4p%2BQWxzELawiN9geHTVAwSnZ2FfZCk59yrPZjMw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006716.html">
+   <LINK REL="Next"  HREF="006710.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#375: Bug#375: Bug#375: x2gothinclient does not	install 686 kernel</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23375%3A%20Bug%23375%3A%20Bug%23375%3A%20x2gothinclient%20does%20not%0A%09install%20686%20kernel&In-Reply-To=%3CCAFJm-UN8%2BkA4p%2BQWxzELawiN9geHTVAwSnZ2FfZCk59yrPZjMw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#375: Bug#375: Bug#375: x2gothinclient does not	install 686 kernel">abo at dsl.dk
+       </A><BR>
+    <I>Tue Dec 17 14:26:37 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006716.html">[X2Go-Dev] Bug#375: Bug#375: x2gothinclient does not install 686	kernel
+</A></li>
+        <LI>Next message: <A HREF="006710.html">[X2Go-Dev] Bug#370: X2Go issue (in src:nx-libs) has been marked as	pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6719">[ date ]</a>
+              <a href="thread.html#6719">[ thread ]</a>
+              <a href="subject.html#6719">[ subject ]</a>
+              <a href="author.html#6719">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+
+As the machines used as thin clients grow ever more powerful, at the same
+price and energy usage, the features available also keeps expanding. I have
+recently bought a Shuttle machine, that is physically smaller than my
+current thin clients, comes with the Atom D2550 (one of the newer Atom
+CPUs) which has two cores. I also put in 4gb of RAM, since it was almost
+the same price as a 2gb RAM module. Like Stephan wrote, without 686 (and in
+this case PAE) that system wouldn't be properly utilized. Even if it is
+somewhat overpowered for a thin client. As a side note, I am also testing
+out the Intel NUC
+DCCP847DYE&lt;<A HREF="http://www.intel.com/content/www/us/en/motherboards/desktop-motherboards/desktop-kit-dccp847dye.html">http://www.intel.com/content/www/us/en/motherboards/desktop-motherboards/desktop-kit-dccp847dye.html</A>&gt;
+which
+is a dual core celeron, but it is so small and (like the Shuttle)
+completely silent, but does not offer sound out, other than over HDMI.
+Anyways, it is a matter of properly utilizing the hardware. It probably
+isn't that big a deal, but it would be nice to have.
+
+
+2013/12/17 Stephan Wagner &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">stephan.wagner at itos-gmbh.com</A>&gt;
+
+&gt;<i>  Hallo Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I prefer 686-Kernel on a 32bit System, as it supports multiple cores.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Stephan
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Tuesday, 17. December 2013, Mike Gabriel wrote:
+</I>&gt;<i>
+</I>&gt;<i> &gt; Control: tag -1 moreinfo
+</I>&gt;<i>
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> &gt; Hi Anders,
+</I>&gt;<i>
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> &gt; On Di 17 Dez 2013 11:23:31 CET, Anders Bruun Olsen wrote:
+</I>&gt;<i>
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; Package: x2gothinclientmanagement
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; Version: 1.1.0.1
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; I run my tftp/nfs server for my thin clients, on a 64-bit machine (a
+</I>&gt;<i> VM).
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; When I create a thinclient chroot with x2gothinclient_create, only the
+</I>&gt;<i> 486
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; kernel gets installed. I can use x2gothinclient_shell and use apt-get
+</I>&gt;<i> to
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; install linux-image-686, to get the 686 kernel installed. But upon
+</I>&gt;<i> doing
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; so, the reason for it not being auto installed is apparent: 64-bit
+</I>&gt;<i> machines
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; don't support PAE (not needed), and the deb package for linux-image-686
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; knows that this particular kernel is made for machines supporting PAE.
+</I>&gt;<i> I
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; can just say yes to the warnings, and I even though I end up with an
+</I>&gt;<i> error,
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; the kernel does get installed. This is not optimal.
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; I realize this is a problem (in this niche case, it probably &quot;works as
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; intended&quot;) with Debian Wheezy, and not really a job for the developers
+</I>&gt;<i> of
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; x2go, but since I am running into this problem when using x2go, I am
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; reporting the problem here, and hopefully it will be sent upstream, if
+</I>&gt;<i> that
+</I>&gt;<i>
+</I>&gt;<i> &gt; &gt; is desirable.
+</I>&gt;<i>
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> &gt; What is your reason for wanting to use the 686 kernel in the first
+</I>&gt;<i>
+</I>&gt;<i> &gt; place. The reason I removed 686 support from the X2Go TCE is that it
+</I>&gt;<i>
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> &gt; (a) did not bring any feelable improvements while my TCEs ran under
+</I>&gt;<i>
+</I>&gt;<i> &gt; Debian squeeze _and_
+</I>&gt;<i>
+</I>&gt;<i> &gt; (b) did not work fluently if the PXE server machine is a amd64 system
+</I>&gt;<i>
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> &gt; Please enlight me, why 686 would be a sensible kernel alternative to
+</I>&gt;<i>
+</I>&gt;<i> &gt; use here...
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> __________________________________________________
+</I>&gt;<i>
+</I>&gt;<i> Dr. Stephan Wagner
+</I>&gt;<i>
+</I>&gt;<i> ITos GmbH
+</I>&gt;<i>
+</I>&gt;<i> Bitzi-Bendel 2555
+</I>&gt;<i>
+</I>&gt;<i> 9642 Ebnat-Kappel
+</I>&gt;<i>
+</I>&gt;<i> Tel: +41 (0)71 990 05 94
+</I>&gt;<i>
+</I>&gt;<i> mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">swagner at itos-gmbh.com</A>
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://www.itos-gmbh.com">http://www.itos-gmbh.com</A>
+</I>&gt;<i>
+</I>&gt;<i> --------------------------------------------------
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131217/bab9c282/attachment-0001.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131217/bab9c282/attachment-0001.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006716.html">[X2Go-Dev] Bug#375: Bug#375: x2gothinclient does not install 686	kernel
+</A></li>
+	<LI>Next message: <A HREF="006710.html">[X2Go-Dev] Bug#370: X2Go issue (in src:nx-libs) has been marked as	pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6719">[ date ]</a>
+              <a href="thread.html#6719">[ thread ]</a>
+              <a href="subject.html#6719">[ subject ]</a>
+              <a href="author.html#6719">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

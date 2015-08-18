@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] BUG: when sharing local folders ~/media symlinks not as	expected
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BUG%3A%20when%20sharing%20local%20folders%20%7E/media%20symlinks%20not%0A%20as%09expected&In-Reply-To=%3C20100714111950.90921aoemp1ra3w6%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000797.html">
+   <LINK REL="Next"  HREF="000800.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] BUG: when sharing local folders ~/media symlinks not as	expected</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BUG%3A%20when%20sharing%20local%20folders%20%7E/media%20symlinks%20not%0A%20as%09expected&In-Reply-To=%3C20100714111950.90921aoemp1ra3w6%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] BUG: when sharing local folders ~/media symlinks not as	expected">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Jul 14 11:19:50 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000797.html">[X2go-dev] BUG: when sharing local folders ~/media symlinks not	as	expected
+</A></li>
+        <LI>Next message: <A HREF="000800.html">[X2go-dev] BUG: shared folder desktop link remains on desktop after suspend (BUG: when sharing local folders ~/media symlinks not as expected)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#799">[ date ]</a>
+              <a href="thread.html#799">[ thread ]</a>
+              <a href="subject.html#799">[ subject ]</a>
+              <a href="author.html#799">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi there,
+
+I will split the thread up into to parts...
+
+On Mi 14 Jul 2010 07:51:23 CEST Gerry Reno wrote:
+
+&gt;<i> On 07/14/2010 01:12 AM, Gerry Reno wrote:
+</I>&gt;&gt;<i> On 07/14/2010 12:38 AM, Gerry Reno wrote:
+</I>&gt;&gt;&gt;<i> On 07/13/2010 07:02 AM, Mike Gabriel wrote:
+</I>&gt;&gt;&gt;&gt;<i> Hi there,
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> testing the heuler x2go packages...
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Client system: Debian squeeze
+</I>&gt;&gt;&gt;&gt;<i> Server system: Ubuntu Lucid
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> 1.
+</I>&gt;&gt;&gt;&gt;<i> When sharing a local folder it gets mounted properly on the  
+</I>&gt;&gt;&gt;&gt;<i> client, but the symlinks in ~/media look weird:
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at vidar</A>:~/media$ tree -L 2
+</I>&gt;&gt;&gt;&gt;<i> .
+</I>&gt;&gt;&gt;&gt;<i> |
+</I>&gt;&gt;&gt;&gt;<i> |`- cd
+</I>&gt;&gt;&gt;&gt;<i> |
+</I>&gt;&gt;&gt;&gt;<i> |`- disk
+</I>&gt;&gt;&gt;&gt;<i> |   |
+</I>&gt;&gt;&gt;&gt;<i> |   `- _home_m.gabriel_test
+</I>&gt;&gt;&gt;&gt;<i> |
+</I>&gt;&gt;&gt;&gt;<i> `- rm
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Is this intended?
+</I>
+I looked into the x2gomountdirs script and this is intended...
+
+   cd -&gt; client-side CD-ROM
+   disk -&gt; client-side Hard-Disk
+   rm -&gt; client-side Removable Media
+
+For people that work with a unix shell the short terms ,,cd'' and  
+,,rm'' are really confusing (cd=Change Directory, rm=Remove File). I  
+wish, x2go would be more verbose here:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at vidar</A>:~/media$ tree -L 2
+.
+|<i>
+</I>|<i>`- CD+DVD-Rom
+</I>|<i>
+</I>|<i>`- Locally-Shared-Folder
+</I>|<i>   |
+</I>|<i>   `- _home_m.gabriel_test
+</I>|<i>
+</I>`- Removable-Media
+
+It might also be nice to have a config file for x2gomountdirs so that  
+the user can customize these names...
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+eMail-LeseSchreibStunde: wochentags 8h-10h
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000797.html">[X2go-dev] BUG: when sharing local folders ~/media symlinks not	as	expected
+</A></li>
+	<LI>Next message: <A HREF="000800.html">[X2go-dev] BUG: shared folder desktop link remains on desktop after suspend (BUG: when sharing local folders ~/media symlinks not as expected)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#799">[ date ]</a>
+              <a href="thread.html#799">[ thread ]</a>
+              <a href="subject.html#799">[ subject ]</a>
+              <a href="author.html#799">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

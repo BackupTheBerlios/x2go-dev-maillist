@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#354: Bug#354: Bug#354: Make x2goagent listening to	TCP connections configurable in x2goserver.conf
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23354%3A%20Bug%23354%3A%20Bug%23354%3A%20Make%20x2goagent%20listening%20to%0A%09TCP%20connections%20configurable%20in%20x2goserver.conf&In-Reply-To=%3C52A39369.8050408%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006554.html">
+   <LINK REL="Next"  HREF="006560.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#354: Bug#354: Bug#354: Make x2goagent listening to	TCP connections configurable in x2goserver.conf</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23354%3A%20Bug%23354%3A%20Bug%23354%3A%20Make%20x2goagent%20listening%20to%0A%09TCP%20connections%20configurable%20in%20x2goserver.conf&In-Reply-To=%3C52A39369.8050408%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Bug#354: Bug#354: Bug#354: Make x2goagent listening to	TCP connections configurable in x2goserver.conf">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Sat Dec  7 22:30:17 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006554.html">[X2Go-Dev] Bug#354: Bug#354: Bug#354: Make x2goagent listening to	TCP connections configurable in x2goserver.conf
+</A></li>
+        <LI>Next message: <A HREF="006560.html">[X2Go-Dev] Bug#354: Bug#354: Bug#354: Make x2goagent listening to	TCP connections configurable in x2goserver.conf
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6556">[ date ]</a>
+              <a href="thread.html#6556">[ thread ]</a>
+              <a href="subject.html#6556">[ subject ]</a>
+              <a href="author.html#6556">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 07.12.2013 21:47, schrieb Mike Gabriel:
+
+[copying the last paragraph of your mail to the top, b/c this is the 
+most important statement of it]
+ &gt; And Nick, I also think that you should seriously consider looking at
+ &gt; the security aspects of your current IT setup. It seems quite
+ &gt; hackable and you should really be sure that all of your staff
+ &gt; members are really good friends (which normally is not the case
+ &gt; for everyone at $WORK).
+
+This, this, and exactly this.
+
+
+[by Alexander Wuerstlein]
+&gt;&gt;<i> So I agree that even just having such an option hidden away somewhere
+</I>&gt;&gt;<i> would be very very bad. It needs to be hard and a lot of work to break
+</I>&gt;&gt;<i> security or somebody will do it by default and deploy it on a wide
+</I>&gt;&gt;<i> scale.
+</I>
+[from Mike]
+&gt;<i>  From a security point of view: is there really a severe difference in
+</I>&gt;<i> having to edit x2gostartagent or vs. x2goserver.conf as root to enable
+</I>&gt;<i> TCP listening for x2goagent?
+</I>
+Yes, there is. Putting it in the config file is convenient for the 
+security-ignorant folks. Disabling security features should never be 
+convenient.
+
+
+ &gt; If people want to deploy X2Go and need TCP
+&gt;<i> enabled they will do that anyway. You do not have to rebuild some binary
+</I>&gt;<i> to make that happen even, you just have to create a custom copy of
+</I>&gt;<i> x2gostartagent in /usr/local/bin.
+</I>
+And exactly that means extra work. Most security-ignorant folks are 
+security-ignorant because they are lazy, they just don't want to bother 
+with it.
+A config file remains in place during package upgrades.
+With x2gostartagent, they'll have to make sure that their copy in 
+/usr/local/bin gets pulled (And we should make it hard for them, by 
+specifying /usr/bin/x2gostartagent instead of x2gostartagent without a 
+path), or they have to change/patch /usr/bin/x2gostartagent with every 
+new package version.
+
+This means work. This means paying attention. Things that such folks 
+don't like. In fact, if we could, we should make disabling security on 
+X2Go a harder and more complex task than re-writing all those insecure 
+scripts the user might have. Sadly, we can't.
+
+
+&gt;<i> @Nick: The above may very well be your workaround...
+</I>
+And indeed it is, for a short-lived migration path.
+
+
+&gt;&gt;&gt;<i> In my opinion, Mike is a bit too customer-friendly here by turning
+</I>&gt;&gt;&gt;<i> your request into a wishlist item that lets every newbie shoot
+</I>&gt;&gt;&gt;<i> him-/herself in the foot, security-wise, by toggling a setting in
+</I>&gt;&gt;&gt;<i> the configuration.
+</I>&gt;<i>
+</I>&gt;<i> My current focus is to spread X2Go, get more people interested in X2Go
+</I>&gt;<i> and get more people interested in developing / financing X2Go. If I here
+</I>&gt;<i> of a use case that involves hundreds of users, then I am open to
+</I>&gt;<i> supporting that use case one way or another. I don't think making
+</I>&gt;<i> TCP-listening configurable is a security problem. Once you enable that
+</I>&gt;<i> option, you should be aware of what you are doing. For sure.
+</I>
+I'm saying it again, you're being too customer-friendly. In this 
+particular case, the issue can be fixed by locally patching 
+x2gostartagent. With more obscure stuff, you should tell them to 
+contract you or Alex for a forked x2go package and have them pay for the 
+B**ls**t they want. That way, we don't pollute our main codebase with 
+it, plus you get some extra cash.
+
+Man, where are my pills, I don't want to go into full Theo de Raadt mode ...
+
+
+&gt;<i> The Linux Mint argument does not really count to me, either. As a
+</I>&gt;<i> package maintainer of a linux distribution, I can do anything patchy to
+</I>&gt;<i> the upstream code I like. People with the Linux Mint attitude may very
+</I>&gt;<i> easily patch x2gostartagent and ship a TCP-listening X2Go Server by
+</I>&gt;<i> default in their package archive.
+</I>
+See above, it is extra work for them, an extra file outside the config 
+tree that they have to monitor for changes, etc. While we can't stop 
+them, we can at least make it hard for them to follow through with such 
+a plan.
+
+
+ &gt; Wouldn't it make more sense, having
+&gt;<i> that option configurable from the start then and providing the
+</I>&gt;<i> switch-off in an obvious place (i.e. a conffile)?
+</I>
+No. Just no.
+
+
+&gt;<i> My point is: if you want to enable TCP listening of x2goagent, you have
+</I>&gt;<i> to switch one line in x2gostartagent. What I propose is a config
+</I>&gt;<i> parameter for x2goserver.conf that avoids people from nastily hacking
+</I>&gt;<i> x2gostartagent.
+</I>
+Again, those who know what they are doing are already able to make the 
+change, and should realize the consequences (having to look for changes 
+in x2gostartagent with every new release).
+
+Those who do not know what they are doing should not be given access to 
+the setting.
+
+There's a reason why you need licenses for firearms, cars, airplanes, 
+etc. - and this is the software equivalent.
+If one has proven enough coding proficiency to have located the code 
+part in x2gostartagent, one is worthy of being allowed to change it on 
+one's own.
+If you have to ask here, you should either listen to the more 
+experienced folks telling you not to change it, or pay one of the core 
+developers for a fork, that's my opinion (and not being a core developer 
+myself, flames like &quot;you're a greedy a**h**e that thinks of X2Go users 
+as cash cows ready for milking&quot; directed at me are outright silly, so - 
+shove them, folks).
+
+-Stefan
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006554.html">[X2Go-Dev] Bug#354: Bug#354: Bug#354: Make x2goagent listening to	TCP connections configurable in x2goserver.conf
+</A></li>
+	<LI>Next message: <A HREF="006560.html">[X2Go-Dev] Bug#354: Bug#354: Bug#354: Make x2goagent listening to	TCP connections configurable in x2goserver.conf
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6556">[ date ]</a>
+              <a href="thread.html#6556">[ thread ]</a>
+              <a href="subject.html#6556">[ subject ]</a>
+              <a href="author.html#6556">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

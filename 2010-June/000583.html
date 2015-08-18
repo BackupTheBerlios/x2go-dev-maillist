@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] screen saver extension
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20screen%20saver%20extension&In-Reply-To=%3C19487.22433.210182.828292%40gargle.gargle.HOWL%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000581.html">
+   <LINK REL="Next"  HREF="000585.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] screen saver extension</H1>
+    <B>rf at q-leap.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20screen%20saver%20extension&In-Reply-To=%3C19487.22433.210182.828292%40gargle.gargle.HOWL%3E"
+       TITLE="[X2go-dev] screen saver extension">rf at q-leap.de
+       </A><BR>
+    <I>Mon Jun 21 14:14:25 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000581.html">[X2go-dev] screen saver extension
+</A></li>
+        <LI>Next message: <A HREF="000585.html">[X2go-dev] screen saver extension
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#583">[ date ]</a>
+              <a href="thread.html#583">[ thread ]</a>
+              <a href="subject.html#583">[ subject ]</a>
+              <a href="author.html#583">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;&gt;&gt;&gt;&gt;<i> &quot;Paul&quot; == Paul van der Vlis &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">paul at vandervlis.nl</A>&gt; writes:
+</I>
+Hi Paul,
+
+thanks for continued interest.
+
+    Paul&gt; Hello Roland, I asked some questions, you did not answer
+    Paul&gt; them. Maybe you can tell a bit more about your problem.
+
+in my reply a couple of weeks ago, I wrote (see also below):
+
+&quot;I know, some screensavers don't use the X11 screen saver
+ extension. But I need the program xprintidle to work which requires
+ this extension (see Ubuntu/Debian package xprintidle).&quot;
+
+If you start the program xprintidle, you get the message:
+
+$ xprintidle 
+screen saver extension not supported
+
+I need this program to work, because it will tell me the amount of X11 idle
+time from which I trigger some actions for other programs when a certain
+amount of idle time has passed.
+
+So the fact that some screensavers work, unfortunately doesn't help,
+since these obviously are programmed without needing the &quot;X11 screen
+saver extension&quot;.
+
+All this comes back to the final question: Is it possible to activate
+the extension (or other X11 extensions), and if yes how?
+
+Thanks,
+
+Roland
+
+    Paul&gt; I can remember I did some tests with the screensaver on both
+    Paul&gt; the client and in the session, but I did not see any problem.
+
+    Paul&gt; Maybe you mean something else then simply using a screensaver?
+    Paul&gt; I am not sure my screensaver is using the X11 screen saver
+    Paul&gt; extention.
+
+    Paul&gt; What is exactly this X11 screen saver extention and why do you
+    Paul&gt; need it?
+
+    Paul&gt; Are you using full-screen sessions or not, and what is you
+    Paul&gt; host-OS?
+
+    Paul&gt; With regards, Paul van der Vlis.
+
+
+    Paul&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">rf at q-leap.de</A> schreef:
+    &gt;&gt; Hi again,
+    &gt;&gt; 
+    &gt;&gt; is it really possible that nobody knows how to do this or whether
+    &gt;&gt; it is possible at all? I'd appreciate a short answer. Here the
+    &gt;&gt; question again:
+    &gt;&gt; 
+    &gt;&gt; Is it possible to start x2go with the X11 screen saver extension
+    &gt;&gt; enabled, and if yes, how?
+    &gt;&gt; 
+    &gt;&gt; Thanks,
+    &gt;&gt; 
+    &gt;&gt; Roland
+    &gt;&gt; 
+    &gt;&gt;&gt;&gt;&gt;&gt;&gt; &quot;Paul&quot; == Paul van der Vlis &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">paul at vandervlis.nl</A>&gt; writes:
+    Roland&gt; Hi Paul,
+    &gt;&gt; 
+    Roland&gt; thanks for your reply.
+    &gt;&gt; 
+    Roland&gt; Hi, I searched the web and mailing list archives, but didn't
+    Roland&gt; find an answer to my question: Is it possible to start x2go
+    Roland&gt; with the X11 screen saver extension enabled? I'd need it to
+    Roland&gt; get X11 idle time on the command line.
+    &gt;&gt; 
+    Roland&gt; does anybody have an idea about this, or is it just not
+    Roland&gt; possible with current versions of X2go?
+    &gt;&gt; 
+    Paul&gt; I've never tried it. What happends if you enable the screen
+    Paul&gt; saver?  Do you mean a screensaver on the client or in the
+    Paul&gt; session on the server?
+    &gt;&gt; 
+    Paul&gt; I've just tried it with the screensaver in the session
+    Paul&gt; enabled, and with a full-screen session. The screensaver did
+    Paul&gt; work without problems.
+    &gt;&gt; 
+    Roland&gt; I know, some screensavers don't use the X11 screen saver
+    Roland&gt; extension. But I need the program xprintidle to work which
+    Roland&gt; requires this extension (see Ubuntu/Debian package
+    Roland&gt; xprintidle).
+    &gt;&gt; _______________________________________________ X2go-dev mailing
+    &gt;&gt; list <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+    &gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+
+
+
+
+
+
+    Paul&gt; Met vriendelijke groet, Paul van der Vlis.
+
+
+
+
+    Paul&gt; -- <A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+    Paul&gt; _______________________________________________ X2go-dev
+    Paul&gt; mailing list <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+    Paul&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000581.html">[X2go-dev] screen saver extension
+</A></li>
+	<LI>Next message: <A HREF="000585.html">[X2go-dev] screen saver extension
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#583">[ date ]</a>
+              <a href="thread.html#583">[ thread ]</a>
+              <a href="subject.html#583">[ subject ]</a>
+              <a href="author.html#583">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

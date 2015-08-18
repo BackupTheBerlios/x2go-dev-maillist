@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go-keyring
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go-keyring&In-Reply-To=%3C20100718212933.208946i6sg61ksgt%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000834.html">
+   <LINK REL="Next"  HREF="000855.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go-keyring</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go-keyring&In-Reply-To=%3C20100718212933.208946i6sg61ksgt%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] x2go-keyring">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sun Jul 18 21:29:33 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000834.html">[X2go-dev] GIT for people that have used SVN so far...
+</A></li>
+        <LI>Next message: <A HREF="000855.html">[X2go-dev] x2goplugin not embedded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#843">[ date ]</a>
+              <a href="thread.html#843">[ thread ]</a>
+              <a href="subject.html#843">[ subject ]</a>
+              <a href="author.html#843">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi there,
+
+today I have created Debian/Ubuntu keyring packages for diverse  
+projects. Once I had the template package ready it didn't take much  
+time to create also a package for x2go:
+
+  x2go-keyring
+
+When creating the package I realized a non-standard situation with  
+x2go packages. As I understand it with Debian, you have maintainer  
+keys and keyring keys.
+
+The package maintainers sign .deb packages with their private gpg keys  
+(e.g. my key for <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>). If you have several  
+maintainers within a project then---depending on the changelog  
+entries---the maintainer who has modified a package signs it with his  
+key. That's what's the maintainer keys are for.
+
+For uploading packages to a repository a shared generic key for  
+signing repository files (Release.gpg etc.) is used (e.g.  
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">debian at das-netzwerkteam.de</A>). (Maybe someone can confirm if this key is  
+indeed shared...)
+
+However, the x2go repository files are also signed by Alex's  
+maintainer key as are the package files. To my understanding they  
+optimally should be signed by some generic key instead. If people will  
+share their work on one repository site replacing this key by a  
+generic key some time might be useful.
+
+Temporarily, in the x2go-keyring package I placed Alex's key as  
+maintainer key as well as keyring key. On install the package will  
+place two files on your system:
+
+    /usr/share/keyrings/x2go-keyring.gpg
+    /usr/share/keyrings/x2go-maintainers.gpg
+
+The key in the x2go-keyring.gpg file are then added to the APT keyring:
+apt-key add /usr/share/keyrings/x2go-keyring.gpg
+
+On package removal the keys in x2go-keyring.gpg are removed from the  
+APT keyring again.
+
+I will send a tar.gz to Alex, maybe Heinz and Alex will find a Debian  
+keyring for x2go packages useful and will place it on their server.
+
+@Alex: if you send me a generic x2go keyring key (e.g.  
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">debian at obviously-nice.de</A>) I can add it to the package and send you the  
+updated version.
+
+Best,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+eMail-LeseSchreibStunde: wochentags 8h-10h
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000834.html">[X2go-dev] GIT for people that have used SVN so far...
+</A></li>
+	<LI>Next message: <A HREF="000855.html">[X2go-dev] x2goplugin not embedded
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#843">[ date ]</a>
+              <a href="thread.html#843">[ thread ]</a>
+              <a href="subject.html#843">[ subject ]</a>
+              <a href="author.html#843">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

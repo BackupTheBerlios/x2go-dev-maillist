@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] [x2goserver] After upgrade to 3.0.1-1 no connection possible
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%5Bx2goserver%5D%20After%20upgrade%20to%203.0.1-1%20no%20connection%0A%20possible&In-Reply-To=%3C4A768458.3070309%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000070.html">
+   <LINK REL="Next"  HREF="000072.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] [x2goserver] After upgrade to 3.0.1-1 no connection possible</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%5Bx2goserver%5D%20After%20upgrade%20to%203.0.1-1%20no%20connection%0A%20possible&In-Reply-To=%3C4A768458.3070309%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] [x2goserver] After upgrade to 3.0.1-1 no connection possible">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Mon Aug  3 08:31:52 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000070.html">[X2go-dev] [x2goserver] After upgrade to 3.0.1-1 no connection	possible
+</A></li>
+        <LI>Next message: <A HREF="000072.html">[X2go-dev] [x2goserver] [solved] After upgrade to 3.0.1-1 no connection possible
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#71">[ date ]</a>
+              <a href="thread.html#71">[ thread ]</a>
+              <a href="subject.html#71">[ subject ]</a>
+              <a href="author.html#71">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Paul.
+
+Which database use you x2goserver?
+Since version 3.0.1-1 x2goserver support also sqlite. See file
+/etc/x2go/sql
+&quot;local&quot; is for postgres
+&quot;sqlite&quot; for sqlite
+
+if your x2goserver use postgres, check if postgresql running. You can
+also reinit your database with scripts in directory
+/usr/lib/x2go/script/
+
+x2gocreatebase.sh for postgresql
+x2gosqlite.sh for sqlite
+
+If you want use x2goserver with sqlite, you can also install package
+x2goserver-home
+
+Greetings
+
+Paul Menzel schrieb:
+&gt;<i> Subject: x2goserver: After upgrade to 3.0.1-1 no connection possible
+</I>&gt;<i> Package: x2goserver
+</I>&gt;<i> Version: 3.0.1-1
+</I>&gt;<i> Severity: normal
+</I>&gt;<i> 
+</I>&gt;<i> *** Please type your report below this line ***
+</I>&gt;<i> 
+</I>&gt;<i> Dear X2go hackers,
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I use Debian Sid/unstable and I upgraded all packages to 3.0.1-1 today
+</I>&gt;<i> and I am not able to get a connection anymore.
+</I>&gt;<i> 
+</I>&gt;<i> I tried the GTK client, but hitting Ok just leaves the blue backround
+</I>&gt;<i> and nothing happens.
+</I>&gt;<i> 
+</I>&gt;<i> $ x2goclient_gtk &amp;
+</I>&gt;<i> [1] 328
+</I>&gt;<i> (x2goclient_gtk:328): Gdk-CRITICAL **: gdk_drawable_copy_to_image: assertion `src_x &gt;= 0' failed
+</I>&gt;<i> ssh command: export HOSTNAME &amp;&amp; x2golistsessions
+</I>&gt;<i> x2gostartagent 1024x768 lan 16m-jpeg-9 unix-kde-depth_32 de pc105/de 0 R TERMINAL
+</I>&gt;<i> ssh command: x2gostartagent 1024x768 lan 16m-jpeg-9 unix-kde-depth_32 de pc105/de 0 R TERMINAL
+</I>&gt;<i> 
+</I>&gt;<i> I tried TERMINAL, GNOME and /usr/bin/xclock to no avail. I did not find
+</I>&gt;<i> anything useful ~/.x2go either.
+</I>&gt;<i> 
+</I>&gt;<i> NXPROXY seems to be working.
+</I>&gt;<i> 
+</I>&gt;<i> $ nxproxy -S
+</I>&gt;<i> 
+</I>&gt;<i> NXPROXY - Version 3.3.0
+</I>&gt;<i> 
+</I>&gt;<i> Copyright (C) 2001, 2007 NoMachine.
+</I>&gt;<i> See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+</I>&gt;<i> 
+</I>&gt;<i> Info: Proxy running in client mode with pid '29935'.
+</I>&gt;<i> Session: Starting session at 'Sat Aug  1 16:03:13 2009'.
+</I>&gt;<i> Info: Waiting for connection from any host on port '4008'.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Any help is appreciated.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Bests,
+</I>&gt;<i> 
+</I>&gt;<i> Paul
+</I>&gt;<i> 
+</I>&gt;<i> -- System Information:
+</I>&gt;<i> Debian Release: squeeze/sid
+</I>&gt;<i>   APT prefers unstable
+</I>&gt;<i>   APT policy: (500, 'unstable'), (1, 'experimental')
+</I>&gt;<i> Architecture: i386 (x86_64)
+</I>&gt;<i> 
+</I>&gt;<i> Kernel: Linux 2.6.30-1-amd64 (SMP w/2 CPU cores)
+</I>&gt;<i> Locale: LANG=de_DE.UTF-8, LC_CTYPE=de_DE.UTF-8 (charmap=UTF-8)
+</I>&gt;<i> Shell: /bin/sh linked to /bin/bash
+</I>&gt;<i> 
+</I>&gt;<i> Versions of packages x2goserver depends on:
+</I>&gt;<i> ii  lsof                       4.81.dfsg.1-1 List open files
+</I>&gt;<i> ii  ssh                        1:5.1p1-7     secure shell client and server (me
+</I>&gt;<i> ii  sudo                       1.7.2-2       Provide limited super user privile
+</I>&gt;<i> ii  x2goagent                  3.3.0-6-1     Special NX-ized client, was develo
+</I>&gt;<i> 
+</I>&gt;<i> Versions of packages x2goserver recommends:
+</I>&gt;<i> pn  sshfs                         &lt;none&gt;     (no description available)
+</I>&gt;<i> 
+</I>&gt;<i> x2goserver suggests no packages.
+</I>&gt;<i> 
+</I>&gt;<i> -- no debconf information
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------------------------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 260 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090803/022fa53c/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090803/022fa53c/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000070.html">[X2go-dev] [x2goserver] After upgrade to 3.0.1-1 no connection	possible
+</A></li>
+	<LI>Next message: <A HREF="000072.html">[X2go-dev] [x2goserver] [solved] After upgrade to 3.0.1-1 no connection possible
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#71">[ date ]</a>
+              <a href="thread.html#71">[ thread ]</a>
+              <a href="subject.html#71">[ subject ]</a>
+              <a href="author.html#71">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

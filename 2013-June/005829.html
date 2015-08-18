@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#243: SshMasterConnection::serverAuth:	ssh_clean_pubkey_hash not called
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23243%3A%20SshMasterConnection%3A%3AserverAuth%3A%0A%09ssh_clean_pubkey_hash%20not%20called&In-Reply-To=%3C51BE085E.1010208%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005828.html">
+   <LINK REL="Next"  HREF="005830.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#243: SshMasterConnection::serverAuth:	ssh_clean_pubkey_hash not called</H1>
+    <B>Heinrich Schuchardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23243%3A%20SshMasterConnection%3A%3AserverAuth%3A%0A%09ssh_clean_pubkey_hash%20not%20called&In-Reply-To=%3C51BE085E.1010208%40gmx.de%3E"
+       TITLE="[X2Go-Dev] Bug#243: SshMasterConnection::serverAuth:	ssh_clean_pubkey_hash not called">xypron.glpk at gmx.de
+       </A><BR>
+    <I>Sun Jun 16 20:47:58 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005828.html">[X2Go-Dev] Bug#242: Provide HTTP access to git repository
+</A></li>
+        <LI>Next message: <A HREF="005830.html">[X2Go-Dev] Bug#240: ecdsa-sha2-nistp256 not supported
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5829">[ date ]</a>
+              <a href="thread.html#5829">[ thread ]</a>
+              <a href="subject.html#5829">[ subject ]</a>
+              <a href="author.html#5829">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Version: 4.0.0.3
+Severity: normal
+
+As described on page
+<A HREF="http://api.libssh.org/master/group__libssh__session.html#ga07827fd70a51ddc4030364f220eb4c9c">http://api.libssh.org/master/group__libssh__session.html#ga07827fd70a51ddc4030364f220eb4c9c</A>
+it is necessary to call
+ssh_clean_pubkey_hash
+after obtaining a hash with
+ssh_get_pubkey_hash.
+
+In ssshmasterconnection.cpp, int SshMasterConnection::serverAuth
+this is missing instead free ( hash ) is called.
+
+Best regards
+
+Heinrich Schuchardt
+</PRE>
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005828.html">[X2Go-Dev] Bug#242: Provide HTTP access to git repository
+</A></li>
+	<LI>Next message: <A HREF="005830.html">[X2Go-Dev] Bug#240: ecdsa-sha2-nistp256 not supported
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5829">[ date ]</a>
+              <a href="thread.html#5829">[ thread ]</a>
+              <a href="subject.html#5829">[ subject ]</a>
+              <a href="author.html#5829">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Fwd:  MAC developers wanted
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fwd%3A%20%20MAC%20developers%20wanted&In-Reply-To=%3C4F443A33.9090500%40ionic.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003529.html">
+   <LINK REL="Next"  HREF="003612.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Fwd:  MAC developers wanted</H1>
+    <B>Mihai Moldovan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fwd%3A%20%20MAC%20developers%20wanted&In-Reply-To=%3C4F443A33.9090500%40ionic.de%3E"
+       TITLE="[X2Go-Dev] Fwd:  MAC developers wanted">ionic at ionic.de
+       </A><BR>
+    <I>Wed Feb 22 01:43:31 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003529.html">[X2Go-Dev] Fwd:  MAC developers wanted
+</A></li>
+        <LI>Next message: <A HREF="003612.html">[X2Go-Dev] Fwd: MAC developers wanted
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3607">[ date ]</a>
+              <a href="thread.html#3607">[ thread ]</a>
+              <a href="subject.html#3607">[ subject ]</a>
+              <a href="author.html#3607">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike
+
+Sorry for responding so late, but I didn't get around it yesterday.
+
+* On 19.02.2012 11:10 PM, Mike Gabriel wrote:
+&gt;<i> It might well be that localhost:0 is hardcoded in x2goclient for Mac.
+</I>&gt;<i> Not sure, though.
+</I>&gt;<i> Have you tried
+</I>&gt;<i>   DISPLAY=:0 x2goclient
+</I>&gt;<i> [...]
+</I>
+Nope, that won't work on OS X. Let me elaborate.
+
+OS X is not using X11 as all other UNIX(-like) systems do, but instead a
+proprietary drawing API called Cocoa (or the old, x86-only Carbon
+interface) based on the Quartz rendering/compositing engine.
+
+On other UNIX(-like) systems, Cocoa/Carbon would be (for instance)
+Gtk/Qt and Quartz the X11 server.
+
+In contrast to this, OS X does ship an X11 server, too, called
+&quot;XQuartz&quot;, which is using the Quartz rendering engine.
+
+Now that we covered Cocoa and Quartz, let's take a look at the Qt
+framework. Qt is essentially just another drawing API, providing
+widgets, manual drawing and whatnot. As you know, Qt can use the X11
+system as rendering backend. What you may not know, is that on OS X, Qt
+can also use Cocoa is a backend, acting as a compatibility/portability
+wrapper using the Cocoa API. If using those kinds of libraries, for
+instance with x2goclient, your application will *not* use the X11 server
+at all but instead paint directly via Cocoa to Quartz.
+
+Qt on OS X is most commonly used as this wrapper for Cocoa (because it
+works really well in that mode.) As such, x2goclient has also used this
+mode and I of course kept it this way.
+
+This means, that whenever x2goclient is started, it's using the native
+Cocoa/Quartz rendering engine and we naturally can not assume that the
+X11 server on this machine is actually running.
+
+Thus, the x2goclient code tries to start the X server first via a
+hardcoded path to startx (which sounds wrong to me, we should be using
+launchctl for that kind of stuff) and afterwards connecting to the
+hardcoded location TCP localhost:6000 (again, seems wrong, I'll try to
+get the current UNIX socket and connect to that instead or something
+like this.) Also, it should be noted that the environment variable
+DISPLAY it not used/handled in this code at all, so setting it is
+pointless (even more so for a Cocoa application. ;))
+
+I hope I could shed some light on the internals and outline the work I
+have planned.
+
+Best regards,
+
+
+Mihai
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4369 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120222/45063816/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120222/45063816/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003529.html">[X2Go-Dev] Fwd:  MAC developers wanted
+</A></li>
+	<LI>Next message: <A HREF="003612.html">[X2Go-Dev] Fwd: MAC developers wanted
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3607">[ date ]</a>
+              <a href="thread.html#3607">[ thread ]</a>
+              <a href="subject.html#3607">[ subject ]</a>
+              <a href="author.html#3607">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

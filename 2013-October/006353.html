@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] client inconsistencies when resizing GNOME sessions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20client%20inconsistencies%20when%20resizing%20GNOME%20sessions&In-Reply-To=%3CB9F65638-727B-48FA-9342-329322147286%40alum.mit.edu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006352.html">
+   <LINK REL="Next"  HREF="006366.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] client inconsistencies when resizing GNOME sessions</H1>
+    <B>Pedro Pinto</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20client%20inconsistencies%20when%20resizing%20GNOME%20sessions&In-Reply-To=%3CB9F65638-727B-48FA-9342-329322147286%40alum.mit.edu%3E"
+       TITLE="[X2Go-Dev] client inconsistencies when resizing GNOME sessions">ppinto at alum.mit.edu
+       </A><BR>
+    <I>Mon Oct 21 19:14:22 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006352.html">[X2Go-Dev] Bug#329: python-x2go does not appear to depend on	python-cups
+</A></li>
+        <LI>Next message: <A HREF="006366.html">[X2Go-Dev] client inconsistencies when resizing GNOME sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6353">[ date ]</a>
+              <a href="thread.html#6353">[ thread ]</a>
+              <a href="subject.html#6353">[ subject ]</a>
+              <a href="author.html#6353">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Guys,
+
+I've found some inconsistent X2GO client behaviour, and was hoping someone could shed 
+some light.
+
+In short, it seems that the C++ x2goclient for Mac is able to handle &quot;session resizing&quot; correctly, 
+but Pyhoca-GUI for Linux isn't, even though they are configured with exaclty the same 
+session parameters.
+
+Specifically:
+
+--- when I start a GNOME-fallback session using the Pyhoca-GUI for Linux, the 
+    remote desktop appears with a &quot;constant geometry&quot;, where resizing the local session 
+    window simply crops the view of the remote GNOME-fallback desktop.
+
+-- on the other hand, using the C++ x2go client for Mac, I can successfuly resize the 
+   local session window, and the remote GNOME-fallback desktop also resizes automatically.
+
+-- strangely, I can get Pyhoca-GUI to *also* resize properly if I do the following:
+
+     1) Start a GNOME-fallback session with the C++ x2goclient for Mac, then suspend the session.
+
+     2) Use Pyhoca-GUI for linux to resume the session in 1).  Then, Pyhoca-GUI is able 
+         to handle session resizing properly, ie, resizing the local session window will resize the 
+         remote GNOME desktop.
+
+This last point suggests that the resizing issue is not a GNOME bug, but an issue with the X2GO client.
+
+
+Also, let me mention how this relates to the bug in <A HREF="http://bugs.x2go.org/42.">http://bugs.x2go.org/42.</A>  
+Using the C++ x2goclient for Mac,  I verified that this happens:
+
+ o with GNOME3 the window appears in the expected size and then gets resized
+   from inside the starting up GNOME3 session
+but these don't:
+
+o I can manually resize the window afterwards via the client-side window
+   manager (play with your mouse on the window borders...)
+ o Still, the desktop shell inside does not adapt its size
+On the contrary, the C++ X2goclient is able to perform the auto-resizing correctly.
+
+Versions that I'm using:
+
+-- C++ X2goclient for Mac, version 4.0.1.0
+-- Pyhoca GUI for Linux, version 0.4.0.8
+-- x2goagent: 3.5.0.20
+-- x2goserver: 4.0.1.6
+-- x2goserver-extensions: 4.0.1.6
+-- x2goserver-pyhoca: 4.0.1.6
+-- x2goserver-xsession: 4.0.1.6
+
+
+A last, related question that perhaps someone can point me in the right direction:
+
+I'd like to implement a &quot;stretch/compress&quot; resizing behaviour, where:
+
+--- the resolution of the remote GNOME-fallback session is always constant (say 1280x720).
+--- when the user resizes the local session window, it does *not* modify the resolution of the 
+     remote GNOME-fallback session, but simply distorts it (stretch/compress) so that it fits 
+    the window exactly.
+
+Is this possible at all? If so, where should I start looking to implement this feature?
+    
+Many thanks,
+Pedro
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131021/5b8d991c/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131021/5b8d991c/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006352.html">[X2Go-Dev] Bug#329: python-x2go does not appear to depend on	python-cups
+</A></li>
+	<LI>Next message: <A HREF="006366.html">[X2Go-Dev] client inconsistencies when resizing GNOME sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6353">[ date ]</a>
+              <a href="thread.html#6353">[ thread ]</a>
+              <a href="subject.html#6353">[ subject ]</a>
+              <a href="author.html#6353">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

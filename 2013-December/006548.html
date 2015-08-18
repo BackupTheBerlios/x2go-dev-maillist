@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23354%3A%20Bug%23354%3A%20Make%20x2goagent%20listening%20to%20TCP%0A%09connections%20configurable%20in%20x2goserver.conf&In-Reply-To=%3C1386351855.74486.YahooMailNeo%40web122101.mail.ne1.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006545.html">
+   <LINK REL="Next"  HREF="006550.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf</H1>
+    <B>Nick Ingegneri</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23354%3A%20Bug%23354%3A%20Make%20x2goagent%20listening%20to%20TCP%0A%09connections%20configurable%20in%20x2goserver.conf&In-Reply-To=%3C1386351855.74486.YahooMailNeo%40web122101.mail.ne1.yahoo.com%3E"
+       TITLE="[X2Go-Dev] Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf">n_ingegneri at yahoo.com
+       </A><BR>
+    <I>Fri Dec  6 18:44:15 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006545.html">[X2Go-Dev] Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf
+</A></li>
+        <LI>Next message: <A HREF="006550.html">[X2Go-Dev] Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6548">[ date ]</a>
+              <a href="thread.html#6548">[ thread ]</a>
+              <a href="subject.html#6548">[ subject ]</a>
+              <a href="author.html#6548">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike, Stefan,
+
+
+Since I'm the one who brought this up, I'll try to be an advocate for why this change is a good thing for certain users.
+
+
+We are evaluating X2Go for use in an existing corporate technical compute environment. There is a shortcoming in our current thin client solution (not NX) and we need to identify a replacement. This environment contains hundreds of users, hundreds of systems, dozens of applications, and an uncountable number of scripts. X2Go is being considered against several alternatives.
+
+Whatever solution we choose has to work within the existing environment and support the existing workflow. Our current workflow uses a mixture of xhost and xauth to allow xclients to connect to xservers. While &quot;ssh -Y&quot; may technically be an elegant solution, requiring it would break our existing tools, processes, and scripts. Simply put, any thin client solution we deploy has to support TCP connections if it is to meet our requirement of not disrupting how work is currently done.
+
+I acknowledge that there is a security issue with TCP connections in X11, but that is an architectural issue with X11 itself and not with X2Go per se. If the developers of X2Go were to make TCP connections impossible then effectively the defined security model of X11 (as documented in places like the XSecurity and Xauth man pages) would be broken. TCP is part of how X11 works.
+
+Once it became apparent in our testing that exporting displays didn't work as expected, the system administrator who installed it went through the configuration files and documentation looking for a solution. He couldn't find one, so he escalated it to me to look into. If we hadn't been able to find a fix it would have ruled out X2Go from further consideration, which would have been unfortunate as it is currently our leading choice for this particular need.
+
+Hopefully the above helps persuade you that there is a need for some users to be able to continue to support the existing X11 security model (including TCP).
+
+If you accept that point, then it seems there should be a more elegant way of enabling TCP than editing the x2gostartagent file. As someone brand new to looking at the project, files like x2goagent.options or x2goserver.conf are the obvious places I would expect to find an option to make this change.
+
+Thanks,
+Nick
+
+
+
+
+
+On Friday, December 6, 2013 5:16 AM, Stefan Baur &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>&gt; wrote:
+ 
+Am 06.12.2013 13:06, schrieb Mike Gabriel:
+&gt;<i> The default should be ,,disabled'', of course. However, I think that we
+</I>&gt;<i> should support people that want to use X2Go in their setup as a
+</I>&gt;<i> replacement for *NX*. Making something configurable and putting a big
+</I>&gt;<i> red warning sign above the configuration should be ok IMHO.
+</I>
+&gt;<i> Feedback?
+</I>
+Is there no way of assisting this user in migrating away from NX, other 
+than raping our codebase like that?
+
+What's wrong with using ssh
+ -X / ssh -Y, which was
+ previously suggested 
+to the user?
+
+Maybe some more information on what the user is trying to accomplish 
+would help us come up with a better solution.
+
+
+-Stefan
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131206/b4580e29/attachment-0001.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131206/b4580e29/attachment-0001.html</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006545.html">[X2Go-Dev] Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf
+</A></li>
+	<LI>Next message: <A HREF="006550.html">[X2Go-Dev] Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6548">[ date ]</a>
+              <a href="thread.html#6548">[ thread ]</a>
+              <a href="subject.html#6548">[ subject ]</a>
+              <a href="author.html#6548">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

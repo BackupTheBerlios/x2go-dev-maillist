@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2go and Windows Client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20and%20Windows%20Client&In-Reply-To=%3C4CFCC366.1050007%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001331.html">
+   <LINK REL="Next"  HREF="001318.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2go and Windows Client</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20and%20Windows%20Client&In-Reply-To=%3C4CFCC366.1050007%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] X2go and Windows Client">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Mon Dec  6 12:05:10 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001331.html">[X2go-dev] X2go and Windows Client
+</A></li>
+        <LI>Next message: <A HREF="001318.html">[X2go-dev] X2GO and SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1332">[ date ]</a>
+              <a href="thread.html#1332">[ thread ]</a>
+              <a href="subject.html#1332">[ subject ]</a>
+              <a href="author.html#1332">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>--[ UxBoD ]-- schrieb:
+&gt;<i> ----- Original Message -----
+</I>&gt;<i> 
+</I>&gt;<i> Finally Qt rebuilt by running ./configure -static and then make. Once done I went to the X2go source directory ran a mingw32-make clean following by mingw32-make release and shortly after received the following error:
+</I>&gt;<i> 
+</I>&gt;<i> g++ -c -O2 -frtti -fexceptions -mthreads -Wall -DUNICODE -DQT_LARGEFILE_SUPPORT-DQT_NO_DEBUG -DQT_SVG_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB -DQT_THREAD_SUPPORT -DQT_NEEDS_QMAIN -I&quot;..\Qt-tatic\qt\include\QtCore&quot; -I&quot;..\Qt-Static\qt\include\QtNetwork&quot; -I&quot;..\Qt-Static\qt\include\QtGui&quot; -I&quot;..\Qt-Static\qt\include\QtSvg&quot; -I&quot;..\Qt-Static\qt\include&quot; -I&quot;.&quot; -I&quot;..\Qt-Static\qt\include\ActiveQt&quot; -I&quot;release&quot; -I&quot;.&quot; -I&quot;..\Qt-Static\qt\mkspecs\win32-g++&quot; -o release\onmainwindow.o onmainwindow.cpp
+</I>&gt;<i> In file included from onmainwindow.cpp:36:
+</I>&gt;<i> httpbrokerclient.h:44: error: `QSslError' was not declared in this scope
+</I>&gt;<i> httpbrokerclient.h:44: error: template argument 1 is invalid
+</I>&gt;<i> httpbrokerclient.h:44: error: ISO C++ forbids declaration of `errors' with no type
+</I>&gt;<i> mingw32-make[1]: *** [release/onmainwindow.o] Error 1
+</I>&gt;<i> mingw32-make[1]: Leaving directory `C:/x2goclient-3.01'
+</I>&gt;<i> mingw32-make: *** [release] Error 2
+</I>&gt;<i> 
+</I>&gt;<i> Any ideas ? This is on a clean copy of the X2go source without any of my modifications in it.
+</I>
+you must configure qt with ssl support
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 260 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101206/e7b6ab3b/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101206/e7b6ab3b/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001331.html">[X2go-dev] X2go and Windows Client
+</A></li>
+	<LI>Next message: <A HREF="001318.html">[X2go-dev] X2GO and SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1332">[ date ]</a>
+              <a href="thread.html#1332">[ thread ]</a>
+              <a href="subject.html#1332">[ subject ]</a>
+              <a href="author.html#1332">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

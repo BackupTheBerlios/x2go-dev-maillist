@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Problem with charsets (folder mapping - windows to linux)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Problem%20with%20charsets%20%28folder%20mapping%20-%20windows%20to%0A%20linux%29&In-Reply-To=%3C4BD52E7C.5010004%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000433.html">
+   <LINK REL="Next"  HREF="000435.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Problem with charsets (folder mapping - windows to linux)</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Problem%20with%20charsets%20%28folder%20mapping%20-%20windows%20to%0A%20linux%29&In-Reply-To=%3C4BD52E7C.5010004%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] Problem with charsets (folder mapping - windows to linux)">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Mon Apr 26 08:11:08 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000433.html">[X2go-dev] Problem with charsets (folder mapping - windows to linux)
+</A></li>
+        <LI>Next message: <A HREF="000435.html">[X2go-dev] Problem with charsets (folder mapping - windows to linux)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#434">[ date ]</a>
+              <a href="thread.html#434">[ thread ]</a>
+              <a href="subject.html#434">[ subject ]</a>
+              <a href="author.html#434">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex schrieb:
+&gt;<i> Hi, thank you for your project, it is amazing!
+</I>&gt;<i> Primarily, excuse me for my English.
+</I>&gt;<i> I have one problem with folder mapping...
+</I>&gt;<i> The situation is that I want to use x2go in Russia. And the mapping folders from
+</I>&gt;<i> Windows to linux hampered difference charsets (cp1251 and UTF-8).
+</I>&gt;<i> So, how can I mount the Windows folder converting in UTF-8?
+</I>&gt;<i> 
+</I>&gt;<i> there is such a fuse-convmvfs, but I do not know how to implement it in a script
+</I>&gt;<i> to mount the folder.
+</I>&gt;<i> 
+</I>&gt;<i> I am waiting for your help!
+</I>&gt;<i> Thanks!!!!
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+&#1047;&#1076;&#1088;&#1072;&#1074;&#1089;&#1090;&#1074;&#1091;&#1081;&#1090;&#1077; &#1040;&#1083;&#1077;&#1082;&#1089;,
+
+&#1050; &#1089;&#1086;&#1078;&#1072;&#1083;&#1077;&#1085;&#1080;&#1102; &#1103; &#1085;&#1077; &#1084;&#1086;&#1075;&#1091; &#1091; &#1089;&#1077;&#1073;&#1103; &#1088;&#1077;&#1087;&#1088;&#1086;&#1076;&#1091;&#1094;&#1080;&#1088;&#1086;&#1074;&#1072;&#1090;&#1100; &#1042;&#1072;&#1096;&#1091; &#1087;&#1088;&#1086;&#1073;&#1083;&#1077;&#1084;&#1091;, &#1087;&#1086;&#1089;&#1082;&#1086;&#1083;&#1100;&#1082;&#1091; &#1091;
+&#1084;&#1077;&#1085;&#1103; &#1085;&#1077;&#1090; &#1076;&#1086;&#1089;&#1090;&#1091;&#1087;&#1072; &#1082; &#1088;&#1091;&#1089;&#1089;&#1082;&#1080;&#1084; &#1074;&#1077;&#1088;&#1089;&#1080;&#1103;&#1084; windows, &#1085;&#1086; &#1077;&#1089;&#1083;&#1080; &#1042;&#1099; &#1079;&#1085;&#1072;&#1077;&#1090;&#1077;, &#1082;&#1072;&#1082;&#1080;&#1077;
+&#1087;&#1072;&#1088;&#1072;&#1084;&#1077;&#1090;&#1088;&#1099; &#1085;&#1091;&#1078;&#1085;&#1086; &#1087;&#1077;&#1088;&#1077;&#1076;&#1072;&#1090;&#1100; fuse &#1076;&#1083;&#1103; &#1087;&#1088;&#1072;&#1074;&#1080;&#1083;&#1100;&#1085;&#1086;&#1075;&#1086; &#1082;&#1086;&#1085;&#1074;&#1077;&#1088;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; &#1082;&#1086;&#1076;&#1080;&#1088;&#1086;&#1074;&#1086;&#1082;,
+&#1042;&#1099; &#1084;&#1086;&#1078;&#1077;&#1090;&#1077; &#1089;&#1076;&#1077;&#1083;&#1072;&#1090;&#1100; &#1101;&#1090;&#1086; &#1074; &#1089;&#1082;&#1088;&#1080;&#1087;&#1090;&#1077; &#1076;&#1083;&#1103; &#1084;&#1086;&#1085;&#1090;&#1080;&#1088;&#1086;&#1074;&#1072;&#1085;&#1080;&#1103; /usr/bin/x2gomountdirs.
+&#1055;&#1088;&#1080;&#1096;&#1083;&#1080;&#1090;&#1077; &#1084;&#1085;&#1077; &#1089;&#1076;&#1077;&#1083;&#1072;&#1085;&#1085;&#1099;&#1077; &#1042;&#1072;&#1084;&#1080; &#1080;&#1079;&#1084;&#1077;&#1085;&#1077;&#1085;&#1080;&#1103; &#1080; &#1103; &#1087;&#1086;&#1089;&#1084;&#1086;&#1090;&#1088;&#1102;, &#1089;&#1084;&#1086;&#1075;&#1091; &#1083;&#1080; &#1103; &#1074;&#1082;&#1083;&#1102;&#1095;&#1080;&#1090;&#1100;
+&#1080;&#1093; &#1074; &#1089;&#1083;&#1077;&#1076;&#1091;&#1102;&#1097;&#1080;&#1081; &#1088;&#1077;&#1083;&#1080;&#1079;.
+
+&#1057; &#1091;&#1074;&#1072;&#1078;&#1077;&#1085;&#1080;&#1077;&#1084;,
+
+&#1040;&#1083;&#1077;&#1082;&#1089;&#1072;&#1085;&#1076;&#1088; &#1064;&#1085;&#1077;&#1081;&#1076;&#1077;&#1088;
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 260 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100426/76e75768/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100426/76e75768/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000433.html">[X2go-dev] Problem with charsets (folder mapping - windows to linux)
+</A></li>
+	<LI>Next message: <A HREF="000435.html">[X2go-dev] Problem with charsets (folder mapping - windows to linux)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#434">[ date ]</a>
+              <a href="thread.html#434">[ thread ]</a>
+              <a href="subject.html#434">[ subject ]</a>
+              <a href="author.html#434">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

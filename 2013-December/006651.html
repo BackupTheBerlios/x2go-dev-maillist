@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go Client - new features and bugfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20-%20new%20features%20and%20bugfix&In-Reply-To=%3C52AAF87F.7000200%40phoca-gmbh.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006649.html">
+   <LINK REL="Next"  HREF="006652.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go Client - new features and bugfix</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20-%20new%20features%20and%20bugfix&In-Reply-To=%3C52AAF87F.7000200%40phoca-gmbh.de%3E"
+       TITLE="[X2Go-Dev] X2Go Client - new features and bugfix">o.shneyder at phoca-gmbh.de
+       </A><BR>
+    <I>Fri Dec 13 13:07:27 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006649.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+        <LI>Next message: <A HREF="006652.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6651">[ date ]</a>
+              <a href="thread.html#6651">[ thread ]</a>
+              <a href="subject.html#6651">[ subject ]</a>
+              <a href="author.html#6651">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Mike,
+
+this patch:
+
+<A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=6f9ead7cf9184799f0b6ae9ff1efd0c7b879d0c6">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=6f9ead7cf9184799f0b6ae9ff1efd0c7b879d0c6</A>
+
+should fix the issue.
+
+regards,
+Alex
+
+Am 13.12.2013 02:25, schrieb Michael DePaulo:
+&gt;<i> On Thu, Dec 12, 2013 at 8:20 AM, Oleksandr Shneyder
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">o.shneyder at phoca-gmbh.de</A>&gt; wrote:
+</I>&gt;&gt;<i> 1. Support for GSSApi (Kerberos 5) authentication.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commit;h=a77d761dbb16d28206e7c2446654539935746e4e">http://code.x2go.org/gitweb?p=x2goclient.git;a=commit;h=a77d761dbb16d28206e7c2446654539935746e4e</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It works on Linux, Windows (MIT Kerberos) and Mac. Unfortunately stable
+</I>&gt;&gt;<i> version of libssh not supporting gssapi yet. X2Go Client using OpenSSH
+</I>&gt;&gt;<i> client (ssh, scp) on Mac and Linux for GSSApi authentication. On Windows
+</I>&gt;&gt;<i> X2Go Client using CLI tools &quot;plink&quot; and &quot;pscp&quot;, which are the part of
+</I>&gt;&gt;<i> free and OS project PUTTY
+</I>&gt;&gt;<i> (<A HREF="http://www.chiark.greenend.org.uk/~sgtatham/putty/">http://www.chiark.greenend.org.uk/~sgtatham/putty/</A>)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> @Windows developers: please note that X2Go Client Windows build should
+</I>&gt;&gt;<i> include plink and pscp binaries, this binaries can be found here:
+</I>&gt;&gt;<i> <A HREF="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> As soon as gssapi support will be enabled in stable version of libssh,
+</I>&gt;&gt;<i> 3d-party ssh clients will be not used by X2Go Client any more.
+</I>&gt;<i> 
+</I>&gt;<i> Oleksandr,
+</I>&gt;<i> 
+</I>&gt;<i> 1st of all, thank you very much for implementing this! As someone with
+</I>&gt;<i> a windows AD domain at home and at work, this feature is extremely
+</I>&gt;<i> useful when it does work.
+</I>&gt;<i> 
+</I>&gt;<i> 2nd, as the new windows package maintainer, I uploaded
+</I>&gt;<i> x2goclient-4.0.1.2-pre03 (and x2goclient-4.0.1.2.interims-pre03) with
+</I>&gt;<i> the current plink.exe and pscp.exe (versions 0.63) to the x2go server.
+</I>&gt;<i> Mike Gabriel will most likely make this pre03 version available to
+</I>&gt;<i> publicly download tomorrow (he just went to bed.)
+</I>&gt;<i> 
+</I>&gt;<i> 3rd, it appears as if whenever plink has any sort of error, having
+</I>&gt;<i> GSSAPI auth enabled for the session crashes the Windows x2goclient. It
+</I>&gt;<i> took me a bunch of effort to make plink's GSSAPI authentication work,
+</I>&gt;<i> I intend to document this work on the wiki. Note that my setup is a
+</I>&gt;<i> Windows Server 2012 AD domain controller, x2goserver 4.0.1.9 from EPEL
+</I>&gt;<i> running on centos 6.4 64-bit with Samba 3.6's winbind for domain
+</I>&gt;<i> membership, and a Windows 8.1 64-bit domain member client (I also
+</I>&gt;<i> tested the x2goclient on my Windows Server 2012 DC also). But the
+</I>&gt;<i> bottom line is that I expect LOTS of Windows users to run into
+</I>&gt;<i> x2goclient crashes whenever they enable GSSAPI. They can avoid these
+</I>&gt;<i> crashes by disabling GSSAPI for the session (so it's not as severe a
+</I>&gt;<i> problem as bug #109), but I would strongly prefer if you could fix the
+</I>&gt;<i> crashes before we launch 4.0.1.2. If you can't make Windows x2goclient
+</I>&gt;<i> easily fall back to password auth when GSSAPI auth fails, at least
+</I>&gt;<i> give the user a message to disable GSSAPI auth.
+</I>&gt;<i> 
+</I>&gt;<i> -Mike
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> 
+</I>
+
+-- 
+----------------------------------------------------
+Oleksandr Shneyder  | Email: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">o.shneyder at phoca-gmbh.de</A>
+phoca GmbH          | Tel. : 0911 - 14870374 0
+Br&#228;uhausgasse 9     | Fax. : 0911 - 14870374 9
+D-82205 Gilching    | Mobil: 0163 - 49 64 461
+
+Gesch&#228;ftsf&#252;hrung:
+Dipl.-Inf. Oleksandr Shneyder
+
+Amtsgericht M&#252;nchen | <A HREF="http://www.phoca-gmbh.de">http://www.phoca-gmbh.de</A>
+HRB 196 658         | <A HREF="http://www.x2go.org">http://www.x2go.org</A>
+USt-IdNr.: DE281977973
+----------------------------------------------------
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 259 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131213/098902a6/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131213/098902a6/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006649.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+	<LI>Next message: <A HREF="006652.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6651">[ date ]</a>
+              <a href="thread.html#6651">[ thread ]</a>
+              <a href="subject.html#6651">[ subject ]</a>
+              <a href="author.html#6651">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

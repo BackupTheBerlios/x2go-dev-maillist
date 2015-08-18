@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Usernames with dashes causes errors?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Usernames%20with%20dashes%20causes%20errors%3F&In-Reply-To=%3C20120222153021.171422c1ywzc5af1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003616.html">
+   <LINK REL="Next"  HREF="003618.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Usernames with dashes causes errors?</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Usernames%20with%20dashes%20causes%20errors%3F&In-Reply-To=%3C20120222153021.171422c1ywzc5af1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Usernames with dashes causes errors?">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Feb 22 15:30:21 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003616.html">[X2Go-Dev] Usernames with dashes causes errors?
+</A></li>
+        <LI>Next message: <A HREF="003618.html">[X2Go-Dev] Usernames with dashes causes errors?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3617">[ date ]</a>
+              <a href="thread.html#3617">[ thread ]</a>
+              <a href="subject.html#3617">[ subject ]</a>
+              <a href="author.html#3617">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Christoffer,
+
+On Mi 22 Feb 2012 10:36:37 CET christoffer krakou wrote:
+
+&gt;<i> On 02/21/2012 04:48 PM, Mike Gabriel wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Christoffer! Your (and others) turn! (Debian packages are already
+</I>&gt;&gt;<i> available, Ubuntu packages will come over night, test from the nightly
+</I>&gt;&gt;<i> repositories, please)
+</I>&gt;<i>
+</I>&gt;<i>  Hello mike.
+</I>&gt;<i>
+</I>&gt;<i> When i log into the server with old usernames (without dashes), the  
+</I>&gt;<i> client hangs until i kill it. No errors, nothing in the log on the  
+</I>&gt;<i> server. At one time, a user got stuck in a loop where ssh constantly  
+</I>&gt;<i> opened sessions, and closed sessions for the user.
+</I>&gt;<i>
+</I>&gt;<i> When i log on with a new username (with dashes), it looks as if it  
+</I>&gt;<i> goes through the logon process on the client, then just closes  
+</I>&gt;<i> again, returning to the login screen. The server log shows the  
+</I>&gt;<i> following:
+</I>
+Unfortunately, I made a mistake with the first approach of fixing the issue:
+<A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=b4684ddfafa899ff10de734b9b0957dcd38909c2">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=b4684ddfafa899ff10de734b9b0957dcd38909c2</A>
+
+The second approach work much better:
+<A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=e298bd19efb2fc0b1e7d1ec256332f8d9871d2fd">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=e298bd19efb2fc0b1e7d1ec256332f8d9871d2fd</A>
+
+However, you probably test with the faulty packages. For Debian the  
+new packages are already online. For Ubuntu they should come today (or  
+maybe are already there).
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120222/20109c0f/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120222/20109c0f/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003616.html">[X2Go-Dev] Usernames with dashes causes errors?
+</A></li>
+	<LI>Next message: <A HREF="003618.html">[X2Go-Dev] Usernames with dashes causes errors?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3617">[ date ]</a>
+              <a href="thread.html#3617">[ thread ]</a>
+              <a href="subject.html#3617">[ subject ]</a>
+              <a href="author.html#3617">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

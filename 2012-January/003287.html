@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goserver%20installs%20into%20/usr/lib%20on%20x86_64%20system&In-Reply-To=%3CCALK7e_PrwwkHQ%2BcjUS33jZnM1f8GD2grdH8iur%2BJEbyMehwKsg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003286.html">
+   <LINK REL="Next"  HREF="003288.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system</H1>
+    <B>Oliver Burger</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goserver%20installs%20into%20/usr/lib%20on%20x86_64%20system&In-Reply-To=%3CCALK7e_PrwwkHQ%2BcjUS33jZnM1f8GD2grdH8iur%2BJEbyMehwKsg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system">obgr_seneca at mageia.org
+       </A><BR>
+    <I>Sat Jan 28 22:02:02 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003286.html">[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+</A></li>
+        <LI>Next message: <A HREF="003288.html">[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3287">[ date ]</a>
+              <a href="thread.html#3287">[ thread ]</a>
+              <a href="subject.html#3287">[ subject ]</a>
+              <a href="author.html#3287">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2012/1/28 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;:
+&gt;<i> I am not at all an expert on this, I can only report the latest approaches
+</I>&gt;<i> in Debian here.
+</I>&gt;<i>
+</I>&gt;<i> On systems /usr/lib is the default folder for libraries that are built for
+</I>&gt;<i> the same architecture as the system itself. There also should be a symlink
+</I>&gt;<i> from lib64 -&gt; lib. For other architectures there can be other lib folders
+</I>&gt;<i> (e.g. /usr/lib32 for ia32 stuff).
+</I>&gt;<i>
+</I>&gt;<i> On multi-arch systems (like currently under development in Debian sid) there
+</I>&gt;<i> are lib folders for each architecture
+</I>&gt;<i>
+</I>&gt;<i> &#160;/usr/lib/&lt;arch&gt;/
+</I>&gt;<i>
+</I>&gt;<i> So basically, installing code to /usr/lib should be fine.
+</I>It's a bit different in Mageia and iirc the other rpm based distros.
+Normally /usr/lib/ is used here for 32bit libraries, x86_64 is for
+64bit libraries. This is especially neccessary if you have to install
+32bit and 64bit versions of the same library next to each other.
+
+But looking into some of those files, lib is hardcoded there, so it
+would need quite some patching to make them installable in lib64. But
+since all but x2goslitewrapper is actually noarch, it will perhaps not
+hurt much...
+Especially as different from what I had in mind, our build system does
+not block arch dependant 64bit binaries to be installed in /usr/lib :)
+
+Oliver
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003286.html">[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+</A></li>
+	<LI>Next message: <A HREF="003288.html">[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3287">[ date ]</a>
+              <a href="thread.html#3287">[ thread ]</a>
+              <a href="subject.html#3287">[ subject ]</a>
+              <a href="author.html#3287">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

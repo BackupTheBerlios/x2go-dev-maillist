@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Informations about sshfs and mounting local device
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Informations%20about%20sshfs%20and%20mounting%20local%20device&In-Reply-To=%3C1324580891.3595.63.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003144.html">
+   <LINK REL="Next"  HREF="003146.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Informations about sshfs and mounting local device</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Informations%20about%20sshfs%20and%20mounting%20local%20device&In-Reply-To=%3C1324580891.3595.63.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] Informations about sshfs and mounting local device">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu Dec 22 20:08:11 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003144.html">[X2go-Dev] Informations about sshfs and mounting local device
+</A></li>
+        <LI>Next message: <A HREF="003146.html">[X2go-Dev] Specific package versions wanted / Question regarding repository content
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3145">[ date ]</a>
+              <a href="thread.html#3145">[ thread ]</a>
+              <a href="subject.html#3145">[ subject ]</a>
+              <a href="author.html#3145">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2011-12-22 at 12:10 +0100, Mike Gabriel wrote:
+&gt;<i> Hi Jean,
+</I>&gt;<i> 
+</I>&gt;<i> On Do 22 Dez 2011 11:37:15 CET Jean Milot wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Hi Mike,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Yes, i use Freenx Server for now.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; And, i would like to know how it works for X2Go.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; What have you done and what problems have you had ?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Thanks for your help.
+</I>&gt;<i> 
+</I>&gt;<i> The handshake for SSHFS mounting (server -&gt; client) is:
+</I>&gt;<i> 
+</I>&gt;<i>    o client sets up a reverse SSH port forwarding tunnel so that you
+</I>&gt;<i>      can login from server to client, even if the client is behind a firewall
+</I>&gt;<i>    o client generates temporary SSH pub/priv key pair
+</I>&gt;<i>    o a script on the server is then issued by the client
+</I>&gt;<i>    o with this script the client places this temp SSH privkey and a known_hosts
+</I>&gt;<i>      file that works for the client-side sshd on the server
+</I>&gt;<i>    o from this script also sshfs mounting (server -&gt; client) is issued
+</I>&gt;<i>    o once the mount has been successfull, all temporary credentials are removed
+</I>&gt;<i>      from the server again (as I said: temporary)
+</I>&gt;<i> 
+</I>&gt;<i> You might want to take a closer look at the ,,x2gomountdirs'' script  
+</I>&gt;<i> in X2Go server and the appropriate locations in x2goclient or  
+</I>&gt;<i> python-x2go. Tell me what language (C++ or Python) you prefer for code  
+</I>&gt;<i> diving and I will point you to the right places in the code.
+</I>&gt;<i> 
+</I>&lt;Snip&gt;
+If I recall correctly, there is also an issue with some distributions
+(particularly Ubuntu) where doing the mount provokes a new media dialog
+for all NX users connected to the server.  I believe this is why X2Go
+actually does the mount in /tmp and then makes a symbolic link back to
+the user's home directory - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003144.html">[X2go-Dev] Informations about sshfs and mounting local device
+</A></li>
+	<LI>Next message: <A HREF="003146.html">[X2go-Dev] Specific package versions wanted / Question regarding repository content
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3145">[ date ]</a>
+              <a href="thread.html#3145">[ thread ]</a>
+              <a href="subject.html#3145">[ subject ]</a>
+              <a href="author.html#3145">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

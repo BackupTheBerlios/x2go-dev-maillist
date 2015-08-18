@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] RDP services
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20RDP%20services&In-Reply-To=%3CCAFX-c4t%2BGu3NORr464rTQ8_0VZhn9xyM%3DmZLRXsNt8AY2Krc3A%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003766.html">
+   <LINK REL="Next"  HREF="003771.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] RDP services</H1>
+    <B>brian mullan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20RDP%20services&In-Reply-To=%3CCAFX-c4t%2BGu3NORr464rTQ8_0VZhn9xyM%3DmZLRXsNt8AY2Krc3A%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] RDP services">bmullan.mail at gmail.com
+       </A><BR>
+    <I>Sun Mar 11 17:08:11 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003766.html">[X2Go-Dev] OSX Lion Audio question
+</A></li>
+        <LI>Next message: <A HREF="003771.html">[X2Go-Dev] OT: How to use a mailing list (Was: RDP services)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3767">[ date ]</a>
+              <a href="thread.html#3767">[ thread ]</a>
+              <a href="subject.html#3767">[ subject ]</a>
+              <a href="author.html#3767">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>John
+
+Have you tried the new FreeRDP client &lt;<A HREF="http://www.freerdp.com/">http://www.freerdp.com/</A>&gt; yet?
+
+I've not done any extensive testing but it does now support both
+Microsoft's RemoteFX &amp; RemoteApp services.   Its an Apache
+license app and v1.0 was released and demo'd  at the Ubuntu Developer
+conference in Nov 2011 &lt;<A HREF="http://www.youtube.com/watch?v=Qnh7f36xkRA">http://www.youtube.com/watch?v=Qnh7f36xkRA</A>&gt;.
+
+RemoteFX - <A HREF="https://github.com/FreeRDP/FreeRDP/wiki/RemoteFX">https://github.com/FreeRDP/FreeRDP/wiki/RemoteFX</A>
+and
+RemoteApp services - <A HREF="https://github.com/FreeRDP/FreeRDP/wiki/RemoteApp">https://github.com/FreeRDP/FreeRDP/wiki/RemoteApp</A>
+
+I've configured Windows 2008 r2 servers on KVM and on AWS EC2, published
+applications for RemoteApp and then from linux/ubuntu
+machines run the xfreerdp client and the Windows RemoteApp appears on
+screen like any other app.   I used to have to use
+seamlessrdp for this but now it just works since the freerdp v1.x release.
+
+I'd like to see FreeRDP support in x2go as I understand in the next Ubuntu
+FreeRDP is replacing rdesktop.
+
+Brian
+
+
+
+---------- Forwarded message ----------
+From: &quot;John A. Sullivan III&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+Cc:
+Date: Sat, 10 Mar 2012 06:30:51 -0500
+Subject: Re: [X2Go-Dev] X2Go Sessions File Format Specs
+On Sat, 2012-03-10 at 11:51 +0100, Mike Gabriel wrote:
+&gt;<i> Hi Alex, hi all,
+</I>&gt;<i>
+</I>&gt;<i> I have started documenting the versatile session profile options of
+</I>&gt;<i> X2Go Client and Python X2Go (as found in ~/.x2goclient/sessions).
+</I>&gt;<i>
+</I>&gt;<i> @Alex: Could you please proof-read this wiki page and fix+change+amend?
+</I>&gt;<i> <A HREF="http://wiki.x2go.org/doku.php/wiki:development:sessions-file">http://wiki.x2go.org/doku.php/wiki:development:sessions-file</A>
+</I>&gt;<i>
+</I>&lt;snip&gt;
+Thanks for documenting these, Mike; I read them with great interest.
+Toward the end, you write, &quot;Setting the command to RDP will turn X2Go
+into an RDP proxy (RDP via NX). RDP will receive a peformance
+improvement on WAN connections&quot;
+
+In our experience, this is true for RDP5 but it significantly degrades
+the native performance of RDP6 and RDP7.  For those wishing to use RDP6
+or 7 with Windows XP, TSPlus (www.tsplus.net) makes an XP RDP6/7 client
+and distributes it freely.
+
+I would love to see mimebox included in x2goclient.  I know we had
+planned to write a &quot;multimedia player&quot; to automatically redirect to
+mimebox similar to the way printing works but have not gotten around to
+it - still overwhelmed by a large consulting contract completely outside
+of X2Go :(  Thanks again - John
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120311/940ce97f/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120311/940ce97f/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 489 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120311/940ce97f/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120311/940ce97f/attachment.pgp</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 489 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120311/940ce97f/attachment-0001.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120311/940ce97f/attachment-0001.pgp</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 489 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120311/940ce97f/attachment-0002.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120311/940ce97f/attachment-0002.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003766.html">[X2Go-Dev] OSX Lion Audio question
+</A></li>
+	<LI>Next message: <A HREF="003771.html">[X2Go-Dev] OT: How to use a mailing list (Was: RDP services)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3767">[ date ]</a>
+              <a href="thread.html#3767">[ thread ]</a>
+              <a href="subject.html#3767">[ subject ]</a>
+              <a href="author.html#3767">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

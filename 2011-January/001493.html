@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] debian package issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20debian%20package%20issues&In-Reply-To=%3C20110111120005.60b1a291%40revolver%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001477.html">
+   <LINK REL="Next"  HREF="001481.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] debian package issues</H1>
+    <B>Gertjan Halkes</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20debian%20package%20issues&In-Reply-To=%3C20110111120005.60b1a291%40revolver%3E"
+       TITLE="[X2go-dev] debian package issues">x2go at ghalkes.nl
+       </A><BR>
+    <I>Tue Jan 11 12:00:05 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001477.html">[X2go-dev] X2go windows client trouble
+</A></li>
+        <LI>Next message: <A HREF="001481.html">[X2go-dev] Windows 7 and libssh
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1493">[ date ]</a>
+              <a href="thread.html#1493">[ thread ]</a>
+              <a href="subject.html#1493">[ subject ]</a>
+              <a href="author.html#1493">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+After installing the x2goserver-one debian package (and dependencies) from
+x2go.obviously-nice.de on a completely fresh minimal debian Lenny install, I
+could not get a session to start. After looking in &lt;home dir&gt;/.x2go/&lt;session
+name&gt;/session.log I found the reason:
+
+/usr/lib/x2go/x2goagent: error while loading shared libraries:
+libXcomposite.so.1: cannot open shared object file: No such file or directory
+
+After installing the libxcomposite1 package everything worked fine. So I
+guess there is a dependency missing in the x2goagent package.
+
+Secondly, I had a problem with the x2gocleansessions script that is run as
+part of the x2goserver service. It tries to use sudo to execute x2gopgwrapper.
+However, the sudo program uses the postinst script to set up the
+default /etc/sudoers file while x2goserver tries to add to the sudoers file
+in the preinst script. The result is that if sudo is installed as a
+dependency of x2goserver, the sudoers file _only_ contains the x2go lines,
+and not the default lines allowing root to do everything through sudo. Hence,
+root is not allowed to issue the x2gopgwrapper command through sudo. This can
+probably be repaired by moving the additions to the sudoers file into the
+postinst script, as this will get executed _after_ sudo is completely set up
+(sudo will make the default file in postinst as well). Also, you may want to
+add a separate line allowing root to execute x2gopgwrapper anyway, such that
+even if root is not allowed to do everything through sudo because the
+sysadmin for some reason didn't want it, x2go will still function as normal.
+
+Regards,
+Gertjan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001477.html">[X2go-dev] X2go windows client trouble
+</A></li>
+	<LI>Next message: <A HREF="001481.html">[X2go-dev] Windows 7 and libssh
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1493">[ date ]</a>
+              <a href="thread.html#1493">[ thread ]</a>
+              <a href="subject.html#1493">[ subject ]</a>
+              <a href="author.html#1493">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Building nx-libs (nx-X11) from tarballs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Building%20nx-libs%20%28nx-X11%29%20from%20tarballs&In-Reply-To=%3C20120108220220.1461724hwnis6bmk%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003171.html">
+   <LINK REL="Next"  HREF="003176.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Building nx-libs (nx-X11) from tarballs</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Building%20nx-libs%20%28nx-X11%29%20from%20tarballs&In-Reply-To=%3C20120108220220.1461724hwnis6bmk%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] Building nx-libs (nx-X11) from tarballs">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sun Jan  8 22:02:20 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003171.html">[X2go-Dev] Building nx-libs (nx-X11) from tarballs
+</A></li>
+        <LI>Next message: <A HREF="003176.html">[X2go-Dev] Building nx-libs (nx-X11) from tarballs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3175">[ date ]</a>
+              <a href="thread.html#3175">[ thread ]</a>
+              <a href="subject.html#3175">[ subject ]</a>
+              <a href="author.html#3175">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi John,
+
+On Sa 07 Jan 2012 21:11:51 CET John Williams wrote:
+
+&gt;<i> 1) nx-libs must still be built against the nx-X11 source
+</I>
+This is not a must, but highly recommended if the resulting binaries  
+should behave in a stable way.
+
+&gt;<i> 2) no one has successfully built and used the nx-libs with x2goserver
+</I>&gt;<i> from the tarballs at <A HREF="http://code.x2go.org/releases/source/">http://code.x2go.org/releases/source/</A>
+</I>
+Please note, that X2Go is not ,,upstream'' for the NX code. Please  
+retrieve NX related sources from
+<A HREF="http://www.nomachine.com/sources.php">http://www.nomachine.com/sources.php</A>
+
+The NX 3.5 build instructions can be found here:
+<A HREF="http://www.nomachine.com/documents/technology/building-components-3.x.php">http://www.nomachine.com/documents/technology/building-components-3.x.php</A>
+
+Unfortunately, there was some confusion earlier about NoMachine's  
+activity on the 3.5 version of NX code. The latest upstream releases,  
+however, show that NoMachine is still actively maintaining NX 3.5,  
+although with lower priority than the 4.0 branch development.
+
+What you find with our nx-libs.git repository on X2Go Git is a  
+git-clone of the Debian packaging repository on git.debian.org (Debian  
+Alioth Packaging Team).
+<A HREF="http://anonscm.debian.org/gitweb/?p=collab-maint/x2go/nx-libs.git;a=summary">http://anonscm.debian.org/gitweb/?p=collab-maint/x2go/nx-libs.git;a=summary</A>
+
+For Debian packaging we have quite a huge set of Debian patches for  
+upstream that we apply before building the sources (and packaging).  
+Some patches are distro (i.e. Debian) specific and some are upstream  
+source fixes. The patches are partially taken from the X2Go project,  
+partially from the FreeNX project, partially from old Debian/Ubuntu  
+packages. The upstream relevant patches have been reported upstream  
+(that is: to the NoMachine developers) and I currently wait (and hope)  
+for feedback about upstream inclusion.
+
+&gt;<i> then I guess there currently does not exist a stable release of
+</I>&gt;<i> x2goserver that can be built from source tarballs.
+</I>
+What currently is still missing is a rework of the x2goagent source  
+tree. x2goagent is a fork of NoMachine's nxagent. It contains code  
+improvements, X2Go adaptations and branding (the X2GO session startup  
+splash screen).
+
+Currently, the source tree of x2goagent contains a complete nx-X11,  
+X2Go'ized nxagent and nxauth. For inclusion of x2goagent into any  
+Linux distribution the requirement is that x2goagent gets reworked  
+into an as-minimal-as-possible source tree as possible. This new  
+x2goagent then has to be able to build against NoMachine sources.
+
+&gt;<i> In that case, perhaps I can assist with getting a stable source
+</I>&gt;<i> tarball release together, but I will need some assistance.
+</I>
+What I think is worth the effort is providing build-from-tarball  
+capabilities within the Debian packaging Git repository (see above,  
+the one that is clone on X2Go Git). I am happy to improve the  
+packaging project in the way that a tarball export of it will build  
+with make &amp;&amp; make install. However, one precondition is that we use  
+the quilt patch system to apply patches for upstream.
+
+&gt;<i> Am I correct that the only stable release of x2goserver (and
+</I>&gt;<i> dependencies) that currently exists is in the Debian squeeze x2go
+</I>&gt;<i> repository, and for x2goagent to be stable it must be used with the
+</I>&gt;<i> nx-libs from the squeeze/heuler repository?
+</I>
+Not exactly. Currently there are dirty-built NX+x2goagent packages in  
+the stable X2Go main package repository (for Debian lenny, squeeze,  
+wheezy, sid). So, it should be possible to install an x2goserver for  
+Debian. If not, please file a bug report on the x2go-dev list.
+
+With Ubuntu the situation is different. The NX packages in the stable  
+Ubuntu ppa are a couple of months old and buggy. My current  
+recommendation is to declare the latest nx-libs.git as stable (which  
+it seems to be).
+
+&gt;<i> If that is correct,
+</I>
+... not quite...
+
+&gt;<i> than who built the nx-libs that are in the
+</I>&gt;<i> squeeze/heuler repository? I would like to get a summary of how those
+</I>&gt;<i> were built, and from what sources.
+</I>
+Please read the Git history if nx-libs.git. Sources are taken from  
+NoMachine. The whole Git project should document everything by itself.
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120108/36e189b9/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120108/36e189b9/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003171.html">[X2go-Dev] Building nx-libs (nx-X11) from tarballs
+</A></li>
+	<LI>Next message: <A HREF="003176.html">[X2go-Dev] Building nx-libs (nx-X11) from tarballs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3175">[ date ]</a>
+              <a href="thread.html#3175">[ thread ]</a>
+              <a href="subject.html#3175">[ subject ]</a>
+              <a href="author.html#3175">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

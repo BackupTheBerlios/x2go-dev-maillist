@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Seemingly obsolete file in CentOS 6.4 package
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Seemingly%20obsolete%20file%20in%20CentOS%206.4%20package&In-Reply-To=%3C51B6D1CD.1060407%40recreatie-zorg.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005793.html">
+   <LINK REL="Next"  HREF="005798.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Seemingly obsolete file in CentOS 6.4 package</H1>
+    <B>Jan Middelkoop</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Seemingly%20obsolete%20file%20in%20CentOS%206.4%20package&In-Reply-To=%3C51B6D1CD.1060407%40recreatie-zorg.nl%3E"
+       TITLE="[X2Go-Dev] Seemingly obsolete file in CentOS 6.4 package">jan at recreatie-zorg.nl
+       </A><BR>
+    <I>Tue Jun 11 09:29:17 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005793.html">[X2Go-Dev] [PATCH] x2gocleansessions: correct path to Perl	modules
+</A></li>
+        <LI>Next message: <A HREF="005798.html">[X2Go-Dev] Seemingly obsolete file in CentOS 6.4 package
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5794">[ date ]</a>
+              <a href="thread.html#5794">[ thread ]</a>
+              <a href="subject.html#5794">[ subject ]</a>
+              <a href="author.html#5794">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+In the CentOS 6.4 there's a file which seems obsolete.  It is 
+/etc/sudoers.d/x2go
+
+In the file:
+%x2gousers ALL=(ALL) NOPASSWD: /usr/bin/x2gopgwrapper
+
+However, there's no x2gousers group created and there is no 
+x2gopgwrapper anywhere on the system.  So the file doesn't have any 
+effect whatsoever.  If it's needed for something, it probably needs to 
+be fixed, but since X2Go works fine without the file, it seems more like 
+it's a leftover from some old code.
+
+Kindest regards,
+
+Jan Middelkoop
+Recreatie en Zorg Groep B.V.
+
+-- 
+Website: <A HREF="http://www.recreatie-zorg.nl/">http://www.recreatie-zorg.nl/</A>
+E-mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jan at recreatie-zorg.nl</A>
+Telephone: +31 10 714 22 97
+
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005793.html">[X2Go-Dev] [PATCH] x2gocleansessions: correct path to Perl	modules
+</A></li>
+	<LI>Next message: <A HREF="005798.html">[X2Go-Dev] Seemingly obsolete file in CentOS 6.4 package
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5794">[ date ]</a>
+              <a href="thread.html#5794">[ thread ]</a>
+              <a href="subject.html#5794">[ subject ]</a>
+              <a href="author.html#5794">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

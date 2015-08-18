@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] nx-libs makefile install messed up
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nx-libs%20makefile%20install%20messed%20up&In-Reply-To=%3C50F9A1AE.1010005%40cora.nwra.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004916.html">
+   <LINK REL="Next"  HREF="004923.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] nx-libs makefile install messed up</H1>
+    <B>Orion Poplawski</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nx-libs%20makefile%20install%20messed%20up&In-Reply-To=%3C50F9A1AE.1010005%40cora.nwra.com%3E"
+       TITLE="[X2Go-Dev] nx-libs makefile install messed up">orion at cora.nwra.com
+       </A><BR>
+    <I>Fri Jan 18 20:25:34 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004916.html">[X2Go-Dev] nx-libs makefile install messed up
+</A></li>
+        <LI>Next message: <A HREF="004923.html">[X2Go-Dev] Bug#107: nx-libs makefile install messed up
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4921">[ date ]</a>
+              <a href="thread.html#4921">[ thread ]</a>
+              <a href="subject.html#4921">[ subject ]</a>
+              <a href="author.html#4921">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 01/16/2013 05:13 PM, Orion Poplawski wrote:
+&gt;<i> On 01/15/2013 05:03 PM, Orion Poplawski wrote:
+</I>&gt;&gt;<i> With current git head, the main nx-libs Makefile install gets it backwards
+</I>&gt;&gt;<i> installing the libraries:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>          $(INSTALL_FILE) nx-X11/.build-exports/lib/*.so
+</I>&gt;&gt;<i> $(DESTDIR)$(NXLIBDIR)/X11/
+</I>&gt;&gt;<i>          $(COPY_SYMLINK) nx-X11/.build-exports/lib/*.so.*
+</I>&gt;&gt;<i> $(DESTDIR)$(NXLIBDIR)/X11/
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The *.so and *.so.# are symlinks to *.so.#.#.  Though some libs only have a
+</I>&gt;&gt;<i> single version (*.so -&gt; *.so.#).
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Hmm, gets messed up earlier:
+</I>&gt;<i>
+</I>&gt;<i> -rwxr-xr-x. 1 orion nwra 10421469 Jan 16 17:07
+</I>&gt;<i> nx-libs-HEAD/nx-X11/.build-exports/lib/libNX_X11.so
+</I>&gt;<i> lrwxrwxrwx. 1 orion nwra       12 Jan 16 17:07
+</I>&gt;<i> nx-libs-HEAD/nx-X11/.build-exports/lib/libNX_X11.so.6 -&gt; libNX_X11.so
+</I>&gt;<i> lrwxrwxrwx. 1 orion nwra       12 Jan 16 17:07
+</I>&gt;<i> nx-libs-HEAD/nx-X11/.build-exports/lib/libNX_X11.so.6.2 -&gt; libNX_X11.so
+</I>&gt;<i> lrwxrwxrwx. 1 orion nwra       26 Jan 16 17:06
+</I>&gt;<i> nx-libs-HEAD/nx-X11/exports/lib/libNX_X11.so -&gt; ../../lib/X11/libNX_X11.so
+</I>&gt;<i> lrwxrwxrwx. 1 orion nwra       28 Jan 16 17:06
+</I>&gt;<i> nx-libs-HEAD/nx-X11/exports/lib/libNX_X11.so.6 -&gt; ../../lib/X11/libNX_X11.so.6
+</I>&gt;<i> lrwxrwxrwx. 1 orion nwra       30 Jan 16 17:06
+</I>&gt;<i> nx-libs-HEAD/nx-X11/exports/lib/libNX_X11.so.6.2 -&gt;
+</I>&gt;<i> ../../lib/X11/libNX_X11.so.6.2
+</I>&gt;<i> lrwxrwxrwx. 1 orion nwra       16 Jan 16 17:06
+</I>&gt;<i> nx-libs-HEAD/nx-X11/lib/X11/libNX_X11.so -&gt; libNX_X11.so.6.2
+</I>&gt;<i> lrwxrwxrwx. 1 orion nwra       16 Jan 16 17:06
+</I>&gt;<i> nx-libs-HEAD/nx-X11/lib/X11/libNX_X11.so.6 -&gt; libNX_X11.so.6.2
+</I>&gt;<i> -rwxr-xr-x. 1 orion nwra 10421469 Jan 16 17:06
+</I>&gt;<i> nx-libs-HEAD/nx-X11/lib/X11/libNX_X11.so.6.2
+</I>&gt;<i>
+</I>&gt;<i> Don't have time to see how .build-exports gets populated yet.
+</I>&gt;<i>
+</I>
+Okay, here is the fix.
+
+-- 
+Orion Poplawski
+Technical Manager                     303-415-9701 x222
+NWRA, Boulder Office                  FAX: 303-415-9702
+3380 Mitchell Lane                       <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at nwra.com</A>
+Boulder, CO 80301                   <A HREF="http://www.nwra.com">http://www.nwra.com</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: nx-libs-install.patch
+Type: text/x-patch
+Size: 1367 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130118/a6f73bfe/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130118/a6f73bfe/attachment.bin</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004916.html">[X2Go-Dev] nx-libs makefile install messed up
+</A></li>
+	<LI>Next message: <A HREF="004923.html">[X2Go-Dev] Bug#107: nx-libs makefile install messed up
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4921">[ date ]</a>
+              <a href="thread.html#4921">[ thread ]</a>
+              <a href="subject.html#4921">[ subject ]</a>
+              <a href="author.html#4921">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

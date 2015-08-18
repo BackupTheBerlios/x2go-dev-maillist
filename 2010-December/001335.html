@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2GO and SSH
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2GO%20and%20SSH&In-Reply-To=%3C1761651290.319.1291715122934.JavaMail.root%40office.splatnix.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001334.html">
+   <LINK REL="Next"  HREF="001337.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2GO and SSH</H1>
+    <B>--[ UxBoD ]--</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2GO%20and%20SSH&In-Reply-To=%3C1761651290.319.1291715122934.JavaMail.root%40office.splatnix.net%3E"
+       TITLE="[X2go-dev] X2GO and SSH">uxbod at splatnix.net
+       </A><BR>
+    <I>Tue Dec  7 10:45:22 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001334.html">[X2go-dev] X2GO and SSH
+</A></li>
+        <LI>Next message: <A HREF="001337.html">[X2go-dev] X2GO and SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1335">[ date ]</a>
+              <a href="thread.html#1335">[ thread ]</a>
+              <a href="subject.html#1335">[ subject ]</a>
+              <a href="author.html#1335">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Original Message -----
+&gt;<i> On Mon, 2010-12-06 at 20:38 +0100, Heinz-M. Graesing wrote:
+</I>&gt;<i> &gt; Hello John,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Am 02.12.2010 17:49, schrieb John A. Sullivan III:
+</I>&gt;<i> &gt; &gt; Alex and Heinz, is there any version of X2Go available yet with
+</I>&gt;<i> &gt; &gt; libssh?
+</I>&gt;<i> &gt; &gt; Using plink (assuming it supports ASKPASS) would require an awful
+</I>&gt;<i> &gt; &gt; amount
+</I>&gt;<i> &gt; &gt; of hacking and conditional formatting of parameters. A consistent,
+</I>&gt;<i> &gt; &gt; cross-platform API would be so much easier. Thanks - John
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; There is a first version of x2go using libssh ready for testing.
+</I>&gt;<i> &gt; You'll
+</I>&gt;<i> &gt; need to have the heuler repository added to your sources list:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; # x2go testing repository:
+</I>&gt;<i> &gt; deb <A HREF="http://x2go.obviously-nice.de/deb/">http://x2go.obviously-nice.de/deb/</A> heuler main
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &quot;heuler&quot; is an additional reopsitory!
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; There too is a windows version of x2goclient using libssh ready for
+</I>&gt;<i> &gt; testing:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; <A HREF="http://x2go.obviously-nice.de/deb/windows/x2goclient-3.01-14-setup.exe">http://x2go.obviously-nice.de/deb/windows/x2goclient-3.01-14-setup.exe</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; If you are looking for the source code, you'll find it as usual as
+</I>&gt;<i> &gt; *.tar.gz file in the repository folders:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; <A HREF="http://x2go.obviously-nice.de/deb/pool-heuler/x2goclient/x2goclient_3.01-14.tar.gz">http://x2go.obviously-nice.de/deb/pool-heuler/x2goclient/x2goclient_3.01-14.tar.gz</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; We would like to invite you to test this new version and give us
+</I>&gt;<i> &gt; feedback.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I'll post this message also to the announcement list. Please keep in
+</I>&gt;<i> &gt; mind, that we'll use this list for further announcements.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Regards,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Alex and Heinz
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> Thanks, Heinz.
+</I>&gt;<i> 
+</I>&gt;<i> Phil, this is quite important for us at it eliminates the need to
+</I>&gt;<i> fiddle
+</I>&gt;<i> with plink and, I assume, gives us a much newer version of ssh which
+</I>&gt;<i> may
+</I>&gt;<i> address some of the timing issues we seem to be having - John
+</I>&gt;<i> 
+</I>
+Heinz, does this still use the 2009.04 release of Qt or the latest one ? My computer has just spent the last 14 hours (windows vm) recompiling Qt with SSL support and the X2go client still fails to compile:
+
+mingw32-make[1]: Entering directory `C:/x2goclient-3.01'
+g++ -enable-stdcall-fixup -Wl,-enable-auto-import -Wl,-enable-runtime-pseudo-reloc -Wl,-s -mthreads -Wl -Wl,-subsystem,windows -o release\x2goplugin.exe object_script.x2goplugin.Release  -L&quot;c:\Qt-Static\qt\lib&quot; -lmingw32 -lqtmain release\x2goclient_res.o -lQtSvg -lQtNetwork -lQtGui -lgdi32 -lcomdlg32 -loleaut32 -limm32 -lwinmm -lwinspool -lmsimg32 -lQtCore -lkernel32 -luser32 -lshell32 -luuid -lole32 -ladvapi32 -lws2_32 -L\cygwin\openssl\lib
+c:\Qt-Static\qt\lib/libqtmain.a(qtmain_win.o):qtmain_win.cpp:(.text+0x204): undefined reference to `qMain(int, char**)'
+collect2: ld returned 1 exit status
+mingw32-make[1]: *** [release\x2goplugin.exe] Error 1
+mingw32-make[1]: Leaving directory `C:/x2goclient-3.01'
+mingw32-make: *** [release] Error 2
+
+Qt compiled fine and reported no errors so am at a bit of a loss at the moment. It would be so hopefully to us is you were able to provide help in getting a duplicate environment as to what you use built.
+-- 
+Thanks, Phil
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001334.html">[X2go-dev] X2GO and SSH
+</A></li>
+	<LI>Next message: <A HREF="001337.html">[X2go-dev] X2GO and SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1335">[ date ]</a>
+              <a href="thread.html#1335">[ thread ]</a>
+              <a href="subject.html#1335">[ subject ]</a>
+              <a href="author.html#1335">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

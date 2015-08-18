@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#151: X2Go issue (in src:x2goclient) has been marked	as closed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23151%3A%20X2Go%20issue%20%28in%20src%3Ax2goclient%29%20has%20been%20marked%0A%09as%20closed&In-Reply-To=%3C20130911100707.962315DB2C%40ymir%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006187.html">
+   <LINK REL="Next"  HREF="006188.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#151: X2Go issue (in src:x2goclient) has been marked	as closed</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23151%3A%20X2Go%20issue%20%28in%20src%3Ax2goclient%29%20has%20been%20marked%0A%09as%20closed&In-Reply-To=%3C20130911100707.962315DB2C%40ymir%3E"
+       TITLE="[X2Go-Dev] Bug#151: X2Go issue (in src:x2goclient) has been marked	as closed">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Sep 11 12:07:07 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006187.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goclient) has been	marked as closed
+</A></li>
+        <LI>Next message: <A HREF="006188.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goclient) has been	marked as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6174">[ date ]</a>
+              <a href="thread.html#6174">[ thread ]</a>
+              <a href="subject.html#6174">[ subject ]</a>
+              <a href="author.html#6174">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>close #151
+thanks
+
+Hello,
+
+we are very hopeful that X2Go issue #151 reported by you
+has been resolved in the new release (4.0.1.1) of the
+X2Go source project &#187;src:x2goclient&#171;.
+
+You can view the complete changelog entry of src:x2goclient (4.0.1.1)
+below, and you can use the following link to view all the code changes
+between this and the last release of src:x2goclient.
+
+    <A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=dad4fcc24868504be24ccc9a3ab0fcac41859080;hp=1b4260f86a6fda01c5263fa3d27504677a3cdfac">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=dad4fcc24868504be24ccc9a3ab0fcac41859080;hp=1b4260f86a6fda01c5263fa3d27504677a3cdfac</A>
+
+If you feel that the issue has not been resolved satisfyingly, feel
+free to reopen this bug report or submit a follow-up report with
+further observations described based on the new released version
+of src:x2goclient.
+
+Thanks a lot for contributing to X2Go!!!
+
+light+love
+X2Go Git Admin (on behalf of the sender of this mail)
+
+---
+X2Go Component: src:x2goclient
+Version: 4.0.1.1
+Status: RELEASE
+Date: Wed, 11 Sep 2013 12:06:02 +0200
+Fixes: 141 142 151 164 165 177 179 183 214 222 226 243 255
+Changes: 
+ x2goclient (4.0.1.1) RELEASED; urgency=low
+ .
+   [ Nicolai Hansen ]
+   * New upstream version (4.0.1.1):
+     - Update Danish translation file.
+ .
+   [ Terje Andersen ]
+   * New upstream version (4.0.1.1):
+     - Update Norwegian Bokmaal translation file.
+ .
+   [ Oleksandr Shneyder ]
+   * New upstream version (4.0.1.1):
+     - Use &quot;127.0.0.1&quot; instead of localhost to avoid wrong IPv6 hostname
+       resolution. (Fixes: #151).
+     - Wait for x2gocmdexitmessage to return before closing in hidden mode.
+     - Support for published applications in X2Go Plugin
+     - Support for &quot;shadow&quot; mode in X2Go Plugin
+ .
+   [ Mike Gabriel ]
+   * New upstream version (4.0.1.1):
+     - If a priv SSH key has been specified, skip the autologin procedure.
+       Let's consider a given SSH private key that fails to log the user
+       in as an overall login failure. (Fixes: #141).
+     - Avoid multiple selectUserSession requests when in broker
+       mode.
+     - Properly set the remote server address received via selectUserSession
+       method when in broker mode. (Fixes: #226).
+     - Fix segmentation fault that started occurring since the custom trayIcon
+       patch was applied. Segfault only occurred if the tray icon was not used.
+     - Show session name in notification bubbles.
+     - Update German translation.
+     - Add cmdline option --broker-autologoff: Enforce re-authentication against
+       X2Go Session Broker after a session has been suspended or terminated.
+       (Fixes: #179).
+     - Enable full access desktop sharing across user accounts. (Fixes: #222).
+     - Make X2Go Client aware of the MATE desktop environment.
+     - Make X2Go Client work in SSH broker mode without the need of a auth-id
+       file.
+ .
+   [ Heinrich Schuchardt ]
+   * New upstream version (4.0.1.1):
+     - Call ssh_clean_pubkey_hash() for deallocating public key hashes instead of
+       just calling free(). Required under MS Windows as documented in libssh2
+       API. (Fixes: #243). (For further details see:
+       <A HREF="http://api.libssh.org/master/group__libssh__session.html">http://api.libssh.org/master/group__libssh__session.html</A>).
+   * Provide bin:package with debug symbols for X2Go Client. (Fixes: #255).
+ .
+   [ Ezra B&#252;hler ]
+   * New upstream version (4.0.1.1):
+     - Fix auto-resume when session type is &#187;Single Application&#171;. (Fixes: #183).
+ .
+   [ Ricardo D&#237;az Mart&#237;n ]
+   * New upstream version (4.0.1.1):
+     - Fix detection of maximum screen area available for a session. (Fixes:
+       #165).
+     - Use the session icon as tray icon, pop up notification bubble that informs
+       about current session actions. (Fixes: #177).
+     - Allow for setting maximum available desktop size as window size via the
+       session profile card. Unfortunately, this feature is for now only
+       available on Linux. (Fixes: #214).
+ .
+   [ Otto Kjell ]
+   * New upstream version (4.0.1.1):
+     - Enable debug mode through cmd line parameter. (Fixes: #142).
+     - Standardize output to stdout+stderr and make it parseable.
+ .
+   [ Orion Poplawski ]
+   * New upstream version (4.0.1.1):
+     - Instead of using a hard-code DPI of 96, use local DPI settings for new
+       sessions if not explicitly set in session profile (Fixes: #164).
+ .
+   [ Daniel Lindgren ]
+   * New upstream version (4.0.1.1):
+     - Update Swedish translation file.
+ .
+   [ Ricardo D&#237;az Mart&#237;n ]
+   * New upstream version (4.0.1.1):
+     - Update Spanish translation file.
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006187.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goclient) has been	marked as closed
+</A></li>
+	<LI>Next message: <A HREF="006188.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goclient) has been	marked as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6174">[ date ]</a>
+              <a href="thread.html#6174">[ thread ]</a>
+              <a href="subject.html#6174">[ subject ]</a>
+              <a href="author.html#6174">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

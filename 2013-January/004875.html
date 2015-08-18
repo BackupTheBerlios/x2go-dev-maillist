@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#28: Xfixes issues with Ubuntu precise and above
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2328%3A%20Xfixes%20issues%20with%20Ubuntu%20precise%20and%20above&In-Reply-To=%3C20130109162218.128952ptu1hjfaqy%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004874.html">
+   <LINK REL="Next"  HREF="004885.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#28: Xfixes issues with Ubuntu precise and above</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2328%3A%20Xfixes%20issues%20with%20Ubuntu%20precise%20and%20above&In-Reply-To=%3C20130109162218.128952ptu1hjfaqy%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#28: Xfixes issues with Ubuntu precise and above">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Jan  9 16:22:18 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004874.html">[X2Go-Dev] Processed: Xfixes issues with Ubuntu precise and above
+</A></li>
+        <LI>Next message: <A HREF="004885.html">[X2Go-Dev] Bug#44:
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4875">[ date ]</a>
+              <a href="thread.html#4875">[ thread ]</a>
+              <a href="subject.html#4875">[ subject ]</a>
+              <a href="author.html#4875">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Re-opening this issue as it is not 100% solved and understood...
+
+The situation is: with extensions XFIXES enabled in nxagent/x2goagent   
+we observe KDE crashes on Ubuntu precise and above. The crashes happen  
+  in kwin.
+
+The problem could be tracked down to some problems in libxfixes. The   
+change must have been between libxfixes from oneiric and libxfixes   
+from precise.
+
+On IRC I wrote this about the observed issue:
+
+15:48 &lt; sunweaver&gt; siretart: I might have found the libxfixes issue   
+with libxfixes since precise...
+15:48 &lt; sunweaver&gt; at least I have several question marks...
+15:49 &lt; sunweaver&gt; the xserver-xorg src package in precise has a patch  
+  named: 500_pointer_barrier_thresholds.diff
+15:50 &lt; sunweaver&gt; this patches in xfixes v6 code into the xfixes v5 extension
+15:51 &lt; sunweaver&gt; in that patch you can also see that the xfixes   
+extension version is also incremented (5 -&gt; 6)
+15:52 &lt; sunweaver&gt; the libxfixes 1:5.0-4ubuntu4 and the package   
+x11proto-fixes-dev 1:5.0-2ubuntu1 package also have patches for this   
+improvement: both named
+                    01_fixesproto-v6.diff.
+15:54 &lt; sunweaver&gt; However, when looking at a build of libxfixes   
+5.0-4ubuntu4 I see a config.h file that announces itself with   
+PACKAGE_VERSION 5.0.
+15:55 &lt; sunweaver&gt; So, my current guess is that libxfixes annouces   
+itself as v5 and also does a xlib-xserver version handshake based on   
+v5, but then
+                    executes code from libxfixes v6 which then breaks nxagent.
+15:55 &lt; sunweaver&gt; Is that possible?
+
+Can anyone comment on this?
+
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130109/f71201fd/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130109/f71201fd/attachment.pgp</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130109/f71201fd/attachment-0001.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130109/f71201fd/attachment-0001.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004874.html">[X2Go-Dev] Processed: Xfixes issues with Ubuntu precise and above
+</A></li>
+	<LI>Next message: <A HREF="004885.html">[X2Go-Dev] Bug#44:
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4875">[ date ]</a>
+              <a href="thread.html#4875">[ thread ]</a>
+              <a href="subject.html#4875">[ subject ]</a>
+              <a href="author.html#4875">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

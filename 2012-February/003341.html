@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go Server + NXLibs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Server%20%2B%20NXLibs&In-Reply-To=%3C49928ACA-55F8-4F74-9999-A337896B965F%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003340.html">
+   <LINK REL="Next"  HREF="003342.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go Server + NXLibs</H1>
+    <B>Bogdan-Andrei Taru</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Server%20%2B%20NXLibs&In-Reply-To=%3C49928ACA-55F8-4F74-9999-A337896B965F%40gmail.com%3E"
+       TITLE="[X2Go-Dev] X2Go Server + NXLibs">bogdan.taru at gmail.com
+       </A><BR>
+    <I>Sun Feb  5 21:53:15 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003340.html">[X2Go-Dev] Fwd: [X2go-Dev] @Alex: X2Go bugfix release: x2goclient	3.99.0.5
+</A></li>
+        <LI>Next message: <A HREF="003342.html">[X2Go-Dev] X2Go Server + NXLibs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3341">[ date ]</a>
+              <a href="thread.html#3341">[ thread ]</a>
+              <a href="subject.html#3341">[ subject ]</a>
+              <a href="author.html#3341">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I'm trying to compile and RPM-package the X2GO Client, Server and the NX-Libs and I'm having a problem with the X2Go Server. I tried the following:
+
+- install the NX-Libs from the source
+- install the X2Go Server from the source
+- tried to create a X2GO database with  'x2godbadmin --createdb' (how can I really check if the database was successfully created?)
+- started the X2Go server with the init-script (I see a process &quot;/usr/bin/perl /usr/sbin/x2gocleansessions&quot; running)
+- I try to connect with the X2Go client to the server and I get the following output on the client's console:
+
+Fontconfig warning: no &lt;cachedir&gt; elements found. Check configuration.
+Fontconfig warning: adding &lt;cachedir&gt;/var/cache/fontconfig&lt;/cachedir&gt;
+Fontconfig warning: adding &lt;cachedir&gt;~/.fontconfig&lt;/cachedir&gt;
+ONMainWindow constructor 
+
+ONMainWindows constructor finished, home Directory is: &quot;/home/bgd&quot; 
+
+read  2  sessions from config file 
+start new ssh connection to server: &quot;localhost&quot; : &quot;22&quot; krb:  false 
+
+ssh connection ok 
+
+continue normal x2go session 
+
+&quot;x2gostartagent 800x600 adsl 16m-jpeg-9 unix-kde-depth_24 de pc105/de 1 D KDE&quot; 
+
+Agent output: &quot;50
+c6f8f50cdbe957633f362ac62f1811ee
+25672
+bgd-50-1328297898_stDKDE_dp24
+30003
+30004
+30005
+&quot; 
+starting nxproxy with:  &quot;nxproxy -S nx/nx,options=/home/bgd/.x2go/S-bgd-50-1328297898_stDKDE_dp24/options:50&quot; 
+
+&quot;
+NXPROXY - Version 3.5.0
+
+Copyright (C) 2001, 2010 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Proxy running in client mode with pid '25732'.
+Session: Starting session at 'Fri Feb  3 20:38:19 2012'.
+Info: Connecting to remote host 'localhost:31003'.
+Info: Connection to remote proxy 'localhost:31003' established.
+&quot; 
+
+search proxy win:  &quot;X2GO-bgd-50-1328297898_stDKDE_dp24&quot; 
+&quot;channel_open_forward failed&quot; :  &quot;Channel opening failure: channel 47 error (2) Connection refused&quot; 
+
+&quot;channel_write failed&quot;  -  &quot;Remote channel is closed&quot; 
+
+&quot;Error: The remote NX proxy closed the connection.
+&quot; 
+
+&quot;Error: Failure negotiating the session in stage '7'.
+Error: Wrong version or invalid session authentication cookie.
+Session: Terminating session at 'Fri Feb  3 20:38:20 2012'.
+Session: Session terminated at 'Fri Feb  3 20:38:20 2012'.
+&quot; 
+
+deleting proxy 
+
+nxproxy not running 
+
+proxy deleted 
+
+check command message 
+
+search proxy win:  &quot;X2GO-bgd-50-1328297898_stDKDE_dp24&quot; 
+search proxy win:  &quot;X2GO-bgd-50-1328297898_stDKDE_dp24&quot; 
+search proxy win:  &quot;X2GO-bgd-50-1328297898_stDKDE_dp24&quot; 
+search proxy win:  &quot;X2GO-bgd-50-1328297898_stDKDE_dp24&quot; 
+search proxy win:  &quot;X2GO-bgd-50-1328297898_stDKDE_dp24&quot; 
+
+Any ideas where the problem could be? Where does the X2GO Server log it's messages?
+
+Thanks,
+Bogdan
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003340.html">[X2Go-Dev] Fwd: [X2go-Dev] @Alex: X2Go bugfix release: x2goclient	3.99.0.5
+</A></li>
+	<LI>Next message: <A HREF="003342.html">[X2Go-Dev] X2Go Server + NXLibs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3341">[ date ]</a>
+              <a href="thread.html#3341">[ thread ]</a>
+              <a href="subject.html#3341">[ subject ]</a>
+              <a href="author.html#3341">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

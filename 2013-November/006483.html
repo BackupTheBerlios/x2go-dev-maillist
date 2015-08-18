@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#347: Bug#347: tempfile command not know / available	(?) in Fedora
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23347%3A%20Bug%23347%3A%20tempfile%20command%20not%20know%20/%20available%0A%09%28%3F%29%20in%20Fedora&In-Reply-To=%3C5293B6A4.6020408%40cora.nwra.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006479.html">
+   <LINK REL="Next"  HREF="006487.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#347: Bug#347: tempfile command not know / available	(?) in Fedora</H1>
+    <B>Orion Poplawski</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23347%3A%20Bug%23347%3A%20tempfile%20command%20not%20know%20/%20available%0A%09%28%3F%29%20in%20Fedora&In-Reply-To=%3C5293B6A4.6020408%40cora.nwra.com%3E"
+       TITLE="[X2Go-Dev] Bug#347: Bug#347: tempfile command not know / available	(?) in Fedora">orion at cora.nwra.com
+       </A><BR>
+    <I>Mon Nov 25 21:44:20 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006479.html">[X2Go-Dev] Bug#347: tempfile command not know / available (?) in	Fedora
+</A></li>
+        <LI>Next message: <A HREF="006487.html">[X2Go-Dev] Bug#323: x2go server refuses client with 'Error: Wrong	version or invalid session authentication cookie.'
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6483">[ date ]</a>
+              <a href="thread.html#6483">[ thread ]</a>
+              <a href="subject.html#6483">[ subject ]</a>
+              <a href="author.html#6483">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 11/25/2013 01:31 PM, Mike Gabriel wrote:
+&gt;<i> Package: x2goserver-xsession
+</I>&gt;<i> Version: 4.0.1.8
+</I>&gt;<i>
+</I>&gt;<i> Hi Orion,
+</I>&gt;<i>
+</I>&gt;<i> on IRC we just discovered that  x2goserver-xsession/etc/Xsession uses a
+</I>&gt;<i> command named tempfile. On Debian, the binary is in package debianutils which
+</I>&gt;<i> makes it appear like a Debianism. However, I found evidence of the file being
+</I>&gt;<i> known to other Unices [1].
+</I>&gt;<i>
+</I>&gt;<i> What would be the Fedora way of ,,tempfile''? Shall we change that upstream?
+</I>&gt;<i> Or can you provide that binary somehow in Fedora?
+</I>&gt;<i>
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i> [1] <A HREF="http://nixdoc.net/man-pages/linux/man1/tempfile.1.html">http://nixdoc.net/man-pages/linux/man1/tempfile.1.html</A>
+</I>&gt;<i>
+</I>
+Fedora uses &quot;mktemp&quot;.  Does Debian have that?
+
+-- 
+Orion Poplawski
+Technical Manager                     303-415-9701 x222
+NWRA, Boulder/CoRA Office             FAX: 303-415-9702
+3380 Mitchell Lane                       <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at nwra.com</A>
+Boulder, CO 80301                   <A HREF="http://www.nwra.com">http://www.nwra.com</A>
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006479.html">[X2Go-Dev] Bug#347: tempfile command not know / available (?) in	Fedora
+</A></li>
+	<LI>Next message: <A HREF="006487.html">[X2Go-Dev] Bug#323: x2go server refuses client with 'Error: Wrong	version or invalid session authentication cookie.'
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6483">[ date ]</a>
+              <a href="thread.html#6483">[ thread ]</a>
+              <a href="subject.html#6483">[ subject ]</a>
+              <a href="author.html#6483">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

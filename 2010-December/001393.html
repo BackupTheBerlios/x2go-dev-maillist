@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go plugin and proxy?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20plugin%20and%20proxy%3F&In-Reply-To=%3C1292427224.5517.17.camel%40athlon%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001392.html">
+   <LINK REL="Next"  HREF="001398.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go plugin and proxy?</H1>
+    <B>Milan Kn&#237;&#382;ek</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20plugin%20and%20proxy%3F&In-Reply-To=%3C1292427224.5517.17.camel%40athlon%3E"
+       TITLE="[X2go-dev] x2go plugin and proxy?">knizek.confy at volny.cz
+       </A><BR>
+    <I>Wed Dec 15 16:33:44 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001392.html">[X2go-dev] x2go plugin and proxy?
+</A></li>
+        <LI>Next message: <A HREF="001398.html">[X2go-dev] X2Go Load balancing and Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1393">[ date ]</a>
+              <a href="thread.html#1393">[ thread ]</a>
+              <a href="subject.html#1393">[ subject ]</a>
+              <a href="author.html#1393">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2010-12-15 at 14:17 +0000, Robin Green wrote:
+&gt;<i> I don't understand. x2goclient *already* uses ssh, and can be configured
+</I>&gt;<i> to forward all sound etc. over ssh as well.
+</I>&gt;<i> 
+</I>&gt;<i> You need to forward ssh traffic through an ssh proxy? Why? That is
+</I>&gt;<i> inefficient - can't you just make the remote server visible on some port?
+</I>
+I am connecting from LAN hidden by an http proxy. I.e. it is not
+possible to simply &quot;ssh -p 443 x2goserver.com&quot;, but the connection must
+be passed through a proxy at &quot;some.local.proxy.address&quot; at port 8080
+(the proxy is without authentication).
+
+Putty allows for proxy setup. I also checked the man page of ssh, it has
+an option &quot;ProxyCommand&quot;, which would probably be &quot;connect
+some.local.proxy.address 8080\n&quot;.
+
+So the question probably is how to incorporate that ssh option into x2go
+plugin.
+
+Regards,
+Milan
+-- 
+<A HREF="http://www.milan-knizek.net">http://www.milan-knizek.net</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001392.html">[X2go-dev] x2go plugin and proxy?
+</A></li>
+	<LI>Next message: <A HREF="001398.html">[X2go-dev] X2Go Load balancing and Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1393">[ date ]</a>
+              <a href="thread.html#1393">[ thread ]</a>
+              <a href="subject.html#1393">[ subject ]</a>
+              <a href="author.html#1393">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

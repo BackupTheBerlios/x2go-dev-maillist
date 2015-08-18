@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Multiple X2goclient instances fail (patch)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Multiple%20X2goclient%20instances%20fail%20%28patch%29&In-Reply-To=%3CCAAVBiEVdX4%3Db9dAVOk9BMSKAwa-hmxXmbsvjBpDQyefjU8%2B3iA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005736.html">
+   <LINK REL="Next"  HREF="005739.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Multiple X2goclient instances fail (patch)</H1>
+    <B>Eugene San</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Multiple%20X2goclient%20instances%20fail%20%28patch%29&In-Reply-To=%3CCAAVBiEVdX4%3Db9dAVOk9BMSKAwa-hmxXmbsvjBpDQyefjU8%2B3iA%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Multiple X2goclient instances fail (patch)">eugenesan at gmail.com
+       </A><BR>
+    <I>Wed Jun  5 06:33:15 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005736.html">[X2Go-Dev] Processed: X2Go issue (in src:x2gobroker) has been marked as pending for release
+</A></li>
+        <LI>Next message: <A HREF="005739.html">[X2Go-Dev] Bug#155:  Multiple X2goclient instances fail (patch)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5737">[ date ]</a>
+              <a href="thread.html#5737">[ thread ]</a>
+              <a href="subject.html#5737">[ subject ]</a>
+              <a href="author.html#5737">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+This subject was already discussed here, but since no solution exists till
+now, I've hacked not ideal but practical solution.
+
+Attached patch should minimize chances of conflicting ports x2goserver is
+using.
+On the first run, x2gostartagent script randomly selects ports from
+specific range (30000-30099) and save them to config file to be used for
+the following sessions.
+Later one can tune those values in config file
+(/etc/x2go/x2goagent.options).
+
+Regards
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130605/88c1f607/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130605/88c1f607/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: x2goserver-4.0.0.2-x2go-ssh-ports-randomization.patch
+Type: application/octet-stream
+Size: 1006 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130605/88c1f607/attachment.obj">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130605/88c1f607/attachment.obj</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005736.html">[X2Go-Dev] Processed: X2Go issue (in src:x2gobroker) has been marked as pending for release
+</A></li>
+	<LI>Next message: <A HREF="005739.html">[X2Go-Dev] Bug#155:  Multiple X2goclient instances fail (patch)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5737">[ date ]</a>
+              <a href="thread.html#5737">[ thread ]</a>
+              <a href="subject.html#5737">[ subject ]</a>
+              <a href="author.html#5737">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

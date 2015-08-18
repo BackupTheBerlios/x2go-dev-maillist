@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#200: AW: Bug#200: Bug#200: When user-directories do	not exist, saving sqlpass with x2godbadmin is not possible
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23200%3A%20AW%3A%20Bug%23200%3A%20Bug%23200%3A%20When%20user-directories%20do%0A%09not%20exist%2C%20saving%20sqlpass%20with%20x2godbadmin%20is%20not%20possible&In-Reply-To=%3Czarafa.518960b5.788b.1dd4eb15579cf6fc%40mozart.netitwork.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005585.html">
+   <LINK REL="Next"  HREF="005589.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#200: AW: Bug#200: Bug#200: When user-directories do	not exist, saving sqlpass with x2godbadmin is not possible</H1>
+    <B>Michael Kromer</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23200%3A%20AW%3A%20Bug%23200%3A%20Bug%23200%3A%20When%20user-directories%20do%0A%09not%20exist%2C%20saving%20sqlpass%20with%20x2godbadmin%20is%20not%20possible&In-Reply-To=%3Czarafa.518960b5.788b.1dd4eb15579cf6fc%40mozart.netitwork.de%3E"
+       TITLE="[X2Go-Dev] Bug#200: AW: Bug#200: Bug#200: When user-directories do	not exist, saving sqlpass with x2godbadmin is not possible">michael.kromer at netitwork.net
+       </A><BR>
+    <I>Tue May  7 22:14:45 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005585.html">[X2Go-Dev] Bug#200:  Bug#200: When user-directories do not exist,	saving sqlpass with x2godbadmin is not possible
+</A></li>
+        <LI>Next message: <A HREF="005589.html">[X2Go-Dev] Bug#200: Bug#200: Bug#200: When user-directories do not	exist, saving sqlpass with x2godbadmin is not possible
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5587">[ date ]</a>
+              <a href="thread.html#5587">[ thread ]</a>
+              <a href="subject.html#5587">[ subject ]</a>
+              <a href="author.html#5587">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Nable,
+
+&gt;<i> &gt; system(&quot;mkdir -p $dir/.x2go&quot;);
+</I>&gt;<i> Are you sure that nothing will break if `$dir' contains space or some
+</I>&gt;<i> other special^W sensitive characters? Of course, i understand that
+</I>&gt;<i> using such characters in homedir path is a really bad idea but.. i
+</I>&gt;<i> think apps must be secure by design.
+</I>
+Well, I don't mind fixing this to be safe with special chars ... ;) I however really doubt administrators to set homedirs to something with spaces or special chars.
+ 
+&gt;<i> And second thing:
+</I>&gt;<i> &gt; and is deeper than /home/$USER
+</I>&gt;<i> I think that this comment is wrong. As I understand, it doesn't matter
+</I>&gt;<i> how deep dir, what matters is whether user's homedir exits or not. And
+</I>&gt;<i> if I've understood correctly (manual page for x2godbadmin is too
+</I>&gt;<i> short, although comments in the program are rather good) x2godbadmin
+</I>&gt;<i> doesn't create users, it only manages DB and creates ~/.x2go/ part if
+</I>&gt;<i> it's missing.
+</I>
+Yes, true. It doesn't matter how deep it needs to be, however its a rather common case wanting to provide access to someone which does not have its homedir created yet.
+
+&gt;<i> So, if user is present in system (getpwnam returns info about existing
+</I>&gt;<i> users) but his homedir is missing I think that it's better to issue
+</I>&gt;<i> some warning instead of silent homedir creation (at least because this
+</I>&gt;<i> homedir won't contain files from /etc/skel, especially ~/.profile and
+</I>&gt;<i> ~/.bashrc).
+</I>
+Well, I disagree. You would simply still not be able to login. I think either error or success is the way to go - I rather decided to use success for the sake of creating an empty home. At some point you are right, as you would automatically disable pam_mkhomedir as it would not complain a missing homedir - The practial downside is the missing skeleton copy at creation time.
+
+Ideas?
+
+- mike
+
+&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I></PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005585.html">[X2Go-Dev] Bug#200:  Bug#200: When user-directories do not exist,	saving sqlpass with x2godbadmin is not possible
+</A></li>
+	<LI>Next message: <A HREF="005589.html">[X2Go-Dev] Bug#200: Bug#200: Bug#200: When user-directories do not	exist, saving sqlpass with x2godbadmin is not possible
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5587">[ date ]</a>
+              <a href="thread.html#5587">[ thread ]</a>
+              <a href="subject.html#5587">[ subject ]</a>
+              <a href="author.html#5587">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

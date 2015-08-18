@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2334%3A%20SSH_OPTIONS_FD&In-Reply-To=%3C1348584049.21992.138.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004334.html">
+   <LINK REL="Next"  HREF="004336.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#34: SSH_OPTIONS_FD</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2334%3A%20SSH_OPTIONS_FD&In-Reply-To=%3C1348584049.21992.138.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2Go-Dev] Bug#34: SSH_OPTIONS_FD">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Sep 25 16:40:49 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004334.html">[X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+</A></li>
+        <LI>Next message: <A HREF="004336.html">[X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4347">[ date ]</a>
+              <a href="thread.html#4347">[ thread ]</a>
+              <a href="subject.html#4347">[ subject ]</a>
+              <a href="author.html#4347">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2012-09-25 at 11:13 +0200, Oleksandr Shneyder wrote:
+&gt;<i> Am 25.09.2012 11:01, schrieb Moritz Struebe:
+</I>&gt;<i> &gt; On 2012-09-25 10:47, Oleksandr Shneyder wrote:
+</I>&gt;<i> &gt;&gt;  Sure, it is a
+</I>&gt;<i> &gt;&gt; fail of system administrator, if he allow such unecrypted authentication
+</I>&gt;<i> &gt;&gt; over Internet. But I don't even give them a possibility to make such
+</I>&gt;<i> &gt;&gt; mistake...
+</I>&gt;<i> Sorry, here should be &quot;I don't want to give&quot; instead of &quot;I don't give&quot;
+</I>&gt;<i> 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I don't really get your point. The credentials are used by the browser
+</I>&gt;<i> &gt; anyway - because otherwise there would be no need for a proxy. I don't
+</I>&gt;<i> &gt; think it's our job to disable features because of incompetent system
+</I>&gt;<i> &gt; administrators. After all proxy authentication is normally used within LANs.
+</I>&gt;<i> 
+</I>&gt;<i> I don't want to disable any features. I only say, it is nice to have a
+</I>&gt;<i> possibility to send authentication data to server encrypted. In LAN it
+</I>&gt;<i> is not a such big problem to send it in clear text. But in case of
+</I>&gt;<i> SSH-Proxy it is an Internet connection. And I want, that every one, who
+</I>&gt;<i> use this feature with X2Go know, that sending unecrypted data over
+</I>&gt;<i> Internet is not safe. And that should not be the same authentication
+</I>&gt;<i> data as used on other servers.
+</I>&lt;snip&gt;
+I very much agree with Alex here.  Although we can absolve ourselves of
+the responsibility, it is wiser to do as much as we can to prevent both
+admins and users from shooting themselves the stupid things they may do.
+For example, it is not just a matter of a sloppy admin not realizing
+they should use a separate authentication domain for the proxy; even if
+they do, we have the social engineering problem of users using the same
+password for the proxy as for anything else.  Once one intercepts that
+password, a cracker will try it everywhere they can for that user.
+Thus, I would strongly advocate all authentication even to the proxy be
+protected by encryption.  Thanks - John
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004334.html">[X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+</A></li>
+	<LI>Next message: <A HREF="004336.html">[X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4347">[ date ]</a>
+              <a href="thread.html#4347">[ thread ]</a>
+              <a href="subject.html#4347">[ subject ]</a>
+              <a href="author.html#4347">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

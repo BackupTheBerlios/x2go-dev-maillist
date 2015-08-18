@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] new x2go packages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20new%20x2go%20packages&In-Reply-To=%3C4B0F1171.20702%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000165.html">
+   <LINK REL="Next"  HREF="000177.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] new x2go packages</H1>
+    <B>Oleksandr.shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20new%20x2go%20packages&In-Reply-To=%3C4B0F1171.20702%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] new x2go packages">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Fri Nov 27 00:38:25 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000165.html">[X2go-dev] General question`s
+</A></li>
+        <LI>Next message: <A HREF="000177.html">[X2go-dev] new x2go packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#176">[ date ]</a>
+              <a href="thread.html#176">[ thread ]</a>
+              <a href="subject.html#176">[ subject ]</a>
+              <a href="author.html#176">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello X2Go friends,
+
+Today, we have uploaded new X2go packages with a lot of changes:
+
+Qt x2goclient 3.01-4
+
+windows: <A HREF="http://prdownload.berlios.de/x2go/x2goclient-3.01-4-setup.exe">http://prdownload.berlios.de/x2go/x2goclient-3.01-4-setup.exe</A>
+macos: <A HREF="http://prdownload.berlios.de/x2go/x2goclient-3.01-4.dmg.zip">http://prdownload.berlios.de/x2go/x2goclient-3.01-4.dmg.zip</A>
+and linux(amd64,i386,ppc, and maemo)
+
+Gtk x2goclient 3.01-7
+nxcomp 3.4.0-1
+nxcomext 3.4.0-1
+nxcomshad 3.4.0-1
+nxproxy 3.4.0-2
+x2goagent 3.4.0-3
+x2goserver 3.0.1-2
+cups-x2go 3.0.0-1
+
+The made changes:
+
+x2goclient (both, Qt and Gtk):
+
+1. Added a field in session preferences &quot;Set display DPI&quot; ( Paul, you
+welcome  ;)   ).
+You'll also need the latest x2goserver package to use this feature
+2. You can use RSA/DSA keys with password protection now
+3. Settings for PulseAudio clients will not be saved in ~/.pulse any
+more, but in ~/.x2go/&lt;session dir&gt;. That will allow you to start on
+x2goserver so many sessions with the same user account as you wish, and
+to use PulseAudio with all of them simultaneously. Also your standard
+PulseAudio client settings on server will not be lost any more.
+4. The pulse-cookie will be copied from client machine to server. X2Go
+client will check if PulseAudio is started in system mode or as a
+per-session daemon (default and recommended). In first case
+/var/run/pulse/.pulse-cookie will be copied, in second ~/.pulse-cookie
+5. X2Go Client will try to load PulseAudio module
+&quot;module-native-protocol-tcp&quot; automatically.
+Changes 3,4,5 will allow you to use sound with PulseAudio without making
+any configuration procedures on your server and client machines.
+6. X2Go client will check if a local port for graphic tunnel is free,
+and if this port is already used, it'll search for the next free port.
+Now you will be able to start several X2Go sessions on different X2go
+servers simultaneously even if the sessions are using the same port
+for graphic
+tunnel.
+7. X2Go client will start ssh connection with option
+&quot;ServerAliveInterval=300&quot;. That should solve problems with some routers
+which interrupting the TCP connection after some time idling -&gt; in our
+case the reverse ssh tunnel for sound and file sharing (also spool for
+printing) (Tobias, please let me know if it solve your problem)
+8. The default value for &quot;Keep current keyboard settings&quot; is set to
+FALSE. The default keyboard layout will be taken from your
+localization. (pc105/de for German, pc105/ru for Russian, etc)
+
+Windows specific changes:
+
+1. X2Go client setup program now contains an X-Server and PulseAudio
+build from sources. The installer of Xming and PulseAudio build from
+Cendio are no longer part of this package.
+2. sshd will no longer be started as system daemon.
+3. every X2Go client process will start a own version of X, ssh and
+PulseAudio. This allows you to start as many x2goclient instances as
+you wish.
+4. For printing and viewing PDFs (X2goprint) it's now possible to use
+the windows default PDF viewer application with winapi function
+&quot;ShellExec&quot; (If you use this option you won't need ghostscript any
+more). You can simply print with Acrobat Reader.
+
+cups-x2go:
+support for sqlite db on server
+
+x2goserver:
+1. Support for DPI settings in x2goclient
+2. ssh option &quot;ServerAliveInterval=300&quot; in x2gomountdirs.
+3. Support for limitation of user session, which are running
+simultaneously.
+To use this feature, you must edit file /etc/x2go/x2goserver.conf, which
+normally look like this:
+
+[limit users]
+beispielb=1
+
+[limit groups]
+x2gousers=2
+
+&lt;EOF&gt;
+
+In this file you have two sections. In the section &quot;limit users&quot; you can
+specify limits for specific users. In &quot;limit groups&quot;  you can do the
+same for groups. &quot;limit users&quot; hase a higher priority then &quot;limit
+groups&quot;.
+For example:
+
+[limit users]
+beispielb=0
+
+[limit groups]
+x2gousers=1
+teacher=3
+
+The limit of &quot;beispielb&quot; will be &quot;0&quot; (unlimited)
+independent from groups settings. If there is no entry for the
+user in config file, largest value from group settings will be taken.
+If the user &quot;verstandk&quot; is member of groups &quot;x2gousers&quot; and
+&quot;teacher&quot;  and the config file looks like this:
+
+[limit groups]
+x2gousers=1
+teacher=5
+
+value 5 will be used. Note, that 0 is greater than anything because &quot;0&quot;
+means &quot;unlimited&quot;.
+
+
+Ok. That's all for now. Please test all new packages and give us your
+results.
+We are waiting impatiently to get your test results (and certainly new
+bugreports   ;)   )
+
+Your sincerely, X2Go Developer Team
+-- Oleksandr Shneyder Dipl. Informatik X2go Core Developer Team email:
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A> web: www.obviously-nice.de --&gt; X2go
+- <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000165.html">[X2go-dev] General question`s
+</A></li>
+	<LI>Next message: <A HREF="000177.html">[X2go-dev] new x2go packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#176">[ date ]</a>
+              <a href="thread.html#176">[ thread ]</a>
+              <a href="subject.html#176">[ subject ]</a>
+              <a href="author.html#176">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

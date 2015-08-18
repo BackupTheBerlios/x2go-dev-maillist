@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] keyboard problem with x2go on maemo
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20keyboard%20problem%20with%20x2go%20on%20maemo&In-Reply-To=%3C1236765687.24165.40.camel%40mattotaupa.wohnung.familie-menzel.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000011.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] keyboard problem with x2go on maemo</H1>
+    <B>Paul Menzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20keyboard%20problem%20with%20x2go%20on%20maemo&In-Reply-To=%3C1236765687.24165.40.camel%40mattotaupa.wohnung.familie-menzel.net%3E"
+       TITLE="[X2go-dev] keyboard problem with x2go on maemo">paulepanter at users.sourceforge.net
+       </A><BR>
+    <I>Wed Mar 11 11:01:27 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000011.html">[X2go-dev] keyboard problem with x2go on maemo
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#12">[ date ]</a>
+              <a href="thread.html#12">[ thread ]</a>
+              <a href="subject.html#12">[ subject ]</a>
+              <a href="author.html#12">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear Heiko,
+
+
+please do always reply to the list. I do not know if Roundcube has this
+implemented yet, but you could use reply to all as an alternative and
+remove my address.
+
+And please also please reply inline.
+
+
+Am Dienstag, den 10.03.2009, 17:28 +0100 schrieb Heiko Baumann:
+
+&gt;<i> On Tue, 10 Mar 2009 08:03:19 +0100, Paul Menzel
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">paulepanter at users.sourceforge.net</A>&gt; wrote:
+</I>&gt;<i> &gt; Dear Heiko,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Am Dienstag, den 10.03.2009, 00:57 +0100 schrieb Heiko Baumann:
+</I>&gt;<i> &gt;  
+</I>&gt;<i> &gt;&gt; i am testing x2go with my n810 and ran into one problem. i cannot type a
+</I>&gt;<i> &gt;&gt; /.
+</I>&gt;<i> &gt;&gt; every other fn+x key combination works fine (@\()%# etc.) but if i try
+</I>&gt;<i> &gt;&gt; fn+j
+</I>&gt;<i> &gt;&gt; which should actually result in a / i only get a &quot;j&quot;.
+</I>&gt;<i> &gt;&gt; 
+</I>&gt;<i> &gt;&gt; any help?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Well, I do not know. What versions are you using and what do the log
+</I>&gt;<i> &gt; files say?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Did you try to see what xev reports?
+</I>
+
+&gt;<i> here is the xev output for fn+j:
+</I>&gt;<i> 
+</I>&gt;<i> KeyPress event, serial 34, synthetic NO, window 0x1800001,
+</I>&gt;<i>     root 0x54, subw 0x0, time 4046129730, (348,430), root:(352,461),
+</I>&gt;<i>     state 0x0, keycode 216 (keysym 0xfe03, ISO_Level3_Shift), same_screen
+</I>&gt;<i> YES,
+</I>&gt;<i>     XLookupString gives 0 bytes:
+</I>&gt;<i>     XmbLookupString gives 0 bytes:
+</I>&gt;<i>     XFilterEvent returns: False
+</I>
+This look strange. Or is the fn key ISO_Level3_Shift?
+
+&gt;<i> KeyPress event, serial 34, synthetic NO, window 0x1800001,
+</I>&gt;<i>     root 0x54, subw 0x0, time 4046130051, (348,430), root:(352,461),
+</I>&gt;<i>     state 0x80, keycode 44 (keysym 0x6a, j), same_screen YES,
+</I>&gt;<i>     XLookupString gives 1 bytes: (6a) &quot;j&quot;
+</I>&gt;<i>     XmbLookupString gives 1 bytes: (6a) &quot;j&quot;
+</I>&gt;<i>     XFilterEvent returns: False
+</I>&gt;<i> 
+</I>&gt;<i> KeyRelease event, serial 34, synthetic NO, window 0x1800001,
+</I>&gt;<i>     root 0x54, subw 0x0, time 4046130187, (348,430), root:(352,461),
+</I>&gt;<i>     state 0x80, keycode 44 (keysym 0x6a, j), same_screen YES,
+</I>&gt;<i>     XLookupString gives 1 bytes: (6a) &quot;j&quot;
+</I>&gt;<i>     XFilterEvent returns: False
+</I>&gt;<i> 
+</I>&gt;<i> KeyRelease event, serial 34, synthetic NO, window 0x1800001,
+</I>&gt;<i>     root 0x54, subw 0x0, time 4046130284, (348,430), root:(352,461),
+</I>&gt;<i>     state 0x80, keycode 216 (keysym 0xfe03, ISO_Level3_Shift), same_screen
+</I>&gt;<i> YES,
+</I>&gt;<i>     XLookupString gives 0 bytes:
+</I>&gt;<i>     XFilterEvent returns: False
+</I>&gt;<i> 
+</I>&gt;<i> ClientMessage event, serial 34, synthetic YES, window 0x1800001,
+</I>&gt;<i>     message_type 0x46 (WM_PROTOCOLS), format 32, message 0x47
+</I>&gt;<i> (WM_DELETE_WINDOW)
+</I>
+Did you compare it to the output of a key combination that works?
+
+&gt;<i> Versions are:
+</I>&gt;<i> 
+</I>&gt;<i> ii  nxcompshad                           3.3.0-2-1                     nx
+</I>&gt;<i> based library needed by the x2go system
+</I>&gt;<i> ii  x2goagent                            3.3.0-3-1                    
+</I>&gt;<i> Special NX-ized client, was developed by NoM
+</I>&gt;<i> ii  x2gohostadministration               2.0.1-4                       x2go
+</I>&gt;<i> host administration (kcontrol module)
+</I>&gt;<i> ii  x2goldaptools                        2.0.1-8                      
+</I>&gt;<i> x2goldaptools LDAP authentification tools fp
+</I>&gt;<i> ii  x2goserver                           2.0.1-19                     
+</I>&gt;<i> x2goserver (daemon and tools)
+</I>&gt;<i> ii  x2gosystemadministration             2.0.1-5                       x2go
+</I>&gt;<i> system administration/preference settin
+</I>&gt;<i> ii  x2gousbmount                         1.0.1-1                      
+</I>&gt;<i> clientside usb mass-storage device mounting
+</I>&gt;<i> ii  x2gouseradministration               2.0.1-8                       x2go
+</I>&gt;<i> user administration (kcontrol module)
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> and my n810 runs:
+</I>&gt;<i> 
+</I>&gt;<i> ii  nxproxy                                            x2go-3.3.0-1-1      
+</I>&gt;<i>                       NX compression proxy
+</I>&gt;<i> ii  x2goclient                                         2.99-1              
+</I>&gt;<i>                       x2goclient qt4 client
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> which logfiles i should check?
+</I>
+Good question ;-). There should be files under ~/.nx and on the server
+nxserver.log under /var/log.
+
+
+Since I am not an expert and x2go just uses FreeNX I would recommend to
+you to ask on the freenx-knx mailing list [1].
+
+
+Thanks,
+
+Paul
+
+
+[1] <A HREF="https://mail.kde.org/mailman/listinfo/freenx-knx">https://mail.kde.org/mailman/listinfo/freenx-knx</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: Dies ist ein digital signierter Nachrichtenteil
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090311/96804f9d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090311/96804f9d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000011.html">[X2go-dev] keyboard problem with x2go on maemo
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#12">[ date ]</a>
+              <a href="thread.html#12">[ thread ]</a>
+              <a href="subject.html#12">[ subject ]</a>
+              <a href="author.html#12">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

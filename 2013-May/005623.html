@@ -1,0 +1,363 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#211: [PATCH] build: also install defaults and	manpages through `make install`
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23211%3A%20%5BPATCH%5D%20build%3A%20also%20install%20defaults%20and%0A%09manpages%20through%20%60make%20install%60&In-Reply-To=%3C1368658649-13950-2-git-send-email-jengelh%40inai.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005622.html">
+   <LINK REL="Next"  HREF="005624.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#211: [PATCH] build: also install defaults and	manpages through `make install`</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23211%3A%20%5BPATCH%5D%20build%3A%20also%20install%20defaults%20and%0A%09manpages%20through%20%60make%20install%60&In-Reply-To=%3C1368658649-13950-2-git-send-email-jengelh%40inai.de%3E"
+       TITLE="[X2Go-Dev] Bug#211: [PATCH] build: also install defaults and	manpages through `make install`">jengelh at inai.de
+       </A><BR>
+    <I>Thu May 16 00:57:29 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005622.html">[X2Go-Dev] Bug#211: 211/x2go installation
+</A></li>
+        <LI>Next message: <A HREF="005624.html">[X2Go-Dev] Google Chrome and chromium-browser both crash when their advanced settings menu is accessed (Windows X2GoClient)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5623">[ date ]</a>
+              <a href="thread.html#5623">[ thread ]</a>
+              <a href="subject.html#5623">[ subject ]</a>
+              <a href="author.html#5623">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>---
+ Makefile                              | 26 +++++++++++++++++++-----
+ debian/python-x2gobroker.default      | 38 -----------------------------------
+ debian/x2gobroker-authservice.default | 19 ------------------
+ debian/x2gobroker-daemon.default      | 34 -------------------------------
+ python-x2gobroker.default             | 38 +++++++++++++++++++++++++++++++++++
+ x2gobroker-authservice.default        | 19 ++++++++++++++++++
+ x2gobroker-daemon.default             | 34 +++++++++++++++++++++++++++++++
+ 7 files changed, 112 insertions(+), 96 deletions(-)
+ delete mode 100644 debian/python-x2gobroker.default
+ delete mode 100644 debian/x2gobroker-authservice.default
+ delete mode 100644 debian/x2gobroker-daemon.default
+ create mode 100644 python-x2gobroker.default
+ create mode 100644 x2gobroker-authservice.default
+ create mode 100644 x2gobroker-daemon.default
+
+diff --git a/Makefile b/Makefile
+index 02382e5..a30ea7b 100755
+--- a/Makefile
++++ b/Makefile
+@@ -78,7 +78,10 @@ install:
+ 
+ 	# python-x2gobroker
+ 	python setup.py install --prefix=&quot;${PREFIX}&quot; $${DESTDIR+--root=&quot;${DESTDIR}&quot;}
+-	mkdir -p &quot;${DESTDIR}${ETCDIR}/broker&quot; &quot;${DESTDIR}/etc/pam.d&quot;
++	mkdir -p &quot;${DESTDIR}${ETCDIR}/broker&quot; &quot;${DESTDIR}/etc/pam.d&quot; \
++		&quot;${DESTDIR}/etc/default&quot;
++	${INSTALL_FILE} python-x2gobroker.default \
++		&quot;${DESTDIR}/etc/default/python-x2gobroker&quot;
+ 	${INSTALL_FILE} etc/x2gobroker.conf &quot;${DESTDIR}${ETCDIR}/&quot;
+ 	${INSTALL_FILE} etc/broker/x2gobroker-sessionprofiles.conf \
+ 		etc/broker/x2gobroker-loggers.conf \
+@@ -87,13 +90,21 @@ install:
+ 	${INSTALL_FILE} pam/x2gobroker &quot;${DESTDIR}/etc/pam.d/&quot;
+ 	
+ 	# x2gobroker-agent
+-	mkdir -p &quot;${DESTDIR}${LIBDIR}&quot; &quot;${DESTDIR}${SBINDIR}&quot;
++	mkdir -p &quot;${DESTDIR}${LIBDIR}&quot; &quot;${DESTDIR}${SBINDIR}&quot; \
++		&quot;${DESTDIR}${MANDIR}/man8&quot;
++	${INSTALL_FILE} man/man8/x2gobroker-pubkeyauthorizer.8* \
++		&quot;${DESTDIR}${MANDIR}/man8&quot;
+ 	${INSTALL_PROGRAM} lib/x2gobroker-agent* &quot;${DESTDIR}${LIBDIR}/&quot;
+ 	${INSTALL_PROGRAM} sbin/x2gobroker-pubkeyauthorizer &quot;${DESTDIR}${SBINDIR}/&quot;
+ 	
+ 	# x2gobroker-authservice
+ 	mkdir -p &quot;${DESTDIR}${SBINDIR}&quot; &quot;${DESTDIR}/etc/logrotate.d&quot; \
+-		&quot;${DESTDIR}${ETCDIR}/broker&quot;
++		&quot;${DESTDIR}${ETCDIR}/broker&quot; &quot;${DESTDIR}/etc/default&quot; \
++		&quot;${DESTDIR}${MANDIR}/man8&quot;
++	${INSTALL_FILE} x2gobroker-authservice.default \
++		&quot;${DESTDIR}/etc/default/x2gobroker-authservice&quot;
++	${INSTALL_FILE} man/man8/x2gobroker-authservice.8* \
++		&quot;${DESTDIR}${MANDIR}/man8&quot;
+ 	${INSTALL_PROGRAM} sbin/x2gobroker-authservice &quot;${DESTDIR}${SBINDIR}/&quot;
+ 	${INSTALL_FILE} logrotate/x2gobroker-authservice \
+ 		&quot;${DESTDIR}/etc/logrotate.d/&quot;
+@@ -101,7 +112,9 @@ install:
+ 		&quot;${DESTDIR}${ETCDIR}/broker/&quot;
+ 	
+ 	# x2gobroker-daemon
+-	mkdir -p &quot;${DESTDIR}/etc/logrotate.d/&quot;
++	mkdir -p &quot;${DESTDIR}/etc/logrotate.d/&quot; &quot;${DESTDIR}/etc/default&quot;
++	${INSTALL_FILE} x2gobroker-daemon.default \
++		&quot;${DESTDIR}/etc/default/x2gobroker-daemon&quot;
+ 	${INSTALL_FILE} logrotate/x2gobroker-daemon \
+ 		&quot;${DESTDIR}/etc/logrotate.d/&quot;
+ 	
+@@ -112,7 +125,10 @@ install:
+ 	${INSTALL_FILE} logrotate/x2gobroker-wsgi &quot;${DESTDIR}/etc/logrotate.d/&quot;
+ 	
+ 	# x2gobroker
+-	mkdir -p &quot;${DESTDIR}${BINDIR}&quot; &quot;${DESTDIR}${SBINDIR}&quot;
++	mkdir -p &quot;${DESTDIR}${BINDIR}&quot; &quot;${DESTDIR}${SBINDIR}&quot; \
++		&quot;${DESTDIR}${MANDIR}/man8&quot;
++	${INSTALL_FILE} man/man8/x2gobroker{,-keygen,-testauth}.8* \
++		&quot;${DESTDIR}${MANDIR}/man8&quot;
+ 	${INSTALL_PROGRAM} bin/x2gobroker-testauth &quot;${DESTDIR}${BINDIR}/&quot;
+ 	${INSTALL_PROGRAM} sbin/x2gobroker sbin/x2gobroker-keygen \
+ 		&quot;${DESTDIR}${SBINDIR}/&quot;
+diff --git a/debian/python-x2gobroker.default b/debian/python-x2gobroker.default
+deleted file mode 100644
+index 67b93cb..0000000
+--- a/debian/python-x2gobroker.default
++++ /dev/null
+@@ -1,38 +0,0 @@
+-# X2Go Broker Session Broker (common) configuration for Debian
+-
+-# The posix user/group ID the broker runs under (do not change!)
+-# if you change those nonetheless, make sure that the log file
+-# directory (default: /var/log/x2gobroker) and files in there are
+-# writable by that user
+-#X2GOBROKER_DAEMON_USER=x2gobroker
+-#X2GOBROKER_DAEMON_GROUP=x2gobroker
+-
+-# The posix user under which the x2gobroker-agent can be launched on
+-# remote X2Go Servers.
+-#X2GOBROKER_AGENT_USER=x2gobroker
+-
+-# Control debug mode (0=disable, 1=enable).
+-#
+-# Apart from verbose logging in /var/log/x2gobroker/*.log, this will
+-# also make the broker available through http GET method requests
+-# (otherwise: POST method requests only) and you will be able to test
+-# the broker through your web browser
+-#
+-# This value has an effect on all (Python-based) X2Go Session Broker
+-# services and can be overridden in /etc/default/x2gobroker-* files.
+-#X2GOBROKER_DEBUG=0
+-
+-# Default X2Go Session Broker backend (available: zeroconf, inifile)
+-#X2GOBROKER_DEFAULT_BACKEND=zeroconf
+-
+-# Path to the X2Go Session Broker's configuration file
+-#X2GOBROKER_CONFIG=/etc/x2go/x2gobroker.conf
+-
+-# Path to the X2Go Session Broker's session profiles file (when using the inifile backend)
+-#X2GOBROKER_SESSIONPROFILES=/etc/x2go/broker/x2gobroker-sessionprofiles.conf
+-
+-# Path to the X2Go Session Broker's agent command
+-#X2GOBROKER_AGENT_CMD=/usr/lib/x2go/x2gobroker-agent
+-
+-# The unix socket file for communication between the broker and the authentication service.
+-#X2GOBROKER_AUTHSERVICE_SOCKET=/run/x2gobroker/x2gobroker-authservice.socket
+diff --git a/debian/x2gobroker-authservice.default b/debian/x2gobroker-authservice.default
+deleted file mode 100644
+index e8b5f7b..0000000
+--- a/debian/x2gobroker-authservice.default
++++ /dev/null
+@@ -1,19 +0,0 @@
+-# X2Go Session Broker (PAM Authentication Service) configuration for Debian
+-
+-# For PAM authentication the X2Go Session Broker needs its authentication
+-# service. The session broker itself runs as a non-privileged user (see below)
+-# whereas the authentication service must run as super-user root.
+-#
+-# If you do not use PAM as authentication mechanism with the X2Go Session Broker,
+-# you can disable the authentication service here.
+-START_AUTHSERVICE=true
+-
+-# Control debug mode (0=disable, 1=enable) of the X2Go Broker Authentication
+-# Service.
+-#
+-# Logging is (by default) written to /var/log/x2gobroker/*log.
+-#
+-# This option can also be configured in /etc/default/python-x2go.
+-# The value configured here overrides the value from python-x2go
+-# defaults and only sets the x2gobroker-authservice into debug mode.
+-#X2GOBROKER_DEBUG=0
+diff --git a/debian/x2gobroker-daemon.default b/debian/x2gobroker-daemon.default
+deleted file mode 100644
+index 0eb0a81..0000000
+--- a/debian/x2gobroker-daemon.default
++++ /dev/null
+@@ -1,34 +0,0 @@
+-# X2Go Session Broker configuration for Debian
+-
+-# Uncomment to enable the X2Go Session Broker standalone daemon
+-START_BROKER=true
+-
+-# Bind standalone daemon to this address:port
+-#DAEMON_BIND_ADDRESS=127.0.0.1:8080
+-
+-# Control debug mode (0=disable, 1=enable).
+-#
+-# Apart from verbose logging in /var/log/x2gobroker/*.log, this will
+-# also make the broker available through http GET method requests
+-# (otherwise: POST method requests only) and you will be able to
+-# test the broker through your web browser.
+-#
+-# This option can also be configured in /etc/default/python-x2go.
+-# The value configured here overrides the value from python-x2go
+-# defaults and only sets the x2gobroker-daemon into debug mode.
+-#X2GOBROKER_DEBUG=0
+-
+-##########################################################
+-###                                                    ###
+-### Enable SSL Support                                 ###
+-###   o You have to create your own SSL certificates   ###
+-###   o You have to actively uncomment the below SSL   ###
+-###     relevant line to enable <A HREF="https://">https://</A> in x2gobroker ###
+-###                                                    ###
+-##########################################################
+-
+-# SSL certificate file
+-#X2GOBROKER_SSL_CERTFILE=/etc/x2go/broker/ssl/broker.crt
+-
+-# SSL key file (ensure permissions are set to root:x2gobroker:0640)
+-#X2GOBROKER_SSL_KEYFILE=/etc/x2go/broker/ssl/broker.key
+diff --git a/python-x2gobroker.default b/python-x2gobroker.default
+new file mode 100644
+index 0000000..67b93cb
+--- /dev/null
++++ b/python-x2gobroker.default
+@@ -0,0 +1,38 @@
++# X2Go Broker Session Broker (common) configuration for Debian
++
++# The posix user/group ID the broker runs under (do not change!)
++# if you change those nonetheless, make sure that the log file
++# directory (default: /var/log/x2gobroker) and files in there are
++# writable by that user
++#X2GOBROKER_DAEMON_USER=x2gobroker
++#X2GOBROKER_DAEMON_GROUP=x2gobroker
++
++# The posix user under which the x2gobroker-agent can be launched on
++# remote X2Go Servers.
++#X2GOBROKER_AGENT_USER=x2gobroker
++
++# Control debug mode (0=disable, 1=enable).
++#
++# Apart from verbose logging in /var/log/x2gobroker/*.log, this will
++# also make the broker available through http GET method requests
++# (otherwise: POST method requests only) and you will be able to test
++# the broker through your web browser
++#
++# This value has an effect on all (Python-based) X2Go Session Broker
++# services and can be overridden in /etc/default/x2gobroker-* files.
++#X2GOBROKER_DEBUG=0
++
++# Default X2Go Session Broker backend (available: zeroconf, inifile)
++#X2GOBROKER_DEFAULT_BACKEND=zeroconf
++
++# Path to the X2Go Session Broker's configuration file
++#X2GOBROKER_CONFIG=/etc/x2go/x2gobroker.conf
++
++# Path to the X2Go Session Broker's session profiles file (when using the inifile backend)
++#X2GOBROKER_SESSIONPROFILES=/etc/x2go/broker/x2gobroker-sessionprofiles.conf
++
++# Path to the X2Go Session Broker's agent command
++#X2GOBROKER_AGENT_CMD=/usr/lib/x2go/x2gobroker-agent
++
++# The unix socket file for communication between the broker and the authentication service.
++#X2GOBROKER_AUTHSERVICE_SOCKET=/run/x2gobroker/x2gobroker-authservice.socket
+diff --git a/x2gobroker-authservice.default b/x2gobroker-authservice.default
+new file mode 100644
+index 0000000..e8b5f7b
+--- /dev/null
++++ b/x2gobroker-authservice.default
+@@ -0,0 +1,19 @@
++# X2Go Session Broker (PAM Authentication Service) configuration for Debian
++
++# For PAM authentication the X2Go Session Broker needs its authentication
++# service. The session broker itself runs as a non-privileged user (see below)
++# whereas the authentication service must run as super-user root.
++#
++# If you do not use PAM as authentication mechanism with the X2Go Session Broker,
++# you can disable the authentication service here.
++START_AUTHSERVICE=true
++
++# Control debug mode (0=disable, 1=enable) of the X2Go Broker Authentication
++# Service.
++#
++# Logging is (by default) written to /var/log/x2gobroker/*log.
++#
++# This option can also be configured in /etc/default/python-x2go.
++# The value configured here overrides the value from python-x2go
++# defaults and only sets the x2gobroker-authservice into debug mode.
++#X2GOBROKER_DEBUG=0
+diff --git a/x2gobroker-daemon.default b/x2gobroker-daemon.default
+new file mode 100644
+index 0000000..0eb0a81
+--- /dev/null
++++ b/x2gobroker-daemon.default
+@@ -0,0 +1,34 @@
++# X2Go Session Broker configuration for Debian
++
++# Uncomment to enable the X2Go Session Broker standalone daemon
++START_BROKER=true
++
++# Bind standalone daemon to this address:port
++#DAEMON_BIND_ADDRESS=127.0.0.1:8080
++
++# Control debug mode (0=disable, 1=enable).
++#
++# Apart from verbose logging in /var/log/x2gobroker/*.log, this will
++# also make the broker available through http GET method requests
++# (otherwise: POST method requests only) and you will be able to
++# test the broker through your web browser.
++#
++# This option can also be configured in /etc/default/python-x2go.
++# The value configured here overrides the value from python-x2go
++# defaults and only sets the x2gobroker-daemon into debug mode.
++#X2GOBROKER_DEBUG=0
++
++##########################################################
++###                                                    ###
++### Enable SSL Support                                 ###
++###   o You have to create your own SSL certificates   ###
++###   o You have to actively uncomment the below SSL   ###
++###     relevant line to enable <A HREF="https://">https://</A> in x2gobroker ###
++###                                                    ###
++##########################################################
++
++# SSL certificate file
++#X2GOBROKER_SSL_CERTFILE=/etc/x2go/broker/ssl/broker.crt
++
++# SSL key file (ensure permissions are set to root:x2gobroker:0640)
++#X2GOBROKER_SSL_KEYFILE=/etc/x2go/broker/ssl/broker.key
+-- 
+1.8.2
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005622.html">[X2Go-Dev] Bug#211: 211/x2go installation
+</A></li>
+	<LI>Next message: <A HREF="005624.html">[X2Go-Dev] Google Chrome and chromium-browser both crash when their advanced settings menu is accessed (Windows X2GoClient)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5623">[ date ]</a>
+              <a href="thread.html#5623">[ thread ]</a>
+              <a href="subject.html#5623">[ subject ]</a>
+              <a href="author.html#5623">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

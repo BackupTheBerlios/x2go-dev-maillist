@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] local apps on a thin client anyhow?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20local%20apps%20on%20a%20thin%20client%20anyhow%3F&In-Reply-To=%3CBANLkTinG9HJO-5nq8pfnsyOqJ3THcESNTQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002070.html">
+   <LINK REL="Next"  HREF="002072.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] local apps on a thin client anyhow?</H1>
+    <B>Jo-Erlend Schinstad</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20local%20apps%20on%20a%20thin%20client%20anyhow%3F&In-Reply-To=%3CBANLkTinG9HJO-5nq8pfnsyOqJ3THcESNTQ%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] local apps on a thin client anyhow?">joerlend.schinstad at gmail.com
+       </A><BR>
+    <I>Thu Apr 21 07:57:07 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002070.html">[X2go-dev] local apps on a thin client anyhow?
+</A></li>
+        <LI>Next message: <A HREF="002072.html">[X2go-dev] local apps on a thin client anyhow?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2071">[ date ]</a>
+              <a href="thread.html#2071">[ thread ]</a>
+              <a href="subject.html#2071">[ subject ]</a>
+              <a href="author.html#2071">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 20 April 2011 21:04, Meik Hellmund &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Meik.Hellmund at math.uni-leipzig.de</A>&gt; wrote:
+[snip]
+&gt;<i> DISPLAY=0:0 and started an X app on the client - and voila, it appears
+</I>&gt;<i> in the client's x2go session. But it is not managed by the
+</I>&gt;<i> window manager since the window manager runs on the server.
+</I>&gt;<i> So it has no border and can'tmoved around etc.
+</I>&gt;<i> Is there some better way to do this? Is it possible to somehow stack a
+</I>&gt;<i> local and a server window manager?
+</I>
+What I've sometimes done, is to use the WM on the client and then run
+rootless applications from x2go. For instance, if you use gnome-panel
+on the server and the client, you can leave the bottom panel on the
+client side and only leave the top panel on the server side. Then you
+run gnome-panel as a rootless application from the server. This gives
+you a top panel and a bottom panel. On the top panel, you have
+application menus and when you start one, it's run as a rootless
+application. The bottom panel then has a switcher for both local and
+remote applications, so that's fairly seemless. On the bottom panel, I
+then add an applications menu with only the applications I wish to run
+locally.
+
+Perhaps it's worth a try? Hope it helps.
+
+Jo-Erlend Schinstad
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002070.html">[X2go-dev] local apps on a thin client anyhow?
+</A></li>
+	<LI>Next message: <A HREF="002072.html">[X2go-dev] local apps on a thin client anyhow?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2071">[ date ]</a>
+              <a href="thread.html#2071">[ thread ]</a>
+              <a href="subject.html#2071">[ subject ]</a>
+              <a href="author.html#2071">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

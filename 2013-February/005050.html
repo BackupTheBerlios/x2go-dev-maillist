@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] build: avoid using install -o/-g
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20build%3A%20avoid%20using%20install%20-o/-g&In-Reply-To=%3C20130216171752.21381p1rki24046o%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005049.html">
+   <LINK REL="Next"  HREF="005051.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] build: avoid using install -o/-g</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20build%3A%20avoid%20using%20install%20-o/-g&In-Reply-To=%3C20130216171752.21381p1rki24046o%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] build: avoid using install -o/-g">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Feb 16 17:17:52 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005049.html">[X2Go-Dev] [PATCH] build: avoid using install -o/-g
+</A></li>
+        <LI>Next message: <A HREF="005051.html">[X2Go-Dev] [PATCH] build: avoid using install -o/-g
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5050">[ date ]</a>
+              <a href="thread.html#5050">[ thread ]</a>
+              <a href="subject.html#5050">[ subject ]</a>
+              <a href="author.html#5050">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Jan,
+
+On Sa 16 Feb 2013 04:12:08 CET Jan Engelhardt wrote:
+
+&gt;<i> The -o and -g options cause installation failure in unprivileged build
+</I>&gt;<i> environments, and provide no benefit for root either, because files
+</I>&gt;<i> will be owned by the installing user anyway.
+</I>&gt;<i> ---
+</I>&gt;<i> Can we please stop with the -o and -g madness?
+</I>&gt;<i>
+</I>&gt;<i>  Makefile |    6 +++---
+</I>&gt;<i>  1 file changed, 3 insertions(+), 3 deletions(-)
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/Makefile b/Makefile
+</I>&gt;<i> index 07428f6..3c90c45 100755
+</I>&gt;<i> --- a/Makefile
+</I>&gt;<i> +++ b/Makefile
+</I>&gt;<i> @@ -23,9 +23,9 @@
+</I>&gt;<i>  SRC_DIR=$(CURDIR)
+</I>&gt;<i>  SHELL=/bin/bash
+</I>&gt;<i>
+</I>&gt;<i> -INSTALL_DIR=install -d -o root -g root -m 755
+</I>&gt;<i> -INSTALL_FILE=install -o root -g root -m 644
+</I>&gt;<i> -INSTALL_PROGRAM=install -o root -g root -m 755
+</I>&gt;<i> +INSTALL_DIR=install -dm 755
+</I>&gt;<i> +INSTALL_FILE=install -m 644
+</I>&gt;<i> +INSTALL_PROGRAM=install -m 755
+</I>&gt;<i>
+</I>&gt;<i>  CC      ?= gcc
+</I>&gt;<i>  CFLAGS  += -fPIE
+</I>&gt;<i> --
+</I>&gt;<i> 1.7.10.4
+</I>
+I would really appreciate if he could start using X2Go BTS for  
+submitting patches. With this patch I have a hard time to find out to  
+what X2Go component to apply it...
+
+1. Send your patches to <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">,,submit at bugs.x2go.org</A>''.
+2. Find a good subject...
+3. And put these lines at the top of the mail body:
+Package: &lt;Git-project name&gt;
+Version: HEAD
+Tag: patch
+
+&lt;your patch description / long description&gt;
+
+4. And then add the patch as attachment to your mail. Attachments are  
+much easier to handle than inline patch code.
+
+As I still have no clue what X2Go component this patch is for, may I  
+ask you to follow the above procedure for this very patch?
+
+Thanks,
+Mike
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130216/06932d72/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130216/06932d72/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005049.html">[X2Go-Dev] [PATCH] build: avoid using install -o/-g
+</A></li>
+	<LI>Next message: <A HREF="005051.html">[X2Go-Dev] [PATCH] build: avoid using install -o/-g
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5050">[ date ]</a>
+              <a href="thread.html#5050">[ thread ]</a>
+              <a href="subject.html#5050">[ subject ]</a>
+              <a href="author.html#5050">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

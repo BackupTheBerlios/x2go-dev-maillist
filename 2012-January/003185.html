@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20NX%20%28redistributed%29%20--%20x2goagent%20fully%20integrated%0A%20into%20NX-libs%20%28call%20for%20testing%29&In-Reply-To=%3C20120113120825.39962qf5p4omsuqx%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003184.html">
+   <LINK REL="Next"  HREF="003186.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20NX%20%28redistributed%29%20--%20x2goagent%20fully%20integrated%0A%20into%20NX-libs%20%28call%20for%20testing%29&In-Reply-To=%3C20120113120825.39962qf5p4omsuqx%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jan 13 12:08:25 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003184.html">[X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)
+</A></li>
+        <LI>Next message: <A HREF="003186.html">[X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3185">[ date ]</a>
+              <a href="thread.html#3185">[ thread ]</a>
+              <a href="subject.html#3185">[ subject ]</a>
+              <a href="author.html#3185">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Jochen,
+
+On Fr 13 Jan 2012 11:48:35 CET Jochen Schulz wrote:
+
+&gt;<i> in principle this is really great and i appreciate the hard work.
+</I>&gt;<i>
+</I>&gt;<i> Sadly, the upgraded nxagent had the effect that neither freenx nor
+</I>&gt;<i> neatx-server was working anymore (ubuntu 10.04, neatx-server and x2go
+</I>&gt;<i> side by side using <A HREF="http://ppa.launchpad.net/freenx-team/ppa/ubuntu">http://ppa.launchpad.net/freenx-team/ppa/ubuntu</A> and
+</I>&gt;<i> <A HREF="http://ppa.launchpad.net/x2go/stable/ubuntu">http://ppa.launchpad.net/x2go/stable/ubuntu</A>)
+</I>&gt;<i>
+</I>&gt;<i> Looking at the debug-output of the server shows this:
+</I>&gt;<i>
+</I>&gt;<i> DEBUG daemon:461 /usr/bin/nxagent[8867] stderr: Error: Aborting session
+</I>&gt;<i> with 'Unable to open display
+</I>&gt;<i> 'nx/nx,options=/var/lib/neatx/sessions/09BD2B7A618AF0AEAC0292E490A9D340/options:682''.
+</I>&gt;<i> ERROR agent:376 Agent error: Aborting session with 'Unable to open
+</I>&gt;<i> display
+</I>&gt;<i> 'nx/nx,options=/var/lib/neatx/sessions/09BD2B7A618AF0AEAC0292E490A9D340/options:682''.
+</I>&gt;<i>
+</I>&gt;<i> as i didn't had the time right away to track the problem down, i
+</I>&gt;<i> downgraded the nxagent to the version in the freenx-ppa of ubuntu. It
+</I>&gt;<i> seems there is some issue with xauth in the end. If you need furhter
+</I>&gt;<i> help with this, feel free to contact me.
+</I>
+Please provide more information on that. Esp. what exact package  
+versions are installed on your system. Furthermore, please provide the  
+deb-URLs where you got all the software components from. Thanks.
+
+&gt;<i> (slightly) off-topic:
+</I>&gt;<i> In the long run i would like to only use x2go, but there is an issue
+</I>&gt;<i> left which i name here:
+</I>&gt;<i>
+</I>&gt;<i> When connecting from computers with german-keyboard-layout to a session
+</I>&gt;<i> where an english-keyboard layout was set, it happens that pressing
+</I>&gt;<i> 'ALTGR+Q' (which should write '@') will switch to a mode which always
+</I>&gt;<i> have ALTGR on. Only defocus+focus the window again 'fixes' the problem.
+</I>&gt;<i> No setting of the keyboard-layout via gnome-keyboar-switcher or setting
+</I>&gt;<i> via 'setxkbmap de' is helping. Perhaps you can gave me a hint what to do
+</I>&gt;<i> in such a case or to even track this bug down? Thanks!
+</I>
+This smells like you are using old X2Go agent code. This has been  
+settled some months ago...
+
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120113/3aeb6930/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120113/3aeb6930/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003184.html">[X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)
+</A></li>
+	<LI>Next message: <A HREF="003186.html">[X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3185">[ date ]</a>
+              <a href="thread.html#3185">[ thread ]</a>
+              <a href="subject.html#3185">[ subject ]</a>
+              <a href="author.html#3185">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

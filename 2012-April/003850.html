@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] BUG REPORT - X2Go Client 3.99.2.1-rc1 for windows is ready for testing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20BUG%20REPORT%20-%20X2Go%20Client%203.99.2.1-rc1%20for%20windows%20is%0A%20ready%20for%20testing&In-Reply-To=%3C4F8C6D78.4030301%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003849.html">
+   <LINK REL="Next"  HREF="003855.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] BUG REPORT - X2Go Client 3.99.2.1-rc1 for windows is ready for testing</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20BUG%20REPORT%20-%20X2Go%20Client%203.99.2.1-rc1%20for%20windows%20is%0A%20ready%20for%20testing&In-Reply-To=%3C4F8C6D78.4030301%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] BUG REPORT - X2Go Client 3.99.2.1-rc1 for windows is ready for testing">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Mon Apr 16 21:05:28 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003849.html">[X2Go-Dev] BUG REPORT - X2Go Client 3.99.2.1-rc1 for windows is ready for testing
+</A></li>
+        <LI>Next message: <A HREF="003855.html">[X2Go-Dev] BUG REPORT - X2Go Client 3.99.2.1-rc1 for windows is ready for testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3850">[ date ]</a>
+              <a href="thread.html#3850">[ thread ]</a>
+              <a href="subject.html#3850">[ subject ]</a>
+              <a href="author.html#3850">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 16.04.2012 19:25, schrieb Stefan Baur:
+&gt;<i> Hi Alex,
+</I>&gt;<i> 
+</I>&gt;<i> I believe you're looking for the problem in the wrong location.  (Or
+</I>&gt;<i> maybe you misunderstood my bug report.)
+</I>&gt;<i> The way I see it, pulseaudio on the client just flat out refuses to run
+</I>&gt;<i> while %USERPROFILE%\.x2go\pulse\.pulse\%COMPUTERNAME%-runtime\pid exists.
+</I>&gt;<i> 
+</I>&gt;<i> Proof for my theory:
+</I>&gt;<i> When I close all x2goclient.exe-related tasks (ssh and whatnot) and run
+</I>&gt;<i> x2goclient.exe again I still have no sound when reconnecting.
+</I>&gt;<i> 
+</I>&gt;<i> BUT: as soon as I close x2goclient.exe, manually delete the pid file and
+</I>&gt;<i> restart x2goclient.exe, I *do* have working sound when reconnecting.
+</I>&gt;<i> 
+</I>&gt;<i> Of course, suspending *while the video is running* will have the effect
+</I>&gt;<i> described by you, but that's *not* the issue I'm reporting.  I'm waiting
+</I>&gt;<i> for the video to finish (I was originally tryingo to find out if the
+</I>&gt;<i> pulseaudio stability issues when playing long videos are gone), so there
+</I>&gt;<i> is no active application like flashplayer trying to push data to
+</I>&gt;<i> pulseaudio.
+</I>&gt;<i> 
+</I>&gt;<i> -Stefan
+</I>
+okay, it's strange. This why I asked you if you can see pulseaudio in
+task manager :) In my case there is no problem starting pulseaudio if
+%USERPROFILE%\.x2go\pulse\.pulse\%COMPUTERNAME%-runtime\pid exists and I
+cannot reproduce your issue. I'll provide you a new binary tomorrow and
+you can check if the problem still exists.
+
+Regards
+Alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120416/99d3df7d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120416/99d3df7d/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003849.html">[X2Go-Dev] BUG REPORT - X2Go Client 3.99.2.1-rc1 for windows is ready for testing
+</A></li>
+	<LI>Next message: <A HREF="003855.html">[X2Go-Dev] BUG REPORT - X2Go Client 3.99.2.1-rc1 for windows is ready for testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3850">[ date ]</a>
+              <a href="thread.html#3850">[ thread ]</a>
+              <a href="subject.html#3850">[ subject ]</a>
+              <a href="author.html#3850">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

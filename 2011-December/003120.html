@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Can not use FreeNX alongside latest X2Go packages (was: Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation))
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Can%20not%20use%20FreeNX%20alongside%20latest%20X2Go%20packages%20%28was%3A%0A%20Client-side%20printing%20not%20working%20%28most%20likely%20due%20to%20the%0A%20x2goserver-printing%20package%20being%20unavailable%20for%20installation%29%29&In-Reply-To=%3C4EEB5F50.1060602%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003119.html">
+   <LINK REL="Next"  HREF="003124.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Can not use FreeNX alongside latest X2Go packages (was: Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation))</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Can%20not%20use%20FreeNX%20alongside%20latest%20X2Go%20packages%20%28was%3A%0A%20Client-side%20printing%20not%20working%20%28most%20likely%20due%20to%20the%0A%20x2goserver-printing%20package%20being%20unavailable%20for%20installation%29%29&In-Reply-To=%3C4EEB5F50.1060602%40stefanbaur.de%3E"
+       TITLE="[X2go-Dev] Can not use FreeNX alongside latest X2Go packages (was: Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation))">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Fri Dec 16 16:10:08 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003119.html">[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)
+</A></li>
+        <LI>Next message: <A HREF="003124.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages (was: Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation))
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3120">[ date ]</a>
+              <a href="thread.html#3120">[ thread ]</a>
+              <a href="subject.html#3120">[ subject ]</a>
+              <a href="author.html#3120">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>During my debug session, I noticed that these two packages:
+&gt;<i> ii libxcompext3 1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1 NX X11 
+</I>&gt;<i> protocol compression extensions library
+</I>&gt;<i> ii libxcompshad3 3.5.0-2-0~x2go-bpo1+lenny~main~24~build1 NX shadowing 
+</I>&gt;<i> library
+</I>also had the &quot;x2go-bpo1+lenny&quot;-tag that was causing confusion with 
+regards to
+&gt;<i> ii x2goserver 3.0.99.8-0~x2go-bpo1+lenny~main~388~build1 X2go server 
+</I>&gt;<i> daemon scripts
+</I>&gt;<i> ii x2goserver-extensions 3.0.99.8-0~x2go-bpo1+lenny~main~388~build1 
+</I>&gt;<i> X2go server daemon scripts (extensions)
+</I>(where I wanted to use squeeze packages so x2goserver-printing would 
+become installable)
+
+So I tried uninstalling and reinstalling them.
+Trying to uninstall them, I got a warning that this would uninstall the 
+FreeNX packages as well, so I repackaged all of the named packages (freenx
+freenx-media, freenx-session-launcher, freenx-rdp, freenx-server, 
+freenx-vnc, nxagent, x2goserver-printing, x2goserver-extensions, 
+x2goserver, x2goagent) using dpkg-repack just to be safe.
+
+After that, I proceeded with the uninstall/reinstall and re-added the 
+FreeNX packages.
+Now, FreeNX refuses to connect - X2Go still connects fine, though.
+The FreeNX error message is: &quot;Session startup failed&quot;, with the 
+following Details provided:
+NX&gt; 203 NXSSH running with pid: 5180
+NX&gt; 285 Enabling check on switch command
+NX&gt; 285 Enabling skip of SSH config files
+NX&gt; 285 Setting the preferred NX options
+NX&gt; 200 Connected to address: 192.168.2.84 on port: 443
+NX&gt; 202 Authenticating user: nx
+NX&gt; 208 Using auth method: publickey
+HELLO NXSERVER - Version 3.2.0-74-SVN OS (GPL, using backend: 3.3.0)
+NX&gt; 105 hello NXCLIENT - Version 3.2.0
+NX&gt; 134 Accepted protocol: 3.2.0
+NX&gt; 105 SET SHELL_MODE SHELL
+NX&gt; 105 SET AUTH_MODE PASSWORD
+NX&gt; 105 login
+NX&gt; 101 User: unlimited1
+NX&gt; 102 Password:
+NX&gt; 103 Welcome to: myservernamehere1 user: unlimited1
+NX&gt; 105 listsession --user=&quot;unlimited1&quot; --status=&quot;suspended,running&quot; 
+--geometry=&quot;1366x768x32+render&quot; --type=&quot;unix-application&quot;
+NX&gt; 127 Sessions list of user 'unlimited1' for reconnect:
+
+Display Type             Session ID                       Options  Depth 
+Screen         Status      Session Name
+------- ---------------- -------------------------------- -------- ----- 
+-------------- ----------- ------------------------------
+
+
+NX&gt; 148 Server capacity: not reached for user: unlimited1
+NX&gt; 105 startsession  --rootless=&quot;1&quot; --virtualdesktop=&quot;0&quot; 
+--application=&quot;/usr/local/bin/starter&quot; --link=&quot;wan&quot; --backingstore=&quot;1&quot; 
+--encryption=&quot;1&quot; --cache=&quot;16M&quot; --images=&quot;0M&quot; --shmem=&quot;1&quot; --shpix=&quot;1&quot; 
+--strict=&quot;0&quot; --composite=&quot;1&quot; --media=&quot;0&quot; --session=&quot;test2&quot; 
+--type=&quot;unix-application&quot; --client=&quot;winnt&quot; --kbload=&quot; --kbload=pc105/de&quot; 
+--keymap=&quot; --keymap=de&quot; --keyboard=&quot;pc105/de&quot; --aux=&quot;1&quot; 
+--screeninfo=&quot;1096x700x32+render&quot;
+
+NX&gt; 1000 NXNODE - Version 3.2.0-74-SVN OS (GPL, using backend: 3.3.0)
+NX&gt; 700 Session id: myservernamehere1-1000-629950A11DE87FB68440D5DDA0B4BB76
+NX&gt; 705 Session display: 1000
+NX&gt; 703 Session type: unix-application
+NX&gt; 701 Proxy cookie: 72d13ef04406e96020c33890c4ca51c3
+NX&gt; 702 Proxy IP: 127.0.0.1
+NX&gt; 706 Agent cookie: 72d13ef04406e96020c33890c4ca51c3
+NX&gt; 704 Session cache: unix-application
+NX&gt; 707 SSL tunneling: 1
+/usr/lib/nx/nxserver: Zeile 1569:  9214 Beendet                 sleep 
+$AGENT_STARTUP_TIMEOUT
+NX&gt; 105 NX&gt; 596 Session startup failed.
+NX&gt; 1004 Error: NX Agent exited with exit status 1. To troubleshoot set 
+SESSION_LOG_CLEAN=0 in node.conf and investigate 
+&quot;/home/unlimited1/.nx/F-C-myservernamehere1-1000-629950A11DE87FB68440D5DDA0B4BB76/session&quot;. 
+You might also want to try: ssh -X myserver; /usr/lib/nx/nxnode --agent 
+to test the basic functionality. Session log follows:
+Can't open 
+/var/lib/nxserver/db/running/sessionId{629950A11DE87FB68440D5DDA0B4BB76}: Datei 
+oder Verzeichnis nicht gefunden.
+NX&gt; 280 Exiting on signal: 15
+
+I thought X2Go was supposed to be usable in parallel, so it seems 
+something broke from one version to the next.
+Is this the end for concurrent installations, or is it possible to make 
+both work in parallel again?
+
+Kind Regards,
+Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003119.html">[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)
+</A></li>
+	<LI>Next message: <A HREF="003124.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages (was: Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation))
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3120">[ date ]</a>
+              <a href="thread.html#3120">[ thread ]</a>
+              <a href="subject.html#3120">[ subject ]</a>
+              <a href="author.html#3120">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

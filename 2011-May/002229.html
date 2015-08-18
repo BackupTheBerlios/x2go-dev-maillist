@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] discussion on newly released NXv3.5 packages and X2go on pkg-x2go-devel
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20discussion%20on%20newly%20released%20NXv3.5%20packages%20and%0A%20X2go%20on%20pkg-x2go-devel&In-Reply-To=%3C1305911084.24497.15.camel%40castiana.lan.sherb.stgraber.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002230.html">
+   <LINK REL="Next"  HREF="002231.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] discussion on newly released NXv3.5 packages and X2go on pkg-x2go-devel</H1>
+    <B>St&#233;phane Graber</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20discussion%20on%20newly%20released%20NXv3.5%20packages%20and%0A%20X2go%20on%20pkg-x2go-devel&In-Reply-To=%3C1305911084.24497.15.camel%40castiana.lan.sherb.stgraber.net%3E"
+       TITLE="[X2go-dev] discussion on newly released NXv3.5 packages and X2go on pkg-x2go-devel">stgraber at ubuntu.com
+       </A><BR>
+    <I>Fri May 20 19:04:38 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002230.html">[X2go-dev] discussion on newly released NXv3.5 packages and X2go on pkg-x2go-devel
+</A></li>
+        <LI>Next message: <A HREF="002231.html">[X2go-dev] nxproxy and nxcomp uploaded to Ubuntu Oneiric
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2229">[ date ]</a>
+              <a href="thread.html#2229">[ thread ]</a>
+              <a href="subject.html#2229">[ subject ]</a>
+              <a href="author.html#2229">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I sent the e-mail below to fix the misunderstanding on both mailing-lists but forgot to set the right sender and so got stuck in the moderation queue :)
+Since then, Mike clarified the confusion but here it's anyway.
+
+
+On Fri, 2011-05-20 at 17:25 +0200, Mike Gabriel wrote:
+&gt;<i> Hi all,
+</I>
+Hi!
+
+&gt;<i> for those being able to contribute (and not subscribed to  
+</I>&gt;<i> pkg-x2go-devel on Alioth), I would like to make you aware on a  
+</I>&gt;<i> discussion thread around newly released NXv3.5 sources in relation to  
+</I>&gt;<i> X2go.
+</I>&gt;<i> 
+</I>&gt;<i> Thread:
+</I>&gt;<i> <A HREF="http://lists.alioth.debian.org/pipermail/pkg-x2go-devel/2011-May/thread.html">http://lists.alioth.debian.org/pipermail/pkg-x2go-devel/2011-May/thread.html</A>
+</I>&gt;<i> 
+</I>&gt;<i> Latest NX 3.5 release
+</I>&gt;<i> <A HREF="http://www.nomachine.com/download.php">http://www.nomachine.com/download.php</A>
+</I>&gt;<i> 
+</I>&gt;<i> Ubuntu is probably about to use these new NX libs for X2go in Ubuntu.  
+</I>&gt;<i> The current approach is also to make nxagent itself work with X2go  
+</I>&gt;<i> (which might not be what we want, as x2goagent has been patched by  
+</I>&gt;<i> Alex quite a bit already). The Ubuntu developer, St&#233;phane Graber, who  
+</I>&gt;<i> is really keen to get X2go into Oneiric, is very co-operative and  
+</I>&gt;<i> interested in X2go / Python-X2go. His objective is to keep everything  
+</I>&gt;<i> (X2go Git, Debian, Ubuntu etc.) compatible, assure that patches are  
+</I>&gt;<i> shared and that the code base is in sync, etc.
+</I>
+Bad timing, I just sent an e-mail to pkg-x2go-devel about this :)
+
+It was actually a typo I made this morning. I don't plan on having
+nxagent and x2goagent compatible.
+They already have a different name so they can perfectly co-exist in the
+archive. X2goagent is from my point of view a clear fork of nxagent, so
+it's fine to have both.
+
+What I'm currently working on is getting python-x2go in the archive,
+which means updating its dependencies:
+ - nxproxy
+ - nxcomp
+
+I have test packages for these two including all the changes from x2go,
+the new upstream release and remaining patches from Debian.
+
+&gt;<i> But still, we (x2go-dev upstream) have to find a disposition on the  
+</I>&gt;<i> dual-upstream issue around NX libs.
+</I>
+As mentioned in my last e-mail (just a few minutes ago), my problem is
+with:
+ - nxcomp
+ - nxcompext
+ - nxcompshad
+ - nxproxy
+
+Where we have two &quot;upstreams&quot; for the same code.
+x2go would have to choose to either fork the code and rename them to
+x2go* or maintain a patchset on top of NoMachine's code that maintainer
+can use in their packages.
+
+
+&gt;<i> In x2go-upstream we have to discuss if our nx* packages in Git are  
+</I>&gt;<i> actually a hijack (as NoMachine still seems to be active around NX  
+</I>&gt;<i> 3.5). Due to the latest NXv3.5 release by NoMachine there now exists a  
+</I>&gt;<i> dual-upstream situation... This should have been avoided and now has  
+</I>&gt;<i> to be dealt with.
+</I>&gt;<i> 
+</I>&gt;<i> Currently, I see two possibilities (for X2go into Debian without  
+</I>&gt;<i> bringing up namespace issues), but I might be lacking sight here:
+</I>&gt;<i> 
+</I>&gt;<i> 1. We make X2go work with NoMachine's NX 3.5 (complemented through a  
+</I>&gt;<i> patchset provided by X2go, this patchset may not break NX  
+</I>&gt;<i> functionality -&gt; qtnx, freenx, etc., but improve functionality with  
+</I>&gt;<i> X2go).
+</I>&gt;<i> 
+</I>&gt;<i> 2. We really fork NX libs, nxproxy (as already happened with  
+</I>&gt;<i> x2goagent). That would mean a renaming of libraries and also Git  
+</I>&gt;<i> projects etc, e.g.: x2goproxy, x2gocomp, x2gocompext, x2gocompshad.
+</I>&gt;<i> 
+</I>&gt;<i> Please stay tuned around this topic and contribute to the discussion,  
+</I>&gt;<i> if possible.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+St&#233;phane
+
+-- 
+St&#233;phane Graber
+Ubuntu developer
+<A HREF="http://www.ubuntu.com">http://www.ubuntu.com</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110520/b0a8a531/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110520/b0a8a531/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002230.html">[X2go-dev] discussion on newly released NXv3.5 packages and X2go on pkg-x2go-devel
+</A></li>
+	<LI>Next message: <A HREF="002231.html">[X2go-dev] nxproxy and nxcomp uploaded to Ubuntu Oneiric
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2229">[ date ]</a>
+              <a href="thread.html#2229">[ thread ]</a>
+              <a href="subject.html#2229">[ subject ]</a>
+              <a href="author.html#2229">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

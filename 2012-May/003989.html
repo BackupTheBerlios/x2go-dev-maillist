@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Support for PuTTY private key files / built-in	ssh-agent?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Support%20for%20PuTTY%20private%20key%20files%20/%20built-in%0A%09ssh-agent%3F&In-Reply-To=%3C4FB394A0.9070109%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003988.html">
+   <LINK REL="Next"  HREF="003990.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Support for PuTTY private key files / built-in	ssh-agent?</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Support%20for%20PuTTY%20private%20key%20files%20/%20built-in%0A%09ssh-agent%3F&In-Reply-To=%3C4FB394A0.9070109%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] Support for PuTTY private key files / built-in	ssh-agent?">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Wed May 16 13:50:56 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003988.html">[X2Go-Dev] Support for PuTTY private key files / built-in ssh-agent?
+</A></li>
+        <LI>Next message: <A HREF="003990.html">[X2Go-Dev] Support for PuTTY private key files / built-in	ssh-agent?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3989">[ date ]</a>
+              <a href="thread.html#3989">[ thread ]</a>
+              <a href="subject.html#3989">[ subject ]</a>
+              <a href="author.html#3989">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 2012-05-16 13:33, Stefan Baur wrote:
+&gt;<i> would it be possible to integrate support (1) for PuTTY-style ssh
+</I>&gt;<i> private key files (*.ppk) into the X2Go client, or (2) 
+</I>
+Adding a feature to allow importing ppk by calling PuTTYgen might be
+reasonable.
+
+
+&gt;<i> to run a ssh-agent (maybe from cygwin, or copied from PuTTY's
+</I>&gt;<i> &quot;pageant.exe&quot;) *within* the X2Go client, so other applications can
+</I>&gt;<i> authenticate with the same key?
+</I>
+IMO this is not a good idea. It adds functionality that is out of scope
+and adds additional cmplexity.
+
+
+&gt;<i> [..] or run pageant.exe, PuTTY's ssh agent. 
+</I>
+This is probably the best solution as it provides a clean separation of
+concerns.
+
+Cheers
+Morty
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120516/0d6b6749/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120516/0d6b6749/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4992 bytes
+Desc: S/MIME Kryptografische Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120516/0d6b6749/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120516/0d6b6749/attachment.bin</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003988.html">[X2Go-Dev] Support for PuTTY private key files / built-in ssh-agent?
+</A></li>
+	<LI>Next message: <A HREF="003990.html">[X2Go-Dev] Support for PuTTY private key files / built-in	ssh-agent?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3989">[ date ]</a>
+              <a href="thread.html#3989">[ thread ]</a>
+              <a href="subject.html#3989">[ subject ]</a>
+              <a href="author.html#3989">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

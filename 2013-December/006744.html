@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#377: init scripts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23377%3A%20init%20scripts&In-Reply-To=%3Calpine.LSU.2.11.1312171906530.4237%40nerf08.vanv.qr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006743.html">
+   <LINK REL="Next"  HREF="006746.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#377: init scripts</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23377%3A%20init%20scripts&In-Reply-To=%3Calpine.LSU.2.11.1312171906530.4237%40nerf08.vanv.qr%3E"
+       TITLE="[X2Go-Dev] Bug#377: init scripts">jengelh at inai.de
+       </A><BR>
+    <I>Tue Dec 17 19:10:20 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006743.html">[X2Go-Dev] Our new package build helper: jenkins.x2go.org
+</A></li>
+        <LI>Next message: <A HREF="006746.html">[X2Go-Dev] Bug#377:  Bug#377: init scripts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6744">[ date ]</a>
+              <a href="thread.html#6744">[ thread ]</a>
+              <a href="subject.html#6744">[ subject ]</a>
+              <a href="author.html#6744">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I seem to remember that start-stop-daemon might have been part of LSB, 
+but then again, maybe not? (In the current openSUSE release with 
+systemd, start-stop-daemon is part of the dpkg package.)
+
+So the following are the init scripts currently running here. They lack 
+in quality, are dirt hacks, and only do the one thing they were tested 
+for. There is a lack of quoting all over the place.
+-------------- next part --------------
+#!/bin/bash
+#
+# Start the X2Go Session Broker PAM Authentication Service
+#
+# Copyright ? 2012 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+# Distributable under the terms of the GNU AGPL version 2.
+#
+### BEGIN INIT INFO
+# Provides:          x2gobroker-authservice
+# Required-Start:    $network $remote_fs $syslog x2gobroker-daemon
+# Required-Stop:     $network $remote_fs $syslog x2gobroker-daemon
+# Default-Start:     2 3 5
+# Default-Stop:      0 1 6
+# Short-Description: X2Go Session Broker PAM Authentication Service
+# Description:       PAM authentication service for X2Go Session Broker
+### END INIT INFO
+
+. /etc/rc.status
+
+# First reset status of this service
+rc_reset
+
+AUTHSERVICE=/usr/sbin/x2gobroker-authservice
+test -d /run &amp;&amp; RUNDIR=/run || RUNDIR=/var/run
+PIDFILE_AUTHSERVICE=$RUNDIR/x2gobroker/x2gobroker-authservice.pid
+DEBIANCONFIG_COMMON=/etc/default/python-x2gobroker
+DEBIANCONFIG_AUTHSERVICE=/etc/default/x2gobroker-authservice
+
+test -x &quot;$AUTHSERVICE&quot; || exit 0
+
+START_AUTHSERVICE=false
+X2GOBROKER_DEBUG=0
+X2GOBROKER_DAEMON_USER='x2gobroker'
+X2GOBROKER_DAEMON_GROUP='x2gobroker'
+X2GOBROKER_AUTHSERVICE_SOCKET=&quot;$RUNDIR/x2gobroker/x2gobroker-authservice.socket&quot;
+test -f $DEBIANCONFIG_COMMON &amp;&amp; . $DEBIANCONFIG_COMMON
+test -f $DEBIANCONFIG_AUTHSERVICE &amp;&amp; . $DEBIANCONFIG_AUTHSERVICE
+
+if ! getent passwd $X2GOBROKER_DAEMON_USER 1&gt;/dev/null 2&gt;/dev/null; then
+	X2GOBROKER_DAEMON_USER=nobody
+fi
+if ! getent group $X2GOBROKER_DAEMON_GROUP 1&gt;/dev/null 2&gt;/dev/null; then
+	X2GOBROKER_DAEMON_GROUP=nogroup
+fi
+
+# create PID directory
+mkdir -p $RUNDIR/x2gobroker
+chown $X2GOBROKER_DAEMON_USER:$X2GOBROKER_DAEMON_GROUP $RUNDIR/x2gobroker
+chmod 0770 $RUNDIR/x2gobroker
+
+export X2GOBROKER_DEBUG
+export X2GOBROKER_DAEMON_USER
+export X2GOBROKER_DAEMON_GROUP
+export X2GOBROKER_AUTHSERVICE_SOCKET
+
+case &quot;$1&quot; in
+    start)
+	echo -n &quot;Starting X2go Session authservice standalone daemon ... &quot;
+	echo startproc -u $X2GOBROKER_DAEMON_USER -g $X2GOBROKER_DAEMON_GROUP -p $PIDFILE_AUTHSERVICE $AUTHSERVICE -s $X2GOBROKER_AUTHSERVICE_SOCKET -o $X2GOBROKER_DAEMON_USER -g $X2GOBROKER_DAEMON_GROUP -p 0666
+	startproc -u $X2GOBROKER_DAEMON_USER -g $X2GOBROKER_DAEMON_GROUP -p $PIDFILE_AUTHSERVICE $AUTHSERVICE -s $X2GOBROKER_AUTHSERVICE_SOCKET -o $X2GOBROKER_DAEMON_USER -g $X2GOBROKER_DAEMON_GROUP -p 0666
+	pidofproc x2gobroker-authservice &gt; $PIDFILE_AUTHSERVICE
+	rc_status -v
+	;;
+    stop)
+	echo -n &quot;Stopping X2go Session authservice standalone daemon ... &quot;
+	killproc -TERM -p $PIDFILE_AUTHSERVICE x2gobroker-authservice
+	rm -f $X2GOBROKER_AUTHSERVICE_SOCKET $PIDFILE_AUTHSERVICE
+
+	# Remember status and be verbose
+	rc_status -v
+	;;
+    restart)
+	## Stop the service and regardless of whether it was
+	## running or not, start it again.
+	$0 stop
+	$0 start
+
+	# Remember status and be quiet
+	rc_status
+	;;
+    status)
+	echo -n &quot;Checking for X2go Session authservice ... &quot;
+	## Check status with checkproc(8), if process is running
+	## checkproc will return with exit status 0.
+
+	# Status has a slightly different for the status command:
+	# 0 - service running
+	# 1 - service dead, but /var/run/  pid  file exists
+	# 2 - service dead, but /var/lock/ lock file exists
+	# 3 - service not running
+
+	# NOTE: checkproc returns LSB compliant status values.
+	checkproc -p $PIDFILE_AUTHSERVICE x2gobroker-authservice
+	rc_status -v
+	;;
+    *)
+	echo &quot;Usage: $0 {start|stop|status|restart}&quot;
+	exit 1
+	;;
+esac
+rc_exit
+-------------- next part --------------
+#!/bin/bash
+#
+# Start the X2Go Session Broker standalone daemon
+#
+# Copyright ? 2012 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+# Distributable under the terms of the GNU AGPL version 2.
+#
+### BEGIN INIT INFO
+# Provides:          x2gobroker-daemon
+# Required-Start:    $network $remote_fs $syslog sshd
+# Required-Stop:     $network $remote_fs $syslog sshd
+# Default-Start:     3 5
+# Default-Stop:      0 1 6
+# Short-Description: X2Go Session Broker standalone daemon
+# Description:       X2Go Session Broker daemon comes with its own HTTP daemon
+### END INIT INFO
+
+. /etc/rc.status
+
+# First reset status of this service
+rc_reset
+
+DAEMON=/usr/sbin/x2gobroker
+test -d /run &amp;&amp; RUNDIR=/run || RUNDIR=/var/run
+PIDFILE_BROKER=$RUNDIR/x2gobroker/x2gobroker-daemon.pid
+DEBIANCONFIG_COMMON=/etc/default/python-x2gobroker
+DEBIANCONFIG_DAEMON=/etc/default/x2gobroker-daemon
+
+test -x &quot;$DAEMON&quot; || exit 0
+
+START_BROKER=false
+DAEMON_BIND_ADDRESS=0.0.0.0:8080
+X2GOBROKER_DEBUG=0
+X2GOBROKER_DAEMON_USER='x2gobroker'
+X2GOBROKER_DAEMON_GROUP='x2gobroker'
+X2GOBROKER_DEFAULT_BACKEND=&quot;zeroconf&quot;
+X2GOBROKER_CONFIG=&quot;/etc/x2go/x2gobroker.conf&quot;
+X2GOBROKER_SESSIONPROFILES=&quot;/etc/x2go/broker/x2gobroker-sessionprofiles.conf&quot;
+X2GOBROKER_AGENT_CMD=&quot;/usr/lib64/x2go/x2gobroker-agent&quot;
+X2GOBROKER_SSL_CERTFILE=
+X2GOBROKER_SSL_KEYFILE=
+test -f $DEBIANCONFIG_COMMON &amp;&amp; . $DEBIANCONFIG_COMMON
+test -f $DEBIANCONFIG_DAEMON &amp;&amp; . $DEBIANCONFIG_DAEMON
+
+if ! getent passwd $X2GOBROKER_DAEMON_USER 1&gt;/dev/null 2&gt;/dev/null; then
+	X2GOBROKER_DAEMON_USER=nobody
+fi
+if ! getent group $X2GOBROKER_DAEMON_GROUP 1&gt;/dev/null 2&gt;/dev/null; then
+	X2GOBROKER_DAEMON_GROUP=nogroup
+fi
+
+# create PID directory
+mkdir -p $RUNDIR/x2gobroker
+chown $X2GOBROKER_DAEMON_USER:$X2GOBROKER_DAEMON_GROUP $RUNDIR/x2gobroker
+chmod 0770 $RUNDIR/x2gobroker
+
+# mend user ID variables when --chuid $X2GOBROKER_DAEMON_USER is used with start-stop-daemon
+export LOGNAME=$X2GOBROKER_DAEMON_USER
+export USER=$X2GOBROKER_DAEMON_USER
+export USERNAME=$X2GOBROKER_DAEMON_USER
+
+export X2GOBROKER_DEBUG
+export X2GOBROKER_DAEMON_USER
+export X2GOBROKER_DAEMON_GROUP
+export X2GOBROKER_CONFIG
+export X2GOBROKER_DEFAULT_BACKEND
+export X2GOBROKER_SESSIONPROFILES
+export X2GOBROKER_AGENT_CMD
+export X2GOBROKER_SSL_CERTFILE
+export X2GOBROKER_SSL_KEYFILE
+
+su_command=&quot;su - ${X2GOBROKER_DAEMON_USER} -m -c &quot;
+
+case &quot;$1&quot; in
+    start)
+	echo -n &quot;Starting X2go Session broker standalone daemon ... &quot;
+	export HOME=/var/lib/x2gobroker
+	startproc -f -u $X2GOBROKER_DAEMON_USER -g $X2GOBROKER_DAEMON_GROUP -p $PIDFILE_BROKER $DAEMON -b $DAEMON_BIND_ADDRESS -C $X2GOBROKER_CONFIG 
+	pidof x2gobroker &gt; $PIDFILE_BROKER
+	rc_status -v
+	;;
+    stop)
+	echo -n &quot;Stopping X2go Session broker standalone daemon ... &quot;
+	killproc -TERM -p $PIDFILE_BROKER x2gobroker
+	rm -f $PIDFILE_BROKER
+
+	# Remember status and be verbose
+	rc_status -v
+	;;
+    restart)
+	## Stop the service and regardless of whether it was
+	## running or not, start it again.
+	$0 stop
+	$0 start
+
+	# Remember status and be quiet
+	rc_status
+	;;
+    status)
+	echo -n &quot;Checking for X2go Session broker ... &quot;
+	## Check status with checkproc(8), if process is running
+	## checkproc will return with exit status 0.
+
+	# Status has a slightly different for the status command:
+	# 0 - service running
+	# 1 - service dead, but /var/run/  pid  file exists
+	# 2 - service dead, but /var/lock/ lock file exists
+	# 3 - service not running
+
+	# NOTE: checkproc returns LSB compliant status values.
+	checkproc -p $PIDFILE_BROKER x2gobroker
+	rc_status -v
+	;;
+    *)
+	echo &quot;Usage: $0 {start|stop|status|restart}&quot;
+	exit 1
+	;;
+esac
+rc_exit
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006743.html">[X2Go-Dev] Our new package build helper: jenkins.x2go.org
+</A></li>
+	<LI>Next message: <A HREF="006746.html">[X2Go-Dev] Bug#377:  Bug#377: init scripts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6744">[ date ]</a>
+              <a href="thread.html#6744">[ thread ]</a>
+              <a href="subject.html#6744">[ subject ]</a>
+              <a href="author.html#6744">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

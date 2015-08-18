@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Test-Recipe for libjpeg-turbo anx NX
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Test-Recipe%20for%20libjpeg-turbo%20anx%20NX&In-Reply-To=%3CCADZYHDDOc2V4p55yS8-9gEVGCjaH%2Bw6SOaVonpLnc08THJY3hw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003229.html">
+   <LINK REL="Next"  HREF="003231.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Test-Recipe for libjpeg-turbo anx NX</H1>
+    <B>Benjamin Shadwick</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Test-Recipe%20for%20libjpeg-turbo%20anx%20NX&In-Reply-To=%3CCADZYHDDOc2V4p55yS8-9gEVGCjaH%2Bw6SOaVonpLnc08THJY3hw%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] Test-Recipe for libjpeg-turbo anx NX">benshadwick at gmail.com
+       </A><BR>
+    <I>Tue Jan 24 16:42:09 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003229.html">[X2go-Dev] Test-Recipe for libjpeg-turbo anx NX
+</A></li>
+        <LI>Next message: <A HREF="003231.html">[X2go-Dev] Test-Recipe for libjpeg-turbo anx NX
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3230">[ date ]</a>
+              <a href="thread.html#3230">[ thread ]</a>
+              <a href="subject.html#3230">[ subject ]</a>
+              <a href="author.html#3230">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Those bug threads actually make me *less* nervous. The first one explains
+that libjpeg-turbo is just a derivative of standard libjpeg that uses SIMD
+instructions to accelerate functionality by 2-4x. The second mentions that
+there have been improvements to libjpeg-turbo to make it ABI-compatible
+with libjpeg8.
+
+Looking at the readme (
+<A HREF="http://libjpeg-turbo.svn.sourceforge.net/viewvc/libjpeg-turbo/trunk/README-turbo.txt">http://libjpeg-turbo.svn.sourceforge.net/viewvc/libjpeg-turbo/trunk/README-turbo.txt</A>)
+on the (still active) sourceforge project shows that by default it is
+API/ABI compatible with libjpeg v6b, which is what is currently most widely
+used. It can also be configured to be compatible with v7 or v8 instead, but
+there are a few v7+ features that are not supported.
+
+-- 
+- Ben S.
+
+On Tue, Jan 24, 2012 at 12:26 AM, Reinhard Tartler &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">siretart at tauware.de</A>&gt;wrote:
+
+&gt;<i> On Di, Jan 24, 2012 at 00:15:26 (CET), Mike Gabriel wrote:
+</I>&gt;<i>
+</I>&gt;<i> &gt; Hi once again,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; On Mo 23 Jan 2012 20:37:18 CET Mike Gabriel wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; Hi again,
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; On Mo 23 Jan 2012 18:57:37 CET Mike Gabriel wrote:
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;&gt; Anybody try to configure for example ubutu to configure x2goserver
+</I>&gt;<i> &gt;&gt;&gt;&gt; to use libjpeg-tubro (
+</I>&gt;<i> &gt;&gt;&gt;&gt; <A HREF="http://sourceforge.net/projects/libjpeg-turbo/">http://sourceforge.net/projects/libjpeg-turbo/</A> ) instead libjpeg ?
+</I>&gt;<i> &gt;&gt;&gt;&gt; I  have read that for example OpenNX client for neatx or freenx
+</I>&gt;<i> &gt;&gt;&gt;&gt; server  recommend to use this because libjpeg-turbo have speed
+</I>&gt;<i> &gt;&gt;&gt;&gt; improvement   than standard libjpeg and it will be use full to
+</I>&gt;<i> &gt;&gt;&gt;&gt; reduce transfer for  x2go session. I don't know how to configure
+</I>&gt;<i> &gt;&gt;&gt;&gt; (or is it possible?)  x2goserver on ubutu to use libjpeg-turbo
+</I>&gt;<i> &gt;&gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;&gt; Regards
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; libjpeg-turbo support (from my perspective) is a distribution  issue.
+</I>&gt;<i> &gt;&gt;&gt; Libjpeg-turbo is pending for Debian sid inclusion:
+</I>&gt;<i> &gt;&gt;&gt; <A HREF="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=612341">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=612341</A>
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; As we do not have plans to ship libjpeg-turbo within the X2Go
+</I>&gt;<i> &gt;&gt;&gt; repository currently, I guess we will have to wait for distro
+</I>&gt;<i> &gt;&gt;&gt; inclusion in Debian/Ubuntu.
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; With other distros that already have libjpeg8 (optionally) replaced
+</I>&gt;<i> &gt;&gt;&gt; by  libjpeg-turbo, it should be possible to compile NX
+</I>&gt;<i> &gt;&gt;&gt; (redistributed)  against the faster libary.
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; There also is another NX related project on git.ethersoft.ru that
+</I>&gt;<i> &gt;&gt;&gt; provides NX with libjpeg-turbo. However, that repos only builds NX
+</I>&gt;<i> &gt;&gt;&gt; for  FreeNX.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; I have just tested an NX build against libjpeg-turbo. The
+</I>&gt;<i> &gt;&gt; libjpeg-turbo libraries I obtained from here:
+</I>&gt;<i> &gt;&gt; <A HREF="http://people.debian.org/~fabo/libjpeg-turbo_1.1.90+svn704-1/&lt;http://people.debian.org/%7Efabo/libjpeg-turbo_1.1.90+svn704-1/">http://people.debian.org/~fabo/libjpeg-turbo_1.1.90+svn704-1/&lt;http://people.debian.org/%7Efabo/libjpeg-turbo_1.1.90+svn704-1/</A>&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; The test system was a Debian squeeze (so backporting from some brand
+</I>&gt;<i> &gt;&gt; new SID package is possible).
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; When using 16m-jpeg-9 compression over a UMTS (HDSPA) uplink the
+</I>&gt;<i> &gt;&gt; difference between libjpeg and libjpeg-turbo is smashing!!! It
+</I>&gt;<i> &gt;&gt; becomes  so much smoother...
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; From my perspective, we should start testing on nx-libs with
+</I>&gt;<i> &gt;&gt; libjpeg-turbo in the nightly repository in the very very very near
+</I>&gt;<i> &gt;&gt; future.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; The change-over is easy: if libjpeg-turbo62 is installable in the
+</I>&gt;<i> &gt;&gt; build chroot, NX builds against that one. If it is not present, it
+</I>&gt;<i> &gt;&gt; builds against libjpeg62.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; @Developers: please give feedback on the proposed step.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Here is a recipe how to test NX with libjpeg-turbo:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; ON SERVER
+</I>&gt;<i> &gt; ---------
+</I>&gt;<i> &gt; 1.
+</I>&gt;<i> &gt; Install libjpeg-turbo from X2Go heuler repository (Debian-only)
+</I>&gt;<i>
+</I>&gt;<i> Won't that step replace the 'normal' system libjpeg? Are you sure that
+</I>&gt;<i> this step won't break existing applications?
+</I>&gt;<i>
+</I>&gt;<i> These bug threads make me a bit nervous:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=612341">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=612341</A>
+</I>&gt;<i> <A HREF="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=602034">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=602034</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Cheers,
+</I>&gt;<i> Reinhard
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Gruesse/greetings,
+</I>&gt;<i> Reinhard Tartler, KeyID 945348A4
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120124/621e213c/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120124/621e213c/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003229.html">[X2go-Dev] Test-Recipe for libjpeg-turbo anx NX
+</A></li>
+	<LI>Next message: <A HREF="003231.html">[X2go-Dev] Test-Recipe for libjpeg-turbo anx NX
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3230">[ date ]</a>
+              <a href="thread.html#3230">[ thread ]</a>
+              <a href="subject.html#3230">[ subject ]</a>
+              <a href="author.html#3230">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2gothinclient write problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2gothinclient%20write%20problem&In-Reply-To=%3Ciqgcas%24rhk%241%40dough.gmane.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002152.html">
+   <LINK REL="Next"  HREF="002154.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2gothinclient write problem</H1>
+    <B>Markus Homburg</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2gothinclient%20write%20problem&In-Reply-To=%3Ciqgcas%24rhk%241%40dough.gmane.org%3E"
+       TITLE="[X2go-dev] x2gothinclient write problem">zielscheibe at gmx.li
+       </A><BR>
+    <I>Thu May 12 12:21:15 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002152.html">[X2go-dev] Patch for python-x2go
+</A></li>
+        <LI>Next message: <A HREF="002154.html">[X2go-dev] x2gothinclient write problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2153">[ date ]</a>
+              <a href="thread.html#2153">[ thread ]</a>
+              <a href="subject.html#2153">[ subject ]</a>
+              <a href="author.html#2153">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi there,
+
+I have some strange issues with x2gothinclient.
+For installing I used this manual:
+<A HREF="http://wiki.x2go.org/installing_x2go_thin_client_environment_debian">http://wiki.x2go.org/installing_x2go_thin_client_environment_debian</A>
+Because of using squeeze instead of lenny I changed a couple
+of things:
+- debootstrap
+- repos
+- apt-get install x2gothinclient instead of x2gothinclientsystem
+But that should not be the problem.
+
+The tftp boot works like a charm, but in the NFS &quot;bootsteps&quot; I get come 
+errors/warnings:
+
+[...]
+cannot create /tmp/lean: Read-only file system
+[...]
+cannot create /var/run/utmp: Permission denied
+[...]
+cannot create /var/run/motd: Permission denied
+[...]
+
+
+There are some more errors and the problem is, in my opinion, that it is 
+not possible to write on /tmp, /var, etc.
+
+The NFS-Share is exported &quot;ro&quot; as described in the documentation.
+
+Should be there a &quot;fake&quot; writable /tmp, /var path or a special mountpoint?
+
+
+Best regards
+  Markus
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002152.html">[X2go-dev] Patch for python-x2go
+</A></li>
+	<LI>Next message: <A HREF="002154.html">[X2go-dev] x2gothinclient write problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2153">[ date ]</a>
+              <a href="thread.html#2153">[ thread ]</a>
+              <a href="subject.html#2153">[ subject ]</a>
+              <a href="author.html#2153">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

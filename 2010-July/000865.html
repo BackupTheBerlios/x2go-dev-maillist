@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] cleaning sessions [logs, automatically]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20cleaning%20sessions%20%5Blogs%2C%20automatically%5D&In-Reply-To=%3C20100720130909.38103t368s9w891x%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000864.html">
+   <LINK REL="Next"  HREF="000859.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] cleaning sessions [logs, automatically]</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20cleaning%20sessions%20%5Blogs%2C%20automatically%5D&In-Reply-To=%3C20100720130909.38103t368s9w891x%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] cleaning sessions [logs, automatically]">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Jul 20 13:09:09 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000864.html">[X2go-dev] cleaning sessions [logs, automatically]
+</A></li>
+        <LI>Next message: <A HREF="000859.html">[X2go-dev] cleaning sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#865">[ date ]</a>
+              <a href="thread.html#865">[ thread ]</a>
+              <a href="subject.html#865">[ subject ]</a>
+              <a href="author.html#865">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Russ,
+
+On Di 20 Jul 2010 11:58:30 CEST R P Herrold wrote:
+
+&gt;<i>
+</I>&gt;<i> On Tue, 20 Jul 2010, Mike Gabriel wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Is there a reason to keep the session folders of terminated  
+</I>&gt;&gt;<i> sessions? It is nice to have some logs of terminated sessions but  
+</I>&gt;&gt;<i> for production this is not really feasible...
+</I>&gt;<i>
+</I>&gt;<i> Note in passing: It is curious that there is a './ssh/&quot; rather than  
+</I>&gt;<i> a /.ssh/ &quot;invisible 'dotfile' directory&quot;
+</I>&gt;<i>
+</I>&gt;<i> [...]
+</I>
+On a Linux client all these folders are stored in .x2go. This is the  
+.x2go user config dir. For me this is sufficient as a dot-directory.  
+Within .x2go the developers should be free of choice on how to handle  
+file naming... (There is no reason for having a dot-dir ,,.ssh''  
+cascaded within a dot-dir ,,.x2go''
+
+&gt;<i> That to one side, it should be posible to 'age' and expire these  
+</I>&gt;<i> using the 'find' command at startup
+</I>&gt;<i>
+</I>&gt;<i> [...]
+</I>&gt;<i>
+</I>
+Your suggestion can only be a workaround... Proper config file  
+handling should be done by the code of the server/client packages.
+
+Keeping locks for forensics is sensible, this might need a config  
+switch somewhere (server as well as client...).
+
+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+eMail-LeseSchreibStunde: wochentags 8h-10h
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000864.html">[X2go-dev] cleaning sessions [logs, automatically]
+</A></li>
+	<LI>Next message: <A HREF="000859.html">[X2go-dev] cleaning sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#865">[ date ]</a>
+              <a href="thread.html#865">[ thread ]</a>
+              <a href="subject.html#865">[ subject ]</a>
+              <a href="author.html#865">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

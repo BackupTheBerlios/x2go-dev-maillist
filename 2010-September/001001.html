@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] SOLVED: Re:  Local Port for NXPROXY - no listen socket
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20SOLVED%3A%20Re%3A%20%20Local%20Port%20for%20NXPROXY%20-%20no%20listen%20socket&In-Reply-To=%3C4C889631.1070709%40cubewerk.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001000.html">
+   <LINK REL="Next"  HREF="001002.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] SOLVED: Re:  Local Port for NXPROXY - no listen socket</H1>
+    <B>Stefan Bauer</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20SOLVED%3A%20Re%3A%20%20Local%20Port%20for%20NXPROXY%20-%20no%20listen%20socket&In-Reply-To=%3C4C889631.1070709%40cubewerk.de%3E"
+       TITLE="[X2go-dev] SOLVED: Re:  Local Port for NXPROXY - no listen socket">stefan.bauer at cubewerk.de
+       </A><BR>
+    <I>Thu Sep  9 10:09:21 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001000.html">[X2go-dev] Local Port for NXPROXY - no listen socket
+</A></li>
+        <LI>Next message: <A HREF="001002.html">[X2go-dev] Local Port for NXPROXY - no listen socket
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1001">[ date ]</a>
+              <a href="thread.html#1001">[ thread ]</a>
+              <a href="subject.html#1001">[ subject ]</a>
+              <a href="author.html#1001">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 09.09.2010 09:49, Stefan Bauer schrieb:
+&gt;<i> so it tries to connect to port 30031 first by ipv4 then ipv6 but
+</I>&gt;<i> nothing is listening on this port hence the R flag -&gt; reset.
+</I>&gt;<i> 
+</I>&gt;<i> What is wrong here!?
+</I>
+GRRRR! Missing Depends.
+
+Please add Depends: libxcomposite1 to x2goserver-one and ia32-libs
+for amd64 arch.
+
+x2go:/var/mail# x2goagent :3
+/usr/lib/x2go/x2goagent: error while loading shared libraries:
+libXcomposite.so.1: cannot open shared object file: No such file or
+directory
+
+libXcomposite.so.1 is in the packages mentioned above.
+
+Stefan
+
+-- 
+Stefan Bauer -----------------------------------------
+PGP: E80A 50D5 2D46 341C A887 F05D 5C81 5858 DCEF 8C34
+-------- plzk.de - Linux - because it works ----------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001000.html">[X2go-dev] Local Port for NXPROXY - no listen socket
+</A></li>
+	<LI>Next message: <A HREF="001002.html">[X2go-dev] Local Port for NXPROXY - no listen socket
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1001">[ date ]</a>
+              <a href="thread.html#1001">[ thread ]</a>
+              <a href="subject.html#1001">[ subject ]</a>
+              <a href="author.html#1001">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

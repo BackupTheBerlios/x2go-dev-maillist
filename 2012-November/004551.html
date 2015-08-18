@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] Remove redundant tool &quot;socket-sucker&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%3D%3Futf-8%3Fq%3F%3D5BPATCH%3D5D_Remove_redundant_tool_%3D22socket-%3F%3D%0A%09%3D%3Futf-8%3Fq%3Fsucker%3D22%3F%3D&In-Reply-To=%3C1352635054-17907-1-git-send-email-jengelh%40inai.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004558.html">
+   <LINK REL="Next"  HREF="004553.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] Remove redundant tool &quot;socket-sucker&quot;</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%3D%3Futf-8%3Fq%3F%3D5BPATCH%3D5D_Remove_redundant_tool_%3D22socket-%3F%3D%0A%09%3D%3Futf-8%3Fq%3Fsucker%3D22%3F%3D&In-Reply-To=%3C1352635054-17907-1-git-send-email-jengelh%40inai.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] Remove redundant tool &quot;socket-sucker&quot;">jengelh at inai.de
+       </A><BR>
+    <I>Sun Nov 11 12:57:34 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004558.html">[X2Go-Dev] On the new lightdm-x2go package
+</A></li>
+        <LI>Next message: <A HREF="004553.html">[X2Go-Dev] [PATCH] Remove redundant tool &quot;socket-sucker&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4551">[ date ]</a>
+              <a href="thread.html#4551">[ thread ]</a>
+              <a href="subject.html#4551">[ subject ]</a>
+              <a href="author.html#4551">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>There already exists a tool that does this, use it.
+---
+
+This is a suggestion; the patch may not actually work, as socket-sucker
+only read 256 bytes (why 256?) while socat will read until EOF.
+
+
+ debian/control  |    1 +
+ socket-sucker.c |   80 -------------------------------------------------------
+ x2go-session.in |    7 ++---
+ 3 files changed, 5 insertions(+), 83 deletions(-)
+ delete mode 100644 socket-sucker.c
+
+diff --git a/debian/control b/debian/control
+index df11b2e..f0b2e36 100644
+--- a/debian/control
++++ b/debian/control
+@@ -19,6 +19,7 @@ Architecture: any
+ Depends: 
+  ${shlibs:Depends},
+  ${misc:Depends},
++ socat,
+  zenity,
+  pyhoca-cli (&gt;= 0.2.1.0-0~),
+  libpam-x2go,
+diff --git a/socket-sucker.c b/socket-sucker.c
+deleted file mode 100644
+index 403819b..0000000
+--- a/socket-sucker.c
++++ /dev/null
+@@ -1,80 +0,0 @@
+-/*
+- * Copyright &#169; 2012 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+- * Copyright &#169; 2012 Canonical Ltd.
+- *
+- * This program is free software: you can redistribute it and/or modify it
+- * under the terms of the GNU General Public License version 3, as
+- * published by the Free Software Foundation.
+- *
+- * This program is distributed in the hope that it will be useful, but
+- * WITHOUT ANY WARRANTY; without even the implied warranties of
+- * MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR
+- * PURPOSE.  See the GNU General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License along
+- * with this program.  If not, see &lt;<A HREF="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</A>&gt;.
+- *
+- * Author: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+- * Author libpam-freerdp (where we forked from): Ted Gould &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">ted at canonical.com</A>&gt;
+- */
+-
+-#include &lt;stdlib.h&gt;
+-#include &lt;stdio.h&gt;
+-#include &lt;unistd.h&gt;
+-
+-#include &lt;sys/types.h&gt;
+-#include &lt;sys/socket.h&gt;
+-#include &lt;sys/un.h&gt;
+-
+-#define BUFFER_SIZE  256
+-
+-int
+-main (int argc, char * argv[])
+-{
+-	int socket_fd = 0;
+-	int servlen = 0;
+-	struct sockaddr_un serv_addr;
+-
+-	bzero((char *)&amp;serv_addr, sizeof(serv_addr));
+-
+-	const char * home = getenv(&quot;HOME&quot;);
+-	if (home == NULL) {
+-		return -1;
+-	}
+-
+-	serv_addr.sun_family = AF_UNIX;
+-	
+-	int printsize = snprintf(serv_addr.sun_path, sizeof(serv_addr.sun_path) - 1, &quot;%s/%s&quot;, home, &quot;.x2go-socket&quot;);
+-	if (printsize &gt; sizeof(serv_addr.sun_path) - 1 || printsize &lt; 0) {
+-		return -1;
+-	}
+-
+-	servlen = strlen(serv_addr.sun_path) + sizeof(serv_addr.sun_family);
+-
+-	if ((socket_fd = socket(AF_UNIX, SOCK_STREAM, 0)) &lt; 0) {
+-		return -1;
+-	}
+-
+-	if (connect(socket_fd, (struct sockaddr *)&amp;serv_addr, servlen) &lt; 0) {
+-		return -1;
+-	}
+-
+-	char buffer[BUFFER_SIZE + 2];
+-	int in = 0;
+-	int out = 0;
+-
+-	in = read(socket_fd, buffer, BUFFER_SIZE);
+-
+-	if (in &gt; 0) {
+-		out = write(1, buffer, in);
+-	}
+-
+-	close(socket_fd);
+-
+-	if (in &gt; 0 &amp;&amp; out &gt; 0 &amp;&amp; in == out) {
+-		return 0;
+-	} else {
+-		return -1;
+-	}
+-}
+-
+diff --git a/x2go-session.in b/x2go-session.in
+index 7466509..1b3c739 100755
+--- a/x2go-session.in
++++ b/x2go-session.in
+@@ -20,10 +20,11 @@
+ # Author lightdm-remote-session-freerdp (where we forked from): Ted Gould &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">ted at canonical.com</A>&gt;
+ #
+ 
+-if [ -e ~/.x2go-socket ]; then
+-	@libexecdir@/socket-sucker | /usr/bin/pyhoca-cli --from-stdin --add-to-known-hosts --kbd-type auto --sound pulse 2&gt;&amp;1 | logger -t lightdm-remote-session-x2go --
++socket=&quot;$HOME/.x2go-socket&quot;;
++if [ -e &quot;$socket&quot; ]; then
++	socat unix-connect:&quot;$socket&quot; - | /usr/bin/pyhoca-cli --from-stdin --add-to-known-hosts --kbd-type auto --sound pulse 2&gt;&amp;1 | logger -t lightdm-remote-session-x2go --
+ else
+ 	zenity --warning --text=&quot;Unable to locate X2GoSession/PyHoca socket&quot;
+ fi;
+ 
+-rm -f ~/.x2go-socket
++rm -f &quot;$socket&quot;
+-- 
+1.7.10.4
+
+</PRE>
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004558.html">[X2Go-Dev] On the new lightdm-x2go package
+</A></li>
+	<LI>Next message: <A HREF="004553.html">[X2Go-Dev] [PATCH] Remove redundant tool &quot;socket-sucker&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4551">[ date ]</a>
+              <a href="thread.html#4551">[ thread ]</a>
+              <a href="subject.html#4551">[ subject ]</a>
+              <a href="author.html#4551">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go organigram
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20organigram&In-Reply-To=%3CCALK7e_NmfskJcvOkXvLuaQcNK4_MCd6AdK-dp-SR1pJ0iVT4Vg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005232.html">
+   <LINK REL="Next"  HREF="005236.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go organigram</H1>
+    <B>Oliver Burger</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20organigram&In-Reply-To=%3CCALK7e_NmfskJcvOkXvLuaQcNK4_MCd6AdK-dp-SR1pJ0iVT4Vg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] X2Go organigram">obgr_seneca at mageia.org
+       </A><BR>
+    <I>Tue Mar 12 10:27:27 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005232.html">[X2Go-Dev] X2Go organigram
+</A></li>
+        <LI>Next message: <A HREF="005236.html">[X2Go-Dev] X2Go organigram
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5235">[ date ]</a>
+              <a href="thread.html#5235">[ thread ]</a>
+              <a href="subject.html#5235">[ subject ]</a>
+              <a href="author.html#5235">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2013/3/12 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;:
+&gt;&gt;&gt;&gt;<i> Jan Engelhard (X2Go for RPM-based distros)
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i> Wouldn't it be better to let the distros provide their packages? After
+</I>&gt;&gt;<i> all that's what distros are there for, aren't they?
+</I>&gt;&gt;<i> Of course it's nice for an end user, when his distro does not provide
+</I>&gt;&gt;<i> a package and the upstream project provides it, but from a distro
+</I>&gt;&gt;<i> packager perspective, it's bad, since
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I can only speak for Debian. At the time of writing I do not see a chance to
+</I>&gt;<i> get nx-libs (full) into Debian due to this outdated X.org tree that is
+</I>&gt;<i> behind it. So, for Debian systems, we have to provide packages by upstream.
+</I>That's true and the same could be true for RHEL, SLES, CentOS and so on.
+&gt;<i>
+</I>&gt;<i> Differently for Ubuntu. X2Go Server &amp; co. could be in Ubuntu, however, so
+</I>&gt;<i> far I have not bothered.
+</I>&gt;<i>From the end user's point of view that's ok. As long as a distro does
+</I>not package certain software, it's nice to have upstream packages.
+
+&gt;&gt;<i> - you will necver know about conflicts between third party packages
+</I>&gt;&gt;<i> and those provided by the distro itself.
+</I>&gt;<i>
+</I>&gt;<i> Unless you know the distro you package for outside the distro really well. I
+</I>&gt;<i> am about to become a Debian Developer (only thing left is the account
+</I>&gt;<i> creation on the Debian infrastructure), so I am pretty much involved in that
+</I>&gt;<i> anyway.
+</I>I didn't really talk about Debian. I know most of you are using Debian
+and you yourself are involved in Debian itself.
+I was talking about the &quot;packages for rpm-based distros&quot;.
+
+&gt;&gt;<i> - it's kind of hard to provide universal rpm packages, as the naming
+</I>&gt;&gt;<i> shema of libraries and other needed packages does vary quite a lot
+</I>&gt;<i>
+</I>&gt;<i> I have no clue at all about RPM. Others have to comment on this.
+</I>
+The problem is, that while (at least almost) all deb-based distros are
+really Debian-based distros and thus their base systems are quite
+similar to each other,
+rpm-based distros aren't.
+Of course there are similarities between openSUSE, Fedora, Mageia and
+so on, but there are quite some differences as well.
+All of those distros use rpm as a package format, but not all are
+RedHat-based and even those who are (like Mageia by way of Mandrake
+and Mandriva), they split up so early, that they moved apart.
+
+So for those distros that do provide packages, wouldn't it be better
+to talk to the package maintainers there and ask them to provide up to
+date distro specific packages for their distro, when a new x2go
+version is released?
+They would still have to be hosted as third party packages since most
+distros don't allow for version upgrades during the release cycle of a
+distro, but at least, the problem of having conflicts would be
+minimized...
+
+&gt;<i>
+</I>&gt;&gt;<i> - people will always complain to the distro's bug tracker and triaging
+</I>&gt;&gt;<i> teams have much fun explaining to those, that it's not the distro's
+</I>&gt;&gt;<i> fault as the packages in use are not provided by the distro
+</I>&gt;<i>
+</I>&gt;<i> With Debian, you can only report bugs to packages that exist in Debian. The
+</I>&gt;<i> described experience I do not have here.
+</I>&gt;<i>
+</I>Well I have, as in Mageia's bugzilla, you can open a bug report
+without providing the source rpm package against which the bug report
+should be opened.
+
+Oliver
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005232.html">[X2Go-Dev] X2Go organigram
+</A></li>
+	<LI>Next message: <A HREF="005236.html">[X2Go-Dev] X2Go organigram
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5235">[ date ]</a>
+              <a href="thread.html#5235">[ thread ]</a>
+              <a href="subject.html#5235">[ subject ]</a>
+              <a href="author.html#5235">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

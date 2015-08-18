@@ -1,0 +1,269 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] remote proxy closed the connection
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20remote%20proxy%20closed%20the%20connection&In-Reply-To=%3C4D4E0B82.7040805%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001719.html">
+   <LINK REL="Next"  HREF="001710.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] remote proxy closed the connection</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20remote%20proxy%20closed%20the%20connection&In-Reply-To=%3C4D4E0B82.7040805%40verizon.net%3E"
+       TITLE="[X2go-dev] remote proxy closed the connection">greno at verizon.net
+       </A><BR>
+    <I>Sun Feb  6 03:46:26 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001719.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+        <LI>Next message: <A HREF="001710.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1720">[ date ]</a>
+              <a href="thread.html#1720">[ thread ]</a>
+              <a href="subject.html#1720">[ subject ]</a>
+              <a href="author.html#1720">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 02/05/2011 09:45 AM, Gerry Reno wrote:
+&gt;<i> On 02/05/2011 05:25 AM, Mike Gabriel wrote:
+</I>&gt;&gt;<i> Hi Gerry,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Sa 05 Feb 2011 00:09:52 CET Gerry Reno wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> What's interesting is that it presents the menu and the process is shown
+</I>&gt;&gt;&gt;<i> as &quot;running&quot; so then your &quot;suspend&quot; it and &quot;resume&quot; it and you still get
+</I>&gt;&gt;&gt;<i> the &quot;remote proxy closed the connection&quot; error and NX proxy shows
+</I>&gt;&gt;&gt;<i> &quot;aborting&quot; but it does resume the session.  Very confusing to users but
+</I>&gt;&gt;&gt;<i> at least they get their session back.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> By what I read the issue really occurs around the port forwarding
+</I>&gt;&gt;<i> request. I try to sketch the mechanism...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   o client: sets up a forwarding tunnel to the server (for nxproxy
+</I>&gt;&gt;<i> traffic
+</I>&gt;&gt;<i>     which in our discussed scenario)
+</I>&gt;&gt;<i>   o server: thinks the tunnel is already/still set up (by the former
+</I>&gt;&gt;<i> request)
+</I>&gt;&gt;<i>             and denies the tunnel
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     -&gt; here PyHoca-GUI tries to push a cancel_port_forward request to
+</I>&gt;&gt;<i> the SSH
+</I>&gt;&gt;<i>        daemon which sometimes works but sometimes doesn't
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   o the x2goclient does not realize the failed tunnel (PyHoca-GUI btw.
+</I>&gt;&gt;<i> does and
+</I>&gt;&gt;<i>     reports an error)
+</I>&gt;&gt;<i>   o thus, x2goclient continues as planned
+</I>&gt;&gt;<i>   o client: call of server-side x2goresume-session script (which fails
+</I>&gt;&gt;<i> because
+</I>&gt;&gt;<i>     of the missing port forwarding tunnel)
+</I>&gt;&gt;<i>   o client: from x2goresum-session script the x2goresume script is called
+</I>&gt;&gt;<i>     (which updates the database and states that the new session is
+</I>&gt;&gt;<i> running
+</I>&gt;&gt;<i>     although the session resuming failed)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The problem is that old port forwarding requests on the SSH server do
+</I>&gt;&gt;<i> not get properly cancelled by the clients. If a request does not get
+</I>&gt;&gt;<i> canceled the port is blocked/busy and another SSH client instance
+</I>&gt;&gt;<i> cannot request a port forwarding on this server port.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hope that sheds more light on the situation... If you can find an SSHd
+</I>&gt;&gt;<i> option that could fix this behaviour this would be really great!!!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Greetings,
+</I>&gt;&gt;<i> Mike
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Right now I'm working only with the browser-client.  I'm intentionally
+</I>&gt;<i> crashing the browser and then trying to resume the detached session.  So
+</I>&gt;<i> from the client perspective it's a whole new client process that doesn't
+</I>&gt;<i> know anything about an existing tunnel.
+</I>&gt;<i>
+</I>&gt;<i> What I'm thinking is that when this happens the server is not receiving
+</I>&gt;<i> an ACK and is putting the connection into TIME_WAIT state whose interval
+</I>&gt;<i> is defined as 2*MSL where MSL is the packet lifetime.  Most networks
+</I>&gt;<i> have MSL set to 30 seconds these days.  I think it used to be 120
+</I>&gt;<i> seconds.  So it looks like TIME_WAIT will last from 1 to 4 minutes
+</I>&gt;<i> depending upon the server network.
+</I>&gt;<i>
+</I>&gt;<i> So what happens is if the user just waits long enough then they can
+</I>&gt;<i> resume the detached session.  If they keep trying at intervals less than
+</I>&gt;<i> TIME_WAIT then it seems they never get reconnected.
+</I>&gt;<i>
+</I>&gt;<i> I'm not sure what type of experiments need to be constructed to account
+</I>&gt;<i> for all the scenarios that can happen between the different types of
+</I>&gt;<i> clients and the server.  But we need to think about that.  And then see
+</I>&gt;<i> if we can manually construct these scenarios just using terminals and
+</I>&gt;<i> try to tweak the settings until we have good behavior under each
+</I>&gt;<i> scenario.  Then try to determine how to get the client, nxproxy and the
+</I>&gt;<i> server to implement those behaviors.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Gerry
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+Been working with this problem some more today.
+
+Here is what I observed:
+
+I detach the client by killing the browser.
+On the client:
+
+    $ ps -ef | grep x2go
+    greno    24577 24393  0 21:08 ?        00:00:00 x2goclient
+    --embed-into=54525953 --config=/home/greno/.x2go/ssh/gen/x2go.cfg-eB8dER
+    greno    24592     1  0 21:08 ?        00:00:00
+    /home/greno/.mozilla/firefox/dmbbyyox.default/extensions/<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2goplugin at obviously-nice.de</A>/x2goclient/x2goclient
+    --dialog ok --caption NX - 51 --message The remote proxy closed the
+    connection while negotiating?the session. This may be due to the
+    wrong authentication?credentials passed to the server.? --local
+    --parent 24590 --display :0.0
+
+On the server:
+
+    # netstat -a | grep 300
+    tcp        0      0 localhost:30005         *:*                    
+    LISTEN    
+    tcp        0      0 localhost:30006         *:*                    
+    LISTEN    
+    tcp6       0      0 ip6-localhost:30005     [::]:*                 
+    LISTEN    
+    tcp6       0      0 ip6-localhost:30006     [::]:*                 
+    LISTEN    
+
+
+Start a new browser-client session which aborts (twice on one try) with
+the remote proxy closed the connection error messages.
+On the client:
+$ ps -ef | grep x2go
+
+    greno    24577 24393  0 21:08 ?        00:00:01 x2goclient
+    --embed-into=54525953 --config=/home/greno/.x2go/ssh/gen/x2go.cfg-eB8dER
+    greno    24592     1  0 21:08 ?        00:00:00
+    /home/greno/.mozilla/firefox/dmbbyyox.default/extensions/<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2goplugin at obviously-nice.de</A>/x2goclient/x2goclient
+    --dialog ok --caption NX - 51 --message The remote proxy closed the
+    connection while negotiating?the session. This may be due to the
+    wrong authentication?credentials passed to the server.? --local
+    --parent 24590 --display :0.0
+    greno    24627 24577  0 21:11 ?        00:00:00 [x2goclient] &lt;defunct&gt;
+    greno    24638 24577  0 21:11 ?        00:00:00 [x2goclient] &lt;defunct&gt;
+
+On the server:
+
+    # netstat -a | grep 300
+    tcp        0      0 localhost:30005         *:*                    
+    LISTEN    
+    tcp        0      0 localhost:30006         *:*                    
+    LISTEN    
+    tcp        0      0 localhost:59060         localhost:30004        
+    TIME_WAIT 
+    tcp        0      0 localhost:59058         localhost:30004        
+    TIME_WAIT 
+    tcp6       0      0 ip6-localhost:30005     [::]:*                 
+    LISTEN    
+    tcp6       0      0 ip6-localhost:30006     [::]:*                 
+    LISTEN    
+
+
+Wait 5 minutes (ServerKeepAliveInterval)
+
+Try to Reconnect:  first we get abort status showing and the remote
+proxy closed the connection message but it is immediately followed by
+resuming and running status and the session is reconnected.
+On the client:
+
+    $ ps -ef | grep x2go
+    greno    24577 24393  0 21:08 ?        00:00:01 x2goclient
+    --embed-into=54525953 --config=/home/greno/.x2go/ssh/gen/x2go.cfg-eB8dER
+    greno    24592     1  0 21:08 ?        00:00:00
+    /home/greno/.mozilla/firefox/dmbbyyox.default/extensions/<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2goplugin at obviously-nice.de</A>/x2goclient/x2goclient
+    --dialog ok --caption NX - 51 --message The remote proxy closed the
+    connection while negotiating?the session. This may be due to the
+    wrong authentication?credentials passed to the server.? --local
+    --parent 24590 --display :0.0
+    greno    24627 24577  0 21:11 ?        00:00:00 [x2goclient] &lt;defunct&gt;
+    greno    24638 24577  0 21:11 ?        00:00:00 [x2goclient] &lt;defunct&gt;
+    greno    24672 24577  0 21:12 ?        00:00:00 [x2goclient] &lt;defunct&gt;
+
+On the server:
+
+    # netstat -a | grep 300
+    tcp        0      0 localhost:30005         *:*                    
+    LISTEN    
+    tcp        0      0 localhost:30006         *:*                    
+    LISTEN    
+    tcp        0      0 localhost:34849         localhost:30006        
+    ESTABLISHED
+    tcp        0      0 localhost:47652         localhost:30004        
+    ESTABLISHED
+    tcp        0      0 localhost:30006         localhost:34849        
+    ESTABLISHED
+    tcp        0      0 localhost:30004         localhost:47652        
+    ESTABLISHED
+    tcp        0      0 localhost:47649         localhost:30004        
+    TIME_WAIT 
+    tcp6       0      0 ip6-localhost:30005     [::]:*                 
+    LISTEN    
+    tcp6       0      0 ip6-localhost:30006     [::]:*                 
+    LISTEN    
+
+
+So when we reconnect instead of 2 TIME_WAITS we only get one and the
+other 30004 connection goes into ESTABLISHED state.
+
+Also the client seems to be severely misbehaving in that it is sending
+TWO x2goresume-session requests back-to-back.  This probably is hosing
+up the database as well as the connection processing.  And that probably
+accounts for the double defunct processes we see on the client as well
+as the double TIME_WAIT connections we see on the server.
+
+
+Regards,
+Gerry
+
+
+
+
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001719.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+	<LI>Next message: <A HREF="001710.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1720">[ date ]</a>
+              <a href="thread.html#1720">[ thread ]</a>
+              <a href="subject.html#1720">[ subject ]</a>
+              <a href="author.html#1720">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

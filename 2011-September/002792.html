@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] [X2go-User] Is http://x2go.obviously-nice.de/deb/	down?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BX2go-User%5D%20Is%20http%3A//x2go.obviously-nice.de/deb/%0A%09down%3F&In-Reply-To=%3C20110916224920.80534pmocy44lcgg%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002883.html">
+   <LINK REL="Next"  HREF="002807.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] [X2go-User] Is http://x2go.obviously-nice.de/deb/	down?</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BX2go-User%5D%20Is%20http%3A//x2go.obviously-nice.de/deb/%0A%09down%3F&In-Reply-To=%3C20110916224920.80534pmocy44lcgg%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] [X2go-User] Is http://x2go.obviously-nice.de/deb/	down?">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Sep 16 22:49:20 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002883.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+        <LI>Next message: <A HREF="002807.html">[X2go-Dev] x2goserver patch (against a pull from Sep 14, 2011)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2792">[ date ]</a>
+              <a href="thread.html#2792">[ thread ]</a>
+              <a href="subject.html#2792">[ subject ]</a>
+              <a href="author.html#2792">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Jian,
+
+(NOTE: please make sure you post back to the x2go-user list so that we  
+continue this discussion where it originally started. Don't send  
+e-Mails that relate to X2go and may be of interest to the public to me  
+directly without including any of the project lists - THANKS!).
+
+On Fr 16 Sep 2011 17:45:10 CEST Jian Ren wrote:
+
+&gt;<i> Hi Mike,
+</I>&gt;<i> I still cannot get it working on Ubuntu hardy, got add-apt-repository work,
+</I>&gt;<i> can see x2go packages in the repository. But there are some package
+</I>&gt;<i> dependencies cannot be solved, like:
+</I>&gt;<i>  libxcomp3: Depends: libjpeg62 (&gt;= 6b1) but 6b-14 is to be installed.
+</I>&gt;<i> I did install on another hardy server last week, by using the old
+</I>&gt;<i> x2go.obviously-nice.de/deb/ but now it's down.
+</I>
+x2go.obviously-nice.de/deb is deprecated/obsolete and lenny is now  
+only supported for the server packages (irregular backports). Please  
+follow my instructions below for Ubuntu hardy. Ubuntu hardy is not  
+officially supported by the X2go project, use lucid or later.
+
+Leaving the below passage for referencing my formerly sent instructions....
+
+Greets,
+Mike
+
+&gt;&gt;<i>  Hi Mike,
+</I>&gt;&gt;&gt;<i> Thank you! But I am still on Ubuntu Hardy, got command not found for
+</I>&gt;&gt;&gt;<i> add-apt-repository. Any other solutions?
+</I>&gt;&gt;&gt;<i> Jian
+</I>&gt;&gt;&gt;<i> On Fri, Sep 16, 2011 at 2:43 AM, Mike Gabriel &lt;
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;&gt;
+</I>&gt;&gt;&gt;<i> wrote:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>  Hi Jian,
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i> You could use the source code from our Debian lenny backport and build your
+</I>&gt;&gt;<i> own packages for Ubuntu hardy:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> git clone  
+</I>&gt;&gt;<i> <A HREF="git://code.x2go.org/**x2goserver.git&lt;http://code.x2go.org/x2goserver.git">git://code.x2go.org/**x2goserver.git&lt;http://code.x2go.org/x2goserver.git</A>&gt;
+</I>&gt;&gt;<i> cd x2goserver
+</I>&gt;&gt;<i> git checkout backport-lenny
+</I>&gt;&gt;<i> debuild -uc -us
+</I>&gt;&gt;<i> cd ..
+</I>&gt;&gt;<i> sudo dpkg -i x2goserver*.deb
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Same applies to other packages on X2go Git. For a working server you need:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> nxcomp
+</I>&gt;&gt;<i> nxcompshad
+</I>&gt;&gt;<i> nxcompext
+</I>&gt;&gt;<i> x2goagent
+</I>&gt;&gt;<i> x2goserver
+</I>&gt;&gt;<i> x2golxdebindings (or x2gognomebindings)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> If they do not have a backport-lenny branch (use git.x2go.org to browse
+</I>&gt;&gt;<i> the repositories via web browser) then the master branch builds fine on
+</I>&gt;&gt;<i> lenny (and should on hardy), if there is a backport-lenny branch, then you
+</I>&gt;&gt;<i> need to checkout the backport-lenny branch before you run debuild.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Note that the backport-lenny branches are 2 months old, work well but do
+</I>&gt;&gt;<i> not include latest patches and fixes.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Greets,
+</I>&gt;&gt;<i> Mike
+</I>
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110916/ccb02385/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110916/ccb02385/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002883.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+	<LI>Next message: <A HREF="002807.html">[X2go-Dev] x2goserver patch (against a pull from Sep 14, 2011)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2792">[ date ]</a>
+              <a href="thread.html#2792">[ thread ]</a>
+              <a href="subject.html#2792">[ subject ]</a>
+              <a href="author.html#2792">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] findbusyservers algorithm
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20findbusyservers%20algorithm&In-Reply-To=%3CCAFJm-UM_cyDXKJ%3D%2BtMvxYd7cFhk4L6ZqScReYK4h8JNyETAefA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005099.html">
+   <LINK REL="Next"  HREF="005096.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] findbusyservers algorithm</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20findbusyservers%20algorithm&In-Reply-To=%3CCAFJm-UM_cyDXKJ%3D%2BtMvxYd7cFhk4L6ZqScReYK4h8JNyETAefA%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] findbusyservers algorithm">abo at dsl.dk
+       </A><BR>
+    <I>Thu Feb 28 14:35:00 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005099.html">[X2Go-Dev] Compiling the OSX client
+</A></li>
+        <LI>Next message: <A HREF="005096.html">[X2Go-Dev] Bug#127: x2gobroker-daemon deb package reinstall/upgrade	fails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5095">[ date ]</a>
+              <a href="thread.html#5095">[ thread ]</a>
+              <a href="subject.html#5095">[ subject ]</a>
+              <a href="author.html#5095">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+
+I now have a somewhat working setup of load-balanced login with the broker:
+
+Broker: x2go-broker.dsl.lan
+Terminal servers: testterm1.dsl.lan and testterm2.dsl.lan
+
+All are virtualized Ubuntu 12.04 servers.
+
+However, everytime we login we end up on testterm1. We can login directly
+to both servers without any problems. We have tried setting testterm1 to
+calculate pi and logged a bunch of users into it, to try and add load to
+have the algorithm choose the other server, but it just isn't happening. Is
+this a bug?
+
+We have tried running /usr/lib/x2go/x2gobroker-agent abo findbusyservers
+and got this output:
+OK
+16:testterm2
+83:testterm1
+
+Which tells me that it might be the x2gobroker-daemon which isn't using the
+information correctly.
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130228/db23a2ba/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130228/db23a2ba/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005099.html">[X2Go-Dev] Compiling the OSX client
+</A></li>
+	<LI>Next message: <A HREF="005096.html">[X2Go-Dev] Bug#127: x2gobroker-daemon deb package reinstall/upgrade	fails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5095">[ date ]</a>
+              <a href="thread.html#5095">[ thread ]</a>
+              <a href="subject.html#5095">[ subject ]</a>
+              <a href="author.html#5095">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

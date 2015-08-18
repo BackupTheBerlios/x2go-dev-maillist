@@ -1,0 +1,178 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Problem with windows x2go client 3.99.0.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Problem%20with%20windows%20x2go%20client%203.99.0.1&In-Reply-To=%3C4E9AA926.8000008%40spsmb.cz%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002915.html">
+   <LINK REL="Next"  HREF="002917.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Problem with windows x2go client 3.99.0.1</H1>
+    <B>vasek at spsmb.cz</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Problem%20with%20windows%20x2go%20client%203.99.0.1&In-Reply-To=%3C4E9AA926.8000008%40spsmb.cz%3E"
+       TITLE="[X2go-Dev] Problem with windows x2go client 3.99.0.1">vasek at spsmb.cz
+       </A><BR>
+    <I>Sun Oct 16 11:51:34 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002915.html">[X2go-Dev] Problem with windows x2go client 3.99.0.1
+</A></li>
+        <LI>Next message: <A HREF="002917.html">[X2go-Dev] Problem with windows x2go client 3.99.0.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2916">[ date ]</a>
+              <a href="thread.html#2916">[ thread ]</a>
+              <a href="subject.html#2916">[ subject ]</a>
+              <a href="author.html#2916">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dne 16.10.2011 07:13, Daniel Lindgren napsal(a):
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> x2go client 3.99.0.1 (and 3.99.0.0 and 3.01.18) is not working under
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> windows 7. Session is established but connection timeout. On the server
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> side in log: sshd[1903]: error: connect_to localhost port 30001: failed.
+</I>&gt;<i> Two things I've had problems with that sound similar:
+</I>&gt;<i>
+</I>&gt;<i> 1) Symantec antivirus on 64-bit Windows 7 seems to interfere with x2go
+</I>&gt;<i> clients newer than 3.0-13, even if Symantec antivirus is completely
+</I>&gt;<i> disabled. Try 3.01-13 from
+</I>&gt;<i> <A HREF="http://code.x2go.org/releases/binary-win32/x2goclient/pre-git/">http://code.x2go.org/releases/binary-win32/x2goclient/pre-git/</A> or
+</I>&gt;<i> uninstall antivirus. Microsoft Security Essentials (free for personal
+</I>&gt;<i> use) worked with 3.99.0.1 on W7 x64 last time I tried.
+</I>&gt;<i>
+</I>&gt;<i> 2) If the server that you're connecting to also is a client (ClientA
+</I>&gt;<i> -&gt;  ServerA -&gt;  ServerB), there could be a port conflict. Default
+</I>&gt;<i> incoming port 30001 is already in use by an outgoing tunnel on the
+</I>&gt;<i> same port. Try modifying /usr/bin/x2gostartagent on ServerA and change
+</I>&gt;<i> the port interval from 30000 to 30200. Do the same on ServerB, but use
+</I>&gt;<i> 30400. Close all existing client sessions to/from the servers in the
+</I>&gt;<i> chain and try again.
+</I>&gt;<i>
+</I>&gt;<i> Cheers,
+</I>&gt;<i> Daniel
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+I tried 3.0-11, which also does not work. I do not use symantec, I use 
+AVG free antivirus. And the server is not also client.
+Now, after some time I can not connect from linux client 3.99.0.1 too, 
+but it looks like another problem, it looks like corrupted sqlite db:
+
+Oct 16 11:45:47 tserver snoopy[20587]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/bin/sed]: sed -e s/:/PP/g
+Oct 16 11:45:47 tserver snoopy[20588]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/usr/lib/x2go/x2goinsertsession]: 
+/usr/lib/x2go/x2goinsertsession 128 tserver 
+vasek-128-1318758347_stDGNOME_dp24
+Oct 16 11:45:47 tserver snoopy[20590]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/usr/bin/x2gobasepath]: x2gobasepath
+Oct 16 11:45:47 tserver snoopy[20593]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/usr/bin/perl]: perl
+Oct 16 11:45:47 tserver snoopy[20594]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/bin/date]: date +%s
+Oct 16 11:45:47 tserver snoopy[20597]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/bin/sed]: sed -e s/:/PP/g
+Oct 16 11:45:47 tserver snoopy[20598]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/usr/lib/x2go/x2goinsertsession]: 
+/usr/lib/x2go/x2goinsertsession 1232 tserver 
+vasek-1232-1318758347_stDGNOME_dp24
+Oct 16 11:45:47 tserver snoopy[20600]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/usr/bin/x2gobasepath]: x2gobasepath
+Oct 16 11:45:47 tserver snoopy[20602]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/usr/bin/x2gobasepath]: x2gobasepath
+Oct 16 11:45:47 tserver snoopy[20604]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/usr/bin/x2gobasepath]: x2gobasepath
+Oct 16 11:45:47 tserver snoopy[20605]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/usr/lib/x2go/x2gosqlitewrapper.pl]: 
+/usr/lib/x2go/x2gosqlitewrapper insertsession 128 tserver 
+vasek-128-1318758347_stDGNOME_dp24
+Oct 16 11:45:47 tserver snoopy[20607]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/usr/bin/x2gobasepath]: x2gobasepath
+Oct 16 11:45:47 tserver snoopy[20609]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/usr/bin/x2gobasepath]: x2gobasepath
+Oct 16 11:45:47 tserver snoopy[20612]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/usr/bin/perl]: perl
+Oct 16 11:45:47 tserver snoopy[20613]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/bin/date]: date +%s
+Oct 16 11:45:47 tserver snoopy[20614]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/usr/lib/x2go/x2gosqlitewrapper.pl]: 
+/usr/lib/x2go/x2gosqlitewrapper insertsession 1232 tserver 
+vasek-1232-1318758347_stDGNOME_dp24
+Oct 16 11:45:47 tserver snoopy[20617]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/bin/sed]: sed -e s/:/PP/g
+Oct 16 11:45:47 tserver snoopy[20618]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/usr/lib/x2go/x2goinsertsession]: 
+/usr/lib/x2go/x2goinsertsession 129 tserver 
+vasek-129-1318758347_stDGNOME_dp24
+Oct 16 11:45:47 tserver snoopy[20620]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/usr/bin/x2gobasepath]: x2gobasepath
+Oct 16 11:45:47 tserver snoopy[20623]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/usr/bin/perl]: perl
+Oct 16 11:45:47 tserver snoopy[20624]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/bin/date]: date +%s
+Oct 16 11:45:47 tserver snoopy[20627]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/bin/sed]: sed -e s/:/PP/g
+Oct 16 11:45:48 tserver snoopy[20628]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/usr/lib/x2go/x2goinsertsession]: 
+/usr/lib/x2go/x2goinsertsession 1233 tserver 
+vasek-1233-1318758347_stDGNOME_dp24
+Oct 16 11:45:48 tserver snoopy[20630]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/usr/bin/x2gobasepath]: x2gobasepath
+Oct 16 11:45:48 tserver snoopy[20632]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/usr/bin/x2gobasepath]: x2gobasepath
+Oct 16 11:45:48 tserver snoopy[20634]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/usr/bin/x2gobasepath]: x2gobasepath
+Oct 16 11:45:48 tserver snoopy[20635]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/usr/lib/x2go/x2gosqlitewrapper.pl]: 
+/usr/lib/x2go/x2gosqlitewrapper insertsession 129 tserver 
+vasek-129-1318758347_stDGNOME_dp24
+Oct 16 11:45:48 tserver snoopy[20637]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/usr/bin/x2gobasepath]: x2gobasepath
+Oct 16 11:45:48 tserver snoopy[20638]: [uid:0 sid:14565 tty:/dev/pts/0 
+cwd:/root filename:/bin/cat]: cat /var/log/auth.log
+Oct 16 11:45:48 tserver snoopy[20639]: [uid:0 sid:14565 tty: cwd:/root 
+filename:/usr/bin/tail]: tail -n 200
+Oct 16 11:45:48 tserver snoopy[20641]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/usr/bin/x2gobasepath]: x2gobasepath
+Oct 16 11:45:48 tserver snoopy[20644]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/usr/bin/perl]: perl
+Oct 16 11:45:48 tserver snoopy[20646]: [uid:1000 sid:18704 tty: 
+cwd:/home/vasek filename:/bin/date]: date +%s
+Oct 16 11:45:48 tserver snoopy[20645]: [uid:1000 sid:1832 tty: 
+cwd:/home/vasek filename:/usr/lib/x2go/x2gosqlitewrapper.pl]: 
+/usr/lib/x2go/x2gosqlitewrapper insertsession 1233 tserver 
+vasek-1233-1318758347_stDGNOME_dp24
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002915.html">[X2go-Dev] Problem with windows x2go client 3.99.0.1
+</A></li>
+	<LI>Next message: <A HREF="002917.html">[X2go-Dev] Problem with windows x2go client 3.99.0.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2916">[ date ]</a>
+              <a href="thread.html#2916">[ thread ]</a>
+              <a href="subject.html#2916">[ subject ]</a>
+              <a href="author.html#2916">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

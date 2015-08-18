@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#354: Bug#354: Bug#354: Make x2goagent listening to	TCP connections configurable in x2goserver.conf
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23354%3A%20Bug%23354%3A%20Bug%23354%3A%20Make%20x2goagent%20listening%20to%0A%09TCP%20connections%20configurable%20in%20x2goserver.conf&In-Reply-To=%3C1386515582.31556.YahooMailNeo%40web122106.mail.ne1.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006561.html">
+   <LINK REL="Next"  HREF="006568.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#354: Bug#354: Bug#354: Make x2goagent listening to	TCP connections configurable in x2goserver.conf</H1>
+    <B>Nick Ingegneri</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23354%3A%20Bug%23354%3A%20Bug%23354%3A%20Make%20x2goagent%20listening%20to%0A%09TCP%20connections%20configurable%20in%20x2goserver.conf&In-Reply-To=%3C1386515582.31556.YahooMailNeo%40web122106.mail.ne1.yahoo.com%3E"
+       TITLE="[X2Go-Dev] Bug#354: Bug#354: Bug#354: Make x2goagent listening to	TCP connections configurable in x2goserver.conf">n_ingegneri at yahoo.com
+       </A><BR>
+    <I>Sun Dec  8 16:13:02 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006561.html">[X2Go-Dev] Processed: Re: Bug#354: Bug#354: Make x2goagent listening to TCP connections configurable in x2goserver.conf
+</A></li>
+        <LI>Next message: <A HREF="006568.html">[X2Go-Dev] Bug#354: Things you should know about X (was: Re:	Bug#354: Bug#354: Make x2goagent listening to TCP connections	configurable in x2goserver.conf)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6567">[ date ]</a>
+              <a href="thread.html#6567">[ thread ]</a>
+              <a href="subject.html#6567">[ subject ]</a>
+              <a href="author.html#6567">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Mike, Stefan, Alexander, et al.,
+
+I was watching this conversation play out before replying.
+
+It isn't going to be fruitful to be pulled into a long discussion about the specifics of our compute environment. There are many assumptions being made in this discussion that aren't correct, and saying &quot;don't use TCP&quot; without knowing these specifics is ignorant. There are industry-standard commercial products that disabling TCP breaks. Our IT department cannot decide to stop supporting TCP; it is the users and our commercial suppliers who determine what IT has to support.
+
+I think that because I used &quot;xhost +&quot; in my original debugging example, the assumption was immediately made that &quot;xhost +&quot; was my primary concern. My primary concern is that disabling TCP
+ breaks almost every possible use model except for one narrow case (ssh). Among other things, it breaks the MIT-MAGIC-COOKIE-1 mechanism. While there are very valid concerns regarding use of TCP on the internet, we have a different hierarchy of concerns regarding what happens on our internal network.
+
+One incorrect assumption that is being made in this discussion is that some action to initiate the display can take place on the system the user is logged into, or that the user is even involved in initiating the display.&#160; Consider this use model:
+
+1: User's display is system100:24
+2: Automated processes, with no user involvement, launch a program on a randomly chosen system (let's say it is system204).
+3: The new program running on system204 now has to connect back to the display on system100:24
+
+Personally, the problem is solved for us for at least the moment and we can move forward with what we are trying to do. Having to
+ edit /usr/bin/x2gostartagent every time we install or upgrade the package is inelegant and creates additional administrative overhead, but it is manageable.
+
+This is your project, not mine, I merely came to the mailing list with a problem looking for a solution. I can tell you that our use model is extremely common in industry and that breaking it will render X2Go unusable. Of the five alternatives we are looking at, X2Go was the only one with TCP disabled. Most system administrators trying to set up an evaluation of X2Go aren't typically going to dig further than the documentation and config files in trying to fix this problem. If you make fixing it so obscure that it escapes these system administrators, then X2Go isn't going to get very far in those evaluations.
+
+How accessible or obscure you make this setting is up to you as developers, but saying to users &quot;your use model is wrong&quot; doesn't show appreciation for the diversity of ways that X is used in production.
+
+Cheers,
+Nick
+
+
+
+
+
+
+On Saturday, December 7, 2013 2:51 PM, Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+ 
+Control: tag -1 wontfix
+Control: close -1
+
+Hi Stefan,
+
+On&#160; Sa 07 Dez 2013 22:30:17 CET, Stefan Baur wrote:
+
+&gt;<i> [...]
+</I>
+&gt;<i> Man, where are my pills, I don't want to go into full Theo de Raadt mode ...
+</I>
+Okokokok... heard!
+
+@Nick: please place a copy of x2gostartagent into
+ /usr/local/bin for a&#160; 
+transition period and modify it to your needs. We won't reenable TCP&#160; 
+listening in upstream X2Go. For long term usage of X2Go, adapt your&#160; 
+workflows to a more secure model.
+
+Mike
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131208/60cc76f0/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131208/60cc76f0/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006561.html">[X2Go-Dev] Processed: Re: Bug#354: Bug#354: Make x2goagent listening to TCP connections configurable in x2goserver.conf
+</A></li>
+	<LI>Next message: <A HREF="006568.html">[X2Go-Dev] Bug#354: Things you should know about X (was: Re:	Bug#354: Bug#354: Make x2goagent listening to TCP connections	configurable in x2goserver.conf)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6567">[ date ]</a>
+              <a href="thread.html#6567">[ thread ]</a>
+              <a href="subject.html#6567">[ subject ]</a>
+              <a href="author.html#6567">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

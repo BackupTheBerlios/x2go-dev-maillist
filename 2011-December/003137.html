@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] SOLUTION: A generic way to print to cheap GDI-only printers (not only with X2Go)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20SOLUTION%3A%20A%20generic%20way%20to%20print%20to%20cheap%20GDI-only%0A%20printers%20%28not%20only%20with%20X2Go%29&In-Reply-To=%3C4EF11C3D.10809%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003136.html">
+   <LINK REL="Next"  HREF="003138.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] SOLUTION: A generic way to print to cheap GDI-only printers (not only with X2Go)</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20SOLUTION%3A%20A%20generic%20way%20to%20print%20to%20cheap%20GDI-only%0A%20printers%20%28not%20only%20with%20X2Go%29&In-Reply-To=%3C4EF11C3D.10809%40stefanbaur.de%3E"
+       TITLE="[X2go-Dev] SOLUTION: A generic way to print to cheap GDI-only printers (not only with X2Go)">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Wed Dec 21 00:37:33 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003136.html">[X2go-Dev] Client-side printing still not working
+</A></li>
+        <LI>Next message: <A HREF="003138.html">[X2go-Dev] SOLUTION: A generic way to print to cheap GDI-only printers (not only with X2Go)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3137">[ date ]</a>
+              <a href="thread.html#3137">[ thread ]</a>
+              <a href="subject.html#3137">[ subject ]</a>
+              <a href="author.html#3137">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi List,
+
+since I've had issues getting client-side printing to work (which I need 
+for low-budget printers that don't support PCL/PS), I built my own 
+work-around.
+
+The following is an explanation on how to turn every printer that is 
+connected to a Windows client into a printer that can be accessed with 
+CUPS, regardless of the print protocol it speaks. IOW: If it can print 
+from Windows, it can now print from CUPS as well, as long as it's 
+connected to a Windows box.
+
+The advantage over using the X2Go built-in solution is that you don't 
+even need a running X2Go client on the particular box - say, in a small 
+two-person office with only one (low-budget inkjet) color printer, with 
+the X2Go user wanting to print something in color, but the pritner is 
+connected to the other machine, and the co-worker currently isn't using 
+X2Go.
+
+Requirements:
+
+On the client computer:
+* RedMon - <A HREF="http://pages.cs.wisc.edu/~ghost/redmon/">http://pages.cs.wisc.edu/~ghost/redmon/</A>
+* Sumatra PDF viewer - 
+<A HREF="https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-1.9-install.exe">https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-1.9-install.exe</A>
+* fixed IP or DNS entry, proper gateway setting if server and client are 
+located in different networks
+* Windows 2K or XP, and installation media / extracted service pack files
+   OR Windows Vista / 7  *and lots of patience*
+
+On the server:
+Any recent CUPS server with CUPS-PDF installed
+
+---------------
+
+Preparing the Server:
+---------------------
+Log in as root (or run this prefixed with sudo)
+lpadmin -p &quot;CLIENTNAMEHERE_LPD&quot; -v 
+&quot;<A HREF="lpd://CLIENTDNSNAMEORIPHERE/PDFQueue">lpd://CLIENTDNSNAMEORIPHERE/PDFQueue</A>&quot; -D &quot;Generic Printer&quot; -L 
+&quot;CLIENTNAMEHERE&quot; -E -m &quot;lsb/usr/cups-pdf/CUPS-PDF.ppd&quot;
+
+(everything on one line, substitute clientname and IP where required)
+
+---------------
+
+Preparing the Client (Windows 2K/XP):
+-------------------------------------
+
+1) Go to Control Panel/Software, Windows Components and install the LPD 
+Print Service (this may require you to insert installation media or 
+point Windows to the folder with the extracted service pack files)
+
+2) Check the Services - The TCP/IP-Print Service should be running and 
+set to start automatically - if not, change it so it does.
+
+3) Download and install RedMon (see above - it's available in several 
+languages, choose the one that suits you best)
+Be sure to unzip all the files to %ProgramFiles%\RedMon before 
+installing - redmon doesn't do that by itself when you install it, and 
+we need some files from that directory later on
+
+4) Download and install Sumatra PDF. Do not set it as your default PDF 
+viewer unless this is really what you want. Most users will prefer to 
+use Adobe Reader as the default viewer.
+
+5) Install a new printer:
+Local Printer, do not scan for PnP devices
+Create New Port,
+Redirected Port,
+RPT1,
+Manufacturer: Generic*, Type: Generic/Text Only, Name: &quot;PDFQueue&quot;. 
+Double-check that it is not set as the standard printer (or you will 
+create an infinite spooler loop), do not share it, and do not print a 
+test page.
+
+*If you can't find &quot;Generic&quot; or &quot;Standard&quot;,
+press &quot;Windows Update&quot;, if that still doesn't help,
+pick a common printer model like a HP Color LaserJet.
+
+6) Double-Click the newly created printer Go to Properties, and pick the 
+&quot;Ports&quot; tab.
+7) Configure the RPT1: port. Choose
+Redirection Program: C:\Program Files\Redmon\redrun.exe
+&quot;Program handles Output&quot;
+Run: &quot;Hidden&quot;
+C:\Program Files\SumatraPDF\SumatraPDF.exe -print-to-default 
+-exit-on-print %1
+
+Note that you have to type the language-specific path in *both fields*, 
+say, &quot;C:\Programme\&quot; on a German Windows - substituting %programfiles% 
+doesn't work.
+
+8) add a Firewall exception for Port 515 (may or may not be necessary - 
+if your CUPS server complains that it can't connect and keeps retrying, 
+try the firewall rule)
+
+---------------
+
+Preparing the Client (Windows Vista/7 - not for the faint of heart):
+--------------------------------------------------------------------
+
+1) Go to Control Panel/Software, Windows Components and install the LPD 
+Print Service (this may require you to insert installation media or 
+point Windows to the folder with the extracted service pack files)
+
+2) Check the Services - The TCP/IP-Print Service should be running and 
+set to start automatically - if not, change it so it does.
+
+3) Download and install RedMon (see above - it's available in several 
+languages, choose the one that suits you best)
+Be sure to unzip all the files to C:\Program Files\RedMon before 
+installing - redmon doesn't do that by itself when you install it, and 
+we need some files from that directory later on
+
+4) Download and install Sumatra PDF. Do not set it as your default PDF 
+viewer unless this is really what you want. Most users will prefer to 
+use Adobe Reader as the default viewer.
+
+Attention users of Windows Vista or Windows 7:
+You need to run cmd.exe with an administrative account and use the 
+following command to start the &quot;Add Printer Wizard&quot; *from within that 
+cmd session* to make this work!
+rundll32 printui.dll,PrintUIEntry /il
+
+5) Install a new printer:
+Local Printer,
+Create New Port,
+Redirected Port,
+RPT1 (If this fails with an error message and you're on Vista/Win7, you 
+didn't pay attention to what I wrote above),
+Manufacturer: Generic, Type: Generic/Text Only, Name: &quot;PDFQueue&quot;. 
+Double-check that it is not set as the standard printer (or you will 
+create an infinite spooler loop), do not share it, and do not print a 
+test page.
+
+Attention users of Windows Vista or Windows 7:
+Do *not* double-click on the newly created printer, rather, double-click 
+the printer named &quot;Microsoft XPS Document Writer&quot;.
+(There is no way to open the PDFQueue printer with admin privileges, and 
+attempting any change to the RedMon settings will result in an error 
+message when pressing OK/Apply)
+
+6) Click on &quot;Printer&quot;, &quot;Open as Administrator&quot;, then click on &quot;Printer&quot; 
+again, select &quot;Properties&quot;, and pick the &quot;Ports&quot; tab.
+
+7) Configure the RPT1: port. Choose
+Redirection Program: C:\Program Files\Redmon\redrun.exe
+&quot;Program handles Output&quot;
+Run: &quot;Hidden&quot;
+C:\Program Files\SumatraPDF\SumatraPDF.exe -print-to-default 
+-exit-on-print %1
+
+Attention users of Windows Vista or Windows 7:
+Be sure to re-select &quot;XPSPort:&quot; for the &quot;Microsoft XPS Document Writer&quot; 
+after you're done (or you will disrupt printing to this printer).
+
+8) In contrast to the Windows XP installation, I did not have to change 
+firewall settings. YMMV.
+
+---------------
+
+Test:
+
+Printing to the CLIENTNAMEHERE_LPD printer should result in a spool file 
+ending up in the PDFQueue on the client, which disappears again shortly 
+after, another spool file in the queue of your default printer on the 
+client, which also dissapears again shortly after, and a print job 
+coming out of your default printer.
+
+---------------
+
+Comments welcome, and if somebody decides *where* in our wiki this 
+should go, I'll be happy to add it there with proper formatting.
+
+Kind Regards,
+Stefan
+
+PS: I'd still be interested in knowing what's currently going wrong with 
+the X2Go-client's built-in printing support on Windows (see my post at 
+<A HREF="https://lists.berlios.de/pipermail/x2go-dev/2011-December/003133.html">https://lists.berlios.de/pipermail/x2go-dev/2011-December/003133.html</A>). 
+Should be way less of a hassle to configure once it works.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003136.html">[X2go-Dev] Client-side printing still not working
+</A></li>
+	<LI>Next message: <A HREF="003138.html">[X2go-Dev] SOLUTION: A generic way to print to cheap GDI-only printers (not only with X2Go)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3137">[ date ]</a>
+              <a href="thread.html#3137">[ thread ]</a>
+              <a href="subject.html#3137">[ subject ]</a>
+              <a href="author.html#3137">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

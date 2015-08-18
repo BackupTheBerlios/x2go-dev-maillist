@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Suggestion: Make x2gothinclientsystem less invasive
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Suggestion%3A%20Make%20x2gothinclientsystem%20less%20invasive&In-Reply-To=%3C4D8C875B.5070501%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001954.html">
+   <LINK REL="Next"  HREF="001956.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Suggestion: Make x2gothinclientsystem less invasive</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Suggestion%3A%20Make%20x2gothinclientsystem%20less%20invasive&In-Reply-To=%3C4D8C875B.5070501%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] Suggestion: Make x2gothinclientsystem less invasive">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Fri Mar 25 13:15:23 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001954.html">[X2go-dev] Suggestion: Make x2gothinclientsystem less invasive
+</A></li>
+        <LI>Next message: <A HREF="001956.html">[X2go-dev] Suggestion: Make x2gothinclientsystem less invasive
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1955">[ date ]</a>
+              <a href="thread.html#1955">[ thread ]</a>
+              <a href="subject.html#1955">[ subject ]</a>
+              <a href="author.html#1955">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi.
+
+We're working on it:
+<A HREF="http://i4git.informatik.uni-erlangen.de/x2gothinclientsystem.git/tree/b0260af3bba3dad5dcbe593a57757554b67a2667:/x2gothinclient_helper">http://i4git.informatik.uni-erlangen.de/x2gothinclientsystem.git/tree/b0260af3bba3dad5dcbe593a57757554b67a2667:/x2gothinclient_helper</A>
+
+At the moment I'm busy with more general x2go stuff. But help is welcome.
+
+Cheers
+Morty
+
+On 2011-03-25 11:15, Michael Hierweck wrote:
+&gt;<i> Hi x2go folks,
+</I>&gt;<i>
+</I>&gt;<i> I would like to suggest a solution to make x2gothinclientsystem less
+</I>&gt;<i> invasive.
+</I>&gt;<i>
+</I>&gt;<i> Instead of mounting a ramdisk and removing/symlinking some files and
+</I>&gt;<i> directories (which might be a Debian packaging policy violation) it
+</I>&gt;<i> might be smarter to mount a read only root filesystem and transparently
+</I>&gt;<i> overlay it with a tempfs.
+</I>&gt;<i>
+</I>&gt;<i> I can this be achieved?
+</I>&gt;<i>
+</I>&gt;<i> a) Install aufs modules in the clients' chroot environment. Aufs modules
+</I>&gt;<i> are part of Squeeze's default kernel.
+</I>&gt;<i>
+</I>&gt;<i> b) Add &quot;aufs&quot; to /etc/initramfs-tools/modules.
+</I>&gt;<i>
+</I>&gt;<i> c) Set &quot;BOOT=aufs&quot; in /etc/initramfs-tools/initramfs.conf.
+</I>&gt;<i>
+</I>&gt;<i> d) Add a &quot;magic&quot; script (see attachment) named &quot;aufs&quot; to
+</I>&gt;<i> /etc/initramfs-tools/scripts
+</I>&gt;<i>
+</I>&gt;<i> e) Call update-initramfs -u inside the chroot.
+</I>&gt;<i>
+</I>&gt;<i> The &quot;aufs&quot; script is based on Debian's
+</I>&gt;<i> /usr/share/initramfs-tools/scripts/nfs script.
+</I>&gt;<i>
+</I>&gt;<i> The attached script provides a three layer file root filesystem.
+</I>&gt;<i>
+</I>&gt;<i> ro nfsroot/master (generic thinclients' chroot)
+</I>&gt;<i> ro nfsroot/&lt;ip-address&gt; (individual thinclient's configuration
+</I>&gt;<i> overriding master)
+</I>&gt;<i> rw tempfs (simulates a fully rw root file system)
+</I>&gt;<i>
+</I>&gt;<i> Pros:
+</I>&gt;<i>
+</I>&gt;<i> * simple (to my mind)
+</I>&gt;<i> * flexible
+</I>&gt;<i> * less &quot;hacky&quot; (less/no conflicts with other packages)
+</I>&gt;<i> * therefore more Debian compliant (to my mind)
+</I>&gt;<i> * x2go related stuff currently stored in /ramdisk can go into
+</I>&gt;<i> /var/lib/x2go...
+</I>&gt;<i>
+</I>&gt;<i> Cons:
+</I>&gt;<i>
+</I>&gt;<i> * any?
+</I>&gt;<i>
+</I>&gt;<i> Any feedback is appreciated.
+</I>&gt;<i>
+</I>&gt;<i> Michael
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110325/22f7bba8/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110325/22f7bba8/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 5867 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110325/22f7bba8/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110325/22f7bba8/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001954.html">[X2go-dev] Suggestion: Make x2gothinclientsystem less invasive
+</A></li>
+	<LI>Next message: <A HREF="001956.html">[X2go-dev] Suggestion: Make x2gothinclientsystem less invasive
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1955">[ date ]</a>
+              <a href="thread.html#1955">[ thread ]</a>
+              <a href="subject.html#1955">[ subject ]</a>
+              <a href="author.html#1955">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

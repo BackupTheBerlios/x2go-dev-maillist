@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2gothinclient w/o LDAP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2gothinclient%20w/o%20LDAP&In-Reply-To=%3C20110406143807.20035w8nq4as9d4f%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001978.html">
+   <LINK REL="Next"  HREF="001981.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2gothinclient w/o LDAP</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2gothinclient%20w/o%20LDAP&In-Reply-To=%3C20110406143807.20035w8nq4as9d4f%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] x2gothinclient w/o LDAP">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Apr  6 14:38:07 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001978.html">[X2go-dev] no &quot;invalid credentials message&quot; during login
+</A></li>
+        <LI>Next message: <A HREF="001981.html">[X2go-dev] x2gothinclient w/o LDAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1979">[ date ]</a>
+              <a href="thread.html#1979">[ thread ]</a>
+              <a href="subject.html#1979">[ subject ]</a>
+              <a href="author.html#1979">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Morty,
+
+I have a customer that has patched the x2gothinclient to use local  
+session profile files. On the way he discovered that X2go thin client  
+systems do not have the loop network device set up. Could you give  
+your opinion on that?
+
+File: &quot;/etc/init.d/ramdrive&quot;
+
+after:  cat /proc/mounts&gt;  /ramdrive/mtab
+         # setup lo interface
+         ifconfig lo 127.0.0.1 netmask 255.0.0.0
+
+
+He also has modified the thinclient script in a way that you can run  
+x2goclient on the thin client without LDAP. He provides a session  
+profile ,,sessions file'' and puts that into ~/.x2goclient/sessions.  
+But he also need some fixes for that.
+
+Maybe we see an option to incorporate this in the x2gothinclient, so  
+that both methods are available in the code and it merely needs some  
+commenting and uncommenting or whatsoever to enable/disable  
+LDAP/sessions-file.
+
+Here are the changes he proposes:
+
+###############################################################################
+
+Datei &quot;/etc/default/x2gothinclient&quot;
+
+x2goclient --external-login=/ramdrive/logins --no-menu --maximize  
+--link=lan --kbd-layout=de --kbd-type=pc105/de --set-kbd=1  
+--geometry=fullscreen --add-to-known-hosts  
+--read-exports-from=/ramdrive/export
+
+###############################################################################
+
+mkdir -p /home/image/x2goclient/.x2goclient/
+Create file: /home/image/x2goclient/.x2goclient/sessions (s.below)
+
+[20110318121437951]
+speed=4
+pack=16m-jpeg
+quality=9
+fstunnel=true
+export=
+fullscreen=true
+width=1280
+height=1024
+dpi=96
+setdpi=false
+usekbd=true
+layout=de
+type=pc105/de
+sound=true
+soundsystem=pulse
+startsoundsystem=true
+soundtunnel=true
+defsndport=true
+sndport=4713
+print=true
+name=Sunray
+icon=:icons/128x128/x2gosession.png
+host=192.168.100.52
+user=
+key=fsdfasdfsdafsa
+sshport=22
+rootless=false
+applications=WWWBROWSER, MAILCLIENT, OFFICE, TERMINAL
+command=GNOME
+rdpoptions=
+rdpserver=
+
+[20110325095837365]
+speed=2
+pack=16m-jpeg
+quality=9
+fstunnel=true
+export=
+fullscreen=false
+width=800
+height=600
+dpi=96
+setdpi=false
+usekbd=true
+layout=de
+type=pc105/de
+sound=true
+soundsystem=pulse
+startsoundsystem=true
+soundtunnel=true
+defsndport=true
+sndport=4713
+print=true
+name=KHK Server
+icon=:icons/128x128/x2gosession.png
+host=192.168.100.52
+user=
+key=
+sshport=22
+rootless=false
+applications=WWWBROWSER, MAILCLIENT, OFFICE, TERMINAL
+command=rdesktop -n x2go 192.168.100.2
+rdpoptions=
+rdpserver=192.168.100.2
+
+
+################################################################################
+
+File: &quot;/etc/init.d/ramdrive&quot;
+
+nach: cat /proc/mounts&gt;  /ramdrive/mtab
+         # setup lo interface
+         ifconfig lo 127.0.0.1 netmask 255.0.0.0
+         # copy configs
+         cp -a /home/image/* /ramdrive/
+
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110406/55a52367/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110406/55a52367/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001978.html">[X2go-dev] no &quot;invalid credentials message&quot; during login
+</A></li>
+	<LI>Next message: <A HREF="001981.html">[X2go-dev] x2gothinclient w/o LDAP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1979">[ date ]</a>
+              <a href="thread.html#1979">[ thread ]</a>
+              <a href="subject.html#1979">[ subject ]</a>
+              <a href="author.html#1979">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

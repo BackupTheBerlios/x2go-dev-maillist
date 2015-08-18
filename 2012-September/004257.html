@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#31: X2Go Clients Gr-Tunnel (client-side endpoint)	listens on all TCP/IP address (probably should be: loopback only)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2331%3A%20X2Go%20Clients%20Gr-Tunnel%20%28client-side%20endpoint%29%0A%09listens%20on%20all%20TCP/IP%20address%20%28probably%20should%20be%3A%20loopback%20only%29&In-Reply-To=%3C20120917164300.285117ouzzht95v8%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004256.html">
+   <LINK REL="Next"  HREF="004258.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#31: X2Go Clients Gr-Tunnel (client-side endpoint)	listens on all TCP/IP address (probably should be: loopback only)</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2331%3A%20X2Go%20Clients%20Gr-Tunnel%20%28client-side%20endpoint%29%0A%09listens%20on%20all%20TCP/IP%20address%20%28probably%20should%20be%3A%20loopback%20only%29&In-Reply-To=%3C20120917164300.285117ouzzht95v8%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#31: X2Go Clients Gr-Tunnel (client-side endpoint)	listens on all TCP/IP address (probably should be: loopback only)">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Sep 17 16:43:00 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004256.html">[X2Go-Dev] Printing, x2go, Vservers
+</A></li>
+        <LI>Next message: <A HREF="004258.html">[X2Go-Dev] X2Go server source tree changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4257">[ date ]</a>
+              <a href="thread.html#4257">[ thread ]</a>
+              <a href="subject.html#4257">[ subject ]</a>
+              <a href="author.html#4257">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Severity: normal
+Version: 3.99.3.0-prerelease
+
+Hi all,
+
+I just stumbled over an issue that we maybe have to address. Probably  
+in X2Go Client, I guess.
+
+X2Go Client launches nxproxy and netstat -ap delivers this output:
+
+&quot;&quot;&quot;
+tcp        0      0 *:31004                 *:*                      
+LISTEN      20139/x2goclient
+                      
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tcp        0      0 *:16001                 *:*                      
+LISTEN      6822/pulseaudio
+tcp        0      0 *:4713                  *:*                      
+LISTEN      6822/pulseaudio
+tcp        0      0 localhost:44610         localhost:ssh            
+VERBUNDEN   20139/x2goclient
+tcp        0      0 localhost:44609         localhost:ssh            
+VERBUNDEN   20139/x2goclient
+tcp        0      0 localhost:45257         localhost:31004          
+VERBUNDEN   20161/nxproxy
+tcp        0      0 localhost:31004         localhost:45257          
+VERBUNDEN   20139/x2goclient
+tcp        0      0 localhost:31004         localhost:45257          
+VERBUNDEN   20139/x2goclient
+tcp6       0      0 [::]:16001              [::]:*                   
+LISTEN      6822/pulseaudio
+tcp6       0      0 [::]:4713               [::]:*                   
+LISTEN      6822/pulseaudio
+&quot;&quot;&quot;
+
+PyHoca-GUI with Python X2Go in its back, however, deliveres this  
+output with netstat -p:
+
+&quot;&quot;&quot;
+tcp        0      0 localhost:30004         *:*                      
+LISTEN      20728/pyhoca-gui
+tcp        0      0 *:16001                 *:*                      
+LISTEN      6822/pulseaudio
+tcp        0      0 *:4713                  *:*                      
+LISTEN      6822/pulseaudio
+tcp        0      0 localhost:30004         localhost:52107          
+VERBUNDEN   20728/pyhoca-gui
+                      
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tcp        0      0 m-110.informatik.:41910 fylgja.das-netzwe:32032  
+VERBUNDEN   20728/pyhoca-gui
+tcp        0      0 localhost:52107         localhost:30004          
+VERBUNDEN   20773/nxproxy
+tcp6       0      0 [::]:16001              [::]:*                   
+LISTEN      6822/pulseaudio
+tcp6       0      0 [::]:4713               [::]:*                   
+LISTEN      6822/pulseaudio
+&quot;&quot;&quot;
+
+Output with lsof -i is even more weird, as lsof -i shows that nxproxy  
+is listening on all
+TCP/IP addresses, not X2Go Client.
+
+&quot;&quot;&quot;
+nxproxy    9514 mike    5u  IPv4 321255      0t0  TCP  
+localhost:44690-&gt;localhost:31004 (ESTABLISHED)
+nxproxy    9514 mike   12u  IPv4 321189      0t0  TCP  
+m-110.informatik.uni-kiel.de:41258-&gt;fylgja.das-netzwerkteam.de:32032  
+(ESTABLISHED)
+nxproxy    9514 mike   13u  IPv4 321239      0t0  TCP *:31004 (LISTEN)
+nxproxy    9518 mike   12u  IPv4 321189      0t0  TCP  
+m-110.informatik.uni-kiel.de:41258-&gt;fylgja.das-netzwerkteam.de:32032  
+(ESTABLISHED)
+nxproxy    9518 mike   13u  IPv4 321239      0t0  TCP *:31004 (LISTEN)
+&quot;&quot;&quot;
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120917/08bd7957/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120917/08bd7957/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004256.html">[X2Go-Dev] Printing, x2go, Vservers
+</A></li>
+	<LI>Next message: <A HREF="004258.html">[X2Go-Dev] X2Go server source tree changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4257">[ date ]</a>
+              <a href="thread.html#4257">[ thread ]</a>
+              <a href="subject.html#4257">[ subject ]</a>
+              <a href="author.html#4257">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

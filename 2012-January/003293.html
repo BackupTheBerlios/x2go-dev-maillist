@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goserver%20installs%20into%20/usr/lib%20on%20x86_64%20system&In-Reply-To=%3C20120129120908.68661i98aojoxql0%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003292.html">
+   <LINK REL="Next"  HREF="003290.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goserver%20installs%20into%20/usr/lib%20on%20x86_64%20system&In-Reply-To=%3C20120129120908.68661i98aojoxql0%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sun Jan 29 12:09:08 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003292.html">[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+</A></li>
+        <LI>Next message: <A HREF="003290.html">[X2Go-Dev] libjpeg-turbo and NX/X2Go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3293">[ date ]</a>
+              <a href="thread.html#3293">[ thread ]</a>
+              <a href="subject.html#3293">[ subject ]</a>
+              <a href="author.html#3293">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Oliver,
+
+On So 29 Jan 2012 11:38:24 CET Oliver Burger wrote:
+
+&gt;<i> 2012/1/28 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;:
+</I>&gt;&gt;<i> Took a closer look now: each x2goserver Makefile that puts some stuff to
+</I>&gt;&gt;<i> /usr/lib/x2go has a line
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &#160;LIBDIR=$(PREFIX)/lib/x2go
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> You can simply override this var by calling something like this:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &#160;$ make PREFIX=/usr LIBDIR=/some/path/lib64 build
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Is it that what you need?
+</I>&gt;<i> The Makefiles do provide that, but it will break x2goserver, since the
+</I>&gt;<i> include paths in the files are hardcoded.
+</I>&gt;<i> E.g.
+</I>&gt;<i> &quot;use lib `echo -n \$(x2gobasepath)/lib/x2go`;&quot;
+</I>&gt;<i> in x2godbadmin.
+</I>&gt;<i> I don't know perl, but the eror message I get, lets me think, that as
+</I>&gt;<i> it is done in python, there are special paths defined for site
+</I>&gt;<i> packages:
+</I>&gt;<i> &quot;Can't locate x2gologlevel.pm in @INC (@INC contains: /usr/lib/x2go
+</I>&gt;<i> /usr/lib/perl5/site_perl/5.14.2/x86_64-linux-thread-multi
+</I>&gt;<i> /usr/lib/perl5/site_perl/5.14.2
+</I>&gt;<i> /usr/lib/perl5/vendor_perl/5.14.2/x86_64-linux-thread-multi
+</I>&gt;<i> /usr/lib/perl5/vendor_perl/5.14.2
+</I>&gt;<i> /usr/lib/perl5/5.14.2/x86_64-linux-thread-multi /usr/lib/perl5/5.14.2
+</I>&gt;<i> /usr/lib/perl5/site_perl /usr/lib/perl5/vendor_perl/5.14.1
+</I>&gt;<i> /usr/lib/perl5/vendor_perl/5.14.1/x86_64-linux-thread-multi
+</I>&gt;<i> /usr/lib/perl5/vendor_perl/5.14.0
+</I>&gt;<i> /usr/lib/perl5/vendor_perl/5.14.0/x86_64-linux-thread-multi
+</I>&gt;<i> /usr/lib/perl5/vendor_perl/5.12.3 /usr/lib/perl5/vendor_perl/5.12.2
+</I>&gt;<i> /usr/lib/perl5/vendor_perl .) at /usr/sbin/x2godbadmin line 30.&quot;
+</I>&gt;<i>
+</I>&gt;<i> So wouldn't it be best to have those &quot;library&quot; files located in a
+</I>&gt;<i> &quot;perl site package&quot; path?
+</I>&gt;<i> Of course I can have those files installed in /usr/lib/ as well or I
+</I>&gt;<i> can use some sed magic in the spec file, correcting those paths. But
+</I>&gt;<i> that would be a rather ugly workarround.
+</I>
+Now I get what your point is. This has to be addressed in our upstream  
+code. Not exactly sure how, though. I will discuss that with Alex on  
+Jabber the coming week.
+
+Thanks!!!
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120129/bd840fbd/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120129/bd840fbd/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003292.html">[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+</A></li>
+	<LI>Next message: <A HREF="003290.html">[X2Go-Dev] libjpeg-turbo and NX/X2Go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3293">[ date ]</a>
+              <a href="thread.html#3293">[ thread ]</a>
+              <a href="subject.html#3293">[ subject ]</a>
+              <a href="author.html#3293">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

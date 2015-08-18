@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#258: Bug#258: Bug#258: Bug#258: SECURITY: x2goclient	allows clipboard sniffing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23258%3A%20Bug%23258%3A%20Bug%23258%3A%20Bug%23258%3A%20SECURITY%3A%20x2goclient%0A%09allows%20clipboard%20sniffing&In-Reply-To=%3C1372787886.7849.104.camel%40heisenberg.scientia.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005920.html">
+   <LINK REL="Next"  HREF="005907.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#258: Bug#258: Bug#258: Bug#258: SECURITY: x2goclient	allows clipboard sniffing</H1>
+    <B>Christoph Anton Mitterer</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23258%3A%20Bug%23258%3A%20Bug%23258%3A%20Bug%23258%3A%20SECURITY%3A%20x2goclient%0A%09allows%20clipboard%20sniffing&In-Reply-To=%3C1372787886.7849.104.camel%40heisenberg.scientia.net%3E"
+       TITLE="[X2Go-Dev] Bug#258: Bug#258: Bug#258: Bug#258: SECURITY: x2goclient	allows clipboard sniffing">calestyo at scientia.net
+       </A><BR>
+    <I>Tue Jul  2 19:58:06 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005920.html">[X2Go-Dev] Bug#258: Bug#258: Bug#258: Bug#258: Bug#258: SECURITY:	x2goclient allows clipboard sniffing
+</A></li>
+        <LI>Next message: <A HREF="005907.html">[X2Go-Dev] Bug#255: X2Go issue (in src:x2goclient) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5925">[ date ]</a>
+              <a href="thread.html#5925">[ thread ]</a>
+              <a href="subject.html#5925">[ subject ]</a>
+              <a href="author.html#5925">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2013-07-02 at 11:10 +0400, Nable 80 wrote: 
+&gt;<i> &gt; And people don't see x2go (or VNC, or rdp) like a direct access
+</I>&gt;<i> &gt; to their X server (as in plain X forwarding with xauth and that like).
+</I>&gt;<i> Why do you think so? Because they have it in window and didn't specify
+</I>&gt;<i> any option that exactly means 'turn on X11 forwarding'?
+</I>To be honest, I think both are strong reasons for expecting this... as
+well as one easily tend to compare it with VNC (which gives you rather
+the &quot;secure&quot; screenshots)...
+But moreover... it's nowwhere really documented (at least where people
+easily see it) - I didn't find it at all.
+When one goes into the ssh/ssh_config manpages and read about the X
+forwarding options... strongly warns one about the security implications
+(which are basically like giving root to the remote).
+When one reads the xauth manpage (and the fact that there is a dedicated
+program which one needs to grant privileges)... one reads about what one
+does.
+
+With X2go/NX.. there seem to be no such emphasised warnings in the
+obvious places.
+
+
+&gt;<i> After all, I think that it's not a grave issue as most people use X11
+</I>&gt;<i> forwarding for rather trusted hosts (or just don't care).
+</I>Well... don't think so... even not for the trusted ones (not to talk
+about untrusted hosts)... but this is probably since people have
+different requirements on security.
+
+
+&gt;<i> One additional note: it's possible to turn on clipboard forwarding in
+</I>&gt;<i> RDP and VNC (and it's a very useful thing) but AFAIR in most clients
+</I>&gt;<i> _one have to specify it implicitly_ (and sometimes there's a separate
+</I>&gt;<i> option that allows some restricted clipboard access, for example
+</I>Yes... it is... but there you have to at least enable it (even though
+most programs miss a strong warning on what can then easily happen...)
+
+
+But to be honest... the clipboard sniffing problem seems to be &quot;boring&quot;
+compared with the &quot;direct interaction&quot; with my local x server... at
+least with respect to my security thinking...
+
+
+Oh and no one from the developers should get me wrong:
+I do see that NX is very nice and great with respect to it's speed,
+which is probably not doable with VNC like screenshoting.... but a) I
+think people are not warned/told enough about what happens
+(technically)... and b) clear information misses... on what could
+actually happen (in the sense of &quot;is it secure as it is, or can this
+direct communication with the local X server cause troubles - perhaps
+there are none... and they only issues where those with the global root
+window.. which seems not possible with NX? But perhaps there are!).
+
+
+Cheers,
+Chris.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/x-pkcs7-signature
+Size: 5165 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130702/71e81dce/attachment-0001.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130702/71e81dce/attachment-0001.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005920.html">[X2Go-Dev] Bug#258: Bug#258: Bug#258: Bug#258: Bug#258: SECURITY:	x2goclient allows clipboard sniffing
+</A></li>
+	<LI>Next message: <A HREF="005907.html">[X2Go-Dev] Bug#255: X2Go issue (in src:x2goclient) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5925">[ date ]</a>
+              <a href="thread.html#5925">[ thread ]</a>
+              <a href="subject.html#5925">[ subject ]</a>
+              <a href="author.html#5925">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

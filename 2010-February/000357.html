@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] RDP Connections on x2go Client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20RDP%20Connections%20on%20x2go%20Client&In-Reply-To=%3C1267102613.16984.3.camel%40Family.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000356.html">
+   <LINK REL="Next"  HREF="000358.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] RDP Connections on x2go Client</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20RDP%20Connections%20on%20x2go%20Client&In-Reply-To=%3C1267102613.16984.3.camel%40Family.pacifera.com%3E"
+       TITLE="[X2go-dev] RDP Connections on x2go Client">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu Feb 25 13:56:53 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000356.html">[X2go-dev] RDP Connections on x2go Client
+</A></li>
+        <LI>Next message: <A HREF="000358.html">[X2go-dev] Process documentation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#357">[ date ]</a>
+              <a href="thread.html#357">[ thread ]</a>
+              <a href="subject.html#357">[ subject ]</a>
+              <a href="author.html#357">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2010-02-24 at 23:45 -0700, Dimitris Anogiatis wrote:
+&gt;<i> 
+</I>&lt;snip&gt;
+&gt;<i>         
+</I>&gt;<i>         &gt; John,
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt; you're close but no cigar yet.
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt; Let me attempt to explain again.
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt; Assume that x2goserver is running on Debian Lenny with an IP
+</I>&gt;<i>         of
+</I>&gt;<i>         &gt; 192.168.0.10
+</I>&gt;<i>         &gt; Also assume that Virtualbox is running the XP virtual
+</I>&gt;<i>         machine with an
+</I>&gt;<i>         &gt; IP of 192.168.0.109
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt; here's what i do in steps
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt; 1) I turn on my laptop and boot into windows vista (IP
+</I>&gt;<i>         192.168.0.130)
+</I>&gt;<i>         &gt; 2) I load Remote Desktop Connection
+</I>&gt;<i>         &gt; 3) I type in the username &amp; password, press enter and I can
+</I>&gt;<i>         connect to
+</I>&gt;<i>         &gt; the Windows XP virtual machine (on 192.168.0.109).
+</I>&gt;<i>         &gt; 4) I then log off of Windows XP.
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt; Now that I know that RDP works I'm trying to do the same
+</I>&gt;<i>         with the x2go
+</I>&gt;<i>         &gt; client that I installed on Windows Vista.
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt; 1) I load the x2goclient (for windows)  on my laptop
+</I>&gt;<i>         (192.168.0.130)
+</I>&gt;<i>         &gt; 2) I make a new session named Virtualbox XP
+</I>&gt;<i>         &gt; 3) Host: 192.168.0.109
+</I>&gt;<i>         &gt; 4) Login: the same username I have on XP
+</I>&gt;<i>         &gt; 5) SSH Port: 3389 (this, I think is most likely the problem
+</I>&gt;<i>         area cause
+</I>&gt;<i>         &gt; RDP doesn't use ssh)
+</I>&gt;<i>         &gt; 6) Session Type: Connect to Windows terminal server
+</I>&gt;<i>          Server:
+</I>&gt;<i>         &gt; 192.168.0.109 (Not sure if this is correct but it's the same
+</I>&gt;<i>         IP as the
+</I>&gt;<i>         &gt; host)
+</I>&gt;<i>         &gt; 7) I press OK set the password, press OK and I'm waiting for
+</I>&gt;<i>         it to
+</I>&gt;<i>         &gt; connect
+</I>&gt;<i>         &gt; 8) An error message pops up &quot;Connection Failed
+</I>&gt;<i>         192.168.0.109:
+</I>&gt;<i>         &gt; ssh_exchange_identification: read: Software caused
+</I>&gt;<i>         connection abort&quot;
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt; and That's all.  Same thing happens when I reboot the
+</I>&gt;<i>         computer and
+</I>&gt;<i>         &gt; load xubuntu.
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt; I can connect to the vm using Remotedesktop-Client (a gui of
+</I>&gt;<i>         rdesktop)
+</I>&gt;<i>         &gt; but x2goclient-gtk on xubuntu reports the same error.
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt; For other kinds of sessions i.e. Gnome, LXDE sessions (Not
+</I>&gt;<i>         using KDE)
+</I>&gt;<i>         &gt; and single application sessions, x2goclient on both
+</I>&gt;<i>         platforms works
+</I>&gt;<i>         &gt; like a charm.
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt; Does anyone know what I'm doing wrong guys? or is it a bug
+</I>&gt;<i>         that needs
+</I>&gt;<i>         &gt; squashing?
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt; Thanks for all your help in advance
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt;
+</I>&gt;<i>         &gt; Regards
+</I>&gt;<i>         &gt; Dimitris
+</I>&gt;<i>         
+</I>&gt;<i>         Ah, now I see what you're doing but I'm not sure why you are
+</I>&gt;<i>         doing it.
+</I>&gt;<i>         Perhaps this is because I'm not familiar with using the
+</I>&gt;<i>         terminal server
+</I>&gt;<i>         session type.  I think you are misusing it but my experience
+</I>&gt;<i>         is not
+</I>&gt;<i>         based upon X2Go server.
+</I>&gt;<i>         
+</I>&gt;<i>         I believe the terminal server option is not used for
+</I>&gt;<i>         connecting the
+</I>&gt;<i>         x2goclient to a terminal server.  x2goclient does not &quot;speak&quot;
+</I>&gt;<i>         RDP as far
+</I>&gt;<i>         as I know, only NX.  Instead, what it does is connect to the
+</I>&gt;<i>         X2GoServer
+</I>&gt;<i>         running on the Lenny server and then, instead of launching
+</I>&gt;<i>         startkde or
+</I>&gt;<i>         gnomesession, it starts rdesktop to connect to a terminal
+</I>&gt;<i>         server.  The
+</I>&gt;<i>         important point is that the x2goclient is not connecting
+</I>&gt;<i>         directly to the
+</I>&gt;<i>         RDP server; it is connecting directly to the X2GoServer which
+</I>&gt;<i>         then
+</I>&gt;<i>         established an RDP connection to the Windows server.  At
+</I>&gt;<i>         least, that's
+</I>&gt;<i>         how I think it works in NoMachine.  I really don't know about
+</I>&gt;<i>         X2Go.
+</I>&gt;<i>         Sorry I can't be more authoritative - John
+</I>&gt;<i>         
+</I>&gt;<i> Thank you John,
+</I>&gt;<i> 
+</I>&gt;<i> What you described on your last reply worked just fine... I was going
+</I>&gt;<i> at it
+</I>&gt;<i> the wrong way. As you described everything happens on the x2goserver.
+</I>&gt;<i> I was under the impression that x2goclient talks directly to the RDP
+</I>&gt;<i> server.
+</I>&gt;<i> 
+</I>&gt;<i> Thank you very much
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Dimitris
+</I>Hi, Dimitris.  I'm glad it finally sorted.  I've cc'd the list just in
+case someone else interprets the terminal server option the same way.
+Thanks for your patience working through it - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000356.html">[X2go-dev] RDP Connections on x2go Client
+</A></li>
+	<LI>Next message: <A HREF="000358.html">[X2go-dev] Process documentation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#357">[ date ]</a>
+              <a href="thread.html#357">[ thread ]</a>
+              <a href="subject.html#357">[ subject ]</a>
+              <a href="author.html#357">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

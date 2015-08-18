@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goclient-cli single application problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient-cli%20single%20application%20problem&In-Reply-To=%3Cfe6a97cf0905261713j6e0aa4d7k12d463205697a464%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000036.html">
+   <LINK REL="Next"  HREF="000034.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goclient-cli single application problem</H1>
+    <B>Brian Moss</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient-cli%20single%20application%20problem&In-Reply-To=%3Cfe6a97cf0905261713j6e0aa4d7k12d463205697a464%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] x2goclient-cli single application problem">jbrianmoss at gmail.com
+       </A><BR>
+    <I>Wed May 27 02:13:18 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000036.html">[X2go-dev] keyboard not working quite right in gtk client...
+</A></li>
+        <LI>Next message: <A HREF="000034.html">[X2go-dev] x2goclient-cli single application problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#33">[ date ]</a>
+              <a href="thread.html#33">[ thread ]</a>
+              <a href="subject.html#33">[ subject ]</a>
+              <a href="author.html#33">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello all, I have been experimenting with the command line x2go client,
+x2goclient-cli, and have had great success except in one area.
+
+I am having difficulties getting the same results with the CLI client as I
+have with the Qt client when launching single applications.
+
+When using the Qt client the single application appears part of the local
+desktop, exactly how 'ssh -Y' appears.
+
+However when using the CLI client the application loads in a separate x2go
+window, and the single application does not have it's own window controls.
+
+When looking at the session manager - the dialog box that appears when you
+try and connect with a user that already has an active connection - I can
+see that the session type for the Qt client is 'Single Application' and for
+the CLI client it is desktop.
+
+The command I am executing is:
+
+x2goclient-cli --user mark --server
+instance_name.compute-1.amazonaws.com--command iceweasel --ssh-key
+ssh-keys/mark --geometry 800x600
+--session-type unix-application
+
+I specify the session-type to be 'unix-application', which is by default
+'unix-kde'. I found 'unix-application' in the help information for nxproxy.
+
+Any help would be appreciated,
+
+Thanks
+
+Brian
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090526/8913fb3c/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090526/8913fb3c/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000036.html">[X2go-dev] keyboard not working quite right in gtk client...
+</A></li>
+	<LI>Next message: <A HREF="000034.html">[X2go-dev] x2goclient-cli single application problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#33">[ date ]</a>
+              <a href="thread.html#33">[ thread ]</a>
+              <a href="subject.html#33">[ subject ]</a>
+              <a href="author.html#33">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

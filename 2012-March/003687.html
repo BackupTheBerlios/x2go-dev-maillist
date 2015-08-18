@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Debian libnx-x11 package for sid 64bit links broken	(patch)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Debian%20libnx-x11%20package%20for%20sid%2064bit%20links%20broken%0A%09%28patch%29&In-Reply-To=%3CCADZYHDC_PwqEp3UuQ8c-s_C1br15Y5hS39sdWqJQaz-FzrByyg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003686.html">
+   <LINK REL="Next"  HREF="003693.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Debian libnx-x11 package for sid 64bit links broken	(patch)</H1>
+    <B>Benjamin Shadwick</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Debian%20libnx-x11%20package%20for%20sid%2064bit%20links%20broken%0A%09%28patch%29&In-Reply-To=%3CCADZYHDC_PwqEp3UuQ8c-s_C1br15Y5hS39sdWqJQaz-FzrByyg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Debian libnx-x11 package for sid 64bit links broken	(patch)">benshadwick at gmail.com
+       </A><BR>
+    <I>Thu Mar  1 17:10:16 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003686.html">[X2Go-Dev] Debian libnx-x11 package for sid 64bit links broken	(patch)
+</A></li>
+        <LI>Next message: <A HREF="003693.html">[X2Go-Dev] Debian libnx-x11 package for sid 64bit links broken (patch)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3687">[ date ]</a>
+              <a href="thread.html#3687">[ thread ]</a>
+              <a href="subject.html#3687">[ subject ]</a>
+              <a href="author.html#3687">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Is that the issue that caused my problem at
+<A HREF="https://lists.berlios.de/pipermail/x2go-user/2012-February/000660.html">https://lists.berlios.de/pipermail/x2go-user/2012-February/000660.html</A> ?
+
+My Xubuntu 11.10 machine is 64-bit and I was seeing the same symptom.
+
+On Thu, Mar 1, 2012 at 3:39 AM, Anthony Callegaro &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">callytic at free.fr</A>&gt; wrote:
+
+&gt;<i> Hello there,
+</I>&gt;<i>
+</I>&gt;<i> Since the upgrade to x2go 3.1 I couldn't connect from any clients to my
+</I>&gt;<i> Debian sid amd64 x2goserver.
+</I>&gt;<i>
+</I>&gt;<i> There is no error on the client side just that the session is
+</I>&gt;<i> terminating just after starting.
+</I>&gt;<i>
+</I>&gt;<i> The server is stating that the session started well.
+</I>&gt;<i> /usr/bin/x2gostartagent: successfully started X2Go agent session with ID
+</I>&gt;<i> xxx
+</I>&gt;<i>
+</I>&gt;<i> After long hours of debugging I found out that it was due to some broken
+</I>&gt;<i> links in /usr/lib/nx/X11/Xinerama/
+</I>&gt;<i>
+</I>&gt;<i> The following solved my issue :
+</I>&gt;<i> rm /usr/lib/nx/X11/Xinerama/libNX_X11.so.6
+</I>&gt;<i> ln -s /usr/lib/x86_64-linux-gnu/libX11.so.6
+</I>&gt;<i> /usr/lib/nx/X11/Xinerama/libNX_X11.so.6
+</I>&gt;<i> rm /usr/lib/nx/X11/Xinerama/libNX_Xext.so.6
+</I>&gt;<i> ln -s /usr/lib/x86_64-linux-gnu/libXext.so.6
+</I>&gt;<i> /usr/lib/nx/X11/Xinerama/libNX_Xext.so.6
+</I>&gt;<i>
+</I>&gt;<i> This is probably due to multiarch, I don't know if there is a simple way
+</I>&gt;<i> to point to the correct lib path in nx-libs.git/debian/libnx-x11.links
+</I>&gt;<i>
+</I>&gt;<i> According to the multiarch documentation [0] : &quot;Any references to files
+</I>&gt;<i> located in /usr/lib from within your packaging, including but not
+</I>&gt;<i> limited to debian/rules, any debian/*.install or debian/*.links files,
+</I>&gt;<i> or maintainer scripts, must be updated by hand for the new locations.&quot;
+</I>&gt;<i>
+</I>&gt;<i> The simple attached patch solved the issue for me but will probably
+</I>&gt;<i> break i386 version of the package.
+</I>&gt;<i>
+</I>&gt;<i> Let me know your thoughts.
+</I>&gt;<i>
+</I>&gt;<i> Thanks anyway for this fantastic tool :o)
+</I>&gt;<i> LeTic
+</I>&gt;<i>
+</I>&gt;<i> [0] :
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://wiki.debian.org/Multiarch/Implementation#Issues_to_be_aware_of_when_converting">http://wiki.debian.org/Multiarch/Implementation#Issues_to_be_aware_of_when_converting</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+
+-- 
+- Ben S.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120301/3da40415/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120301/3da40415/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003686.html">[X2Go-Dev] Debian libnx-x11 package for sid 64bit links broken	(patch)
+</A></li>
+	<LI>Next message: <A HREF="003693.html">[X2Go-Dev] Debian libnx-x11 package for sid 64bit links broken (patch)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3687">[ date ]</a>
+              <a href="thread.html#3687">[ thread ]</a>
+              <a href="subject.html#3687">[ subject ]</a>
+              <a href="author.html#3687">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

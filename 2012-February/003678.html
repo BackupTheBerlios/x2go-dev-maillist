@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Building problems with x2goserver
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Building%20problems%20with%20x2goserver&In-Reply-To=%3C4F4E816B.7080307%40mageia.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003729.html">
+   <LINK REL="Next"  HREF="003679.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Building problems with x2goserver</H1>
+    <B>Oliver Burger</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Building%20problems%20with%20x2goserver&In-Reply-To=%3C4F4E816B.7080307%40mageia.org%3E"
+       TITLE="[X2Go-Dev] Building problems with x2goserver">obgr_seneca at mageia.org
+       </A><BR>
+    <I>Wed Feb 29 20:50:03 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003729.html">[X2Go-Dev] Building problems with x2goserver
+</A></li>
+        <LI>Next message: <A HREF="003679.html">[X2Go-Dev] Building problems with x2goserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3678">[ date ]</a>
+              <a href="thread.html#3678">[ thread ]</a>
+              <a href="subject.html#3678">[ subject ]</a>
+              <a href="author.html#3678">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Trying to build x2goserver-3.1.0.0 I get
+
+-----&gt;   snip   &lt;-----
+install -d -m 755 
+/mnt/data/mageia-build/packages/cauldron/x2goserver/BUILDROOT/x2goserver-3.1.0.0-1.mga2.x86_64/usr/share/x2go
+install -d -m 755 
+/mnt/data/mageia-build/packages/cauldron/x2goserver/BUILDROOT/x2goserver-3.1.0.0-1.mga2.x86_64/usr/share/x2go/x2gofeature.d
+install -m 755 share/x2gofeature.d/*.features 
+/mnt/data/mageia-build/packages/cauldron/x2goserver/BUILDROOT/x2goserver-3.1.0.0-1.mga2.x86_64/usr/share/x2go/x2gofeature.d/
+install: cannot stat `share/x2gofeature.d/*.features': No such file or 
+directory
+make[1]: *** [install_scripts] Error 1
+make[1]: Leaving directory 
+`/mnt/data/mageia-build/packages/cauldron/x2goserver/BUILD/x2goserver/x2goserver-fmbindings'
+make: *** [install] Error 2
+-----&gt;   snip   &lt;-----
+
+This happens with the release tar ball as well as with a git clone.
+There just is no &quot;share&quot; directory in there.
+
+Oliver
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003729.html">[X2Go-Dev] Building problems with x2goserver
+</A></li>
+	<LI>Next message: <A HREF="003679.html">[X2Go-Dev] Building problems with x2goserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3678">[ date ]</a>
+              <a href="thread.html#3678">[ thread ]</a>
+              <a href="subject.html#3678">[ subject ]</a>
+              <a href="author.html#3678">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

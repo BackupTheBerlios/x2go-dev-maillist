@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Go + VServer problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20%2B%20VServer%20problem&In-Reply-To=%3C1262058321.10251.15.camel%40jaspav.ssiservices.biz%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000251.html">
+   <LINK REL="Next"  HREF="000248.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Go + VServer problem</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20%2B%20VServer%20problem&In-Reply-To=%3C1262058321.10251.15.camel%40jaspav.ssiservices.biz%3E"
+       TITLE="[X2go-dev] X2Go + VServer problem">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Dec 29 04:45:21 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000251.html">[X2go-dev] GPG key missing
+</A></li>
+        <LI>Next message: <A HREF="000248.html">[X2go-dev] X2Go + VServer problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#247">[ date ]</a>
+              <a href="thread.html#247">[ thread ]</a>
+              <a href="subject.html#247">[ subject ]</a>
+              <a href="author.html#247">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Oops! Just hit a big problem.  I'm trying to install X2GoServer-One into
+a VServer running Ubuntu Karmic.  We have done this successfully in the
+past with Hardy.  The combination of X2Go and VServer offers incredible
+potential - in our case much greater than with hypervisor style
+virtualization.
+
+However, we are hitting a major dependency problem in Karmic.  In
+VServer, we are not using any of the hardware directly.  In the past, we
+set the xorg.conf driver to dummy.  However, Karmic is behaving
+differently.  When installing xserver-xorg, it insists on writing
+to /proc/mtrr which is not allowed in a vserver for security reasons.
+We spent two days doing it but have successfully installed KDE and Gnome
+without having to install xserver-xorg.
+
+The problem is that X2Go is insisting on xserver-xorg as a dependency.
+This may be indirect as I see it is also asking for xinit and Karmic
+sets xserver-xorg as a dependency for xinit.  Is there a way to install
+without this dependency on xserver-xorg? This is a critical problem for
+us.  Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000251.html">[X2go-dev] GPG key missing
+</A></li>
+	<LI>Next message: <A HREF="000248.html">[X2go-dev] X2Go + VServer problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#247">[ date ]</a>
+              <a href="thread.html#247">[ thread ]</a>
+              <a href="subject.html#247">[ subject ]</a>
+              <a href="author.html#247">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

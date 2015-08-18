@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2go client window in rootless mode crashes when	mouse is moved over title bar
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%0A%09%3D%3Futf-8%3Fq%3FX2go_client_window_in_rootless_mode_crashes_%3F%3D%0A%09%3D%3Futf-8%3Fq%3Fwhen%3D09mouse_is_moved_over_title_bar%3F%3D&In-Reply-To=%3Cloom.20110131T052054-970%40post.gmane.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001576.html">
+   <LINK REL="Next"  HREF="001634.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2go client window in rootless mode crashes when	mouse is moved over title bar</H1>
+    <B>Max Chao</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%0A%09%3D%3Futf-8%3Fq%3FX2go_client_window_in_rootless_mode_crashes_%3F%3D%0A%09%3D%3Futf-8%3Fq%3Fwhen%3D09mouse_is_moved_over_title_bar%3F%3D&In-Reply-To=%3Cloom.20110131T052054-970%40post.gmane.org%3E"
+       TITLE="[X2go-dev] X2go client window in rootless mode crashes when	mouse is moved over title bar">yochaos at gmail.com
+       </A><BR>
+    <I>Mon Jan 31 05:32:03 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001576.html">[X2go-dev] X2go client window in rootless mode crashes when	mouse is moved over title bar
+</A></li>
+        <LI>Next message: <A HREF="001634.html">[X2go-dev] X2go client window in rootless mode crashes when mouse is moved over title bar
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1633">[ date ]</a>
+              <a href="thread.html#1633">[ thread ]</a>
+              <a href="subject.html#1633">[ subject ]</a>
+              <a href="author.html#1633">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at ...</A>&gt; writes:
+
+&gt;<i> 
+</I>&gt;<i> Hi there,
+</I>&gt;<i> 
+</I>&gt;<i> Am Dienstag, 25. Januar 2011, 13:14:26 schrieb Mike Gabriel:
+</I>&gt;<i> &gt; Hi there,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; this issue has probably been already addressed:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; During development of PyHoca-GUI I encounter some weird behaviour on
+</I>&gt;<i> &gt; mouse moves that cross the title bar of a rootless session window
+</I>&gt;<i> &gt; (e.g. xterm via X2go, but also any other app). I think that this
+</I>&gt;<i> &gt; problem only occurs with the initial rootless window (e.g. xterm). Any
+</I>&gt;<i> &gt; subsequently started application window has not shown this behaviour
+</I>&gt;<i> &gt; so far.
+</I>&gt;<i> 
+</I>&gt;<i> I have a gut feeling that the problem is burried in Events.c of the nxagent 
+</I>&gt;<i> hw. Maybe it's worth trying to comment out the nxagentOption(Menu) block in 
+</I>&gt;<i> Events.c. However, I currently cannot compile the x2goagent package (because 
+</I>&gt;<i> of mismatching nxlib versions in Debian and the ones used by
+</I>&gt;<i> X2go).
+</I>&gt;<i> 
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> mike &lt;at&gt; minobo:~/MyDocuments/4packages/_examples_/x2goagent-3.4.0-
+</I>3/programs/Xserver/hw/nxagent$ 
+&gt;<i> diff -u Events.c.orig Events.c
+</I>&gt;<i> --- Events.c.orig       2011-01-25 22:36:54.000000000 +0100
+</I>&gt;<i> +++ Events.c    2011-01-25 22:22:06.000000000 +0100
+</I>&gt;<i> @@ -1028,6 +1028,7 @@
+</I>&gt;<i>              nxagentLastEnteredWindow = pWin;
+</I>&gt;<i>            }
+</I>&gt;<i> 
+</I>&gt;<i> +          /*
+</I>&gt;<i>            if (nxagentPulldownDialogPid == 0 &amp;&amp; 
+</I>&gt;<i> nxagentLastEnteredTopLevelWindow &amp;&amp;
+</I>&gt;<i>                    (X.xmotion.y_root &lt; nxagentLastEnteredTopLevelWindow -&gt; 
+</I>&gt;<i> drawable.y + 4))
+</I>&gt;<i>            {
+</I>&gt;<i> @@ -1043,6 +1044,7 @@
+</I>&gt;<i>                nxagentPulldownDialog(nxagentLastEnteredTopLevelWindow -&gt; 
+</I>&gt;<i> drawable.id);
+</I>&gt;<i>              }
+</I>&gt;<i>            }
+</I>&gt;<i> +          */
+</I>&gt;<i> 
+</I>&gt;<i>            x.u.keyButtonPointer.rootX = X.xmotion.x_root;
+</I>&gt;<i>            x.u.keyButtonPointer.rootY = X.xmotion.y_root;
+</I>&gt;<i> 
+</I>
+Hi Mike,
+
+I met the similar issue several months ago, please refer the following link
+<A HREF="http://article.gmane.org/gmane.linux.terminal-">http://article.gmane.org/gmane.linux.terminal-</A>
+server.x2go.devel/522/match=yochaos
+
+I can't recall all the details. It seems like that if you move mouse on the 
+title bar of the x2go windows, it will call an application &quot;nxclient&quot; to show 
+the pull-down menu. If the &quot;nxclient&quot; doesn't exist, it will call the 
+application defined in environment virable NX_CLIENT, which is defined as 
+&quot;/usr/bin/x2gosuspend-agent&quot; in /usr/bin/x2gostartagent. So just change 
+NX_CLIENT in /usr/bin/x2gostartagent to &quot;/bin/true&quot; will make a workaround of 
+this issue.
+
+Hope it will help.
+
+Br,
+Max
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001576.html">[X2go-dev] X2go client window in rootless mode crashes when	mouse is moved over title bar
+</A></li>
+	<LI>Next message: <A HREF="001634.html">[X2go-dev] X2go client window in rootless mode crashes when mouse is moved over title bar
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1633">[ date ]</a>
+              <a href="thread.html#1633">[ thread ]</a>
+              <a href="subject.html#1633">[ subject ]</a>
+              <a href="author.html#1633">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

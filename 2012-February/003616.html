@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Usernames with dashes causes errors?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Usernames%20with%20dashes%20causes%20errors%3F&In-Reply-To=%3C4F44C10B.1060801%40fleten.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003615.html">
+   <LINK REL="Next"  HREF="003617.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Usernames with dashes causes errors?</H1>
+    <B>christoffer krakou</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Usernames%20with%20dashes%20causes%20errors%3F&In-Reply-To=%3C4F44C10B.1060801%40fleten.net%3E"
+       TITLE="[X2Go-Dev] Usernames with dashes causes errors?">christoffer at fleten.net
+       </A><BR>
+    <I>Wed Feb 22 11:18:51 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003615.html">[X2Go-Dev] Usernames with dashes causes errors?
+</A></li>
+        <LI>Next message: <A HREF="003617.html">[X2Go-Dev] Usernames with dashes causes errors?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3616">[ date ]</a>
+              <a href="thread.html#3616">[ thread ]</a>
+              <a href="subject.html#3616">[ subject ]</a>
+              <a href="author.html#3616">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Just a quick update. It turns out that /var/log/syslog spits out the 
+following:
+
+Feb 22 11:16:07 fleten-01 /usr/bin/x2gostartagent: successfully started 
+X2Go agent session with ID christoffer-51-1329905764_stDGNOME_dp24
+Feb 22 11:16:12 fleten-01 /usr/bin/x2gomountdirs[6861]: WARNING: 
+mounting of 
+/home/christoffer/.x2go/S-christoffer-51-1329905764_stDGNOME_dp24/spool 
+failed
+
+when the login fails. Does this lead us closer to the solution?
+
+
+On 02/22/2012 10:36 AM, christoffer krakou wrote:
+&gt;<i> On 02/21/2012 04:48 PM, Mike Gabriel wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Christoffer! Your (and others) turn! (Debian packages are already
+</I>&gt;&gt;<i> available, Ubuntu packages will come over night, test from the nightly
+</I>&gt;&gt;<i> repositories, please)
+</I>&gt;<i>
+</I>&gt;<i> Hello mike.
+</I>&gt;<i>
+</I>&gt;<i> When i log into the server with old usernames (without dashes), the
+</I>&gt;<i> client hangs until i kill it. No errors, nothing in the log on the
+</I>&gt;<i> server. At one time, a user got stuck in a loop where ssh constantly
+</I>&gt;<i> opened sessions, and closed sessions for the user.
+</I>&gt;<i>
+</I>&gt;<i> When i log on with a new username (with dashes), it looks as if it goes
+</I>&gt;<i> through the logon process on the client, then just closes again,
+</I>&gt;<i> returning to the login screen. The server log shows the following:
+</I>&gt;<i>
+</I>&gt;<i> /var/log/auth.log
+</I>&gt;<i> Feb 22 10:29:49 fleten-01 sshd[7901]: Accepted password for test-1 from
+</I>&gt;<i> 2.129.49.246 port 53921 ssh2
+</I>&gt;<i> Feb 22 10:29:49 fleten-01 sshd[7901]: pam_unix(sshd:session): session
+</I>&gt;<i> opened for user test-1 by (uid=0)
+</I>&gt;<i> Feb 22 10:29:57 fleten-01 sshd[8650]: Accepted password for test-1 from
+</I>&gt;<i> 2.129.49.246 port 53925 ssh2
+</I>&gt;<i> Feb 22 10:29:57 fleten-01 sshd[8650]: pam_unix(sshd:session): session
+</I>&gt;<i> opened for user test-1 by (uid=0)
+</I>&gt;<i> Feb 22 10:29:57 fleten-01 sshd[8653]: Accepted password for test-1 from
+</I>&gt;<i> 2.129.49.246 port 53926 ssh2
+</I>&gt;<i> Feb 22 10:29:57 fleten-01 sshd[8653]: pam_unix(sshd:session): session
+</I>&gt;<i> opened for user test-1 by (uid=0)
+</I>&gt;<i> Feb 22 10:30:01 fleten-01 sshd[8991]: Received disconnect from
+</I>&gt;<i> 2.129.49.246: 11: Bye Bye
+</I>&gt;<i> Feb 22 10:30:01 fleten-01 sshd[8650]: pam_unix(sshd:session): session
+</I>&gt;<i> closed for user test-1
+</I>&gt;<i> Feb 22 10:30:01 fleten-01 sshd[9048]: Received disconnect from
+</I>&gt;<i> 2.129.49.246: 11: Bye Bye
+</I>&gt;<i> Feb 22 10:30:01 fleten-01 sshd[8653]: pam_unix(sshd:session): session
+</I>&gt;<i> closed for user test-1
+</I>&gt;<i> Feb 22 10:30:01 fleten-01 sshd[7901]: pam_unix(sshd:session): session
+</I>&gt;<i> closed for user test-1
+</I>&gt;<i> Feb 22 10:30:02 fleten-01 su[9456]: Successful su for test-1 by root
+</I>&gt;<i> Feb 22 10:30:02 fleten-01 su[9456]: + ??? root:test-1
+</I>&gt;<i> Feb 22 10:30:02 fleten-01 su[9456]: pam_unix(su:session): session opened
+</I>&gt;<i> for user test-1 by (uid=0)
+</I>&gt;<i> Feb 22 10:30:02 fleten-01 su[9456]: pam_unix(su:session): session closed
+</I>&gt;<i> for user test-1
+</I>&gt;<i>
+</I>&gt;<i> i'm using ubuntu 11.10 64-bit on both server and client side. i've
+</I>&gt;<i> tested from different networks (onsite network, and mobile 3g modem).
+</I>&gt;<i> I'm using the stable client, tried on both windows and ubuntu, and the
+</I>&gt;<i> nightly-build server
+</I>&gt;<i>
+</I>
+
+-- 
+Venlig Hilsen / Best Regards
+Christoffer Krakou
+Fleten.net APS
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003615.html">[X2Go-Dev] Usernames with dashes causes errors?
+</A></li>
+	<LI>Next message: <A HREF="003617.html">[X2Go-Dev] Usernames with dashes causes errors?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3616">[ date ]</a>
+              <a href="thread.html#3616">[ thread ]</a>
+              <a href="subject.html#3616">[ subject ]</a>
+              <a href="author.html#3616">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

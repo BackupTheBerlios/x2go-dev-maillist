@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2go and android tablets - some progress
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2go%20and%20android%20tablets%20-%20some%20progress&In-Reply-To=%3C20110701062007.112345v0d7idxb07%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002369.html">
+   <LINK REL="Next"  HREF="002371.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2go and android tablets - some progress</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2go%20and%20android%20tablets%20-%20some%20progress&In-Reply-To=%3C20110701062007.112345v0d7idxb07%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] x2go and android tablets - some progress">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jul  1 06:20:07 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002369.html">[X2go-Dev] x2go and android tablets - some progress
+</A></li>
+        <LI>Next message: <A HREF="002371.html">[X2go-Dev] x2go and android tablets - some progress
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2370">[ date ]</a>
+              <a href="thread.html#2370">[ thread ]</a>
+              <a href="subject.html#2370">[ subject ]</a>
+              <a href="author.html#2370">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Brian,
+
+On Fr 01 Jul 2011 03:18:47 CEST brian mullan wrote:
+
+&gt;<i> Then I installed Ubuntu 10.10 successfully on it.   First with the LXDI but
+</I>&gt;<i> later switched it to Gnome (just because I'm more at home with Gnome)
+</I>
+I probably have no influence on armel-builds on Launchpad, but I have  
+an influence on the X2go package build process for Debian. I have  
+already thought to build the main area in the packages.x2go.org repos  
+for armel, as well. I use qemubuilder for build the packages, so I  
+could basically build for any available architecture. It will take  
+time (qemu software emulation), but it will work (and my build machine  
+is quite smart).
+
+&gt;<i> I added the Ubuntu x2go repository
+</I>
+&gt;<i> The 'sudo apt-get install x2goclient&quot; did successfully run but so far it
+</I>
+Really? x2goclient should not be in the armel repositories. Where did  
+you actually install from. Maybe the old location on  
+obviously-nice.de???
+
+&gt;<i> only finds the following in the ARMEL repository for x2go:
+</I>&gt;<i>
+</I>&gt;<i> *p    python-x2go        - python module for X2go client support*
+</I>&gt;<i> *p    x2goserver          - x2go server daemon scripts*
+</I>
+pyhoca-gui is arch-independent and should also be available. As there  
+is an old version of nxproxy in Ubuntu you should actually be able to  
+run pyhoca-gui on armel. Could you please try that (apt-get install  
+pyhoca-gui).
+
+&gt;<i> [...]
+</I>
+I didn't really get the last part. Concrete question, maybe also to  
+Reinhard: is there a possibility to build armel packages on Ubuntu  
+launchpad?
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110701/a6b7cb84/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110701/a6b7cb84/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002369.html">[X2go-Dev] x2go and android tablets - some progress
+</A></li>
+	<LI>Next message: <A HREF="002371.html">[X2go-Dev] x2go and android tablets - some progress
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2370">[ date ]</a>
+              <a href="thread.html#2370">[ thread ]</a>
+              <a href="subject.html#2370">[ subject ]</a>
+              <a href="author.html#2370">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

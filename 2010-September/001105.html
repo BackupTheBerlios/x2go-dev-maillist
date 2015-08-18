@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Setting up an intermediate Git repository
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Setting%20up%20an%20intermediate%20Git%20repository&In-Reply-To=%3C4C9C6EB9.7030700%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001103.html">
+   <LINK REL="Next"  HREF="001107.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Setting up an intermediate Git repository</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Setting%20up%20an%20intermediate%20Git%20repository&In-Reply-To=%3C4C9C6EB9.7030700%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] Setting up an intermediate Git repository">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Fri Sep 24 11:26:17 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001103.html">[X2go-dev] Setting up an intermediate Git repository (was: Hello dead project...)
+</A></li>
+        <LI>Next message: <A HREF="001107.html">[X2go-dev] Setting up an intermediate Git repository
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1105">[ date ]</a>
+              <a href="thread.html#1105">[ thread ]</a>
+              <a href="subject.html#1105">[ subject ]</a>
+              <a href="author.html#1105">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 24.09.2010 10:50, schrieb Paul Menzel:
+
+Hello Paul,
+
+It is a great Idea. And I don't see how can we deny someone to do this
+thing if we don't want it. X2Go is Open Source project and anyone can
+download all our sources from their location and clone them into GIT. If
+there is anyone, who will administrate this GIT well, we will definitive
+upload all our sources in it. But we will although install our GIT,
+which only represent the structure of <A HREF="http://x2go.obviously-nice.de/deb/">http://x2go.obviously-nice.de/deb/</A>
+as we promised. It will great if someone can hold all X2Go stuff from us
+and other people in one place. It will help us although to integrate
+changes made from other people in mainstream. We will never deny someone
+to do this even if we can. But we cannot and don't want to deny this.
+
+I don't know who should to do this job. This is a choice of community,
+maybe per election.
+
+
+Greetings,
+alex
+&gt;<i> Dear Heinz,
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Am Freitag, den 24.09.2010, 07:26 +0200 schrieb Heinz-M. Graesing:
+</I>&gt;<i> 
+</I>&gt;<i> [&#8230;]
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Please have a look on the list again. There where Things to do first:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> * recreation (vacation)
+</I>&gt;<i> 
+</I>&gt;<i> thank you for your response. I hope you could enjoy your vacation and
+</I>&gt;<i> also relax a little to get new energy to do more great stuff.
+</I>&gt;<i> 
+</I>&gt;&gt;<i> * protection of the project (more than one person claims the domain)
+</I>&gt;&gt;<i> * protection of our reputation (let our attorney work on the acuses)
+</I>&gt;<i> 
+</I>&gt;<i> I am sorry that you have to deal with this unfortunate stuff.
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Again - the git repo is on our todo list. But all source code is and was
+</I>&gt;&gt;<i> all the time published (as dh_make ready tarballs, which are still
+</I>&gt;&gt;<i> wanted by other people).
+</I>&gt;<i> 
+</I>&gt;<i> Could I propose the following intermediate solution?
+</I>&gt;<i> 
+</I>&gt;<i> Could you let J&#246;rg (or someone else) set up the Git repository, so
+</I>&gt;<i> people can base their patches on their and publish their own branches.
+</I>&gt;<i> 
+</I>&gt;<i> 1. I am sure that the person hosting this branch can display a message
+</I>&gt;<i> in the description stating that this is an intermediate solution. So
+</I>&gt;<i> when you are done setting up your Git server or the solution to your
+</I>&gt;<i> liking things can be moved and the location of the &#8220;master&#8221; Git
+</I>&gt;<i> repository be documented.
+</I>&gt;<i> 
+</I>&gt;<i> 2. I guess, you have some branches in your repository you do not want to
+</I>&gt;<i> publish. And maybe you also want to go over the history if there are
+</I>&gt;<i> confidential things in there. If so, I am sure there is a way to just
+</I>&gt;<i> publish your &#8220;public branch&#8221;. I would propose the following but I am
+</I>&gt;<i> sure there are better or more convenient ways.
+</I>&gt;<i> 
+</I>&gt;<i>         $ cd /tmp/
+</I>&gt;<i>         $ git clone /path/to/your/project
+</I>&gt;<i>         $ cd name-of-cloned-project
+</I>&gt;<i>         $ git branch -a
+</I>&gt;<i>         $ git branch -D names-of-branch-not-to-be-published # repeat as often as you need
+</I>&gt;<i>         $ cd ..
+</I>&gt;<i>         $ 7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on x2go-branch.7z name-of-cloned-project
+</I>&gt;<i> 
+</I>&gt;<i> Send that branch to the person you want to set up the Git repository.
+</I>&gt;<i> You can also ask him to review the history first and to amend commits
+</I>&gt;<i> which have inappropriate commit messages.
+</I>&gt;<i> 
+</I>&gt;<i> Or the other repository gets set up and you are asked to push the
+</I>&gt;<i> appropriate branches there.
+</I>&gt;<i> 
+</I>&gt;<i>         $ git remote add intermediate &lt;URL&gt;
+</I>&gt;<i>         $ git push intermediate local-to-be-published-branch-name:master
+</I>&gt;<i> 
+</I>&gt;<i> 3. I guess for this intermediate time you could also state if you want
+</I>&gt;<i> the Git administrator set up commit rights to a development or testing
+</I>&gt;<i> branch. So people can push there changes to these branches to get them
+</I>&gt;<i> tested. Later you can easily cherry pick the commits you want to have in
+</I>&gt;<i> X2go for sure.
+</I>&gt;<i> 
+</I>&gt;<i> Sorry for this long message and for bothering you again. I hope this is
+</I>&gt;<i> a good compromise. Probably it is better suited for a Wiki page, but I
+</I>&gt;<i> hope everyone behaves and will keep this thread easily understandable.
+</I>&gt;<i> 
+</I>&gt;<i> If someone can think of a better proposal, please write it down and
+</I>&gt;<i> Heinz and Oleksandr can choose what fits best for them, if they accept
+</I>&gt;<i> this compromise.
+</I>&gt;<i> 
+</I>&gt;<i> Maybe volunteers for setting up and maintaining that intermediate
+</I>&gt;<i> repository can state that again by answering to this message.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Thanks,
+</I>&gt;<i> 
+</I>&gt;<i> Paul
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100924/ed670f34/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100924/ed670f34/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001103.html">[X2go-dev] Setting up an intermediate Git repository (was: Hello dead project...)
+</A></li>
+	<LI>Next message: <A HREF="001107.html">[X2go-dev] Setting up an intermediate Git repository
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1105">[ date ]</a>
+              <a href="thread.html#1105">[ thread ]</a>
+              <a href="subject.html#1105">[ subject ]</a>
+              <a href="author.html#1105">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

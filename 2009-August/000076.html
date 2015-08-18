@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] install : at least 4 mistakes in pdf de.insstallation.x2go.pdf and a install script
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20install%20%3A%20at%20least%204%20mistakes%20in%20pdf%0A%20de.insstallation.x2go.pdf%20and%20a%20install%20script&In-Reply-To=%3C4A77E3A1.1060502%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000075.html">
+   <LINK REL="Next"  HREF="000077.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] install : at least 4 mistakes in pdf de.insstallation.x2go.pdf and a install script</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20install%20%3A%20at%20least%204%20mistakes%20in%20pdf%0A%20de.insstallation.x2go.pdf%20and%20a%20install%20script&In-Reply-To=%3C4A77E3A1.1060502%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] install : at least 4 mistakes in pdf de.insstallation.x2go.pdf and a install script">paul at vandervlis.nl
+       </A><BR>
+    <I>Tue Aug  4 09:30:41 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000075.html">[X2go-dev] install : at least 4 mistakes in pdf de.insstallation.x2go.pdf and a install script
+</A></li>
+        <LI>Next message: <A HREF="000077.html">[X2go-dev] Password in plain text!?!?!?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#76">[ date ]</a>
+              <a href="thread.html#76">[ thread ]</a>
+              <a href="subject.html#76">[ subject ]</a>
+              <a href="author.html#76">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE><A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kamerun at immerda.ch</A> schreef:
+&gt;<i> hello,
+</I>
+Hello Michael,
+
+&gt;<i> at least and after many test, we are able to install x2go
+</I>&gt;<i>
+</I>&gt;<i> installation date monday 3.8.2009
+</I>&gt;<i>
+</I>&gt;<i> installation on machine with debian 5 and lxde (ths same result with a
+</I>&gt;<i> debian 5 machine with gnome)
+</I>&gt;<i> 
+</I>&gt;<i> we have done the installtion many times on different machines with the
+</I>&gt;<i> same bad result
+</I>&gt;<i> 
+</I>&gt;<i> we can start client and everything is ok
+</I>
+You tell you can start the client and everything is OK.
+Do you mean that you use a client booting via PXE, like in LTSP ?
+
+It would be nice to know what manual you use. Is this this German
+manual?  <A HREF="http://www.x2go.org/fileadmin/doc/de.installation.x2go.pdf">http://www.x2go.org/fileadmin/doc/de.installation.x2go.pdf</A>
+
+&gt;<i> after the installation, when reboot,
+</I>&gt;<i> *big problem:*
+</I>&gt;<i> 
+</I>&gt;<i> when booting stop in statd (NFS) and follow after ~ 1 minutes
+</I>&gt;<i> after stop y postgres : long message CEST FATAL could not create any
+</I>&gt;<i> TCP/IP sokets
+</I>&gt;<i> after more than 1 minute continue
+</I>&gt;<i> stop again by statd wait long and finish until login
+</I>
+Looks-like there is something wrong with NFS. Maybe give us your
+/etc/exports file. With this file you configure NFS.
+
+This is in my /etc/exports (except for some commented lines):
+/opt/x2gothinclient 192.168.0.0/24(ro,async,no_root_squash)
+
+&gt;<i> after login
+</I>&gt;<i> nfs does not work
+</I>&gt;<i> atftp is running
+</I>&gt;<i> dhcp is running but the file /etc/default/dhcp3-server is overwritten
+</I>
+What is in it?  I have this:
+INTERFACES=&quot;eth0&quot;
+
+&gt;<i> nfs cannot start, postgres has mistakes and it takes very long time to boot
+</I>&gt;<i> it comes to login and we can login, but no postgres and nfs is running.
+</I>&gt;<i> i try to start nfs
+</I>&gt;<i> but it fails, so logically the client cannot start
+</I>&gt;<i> 
+</I>&gt;<i> and the machine by shutdown the machine don't shutdown properly
+</I>&gt;<i> 
+</I>&gt;<i> we try to start nfs and posstgres manually, but it fails: no socket
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> i wonder if somebody else has the same situation
+</I>
+No. I have also problems, but they are completely different. starting
+the machine, NFS en Postgresql is no problem. And the client bootes, but
+I get an error in the boot-process.
+
+&gt;<i> *installation:
+</I>&gt;<i> *
+</I>&gt;<i> from my humble opinion there are at least 4 mistakes in the pdf
+</I>&gt;<i> de.installation.x2go.pdf
+</I>
+Ah. OK.
+
+&gt;<i> #echo &quot;192.168.1.1 x2goserver.planetexpress.de x2goserver&quot; &gt;&gt;/opt/
+</I>&gt;<i> x2gothinclient/etc/hosts
+</I>
+I have also seen that the manual uses sometime 192.168.0.x and sometimes
+192.168.1.x. And that is wrong in my opinion.
+
+&gt;<i> -- 
+</I>&gt;<i> 
+</I>&gt;<i> label linux
+</I>&gt;<i> kernel vmlinuz
+</I>&gt;<i> append root=/dev/nfs nfsroot=192.168.1.1:/opt/x2gothinclient ro
+</I>&gt;<i> initrd=initrd.img ip=dhcp
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> 
+</I>&gt;<i> option domain-name &quot;planetexpress.de&quot;;
+</I>&gt;<i> option domain-name-servers 192.168.1.1;
+</I>&gt;<i> # x2go thin client range/group
+</I>&gt;<i> subnet 192.168.0.0 netmask 255.255.255.0 {
+</I>&gt;<i> range 192.168.0.100 192.168.0.199;
+</I>&gt;<i> filename &quot;/pxelinux.0&quot;;
+</I>&gt;<i> next-server 192.168.0.250;
+</I>&gt;<i> }
+</I>
+This is wrong because you use both 192.168.0.x and 192.168.1.x.
+Use all the time the same network.
+
+&gt;<i> when i put the dhcp-server on 192.168.0..250 and change the ip
+</I>&gt;<i> 192.168.1.1 to 192.168.0.250, it works. it is for me a mistake first not
+</I>&gt;<i> to say on which ip address the dhcp server must be set, that it works
+</I>&gt;<i> the description of de.installation.x2go.pdf. anyway with the 192.168.1.1
+</I>&gt;<i> i could not install an x2go.
+</I>
+I think the manual has been made for people who know a lot about
+networking. It describes the installation of X2go, but not good the
+network-configuration.
+
+&gt;<i> there is another mistake :
+</I>&gt;<i> 
+</I>&gt;<i> # cd /usr/lib/X2go/scrip
+</I>&gt;<i> # ./x2gocreatebase.sh
+</I>&gt;<i> 
+</I>&gt;<i> X2go directory does not exist, it exist x2go directory
+</I>
+Correct.
+
+&gt;<i> (i don't know, but i was thinking that before it was existing)
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> question: when i want to close a client, it comes back to login it can
+</I>&gt;<i> just switch off, is it normal?
+</I>
+This is normal.
+
+&gt;<i> a good news is that lxde is working well, i prefer the light lxde than kde.
+</I>&gt;<i> thanks
+</I>
+I am using Gnome, but I understand that you like the light LXDE.
+
+I will advice you to get first X2go working without the PXE boot client.
+You can also install a client on a normal PC.
+Does this work?
+Please don't use LDAP for the first tests.
+You can even install the client and the server on the same machine, and
+then connect to localhost. This is what I do for testing.
+
+With regards,
+Paul van der Vlis.
+
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000075.html">[X2go-dev] install : at least 4 mistakes in pdf de.insstallation.x2go.pdf and a install script
+</A></li>
+	<LI>Next message: <A HREF="000077.html">[X2go-dev] Password in plain text!?!?!?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#76">[ date ]</a>
+              <a href="thread.html#76">[ thread ]</a>
+              <a href="subject.html#76">[ subject ]</a>
+              <a href="author.html#76">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Nothing to do with X2go - Question about X11 terminal
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Nothing%20to%20do%20with%20X2go%20-%20Question%20about%20X11%20terminal&In-Reply-To=%3C4BF16996.507%40x2go.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000469.html">
+   <LINK REL="Next"  HREF="000471.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Nothing to do with X2go - Question about X11 terminal</H1>
+    <B>Heinz-M. Graesing</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Nothing%20to%20do%20with%20X2go%20-%20Question%20about%20X11%20terminal&In-Reply-To=%3C4BF16996.507%40x2go.org%3E"
+       TITLE="[X2go-dev] Nothing to do with X2go - Question about X11 terminal">x2go-dev at x2go.org
+       </A><BR>
+    <I>Mon May 17 18:06:46 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000469.html">[X2go-dev] Nothing to do with X2go - Question about X11 terminal
+</A></li>
+        <LI>Next message: <A HREF="000471.html">[X2go-dev] Nothing to do with X2go - Question about X11 terminal
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#470">[ date ]</a>
+              <a href="thread.html#470">[ thread ]</a>
+              <a href="subject.html#470">[ subject ]</a>
+              <a href="author.html#470">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Johnson,
+
+Am 17.05.2010 17:54, schrieb Johnson Lukose:
+&gt;<i> Dear Sir, thanks for your reply.  I am interested in getting this setup
+</I>&gt;<i> working so if x2go will help me achieve a working configuration, I'll
+</I>&gt;<i> become a x2go convert...
+</I>&gt;<i> 
+</I>&gt;<i> Anyway, I went to the website and followed this link;
+</I>&gt;<i> *installation manual ubuntu &gt;= jaunty*
+</I>&gt;<i> 
+</I>&gt;<i> I pretty much followed everything there;
+</I>&gt;<i> 
+</I>&gt;<i> # apt-get install x2goserver-home
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> # apt-get install sshfs
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> # apt-get install x2gognomebindings
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> What are the next steps?  I cannot find any more information...
+</I>&gt;<i> 
+</I>&gt;<i> thanks.
+</I>
+The steps you've completed are required on the server side. If
+everything worked fine, you should have a running and connectable
+x2goserver on that machine.
+You'll need further a client to connect to this server. This is normaly
+another computer. On the client conputer you'll need to install
+x2goclient. This is done with apt-get install x2goclient (you'll need to
+setup the repository again too).
+After the client installation you'll need to configure a session inside
+x2goclient. For that you'll need the hostname or IP address of the
+server, a username and its password (again on the server). This user
+needs to be part of the group &quot;x2gousers&quot;.
+That's all you'll need to do to get x2go working.
+
+I really hope this answered your question.
+
+best regards,
+
+Heinz
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000469.html">[X2go-dev] Nothing to do with X2go - Question about X11 terminal
+</A></li>
+	<LI>Next message: <A HREF="000471.html">[X2go-dev] Nothing to do with X2go - Question about X11 terminal
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#470">[ date ]</a>
+              <a href="thread.html#470">[ thread ]</a>
+              <a href="subject.html#470">[ subject ]</a>
+              <a href="author.html#470">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

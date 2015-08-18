@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2393%3A%20x2goagent%20should%20create%20/tmp/.X11-unix%20directory&In-Reply-To=%3C50D22042.3010700%40cora.nwra.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004795.html">
+   <LINK REL="Next"  HREF="004803.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory</H1>
+    <B>Orion Poplawski</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2393%3A%20x2goagent%20should%20create%20/tmp/.X11-unix%20directory&In-Reply-To=%3C50D22042.3010700%40cora.nwra.com%3E"
+       TITLE="[X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory">orion at cora.nwra.com
+       </A><BR>
+    <I>Wed Dec 19 21:14:58 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004795.html">[X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory
+</A></li>
+        <LI>Next message: <A HREF="004803.html">[X2Go-Dev] Bug#89: Fixed in Python X2Go 0.2.1.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4797">[ date ]</a>
+              <a href="thread.html#4797">[ thread ]</a>
+              <a href="subject.html#4797">[ subject ]</a>
+              <a href="author.html#4797">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 12/19/2012 12:47 PM, Reinhard Tartler wrote:
+&gt;<i> On Wed, Dec 19, 2012 at 5:32 PM, Orion Poplawski &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at cora.nwra.com</A>&gt; wrote:
+</I>&gt;&gt;<i> I'm using it on a RHEL6 server with no native/local X server.  The X server
+</I>&gt;&gt;<i> itself will create the directory if it doesn't exist, but will abort if it
+</I>&gt;&gt;<i> already exists but with the wrong owner or permissions.
+</I>&gt;<i>
+</I>&gt;<i> Are you absolutely sure that the X server binary creates this itself?
+</I>&gt;<i> Or is that some startup script shipped as part of the X server
+</I>&gt;<i> package?
+</I>
+While many scripts are there to create it (and make sure it has the proper 
+permissions, SELinux labels, etc), running the X server directly will create 
+the directory as well.
+
+
+-- 
+Orion Poplawski
+Technical Manager                     303-415-9701 x222
+NWRA, Boulder Office                  FAX: 303-415-9702
+3380 Mitchell Lane                       <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at nwra.com</A>
+Boulder, CO 80301                   <A HREF="http://www.nwra.com">http://www.nwra.com</A>
+</PRE>
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004795.html">[X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory
+</A></li>
+	<LI>Next message: <A HREF="004803.html">[X2Go-Dev] Bug#89: Fixed in Python X2Go 0.2.1.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4797">[ date ]</a>
+              <a href="thread.html#4797">[ thread ]</a>
+              <a href="subject.html#4797">[ subject ]</a>
+              <a href="author.html#4797">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

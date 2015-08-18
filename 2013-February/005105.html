@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2gobroker without auth
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2gobroker%20without%20auth&In-Reply-To=%3C20130228180054.17442uy7q7odh7ie%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005097.html">
+   <LINK REL="Next"  HREF="005109.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2gobroker without auth</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2gobroker%20without%20auth&In-Reply-To=%3C20130228180054.17442uy7q7odh7ie%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] x2gobroker without auth">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Feb 28 18:00:54 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005097.html">[X2Go-Dev] x2gobroker without auth
+</A></li>
+        <LI>Next message: <A HREF="005109.html">[X2Go-Dev] Bug#125: BTS syntax...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5105">[ date ]</a>
+              <a href="thread.html#5105">[ thread ]</a>
+              <a href="subject.html#5105">[ subject ]</a>
+              <a href="author.html#5105">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Anders,
+
+On Do 28 Feb 2013 14:52:31 CET Anders Bruun Olsen wrote:
+
+&gt;<i> Hi Mike,
+</I>&gt;<i>
+</I>&gt;<i> Default behavior for x2gobroker and x2goclient in broker mode seems to be
+</I>&gt;<i> to first authenticate against the broker and then whatever terminal server
+</I>&gt;<i> the user ends up connecting to. This means the user ends up having to type
+</I>&gt;<i> in his/her username and password twice. Not a nice user experience. Either
+</I>&gt;<i> it shouldn't authenticate to get the available sessions or it should
+</I>&gt;<i> remember the username/password and try it when authenticating against the
+</I>&gt;<i> chosen server. Until the latter might be possible, I would like to turn off
+</I>&gt;<i> authentication to get the session information. It seems to me that this
+</I>&gt;<i> information is fairly safe to be publicly available. I have set
+</I>&gt;<i> check-credentials = false in x2gobroker.conf, but the client still prompts
+</I>&gt;<i> the user for a username/password. You can just hit enter twice at that
+</I>&gt;<i> dialog, but it still isn't an acceptable user experience. Is it possible to
+</I>&gt;<i> avoid this extra authentication currently, or would it mean changes to
+</I>&gt;<i> x2goclient?
+</I>
+Please use
+
+   x2goclient --broker-noauth --broker-url=&lt;URL&gt;
+
+For this to work, you have to set the check-credentials config option  
+x2gobroker.conf to false.
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130228/3507eadc/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130228/3507eadc/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005097.html">[X2Go-Dev] x2gobroker without auth
+</A></li>
+	<LI>Next message: <A HREF="005109.html">[X2Go-Dev] Bug#125: BTS syntax...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5105">[ date ]</a>
+              <a href="thread.html#5105">[ thread ]</a>
+              <a href="subject.html#5105">[ subject ]</a>
+              <a href="author.html#5105">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

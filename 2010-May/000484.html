@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Windows client crash ASSERT failure
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Windows%20client%20crash%20ASSERT%20failure&In-Reply-To=%3C1274308432.13861.42.camel%40Family.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000483.html">
+   <LINK REL="Next"  HREF="000488.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Windows client crash ASSERT failure</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Windows%20client%20crash%20ASSERT%20failure&In-Reply-To=%3C1274308432.13861.42.camel%40Family.pacifera.com%3E"
+       TITLE="[X2go-dev] Windows client crash ASSERT failure">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu May 20 00:33:52 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000483.html">[X2go-dev] Which Windows build environment
+</A></li>
+        <LI>Next message: <A HREF="000488.html">[X2go-dev] Windows client crash ASSERT failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#484">[ date ]</a>
+              <a href="thread.html#484">[ thread ]</a>
+              <a href="subject.html#484">[ subject ]</a>
+              <a href="author.html#484">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, all.  We installed the Trolltech Qt SDK for Windows and
+downloaded the x2goclient-3.0.1-4 tarball from
+x2go.obviously-nice.de/deb
+
+Before attempting any changes, we simply built and ran the project.  It
+crashed with:
+
+ASSERT failure in QWidget: &quot;Widgets must be created in the GUI thread.&quot;,
+file kernel/qwidget.cpp,line 1133
+Invalid parameter passed to C runtime function
+
+We tracked this down to initStatusDlg().  In line 7559, it calls
+slotShowAdvancedStat().  On line 3966, it calls st.sync().  When it
+calls QWinSettingsPrivate::sync() RegFlushKey(writeHandle()), it blows
+up.
+
+What have we done wrong? Thanks - John
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000483.html">[X2go-dev] Which Windows build environment
+</A></li>
+	<LI>Next message: <A HREF="000488.html">[X2go-dev] Windows client crash ASSERT failure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#484">[ date ]</a>
+              <a href="thread.html#484">[ thread ]</a>
+              <a href="subject.html#484">[ subject ]</a>
+              <a href="author.html#484">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

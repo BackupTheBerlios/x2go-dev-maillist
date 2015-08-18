@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#363:  Bug#363: Workaround
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23363%3A%20%20Bug%23363%3A%20Workaround&In-Reply-To=%3C20131212091423.Horde._yuLuL2tLY28o5wZ-GAemQ1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006613.html">
+   <LINK REL="Next"  HREF="006620.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#363:  Bug#363: Workaround</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23363%3A%20%20Bug%23363%3A%20Workaround&In-Reply-To=%3C20131212091423.Horde._yuLuL2tLY28o5wZ-GAemQ1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#363:  Bug#363: Workaround">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Dec 12 10:14:23 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006613.html">[X2Go-Dev] Bug#363: Workaround
+</A></li>
+        <LI>Next message: <A HREF="006620.html">[X2Go-Dev] Processed: Re:  Bug#363: Workaround
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6619">[ date ]</a>
+              <a href="thread.html#6619">[ thread ]</a>
+              <a href="subject.html#6619">[ subject ]</a>
+              <a href="author.html#6619">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Control: close -1
+
+Hi All,
+
+On  Mi 11 Dez 2013 18:14:03 CET, Michael DePaulo wrote:
+
+&gt;<i> Please test and follow this workaround with x2goclient-4.0.1.2pre02
+</I>&gt;<i> (for windows) until a 4.0.1.2pre02 package with the old pulseaudio is
+</I>&gt;<i> made (most likely in several hours):
+</I>&gt;<i>
+</I>&gt;<i> 1. Install x2goclient 4.0.1.2pre02 if you haven't already. It will by
+</I>&gt;<i> default be installed to &quot;C:\Program Files\x2goclient\&quot; on 32-bit, and
+</I>&gt;<i> &quot;C:\Program Files (x86)\x2goclient\&quot; on 64-bit.
+</I>&gt;<i> 2. Rename the installation location's &quot;pulse&quot; subfolder to &quot;pulse-1.1&quot;
+</I>&gt;<i> 3. Download  
+</I>&gt;<i> <A HREF="http://code.x2go.org/releases/binary-win32/x2goclient/with-old-pulseaudio-0.9.6/releases/4.0.0.3/x2goclient-4.0.0.3.interims-setup.exe">http://code.x2go.org/releases/binary-win32/x2goclient/with-old-pulseaudio-0.9.6/releases/4.0.0.3/x2goclient-4.0.0.3.interims-setup.exe</A>
+</I>&gt;<i> but do not install it.
+</I>&gt;<i> 4. Open that .exe file in 7-zip or peazip as an archive and extract
+</I>&gt;<i> the $_OUTDIR\pulse\ folder from it. Do not extract it directly to the
+</I>&gt;<i> installation location's folder. Instead, extract it to someplace where
+</I>&gt;<i> you have write permissions, such as your &quot;My Documents&quot; so that
+</I>&gt;<i> windows UAC file virtualization does not interfere.
+</I>&gt;<i> (There's other ways to get this &quot;pulse&quot; folder too. E.g, installing it
+</I>&gt;<i> on a spare machine and copying the folder. Temporarily uninstalling
+</I>&gt;<i> x2goclient 4.0.1.2pre02 and installing 4.0.0.3.interims, etc.)
+</I>&gt;<i> 5. Copy the &quot;pulse&quot; folder to the x2go installation folder.
+</I>&gt;<i>
+</I>&gt;<i> I quickly tested this workaround on an x2goserver VM running ubuntu
+</I>&gt;<i> 12.04.x 32-bit (with the latest updates and the quantal HWE) and it
+</I>&gt;<i> did fix this bug for me. (This bug was present when I did not perform
+</I>&gt;<i> the workaround.) My client system is windows 8.1 64-bit.
+</I>&gt;<i>
+</I>&gt;<i> -Mike
+</I>
+The pulseaudio-0.9.6 ,,interim'' build is currently uploading and can  
+be obtained from [1] in a few minutes.
+
+Mike (the first)
+
+[1]  
+<A HREF="http://code.x2go.org/releases/binary-win32/x2goclient/with-old-pulseaudio-0.9.6/previews/4.0.1.2/">http://code.x2go.org/releases/binary-win32/x2goclient/with-old-pulseaudio-0.9.6/previews/4.0.1.2/</A>
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131212/0a75617d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131212/0a75617d/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006613.html">[X2Go-Dev] Bug#363: Workaround
+</A></li>
+	<LI>Next message: <A HREF="006620.html">[X2Go-Dev] Processed: Re:  Bug#363: Workaround
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6619">[ date ]</a>
+              <a href="thread.html#6619">[ thread ]</a>
+              <a href="subject.html#6619">[ subject ]</a>
+              <a href="author.html#6619">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

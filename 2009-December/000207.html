@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Ubuntu 9.10 and X2GO
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Ubuntu%209.10%20and%20X2GO&In-Reply-To=%3C988811829%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000208.html">
+   <LINK REL="Next"  HREF="000209.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Ubuntu 9.10 and X2GO</H1>
+    <B>Heinz-M. Graesing</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Ubuntu%209.10%20and%20X2GO&In-Reply-To=%3C988811829%40web.de%3E"
+       TITLE="[X2go-dev] Ubuntu 9.10 and X2GO">heinz-m at web.de
+       </A><BR>
+    <I>Thu Dec 10 21:59:23 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000208.html">[X2go-dev] Session shadowing
+</A></li>
+        <LI>Next message: <A HREF="000209.html">[X2go-dev] x2go-dev on gmane
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#207">[ date ]</a>
+              <a href="thread.html#207">[ thread ]</a>
+              <a href="subject.html#207">[ subject ]</a>
+              <a href="author.html#207">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> -----Urspr&#252;ngliche Nachricht-----
+</I>&gt;<i> Von: &quot;jasper van der marel&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jaspervandermarel at gmail.com</A>&gt;
+</I>&gt;<i> Gesendet: 10.12.09 14:26:03
+</I>
+&gt;<i> Hi,
+</I>
+Hello Jasper!
+
+&gt;<i> I am implementing X2Go as a terminalserver solution for a large
+</I>&gt;<i> hospital in the Netherlands :)
+</I>&gt;<i> As they already rolling out Ubuntu desktops the X2Go implementation
+</I>&gt;<i> will be running on top of Ubuntu 9.10.
+</I>&gt;<i> 
+</I>&gt;<i> I have a couple of questions regarding X2Go :
+</I>&gt;<i> 
+</I>&gt;<i> Are there any major differences between a X2Go debian installation
+</I>&gt;<i> compared to a X2Go Ubuntu installation ?
+</I>
+The basic setup is identical. This means - everything beyond the x2goserver-home setup is totally untestet on ubuntu (by us). The results of former tests has shown some diffferences in sudo, udev and ldap setups. Please tell us which parts of x2go you are interested in (PXE Boot/Thin Client Environment/LDAP/x2goclient-managed-mode).
+
+&gt;<i> Must I tweak the sshd config on Ubuntu to get the same environment as
+</I>&gt;<i> when logging in with GDM ?
+</I>
+I don't know how gnome is started through GDM. But if you use the same start script, you should get the same results. In a prior E-Mail on the list Paul has sent a litte script which is used in FreeNX environments. X2goclient starts gnome with the &quot;gnome-session&quot; command.
+
+&gt;<i> Can I use the load balancing features when authenicating against an
+</I>&gt;<i> existing LDAP (RHDS) ?
+</I>
+For the managed mode of x2goclient (including load balancing) a additional branch is needed in the LDAP tree. It's called &quot;on&quot; and you'll find it if you make a generic install via the x2goldap tools. Furthermore it is required that you store users in the People branch and groups inside Groups. 
+
+&gt;<i> Will there be a webbased frontend for administering X2GO ? De KDE3
+</I>&gt;<i> modules won't work in Ubuntu anymore.
+</I>&gt;<i> Maybe we can fund this...
+</I>
+We are planning a new interface for administration. We are still discussing if this will be build on Qt4 or as a web application. 
+
+&gt;<i> And most important, where can I get (payed) support when running into issues ?
+</I>
+Yes there are possibilities - I'll send you an email with some addresses.
+
+--heinz-m. graesing--
+______________________________________________________
+GRATIS f&#252;r alle WEB.DE-Nutzer: Die maxdome Movie-FLAT!
+Jetzt freischalten unter <A HREF="http://movieflat.web.de">http://movieflat.web.de</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000208.html">[X2go-dev] Session shadowing
+</A></li>
+	<LI>Next message: <A HREF="000209.html">[X2go-dev] x2go-dev on gmane
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#207">[ date ]</a>
+              <a href="thread.html#207">[ thread ]</a>
+              <a href="subject.html#207">[ subject ]</a>
+              <a href="author.html#207">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] kernel panic
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20kernel%20panic&In-Reply-To=%3C4A6AC0F2.3010806%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000052.html">
+   <LINK REL="Next"  HREF="000053.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] kernel panic</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20kernel%20panic&In-Reply-To=%3C4A6AC0F2.3010806%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] kernel panic">paul at vandervlis.nl
+       </A><BR>
+    <I>Sat Jul 25 10:23:14 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000052.html">[X2go-dev] Keyboard problem
+</A></li>
+        <LI>Next message: <A HREF="000053.html">[X2go-dev] this mailinglist...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#51">[ date ]</a>
+              <a href="thread.html#51">[ thread ]</a>
+              <a href="subject.html#51">[ subject ]</a>
+              <a href="author.html#51">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Paul Menzel schreef:
+&gt;<i> Dear Paul and Michel,
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Am Freitag, den 19.06.2009, 19:24 +0200 schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kamerun at immerda.ch</A>:
+</I>&gt;&gt;<i> we try install thin client  (pxe)  with the docu
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> <A HREF="http://www.linux4africa.de/x2go/">http://www.linux4africa.de/x2go/</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> kernel is loaded, but after ti comes:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> kernel panic not syncing : VFS unable to mount root fs unknown block (...)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> when we try to mount it from a separate machine, running a linux 
+</I>&gt;&gt;<i> machine, it hangs
+</I>&gt;<i> 
+</I>&gt;<i> I am not sure and did not look it up, but could it be that support for
+</I>&gt;<i> the filesystem type of your root partition is not included in the Linux
+</I>&gt;<i> kernel?
+</I>
+This is possible, I am using on that machine Reiserfs3, not the most
+normal FS.
+
+I am not sure anymore which kernel is used by the TFTP-client, but
+normally I use an initrd (what is default in Debian).
+
+In my normal kernel config file I see: CONFIG_REISERFS_FS=m
+This is a standard-Debian-kernel, 2.6.26.2.
+Ext3 is a module too.
+
+With regards,
+Paul van der Vlis.
+
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000052.html">[X2go-dev] Keyboard problem
+</A></li>
+	<LI>Next message: <A HREF="000053.html">[X2go-dev] this mailinglist...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#51">[ date ]</a>
+              <a href="thread.html#51">[ thread ]</a>
+              <a href="subject.html#51">[ subject ]</a>
+              <a href="author.html#51">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

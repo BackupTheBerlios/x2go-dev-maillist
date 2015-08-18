@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#33: debbugs does not process mails sent to control@	in Cc:
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2333%3A%20debbugs%20does%20not%20process%20mails%20sent%20to%20control%40%0A%09in%20Cc%3A&In-Reply-To=%3C20120919151553.20751lrnp34i03ux%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004260.html">
+   <LINK REL="Next"  HREF="004263.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#33: debbugs does not process mails sent to control@	in Cc:</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2333%3A%20debbugs%20does%20not%20process%20mails%20sent%20to%20control%40%0A%09in%20Cc%3A&In-Reply-To=%3C20120919151553.20751lrnp34i03ux%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#33: debbugs does not process mails sent to control@	in Cc:">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Sep 19 15:15:53 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004260.html">[X2Go-Dev] Bug#24: Pyhoca-GUI is now DirectRDP aware...
+</A></li>
+        <LI>Next message: <A HREF="004263.html">[X2Go-Dev] Bug#33: debbugs does not process mails sent to control@	in Cc:
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4261">[ date ]</a>
+              <a href="thread.html#4261">[ thread ]</a>
+              <a href="subject.html#4261">[ subject ]</a>
+              <a href="author.html#4261">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: debbugs
+Version: 2.4.2~exp2
+Severity: normal
+
+Considering the ATM latest Git code of debbugs:
+<A HREF="http://git.donarmstrong.com/?p=debbugs.git;a=tree;h=445ef2a66a2f6e97760ca319ac3d919834178f0b;hb=445ef2a66a2f6e97760ca319ac3d919834178f0b">http://git.donarmstrong.com/?p=debbugs.git;a=tree;h=445ef2a66a2f6e97760ca319ac3d919834178f0b;hb=445ef2a66a2f6e97760ca319ac3d919834178f0b</A>
+
+With that code base, debbugs fails to process mails that have a  
+control header and the control@ address is used in Cc: field of the  
+mail.
+
+What works is: sending a mail to control@ directly via To: field.
+
+Mail example that fails being processed by the control code:
+
+&quot;&quot;&quot;
+To: &lt;no&gt;@bugs.domain.tld
+Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">control at bugs.domain.tld</A>
+Subject: &lt;some subject&gt;
+
+tags #&lt;no&gt; pending
+thanks
+
+The issue has been fix in Git commit abcdefg.
+
+Greets,
+/me
+&quot;&quot;&quot;
+
+Mail example that succeeds being processed by the control code:
+
+&quot;&quot;&quot;
+to: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">control at bugs.domain.tld</A>
+Subject: &lt;leave-empty-or-not&gt;
+
+tags #&lt;no&gt; pending
+thanks
+&quot;&quot;&quot;
+
+I hopefully will find some time to provide a patch...
+
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120919/21084f55/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120919/21084f55/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004260.html">[X2Go-Dev] Bug#24: Pyhoca-GUI is now DirectRDP aware...
+</A></li>
+	<LI>Next message: <A HREF="004263.html">[X2Go-Dev] Bug#33: debbugs does not process mails sent to control@	in Cc:
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4261">[ date ]</a>
+              <a href="thread.html#4261">[ thread ]</a>
+              <a href="subject.html#4261">[ subject ]</a>
+              <a href="author.html#4261">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2gocleansessions not handling sigchld
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2gocleansessions%20not%20handling%20sigchld&In-Reply-To=%3C50626C00.2030303%40ubuntu.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004357.html">
+   <LINK REL="Next"  HREF="004352.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2gocleansessions not handling sigchld</H1>
+    <B>St&#233;phane Graber</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2gocleansessions%20not%20handling%20sigchld&In-Reply-To=%3C50626C00.2030303%40ubuntu.com%3E"
+       TITLE="[X2Go-Dev] x2gocleansessions not handling sigchld">stgraber at ubuntu.com
+       </A><BR>
+    <I>Wed Sep 26 04:44:16 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004357.html">[X2Go-Dev] Weird error message (was: Re: New X2Go releases: x2goserver, cups-x2go, x2goplasmabindings, python-x2go)
+</A></li>
+        <LI>Next message: <A HREF="004352.html">[X2Go-Dev] x2gocleansessions not handling sigchld
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4350">[ date ]</a>
+              <a href="thread.html#4350">[ thread ]</a>
+              <a href="subject.html#4350">[ subject ]</a>
+              <a href="author.html#4350">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+Running x2go 3.1.1.4-0~592~precise1 on 12.04, I'm still seeing
+x2gocleansessions not properly cleaning up after its children, resulting
+in a bunch of zombie processes.
+
+I added a very basic SIGCHLD handler to the perl script and it seems to
+have been doing the trick, at least for the past few hours.
+
+I just added:
+$SIG{CHLD} = sub { wait };
+
+After the existing:
+$SIG{TERM}=\&amp;catch_term;
+
+-- 
+St&#233;phane Graber
+Ubuntu developer
+<A HREF="http://www.ubuntu.com">http://www.ubuntu.com</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 897 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120925/0aad322d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120925/0aad322d/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004357.html">[X2Go-Dev] Weird error message (was: Re: New X2Go releases: x2goserver, cups-x2go, x2goplasmabindings, python-x2go)
+</A></li>
+	<LI>Next message: <A HREF="004352.html">[X2Go-Dev] x2gocleansessions not handling sigchld
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4350">[ date ]</a>
+              <a href="thread.html#4350">[ thread ]</a>
+              <a href="subject.html#4350">[ subject ]</a>
+              <a href="author.html#4350">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

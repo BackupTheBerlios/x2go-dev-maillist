@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Use case for an x2go user-group
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C20110219110448.7058548aers5qcao%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001773.html">
+   <LINK REL="Next"  HREF="001779.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Use case for an x2go user-group</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C20110219110448.7058548aers5qcao%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] Use case for an x2go user-group">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Feb 19 11:04:48 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001773.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+        <LI>Next message: <A HREF="001779.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1778">[ date ]</a>
+              <a href="thread.html#1778">[ thread ]</a>
+              <a href="subject.html#1778">[ subject ]</a>
+              <a href="author.html#1778">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alexander,
+
+On Fr 18 Feb 2011 20:14:19 CET Alexander Wuerstlein wrote:
+
+&gt;<i> Yes, but in large setups, groups become very hard to manage. Large
+</I>&gt;<i> groups with thousands of users tend to be an administration burden, also
+</I>&gt;<i> a large number of additional groups for each user tends to be
+</I>&gt;<i> problematic with many operating systems or setups (NIS, SQL, older
+</I>&gt;<i> unices, etc).
+</I>
+???? How do you get to this conclusion. My experience is totally on  
+the opposite side... Groups help to organize functionality of a system  
+in a sensible way. I always bind functionality to a group and then add  
+users to these groups. Such a pity, that posix does not offer a role  
+model, as well. This would make user und functionality management more  
+elegant even. This paragraph above makes me a little confused...
+
+&gt;<i> Yes, it does on small scales. And our approach wouldn't make the
+</I>&gt;<i> 'x2gousers' group go away if you still want to use it: You can simply
+</I>&gt;<i> make the x2gowrapper executable only for that group and not for others.
+</I>&gt;<i> Then you have exactly the same functionality as with 'sudo', but without
+</I>&gt;<i> the hassle of setting up the sudo configuration (wich does never seem to
+</I>&gt;<i> work automatically on installation). That would also be the suggested
+</I>&gt;<i> migration path i guess. Additionally you can of course use database
+</I>&gt;<i> black/whitelists, or you can set x2gowrapper o+rx and only use database
+</I>&gt;<i> black/whitelists. In that sense our approach would also be far more
+</I>&gt;<i> flexible than the current sudo approach.
+</I>
+You are not really suggesting that an X2go site administrator should  
+customize/tweak permissions on X2go /usr/bin files. This is really  
+dirty stuff and not an option to me...
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 489 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110219/65136df5/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110219/65136df5/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001773.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+	<LI>Next message: <A HREF="001779.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1778">[ date ]</a>
+              <a href="thread.html#1778">[ thread ]</a>
+              <a href="subject.html#1778">[ subject ]</a>
+              <a href="author.html#1778">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2goclient.exe - Saving session settings to registry
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goclient.exe%20-%20Saving%20session%20settings%20to%20registry&In-Reply-To=%3C4F43BB73.2000901%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003577.html">
+   <LINK REL="Next"  HREF="003585.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2goclient.exe - Saving session settings to registry</H1>
+    <B>newsgroups.mail2 at stefanbaur.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goclient.exe%20-%20Saving%20session%20settings%20to%20registry&In-Reply-To=%3C4F43BB73.2000901%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] x2goclient.exe - Saving session settings to registry">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Tue Feb 21 16:42:43 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003577.html">[X2Go-Dev] x2goclient.exe - Saving session settings to registry
+</A></li>
+        <LI>Next message: <A HREF="003585.html">[X2Go-Dev] x2goclient.exe - Saving session settings to registry
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3579">[ date ]</a>
+              <a href="thread.html#3579">[ thread ]</a>
+              <a href="subject.html#3579">[ subject ]</a>
+              <a href="author.html#3579">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 21.02.2012 16:38, schrieb Daniel Lindgren:
+&gt;&gt;&gt;<i> I haven't tried the
+</I>&gt;&gt;&gt;<i> --portable option in Windows, hopefully it allows you to start a
+</I>&gt;&gt;&gt;<i> session from the command line (or a shortcut) by specifying the
+</I>&gt;&gt;&gt;<i> session file.
+</I>&gt;&gt;<i> That is independent of --portable, as far as I can tell from x2goclient.exe
+</I>&gt;&gt;<i> --help, so it *should* (IOW, I haven't tested it) be possible with settings
+</I>&gt;&gt;<i> saved in the registry as well: The parameter to do that is
+</I>&gt;&gt;<i> --session=&lt;session&gt;, where&lt;session&gt;  is the ID-string of a session saved
+</I>&gt;&gt;<i> either in a sessions file or in the registry.
+</I>&gt;<i> Yep, it does work with registry settings but you then specify the
+</I>&gt;<i> *name* of the session, that becomes impractical if you use files to
+</I>&gt;<i> store the session, you would have to parse through all session files
+</I>&gt;<i> to see which one contains the session you want to start. Not a problem
+</I>&gt;<i> if you have a few files stored locally, probably not ideal if you have
+</I>&gt;<i> a (slow) network folder with hundres of session files.
+</I>&lt;snip&gt;
+
+Ah, sorry, I got that wrong: there is --session and --sessionid (this 
+one gets used when you select the option to create a desktop shortcut 
+from the drop-down menu)
+
+IMO, there should be at most one &quot;sessions&quot; file per user.
+
+-Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003577.html">[X2Go-Dev] x2goclient.exe - Saving session settings to registry
+</A></li>
+	<LI>Next message: <A HREF="003585.html">[X2Go-Dev] x2goclient.exe - Saving session settings to registry
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3579">[ date ]</a>
+              <a href="thread.html#3579">[ thread ]</a>
+              <a href="subject.html#3579">[ subject ]</a>
+              <a href="author.html#3579">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goclient and ssh-agent
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20and%20ssh-agent&In-Reply-To=%3C2ac55c2d6ba8dfd70c2930a7798512f6%40oss.hboss.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002173.html">
+   <LINK REL="Next"  HREF="002177.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goclient and ssh-agent</H1>
+    <B>Heiko Baumann</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20and%20ssh-agent&In-Reply-To=%3C2ac55c2d6ba8dfd70c2930a7798512f6%40oss.hboss.de%3E"
+       TITLE="[X2go-dev] x2goclient and ssh-agent">heiko at oss.hboss.de
+       </A><BR>
+    <I>Mon May 30 19:12:44 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002173.html">[X2go-dev] x2goclient and ssh-agent
+</A></li>
+        <LI>Next message: <A HREF="002177.html">[X2go-dev] offline bug tracking for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2270">[ date ]</a>
+              <a href="thread.html#2270">[ thread ]</a>
+              <a href="subject.html#2270">[ subject ]</a>
+              <a href="author.html#2270">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> hi,
+
+ if you enable ssh agent forwarding (ssh option -A or ForwardAgent in 
+ ssh_config) your agent connection is &quot;forwarded&quot; to the remote host. 
+ this way you can use your ssh-agent (and smartcard in my case) to login 
+ (or mount sshfs) to another host using your private key stored in you 
+ local ssh-agent. this works with a socket created in 
+ /tmp/ssh-&lt;somerandomstring&gt;/agent.&lt;pid&gt; on the ssh server/host.
+
+ if i use a current x2goclient this socket is not created and so i 
+ cannot mount a directory from another host from within my x2gosession.
+
+ regards
+ heiko
+
+ On Mon, 16 May 2011 12:05:41 +0200, Oleksandr Shneyder 
+ &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt; wrote:
+&gt;<i> Am 16.05.2011 11:50, schrieb Heiko Baumann:
+</I>&gt;<i> Hello Heiko,
+</I>&gt;<i>
+</I>&gt;<i> I don't understand what do you mean with &quot;ssh-agent forwarding&quot;. X2Go
+</I>&gt;<i> Client supports login using ssh-agent and you can mount
+</I>&gt;<i> sshfs-directories from client into your X2Go session using X2Go 
+</I>&gt;<i> Client.
+</I>&gt;<i> Can you make it clear to me?
+</I>&gt;<i>
+</I>&gt;&gt;<i> hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> are there any plans to support ssh-agent forwarding?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> regards
+</I>&gt;&gt;<i> heiko
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Wed, 27 Apr 2011 23:31:07 +0200, Heiko Baumann 
+</I>&gt;&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heiko at oss.hboss.de</A>&gt;
+</I>&gt;&gt;<i> wrote:
+</I>&gt;&gt;&gt;<i> Hi Oleksandr,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> thanks for the info. i tried the new version and ssh-agent login
+</I>&gt;&gt;&gt;<i> works great. but i've also hacked my patch yesterday to support 
+</I>&gt;&gt;&gt;<i> agent
+</I>&gt;&gt;&gt;<i> forwarding. this way i can use sshfs to mount a remote directory
+</I>&gt;&gt;&gt;<i> without password into my x2gosession.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> this does not work with the new version. the changelog shows that 
+</I>&gt;&gt;&gt;<i> you
+</I>&gt;&gt;&gt;<i> now use libssh. is it possible to add this feature? would be really
+</I>&gt;&gt;&gt;<i> useful.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> thanks
+</I>&gt;&gt;&gt;<i> heiko
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> On Wed, 27 Apr 2011 13:51:24 +0200, Oleksandr Shneyder
+</I>&gt;&gt;&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt; wrote:
+</I>&gt;&gt;&gt;&gt;<i> Am 22.04.2011 21:30, schrieb Heiko Baumann:
+</I>&gt;&gt;&gt;&gt;&gt;<i> hi,
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> because no one cared about my request i tried to fix it by 
+</I>&gt;&gt;&gt;&gt;&gt;<i> myself.
+</I>&gt;&gt;&gt;&gt;&gt;<i> attached is a patch which adds an --ssh-agent option to 
+</I>&gt;&gt;&gt;&gt;&gt;<i> x2goclient. if
+</I>&gt;&gt;&gt;&gt;&gt;<i> x2goclient is called with this option it uses a running ssh-agent 
+</I>&gt;&gt;&gt;&gt;&gt;<i> to
+</I>&gt;&gt;&gt;&gt;&gt;<i> connect to the x2goserver.
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> btw. i dont know anything about coding C++ nor anything about
+</I>&gt;&gt;&gt;&gt;&gt;<i> x2goclient
+</I>&gt;&gt;&gt;&gt;&gt;<i> development. so maybe this patch does break something else or may 
+</I>&gt;&gt;&gt;&gt;&gt;<i> be a
+</I>&gt;&gt;&gt;&gt;&gt;<i> bad hack. however it works for me.
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> maybe the x2go devs could include it (or write a better one :)) 
+</I>&gt;&gt;&gt;&gt;&gt;<i> in one
+</I>&gt;&gt;&gt;&gt;&gt;<i> of the next releases? this would be great because i now have SSO
+</I>&gt;&gt;&gt;&gt;&gt;<i> with my
+</I>&gt;&gt;&gt;&gt;&gt;<i> usb token for all important tools. ssh-agent is started at logon 
+</I>&gt;&gt;&gt;&gt;&gt;<i> and
+</I>&gt;&gt;&gt;&gt;&gt;<i> everything works without entering my passphrase again (ssh/scp, 
+</I>&gt;&gt;&gt;&gt;&gt;<i> sshfs,
+</I>&gt;&gt;&gt;&gt;&gt;<i> nxclient, x2goclient etc.).
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> regards
+</I>&gt;&gt;&gt;&gt;&gt;<i> heiko
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Hello Heiko,
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> there is a &quot;Try auto login (ssh-agent or default ssh key)&quot; option 
+</I>&gt;&gt;&gt;&gt;<i> in
+</I>&gt;&gt;&gt;&gt;<i> preferences of a X2Go-session since x2goclient-3.01-14
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> regards,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;&gt;<i> X2go-dev mailing list
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2go-dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002173.html">[X2go-dev] x2goclient and ssh-agent
+</A></li>
+	<LI>Next message: <A HREF="002177.html">[X2go-dev] offline bug tracking for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2270">[ date ]</a>
+              <a href="thread.html#2270">[ thread ]</a>
+              <a href="subject.html#2270">[ subject ]</a>
+              <a href="author.html#2270">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

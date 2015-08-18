@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Issue with libXcompext
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Issue%20with%20libXcompext&In-Reply-To=%3C50C9F8FC.2020904%40cora.nwra.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004745.html">
+   <LINK REL="Next"  HREF="004751.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Issue with libXcompext</H1>
+    <B>Orion Poplawski</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Issue%20with%20libXcompext&In-Reply-To=%3C50C9F8FC.2020904%40cora.nwra.com%3E"
+       TITLE="[X2Go-Dev] Issue with libXcompext">orion at cora.nwra.com
+       </A><BR>
+    <I>Thu Dec 13 16:49:16 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004745.html">[X2Go-Dev] Issue with libXcompext
+</A></li>
+        <LI>Next message: <A HREF="004751.html">[X2Go-Dev] Fwd: Returned mail: see transcript for details
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4746">[ date ]</a>
+              <a href="thread.html#4746">[ thread ]</a>
+              <a href="subject.html#4746">[ subject ]</a>
+              <a href="author.html#4746">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 12/13/2012 04:37 AM, Reinhard Tartler wrote:
+&gt;<i> On Thu, Dec 13, 2012 at 12:08 AM, Orion Poplawski &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at cora.nwra.com</A>&gt; wrote:
+</I>&gt;&gt;<i> I'm not quite sure how to properly fix this &quot;upstream&quot;.  It looks like
+</I>&gt;&gt;<i> nxcompext/configure.in (or Makefile.in) is &quot;older&quot; the others, and in
+</I>&gt;&gt;<i> particular does not appear to properly handle installing the library with
+</I>&gt;&gt;<i> libXcompext.so.3 remaining a symbolic link to libXcompext.so.3.5.0.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It's okay in the build dir:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -rwxr-xr-x. 1 orion nwra 270208 Dec 12 15:22 libXcompext.so.3.5.0
+</I>&gt;&gt;<i> lrwxrwxrwx. 1 orion nwra     20 Dec 12 15:22 libXcompext.so.3 -&gt;
+</I>&gt;&gt;<i> libXcompext.so.3.5.0
+</I>&gt;&gt;<i> lrwxrwxrwx. 1 orion nwra     20 Dec 12 15:22 libXcompext.so -&gt;
+</I>&gt;&gt;<i> libXcompext.so.3.5.0
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> But then it gets installed with INSTALL_DATA instead of INSTALL_LINK:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>          $(INSTALL_DATA) $(LIBFULL)              $(DESTDIR)${libdir}/nx
+</I>&gt;&gt;<i>          $(INSTALL_DATA) libXcompext.so.3        $(DESTDIR)${libdir}/nx
+</I>&gt;&gt;<i>          $(INSTALL_LINK) libXcompext.so          $(DESTDIR)${libdir}/nx
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> compare with:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>          $(INSTALL_DATA) $(LIBFULL)              $(DESTDIR)${libdir}/nx
+</I>&gt;&gt;<i>          $(INSTALL_LINK) libXcompshad.so.3       $(DESTDIR)${libdir}/nx
+</I>&gt;&gt;<i>          $(INSTALL_LINK) libXcompshad.so         $(DESTDIR)${libdir}/nx
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i> well spotted. I've fixed that in git
+</I>
+Confirmed fixed, thanks!
+
+
+-- 
+Orion Poplawski
+Technical Manager                     303-415-9701 x222
+NWRA, Boulder Office                  FAX: 303-415-9702
+3380 Mitchell Lane                       <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at nwra.com</A>
+Boulder, CO 80301                   <A HREF="http://www.nwra.com">http://www.nwra.com</A>
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004745.html">[X2Go-Dev] Issue with libXcompext
+</A></li>
+	<LI>Next message: <A HREF="004751.html">[X2Go-Dev] Fwd: Returned mail: see transcript for details
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4746">[ date ]</a>
+              <a href="thread.html#4746">[ thread ]</a>
+              <a href="subject.html#4746">[ subject ]</a>
+              <a href="author.html#4746">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

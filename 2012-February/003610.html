@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] Fix threading on OS X.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Fix%20threading%20on%20OS%20X.&In-Reply-To=%3C4F449A3E.7020406%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003608.html">
+   <LINK REL="Next"  HREF="003483.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] Fix threading on OS X.</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Fix%20threading%20on%20OS%20X.&In-Reply-To=%3C4F449A3E.7020406%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] Fix threading on OS X.">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Wed Feb 22 08:33:18 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003608.html">[X2Go-Dev] [PATCH] Fix threading on OS X.
+</A></li>
+        <LI>Next message: <A HREF="003483.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3610">[ date ]</a>
+              <a href="thread.html#3610">[ thread ]</a>
+              <a href="subject.html#3610">[ subject ]</a>
+              <a href="author.html#3610">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 22.02.2012 02:30, schrieb Mihai Moldovan:
+&gt;<i> Hi Alex
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> * On 20.02.2012 09:14 AM, Oleksandr Shneyder wrote:
+</I>&gt;&gt;<i> It is really nice that somebody want to make x2goclient working on Mac.
+</I>&gt;<i> 
+</I>&gt;<i> Why &quot;wants&quot;? It actually kinda is... ;)
+</I>great.
+&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Unfortunately, building x2goclient for Mac is not enough. There are some
+</I>&gt;&gt;<i> features in x2goclient (especially managing of nx-proxy window) which
+</I>&gt;&gt;<i> can not be written with Qt methods, but only with system API (libx11 and
+</I>&gt;&gt;<i> winapi).
+</I>&gt;<i> 
+</I>&gt;<i> So what? This has never been a problem on Linux, why would it be on OS X?
+</I>
+Yes, but some one should take care about it. At the moment I have no
+time for it, especially for testing it on every recent version of Mac OS.
+
+&gt;<i> 
+</I>&gt;&gt;<i> In addition, there are many changes from version to version in
+</I>&gt;&gt;<i> Mac OS itself. Especially it relevant to X11. The behaviour of X11 can
+</I>&gt;&gt;<i> be changed even within the same version of Mac OS with every new version
+</I>&gt;&gt;<i> of X11.
+</I>&gt;<i> 
+</I>&gt;<i> Luckily, the X11 API is pretty stable from what I have seen. I've been
+</I>&gt;<i> using x2goclient with X11R6.8 before (default Xorg version Apple ships,
+</I>&gt;<i> horribly outdated) up to X11R7.8 (I guess? xorg-server 1.11 which isn't
+</I>&gt;<i> even officially released yet IIRC) and it never broke. nx didn't either.
+</I>&gt;<i> Even other programs like wine or GTK based programs I use every now and
+</I>&gt;<i> then never had any compatibility issues for me. However, I have to admit
+</I>&gt;<i> that my setup is somewhat special and I'd like to test on vanilla stuff
+</I>&gt;<i> too, even including OS X 10.7 (I'm still on 10.6.)
+</I>
+nice. At the time when I have developed X2Go client for Mac, command
+line options of X-Server was changed twice %)
+
+&gt;<i> 
+</I>&gt;&gt;<i> So, you should be sure, that changes you made in x2goclient
+</I>&gt;&gt;<i> working with actual versions of mac and X11.
+</I>&gt;<i> 
+</I>&gt;<i> Yeah, I always do. :)
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Please be sure also, that
+</I>&gt;&gt;<i> changes you making in code of x2go client will not break its
+</I>&gt;&gt;<i> functionality on other systems and you always using the
+</I>&gt;&gt;<i> #if defined ( Q_OS_DARWIN )
+</I>&gt;&gt;<i> #endif
+</I>&gt;&gt;<i> clauses
+</I>&gt;<i> 
+</I>&gt;<i> Sure, anything else would be really stupid and I employed the macro,
+</I>&gt;<i> too, right from the beginning.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I still plan to rewrite code of x2goclient to make it more
+</I>&gt;&gt;<i> understandable for other people and make hacking of it easier.
+</I>&gt;<i> 
+</I>&gt;<i> Sounds like a good idea, some parts are difficult to understand and have
+</I>&gt;<i> fragments of previously used approaches to tackle a problem which
+</I>&gt;<i> weren't removed and are thus merely causing confusion when reading the code.
+</I>&gt;<i> As such, allow me one question: SshMasterConnection is using a 512 KByte
+</I>&gt;<i> buffer for I/O operations via SSH. This sounds a little bit high and is
+</I>&gt;<i> probably only useful in LAN environments or over high-speed broadband
+</I>&gt;<i> connections. Anyway, I could live with that. What strikes me odd is
+</I>&gt;<i> allocating this buffer on the stack in the local method. Wouldn't it be
+</I>&gt;<i> better to use a pointer as a class variable, allocate it in the class
+</I>&gt;<i> constructor on the heap via new char[512*1024] and leave it as-is (it
+</I>&gt;<i> will be automatically deleted once the class terminates)? Also, I see
+</I>&gt;<i> with the current implementation as in general, variables/arrays
+</I>&gt;<i> allocated on the stack are not zero-initialized and may contain memory
+</I>&gt;<i> garbage - do we really want this? Class variables are always
+</I>&gt;<i> zero-initialized so that's another good reason to prefer this method.
+</I>
+feel free to fix it. However, I would use a classes provided by Qt (4e
+QByteArray).
+
+&gt;<i> Thanks for reading this wall of text.
+</I>&gt;<i> 
+</I>&gt;<i> Best regards,
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Mihai
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+regards,
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120222/c9539daa/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120222/c9539daa/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003608.html">[X2Go-Dev] [PATCH] Fix threading on OS X.
+</A></li>
+	<LI>Next message: <A HREF="003483.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3610">[ date ]</a>
+              <a href="thread.html#3610">[ thread ]</a>
+              <a href="subject.html#3610">[ subject ]</a>
+              <a href="author.html#3610">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Torn down TCP connections
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Torn%20down%20TCP%20connections&In-Reply-To=%3C62b8ea52-f35c-4349-b538-8ab9296e737c%40office.splatnix.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001912.html">
+   <LINK REL="Next"  HREF="001914.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Torn down TCP connections</H1>
+    <B>--[ UxBoD ]--</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Torn%20down%20TCP%20connections&In-Reply-To=%3C62b8ea52-f35c-4349-b538-8ab9296e737c%40office.splatnix.net%3E"
+       TITLE="[X2go-dev] Torn down TCP connections">uxbod at splatnix.net
+       </A><BR>
+    <I>Fri Mar 18 18:17:11 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001912.html">[X2go-dev] Bug: xmodmap should be set by client
+</A></li>
+        <LI>Next message: <A HREF="001914.html">[X2go-dev] Torn down TCP connections
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1913">[ date ]</a>
+              <a href="thread.html#1913">[ thread ]</a>
+              <a href="subject.html#1913">[ subject ]</a>
+              <a href="author.html#1913">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello All, 
+
+Am facing a problem where the three SSH tcp connections are being torn down. Personally I am using a Cisco router and reflexive ACLs and can see what is happening. I have tried configuring SSHD on the remote server side with the following: 
+
+TCPKeepAlive no 
+ClientAliveInterval 30 
+ClientAliveCountMax 3 
+
+This appears to have resolved the issue with File&amp;Print but the PulseAudio connection is still being torn down. Have thought about removing the ClientAliveCountMax but why would three attempts fail when I was still connected to my X2go session ? 
+
+This is so frustrating and cannot believe nobody else has hit it; unless everybody is running it across a LAN ???
+-- 
+Thanks, Phil
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001912.html">[X2go-dev] Bug: xmodmap should be set by client
+</A></li>
+	<LI>Next message: <A HREF="001914.html">[X2go-dev] Torn down TCP connections
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1913">[ date ]</a>
+              <a href="thread.html#1913">[ thread ]</a>
+              <a href="subject.html#1913">[ subject ]</a>
+              <a href="author.html#1913">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

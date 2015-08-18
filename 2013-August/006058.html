@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#282: Use client-side LANG + LC_* settings in server	session
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23282%3A%20Use%20client-side%20LANG%20%2B%20LC_%2A%20settings%20in%20server%0A%09session&In-Reply-To=%3C20130802093904.21475jgecz6m8jdk%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006057.html">
+   <LINK REL="Next"  HREF="006059.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#282: Use client-side LANG + LC_* settings in server	session</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23282%3A%20Use%20client-side%20LANG%20%2B%20LC_%2A%20settings%20in%20server%0A%09session&In-Reply-To=%3C20130802093904.21475jgecz6m8jdk%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#282: Use client-side LANG + LC_* settings in server	session">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Aug  2 09:39:04 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006057.html">[X2Go-Dev] Processed: X2Go issue (in src:x2godesktopsharing) has been marked as pending for release
+</A></li>
+        <LI>Next message: <A HREF="006059.html">[X2Go-Dev] Feature proposal for ~/.x2goclient/sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6058">[ date ]</a>
+              <a href="thread.html#6058">[ thread ]</a>
+              <a href="subject.html#6058">[ subject ]</a>
+              <a href="author.html#6058">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Severity: wishlist
+Version: 4.0.1.0
+X-Debbugs-CC: Kromitvs Autocolante &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">adcromitus at gmail.com</A>&gt;
+
+Forwarding from Debian BTS to X2Go (upstream BTS)...
+
+Mike
+
+----- Weitergeleitete Nachricht von <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">adcromitus at gmail.com</A> -----
+      Datum: Tue, 9 Jul 2013 01:59:58 +0100
+        Von: Kromitvs Autocolante &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">adcromitus at gmail.com</A>&gt;
+Antwort an: Kromitvs Autocolante &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">adcromitus at gmail.com</A>&gt;,  
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">715422 at bugs.debian.org</A>
+    Betreff: [pkg-x2go-devel] Bug#715422: x2goclient: Strange  
+characters on terminal emulators
+         An: Debian Bug Tracking System &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">submit at bugs.debian.org</A>&gt;
+
+Package: x2goclient
+Version: 4.0.1.0-0~x2go1+squeeze~main~380~build1
+Severity: normal
+
+Dear Maintainer,
+
+When I use a terminal shell emulator (konsole, xfce-emulator, etc) on the
+remote (server x2go), non-ascii characters (accented characters, for
+instance) are not well printed.
+
+The same thing happened when I ssh'ed to the same machine without &quot;SendEnv
+LANG LC_*&quot; in /etc/ssh/ssh_config. Adding this again solved the question.
+
+Executing locale on server terminal emulator results in all &quot;POSIX&quot;, except
+for LANG which is not set.
+
+Best regards,
+
+
+-- System Information:
+Debian Release: 7.1
+   APT prefers stable
+   APT policy: (500, 'stable')
+Architecture: amd64 (x86_64)
+Foreign Architectures: i386
+
+Kernel: Linux 3.2.0-4-amd64 (SMP w/4 CPU cores)
+Locale: LANG=en_US.UTF-8, LC_CTYPE=pt_PT.utf8 (charmap=UTF-8)
+Shell: /bin/sh linked to /bin/dash
+
+Versions of packages x2goclient depends on:
+ii  libc6           2.13-38
+ii  libcups2        1.5.3-5
+ii  libgcc1         1:4.7.2-5
+ii  libldap-2.4-2   2.4.31-1+nmu2
+ii  libqt4-network  4:4.8.2+dfsg-11
+ii  libqt4-svg      4:4.8.2+dfsg-11
+ii  libqtcore4      4:4.8.2+dfsg-11
+ii  libqtgui4       4:4.8.2+dfsg-11
+ii  libssh-4        0.5.4-1
+ii  libstdc++6      4.7.2-5
+ii  libx11-6        2:1.5.0-1+deb7u1
+ii  libxpm4         1:3.5.10-1
+ii  nxproxy         2:3.5.0.20-0+squeeze~main~405~build1
+ii  openssh-client  1:6.0p1-4
+
+Versions of packages x2goclient recommends:
+ii  openssh-server  1:6.0p1-4
+ii  rdesktop        1.7.1-1
+
+Versions of packages x2goclient suggests:
+pn  pinentry-x2go  &lt;none&gt;
+
+-- no debconf information
+
+
+----- Ende der weitergeleiteten Nachricht -----
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130802/b055e7c6/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130802/b055e7c6/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006057.html">[X2Go-Dev] Processed: X2Go issue (in src:x2godesktopsharing) has been marked as pending for release
+</A></li>
+	<LI>Next message: <A HREF="006059.html">[X2Go-Dev] Feature proposal for ~/.x2goclient/sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6058">[ date ]</a>
+              <a href="thread.html#6058">[ thread ]</a>
+              <a href="subject.html#6058">[ subject ]</a>
+              <a href="author.html#6058">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

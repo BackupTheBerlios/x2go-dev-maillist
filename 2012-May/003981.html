@@ -1,0 +1,432 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Patch to Fix x2goagent / nxagent With New LibCairo
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Patch%20to%20Fix%20x2goagent%20/%20nxagent%20With%20New%20LibCairo&In-Reply-To=%3C20120515111737.82981ik2kgyvgjsh%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003980.html">
+   <LINK REL="Next"  HREF="003982.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Patch to Fix x2goagent / nxagent With New LibCairo</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Patch%20to%20Fix%20x2goagent%20/%20nxagent%20With%20New%20LibCairo&In-Reply-To=%3C20120515111737.82981ik2kgyvgjsh%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Patch to Fix x2goagent / nxagent With New LibCairo">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue May 15 11:17:37 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003980.html">[X2Go-Dev] Patch to Fix x2goagent / nxagent With New LibCairo
+</A></li>
+        <LI>Next message: <A HREF="003982.html">[X2Go-Dev] Patch to Fix x2goagent / nxagent With New LibCairo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3981">[ date ]</a>
+              <a href="thread.html#3981">[ thread ]</a>
+              <a href="subject.html#3981">[ subject ]</a>
+              <a href="author.html#3981">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Jim,
+
+I sent the link to the patch in Git:
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=blob;f=debian/patches/120_nxagent_libcairo-null-source-drawables.full.patch">http://code.x2go.org/gitweb?p=nx-libs.git;a=blob;f=debian/patches/120_nxagent_libcairo-null-source-drawables.full.patch</A>
+
+Mike
+
+On Di 15 Mai 2012 03:01:00 CEST Jim Burnes wrote:
+
+&gt;<i> Mike,
+</I>&gt;<i>
+</I>&gt;<i> Did you send them my patch?
+</I>&gt;<i>
+</I>&gt;<i> Jim
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Mon, May 14, 2012 at 3:54 PM, Mike Gabriel &lt;
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hi Jim, hi all,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> NoMachine upstream of NX has become aware of the issue (reported by me)...
+</I>&gt;&gt;<i> <A HREF="http://www.nomachine.com/tr/**view.php?id=TR05J02703&lt;http://www.nomachine.com/tr/view.php?id=TR05J02703">http://www.nomachine.com/tr/**view.php?id=TR05J02703&lt;http://www.nomachine.com/tr/view.php?id=TR05J02703</A>&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Mike
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Do 10 Mai 2012 19:21:18 CEST Jim Burnes wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>  I don't know what the current patch status is for fixing nxagent with the
+</I>&gt;&gt;&gt;<i> new libcairo (1.12.1+ I believe), but eventually I got tired of waiting
+</I>&gt;&gt;&gt;<i> and
+</I>&gt;&gt;&gt;<i> created my own patches for nxagent/x2goagent.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Most of the fixes were required because the render extension now allows
+</I>&gt;&gt;&gt;<i> (and libcairo uses) null source drawables (for gradients etc), null masks
+</I>&gt;&gt;&gt;<i> and null mask drawables.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> This change creates a bit of a logic mess in the code.   Previous patches
+</I>&gt;&gt;&gt;<i> to the code tried to account for all of the possibilities, but fell a
+</I>&gt;&gt;&gt;<i> little short.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Consider this an alpha-quality patch.  I've only tested it in KDE while
+</I>&gt;&gt;&gt;<i> running GTK applications.   All my favorite GTK apps like Firefox, Emacs,
+</I>&gt;&gt;&gt;<i>  rox-filer and all my other GTK apps that were broken are now working just
+</I>&gt;&gt;&gt;<i> fine.  (Though I'm getting only the standard GTK look and feel - don't
+</I>&gt;&gt;&gt;<i> know
+</I>&gt;&gt;&gt;<i> if that's caused by anything I've done.)
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Could someone test this under Gnome?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>  Also, since I'm not primarily an X software engineer I'd like a
+</I>&gt;&gt;&gt;<i> specialist
+</I>&gt;&gt;&gt;<i> to take a look at it.   The fix is a little crude.   I just attached to
+</I>&gt;&gt;&gt;<i> the
+</I>&gt;&gt;&gt;<i> x2goagent process and fixed the lines that caused segfaults.   (About 10
+</I>&gt;&gt;&gt;<i> of
+</I>&gt;&gt;&gt;<i> them).
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I also rewrote one of the macros in Pixels.h into a local subroutine in
+</I>&gt;&gt;&gt;<i> Render.c.  It had a bug in it and complex macro bugs are a PITA to debug
+</I>&gt;&gt;&gt;<i> in
+</I>&gt;&gt;&gt;<i> gdb (or anything else really).   The macro is only used in one place and
+</I>&gt;&gt;&gt;<i> although the code in the macro is called pretty often, it's very likely
+</I>&gt;&gt;&gt;<i> that the compiler would inline it anyway.  The rewrite increases
+</I>&gt;&gt;&gt;<i> readability by a large factor.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> A better patch could be created by someone that understands nxagent and X
+</I>&gt;&gt;&gt;<i> much better.   The render extension code receives render ops from X client
+</I>&gt;&gt;&gt;<i> programs.  The render ops can contain any combination of picture source,
+</I>&gt;&gt;&gt;<i> picture destination and picture mask.  It's apparently legal to send
+</I>&gt;&gt;&gt;<i> render
+</I>&gt;&gt;&gt;<i> ops with combinations of null picture source drawables, picture masks and
+</I>&gt;&gt;&gt;<i> picture mask drawables.   A better way to patch this would be to simply
+</I>&gt;&gt;&gt;<i> perform a return on all the illegal combinations of null parameters for
+</I>&gt;&gt;&gt;<i> the
+</I>&gt;&gt;&gt;<i> render ops.  That way you wouldn't have to keep re-checking the parameter
+</I>&gt;&gt;&gt;<i> values.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> So anyway, here it is.  I appreciate it if someone out there would test it
+</I>&gt;&gt;&gt;<i> and let me know.   Also if anyone knows of the X docs which discuss null
+</I>&gt;&gt;&gt;<i> picture sources and masks in the render extension I'd be glad to create a
+</I>&gt;&gt;&gt;<i> cleaner patch that conforms to the stands.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Let me know.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> eris0xff
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> *** x2go/nx-libs-3.5.0.12/nx-X11/**programs/Xserver/hw/nxagent/**Render.c
+</I>&gt;&gt;&gt;<i> 2012-03-07 14:04:02.000000000 -0700
+</I>&gt;&gt;&gt;<i> ---
+</I>&gt;&gt;&gt;<i> x2go-new/nx-libs-3.5.0.12/nx-**X11/programs/Xserver/hw/**nxagent/Render.c
+</I>&gt;&gt;&gt;<i> 2012-05-10 11:09:39.631786853 -0600
+</I>&gt;&gt;&gt;<i> ***************
+</I>&gt;&gt;&gt;<i> *** 995,1000 ****
+</I>&gt;&gt;&gt;<i> --- 995,1030 ----
+</I>&gt;&gt;&gt;<i>    #endif
+</I>&gt;&gt;&gt;<i>  }
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> +
+</I>&gt;&gt;&gt;<i> + int nxagentShouldDeferComposite(**PicturePtr pSrc, PicturePtr pMask,
+</I>&gt;&gt;&gt;<i> PicturePtr pDst)
+</I>&gt;&gt;&gt;<i> + {
+</I>&gt;&gt;&gt;<i> +
+</I>&gt;&gt;&gt;<i> + int drawableDst;
+</I>&gt;&gt;&gt;<i> + int linkDeferred;
+</I>&gt;&gt;&gt;<i> + int unSyncedSrcMask;
+</I>&gt;&gt;&gt;<i> +
+</I>&gt;&gt;&gt;<i> +     drawableDst      =  ( nxagentRenderVersionMajor == 0 &amp;&amp;
+</I>&gt;&gt;&gt;<i> +                           nxagentRenderVersionMinor == 8 &amp;&amp;
+</I>&gt;&gt;&gt;<i> +                       (pDst) -&gt; pDrawable -&gt; type == DRAWABLE_PIXMAP
+</I>&gt;&gt;&gt;<i> +                             );
+</I>&gt;&gt;&gt;<i> +
+</I>&gt;&gt;&gt;<i> +     linkDeferred     =  ( nxagentOption(DeferLevel) &gt;= 2
+</I>&gt;&gt;&gt;<i> &amp;&amp;
+</I>&gt;&gt;&gt;<i> +                               nxagentOption(LinkType) &lt; LINK_TYPE_ADSL
+</I>&gt;&gt;&gt;<i> +                             );
+</I>&gt;&gt;&gt;<i> +
+</I>&gt;&gt;&gt;<i> +     unSyncedSrcMask  =  ( nxagentOption(DeferLevel) == 1 &amp;&amp;
+</I>&gt;&gt;&gt;<i> +                               (pDst) -&gt; pDrawable -&gt; type ==
+</I>&gt;&gt;&gt;<i> DRAWABLE_PIXMAP &amp;&amp;
+</I>&gt;&gt;&gt;<i> +                               (
+</I>&gt;&gt;&gt;<i> +                    (pSrc -&gt; pDrawable &amp;&amp; (nxagentDrawableStatus(pSrc -&gt;
+</I>&gt;&gt;&gt;<i> pDrawable) == NotSynchronized)) ||
+</I>&gt;&gt;&gt;<i> +                            ((pMask) &amp;&amp; pMask -&gt; pDrawable &amp;&amp;
+</I>&gt;&gt;&gt;<i> (nxagentDrawableStatus((pMask) -&gt; pDrawable) == NotSynchronized))
+</I>&gt;&gt;&gt;<i> +                   )
+</I>&gt;&gt;&gt;<i> +                 );
+</I>&gt;&gt;&gt;<i> +
+</I>&gt;&gt;&gt;<i> +
+</I>&gt;&gt;&gt;<i> +     return drawableDst || linkDeferred || unSyncedSrcMask;
+</I>&gt;&gt;&gt;<i> + }
+</I>&gt;&gt;&gt;<i> +
+</I>&gt;&gt;&gt;<i> +
+</I>&gt;&gt;&gt;<i>  void nxagentComposite(CARD8 op, PicturePtr pSrc, PicturePtr pMask,
+</I>&gt;&gt;&gt;<i> PicturePtr pDst,
+</I>&gt;&gt;&gt;<i>                            INT16 xSrc, INT16 ySrc, INT16 xMask, INT16
+</I>&gt;&gt;&gt;<i> yMask, INT16 xDst,
+</I>&gt;&gt;&gt;<i>                                INT16 yDst, CARD16 width, CARD16 height)
+</I>&gt;&gt;&gt;<i> ***************
+</I>&gt;&gt;&gt;<i> *** 1036,1043 ****
+</I>&gt;&gt;&gt;<i>    }
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>    #endif
+</I>&gt;&gt;&gt;<i> !
+</I>&gt;&gt;&gt;<i> !   if (NXAGENT_SHOULD_DEFER_**COMPOSITE(pSrc, pMask, pDst))
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      pDstRegion = nxagentCreateRegion(pDst -&gt; pDrawable, NULL, xDst, yDst,
+</I>&gt;&gt;&gt;<i> width, height);
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> --- 1066,1073 ----
+</I>&gt;&gt;&gt;<i>    }
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>    #endif
+</I>&gt;&gt;&gt;<i> !   /* if (NXAGENT_SHOULD_DEFER_**COMPOSITE(pSrc, pMask, pDst)) */
+</I>&gt;&gt;&gt;<i> !   if (nxagentShouldDeferComposite(**pSrc, pMask, pDst))
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      pDstRegion = nxagentCreateRegion(pDst -&gt; pDrawable, NULL, xDst, yDst,
+</I>&gt;&gt;&gt;<i> width, height);
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> ***************
+</I>&gt;&gt;&gt;<i> *** 1095,1101 ****
+</I>&gt;&gt;&gt;<i>      }
+</I>&gt;&gt;&gt;<i>    }
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !   if (pMask != NULL &amp;&amp; pMask -&gt; pDrawable != pSrc -&gt; pDrawable &amp;&amp;
+</I>&gt;&gt;&gt;<i>            pMask -&gt; pDrawable != pDst -&gt; pDrawable)
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      nxagentSynchronizeShmPixmap(**pMask -&gt; pDrawable, xMask, yMask,
+</I>&gt;&gt;&gt;<i> width,
+</I>&gt;&gt;&gt;<i> height);
+</I>&gt;&gt;&gt;<i> --- 1125,1132 ----
+</I>&gt;&gt;&gt;<i>      }
+</I>&gt;&gt;&gt;<i>    }
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !   if ((pMask) &amp;&amp; (pMask-&gt;pDrawable) &amp;&amp;
+</I>&gt;&gt;&gt;<i> !           pMask -&gt; pDrawable != pSrc -&gt; pDrawable &amp;&amp;
+</I>&gt;&gt;&gt;<i>            pMask -&gt; pDrawable != pDst -&gt; pDrawable)
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      nxagentSynchronizeShmPixmap(**pMask -&gt; pDrawable, xMask, yMask,
+</I>&gt;&gt;&gt;<i> width,
+</I>&gt;&gt;&gt;<i> height);
+</I>&gt;&gt;&gt;<i> ***************
+</I>&gt;&gt;&gt;<i> *** 1259,1265 ****
+</I>&gt;&gt;&gt;<i>     * on the real X server.
+</I>&gt;&gt;&gt;<i>     */
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !   if (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized)
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      #ifdef TEST
+</I>&gt;&gt;&gt;<i>      fprintf(stderr, &quot;nxagentGlyphs: Synchronizing source [%s] at
+</I>&gt;&gt;&gt;<i> [%p].\n&quot;,
+</I>&gt;&gt;&gt;<i> --- 1290,1296 ----
+</I>&gt;&gt;&gt;<i>     * on the real X server.
+</I>&gt;&gt;&gt;<i>     */
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !   if (pSrc -&gt; pDrawable &amp;&amp; (nxagentDrawableStatus(pSrc -&gt; pDrawable) ==
+</I>&gt;&gt;&gt;<i> NotSynchronized))
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      #ifdef TEST
+</I>&gt;&gt;&gt;<i>      fprintf(stderr, &quot;nxagentGlyphs: Synchronizing source [%s] at
+</I>&gt;&gt;&gt;<i> [%p].\n&quot;,
+</I>&gt;&gt;&gt;<i> ***************
+</I>&gt;&gt;&gt;<i> *** 1302,1315 ****
+</I>&gt;&gt;&gt;<i>        nxagentSynchronizeBox(pSrc -&gt; pDrawable, &amp;glyphBox, NEVER_BREAK);
+</I>&gt;&gt;&gt;<i>      }
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !     if (pSrc -&gt; pDrawable -&gt; type == DRAWABLE_PIXMAP)
+</I>&gt;&gt;&gt;<i>      {
+</I>&gt;&gt;&gt;<i>        nxagentIncreasePixmapUsageCoun**ter((PixmapPtr) pSrc -&gt;
+</I>&gt;&gt;&gt;<i> pDrawable);
+</I>&gt;&gt;&gt;<i>      }
+</I>&gt;&gt;&gt;<i>    }
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !   if (pSrc -&gt; pDrawable != pDst -&gt; pDrawable &amp;&amp;
+</I>&gt;&gt;&gt;<i> !           nxagentDrawableStatus(pDst -&gt; pDrawable) == NotSynchronized)
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      #ifdef TEST
+</I>&gt;&gt;&gt;<i>      fprintf(stderr, &quot;nxagentGlyphs: Synchronizing destination [%s] at
+</I>&gt;&gt;&gt;<i> [%p].\n&quot;,
+</I>&gt;&gt;&gt;<i> --- 1333,1347 ----
+</I>&gt;&gt;&gt;<i>        nxagentSynchronizeBox(pSrc -&gt; pDrawable, &amp;glyphBox, NEVER_BREAK);
+</I>&gt;&gt;&gt;<i>      }
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !     if (pSrc -&gt; pDrawable &amp;&amp; (pSrc -&gt; pDrawable -&gt; type ==
+</I>&gt;&gt;&gt;<i> DRAWABLE_PIXMAP))
+</I>&gt;&gt;&gt;<i>      {
+</I>&gt;&gt;&gt;<i>        nxagentIncreasePixmapUsageCoun**ter((PixmapPtr) pSrc -&gt;
+</I>&gt;&gt;&gt;<i> pDrawable);
+</I>&gt;&gt;&gt;<i>      }
+</I>&gt;&gt;&gt;<i>    }
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !
+</I>&gt;&gt;&gt;<i> !   if (pSrc -&gt; pDrawable &amp;&amp; (pSrc -&gt; pDrawable != pDst -&gt; pDrawable &amp;&amp;
+</I>&gt;&gt;&gt;<i> !           nxagentDrawableStatus(pDst -&gt; pDrawable) == NotSynchronized))
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      #ifdef TEST
+</I>&gt;&gt;&gt;<i>      fprintf(stderr, &quot;nxagentGlyphs: Synchronizing destination [%s] at
+</I>&gt;&gt;&gt;<i> [%p].\n&quot;,
+</I>&gt;&gt;&gt;<i> ***************
+</I>&gt;&gt;&gt;<i> *** 1749,1755 ****
+</I>&gt;&gt;&gt;<i>      return;
+</I>&gt;&gt;&gt;<i>    }
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !   if (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized)
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      #ifdef TEST
+</I>&gt;&gt;&gt;<i>      fprintf(stderr, &quot;nxagentTrapezoids: Going to synchronize the source
+</I>&gt;&gt;&gt;<i> drawable at [%p].\n&quot;,
+</I>&gt;&gt;&gt;<i> --- 1781,1789 ----
+</I>&gt;&gt;&gt;<i>      return;
+</I>&gt;&gt;&gt;<i>    }
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !   /* the following blocks need fixing to ignore null values of pDrawable
+</I>&gt;&gt;&gt;<i> */
+</I>&gt;&gt;&gt;<i> !
+</I>&gt;&gt;&gt;<i> !   if (pSrc -&gt; pDrawable &amp;&amp; (nxagentDrawableStatus(pSrc -&gt; pDrawable) ==
+</I>&gt;&gt;&gt;<i> NotSynchronized))
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      #ifdef TEST
+</I>&gt;&gt;&gt;<i>      fprintf(stderr, &quot;nxagentTrapezoids: Going to synchronize the source
+</I>&gt;&gt;&gt;<i> drawable at [%p].\n&quot;,
+</I>&gt;&gt;&gt;<i> ***************
+</I>&gt;&gt;&gt;<i> *** 1843,1849 ****
+</I>&gt;&gt;&gt;<i>     * operation like nxagentTrapezoids() does.
+</I>&gt;&gt;&gt;<i>     */
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !   if (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized)
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      #ifdef TEST
+</I>&gt;&gt;&gt;<i>      fprintf(stderr, &quot;nxagentTriangles: Going to synchronize the source
+</I>&gt;&gt;&gt;<i> drawable at [%p].\n&quot;,
+</I>&gt;&gt;&gt;<i> --- 1877,1885 ----
+</I>&gt;&gt;&gt;<i>     * operation like nxagentTrapezoids() does.
+</I>&gt;&gt;&gt;<i>     */
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !
+</I>&gt;&gt;&gt;<i> !
+</I>&gt;&gt;&gt;<i> !   if (pSrc -&gt; pDrawable &amp;&amp; (nxagentDrawableStatus(pSrc -&gt; pDrawable) ==
+</I>&gt;&gt;&gt;<i> NotSynchronized))
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      #ifdef TEST
+</I>&gt;&gt;&gt;<i>      fprintf(stderr, &quot;nxagentTriangles: Going to synchronize the source
+</I>&gt;&gt;&gt;<i> drawable at [%p].\n&quot;,
+</I>&gt;&gt;&gt;<i> ***************
+</I>&gt;&gt;&gt;<i> *** 1920,1926 ****
+</I>&gt;&gt;&gt;<i>     * operation like nxagentTrapezoids() does.
+</I>&gt;&gt;&gt;<i>     */
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !   if (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized)
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      #ifdef TEST
+</I>&gt;&gt;&gt;<i>      fprintf(stderr, &quot;nxagentTriStrip: Going to synchronize the source
+</I>&gt;&gt;&gt;<i> drawable at [%p].\n&quot;,
+</I>&gt;&gt;&gt;<i> --- 1956,1963 ----
+</I>&gt;&gt;&gt;<i>     * operation like nxagentTrapezoids() does.
+</I>&gt;&gt;&gt;<i>     */
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !
+</I>&gt;&gt;&gt;<i> !   if (pSrc -&gt; pDrawable &amp;&amp; (nxagentDrawableStatus(pSrc -&gt; pDrawable) ==
+</I>&gt;&gt;&gt;<i> NotSynchronized))
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      #ifdef TEST
+</I>&gt;&gt;&gt;<i>      fprintf(stderr, &quot;nxagentTriStrip: Going to synchronize the source
+</I>&gt;&gt;&gt;<i> drawable at [%p].\n&quot;,
+</I>&gt;&gt;&gt;<i> ***************
+</I>&gt;&gt;&gt;<i> *** 1997,2003 ****
+</I>&gt;&gt;&gt;<i>     * operation like nxagentTrapezoids() does.
+</I>&gt;&gt;&gt;<i>     */
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !   if (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized)
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      #ifdef TEST
+</I>&gt;&gt;&gt;<i>      fprintf(stderr, &quot;nxagentTriFan: Going to synchronize the source
+</I>&gt;&gt;&gt;<i> drawable at [%p].\n&quot;,
+</I>&gt;&gt;&gt;<i> --- 2034,2041 ----
+</I>&gt;&gt;&gt;<i>     * operation like nxagentTrapezoids() does.
+</I>&gt;&gt;&gt;<i>     */
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> !
+</I>&gt;&gt;&gt;<i> !   if (pSrc -&gt; pDrawable &amp;&amp; (nxagentDrawableStatus(pSrc -&gt; pDrawable) ==
+</I>&gt;&gt;&gt;<i> NotSynchronized))
+</I>&gt;&gt;&gt;<i>    {
+</I>&gt;&gt;&gt;<i>      #ifdef TEST
+</I>&gt;&gt;&gt;<i>      fprintf(stderr, &quot;nxagentTriFan: Going to synchronize the source
+</I>&gt;&gt;&gt;<i> drawable at [%p].\n&quot;,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;&gt;<i> mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;&gt;<i> fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> GnuPG Key ID 0xB588399B
+</I>&gt;&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> freeBusy:
+</I>&gt;&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2Go-Dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120515/f10c1990/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120515/f10c1990/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003980.html">[X2Go-Dev] Patch to Fix x2goagent / nxagent With New LibCairo
+</A></li>
+	<LI>Next message: <A HREF="003982.html">[X2Go-Dev] Patch to Fix x2goagent / nxagent With New LibCairo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3981">[ date ]</a>
+              <a href="thread.html#3981">[ thread ]</a>
+              <a href="subject.html#3981">[ subject ]</a>
+              <a href="author.html#3981">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

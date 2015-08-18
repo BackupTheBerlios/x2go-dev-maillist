@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#420: Bug#420: Fix password connection with libssh	0.6.0
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23420%3A%20Bug%23420%3A%20Fix%20password%20connection%20with%20libssh%0A%090.6.0&In-Reply-To=%3C20140129201925.Horde.C_SGDtqhq2p_yAaBuAIT_w1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006901.html">
+   <LINK REL="Next"  HREF="006902.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#420: Bug#420: Fix password connection with libssh	0.6.0</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23420%3A%20Bug%23420%3A%20Fix%20password%20connection%20with%20libssh%0A%090.6.0&In-Reply-To=%3C20140129201925.Horde.C_SGDtqhq2p_yAaBuAIT_w1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#420: Bug#420: Fix password connection with libssh	0.6.0">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Jan 29 21:19:25 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006901.html">[X2Go-Dev] Bug#420: Fix password connection with libssh 0.6.0
+</A></li>
+        <LI>Next message: <A HREF="006902.html">[X2Go-Dev] Bug#421: X2goclient on Windows: sshd.exe does not start.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6903">[ date ]</a>
+              <a href="thread.html#6903">[ thread ]</a>
+              <a href="subject.html#6903">[ subject ]</a>
+              <a href="author.html#6903">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alex,
+
+On  Mi 29 Jan 2014 17:43:51 CET, Orion Poplawski wrote:
+
+&gt;<i> Package: x2goclient
+</I>&gt;<i> Version: 4.0.1.3
+</I>&gt;<i> Tags: patch
+</I>&gt;<i>
+</I>&gt;<i> Starting with libssh 0.6.0, ssh_userauth_list() no longer automatically calls
+</I>&gt;<i> ssh_userauth_none() if needed (auth_methods == 0) to populate the list of
+</I>&gt;<i> methods available.  This patch calls it explicitly.  An alternative would be
+</I>&gt;<i> to simply try authenticating.
+</I>&gt;<i>
+</I>&gt;<i> Without this, attempts to connect with a password fails with an empty
+</I>&gt;<i> &quot;Authentication failed&quot; error window.
+</I>
+Can you verify the submitted patch against X2Go Client and apply to  
+release/4.0.1.x branch of X2Go Client.
+
+Please let me if I then shall cherry-pick the same patch onto the  
+master branch (with the new rev tunnel code already applied) or if it  
+needs a different fix or no fix at all for the master branch.
+
+Thanks,
+Mike
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20140129/b928a1fe/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20140129/b928a1fe/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006901.html">[X2Go-Dev] Bug#420: Fix password connection with libssh 0.6.0
+</A></li>
+	<LI>Next message: <A HREF="006902.html">[X2Go-Dev] Bug#421: X2goclient on Windows: sshd.exe does not start.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6903">[ date ]</a>
+              <a href="thread.html#6903">[ thread ]</a>
+              <a href="subject.html#6903">[ subject ]</a>
+              <a href="author.html#6903">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

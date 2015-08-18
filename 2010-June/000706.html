@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] LDAP integration call for help
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20LDAP%20integration%20call%20for%20help&In-Reply-To=%3C1277903456.3393.39.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000703.html">
+   <LINK REL="Next"  HREF="000708.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] LDAP integration call for help</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20LDAP%20integration%20call%20for%20help&In-Reply-To=%3C1277903456.3393.39.camel%40localhost%3E"
+       TITLE="[X2go-dev] LDAP integration call for help">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Jun 30 15:10:56 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000703.html">[X2go-dev] LDAP integration call for help
+</A></li>
+        <LI>Next message: <A HREF="000708.html">[X2go-dev] LDAP integration call for help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#706">[ date ]</a>
+              <a href="thread.html#706">[ thread ]</a>
+              <a href="subject.html#706">[ subject ]</a>
+              <a href="author.html#706">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2010-06-30 at 13:11 +0200, Mike Gabriel wrote:
+&gt;<i> Hi there,
+</I>&gt;<i> 
+</I>&gt;<i> after havine played with x2goserver-one/sqlite for a while I am  
+</I>&gt;<i> testing x2goserver with LDAP/Postgres setup.
+</I>&gt;<i> 
+</I>&gt;<i> The Postgres setup was easy, thanks to the wiki (there are some  
+</I>&gt;<i> essential typos in the wiki page, I have registered with the wiki to  
+</I>&gt;<i> fix them).
+</I>&gt;<i> 
+</I>&gt;<i> But LDAP...
+</I>&gt;<i> 
+</I>&gt;<i> My very first impression is - and maybe I am wrong - that the  
+</I>&gt;<i> LDAP-Server setup is far to rigid (I will speak openly).
+</I>&gt;<i> 
+</I>&gt;<i> I use x2go over the internet, thus every connection I make has to be  
+</I>&gt;<i> encrypted and needs authentication.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 1. LDAPS support
+</I>&gt;<i> the x2goclient does not support LDAPS... Does it support StartTLS  
+</I>&gt;<i> somewhere hidden in its guts? Otherwise, LDAPS is definitely an item  
+</I>&gt;<i> for the x2go wishlist
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 2. LDAP Auth
+</I>&gt;<i> the x2goclient does not support LDAP auth. At least simple_bind_s  
+</I>&gt;<i> should be possible... -&gt; wishlist. When exactly does the x2goclient  
+</I>&gt;<i> access the LDAP db? I suppose before authentication to one of the  
+</I>&gt;<i> x2goservers. I wonder, if LDAP access was possible to also tunnel LDAP  
+</I>&gt;<i> access through ssh... (i.e. after session login).
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 3. Documentation of Internas
+</I>&gt;<i> The LDAP scripts in the x2goldaptools package help to setup an LDAP  
+</I>&gt;<i> server from scratch. This is not what people might want if they  
+</I>&gt;<i> migrate a site. For site migration to x2go without help of your setup  
+</I>&gt;<i> scripts the internas of the LDAP communication/data storage methods  
+</I>&gt;<i> must be documented better (e.g. difference between server and host in  
+</I>&gt;<i> LDAP -&gt; serial = 1, scratchscratch...).
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 4. Admin DN...
+</I>&gt;<i> The migration/setup scripts pre-requisite cn=ldapadmin,$BASE as admin  
+</I>&gt;<i> DN. This is too rigid! There is a config file for LDAP settings  
+</I>&gt;<i> (/etc/x2go/x2goldaptools.conf). This one should be used for putting  
+</I>&gt;<i> information on the LDAP database.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 5. Admin DN secret...
+</I>&gt;<i> The migration tools take the LDAP admin password from  
+</I>&gt;<i> /etc/libnss_ldap.secret. Also the ldap secret should be retrieved from  
+</I>&gt;<i> /etc/x2go/x2goldaptools.conf, or even better from a  
+</I>&gt;<i> /etc/x2go/x2goldaptools.secret file (0600:root:root). It might well be  
+</I>&gt;<i> that people setup a special x2goadmin account in LDAP for the purpose  
+</I>&gt;<i> of administrating x2go relevant LDAP-objects.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 6. LDAP storage structures
+</I>&gt;<i> Really big organizations group there LDAP data into ous. One ou for  
+</I>&gt;<i> one department at work (e.g. ou=sales,$BASE; ou=management,$BASE;  
+</I>&gt;<i> etc.). Within these ous they store sub-ous like group, people, hosts  
+</I>&gt;<i> etc. Sometimes they even have ou based Administrators.
+</I>&gt;<i> 
+</I>&gt;<i>    cn=admin,ou=sales,$BASE
+</I>&gt;<i>    ou=people,ou=sales,$BASE
+</I>&gt;<i>    ou=group,ou=sales,$BASE
+</I>&gt;<i>    ou=hosts,ou=sales,$BASE
+</I>&gt;<i> 
+</I>&gt;<i>    cn=admin,ou=support,$BASE
+</I>&gt;<i>    ou=people,ou=support,$BASE
+</I>&gt;<i>    ou=group,ou=support,$BASE
+</I>&gt;<i>    ou=hosts,ou=support,$BASE
+</I>&gt;<i> 
+</I>&gt;<i>    ...
+</I>&gt;<i> 
+</I>&gt;<i> This is an approach the system and user management software GOsa&#178;  
+</I>&gt;<i> goes, also AD structures often look like this.
+</I>&gt;<i> 
+</I>&gt;<i> I wonder if x2go is flexible enough to handle structures like these...
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 7. Active Directory
+</I>&gt;<i> This might be overkill now, but has anyone tried to store x2go users,  
+</I>&gt;<i> hosts and groups in AD??? With support of winbind, maybe?
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 8. Why LDAP?
+</I>&gt;<i> Could anyone explain me, what x2go explicitly needs LDAP for? What  
+</I>&gt;<i> information is stored in LDAP that could not be replaced by any other  
+</I>&gt;<i> libnss services. (Has anyone ever thought to use netgroups and  
+</I>&gt;<i> pam_access for machine access control, BTW?).
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 9. Load-Balancing
+</I>&gt;<i> Could also anyone hint to me, how load-balancing in multi-server setup  
+</I>&gt;<i> works with x2go? I guess this question is related to LDAP...
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Loads of questions, sorry, but I couldn't get LDAP functionality  
+</I>&gt;<i> running out of the box with my already existing LDAP setup.
+</I>&lt;snip&gt;
+Thanks for articulating this.  We would also like to see some growth in
+LDAP.  We use RedHat's DS and have shied away from X2Go/LDAP for both
+lack of time to unravel it and because it appeared a little too rigid at
+first glance.  I'll be quite interested in what you find - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000703.html">[X2go-dev] LDAP integration call for help
+</A></li>
+	<LI>Next message: <A HREF="000708.html">[X2go-dev] LDAP integration call for help
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#706">[ date ]</a>
+              <a href="thread.html#706">[ thread ]</a>
+              <a href="subject.html#706">[ subject ]</a>
+              <a href="author.html#706">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

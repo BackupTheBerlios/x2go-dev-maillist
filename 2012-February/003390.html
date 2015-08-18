@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Packaging%20nx-libs%20%28aka%20x2goagent%29%20for%20your%20distro&In-Reply-To=%3C4F378107.4050906%40mandrivauser.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003389.html">
+   <LINK REL="Next"  HREF="003395.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro</H1>
+    <B>Oliver Burger</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Packaging%20nx-libs%20%28aka%20x2goagent%29%20for%20your%20distro&In-Reply-To=%3C4F378107.4050906%40mandrivauser.de%3E"
+       TITLE="[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro">oliver at mandrivauser.de
+       </A><BR>
+    <I>Sun Feb 12 10:06:15 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003389.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+        <LI>Next message: <A HREF="003395.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3390">[ date ]</a>
+              <a href="thread.html#3390">[ thread ]</a>
+              <a href="subject.html#3390">[ subject ]</a>
+              <a href="author.html#3390">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have a kind of fundamental understanding question :/
+
+Our nx package at the moment is built from the following upstream
+tar balls:
+
+-nxproxy
+-nxcomp
+-nxcompext
+-nxssh
+-nxcompshad
+-nx-X11
+-nxauth
+-nxwin
+-nxagent (x2go redistributed version)
+-nxscripts
+
+I only recently took the package over and used mainly the Mandriva 
+package and some things I borrowed from Fedora.
+
+Are those parts (all of them are identical according to checksums on 
+nomachine and x2go download pages, but nxagent (which I took from x2go) 
+or don't exist on x2go download pages) the same as included in the 
+nx-libs tar ball?
+
+So to really get x2go working (including x2goagent), is it neccessary to 
+change the whole nx package?
+And will other tools using nx (like freenx, which I personally don't 
+know) still work?
+
+If there should be any documentation about this, please point me to it, 
+I'm happy to read, but to be honest I don't find that much stuff to read.
+
+If anyboday should be interested in how our nx package is built, the 
+spec file is available in our svn:
+<A HREF="http://svnweb.mageia.org/packages/cauldron/nx/current/SPECS/nx.spec?view=markup">http://svnweb.mageia.org/packages/cauldron/nx/current/SPECS/nx.spec?view=markup</A>
+
+Thanks,
+
+Oliver
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003389.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+	<LI>Next message: <A HREF="003395.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3390">[ date ]</a>
+              <a href="thread.html#3390">[ thread ]</a>
+              <a href="subject.html#3390">[ subject ]</a>
+              <a href="author.html#3390">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

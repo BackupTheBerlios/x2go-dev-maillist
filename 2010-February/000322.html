@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goprint and user rights
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goprint%20and%20user%20rights&In-Reply-To=%3C1265386458.3445.35.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000320.html">
+   <LINK REL="Next"  HREF="000324.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goprint and user rights</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goprint%20and%20user%20rights&In-Reply-To=%3C1265386458.3445.35.camel%40localhost%3E"
+       TITLE="[X2go-dev] x2goprint and user rights">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Feb  5 17:14:18 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000320.html">[X2go-dev] x2goprint and user rights
+</A></li>
+        <LI>Next message: <A HREF="000324.html">[X2go-dev] Unshare local media
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#322">[ date ]</a>
+              <a href="thread.html#322">[ thread ]</a>
+              <a href="subject.html#322">[ subject ]</a>
+              <a href="author.html#322">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Ah, interesting.  That could be the problem for the file shares.
+Exposing the physical desktop file system is working brilliantly well
+for us (thanks, Heinz and Oleksandr) but we are accessing the home
+directories via iSCSI.  Can one mount into a SAMBA share? If so, it
+might be non-default behavior.
+
+If one can't and neither iSCSI presented or local home directories are
+not an option, I wonder if you can create a local storage area outside
+of the home directories (a pain for both admins and users) and use it
+strictly for sharing physical desktop files.  I'd imagine you would need
+to hack the X2Go scripts to change the default mount point.  I don't
+know if that has been exposed in the user interface or in x2go.conf.  I
+think there is such a file which we have used in the past to configure a
+remote database server.  I don't know what other options it takes - John
+
+On Fri, 2010-02-05 at 16:18 +0100, jasper van der marel wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> Just to mention the homedirs are on a samba server (cifs) and when I
+</I>&gt;<i> try to mount a local drive the mounts.log file
+</I>&gt;<i> fills up with &quot;connection reset by peer&quot; messages. When using a local
+</I>&gt;<i> homedir (same user in ldap) I get the same errors.
+</I>&gt;<i> 
+</I>&gt;<i> With kind regards,
+</I>&gt;<i> 
+</I>&gt;<i> Jasper van der Marel
+</I>&gt;<i> Stone-IT
+</I>&gt;<i> 
+</I>&gt;<i> 2010/2/5 jasper van der marel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jaspervandermarel at gmail.com</A>&gt;:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I have just configured our first x2go server with thanks to the
+</I>&gt;<i> &gt; developers of x2go for solving some problems.
+</I>&gt;<i> &gt; I have just one issue with x2goprint. When printing as al local user
+</I>&gt;<i> &gt; everything works out of the box. When printing als a ldap-user the job
+</I>&gt;<i> &gt; prints but is not send to the client.
+</I>&gt;<i> &gt; The server is an Ubuntu server (9.0.4) and the user is member of
+</I>&gt;<i> &gt; x2gousers and fuse, just as mentioned in the docs.
+</I>&gt;<i> &gt; Can someone look into this (last) problem ?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Many thanks in advance,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Jasper van der Marel
+</I>&gt;<i> &gt; Stone-IT
+</I>&gt;<i> &gt;
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000320.html">[X2go-dev] x2goprint and user rights
+</A></li>
+	<LI>Next message: <A HREF="000324.html">[X2go-dev] Unshare local media
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#322">[ date ]</a>
+              <a href="thread.html#322">[ thread ]</a>
+              <a href="subject.html#322">[ subject ]</a>
+              <a href="author.html#322">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

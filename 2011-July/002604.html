@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Multiple%20X2goclient%20instances%20fail&In-Reply-To=%3C20110729102125.72724v55hgw87udh%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002603.html">
+   <LINK REL="Next"  HREF="002608.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Multiple%20X2goclient%20instances%20fail&In-Reply-To=%3C20110729102125.72724v55hgw87udh%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jul 29 10:21:25 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002603.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+        <LI>Next message: <A HREF="002608.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2604">[ date ]</a>
+              <a href="thread.html#2604">[ thread ]</a>
+              <a href="subject.html#2604">[ subject ]</a>
+              <a href="author.html#2604">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Daniel,
+
+On Fr 29 Jul 2011 07:24:40 CEST Daniel Lindgren wrote:
+
+&gt;<i> [...]
+</I>&gt;<i>
+</I>&gt;<i> I've been trying to think of some way to make x2go automatically only
+</I>&gt;<i> use free ports, but since there are possibly several clients and
+</I>&gt;<i> servers involved in multiple incoming and outgoing sessions, the only
+</I>&gt;<i> safe way I've come up with would be to register used ports (or reserve
+</I>&gt;<i> port ranges) on a shared resource somewhere, which would make all x2go
+</I>&gt;<i> clients and servers dependent on that one resource.
+</I>
+What you have been describing above is the old, well known  
+NXServer/NXClient problem.
+
+To my experience it does not exist with X2go (at least not with  
+pyhoca-gui ;-) ).
+
+The connecting stuff is a bit tricky...
+
+   - x2goclient connects via SSH and launches either x2gostartagent or
+     x2goresume-session
+   - x2gostartagent will try to detect a free server-side port &gt;30000.
+     This port is put into the session database table. (Make sure you do
+     not have other server-side stuff running that claims ports between
+     30000 and 30000++.
+   - x2goresume-session will pick the formerly detected port from the session
+     database table (i.e. SQLite or postgres) and presume it is still unused
+     (as it should be, unless unused by X2go -&gt; x2gostartagent avoids claiming
+     ports that are in the database marked with S (suspended) or R (running)
+     state
+   - say we detect a free server-side port: 30015: x2gostartagent will  
+launch the
+     XNest-like x2goagent XServer, listening for incoming connections on port
+     localhost:300015.
+
+   - x2goclient now tries to set up a forwarding tunnel from
+     client to server (-L 30000:localhost:30015)
+   - if the local port 30000 (the first one in the above expression) is already
+     in use, it simply selects another port. Each selected port is  
+probed before
+     usage. That is done by x2goclient.
+   - say we end up with -L 30028:localhost:30015
+
+The problem you observe: &#8221;the remote proxy closed the connection while  
+negotiating &#8230;&#8221; to my point of view stems from uncleanly closed SSH  
+connections. Try to restart the SSH daemon when this error occurs and  
+you should be able to connect again. This error can also be caused by  
+the sound/sshfs tunnels. Here the same cause applies: unclean shutdown  
+of SSH connections.
+
+Reasons may be:
+
+   o unclean x2goclient/pyhoca-gui code
+   o line failures (so the clients do not get the chance to cancel the port
+     forwarding requests...)
+
+You may do the following to debug:
+
+   o try if the problem occurs in the same way when you use pyhoca-gui/-cli
+   o pyhoca-gui (i.e. python-x2go) tries to restore the mal-closure of SSH
+     port forwardings... You may try to resume a session twice, the second
+     time you should get a session window
+
+The addressed issue was a big problem for Python X2go before version  
+0.1.0.0. It took me quite some sleepness nights to get rid of it by  
+90%+.
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110729/24877da5/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110729/24877da5/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002603.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+	<LI>Next message: <A HREF="002608.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2604">[ date ]</a>
+              <a href="thread.html#2604">[ thread ]</a>
+              <a href="subject.html#2604">[ subject ]</a>
+              <a href="author.html#2604">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

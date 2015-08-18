@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] encrypting home &amp; printing problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20encrypting%20home%20%26%20printing%20problem&In-Reply-To=%3C8CFECC711E8C31D-824-4BC37%40webmail-d275.sysops.aol.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005229.html">
+   <LINK REL="Next"  HREF="005233.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] encrypting home &amp; printing problem</H1>
+    <B>senrabdet at aol.com</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20encrypting%20home%20%26%20printing%20problem&In-Reply-To=%3C8CFECC711E8C31D-824-4BC37%40webmail-d275.sysops.aol.com%3E"
+       TITLE="[X2Go-Dev] encrypting home &amp; printing problem">senrabdet at aol.com
+       </A><BR>
+    <I>Tue Mar 12 00:27:02 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005229.html">[X2Go-Dev] Wiki
+</A></li>
+        <LI>Next message: <A HREF="005233.html">[X2Go-Dev] zlib Performance
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5227">[ date ]</a>
+              <a href="thread.html#5227">[ thread ]</a>
+              <a href="subject.html#5227">[ subject ]</a>
+              <a href="author.html#5227">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi All:
+
+
+No responses yet...hoping for some suggestions.  Our guess is that because we are encrypting the home space with Encfs, the symlink used by the x2go spool to /tmp is broken (i.e., if we use all the same commands to set up an account without encrypting home space, we can print).
+
+
+Suggestions?  FYI not suggesting this is a bug per se, just looking for a way forward and figure others may come on to wanting something similar.
+
+
+1)  Are we on the right track, that it would seem likely that using Encfs (which moves the original data) would be the cause of the problem, including the broken link between the x2go spool and the area it points to in /tmp
+
+
+2)  Could we issue some sort of command inside of .bashrc that would establish the link correctly after log in?  My recollection is there are a set of pre and post login commands opportunities....apologize, can't remember command structure or if this is still current....is there a link that describes?  And I think the folder name holding the spool changes periodically...
+
+
+3)  Leave .x2go out of the encryption process in it's original location......not sure this would work
+
+
+4)  Other?
+
+
+....Thanks!
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130311/3f5079e5/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130311/3f5079e5/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005229.html">[X2Go-Dev] Wiki
+</A></li>
+	<LI>Next message: <A HREF="005233.html">[X2Go-Dev] zlib Performance
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5227">[ date ]</a>
+              <a href="thread.html#5227">[ thread ]</a>
+              <a href="subject.html#5227">[ subject ]</a>
+              <a href="author.html#5227">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

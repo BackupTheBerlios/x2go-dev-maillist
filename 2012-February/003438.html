@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] New major distribution builds available for X2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3Calpine.LNX.2.01.1202160019380.24607%40frira.zrqbmnf.qr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003437.html">
+   <LINK REL="Next"  HREF="003439.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] New major distribution builds available for X2go</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3Calpine.LNX.2.01.1202160019380.24607%40frira.zrqbmnf.qr%3E"
+       TITLE="[X2Go-Dev] New major distribution builds available for X2go">jengelh at medozas.de
+       </A><BR>
+    <I>Thu Feb 16 00:28:40 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003437.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+        <LI>Next message: <A HREF="003439.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3438">[ date ]</a>
+              <a href="thread.html#3438">[ thread ]</a>
+              <a href="subject.html#3438">[ subject ]</a>
+              <a href="author.html#3438">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On Wednesday 2012-02-15 23:56, Mike Gabriel wrote:
+&gt;&gt;<i> Xcomp, Xcompext and Xcompshad are specific to NX and did not clash with
+</I>&gt;&gt;<i> any Xorg-X11 lib, so I chose not to add a prefix at first. But I do not
+</I>&gt;&gt;<i> really mind them getting a NX_ prefix either. The pkgconfig files also
+</I>&gt;&gt;<i> need updating, they still show the old names.
+</I>&gt;<i>
+</I>&gt;<i> There some more, how about those?
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at minobo</A>:~/MyDocuments/4projects/nwt-git/build/cowdancer$ dpkg -L libnx-x11
+</I>&gt;<i> | grep -v NX_
+</I>&gt;<i> /usr/lib/nx/X11/libximcp.so.2
+</I>&gt;<i> /usr/lib/nx/X11/libxlcDef.so.2
+</I>&gt;<i> /usr/lib/nx/X11/libxlcUTF8Load.so.2
+</I>&gt;<i> /usr/lib/nx/X11/libxlibi18n.so.2
+</I>&gt;<i> /usr/lib/nx/X11/libxlocale.so.2
+</I>&gt;<i> /usr/lib/nx/X11/libxomGeneric.so.2
+</I>
+ximcp et al is not installed by `make install`, hence it was left untouched.
+That is also my beef with all the non-NX-inherited packages (x2goclient,
+x2goserver), that there is no, or an incomplete `make install` and
+therefore have to tediously call install(1) manually in rpmspec's
+%install.
+
+&gt;&gt;&gt;&gt;<i> 122 ./nx-libs/standard-dirs.diff
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> REJECTED!
+</I>&gt;&gt;&gt;<i> libXcomp* are unusable outside of the /usr/${libdir}/nx context. So it is
+</I>&gt;&gt;&gt;<i> misleading to place them into /usr/${libdir}. Thus -&gt; patch denied.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The three libs are placed into /usr/lib/nx while all the other
+</I>&gt;&gt;<i> NX-specific libs are in /usr/X11R6/lib/nx.. an inexplicible
+</I>&gt;&gt;<i> discrepancy. Suffice to say /usr/X11R6 is obsolete now and the libs
+</I>&gt;&gt;<i> that previously lived there are now in /usr.
+</I>&gt;<i>
+</I>&gt;<i> Oh... we (Debian packaging) install into /usr/lib/nx/X11... So this should be
+</I>&gt;<i> fixed in the Imake files?
+</I>
+As per the Makefile (for example, compshad's Makefile):
+
+        $(INSTALL_LINK) libXcompshad.so.3       $(DESTDIR)$(prefix)/lib/nx
+
+Therefore, the libs will be placed - by default - into /usr/lib/nx
+(assuming prefix=/usr). How you manage to get it into /usr/lib/nx/X11
+I will declare as a riddle, but I guess the culprit are Debian's
+debian/*.install files which seem to completely throw `make install`
+results overboard.
+
+&gt;&gt;&gt;&gt;<i> 102 ./nx-libs/so-version.diff
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Partially accepted:
+</I>&gt;&gt;&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=c26e4bd825826462fc73242f94369555ae0f44fe">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=c26e4bd825826462fc73242f94369555ae0f44fe</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The question here is whether someone populated the SO version with
+</I>&gt;&gt;<i> the package version because they had nothing better to do, or
+</I>&gt;&gt;<i> because they are vowing to newer remove/change any existing interface
+</I>&gt;&gt;<i> until .so.4. There was no way to tell, hence using this patch.--
+</I>&gt;&gt;<i> which, as I review it, notice that it is incomplete.
+</I>&gt;<i>
+</I>&gt;<i> Incomplete in what way?
+</I>
+If one chooses to use libXcompshad-3.5.0.so, the SONAME should
+reflect that and (as a result) there should be no libXcompshad.so.3
+link either (because the SONAME is not libXcompshad.so.3 any longer).
+
+&gt;&gt;<i> Actually I threw this patch out again and replaced it by
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> %prep
+</I>&gt;&gt;<i> # Need to do this since %%nxprefix (resp. %%_libexecdir) is variadic.
+</I>&gt;&gt;<i> perl -i -pe 's{^(#define ProjectRoot)\s.*}{$1 %nxprefix}' \
+</I>&gt;&gt;<i>       nx-X11/config/cf/site.def;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> because libexecdir is not necessarily /usr/lib, but e.g. /usr/libexec.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>I will build a preview tarball of nx-libs soon. Could you simply patch against
+</I>&gt;<i>that one?
+</I>
+It's a command inside the nx-libs.spec file I have. It is nothing
+that could be patched in nx-libs/, because nx-libs does not provide
+for something like
+
+./configure --libexecdir=/usr/myfunnyplace/NX3
+
+to be run.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003437.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+	<LI>Next message: <A HREF="003439.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3438">[ date ]</a>
+              <a href="thread.html#3438">[ thread ]</a>
+              <a href="subject.html#3438">[ subject ]</a>
+              <a href="author.html#3438">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] New major distribution builds available for X2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3C20120218023320.13263szlxbski5eo%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003472.html">
+   <LINK REL="Next"  HREF="003484.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] New major distribution builds available for X2go</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3C20120218023320.13263szlxbski5eo%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] New major distribution builds available for X2go">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Feb 18 02:33:20 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003472.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+        <LI>Next message: <A HREF="003484.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3481">[ date ]</a>
+              <a href="thread.html#3481">[ thread ]</a>
+              <a href="subject.html#3481">[ subject ]</a>
+              <a href="author.html#3481">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alex, hi Jan,
+
+@Alex: Could you please check if my last commit on nx-libs.git fixes  
+Xinerama support in with X2Go?
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=ec47c22c264bd2f1d2ce6e434b503a701dc129f7">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=ec47c22c264bd2f1d2ce6e434b503a701dc129f7</A>
+
+On Fr 17 Feb 2012 09:16:59 CET Oleksandr Shneyder wrote:
+
+&gt;<i> I don't want to touch your xorg-x11 libs, I just want to make links from
+</I>&gt;<i> them to /usr/lib/nx/X11/Xinerama/ :
+</I>&gt;<i> ln -s /usr/lib/libX11.so.6 /usr/lib/nx/X11/Xinerama/libNX_X11.so.6
+</I>&gt;<i> ln -s /usr/lib/libXext.so.6 /usr/lib/nx/X11/Xinerama/libNX_Xext.so.6
+</I>&gt;<i>
+</I>&gt;<i> libXinerama should use a system libX11 and libXext. But because of your
+</I>&gt;<i> patch now it linked against libNX_X11 and libNX_Xext. This is why we
+</I>&gt;<i> should create such symbolic links.
+</I>
+The below dir tree reflects what gets installed with the latest  
+libnx-x11 package for Debian/Ubuntu. This installation approach  
+results from the debhelper .install and .link file  
+(debian/libnx-x11.install, debian/libnx-x11.links) -- not from the  
+nx-X11 Makefile.
+
+The nx-X11 Makefile still has to be tweaked to do the same. (Jan?)
+
+Greets,
+Mike
+
+.
+&#9500;&#9472;&#9472; libXcomp.a
+&#9500;&#9472;&#9472; libXcompext.so -&gt; libXcompext.so.3.5.0
+&#9500;&#9472;&#9472; libXcompext.so.3 -&gt; libXcompext.so.3.5.0
+&#9500;&#9472;&#9472; libXcompext.so.3.5.0
+&#9500;&#9472;&#9472; libXcompshad.a
+&#9500;&#9472;&#9472; libXcompshad.so -&gt; libXcompshad.so.3.5.0
+&#9500;&#9472;&#9472; libXcompshad.so.3 -&gt; libXcompshad.so.3.5.0
+&#9500;&#9472;&#9472; libXcompshad.so.3.5.0
+&#9500;&#9472;&#9472; libXcomp.so -&gt; libXcomp.so.3.5.0
+&#9500;&#9472;&#9472; libXcomp.so.3 -&gt; libXcomp.so.3.5.0
+&#9500;&#9472;&#9472; libXcomp.so.3.5.0
+&#9500;&#9472;&#9472; nxagent
+&#9500;&#9472;&#9472; nxauth
+&#9500;&#9472;&#9472; nxproxy
+&#9492;&#9472;&#9472; X11
+     &#9500;&#9472;&#9472; libNX_expat.so
+     &#9500;&#9472;&#9472; libNX_expat.so.0 -&gt; libNX_expat.so
+     &#9500;&#9472;&#9472; libNX_expat.so.0.4.0 -&gt; libNX_expat.so
+     &#9500;&#9472;&#9472; libNX_fontconfig.so
+     &#9500;&#9472;&#9472; libNX_fontconfig.so.1 -&gt; libNX_fontconfig.so
+     &#9500;&#9472;&#9472; libNX_fontconfig.so.1.0.4 -&gt; libNX_fontconfig.so
+     &#9500;&#9472;&#9472; libNX_fontenc.so
+     &#9500;&#9472;&#9472; libNX_fontenc.so.1 -&gt; libNX_fontenc.so
+     &#9500;&#9472;&#9472; libNX_fontenc.so.1.0 -&gt; libNX_fontenc.so
+     &#9500;&#9472;&#9472; libNX_freetype.so
+     &#9500;&#9472;&#9472; libNX_freetype.so.6 -&gt; libNX_freetype.so
+     &#9500;&#9472;&#9472; libNX_freetype.so.6.3.7 -&gt; libNX_freetype.so
+     &#9500;&#9472;&#9472; libNX_FS.so
+     &#9500;&#9472;&#9472; libNX_FS.so.6 -&gt; libNX_FS.so
+     &#9500;&#9472;&#9472; libNX_FS.so.6.0 -&gt; libNX_FS.so
+     &#9500;&#9472;&#9472; libNX_ICE.so
+     &#9500;&#9472;&#9472; libNX_ICE.so.6 -&gt; libNX_ICE.so
+     &#9500;&#9472;&#9472; libNX_ICE.so.6.4 -&gt; libNX_ICE.so
+     &#9500;&#9472;&#9472; libNX_SM.so
+     &#9500;&#9472;&#9472; libNX_SM.so.6 -&gt; libNX_SM.so
+     &#9500;&#9472;&#9472; libNX_SM.so.6.0 -&gt; libNX_SM.so
+     &#9500;&#9472;&#9472; libNX_X11.so
+     &#9500;&#9472;&#9472; libNX_X11.so.6 -&gt; libNX_X11.so
+     &#9500;&#9472;&#9472; libNX_X11.so.6.2 -&gt; libNX_X11.so
+     &#9500;&#9472;&#9472; libNX_Xau.so
+     &#9500;&#9472;&#9472; libNX_Xau.so.6 -&gt; libNX_Xau.so
+     &#9500;&#9472;&#9472; libNX_Xau.so.6.0 -&gt; libNX_Xau.so
+     &#9500;&#9472;&#9472; libNX_Xaw.so
+     &#9500;&#9472;&#9472; libNX_Xaw.so.7 -&gt; libNX_Xaw.so
+     &#9500;&#9472;&#9472; libNX_Xaw.so.7.0 -&gt; libNX_Xaw.so
+     &#9500;&#9472;&#9472; libNX_Xcomposite.so
+     &#9500;&#9472;&#9472; libNX_Xcomposite.so.1 -&gt; libNX_Xcomposite.so
+     &#9500;&#9472;&#9472; libNX_Xcomposite.so.1.0 -&gt; libNX_Xcomposite.so
+     &#9500;&#9472;&#9472; libNX_Xcursor.so
+     &#9500;&#9472;&#9472; libNX_Xcursor.so.1 -&gt; libNX_Xcursor.so
+     &#9500;&#9472;&#9472; libNX_Xcursor.so.1.0.2 -&gt; libNX_Xcursor.so
+     &#9500;&#9472;&#9472; libNX_Xdamage.so
+     &#9500;&#9472;&#9472; libNX_Xdamage.so.1 -&gt; libNX_Xdamage.so
+     &#9500;&#9472;&#9472; libNX_Xdamage.so.1.0 -&gt; libNX_Xdamage.so
+     &#9500;&#9472;&#9472; libNX_Xdmcp.so
+     &#9500;&#9472;&#9472; libNX_Xdmcp.so.6 -&gt; libNX_Xdmcp.so
+     &#9500;&#9472;&#9472; libNX_Xdmcp.so.6.0 -&gt; libNX_Xdmcp.so
+     &#9500;&#9472;&#9472; libNX_Xext.so
+     &#9500;&#9472;&#9472; libNX_Xext.so.6 -&gt; libNX_Xext.so
+     &#9500;&#9472;&#9472; libNX_Xext.so.6.4 -&gt; libNX_Xext.so
+     &#9500;&#9472;&#9472; libNX_Xfixes.so
+     &#9500;&#9472;&#9472; libNX_Xfixes.so.3 -&gt; libNX_Xfixes.so
+     &#9500;&#9472;&#9472; libNX_Xfixes.so.3.0 -&gt; libNX_Xfixes.so
+     &#9500;&#9472;&#9472; libNX_Xft.so
+     &#9500;&#9472;&#9472; libNX_Xft.so.1 -&gt; libNX_Xft.so
+     &#9500;&#9472;&#9472; libNX_Xft.so.1.1 -&gt; libNX_Xft.so
+     &#9500;&#9472;&#9472; libNX_Xft.so.2 -&gt; libNX_Xft.so
+     &#9500;&#9472;&#9472; libNX_Xft.so.2.1.2 -&gt; libNX_Xft.so
+     &#9500;&#9472;&#9472; libNX_Xinerama.so
+     &#9500;&#9472;&#9472; libNX_Xinerama.so.1 -&gt; libNX_Xinerama.so
+     &#9500;&#9472;&#9472; libNX_Xinerama.so.1.0 -&gt; libNX_Xinerama.so
+     &#9500;&#9472;&#9472; libNX_Xmu.so
+     &#9500;&#9472;&#9472; libNX_Xmu.so.6 -&gt; libNX_Xmu.so
+     &#9500;&#9472;&#9472; libNX_Xmu.so.6.2 -&gt; libNX_Xmu.so
+     &#9500;&#9472;&#9472; libNX_Xmuu.so
+     &#9500;&#9472;&#9472; libNX_Xmuu.so.1 -&gt; libNX_Xmuu.so
+     &#9500;&#9472;&#9472; libNX_Xmuu.so.1.0 -&gt; libNX_Xmuu.so
+     &#9500;&#9472;&#9472; libNX_Xpm.so
+     &#9500;&#9472;&#9472; libNX_Xpm.so.4 -&gt; libNX_Xpm.so
+     &#9500;&#9472;&#9472; libNX_Xpm.so.4.11 -&gt; libNX_Xpm.so
+     &#9500;&#9472;&#9472; libNX_Xrandr.so
+     &#9500;&#9472;&#9472; libNX_Xrandr.so.2 -&gt; libNX_Xrandr.so
+     &#9500;&#9472;&#9472; libNX_Xrandr.so.2.0 -&gt; libNX_Xrandr.so
+     &#9500;&#9472;&#9472; libNX_Xrender.so
+     &#9500;&#9472;&#9472; libNX_Xrender.so.1 -&gt; libNX_Xrender.so
+     &#9500;&#9472;&#9472; libNX_Xrender.so.1.2.2 -&gt; libNX_Xrender.so
+     &#9500;&#9472;&#9472; libNX_Xt.so
+     &#9500;&#9472;&#9472; libNX_Xt.so.6 -&gt; libNX_Xt.so
+     &#9500;&#9472;&#9472; libNX_Xt.so.6.0 -&gt; libNX_Xt.so
+     &#9500;&#9472;&#9472; libNX_Xtst.so
+     &#9500;&#9472;&#9472; libNX_Xtst.so.6 -&gt; libNX_Xtst.so
+     &#9500;&#9472;&#9472; libNX_Xtst.so.6.1 -&gt; libNX_Xtst.so
+     &#9500;&#9472;&#9472; libXcomp.so
+     &#9500;&#9472;&#9472; libXcomp.so.1 -&gt; libXcomp.so
+     &#9500;&#9472;&#9472; libximcp.so
+     &#9500;&#9472;&#9472; libximcp.so.2 -&gt; libximcp.so
+     &#9500;&#9472;&#9472; libxlcDef.so
+     &#9500;&#9472;&#9472; libxlcDef.so.2 -&gt; libxlcDef.so
+     &#9500;&#9472;&#9472; libxlcUTF8Load.so
+     &#9500;&#9472;&#9472; libxlcUTF8Load.so.2 -&gt; libxlcUTF8Load.so
+     &#9500;&#9472;&#9472; libxlibi18n.so
+     &#9500;&#9472;&#9472; libxlibi18n.so.2 -&gt; libxlibi18n.so
+     &#9500;&#9472;&#9472; libxlocale.so
+     &#9500;&#9472;&#9472; libxlocale.so.2 -&gt; libxlocale.so
+     &#9500;&#9472;&#9472; libxomGeneric.so
+     &#9500;&#9472;&#9472; libxomGeneric.so.2 -&gt; libxomGeneric.so
+     &#9492;&#9472;&#9472; Xinerama
+         &#9500;&#9472;&#9472; libNX_X11.so.6 -&gt; ../../../libX11.so.6
+         &#9500;&#9472;&#9472; libNX_Xext.so.6 -&gt; ../../../libXext.so.6
+         &#9500;&#9472;&#9472; libNX_Xinerama.so -&gt; libNX_Xinerama.so.1.0
+         &#9500;&#9472;&#9472; libNX_Xinerama.so.1 -&gt; libNX_Xinerama.so.1.0
+         &#9500;&#9472;&#9472; libNX_Xinerama.so.1.0
+         &#9500;&#9472;&#9472; libXinerama.so -&gt; libNX_Xinerama.so
+         &#9492;&#9472;&#9472; libXinerama.so.1 -&gt; libNX_Xinerama.so.1
+
+2 directories, 112 files
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120218/eaba1f0d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120218/eaba1f0d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003472.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+	<LI>Next message: <A HREF="003484.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3481">[ date ]</a>
+              <a href="thread.html#3481">[ thread ]</a>
+              <a href="subject.html#3481">[ subject ]</a>
+              <a href="author.html#3481">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] nxagent dependency problem on CentOS and SL
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nxagent%20dependency%20problem%20on%20CentOS%20and%20SL&In-Reply-To=%3Calpine.LNX.2.01.1303131512460.14260%40nerf07.vanv.qr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005255.html">
+   <LINK REL="Next"  HREF="005289.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] nxagent dependency problem on CentOS and SL</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nxagent%20dependency%20problem%20on%20CentOS%20and%20SL&In-Reply-To=%3Calpine.LNX.2.01.1303131512460.14260%40nerf07.vanv.qr%3E"
+       TITLE="[X2Go-Dev] nxagent dependency problem on CentOS and SL">jengelh at inai.de
+       </A><BR>
+    <I>Wed Mar 13 15:17:55 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005255.html">[X2Go-Dev] nxagent dependency problem on CentOS and SL
+</A></li>
+        <LI>Next message: <A HREF="005289.html">[X2Go-Dev] nxagent dependency problem on CentOS and SL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5271">[ date ]</a>
+              <a href="thread.html#5271">[ thread ]</a>
+              <a href="subject.html#5271">[ subject ]</a>
+              <a href="author.html#5271">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On Tuesday 2013-03-12 19:31, Daniel Gibbs wrote:
+&gt;<i>
+</I>&gt;<i>I am happy to help Jan out if he requires my help.
+</I>
+I do have RHish VMs, but that does not help the motivation :)
+
+
+
+&gt;<i>My current understanding of the issue is as follows. 
+</I>&gt;<i>
+</I>&gt;<i>nxagent-3.5.0.17-3.1.x86_64 is asking for a dependency that is only available
+</I>&gt;<i>on OpenSuse which is xorg-x11-fonts-core. I believe this issue was resolved
+</I>
+Was indeed resolved.
+
+&gt;<i>however when the rpm's attempted to be built it failed for some reason.
+</I>&gt;<i>Because of this the rpm's in the repo for RHEL_6 have not updated.
+</I>&gt;<i>
+</I>&gt;<i>I believe this is the current error:
+</I>&gt;<i>[  669s] RPM build errors:
+</I>&gt;<i>[  669s]     Bad exit status from /var/tmp/rpm-tmp.tWnA7V (%install)
+</I>
+The error is
+
+[  122s] Processing files: libNX_FS6-3.5.0.17-0
+[  122s] error: File not found by glob: /var/tmp/nx-libs-3.5.0.17-build/usr/lib64/nx/libNX_FS.so.6*
+[  122s] Processing files: libNX_FS-devel-3.5.0.17-0
+[  122s] error: File not found: /var/tmp/nx-libs-3.5.0.17-build/usr/lib64/nx/libNX_FS.so
+[  122s] Processing files: libNX_ICE6-3.5.0.17-0
+[  122s] error: File not found by glob: /var/tmp/nx-libs-3.5.0.17-build/usr/lib64/nx/libNX_ICE.so.6*
+
+This is because some files were not properly installed, and that in turn is
+because of some yet undiscovered problem in nx-libs's Makefiles that only
+triggers on older systems. I have found some problems that exist between
+bash-3.x and bash-4.x (that's where RH6 differs from F18), but apparently
+not all.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005255.html">[X2Go-Dev] nxagent dependency problem on CentOS and SL
+</A></li>
+	<LI>Next message: <A HREF="005289.html">[X2Go-Dev] nxagent dependency problem on CentOS and SL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5271">[ date ]</a>
+              <a href="thread.html#5271">[ thread ]</a>
+              <a href="subject.html#5271">[ subject ]</a>
+              <a href="author.html#5271">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

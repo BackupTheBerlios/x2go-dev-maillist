@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Traffic%20shaping%20nightmare%20-%20missing%20SSH%20TOS%20bits&In-Reply-To=%3C20120221105022.662034z69brqxzoe%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003564.html">
+   <LINK REL="Next"  HREF="003583.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Traffic%20shaping%20nightmare%20-%20missing%20SSH%20TOS%20bits&In-Reply-To=%3C20120221105022.662034z69brqxzoe%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Feb 21 10:50:22 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003564.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+        <LI>Next message: <A HREF="003583.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3566">[ date ]</a>
+              <a href="thread.html#3566">[ thread ]</a>
+              <a href="subject.html#3566">[ subject ]</a>
+              <a href="author.html#3566">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi John,
+
+On Di 21 Feb 2012 10:43:03 CET &quot;John A. Sullivan III&quot; wrote:
+
+&gt;<i> On Tue, 2012-02-21 at 10:11 +0100, Jan Engelhardt wrote:
+</I>&gt;&gt;<i> On Tuesday 2012-02-21 09:43, John A. Sullivan III wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &gt;On Tue, 2012-02-21 at 09:30 +0100, Jan Engelhardt wrote:
+</I>&gt;&gt;<i> &gt;&gt; On Tuesday 2012-02-21 07:05, John A. Sullivan III wrote:
+</I>&gt;&gt;<i> &gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt; &gt;I've been working on a project to implement traffic shaping
+</I>&gt;&gt;<i> &gt;&gt; &gt;to conform to 95th percentile billing including our X2Go virtual
+</I>&gt;&gt;<i> &gt;&gt; &gt;desktops. One of the challenges is prioritizing the interactive X2Go
+</I>&gt;&gt;<i> &gt;&gt; &gt;traffic (screen, keyboard, mouse) differently from bulk traffic like
+</I>&gt;&gt;<i> &gt;&gt; &gt;local share transfers, printing, and possibly sound.  I thought this
+</I>&gt;&gt;<i> &gt;&gt; &gt;would be trivial because of the SSH transport since SSH sets the
+</I>&gt;&gt;<i> &gt;&gt; &gt;minimize-delay bit for interactive traffic and the maximize-throughput
+</I>&gt;&gt;<i> &gt;&gt; &gt;bit for bulk transfers.
+</I>&gt;&gt;<i> &gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt; If a user has his own machine, he can of course do whatever he wants.
+</I>&gt;&gt;<i> &gt;&gt; Second, if he can pass options to ssh, he can set the QOS type
+</I>&gt;&gt;<i> &gt;&gt; arbitrarily, and even where that is not available for control, one
+</I>&gt;&gt;<i> &gt;&gt; can still cause the openssh client to use interactive TOS marking for
+</I>&gt;&gt;<i> &gt;&gt; bulk transfers, since secondary ssh channels (e.g. tunnels) do not
+</I>&gt;&gt;<i> &gt;&gt; pass up the TOS mark.
+</I>&gt;&gt;<i> &gt;&lt;snip&gt;
+</I>&gt;&gt;<i> &gt;However, Windows and Mac clients may not be using OpenSSH.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> That too. All these reasons is why TOS is not a reliable characteristic
+</I>&gt;&gt;<i> to determine the question of bulk-or-interactive.
+</I>&gt;<i> Thanks.  I suppose we are saying the same thing in a different way.  I
+</I>&gt;<i> am saying we cannot rely upon libssh setting a TOS bit but we do need to
+</I>&gt;<i> do something within X2Go to allow admins to distinguish the traffic.  We
+</I>&gt;<i> need some method embedded in the traffic.  The obvious choice is to use
+</I>&gt;<i> either TOS bits or DSCP but we do need to set something - John
+</I>
+I guess we do not have the urgency here on the coders side, currently.  
+Just a gut feeling. Best would be to directly come up with a patch or  
+hire someone who comes up with a patch. Then inclusion in mainstream  
+X2Go (Client) may become _very_ likely.
+
+Greets,
+Mike
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120221/1e115a4d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120221/1e115a4d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003564.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+	<LI>Next message: <A HREF="003583.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3566">[ date ]</a>
+              <a href="thread.html#3566">[ thread ]</a>
+              <a href="subject.html#3566">[ subject ]</a>
+              <a href="author.html#3566">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

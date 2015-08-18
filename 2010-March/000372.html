@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2gosessionlimit and user limits
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2gosessionlimit%20and%20user%20limits&In-Reply-To=%3C1268527034.13610.4.camel%40Family.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000371.html">
+   <LINK REL="Next"  HREF="000373.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2gosessionlimit and user limits</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2gosessionlimit%20and%20user%20limits&In-Reply-To=%3C1268527034.13610.4.camel%40Family.pacifera.com%3E"
+       TITLE="[X2go-dev] x2gosessionlimit and user limits">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sun Mar 14 01:37:14 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000371.html">[X2go-dev] cups-x2go for multiple X2Go Servers
+</A></li>
+        <LI>Next message: <A HREF="000373.html">[X2go-dev] Working on x2goclient code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#372">[ date ]</a>
+              <a href="thread.html#372">[ thread ]</a>
+              <a href="subject.html#372">[ subject ]</a>
+              <a href="author.html#372">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, all.  We're finally starting to work our way thoroughly through
+the x2go scripts and were a little confused by x2gosessionlimit.  Given
+the following logic:
+
+my $runningsessions=`x2golistsessions --all-servers`;
+my @sessions=split(&quot;\n&quot;,$runningsessions);
+my $scount=@sessions;
+
+my $strlimit=$Config-&gt;param(&quot;limit users.$uname&quot;);
+
+if($strlimit ne &quot;&quot;)
+{
+    if($strlimit == 0)
+    {
+         print &quot;0\n&quot;;
+         exit 0;
+    }
+    if($strlimit &lt;= $scount)
+    {
+        print &quot;$strlimit\n&quot;;
+        exit 0;
+    }
+    print &quot;$strlimit\n&quot;;
+    exit 0;
+}
+
+If a user is limited to the 3 sessions and x2golistsessions returns 1,
+$strlimit is ne &quot;&quot; so we will enter the block.  It is neither 0 nor &lt;= 1
+so we will print &quot;3\n&quot;.  Doesn't this cause x2gostartagent to exit with
+an error?
+
+LIMIT=`x2gosessionlimit`
+LWORD=`echo $LIMIT | awk '{print $1}'`
+
+if [ &quot;$LWORD&quot; == &quot;LIMIT&quot; ]
+then
+   echo  $LIMIT
+   exit -1
+fi
+
+
+Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000371.html">[X2go-dev] cups-x2go for multiple X2Go Servers
+</A></li>
+	<LI>Next message: <A HREF="000373.html">[X2go-dev] Working on x2goclient code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#372">[ date ]</a>
+              <a href="thread.html#372">[ thread ]</a>
+              <a href="subject.html#372">[ subject ]</a>
+              <a href="author.html#372">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

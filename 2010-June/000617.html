@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] trouble getting printing to work
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20trouble%20getting%20printing%20to%20work&In-Reply-To=%3C1277325093.3411.2.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000616.html">
+   <LINK REL="Next"  HREF="000620.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] trouble getting printing to work</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20trouble%20getting%20printing%20to%20work&In-Reply-To=%3C1277325093.3411.2.camel%40localhost%3E"
+       TITLE="[X2go-dev] trouble getting printing to work">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Jun 23 22:31:33 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000616.html">[X2go-dev] trouble getting printing to work
+</A></li>
+        <LI>Next message: <A HREF="000620.html">[X2go-dev] trouble getting printing to work
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#617">[ date ]</a>
+              <a href="thread.html#617">[ thread ]</a>
+              <a href="subject.html#617">[ subject ]</a>
+              <a href="author.html#617">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>By the way, is the X2Go Server running on bare-metal so to speak or is
+it a virtual machine? If the latter, what type? Thanks - John
+
+On Wed, 2010-06-23 at 15:05 -0500, Gerry Reno wrote:
+&gt;<i> While I'm working on getting the Qt client, here's something
+</I>&gt;<i> interesting I just tried:
+</I>&gt;<i> 
+</I>&gt;<i> # sshfs  -o IdentityFile=keypair1.pem
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">ubuntu at testmachine1</A>:/home/ubuntu  /tmp/sshfs_mount
+</I>&gt;<i> # mount | grep ssh
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">ubuntu at testmachine1</A>:/home/ubuntu on /tmp/sshfs_mount type fuse.sshfs
+</I>&gt;<i> (rw,nosuid,nodev,max_read=65536)
+</I>&gt;<i> 
+</I>&gt;<i> So I can mount a server directory back on the client manually.
+</I>&gt;<i> 
+</I>&gt;<i> -Gerry
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Jun 23, 2010 03:38:38 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> wrote:
+</I>&gt;<i>         On Wed, 2010-06-23 at 13:21 -0500, Gerry Reno wrote:
+</I>&gt;<i>         &gt; Jun 23, 2010 06:19:18 AM, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> wrote:
+</I>&gt;<i>         
+</I>&gt;<i>         &gt; 
+</I>&gt;<i>         &gt; Hi John,
+</I>&gt;<i>         &gt; Well I setup a whole new server from scratch (lucid again)
+</I>&gt;<i>         and tried
+</I>&gt;<i>         &gt; printing from it back to the same client and got the same
+</I>&gt;<i>         results - no
+</I>&gt;<i>         &gt; printing or shares. So I went looking for the Qt client but
+</I>&gt;<i>         I don't
+</I>&gt;<i>         &gt; see it:
+</I>&gt;<i>         &gt; 
+</I>&gt;<i>         &gt; # apt-show-versions -a -R x2go | grep client
+</I>&gt;<i>         &gt; x2goclient 3.01-5 lenny x2go.obviously-nice.de
+</I>&gt;<i>         &gt; x2goclient not installed
+</I>&gt;<i>         &gt; x2goclient-cli 3.0.1-1.2 lenny x2go.obviously-nice.de
+</I>&gt;<i>         &gt; x2goclient-cli not installed
+</I>&gt;<i>         &gt; x2goclient-gtk 3.01-8 install ok installed
+</I>&gt;<i>         &gt; x2goclient-gtk 3.01-8 lenny x2go.obviously-nice.de
+</I>&gt;<i>         &gt; x2goclient-gtk/lenny uptodate 3.01-8
+</I>&gt;<i>         &gt; x2gothinclient 1.0.1-1 lenny x2go.obviously-nice.de
+</I>&gt;<i>         &gt; x2gothinclient not installed
+</I>&gt;<i>         &gt; x2gothinclientsystem 1.0.1-2 lenny x2go.obviously-nice.de
+</I>&gt;<i>         &gt; x2gothinclientsystem not installed
+</I>&gt;<i>         &gt; 
+</I>&gt;<i>         &gt; Is it the plain 'x2goclient'? The version doesn't look as
+</I>&gt;<i>         recent as
+</I>&gt;<i>         &gt; the gtk client.
+</I>&gt;<i>         &gt; 
+</I>&gt;<i>         
+</I>&gt;<i>         Yes, sorry, that's a bit confusing. x2goclient 3.0.1-5 is the
+</I>&gt;<i>         Qt
+</I>&gt;<i>         version - John
+</I>&gt;<i>         
+</I>&gt;<i>         _______________________________________________
+</I>&gt;<i>         X2go-dev mailing list
+</I>&gt;<i>         <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i>         <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000616.html">[X2go-dev] trouble getting printing to work
+</A></li>
+	<LI>Next message: <A HREF="000620.html">[X2go-dev] trouble getting printing to work
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#617">[ date ]</a>
+              <a href="thread.html#617">[ thread ]</a>
+              <a href="subject.html#617">[ subject ]</a>
+              <a href="author.html#617">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] use thin client CPU resources
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20use%20thin%20client%20CPU%20resources&In-Reply-To=%3C20100702152006.49665vwl57nwccqu%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000746.html">
+   <LINK REL="Next"  HREF="000749.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] use thin client CPU resources</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20use%20thin%20client%20CPU%20resources&In-Reply-To=%3C20100702152006.49665vwl57nwccqu%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] use thin client CPU resources">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jul  2 15:20:06 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000746.html">[X2go-dev] Multiserver CUPS patches
+</A></li>
+        <LI>Next message: <A HREF="000749.html">[X2go-dev] use thin client CPU resources
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#747">[ date ]</a>
+              <a href="thread.html#747">[ thread ]</a>
+              <a href="subject.html#747">[ subject ]</a>
+              <a href="author.html#747">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi x2go-folks,
+
+here is another question to the developers...
+
+When talking to school teachers here in Kiel, there was a very central  
+demand to thin client work stations: run application on the thin  
+client hardware.
+
+in schools this is needed for:
+
+   o accessing USB-devices like LEGO mind storm robots etc.
+   o starting development environments on the thin client CPU (e.g. eclipse) so
+     that programming of ROBOT devices can be tested locally
+   o play media (DVD, AVI on CD or USB-Stick) on the thin client
+   o start firefox locally (but with the user's profile), esp. because of flash
+     media, but also animations on websites
+
+As I know, in LTSP there is a solution for that (a weird bash script  
+called ltsp-localapp or so).
+
+My question: is there also an idea or an approach for x2go how local  
+CPU usage of thin clients could be implemented? I suppose, there is no  
+implementation yet, is it?
+
+My basic idea of how it could be done:
+
+   o mount $HOME of the x2goserver on the client via sshfs, this mount  
+should be
+     tunneled through the main SSH connection (I know this is the other way
+     round compared to x2goprint spool dir and shared folders... this  
+might need
+     some work and ideas before we go into deatails)
+   o issue a script call on the thin client
+   o set some environment variables on the thin client from within this script
+     ($HOME, $USER etc.)
+   o let the x2goclient start the local app (like firefox, vlc,  
+mplayer, eclipse)
+
+As this is probably the most needed feature herearound I'd love to go  
+into detail with this issue sometime in August/September.
+
+Plz let me know what you think,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+eMail-LeseSchreibStunde: wochentags 8h-10h
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000746.html">[X2go-dev] Multiserver CUPS patches
+</A></li>
+	<LI>Next message: <A HREF="000749.html">[X2go-dev] use thin client CPU resources
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#747">[ date ]</a>
+              <a href="thread.html#747">[ thread ]</a>
+              <a href="subject.html#747">[ subject ]</a>
+              <a href="author.html#747">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

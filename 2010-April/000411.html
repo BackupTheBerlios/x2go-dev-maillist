@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Binary packages for Fedora
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Binary%20packages%20for%20Fedora&In-Reply-To=%3C4BBA1625.8000107%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000410.html">
+   <LINK REL="Next"  HREF="000412.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Binary packages for Fedora</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Binary%20packages%20for%20Fedora&In-Reply-To=%3C4BBA1625.8000107%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] Binary packages for Fedora">paul at vandervlis.nl
+       </A><BR>
+    <I>Mon Apr  5 18:56:05 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000410.html">[X2go-dev] Binary packages for Fedora
+</A></li>
+        <LI>Next message: <A HREF="000412.html">[X2go-dev] Binary packages for Fedora
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#411">[ date ]</a>
+              <a href="thread.html#411">[ thread ]</a>
+              <a href="subject.html#411">[ subject ]</a>
+              <a href="author.html#411">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Pavel Lis&#253; schreef:
+&gt;<i> Hello guys
+</I>&gt;<i> 
+</I>&gt;<i> Recently I've found this piece of software which is really missing.
+</I>&gt;<i> Previously I've played with nomachine stuff but it is not fully free. 
+</I>&gt;<i> I would like to help with creating packages for Fedora. 
+</I>
+Nice to hear ;-)
+
+&gt;<i> There is only
+</I>&gt;<i> x2goclient-cli command-line (not finished yet)
+</I>&gt;<i> 
+</I>&gt;<i>   I've tried it in Ubuntu but I'm little bit confused with too many
+</I>&gt;<i> packages there. Have you any suggestion how to split it to packages? 
+</I>
+Maybe this information is usuable?
+-------
+cups-x2go - X2GO printer for CUPS
+kldappasswd - LDAP based password tool for the x2go system
+nxcompshad - nx based library needed by the x2go system
+pinentry-x2go - Qt4-based PIN or pass-phrase entry dialog for x2goclient
+pinentry-x2go-gtk - gtk-based PIN or pass-phrase entry dialog for
+  x2goclient
+x2goagent - Special NX-ized client, was developed by NoMachine to handle
+  X sessions
+x2gocdmanager - clientside daemon enabling automatic CD-Rom mounting
+x2goclient - x2goclient qt4 client
+x2goclient-cli - x2goclient-cli command line client for x2go
+x2goclient-gtk - x2goclient gtk client
+x2gognomebindings - Description: x2gognomebindings (GNOME mimetypes for
+  x2go)
+x2gogroupadministration - x2go group administration (kcontrol module)
+x2gohostadministration - x2go host administration (kcontrol module)
+x2gokdebindings - x2gokdebindings (KDE mimetypes and icons for x2go)
+x2goldaptools - x2goldaptools LDAP authentification tools fpr x2go
+x2gomail - x2gomail messaging and notification tools
+x2goprint - x2goprint command
+x2goserver - x2goserver (daemon and tools)
+x2goserver-home - x2goserver-one (One Node Edition - for single server
+  usage)
+x2goserver-one - x2goserver-one (One Node Edition - for single server
+  usage)
+x2gosessionadministration - x2go session administration (kcontrol
+  module)
+x2gosmartcardrules - UDEV rules for smartcard readers
+x2gospyglass - x2go spyglass
+x2gosystemadministration - x2go system administration/preference
+  settings (kcontrol module)
+x2gothinclient - login daemon starting x2goclient in displaymanager mode
+x2gothinclientsystem - chroot x2go thinclient environment
+x2gousbmount - clientside usb mass-storage device mounting
+x2gouseradministration - x2go user administration (kcontrol module)
+--------------
+
+&gt;<i> And what is necessary for server part 
+</I>
+Only the package &quot;x2goserver&quot;.
+
+The packages x2goserver-home (for Ubuntu) and x2goserver-one (for
+Debian) provide only an &quot;easy setup script&quot;.
+
+You can live without the administration packages and setup scripts.
+
+&gt;<i> and which version you suppose to use for build like this (latest or older)?
+</I>
+I use &quot;latest&quot;, and I don't see problems.
+
+The future of the x2goclient-gtk client is unsure, it is likely that it
+will be dropped. A new version of x2goclient (QT based) is developed at
+the moment, with very interesting new futures like native session shadowing.
+
+With regards,
+Paul van der Vlis.
+
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000410.html">[X2go-dev] Binary packages for Fedora
+</A></li>
+	<LI>Next message: <A HREF="000412.html">[X2go-dev] Binary packages for Fedora
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#411">[ date ]</a>
+              <a href="thread.html#411">[ thread ]</a>
+              <a href="subject.html#411">[ subject ]</a>
+              <a href="author.html#411">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

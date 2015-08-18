@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#322: RDP connection through SSH proxy: Unable to	execute: rdesktop
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23322%3A%20RDP%20connection%20through%20SSH%20proxy%3A%20Unable%20to%0A%09execute%3A%20rdesktop&In-Reply-To=%3C525A6305.1020100%40vxpertise.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006333.html">
+   <LINK REL="Next"  HREF="006401.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#322: RDP connection through SSH proxy: Unable to	execute: rdesktop</H1>
+    <B>Mathias Ewald</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23322%3A%20RDP%20connection%20through%20SSH%20proxy%3A%20Unable%20to%0A%09execute%3A%20rdesktop&In-Reply-To=%3C525A6305.1020100%40vxpertise.net%3E"
+       TITLE="[X2Go-Dev] Bug#322: RDP connection through SSH proxy: Unable to	execute: rdesktop">mathias.ewald at vxpertise.net
+       </A><BR>
+    <I>Sun Oct 13 11:08:21 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006333.html">[X2Go-Dev] Processed: your mail
+</A></li>
+        <LI>Next message: <A HREF="006401.html">[X2Go-Dev] Bug#322: Bug#322: RDP connection through SSH proxy:	Unable to execute: rdesktop
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6334">[ date ]</a>
+              <a href="thread.html#6334">[ thread ]</a>
+              <a href="subject.html#6334">[ subject ]</a>
+              <a href="author.html#6334">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Version: 4.0.1.1-0
+
+x2goclient session configuration:
+
+[20131009111725764]
+speed=2
+pack=16m-jpeg
+quality=9
+fstunnel=true
+export=
+iconvto=UTF-8
+iconvfrom=ISO8859-1
+useiconv=false
+fullscreen=false
+multidisp=false
+display=1
+maxdim=false
+rdpclient=rdesktop
+directrdpsettings=
+width=800
+height=600
+dpi=86
+setdpi=true
+xinerama=false
+usekbd=true
+layout=us
+type=pc105/us
+sound=false
+soundsystem=pulse
+startsoundsystem=true
+soundtunnel=true
+defsndport=true
+sndport=4713
+print=false
+name=windows rdp test
+icon=:icons/128x128/x2gosession.png
+host=PUBLIC_IP
+user=mathias
+key=
+rdpport=3389
+sshport=22
+autologin=false
+krblogin=false
+directrdp=false
+rootless=false
+published=false
+applications=WWWBROWSER, MAILCLIENT, OFFICE, TERMINAL
+command=RDP
+rdpoptions=
+rdpserver=PRIVATE_IP
+xdmcpserver=localhost
+usesshproxy=true
+sshproxytype=SSH
+sshproxyuser=mathias
+sshproxykeyfile=
+sshproxyhost=PUBLIC_IP
+sshproxyport=22
+sshproxysamepass=false
+sshproxysameuser=false
+sshproxyautologin=true
+uniquehostkeyaliases=0
+setsessiontitle=0
+sessiontitle=
+autostart=0
+forwardsshagent=0
+mimeboxaction=OPEN
+variant=
+mimeboxextensions=
+autoconnect=0
+useexports=1
+restoreexports=0
+usemimebox=0
+
+
+x2go client error message in GUI:
+
+&quot;Unable to execute: rdesktop -g 800x600 PRIVATE_IP&quot;
+
+but rdesktop is there:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mathias at x220</A>:~$ dpkg -l | grep rdesktop
+ii  rdesktop 1.7.1-1                                 amd64        RDP 
+client for Windows NT/2000 Terminal Server and Windows Servers
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mathias at x220</A>:~$ which rdesktop
+/usr/bin/rdesktop
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mathias at x220</A>:~$
+
+
+x2go client debug output:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mathias at x220</A>:~$ x2goclient --debug
+x2go-INFO-1&gt; &quot;Starting x2goclient...&quot;
+x2go-WARNING-1&gt; &quot;Can't load translator: :/x2goclient_en_us&quot;
+x2go-WARNING-2&gt; &quot;Can't load translator: :/qt_en_US&quot;
+x2go-DEBUG-../onmainwindow.cpp:1165&gt; Removing apps from tray
+x2go-DEBUG-../onmainwindow.cpp:1133&gt; Plugging apps in tray.
+x2go-INFO-3&gt; &quot;Started  x2goclient.&quot;
+x2go-DEBUG-../onmainwindow.cpp:464&gt; &quot;$HOME=/home/mathias&quot;
+x2go-DEBUG-../onmainwindow.cpp:2160&gt; Reading 5 sessions from config file.
+x2go-DEBUG-../onmainwindow.cpp:1165&gt; Removing apps from tray
+x2go-INFO-8&gt; &quot;Starting connection to server: 88.198.244.99:22&quot;
+x2go-DEBUG-../onmainwindow.cpp:2796&gt; Start new ssh connection to 
+server:&quot;88.198.244.99&quot;:&quot;22&quot; krbLogin: false
+x2go-DEBUG-../onmainwindow.cpp:2891&gt; SSH connection established.
+x2go-DEBUG-../onmainwindow.cpp:3117&gt; Continue normal x2go session
+x2go-DEBUG-../onmainwindow.cpp:1165&gt; Removing apps from tray
+x2go-DEBUG-../onmainwindow.cpp:3940&gt; Executing remote command: 
+&quot;X2GODPI=86 x2gostartagent 800x600 adsl 16m-jpeg-9 unix-kde-depth_24 us 
+pc105/us 1 R RDP&quot;
+x2go-DEBUG-../onmainwindow.cpp:4707&gt; Agent output: &quot;53
+bf5828ddcf1e1409b3109a596ef1115a
+8154
+mathias-53-1381656965_stRRDP_dp24
+30001
+30002
+30003
+&quot;
+x2go-DEBUG-../onmainwindow.cpp:5272&gt; &quot;Starting NX proxy, command: 
+nxproxy -S 
+nx/nx,options=/home/mathias/.x2go/S-mathias-53-1381656965_stRRDP_dp24/options:53&quot;
+x2go-DEBUG-../onmainwindow.cpp:5532&gt; Proxy wrote on stderr: &quot;
+NXPROXY - Version 3.5.0
+
+Copyright (C) 2001, 2010 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Proxy running in client mode with pid '2723'.
+Session: Starting session at 'Sun Oct 13 10:58:47 2013'.
+Info: Connecting to remote host 'localhost:31001'.
+Info: Connection to remote proxy 'localhost:31001' established.
+&quot;
+x2go-DEBUG-../onmainwindow.cpp:5532&gt; Proxy wrote on stderr: &quot;Info: 
+Connection with remote proxy completed.
+&quot;
+x2go-DEBUG-../onmainwindow.cpp:5532&gt; Proxy wrote on stderr: &quot;Warning: 
+Unrecognized session type 'unix-kde-depth_24'. Assuming agent session.
+Info: Using ADSL link parameters 512/24/1/0.
+Info: Using cache parameters 4/4096KB/8192KB/8192KB.
+Info: Using pack method '16m-jpeg-9' with session 'unix-kde-depth_24'.
+Info: Using ZLIB data compression 1/1/32.
+Info: Using ZLIB stream compression 4/4.
+Info: No suitable cache file found.
+Info: Forwarding X11 connections to display ':0'.
+&quot;
+x2go-DEBUG-../onmainwindow.cpp:5532&gt; Proxy wrote on stderr: &quot;Session: 
+Session started at 'Sun Oct 13 10:58:48 2013'.
+&quot;
+x2go-DEBUG-../onmainwindow.cpp:5532&gt; Proxy wrote on stderr: &quot;Info: 
+Established X server connection.
+&quot;
+x2go-DEBUG-../onmainwindow.cpp:9762&gt; &quot;Searching proxy win: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:11252&gt; &quot;Searching window with title: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:5532&gt; Proxy wrote on stderr: &quot;Info: Using 
+shared memory parameters 1/2048K.
+&quot;
+x2go-DEBUG-../onmainwindow.cpp:9762&gt; &quot;Searching proxy win: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:11252&gt; &quot;Searching window with title: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:9762&gt; &quot;Searching proxy win: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:11252&gt; &quot;Searching window with title: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:9762&gt; &quot;Searching proxy win: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:11252&gt; &quot;Searching window with title: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:9762&gt; &quot;Searching proxy win: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:11252&gt; &quot;Searching window with title: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:5532&gt; Proxy wrote on stderr: &quot;Session: 
+Terminating session at 'Sun Oct 13 10:58:49 2013'.
+Info: Your session was closed before reaching a usable state.
+Info: This can be due to the local X server refusing access to the client.
+Info: Please check authorization provided by the remote X application.
+&quot;
+x2go-DEBUG-../onmainwindow.cpp:5532&gt; Proxy wrote on stderr: &quot;Session: 
+Session terminated at 'Sun Oct 13 10:58:49 2013'.
+&quot;
+x2go-DEBUG-../onmainwindow.cpp:5400&gt; Deleting Proxy.
+x2go-DEBUG-../onmainwindow.cpp:5449&gt; Waiting for proxy to exit.
+x2go-DEBUG-../onmainwindow.cpp:5469&gt; Checking exit status.
+x2go-DEBUG-../onmainwindow.cpp:5520&gt; Finished Proxy.
+x2go-DEBUG-../onmainwindow.cpp:9762&gt; &quot;Searching proxy win: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:11252&gt; &quot;Searching window with title: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:8578&gt; &quot;Command Message: X2GORUNCOMMAND 
+ERR NOEXEC:rdesktop  -g 800x600  10.173.20.13
+&quot;
+x2go-DEBUG-../onmainwindow.cpp:9762&gt; &quot;Searching proxy win: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:11252&gt; &quot;Searching window with title: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:9762&gt; &quot;Searching proxy win: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:11252&gt; &quot;Searching window with title: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:9762&gt; &quot;Searching proxy win: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:11252&gt; &quot;Searching window with title: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:9762&gt; &quot;Searching proxy win: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:11252&gt; &quot;Searching window with title: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+x2go-DEBUG-../onmainwindow.cpp:9762&gt; &quot;Searching proxy win: 
+X2GO-mathias-53-1381656965_stRRDP_dp24&quot;
+...
+
+
+
+cheers
+Mathias
+</PRE>
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006333.html">[X2Go-Dev] Processed: your mail
+</A></li>
+	<LI>Next message: <A HREF="006401.html">[X2Go-Dev] Bug#322: Bug#322: RDP connection through SSH proxy:	Unable to execute: rdesktop
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6334">[ date ]</a>
+              <a href="thread.html#6334">[ thread ]</a>
+              <a href="subject.html#6334">[ subject ]</a>
+              <a href="author.html#6334">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goclient-cli single application problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient-cli%20single%20application%20problem&In-Reply-To=%3Cfe6a97cf0905261738p3c91fda7mfcb49a02853d08e0%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000033.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goclient-cli single application problem</H1>
+    <B>Brian Moss</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient-cli%20single%20application%20problem&In-Reply-To=%3Cfe6a97cf0905261738p3c91fda7mfcb49a02853d08e0%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] x2goclient-cli single application problem">jbrianmoss at gmail.com
+       </A><BR>
+    <I>Wed May 27 02:38:21 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000033.html">[X2go-dev] x2goclient-cli single application problem
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#34">[ date ]</a>
+              <a href="thread.html#34">[ thread ]</a>
+              <a href="subject.html#34">[ subject ]</a>
+              <a href="author.html#34">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>It appears that this may not be an nxproxy setting, but an nxagent setting.
+At this link[1] rootless mode is described. To initiate is the -R option is
+used for nxagent. From the help text of nxclient-cli it does not appear that
+this information can be passed to nxagent.
+
+I'm still digging, so here is hoping.
+
+Brian
+
+On Tue, May 26, 2009 at 8:13 PM, Brian Moss &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jbrianmoss at gmail.com</A>&gt; wrote:
+
+&gt;<i> Hello all, I have been experimenting with the command line x2go client,
+</I>&gt;<i> x2goclient-cli, and have had great success except in one area.
+</I>&gt;<i>
+</I>&gt;<i> I am having difficulties getting the same results with the CLI client as I
+</I>&gt;<i> have with the Qt client when launching single applications.
+</I>&gt;<i>
+</I>&gt;<i> When using the Qt client the single application appears part of the local
+</I>&gt;<i> desktop, exactly how 'ssh -Y' appears.
+</I>&gt;<i>
+</I>&gt;<i> However when using the CLI client the application loads in a separate x2go
+</I>&gt;<i> window, and the single application does not have it's own window controls.
+</I>&gt;<i>
+</I>&gt;<i> When looking at the session manager - the dialog box that appears when you
+</I>&gt;<i> try and connect with a user that already has an active connection - I can
+</I>&gt;<i> see that the session type for the Qt client is 'Single Application' and for
+</I>&gt;<i> the CLI client it is desktop.
+</I>&gt;<i>
+</I>&gt;<i> The command I am executing is:
+</I>&gt;<i>
+</I>&gt;<i> x2goclient-cli --user mark --server instance_name.compute-1.amazonaws.com--command iceweasel --ssh-key ssh-keys/mark --geometry 800x600
+</I>&gt;<i> --session-type unix-application
+</I>&gt;<i>
+</I>&gt;<i> I specify the session-type to be 'unix-application', which is by default
+</I>&gt;<i> 'unix-kde'. I found 'unix-application' in the help information for nxproxy.
+</I>&gt;<i>
+</I>&gt;<i> Any help would be appreciated,
+</I>&gt;<i>
+</I>&gt;<i> Thanks
+</I>&gt;<i>
+</I>&gt;<i> Brian
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090526/20643150/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090526/20643150/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000033.html">[X2go-dev] x2goclient-cli single application problem
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#34">[ date ]</a>
+              <a href="thread.html#34">[ thread ]</a>
+              <a href="subject.html#34">[ subject ]</a>
+              <a href="author.html#34">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

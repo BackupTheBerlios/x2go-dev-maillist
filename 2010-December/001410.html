@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2GO and SSH
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2GO%20and%20SSH&In-Reply-To=%3C1292644025.24993.2.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001387.html">
+   <LINK REL="Next"  HREF="001422.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2GO and SSH</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2GO%20and%20SSH&In-Reply-To=%3C1292644025.24993.2.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] X2GO and SSH">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat Dec 18 04:47:05 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001387.html">[X2go-dev] X2GO and SSH
+</A></li>
+        <LI>Next message: <A HREF="001422.html">[X2go-dev] X2GO and SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1410">[ date ]</a>
+              <a href="thread.html#1410">[ thread ]</a>
+              <a href="subject.html#1410">[ subject ]</a>
+              <a href="author.html#1410">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2010-12-15 at 11:32 +0100, Oleksandr Shneyder wrote:
+&gt;<i> --[ UxBoD ]-- schrieb:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Good morning, Alex
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I downloaded the zip file and expanded it into the directory where the x2go client source is.  I then ran qmake followed by mingw32-make release and it failed to find the lib ssh include files. It would appear they are actually in libssh/include/libssh so I copied them all upto the top directory. It got a bit further with compilation but now fails trying to find the ssh library. What am I doing so wrong Alex. This appears to be such a complicated compiled task; and I guess it is due to not having certain paths defined somewhere.
+</I>&gt;<i> 
+</I>&gt;<i> Hello,
+</I>&gt;<i> 
+</I>&gt;<i> It is not complicate at all. Please read careful my Howto and you'll
+</I>&gt;<i> see, that it's very simple:
+</I>&gt;<i> 
+</I>&gt;<i> From    Re: [X2go-dev] X2GO and SSH 09.12.2010 17:44 by Oleksandr
+</I>&gt;<i> Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+</I>&gt;<i> 
+</I>&gt;<i> ==============================
+</I>&gt;<i> 
+</I>&gt;<i> unpack this file and install libssh in mingw directory which shipped
+</I>&gt;<i> with Qt SDK.
+</I>&gt;<i> 
+</I>&gt;<i> include/libssh/* -&gt; mingw/include/libssh/
+</I>&gt;<i> lib/libssh.dll.a -&gt; mingw/lib/
+</I>&gt;<i> 
+</I>&gt;<i> you must provide libssh.dll and zlib1.dll with your build of x2goclient
+</I>&gt;<i> 
+</I>&lt;snip&gt;
+Thanks, Oleksandr but I'm a little confused by the above statement.  If
+we are doing static linking, why do we need to distribute libssh.dll and
+zlib1.dll?
+
+By the way, we have it working now but are just trying to tweak it,
+e.g., to statically link all libraries so we have a single executable.
+For example, just as you describe, despite specifying static linking, we
+seem to need dlls for not only ssh but also openssl. Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001387.html">[X2go-dev] X2GO and SSH
+</A></li>
+	<LI>Next message: <A HREF="001422.html">[X2go-dev] X2GO and SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1410">[ date ]</a>
+              <a href="thread.html#1410">[ thread ]</a>
+              <a href="subject.html#1410">[ subject ]</a>
+              <a href="author.html#1410">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

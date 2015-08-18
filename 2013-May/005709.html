@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#218: Bug#218: Bug#218: x2gobroker: Hostname is used	instead of FQDN
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23218%3A%20Bug%23218%3A%20Bug%23218%3A%20x2gobroker%3A%20Hostname%20is%20used%0A%09instead%20of%20FQDN&In-Reply-To=%3CCAFJm-UP_YppXesMGWdmLZrq%3Dg9j0bYP4x%2BxvugO3cG1crRhimw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005698.html">
+   <LINK REL="Next"  HREF="005693.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#218: Bug#218: Bug#218: x2gobroker: Hostname is used	instead of FQDN</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23218%3A%20Bug%23218%3A%20Bug%23218%3A%20x2gobroker%3A%20Hostname%20is%20used%0A%09instead%20of%20FQDN&In-Reply-To=%3CCAFJm-UP_YppXesMGWdmLZrq%3Dg9j0bYP4x%2BxvugO3cG1crRhimw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#218: Bug#218: Bug#218: x2gobroker: Hostname is used	instead of FQDN">abo at dsl.dk
+       </A><BR>
+    <I>Mon May 27 10:54:46 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005698.html">[X2Go-Dev] Bug#218: Bug#218: x2gobroker: Hostname is used instead	of FQDN
+</A></li>
+        <LI>Next message: <A HREF="005693.html">[X2Go-Dev] Bug#216: X2Go issue (in src:x2gobroker) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5709">[ date ]</a>
+              <a href="thread.html#5709">[ thread ]</a>
+              <a href="subject.html#5709">[ subject ]</a>
+              <a href="author.html#5709">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I obviously don't know the algorithm used to figure out which server is
+selected, but in my ignorance, I would think the way to do it should be
+something like this:
+
+1. Ask all servers if they have a running session for the user trying to
+log in.
+2. If any servers answer possitively, send the configured hostname to the
+client.
+3. Ask all servers for the needed information.
+4. Do the math on the broker, to figure out which server to select.
+5. Send the selected server to the client.
+
+Every time the broker talks to a server, it would keep the information
+about which server it is talking to, in memory and just associate the
+returned information with that server. I really don't see why it is
+neccesary for the servers to reply back with who they think they are, nor
+who their counterparts in the cluster are.
+
+The fact that the algorithm relies on the servers to identify themselves
+also seems to me to be a potential security hole. What if a local user
+achieved enough administrative rights to change the hostname. Couldn't he
+then get the broker to send users to a server that he controls?
+
+
+
+2013/5/22 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+
+&gt;<i> tag #218 confirmed
+</I>&gt;<i> thanks
+</I>&gt;<i>
+</I>&gt;<i> Hi Anders,
+</I>&gt;<i>
+</I>&gt;<i> On Mi 22 Mai 2013 15:30:29 CEST Anders Bruun Olsen wrote:
+</I>&gt;<i>
+</I>&gt;<i>  Package: x2gobroker
+</I>&gt;&gt;<i> Version: 0.0.2.2
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I am setting up a loadbalanced cluster of x2go servers with a broker in
+</I>&gt;&gt;<i> front. There are thinclients on the LAN accessing the broker/cluster and
+</I>&gt;&gt;<i> there will be users logging on from outside. Users on the LAN are served
+</I>&gt;&gt;<i> term1.example.lan and term2.example.lan, whereas users from outside get
+</I>&gt;&gt;<i> term1.example.com and term2.example.com. So far everything has worked
+</I>&gt;&gt;<i> fine,
+</I>&gt;&gt;<i> but now I have started testing outside access, which does not work.
+</I>&gt;&gt;<i> x2gobroker (with autologin) tells x2goclient to access term1 or term2 - it
+</I>&gt;&gt;<i> leaves out the rest of the domain name. This works fine on the LAN,
+</I>&gt;&gt;<i> because
+</I>&gt;&gt;<i> the machines there have example.lan set as their searchdomain, but
+</I>&gt;&gt;<i> machines
+</I>&gt;&gt;<i> from outside can't resolve &quot;term1&quot; to &quot;term1.example.com&quot; and need to be
+</I>&gt;&gt;<i> given the FQDN. Please note that the FQDNs is specified in the
+</I>&gt;&gt;<i> sessionprofiles, but x2goclient still tries to resolve the short version
+</I>&gt;&gt;<i> of
+</I>&gt;&gt;<i> the name.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> A fix for this is not so trivial, as it seems. The ,,wrong'' hostname is
+</I>&gt;<i> produced by x2golistsession on the server that the x2gobroker-agent gets
+</I>&gt;<i> executed on.
+</I>&gt;<i>
+</I>&gt;<i> Obviously, your external clients call the X2Go Session Broker. The session
+</I>&gt;<i> broker knows a list of possible hosts for sending the select_session query
+</I>&gt;<i> to. The server that gets asked responds with a hostname from the X2Go
+</I>&gt;<i> session DB, that is not necessarily what you configured in X2Go Session
+</I>&gt;<i> Broker's x2gobroker-sessionprofiles.**conf.
+</I>&gt;<i>
+</I>&gt;<i> So, what is needed is a backwards mapping between the result that gets
+</I>&gt;<i> returned by x2gobroker-agent (i.e. the returned server name / hostname)
+</I>&gt;<i> back to the FQDN hostnames configured in X2Go Session Broker. The mapping
+</I>&gt;<i> is not bijective here, it is more about guessing and shooting blindfolded.
+</I>&gt;<i>
+</I>&gt;<i> /me scratches his head on the best approach for this...
+</I>&gt;<i>
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, herweg 7, 24357 fleckeby
+</I>&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130527/a0c3d57d/attachment-0001.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130527/a0c3d57d/attachment-0001.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005698.html">[X2Go-Dev] Bug#218: Bug#218: x2gobroker: Hostname is used instead	of FQDN
+</A></li>
+	<LI>Next message: <A HREF="005693.html">[X2Go-Dev] Bug#216: X2Go issue (in src:x2gobroker) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5709">[ date ]</a>
+              <a href="thread.html#5709">[ thread ]</a>
+              <a href="subject.html#5709">[ subject ]</a>
+              <a href="author.html#5709">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

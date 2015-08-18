@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] wiki page
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20wiki%20page&In-Reply-To=%3C20110821224518.14051z5osnmx21r2%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002729.html">
+   <LINK REL="Next"  HREF="002734.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] wiki page</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20wiki%20page&In-Reply-To=%3C20110821224518.14051z5osnmx21r2%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] wiki page">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sun Aug 21 22:45:18 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002729.html">[X2go-Dev] x2goclient build fails on current Debian sid.
+</A></li>
+        <LI>Next message: <A HREF="002734.html">[X2go-Dev] cups-x2go and new x2goserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2730">[ date ]</a>
+              <a href="thread.html#2730">[ thread ]</a>
+              <a href="subject.html#2730">[ subject ]</a>
+              <a href="author.html#2730">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Ivan,
+
+The posting quoted below was a private posting from Ivan to me and I   
+am so free and send my reply to x2go-dev as the documentation of the   
+tarballers on LinuxFromScratch might be interesting to others:
+<A HREF="http://wiki.x2go.org/installing_x2goserver_linuxfromscratch">http://wiki.x2go.org/installing_x2goserver_linuxfromscratch</A>
+<A HREF="http://wiki.x2go.org/installing_x2goclient_linuxfromscratch">http://wiki.x2go.org/installing_x2goclient_linuxfromscratch</A>
+
+@Ivan: I'll only comment on the wiki pages as I have no time to dive   
+into pyhoca installation now. Comes later.
+
+On Do 18 Aug 2011 22:52:06 CEST Ivan Kabaivanov wrote:
+
+&gt;<i> On Thursday 18 August 2011 00:00:59 Mike Gabriel wrote:
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Just looked at your server install howto... nxproxy is not needed on
+</I>&gt;&gt;<i> the server. It is needed on the client...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i> Mike,
+</I>&gt;<i>
+</I>&gt;<i> please check out the wiki. I think I'm pretty much done with x2goserver and
+</I>&gt;<i> x2goclient. Please give them a quick once-over to see if maybe I missed or
+</I>&gt;<i> messed something.
+</I>
+Thanks for doing this as it actually is a nice howto for the tarball   
+installation in general.
+
+Comments:
+
+GENERAL:
+Maybe we should mention ,,make clean'' somewhere on the pages. Do you have
+the feeling the make clean works properly with all the code projects?
+
+nxproxy: looks ok.
+
+x2goclient: qmake should not be needed here, it is in the Makefile.
+Maybe we should differentiate between client and plugin here.
+
+x2goclient+x2goplugin:
+
+make &amp;&amp; su - -c &quot;make install&quot;
+
+x2goclient only:
+
+make clean_client &amp;&amp; make build_client &amp;&amp; su - -c &quot;make install_client&quot;
+
+x2goplugin only:
+
+make clean_plugin &amp;&amp; make build_plugin &amp;&amp; su - -c &quot;make install_plugin&quot;
+
+
+nxcomp, nxcompext, nxcompshad: look ok
+
+x2goagent: I still do not like (and do not understand the linking of libs to
+/usr/lib/x2go... I guess I'll have to cross-check that...)
+
+x2goserver:
+This could be part of the Makefiles??? Maybe with a PREFIX var? Could
+you send a more elegant patch for the Makefile???
+
+$ sed -i &quot;s,/local,,g&quot; x2goserver-compat/Makefile
+$ sed -i &quot;s,/local,,g&quot; x2goserver-extensions/Makefile
+$ sed -i &quot;s,/local,,g&quot; x2goserver/Makefile
+
+o init script:
+To be in sync with Debian... Please call this init script (in your howto)
+,,x2goserver''. - THANKS
+
+
+ALL-IN-ALL
+
+Very good work and thanks for doing that!!!
+
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110821/64cb7215/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110821/64cb7215/attachment.pgp</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110821/64cb7215/attachment-0001.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110821/64cb7215/attachment-0001.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002729.html">[X2go-Dev] x2goclient build fails on current Debian sid.
+</A></li>
+	<LI>Next message: <A HREF="002734.html">[X2go-Dev] cups-x2go and new x2goserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2730">[ date ]</a>
+              <a href="thread.html#2730">[ thread ]</a>
+              <a href="subject.html#2730">[ subject ]</a>
+              <a href="author.html#2730">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

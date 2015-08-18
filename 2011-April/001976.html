@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] concept for X2go session lock-down to	kiosk-mode	(was Re: X2go is insecure)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20concept%20for%20X2go%20session%20lock-down%20to%0A%09kiosk-mode%09%28was%20Re%3A%20X2go%20is%20insecure%29&In-Reply-To=%3C20110401084842.GB12502%40fgnfs.fg-networking.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001975.html">
+   <LINK REL="Next"  HREF="001974.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] concept for X2go session lock-down to	kiosk-mode	(was Re: X2go is insecure)</H1>
+    <B>Erik Auerswald</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20concept%20for%20X2go%20session%20lock-down%20to%0A%09kiosk-mode%09%28was%20Re%3A%20X2go%20is%20insecure%29&In-Reply-To=%3C20110401084842.GB12502%40fgnfs.fg-networking.de%3E"
+       TITLE="[X2go-dev] concept for X2go session lock-down to	kiosk-mode	(was Re: X2go is insecure)">auerswald at fg-networking.de
+       </A><BR>
+    <I>Fri Apr  1 10:48:43 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001975.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+        <LI>Next message: <A HREF="001974.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1976">[ date ]</a>
+              <a href="thread.html#1976">[ thread ]</a>
+              <a href="subject.html#1976">[ subject ]</a>
+              <a href="author.html#1976">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+
+On Fri, Apr 01, 2011 at 10:31:51AM +0200, Mike Gabriel wrote:
+&gt;<i> Sorry, I mixed both systems up. I want to refer to SELinux... I haven't 
+</I>&gt;<i> work with any of them, and only know them from reading. However, I think 
+</I>&gt;<i> the time being invested by someone in a wrapper script (-&gt;Dick...) it 
+</I>&gt;<i> could be an alternative option to invest time into SELinux investigation 
+</I>&gt;<i> and a generic configuration that hardens the security of an X2go 
+</I>&gt;<i> server...
+</I>
+Well, a generic SELinux (or apparmor) config should allow user level
+access to the whole system, it might constrain root access. If root
+access is not allowed through X2Go, some other remote management solution
+needs to be used. If only X2Go sessions are affected, SSH will still
+work. Anyway, using something like X2Go for remote management (e.g. to
+access some GUI configuration tools) seems to me to be a valid use case
+of X2Go.
+
+Mike, I don't want to discourage you from investigating the
+SELinux/apparmor/SMACK/TOMOYO/... way of increasing X2Go security, I
+just don't think it is the right approach for Dick's use case. Dedicated
+X2Go user accounts with a forced (wrapper) command (via authorized_keys)
+seems to be a better fit IMHO.
+
+Regards,
+Erik
+-- 
+Dipl.-Inform. Erik Auerswald                <A HREF="http://www.fg-networking.de/">http://www.fg-networking.de/</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">auerswald at fg-networking.de</A> Tel: +49-631-4149988-0 Fax: +49-631-4149988-9
+
+Gesellschaft f&#252;r Fundamental Generic Networking mbH
+Gesch&#228;ftsf&#252;hrung: Volker Bauer, J&#246;rg Mayer
+Gerichtsstand: Amtsgericht Kaiserslautern - HRB: 3630
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001975.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+	<LI>Next message: <A HREF="001974.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1976">[ date ]</a>
+              <a href="thread.html#1976">[ thread ]</a>
+              <a href="subject.html#1976">[ subject ]</a>
+              <a href="author.html#1976">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,325 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH 6/8] drop debian/patches/001_add-main-makefile.full+lite.patch
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%206/8%5D%20drop%0A%20debian/patches/001_add-main-makefile.full%2Blite.patch&In-Reply-To=%3C20121212133412.11602p3ensqs4c04%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004709.html">
+   <LINK REL="Next"  HREF="004721.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH 6/8] drop debian/patches/001_add-main-makefile.full+lite.patch</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%206/8%5D%20drop%0A%20debian/patches/001_add-main-makefile.full%2Blite.patch&In-Reply-To=%3C20121212133412.11602p3ensqs4c04%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [PATCH 6/8] drop debian/patches/001_add-main-makefile.full+lite.patch">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Dec 12 13:34:12 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004709.html">[X2Go-Dev] [PATCH 6/8] drop	debian/patches/001_add-main-makefile.full+lite.patch
+</A></li>
+        <LI>Next message: <A HREF="004721.html">[X2Go-Dev] [PATCH 6/8] drop	debian/patches/001_add-main-makefile.full+lite.patch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4720">[ date ]</a>
+              <a href="thread.html#4720">[ thread ]</a>
+              <a href="subject.html#4720">[ subject ]</a>
+              <a href="author.html#4720">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-1 from me!!! This will break the tarball generation. Note that we  
+provide nx-libs to several other distros that have no clue about what  
+the /debian folder is for.
+
+Such a patch is only ok, if you fix the tarball creator in  
+nx-buildscripts (branch in nx-libs.git).
+
+Greets,
+Mike
+
+On Mi 12 Dez 2012 13:13:16 CET Reinhard Tartler wrote:
+
+&gt;<i> Instead, place the makefile into debian/Makefile.nx-libs. This makes the
+</I>&gt;<i> makefile easier to edit.
+</I>&gt;<i> ---
+</I>&gt;<i>  debian/Makefile.nx-libs                            |   51 +++++++++++
+</I>&gt;<i>  .../patches/001_add-main-makefile.full+lite.patch  |   93  
+</I>&gt;<i> --------------------
+</I>&gt;<i>  debian/patches/series                              |    1 -
+</I>&gt;<i>  debian/rules                                       |    2 +
+</I>&gt;<i>  4 files changed, 53 insertions(+), 94 deletions(-)
+</I>&gt;<i>  create mode 100644 debian/Makefile.nx-libs
+</I>&gt;<i>  delete mode 100644 debian/patches/001_add-main-makefile.full+lite.patch
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/debian/Makefile.nx-libs b/debian/Makefile.nx-libs
+</I>&gt;<i> new file mode 100644
+</I>&gt;<i> index 0000000..3151be2
+</I>&gt;<i> --- /dev/null
+</I>&gt;<i> +++ b/debian/Makefile.nx-libs
+</I>&gt;<i> @@ -0,0 +1,51 @@
+</I>&gt;<i> +#!/usr/bin/make -f
+</I>&gt;<i> +
+</I>&gt;<i> +PREFIX ?= /usr/local
+</I>&gt;<i> +CONFIGURE=./configure
+</I>&gt;<i> +
+</I>&gt;<i> +%:
+</I>&gt;<i> +	if test -f bin/Makefile; then ${MAKE} -C bin $@; fi
+</I>&gt;<i> +	if test -f nxcomp/Makefile; then ${MAKE} -C nxcomp $@; fi
+</I>&gt;<i> +	if test -f nxproxy/Makefile; then ${MAKE} -C nxproxy $@; fi
+</I>&gt;<i> +	if test -d nx-X11; then \
+</I>&gt;<i> +	    if test -f nxcompext/Makefile; then ${MAKE} -C nxcompext $@; fi; \
+</I>&gt;<i> +	    if test -f nxcompshad/Makefile; then ${MAKE} -C nxcompshad $@; fi; \
+</I>&gt;<i> +	    if test -f nx-X11/Makefile; then ${MAKE} -C nx-X11 $@; fi; \
+</I>&gt;<i> +	fi
+</I>&gt;<i> +
+</I>&gt;<i> +all: build
+</I>&gt;<i> +
+</I>&gt;<i> +test:
+</I>&gt;<i> +	echo &quot;No testing for NX (redistributed)&quot;
+</I>&gt;<i> +
+</I>&gt;<i> +build-lite:
+</I>&gt;<i> +	cd nxcomp &amp;&amp; autoconf &amp;&amp; (${CONFIGURE}) &amp;&amp; ${MAKE}
+</I>&gt;<i> +	cd nxproxy &amp;&amp; autoconf &amp;&amp; (${CONFIGURE}) &amp;&amp; ${MAKE}
+</I>&gt;<i> +
+</I>&gt;<i> +build-full:
+</I>&gt;<i> +# in the full case, we rely on &quot;magic&quot; in the nx-X11 imake-based  
+</I>&gt;<i> makefiles...
+</I>&gt;<i> +	cd nxcomp &amp;&amp; autoconf
+</I>&gt;<i> +	cd nxcompext &amp;&amp; autoconf
+</I>&gt;<i> +	cd nxcompshad &amp;&amp; autoconf
+</I>&gt;<i> +	cd nx-X11 &amp;&amp; ${MAKE} World
+</I>&gt;<i> +	cd nxproxy &amp;&amp; autoconf &amp;&amp; (${CONFIGURE}) &amp;&amp; ${MAKE}
+</I>&gt;<i> +
+</I>&gt;<i> +build:
+</I>&gt;<i> +	if ! test -d nx-X11; then \
+</I>&gt;<i> +	    ${MAKE} build-lite; \
+</I>&gt;<i> +	else \
+</I>&gt;<i> +	    ${MAKE} build-full; \
+</I>&gt;<i> +	fi
+</I>&gt;<i> +
+</I>&gt;<i> +uninstall:
+</I>&gt;<i> +	if test -f bin/Makefile; then ${MAKE} -C bin $@; fi
+</I>&gt;<i> +	if test -f nxcomp/Makefile; then ${MAKE} -C nxcomp $@; fi
+</I>&gt;<i> +	if test -f nxproxy/Makefile; then ${MAKE} -C nxproxy $@; fi
+</I>&gt;<i> +	if test -d nx-X11; then \
+</I>&gt;<i> +	    if test -f nxcompext/Makefile; then ${MAKE} -C nxcompext $@; fi; \
+</I>&gt;<i> +	    if test -f nxcompshad/Makefile; then ${MAKE} -C nxcompshad $@; fi; \
+</I>&gt;<i> +	    if test -f nx-X11/Makefile; then \
+</I>&gt;<i> +	        if test -d $(PREFIX)/lib/nx; then rm -rf $(PREFIX)/lib/nx; fi; \
+</I>&gt;<i> +	        if test -d $(PREFIX)/include/nx; then rm -rf  
+</I>&gt;<i> $(PREFIX)/include/nx; fi; \
+</I>&gt;<i> +	    fi; \
+</I>&gt;<i> +	fi
+</I>&gt;<i> diff --git a/debian/patches/001_add-main-makefile.full+lite.patch  
+</I>&gt;<i> b/debian/patches/001_add-main-makefile.full+lite.patch
+</I>&gt;<i> deleted file mode 100644
+</I>&gt;<i> index 6bbf70b..0000000
+</I>&gt;<i> --- a/debian/patches/001_add-main-makefile.full+lite.patch
+</I>&gt;<i> +++ /dev/null
+</I>&gt;<i> @@ -1,93 +0,0 @@
+</I>&gt;<i> -Description: Provide main Makefile for whole source tree
+</I>&gt;<i> - By design this patch is not needed to be sent upstream.
+</I>&gt;<i> -Forwarded: not-needed
+</I>&gt;<i> -Author: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i> -Last-Update: 2011-12-31
+</I>&gt;<i> ---- /dev/null
+</I>&gt;<i> -+++ b/Makefile
+</I>&gt;<i> -@@ -0,0 +1,51 @@
+</I>&gt;<i> -+#!/usr/bin/make -f
+</I>&gt;<i> -+
+</I>&gt;<i> -+PREFIX ?= /usr/local
+</I>&gt;<i> -+CONFIGURE=./configure
+</I>&gt;<i> -+
+</I>&gt;<i> -+%:
+</I>&gt;<i> -+	if test -f bin/Makefile; then ${MAKE} -C bin $@; fi
+</I>&gt;<i> -+	if test -f nxcomp/Makefile; then ${MAKE} -C nxcomp $@; fi
+</I>&gt;<i> -+	if test -f nxproxy/Makefile; then ${MAKE} -C nxproxy $@; fi
+</I>&gt;<i> -+	if test -d nx-X11; then \
+</I>&gt;<i> -+	    if test -f nxcompext/Makefile; then ${MAKE} -C nxcompext $@; fi; \
+</I>&gt;<i> -+	    if test -f nxcompshad/Makefile; then ${MAKE} -C nxcompshad $@; fi; \
+</I>&gt;<i> -+	    if test -f nx-X11/Makefile; then ${MAKE} -C nx-X11 $@; fi; \
+</I>&gt;<i> -+	fi
+</I>&gt;<i> -+
+</I>&gt;<i> -+all: build
+</I>&gt;<i> -+
+</I>&gt;<i> -+test:
+</I>&gt;<i> -+	echo &quot;No testing for NX (redistributed)&quot;
+</I>&gt;<i> -+
+</I>&gt;<i> -+build-lite:
+</I>&gt;<i> -+	cd nxcomp &amp;&amp; autoconf &amp;&amp; (${CONFIGURE}) &amp;&amp; ${MAKE}
+</I>&gt;<i> -+	cd nxproxy &amp;&amp; autoconf &amp;&amp; (${CONFIGURE}) &amp;&amp; ${MAKE}
+</I>&gt;<i> -+
+</I>&gt;<i> -+build-full:
+</I>&gt;<i> -+# in the full case, we rely on &quot;magic&quot; in the nx-X11 imake-based  
+</I>&gt;<i> makefiles...
+</I>&gt;<i> -+	cd nxcomp &amp;&amp; autoconf
+</I>&gt;<i> -+	cd nxcompext &amp;&amp; autoconf
+</I>&gt;<i> -+	cd nxcompshad &amp;&amp; autoconf
+</I>&gt;<i> -+	cd nx-X11 &amp;&amp; ${MAKE} World
+</I>&gt;<i> -+	cd nxproxy &amp;&amp; autoconf &amp;&amp; (${CONFIGURE}) &amp;&amp; ${MAKE}
+</I>&gt;<i> -+
+</I>&gt;<i> -+build:
+</I>&gt;<i> -+	if ! test -d nx-X11; then \
+</I>&gt;<i> -+	    ${MAKE} build-lite; \
+</I>&gt;<i> -+	else \
+</I>&gt;<i> -+	    ${MAKE} build-full; \
+</I>&gt;<i> -+	fi
+</I>&gt;<i> -+
+</I>&gt;<i> -+uninstall:
+</I>&gt;<i> -+	if test -f bin/Makefile; then ${MAKE} -C bin $@; fi
+</I>&gt;<i> -+	if test -f nxcomp/Makefile; then ${MAKE} -C nxcomp $@; fi
+</I>&gt;<i> -+	if test -f nxproxy/Makefile; then ${MAKE} -C nxproxy $@; fi
+</I>&gt;<i> -+	if test -d nx-X11; then \
+</I>&gt;<i> -+	    if test -f nxcompext/Makefile; then ${MAKE} -C nxcompext $@; fi; \
+</I>&gt;<i> -+	    if test -f nxcompshad/Makefile; then ${MAKE} -C nxcompshad $@; fi; \
+</I>&gt;<i> -+	    if test -f nx-X11/Makefile; then \
+</I>&gt;<i> -+	        if test -d $(PREFIX)/lib/nx; then rm -rf $(PREFIX)/lib/nx; fi; \
+</I>&gt;<i> -+	        if test -d $(PREFIX)/include/nx; then rm -rf  
+</I>&gt;<i> $(PREFIX)/include/nx; fi; \
+</I>&gt;<i> -+	    fi; \
+</I>&gt;<i> -+	fi
+</I>&gt;<i> ---- /dev/null
+</I>&gt;<i> -+++ b/bin/Makefile
+</I>&gt;<i> -@@ -0,0 +1,31 @@
+</I>&gt;<i> -+#!/usr/bin/make -f
+</I>&gt;<i> -+
+</I>&gt;<i> -+INSTALL_DIR=install -d -o root -g root -m 755
+</I>&gt;<i> -+INSTALL_FILE=install -o root -g root -m 644
+</I>&gt;<i> -+INSTALL_PROGRAM=install -o root -g root -m 755
+</I>&gt;<i> -+
+</I>&gt;<i> -+RM_FILE=rm -f
+</I>&gt;<i> -+RM_DIR=rmdir -p --ignore-fail-on-non-empty
+</I>&gt;<i> -+
+</I>&gt;<i> -+DESTDIR=
+</I>&gt;<i> -+PREFIX ?= /usr/local
+</I>&gt;<i> -+BINDIR=$(PREFIX)/bin
+</I>&gt;<i> -+NXLIBDIR=$(PREFIX)/lib/nx
+</I>&gt;<i> -+X2GOLIBDIR=$(PREFIX)/lib/x2go
+</I>&gt;<i> -+
+</I>&gt;<i> -+%:
+</I>&gt;<i> -+	echo &quot;Nothing to do for $@...&quot;
+</I>&gt;<i> -+
+</I>&gt;<i> -+install:
+</I>&gt;<i> -+	mkdir -p $(DESTDIR)$(X2GOLIBDIR)/bin
+</I>&gt;<i> -+	$(INSTALL_DIR) $(DESTDIR)$(X2GOLIBDIR)/bin/
+</I>&gt;<i> -+	ln -sf $(NXLIBDIR)/bin/nxagent $(DESTDIR)$(X2GOLIBDIR)/bin/x2goagent
+</I>&gt;<i> -+	mkdir -p $(DESTDIR)$(BINDIR)
+</I>&gt;<i> -+	find nx* | while read file; do $(INSTALL_PROGRAM) $$file  
+</I>&gt;<i> $(DESTDIR)$(BINDIR)/; done
+</I>&gt;<i> -+	find x2go* | while read file; do $(INSTALL_PROGRAM) $$file  
+</I>&gt;<i> $(DESTDIR)$(BINDIR)/; done
+</I>&gt;<i> -+
+</I>&gt;<i> -+uninstall:
+</I>&gt;<i> -+	find nx* | while read file; do rm -f $(DESTDIR)$(BINDIR)/$$file; done
+</I>&gt;<i> -+	find x2go* | while read file; do rm -f $(DESTDIR)$(BINDIR)/$$file; done
+</I>&gt;<i> -+	$(RM_FILE) $(DESTDIR)$(X2GOLIBDIR)/bin/x2goagent
+</I>&gt;<i> -+	$(RM_DIR) $(DESTDIR)$(X2GOLIBDIR)/bin/
+</I>&gt;<i> diff --git a/debian/patches/series b/debian/patches/series
+</I>&gt;<i> index fb63124..573312b 100644
+</I>&gt;<i> --- a/debian/patches/series
+</I>&gt;<i> +++ b/debian/patches/series
+</I>&gt;<i> @@ -1,5 +1,4 @@
+</I>&gt;<i>  000_add-NX-redistribution-README.full+lite.patch
+</I>&gt;<i> -001_add-main-makefile.full+lite.patch
+</I>&gt;<i>  002_nxcompshad_build-against-nx-x11-only.full.patch
+</I>&gt;<i>  003_nxcompshad_gcc43.full.patch
+</I>&gt;<i>  004_nx-X11_fix-nxcompshad-build.full.patch
+</I>&gt;<i> diff --git a/debian/rules b/debian/rules
+</I>&gt;<i> index 79ca44f..7114b24 100755
+</I>&gt;<i> --- a/debian/rules
+</I>&gt;<i> +++ b/debian/rules
+</I>&gt;<i> @@ -23,6 +23,7 @@ override_dh_clean:
+</I>&gt;<i>  	rm -f nx-X11/programs/Xserver/hw/nxagent/changelog
+</I>&gt;<i>  	rm -f nx-X11/programs/nxauth/changelog
+</I>&gt;<i>  	rm -f nxproxy/changelog
+</I>&gt;<i> +	rm -f Makefile
+</I>&gt;<i>  	dh_clean
+</I>&gt;<i>
+</I>&gt;<i>  override_dh_auto_build:
+</I>&gt;<i> @@ -34,6 +35,7 @@ override_dh_auto_build:
+</I>&gt;<i>  	cp -a nx-X11/programs/Xserver/hw/nxagent/CHANGELOG  
+</I>&gt;<i> nx-X11/programs/Xserver/hw/nxagent/changelog
+</I>&gt;<i>  	cp -a nx-X11/programs/nxauth/CHANGELOG nx-X11/programs/nxauth/changelog
+</I>&gt;<i>  	cp -a nxproxy/CHANGELOG nxproxy/changelog
+</I>&gt;<i> +	ln -s debian/Makefile.nx-libs Makefile
+</I>&gt;<i>   
+</I>&gt;<i> 	LD_LIBRARY_PATH=`pwd`/debian/libnx-x11/usr/lib/nx/X11:$$LD_LIBRARY_PATH  
+</I>&gt;<i> dh_auto_build --with quilt
+</I>&gt;<i>  	debian/post-build-nx.sh
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> 1.7.10.4
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121212/5e7e08b6/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121212/5e7e08b6/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004709.html">[X2Go-Dev] [PATCH 6/8] drop	debian/patches/001_add-main-makefile.full+lite.patch
+</A></li>
+	<LI>Next message: <A HREF="004721.html">[X2Go-Dev] [PATCH 6/8] drop	debian/patches/001_add-main-makefile.full+lite.patch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4720">[ date ]</a>
+              <a href="thread.html#4720">[ thread ]</a>
+              <a href="subject.html#4720">[ subject ]</a>
+              <a href="author.html#4720">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

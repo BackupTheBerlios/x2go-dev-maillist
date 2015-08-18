@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] RPMs for RH6
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20RPMs%20for%20RH6&In-Reply-To=%3C4F225F96.2090408%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003270.html">
+   <LINK REL="Next"  HREF="003250.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] RPMs for RH6</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20RPMs%20for%20RH6&In-Reply-To=%3C4F225F96.2090408%40obviously-nice.de%3E"
+       TITLE="[X2go-Dev] RPMs for RH6">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Fri Jan 27 09:25:58 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003270.html">[X2go-Dev] RPMs for RH6
+</A></li>
+        <LI>Next message: <A HREF="003250.html">[X2go-Dev] RPMs for RH6
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3249">[ date ]</a>
+              <a href="thread.html#3249">[ thread ]</a>
+              <a href="subject.html#3249">[ subject ]</a>
+              <a href="author.html#3249">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Bogdan,
+
+Am 27.01.2012 09:07, schrieb Bogdan-Andrei Taru:
+&gt;<i> Hello everyone,
+</I>&gt;<i> 
+</I>&gt;<i> I'm fairly new to x2go, but I'm trying to package X2Go Client &amp; Server for RedHat6 and I have the following suggestion/problem:
+</I>&gt;<i> 
+</I>&gt;<i> Server: it's hard to package the X2GO Server as RPM because some paths (/etc/x2go) are hardcoded into the Makefiles and a &quot;make PREFIX=/path install&quot; still installs the files under /etc/x2go. Could anyone please change the Makefile so that the PREFIX option works?
+</I>@Mike: is such solution possible? Can you, please, take care about it?
+
+&gt;<i> Client: in order to compile the client I downloaded the libssh-0.5.0-1 and libssh-devel-0.5.0-1 as RPMs and installed them (it's the same library as Debian's libssh-4, just a newer Version -- the one from Debian Squeeze is the version 0.4.5-3). The client basically works, but segfaults sometimes (not always) in &quot;exception&quot; cases, for example false authentication to the X2GO server. 
+</I>
+Looks like a bug in x2goclient. I'll try to find and fix it
+
+[........... ]
+
+&gt;<i> Thanks for your support,
+</I>&gt;<i> Bogdan
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+regards,
+Alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120127/f60c3b65/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120127/f60c3b65/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003270.html">[X2go-Dev] RPMs for RH6
+</A></li>
+	<LI>Next message: <A HREF="003250.html">[X2go-Dev] RPMs for RH6
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3249">[ date ]</a>
+              <a href="thread.html#3249">[ thread ]</a>
+              <a href="subject.html#3249">[ subject ]</a>
+              <a href="author.html#3249">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go-Future
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go-Future&In-Reply-To=%3C20120520143702.178650zl865yrka6%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004001.html">
+   <LINK REL="Next"  HREF="004006.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go-Future</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go-Future&In-Reply-To=%3C20120520143702.178650zl865yrka6%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] X2Go-Future">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sun May 20 14:37:02 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004001.html">[X2Go-Dev] X2Go-Future
+</A></li>
+        <LI>Next message: <A HREF="004006.html">[X2Go-Dev] X2Go-Future
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4005">[ date ]</a>
+              <a href="thread.html#4005">[ thread ]</a>
+              <a href="subject.html#4005">[ subject ]</a>
+              <a href="author.html#4005">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Arnold,
+
+On Sa 19 Mai 2012 21:55:28 CEST Arnold Krille wrote:
+
+&gt;<i> I am having some doubts about the future of X2Go and seeking for answers.
+</I>&gt;<i> I saw mails mentioning nx3.6 which seems a bit strange to me given that the
+</I>&gt;<i> next version of nomachine's nx is 4.0. And that is what makes me wonder about
+</I>&gt;<i> the future of x2go: The main parts of x2go (nx-agent and assorted low-level
+</I>&gt;<i> libraries) seem to go closed-source, at least as far as I can tell from their
+</I>&gt;<i> licensing documents. So what happens to X2Go?
+</I>
+There has been a long discussion about the current NX 3.5 code base.  
+NX 3.5 is based on Xorg 6.9 (I think). Pretty old kind of an Xorg and  
+probably lacking quite a few security patches reported against Xorg  
+upstream. This is the main problem of NX. And: it will still be there  
+with NX 4.0, as NoMachine has not freshed up the Xorg base NX got  
+forked from (AFAIK, people may correct me here).
+
+The above said is the reason why NX 3.5 (esp. the nxagent/x2goagent)  
+will not find its way into Debian currently.
+
+X2Go can work with any X agent available but nothing scales as good as  
+NX. As we do not believe in capturing technologies like VNC or  
+RemoteFX/RDP when we aim at performance we still stick to NX as GUI  
+rendering techology. X2Go itself in code is very flexible. If anything  
+better than NX will appear on the market, we will utilize it.
+
+&gt;<i> Sadly the expirience suffered when we updated the nx-
+</I>&gt;<i> libs from 3.4 to 3.5: On WAN-connections its still usable but on LAN X2Go
+</I>&gt;<i> looses in speed and latency and responsiveness against VNC. Which my co-
+</I>&gt;<i> workers really hate.
+</I>
+Then there must be something wrong with your setup. X2Go works on UMTS  
+(even GPRS) networks as well as on local area network. Not sure what  
+you are experiencing, but I cannot confirm what you report.
+
+&gt;<i> My hope was that next nx-libs might fix this. And they probably will, but not
+</I>&gt;<i> for us when there is a price-tag associated with it.
+</I>
+I am not so sure if NX 4.0 has really improved the NX technology  
+itself. From what I heard the improvements are rather on the session  
+protocol, multi-media integration etc.
+
+&gt;<i> So how to go on in our case? What is your future planning for X2Go?
+</I>
+Use NX 3.5 for now. We have an alternative approach we currently  
+discuss but currently we lack man power for even playing with code  
+snippets.
+
+&gt;<i> Do you
+</I>&gt;<i> have plans (and knowledge and manpower) to further develop the nx-libs on the
+</I>&gt;<i> open-source base?
+</I>
+Knowledge: yes, man power: no. What is needed for NX is a  
+re-integration into Xorg HEAD development. If there was a funding that  
+would cover 1-2 persons over a couple of months then this could be  
+feasible, but still: a huge project.
+
+&gt;<i> Do you have a promise from nomachine that the libs will go
+</I>&gt;<i> open-source again?
+</I>
+No, there is no real communication between X2Go and NoMachine. Apart  
+from bug reporting and answering to our reports.
+
+&gt;<i> Do you have plans to use a different x-protocol like vnc
+</I>&gt;<i> from tigervnc or turbovnc? (Combining the speed of tigervnc and the features
+</I>&gt;<i> of sessions and apps and storage-forwarding of x2go seems like a good idea to
+</I>&gt;<i> me currently.)
+</I>
+VNC is not an X protocol. Neither does it meet our needs and  
+requirements for a smooth remote X desktop.
+
+Thanks for your open questions, my answers are just mine. Other  
+developers may have different answers.
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120520/f85a0a99/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120520/f85a0a99/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004001.html">[X2Go-Dev] X2Go-Future
+</A></li>
+	<LI>Next message: <A HREF="004006.html">[X2Go-Dev] X2Go-Future
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4005">[ date ]</a>
+              <a href="thread.html#4005">[ thread ]</a>
+              <a href="subject.html#4005">[ subject ]</a>
+              <a href="author.html#4005">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [X2go-User] Usernames with dashes causes errors?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2go-User%5D%20Usernames%20with%20dashes%20causes%20errors%3F&In-Reply-To=%3C4F43BD8C.2040606%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003578.html">
+   <LINK REL="Next"  HREF="003582.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [X2go-User] Usernames with dashes causes errors?</H1>
+    <B>newsgroups.mail2 at stefanbaur.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2go-User%5D%20Usernames%20with%20dashes%20causes%20errors%3F&In-Reply-To=%3C4F43BD8C.2040606%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] [X2go-User] Usernames with dashes causes errors?">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Tue Feb 21 16:51:40 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003578.html">[X2Go-Dev] [X2go-User] Usernames with dashes causes errors?
+</A></li>
+        <LI>Next message: <A HREF="003582.html">[X2Go-Dev] [X2go-User] Usernames with dashes causes errors?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3581">[ date ]</a>
+              <a href="thread.html#3581">[ thread ]</a>
+              <a href="subject.html#3581">[ subject ]</a>
+              <a href="author.html#3581">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 21.02.2012 16:40, schrieb Mike Gabriel:
+&gt;<i> I just took a look at this and it is not so trivial to fix...
+</I>&gt;<i>
+</I>&gt;<i> Debian's adduser (3.110) script checks validity of user names against 
+</I>&gt;<i> this regexp:
+</I>&gt;<i>
+</I>&gt;<i>   '/^[_.A-Za-z0-9][<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">- at _.A-Za-z0-9</A>]*$?$/'
+</I>&gt;<i>
+</I>&gt;<i> Using a '-' as a field separator in the session ID intereferes with 
+</I>&gt;<i> the allowed characters in usernames.
+</I>&gt;<i>
+</I>&gt;<i> The issue has to be addressed in x2goserver, x2goclient and 
+</I>&gt;<i> python-x2go. I am not sure about the other helper applications (like 
+</I>&gt;<i> the desktop bindings, desktopsharing, etc.).
+</I>
+Nasty bash hacker approach:
+1) &quot;#&quot; isn't allowed, so it would work as a separator instead of the dash
+2) To avoid confusion when server and client aren't using the same 
+version, prefix the string with &quot;#&quot; when it's the new version where all 
+dashes are replaced with &quot;#&quot;
+3) in x2goclient, *only* replace the dashes when you detect that the 
+username does in fact contain a dash - that way, a new client can talk 
+to an old server (unless the username contains a dash, in which case it 
+would break - but that's what happens with an old client and old server 
+as well, so nothing gained, but also nothing lost)
+
+Variant: Only apply the substitution to the user name field, i.e.:
+myusername-remaining-parts-of-string -&gt; myusername-remaining-parts-of-string
+my-user-name-remaining-parts-of-string 
+-&gt;#my#user#name-remaining-parts-of-string
+
+(Of course, if &quot;#&quot; causes trouble, too, substitute another character 
+that isn't allowed by the above regex.)
+
+-Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003578.html">[X2Go-Dev] [X2go-User] Usernames with dashes causes errors?
+</A></li>
+	<LI>Next message: <A HREF="003582.html">[X2Go-Dev] [X2go-User] Usernames with dashes causes errors?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3581">[ date ]</a>
+              <a href="thread.html#3581">[ thread ]</a>
+              <a href="subject.html#3581">[ subject ]</a>
+              <a href="author.html#3581">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

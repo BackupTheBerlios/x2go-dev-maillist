@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] NX3.5 speed degradation
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20NX3.5%20speed%20degradation&In-Reply-To=%3CCAAVBiEXxKUenLrP0H5DAibaFPtttavPazYDkfQfW3NXYd7f9_Q%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003788.html">
+   <LINK REL="Next"  HREF="003780.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] NX3.5 speed degradation</H1>
+    <B>Eugene San</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20NX3.5%20speed%20degradation&In-Reply-To=%3CCAAVBiEXxKUenLrP0H5DAibaFPtttavPazYDkfQfW3NXYd7f9_Q%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] NX3.5 speed degradation">eugenesan at gmail.com
+       </A><BR>
+    <I>Wed Mar 28 14:05:13 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003788.html">[X2Go-Dev] A couple odds and ends questions
+</A></li>
+        <LI>Next message: <A HREF="003780.html">[X2Go-Dev] NX3.5 speed degradation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3779">[ date ]</a>
+              <a href="thread.html#3779">[ thread ]</a>
+              <a href="subject.html#3779">[ subject ]</a>
+              <a href="author.html#3779">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+I want to discuss the subject.
+
+Story goes like this:
+About 6 months, while planning upgrade (Ununtu 11.04-&gt;11.10) I've
+noticed severe degradation in speed of NX sessions.
+At the time I've decided to wait until LTS release, while being sure
+issue is related to GUI changes in Ubuntu.
+Recently I've reviewed the situation with 12.04 and found that problem
+is still there and related to NX and not to GUI changes in Ubuntu.
+My guess is that surrounding changes in distribution cause NX agent to
+misbehave.
+
+Overall user experience became unusable even on LAN and localhost connections.
+
+Now to the details:
+1. Screen redraw operations lags heavily even on local links.
+    Instant (sub 0.5sec) on U10.04, up to 5 seconds on U12.04.
+2. Constant screen redraws consume much more traffic.
+    Sub 100kbps on U10.04.
+    10mbps+ on U12.04 (Creating session with WAN quality settings and
+reconnecting with LAN, lowers bandwidth to sub 1mbps but picture
+quality suffers)
+3. NX4 on U12.04 is faster 3x (in average) than 3.5 on U10.04.
+4. NX3.5 on U12.04 is slower 3x then NX3.5 on U10.04 (some tests are
+x1000 slower!)
+5. Hybrid NX3.5&lt;-&gt;NX4 is slow with NX3.5 as server and fast with NX4 as server.
+
+Some details:
+  * I've evaluated both 32 and 64 bit platforms.
+  * I've compared fresh Ubuntu 10.04 and 12.04.
+  * Both Nomachine NX binaries and X2GO binaries (ppa:x2go/ppa) were tested.
+  * For reference I've performed NX4 and hybrid NX3.5&lt;-&gt;NX4 testing.
+  * Tested several usecases:
+    * Desktop with manual operation of terminal, webbrowser and random
+GUI application.
+    * Rootless UnixBench in graphics mode. (Note in 64bit test caches NX agent!)
+    * Desktop UnixBench in graphics mode. (Note in 64bit test caches NX agent!)
+    * Rootless Xterm with scrolling text (ls -R /)
+
+Please provide your feedbacks.
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003788.html">[X2Go-Dev] A couple odds and ends questions
+</A></li>
+	<LI>Next message: <A HREF="003780.html">[X2Go-Dev] NX3.5 speed degradation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3779">[ date ]</a>
+              <a href="thread.html#3779">[ thread ]</a>
+              <a href="subject.html#3779">[ subject ]</a>
+              <a href="author.html#3779">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

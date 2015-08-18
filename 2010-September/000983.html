@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Prevent session suspending and resuming
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Prevent%20session%20suspending%20and%20resuming&In-Reply-To=%3C4C877A43.3040803%40lavabit.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000984.html">
+   <LINK REL="Next"  HREF="000985.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Prevent session suspending and resuming</H1>
+    <B>Kevin Moellering</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Prevent%20session%20suspending%20and%20resuming&In-Reply-To=%3C4C877A43.3040803%40lavabit.com%3E"
+       TITLE="[X2go-dev] Prevent session suspending and resuming">kevinmoellering at lavabit.com
+       </A><BR>
+    <I>Wed Sep  8 13:57:55 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000984.html">[X2go-dev] Prevent session suspending and resuming
+</A></li>
+        <LI>Next message: <A HREF="000985.html">[X2go-dev] Prevent session suspending and resuming
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#983">[ date ]</a>
+              <a href="thread.html#983">[ thread ]</a>
+              <a href="subject.html#983">[ subject ]</a>
+              <a href="author.html#983">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Am 09.08.2010 17:12, schrieb contact at gmli.fr:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I would like to do two things :
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; - prevent users from suspending their session
+</I>&gt;<i> &gt; - prevent users from resuming their session
+</I>&gt;<i>
+</I>&gt;<i> You should take care about the *bindings packages - if you are using
+</I>&gt;<i> kde, you should not execute the command &quot;updatelockbutton&quot;.
+</I>&gt;<i> The postgresdb/sqlitedb is used for sessionresuming. If you make sure,
+</I>&gt;<i> that &quot;x2golistsessions&quot; won't return any running sessions, no session
+</I>&gt;<i> will be returned.
+</I>
+
+Hello everybody,
+
+after reading the archives of the mailing list I'm still not completely
+sure if there actually exists a functionality that cleans up sessions of
+users that are inactive for X hours.
+
+Now I decided to completely prevent users from suspending their
+sessions. I read the entry from Heinz-M. Graesing which he made on
+Sunday, the 9th of August 2010, but as far as i can see this does not
+prevent users from suspending their session when hitting the X on the
+upper right of the x2go window.
+Wouldn't it also be a feasible workaround to overwrite
+/usr/bin/x2gosuspend-session with /usr/bin/x2goterminate-session?
+
+I've tried this and the sessions seem terminated. At least I get a blank
+desktop if I login again after closing the window with the x-Button and
+the processes are killed (cannot be found using the ps command).
+
+Is that solution possible, or am I missing something?
+
+Referring to the case of resuming a session, I think it is clear that if
+there is no possibility to suspend sessions, it should be impossible to
+resume a session, too.
+
+Furthermore, if there is the possibility of an inactivity detection and
+thereby triggered session termination, I would also appreciate any
+information about that.
+
+Greetings,
+Kevin
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000984.html">[X2go-dev] Prevent session suspending and resuming
+</A></li>
+	<LI>Next message: <A HREF="000985.html">[X2go-dev] Prevent session suspending and resuming
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#983">[ date ]</a>
+              <a href="thread.html#983">[ thread ]</a>
+              <a href="subject.html#983">[ subject ]</a>
+              <a href="author.html#983">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

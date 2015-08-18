@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] home dirs with x2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20home%20dirs%20with%20x2go&In-Reply-To=%3C20100630140733.1364375fl8jgr62t%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000708.html">
+   <LINK REL="Next"  HREF="000707.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] home dirs with x2go</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20home%20dirs%20with%20x2go&In-Reply-To=%3C20100630140733.1364375fl8jgr62t%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] home dirs with x2go">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Jun 30 14:07:33 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000708.html">[X2go-dev] LDAP integration call for help
+</A></li>
+        <LI>Next message: <A HREF="000707.html">[X2go-dev] home dirs with x2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#704">[ date ]</a>
+              <a href="thread.html#704">[ thread ]</a>
+              <a href="subject.html#704">[ subject ]</a>
+              <a href="author.html#704">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hi list-folks,
+
+what kind of home dir setup does x2go expect/support.
+
+1. Scenario I tried...
+My default scenario: homes rest on an NFS server, homes are mounted as  
+NFS homes with kerberos security (sec=krb5i or sec=krb5p).
+
+Everything seems to work fine apart from x2go printing (I mentioned  
+this issue in another posting).
+
+2. Scenario I tried...
+I have two x2goservers, tied together with postgres, but without  
+explicit x2go  LDAP tweaks. Each server has its own homes, only real  
+data (no configs) is shared via Autofs-NFS in /home/&lt;user&gt;/MyDocuments.
+
+This means: /home/&lt;user&gt; on &lt;host1&gt; is different from /home/&lt;user&gt; on &lt;host2&gt;.
+
+x2go printing now works (no file copying onto NFS share as root  
+anymore), but x2golistsessions throws a bug:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at vidar</A>:~$ x2golistsessions --all-servers
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+tail:  
+,,/home/&lt;client-user&gt;/.x2go/C-&lt;server-user&gt;-53-1277893552_stDLXDE_dp24/session.log\'' kann nicht zum Lesen ge&#246;ffnet werden: No such file or  
+directory
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+21577|&lt;server-user&gt;-53-1277893552_stDLXDE_dp24|53|&lt;host1&gt;.das-netzwerkteam.de|R|30.06.10 12:25:52|fa4f8eb2071a396e215efbd048f3a5b7|&lt;client-ip&gt;|30007|30008|30.06.10  
+12:25:54|&lt;server-user&gt;|3417|30009
+26895|&lt;server-user&gt;-51-1277893678_stDGNOME_dp24|51|&lt;host2&gt;.das-netzwerkteam.de|R|30.06.10 12:27:58|b8b9058a32fd73ce3ae02cbae8aab605|&lt;client-ip&gt;|30004|30005|30.06.10  
+12:27:59|&lt;server-user&gt;|3292|30006
+
+
+Question: which scenarios have you already implied, which may be  
+missing or are untested? What home dir setup is most preferred from  
+the developers' point of view?
+
+Best,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+eMail-LeseSchreibStunde: wochentags 8h-10h
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000708.html">[X2go-dev] LDAP integration call for help
+</A></li>
+	<LI>Next message: <A HREF="000707.html">[X2go-dev] home dirs with x2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#704">[ date ]</a>
+              <a href="thread.html#704">[ thread ]</a>
+              <a href="subject.html#704">[ subject ]</a>
+              <a href="author.html#704">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

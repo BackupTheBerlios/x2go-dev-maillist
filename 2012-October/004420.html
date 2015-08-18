@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] SSH Agent (auth+forwarding) support in Python X2Go /	PyHoca-GUI
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20SSH%20Agent%20%28auth%2Bforwarding%29%20support%20in%20Python%20X2Go%20/%0A%09PyHoca-GUI&In-Reply-To=%3C20121011121033.12725pwahr7m9mah%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004419.html">
+   <LINK REL="Next"  HREF="004421.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] SSH Agent (auth+forwarding) support in Python X2Go /	PyHoca-GUI</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20SSH%20Agent%20%28auth%2Bforwarding%29%20support%20in%20Python%20X2Go%20/%0A%09PyHoca-GUI&In-Reply-To=%3C20121011121033.12725pwahr7m9mah%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] SSH Agent (auth+forwarding) support in Python X2Go /	PyHoca-GUI">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Oct 11 12:10:33 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004419.html">[X2Go-Dev] Processed: PyHoca-GUI: proile manager resized (for convenient usage on netbooks etc.)
+</A></li>
+        <LI>Next message: <A HREF="004421.html">[X2Go-Dev] Bug#45: x2gognomebindings install error on Ubuntu 12.04
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4420">[ date ]</a>
+              <a href="thread.html#4420">[ thread ]</a>
+              <a href="subject.html#4420">[ subject ]</a>
+              <a href="author.html#4420">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+during the last couple of days I have added SSH Agent  
+(forwarding+auth) support to Python X2Go (and so to PyHoca-GUI and  
+PyHoca-CLI).
+
+The feature is already available in the nightly-build (Debian)  
+archive. The Ubuntu nightly-built packages should follow soon.
+
+For SSH agent forwarding you need the not-yet-released Paramiko  
+version 1.8.0. For Debian I have packaged a Git snapshot and it is  
+available with the nightly-build of python-x2go.
+
+Try it out:
+
+   place your SSH pubkey on machine-1 and machine-2 (which can be reached via
+   machine-1) into the (for this demo) otherwise empty files:
+
+     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user-1 at machine-1</A>:~user-1/.ssh/authorized_keys
+
+   and
+
+     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user-2 at machine-2</A>:~user-2/.ssh/authorized_keys
+
+   Back on your local client:
+
+   $ ssh-add [&lt;priv-keyfile&gt;]
+   $ pyhoca-gui
+
+   Enable SSH agent forwarding in connection tab of a session profile for
+   machine-1. Use a simple TERMINAL session command.
+
+   Connect to <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user-1 at machine-1</A> and start a session on machine-1
+
+   $ echo $SSH_AUTH_SOCK
+   /tmp/ssh-&lt;hash&gt;/agent.&lt;pid&gt;
+
+   $ ssh &lt;user-2&gt;@&lt;machine-2&gt;
+   (should work without password)
+
+   For the authentication from <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user-1 at machine-1</A> to <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user-2 at machine-2</A> you use a
+   SSH agent connection that is tunneled back through Python X2Go to  
+your client
+   machine (the machine you run PyHoca-GUI on). So, the SSH agent on  
+your client
+   machine serves a challenge/response request from SSH client programs within
+   X2Go sessions.
+
+   Note: if you try the above with a GNOME desktop (XFCE4 probably as well) the
+   gnome-keyring will hijack the SSH agent functionality and ignore forwarded
+   SSH agent connections (with x2goserver-xsession package installed).
+
+   Use this command to disable SSH agent feature in gnome-keyring (within the
+   X2Go Session):
+
+   $ gconftool-2 -s /apps/gnome-keyring/daemon-components/ssh false   
+--type bool
+
+   After you have applied this gconf change, logout and start a new GNOME
+   session. Now SSH agent stuff is handled through ssh-agent and it should also
+   be aware of SSH agent forwarding connections.
+
+Have fun!
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121011/4b956985/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121011/4b956985/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004419.html">[X2Go-Dev] Processed: PyHoca-GUI: proile manager resized (for convenient usage on netbooks etc.)
+</A></li>
+	<LI>Next message: <A HREF="004421.html">[X2Go-Dev] Bug#45: x2gognomebindings install error on Ubuntu 12.04
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4420">[ date ]</a>
+              <a href="thread.html#4420">[ thread ]</a>
+              <a href="subject.html#4420">[ subject ]</a>
+              <a href="author.html#4420">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

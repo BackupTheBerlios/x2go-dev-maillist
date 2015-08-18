@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] [PATCH] Allow users to edit their *own* sessions only
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BPATCH%5D%20Allow%20users%20to%20edit%20their%20%2Aown%2A%20sessions%20only&In-Reply-To=%3C87mxg2twtx.fsf%40faui43f.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002548.html">
+   <LINK REL="Next"  HREF="002545.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] [PATCH] Allow users to edit their *own* sessions only</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BPATCH%5D%20Allow%20users%20to%20edit%20their%20%2Aown%2A%20sessions%20only&In-Reply-To=%3C87mxg2twtx.fsf%40faui43f.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-Dev] [PATCH] Allow users to edit their *own* sessions only">siretart at tauware.de
+       </A><BR>
+    <I>Mon Jul 25 13:37:46 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002548.html">[X2go-Dev] [PATCH] Allow users to edit their *own* sessions only
+</A></li>
+        <LI>Next message: <A HREF="002545.html">[X2go-Dev] Clean sessions (Was: Allow users to edit their *own*	sessions only)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2544">[ date ]</a>
+              <a href="thread.html#2544">[ thread ]</a>
+              <a href="subject.html#2544">[ subject ]</a>
+              <a href="author.html#2544">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Jul 25, 2011 at 12:32:44 (CEST), John A. Sullivan III wrote:
+
+&gt;<i> On Mon, 2011-07-25 at 08:32 +0200, Mike Gabriel wrote: 
+</I>&gt;&gt;<i> Hi Reinhard,
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> On Mo 25 Jul 2011 00:10:03 CEST Reinhard Tartler wrote:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> &gt; previously, users could create sessions under wrong uids or delete
+</I>&gt;&gt;<i> &gt; sessions from other users. This patch implements prevents this by
+</I>&gt;&gt;<i> &gt; checking the userid of the caller with the session id.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> +1 from me...
+</I>
+the patch has whitespace/tab issues and is therefore not ready.
+
+&gt;&gt;<i> &gt; [... patch ...]
+</I>&gt;&gt;<i> 
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> We addressed this a little differently as it is one of the problems we
+</I>&gt;<i> immediately recognized in X2Go two years ago and one of the major
+</I>&gt;<i> modifications we made in our environment.
+</I>&gt;<i>
+</I>&gt;<i> I'll have to dig out the specifics and your solution may be much better
+</I>&gt;<i> anyway but to scale to a large installation with a single database
+</I>&gt;<i> server and do it securely and without the users using the superuser
+</I>&gt;<i> database account, we changed all the scripts to use schemas named after
+</I>&gt;<i> the user's id.  Each user has a schema and within the schema there is a
+</I>&gt;<i> trigger to update an instance of x2gosessions which is accessible by
+</I>&gt;<i> postgres.  This table is used by a single x2gocleansessions routine
+</I>&gt;<i> which cleans up after all users rather than having 1000 such session all
+</I>&gt;<i> running every five seconds.
+</I>
+While implementing this change, it occured to me as well that having an
+extra field in the database schema would be beneficial to determine the
+user. For now, I avoided a schema change, but if we have to touch the
+schema, this would be an addition to consider.
+
+&gt;<i> The end result is a single database and a single cleanup daemon for an
+</I>&gt;<i> unlimited number of x2go servers and users with users having access to
+</I>&gt;<i> only their schema and no user using the postgres account - John
+</I>
+To be honest, I'd like to remove the cleanup daemon completely and
+integrate the cleanup into the listsessions command. The current
+implementation of the cleanup daemon in perl that runs as root and
+doesn't work properly anyway makes me feel quite uneasy.
+
+-- 
+Gruesse/greetings,
+Reinhard Tartler, KeyID 945348A4
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002548.html">[X2go-Dev] [PATCH] Allow users to edit their *own* sessions only
+</A></li>
+	<LI>Next message: <A HREF="002545.html">[X2go-Dev] Clean sessions (Was: Allow users to edit their *own*	sessions only)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2544">[ date ]</a>
+              <a href="thread.html#2544">[ thread ]</a>
+              <a href="subject.html#2544">[ subject ]</a>
+              <a href="author.html#2544">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

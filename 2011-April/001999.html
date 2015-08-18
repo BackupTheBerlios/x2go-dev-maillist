@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] [X2go-user] 10x printing speed increase for	x2go	printing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%5BX2go-user%5D%2010x%20printing%20speed%20increase%20for%0A%09x2go%09printing&In-Reply-To=%3Cb6228438-2621-4433-aa80-6e303f8e191b%40office.splatnix.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001997.html">
+   <LINK REL="Next"  HREF="002001.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] [X2go-user] 10x printing speed increase for	x2go	printing</H1>
+    <B>--[ UxBoD ]--</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%5BX2go-user%5D%2010x%20printing%20speed%20increase%20for%0A%09x2go%09printing&In-Reply-To=%3Cb6228438-2621-4433-aa80-6e303f8e191b%40office.splatnix.net%3E"
+       TITLE="[X2go-dev] [X2go-user] 10x printing speed increase for	x2go	printing">uxbod at splatnix.net
+       </A><BR>
+    <I>Sat Apr  9 09:29:49 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001997.html">[X2go-dev] [X2go-user] 10x printing speed increase for x2go	printing
+</A></li>
+        <LI>Next message: <A HREF="002001.html">[X2go-dev] [X2go-user] 10x printing speed increase for x2go	printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1999">[ date ]</a>
+              <a href="thread.html#1999">[ thread ]</a>
+              <a href="subject.html#1999">[ subject ]</a>
+              <a href="author.html#1999">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Original Message -----
+&gt;<i> Hi John,
+</I>&gt;<i> (Cc:ing this also to x2go-dev)
+</I>&gt;<i> 
+</I>&gt;<i> On Fr 08 Apr 2011 15:38:32 CEST &quot;John A. Sullivan III&quot; wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Phil has patched the x2goprint script to fix the disappearing print
+</I>&gt;<i> &gt; job
+</I>&gt;<i> &gt; problem and will be posting those patches to the dev list shortly.
+</I>&gt;<i> 
+</I>&gt;<i> Please note that I have also patched x2goprint that's stil pending
+</I>&gt;<i> for
+</I>&gt;<i> inclusion in x2goserver (we will drop the separate x2goprint
+</I>&gt;<i> project):
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=shortlog;h=refs/heads/pending/x2goprint">http://code.x2go.org/gitweb?p=x2goserver.git;a=shortlog;h=refs/heads/pending/x2goprint</A>
+</I>&gt;<i> 
+</I>&gt;<i> The patch makes x2goprint usable on NFS mounted home directories.
+</I>&gt;<i> 
+</I>&gt;<i> Furthermore, I guess it needs patches of cups-x2go as well. Because
+</I>&gt;<i> there are indeed some lost jobs and also zombie files that collect up
+</I>&gt;<i> (e.g. in /).
+</I>&gt;<i> 
+</I>&gt;<i> I guess the best approach for providing patches and share your work
+</I>&gt;<i> would be to work on the code base in Git on code.x2go.org.
+</I>&gt;<i> 
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>
+Mike,
+
+what I found was that the .ready file was sometimes not created on the SSHFS mounted spool directory; and as it was not there the X2Go print dialogue box would not be shown.  I basically changed the code to the following:
+
+
+if( $mounts=~m/$spooldir/)
+{
+     move (&quot;$printdir/$file&quot;, &quot;$spooldir&quot;) or die &quot;$!: Can't rename $file to $homedir/.x2go/C-$session/$file&quot;;
+     $file $spooldir\&quot;&quot;);
+
+     my $counter = 0;
+     while ( ! -f &quot;$spooldir/$file.ready&quot; &amp;&amp; $counter &lt; 10 )
+     {
+        open (RFILE,&quot;&gt;$spooldir/$file.ready&quot;);
+        print RFILE &quot;$file\n$title&quot;;
+        close (RFILE);
+        $counter = $counter + 1;
+     }
+     if ( $counter &gt; 1 ) { syslog(&quot;info&quot;, &quot;Failed to write ready file - Count $counter - C-$session/$file&quot;); }
+}
+else
+{
+     unlink(&quot;$printdir/$file&quot;);
+}
+
+So at least now it will try a few times and if it does file then a syslog message is produced which OSSEC picks up and alerts us on. I should add that the actual PDF file does make it to the physical client computer. Is that what you have seen ?
+-- 
+Thanks, Phil
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001997.html">[X2go-dev] [X2go-user] 10x printing speed increase for x2go	printing
+</A></li>
+	<LI>Next message: <A HREF="002001.html">[X2go-dev] [X2go-user] 10x printing speed increase for x2go	printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1999">[ date ]</a>
+              <a href="thread.html#1999">[ thread ]</a>
+              <a href="subject.html#1999">[ subject ]</a>
+              <a href="author.html#1999">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

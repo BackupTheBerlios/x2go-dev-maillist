@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Go Client Code Changes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20Client%20Code%20Changes&In-Reply-To=%3C1295440862.9500.90.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001497.html">
+   <LINK REL="Next"  HREF="001499.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Go Client Code Changes</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20Client%20Code%20Changes&In-Reply-To=%3C1295440862.9500.90.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] X2Go Client Code Changes">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Jan 19 13:41:02 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001497.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+        <LI>Next message: <A HREF="001499.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1498">[ date ]</a>
+              <a href="thread.html#1498">[ thread ]</a>
+              <a href="subject.html#1498">[ subject ]</a>
+              <a href="author.html#1498">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2011-01-19 at 11:55 +0000, --[ UxBoD ]-- wrote:
+&gt;<i> Hello All,
+</I>&gt;<i> 
+</I>&gt;<i> We are deep into the x2goclient code at the moment getting it to work better with vcxsrv and have a question around when the X server is started.  It would appear that SSH, X and Pulse are all started, on Windows, when the application is initially launched.  We can understand why SSH and Pulse are though unsure about X.  Was there any technical reason why X could not be launched when a business card was selected and the login credentials entered ?  Our thinking was that if it were launched then multiple sessions could be initiated each with there own display ID.
+</I>&gt;<i> 
+</I>&gt;<i> We would very much welcome your thoughts on this matter before we spend to much time attempting to make the code changes.
+</I>
+I might add that this is not just a matter of curiosity but rather quite
+important.  We see no other way in Windows of enabling the full screen
+experience for users, i.e., for those who want to work as if their X2Go
+desktop is their only desktop.
+
+Because the current client launches the Windows X Server before the
+session parameters are chosen, it wisely puts the X Server into
+multi-window mode.  We assume this is so that it can dynamically resize
+into whatever size the user wants it or to whatever size was previously
+used in the case of resuming a suspended session.  However, it also
+means that the X Server will never grow larger than the entire screen
+EXCEPT for the Windows title bar and task bar.
+
+This is ideal for some users who regularly use both desktops.  For
+others, it is a nightmare where they frequently close their entire X2Go
+session accidentally by clicking in the top right most &quot;x&quot; button
+thinking they are closing their maximized running application or jut
+being generally confused by the desktop within a desktop approach.  I
+also believe that -multiwindow, as opposed to -fullscreen and -rootless,
+does not grab the &lt;ALT&gt;&lt;TAB&gt; sequence so users who are working primarily
+in the X2Go desktops cannot cycle through their windows easily and thus
+experience reduced productivity and increased frustration.
+
+Our thought was that, by delaying the X Server start until after the
+session parameters were chosen, we could start the X Server in
+-fullscreen mode or -rootless (when &quot;Available Area&quot; is chosen) when
+those are the session parameters rather than a fixed size or specific
+application.
+
+Phil, I know we originally spoke about &quot;Available Area&quot; being
+-multiwindow set to maximumSize() but I forgot about the &lt;ALT&gt;&lt;TAB&gt;
+issue so we are better off making that -rootless I think.
+
+Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001497.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+	<LI>Next message: <A HREF="001499.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1498">[ date ]</a>
+              <a href="thread.html#1498">[ thread ]</a>
+              <a href="subject.html#1498">[ subject ]</a>
+              <a href="author.html#1498">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

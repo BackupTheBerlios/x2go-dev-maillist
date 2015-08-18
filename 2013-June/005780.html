@@ -1,0 +1,318 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2go no longer works after reboot on CentOS 6.4
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20no%20longer%20works%20after%20reboot%20on%20CentOS%206.4&In-Reply-To=%3C51B5A931.5020303%40recreatie-zorg.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005779.html">
+   <LINK REL="Next"  HREF="005781.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2go no longer works after reboot on CentOS 6.4</H1>
+    <B>Jan Middelkoop</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20no%20longer%20works%20after%20reboot%20on%20CentOS%206.4&In-Reply-To=%3C51B5A931.5020303%40recreatie-zorg.nl%3E"
+       TITLE="[X2Go-Dev] x2go no longer works after reboot on CentOS 6.4">jan at recreatie-zorg.nl
+       </A><BR>
+    <I>Mon Jun 10 12:23:45 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005779.html">[X2Go-Dev] x2go no longer works after reboot on CentOS 6.4
+</A></li>
+        <LI>Next message: <A HREF="005781.html">[X2Go-Dev] x2go no longer works after reboot on CentOS 6.4
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5780">[ date ]</a>
+              <a href="thread.html#5780">[ thread ]</a>
+              <a href="subject.html#5780">[ subject ]</a>
+              <a href="author.html#5780">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Anders,
+
+Thank you for your prompt reply.
+
+As a note of interest, /usr/libexec/x2go is the correct directory it seems:
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at local</A> ~]# LC_ALL=C ls -al /usr/libexec/x2go
+total 92
+drwxr-xr-x.  3 root root      4096 Jun  6 13:28 .
+drwxr-xr-x. 14 root root      4096 Jun  6 20:06 ..
+drwxr-xr-x. 16 root root      4096 May 23 01:19 extensions
+-rwxr-xr-x.  1 root root      1256 May 19 01:02 x2gochangestatus
+-rwxr-xr-x.  1 root root      1426 May 19 01:02 x2gocreatesession
+-rwxr-xr-x.  1 root root      1243 May 19 01:02 x2gogetagent
+-rwxr-xr-x.  1 root root      1266 May 19 01:02 x2gogetdisplays
+-rwxr-xr-x.  1 root root      1258 May 19 01:02 x2gogetports
+-rwxr-xr-x.  1 root root      1258 May 19 01:02 x2gogetstatus
+-rwxr-xr-x.  1 root root      1300 May 19 01:02 x2goinsertport
+-rwxr-xr-x.  1 root root      1311 May 19 01:02 x2goinsertsession
+-rwxr-xr-x.  1 root root      1572 May 19 01:02 x2golistsessions_sql
+-rwxr-xr-x.  1 root root      1036 May 19 01:02 x2gologlevel
+-rwxr-xr-x.  1 root root      1361 May 19 01:02 x2goresume
+-rwxr-xr-x.  1 root root      1278 May 19 01:02 x2gormport
+-rwxr-sr-x.  1 root x2gouser  5040 May 23 01:19 x2gosqlitewrapper
+-rwxr-xr-x.  1 root root     15160 May 19 01:02 x2gosqlitewrapper.pl
+-rwxr-xr-x.  1 root root      1273 May 19 01:02 x2gosuspend-agent
+-rwxr-xr-x.  1 root root      1232 May 19 01:02 x2gosyslog
+[<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at local</A> ~]#
+
+However, there are also files in /usr/lib64/x2go/
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at local</A> ~]# LC_ALL=C ls -al /usr/lib64/x2go/
+total 72
+drwxr-xr-x.  2 root root  4096 Jun  6 13:28 .
+dr-xr-xr-x. 49 root root 36864 Jun  6 19:49 ..
+-rw-r--r--.  1 root root 20852 May 19 01:02 x2godbwrapper.pm
+-rw-r--r--.  1 root root  1834 May 19 01:02 x2gologlevel.pm
+[<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at local</A> ~]#
+
+I think this is where things are getting interesting.
+
+Kindest regards,
+
+Jan Middelkoop
+Recreatie en Zorg Groep B.V.
+
+-- 
+Website: <A HREF="http://www.recreatie-zorg.nl/">http://www.recreatie-zorg.nl/</A>
+E-mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jan at recreatie-zorg.nl</A>
+Telephone: +31 10 714 22 97
+
+
+Op 10-06-13 11:56, Anders Bruun Olsen schreef:
+&gt;<i> On my systems it returns /usr/lib/x2go, which is where x2gologlevel.pm 
+</I>&gt;<i> &lt;<A HREF="http://x2gologlevel.pm">http://x2gologlevel.pm</A>&gt; is located. /usr/sbin/x2gocleansessions uses 
+</I>&gt;<i> &quot;x2gopath libexec&quot; to get which paths it needs to search for the 
+</I>&gt;<i> needed perl modules. Why x2gopath returns that path on your system is 
+</I>&gt;<i> beyond me - I generally only run Ubuntu on my systems :)
+</I>&gt;<i> It is really quite weird, as /usr/bin/x2gopath (at least on my 
+</I>&gt;<i> systems) doesn't even seem capable of returning a path like the one 
+</I>&gt;<i> you are getting. A workaround would probably be to make 
+</I>&gt;<i> /usr/libexec/x2go a symlink to /usr/lib64/x2go. I do however think it 
+</I>&gt;<i> would be a good idea to find out why this is happening, as other 
+</I>&gt;<i> CentOS users might run into the same problem, and it might be 
+</I>&gt;<i> preventable in the code.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> 2013/6/10 Jan Middelkoop &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jan at recreatie-zorg.nl</A> 
+</I>&gt;<i> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jan at recreatie-zorg.nl</A>&gt;&gt;
+</I>&gt;<i>
+</I>&gt;<i>     [<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at local</A> ~]# x2gopath libexec
+</I>&gt;<i>     /usr/libexec/x2go
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     Kindest regards,
+</I>&gt;<i>
+</I>&gt;<i>     Jan Middelkoop
+</I>&gt;<i>     Recreatie en Zorg Groep B.V.
+</I>&gt;<i>
+</I>&gt;<i>     -- 
+</I>&gt;<i>     Website:<A HREF="http://www.recreatie-zorg.nl/">http://www.recreatie-zorg.nl/</A>
+</I>&gt;<i>     E-mail:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jan at recreatie-zorg.nl</A>  &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jan at recreatie-zorg.nl</A>&gt;
+</I>&gt;<i>     Telephone:+31 10 714 22 97  &lt;tel:%2B31%2010%20714%2022%2097&gt;
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     Op 10-06-13 11:31, Anders Bruun Olsen schreef:
+</I>&gt;&gt;<i>     Hi Jan,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     Can you post the output of: &quot;x2gopath libexec&quot;?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     2013/6/10 Jan Middelkoop &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jan at recreatie-zorg.nl</A>
+</I>&gt;&gt;<i>     &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jan at recreatie-zorg.nl</A>&gt;&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>         Hi Anders,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>         Thank you for your reply.  Sorry for not getting back to you
+</I>&gt;&gt;<i>         earlier.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>         I definitely do not have an SSH proxy configured in the
+</I>&gt;&gt;<i>         x2goclient.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>         If you have any other suggestions or things I might try,
+</I>&gt;&gt;<i>         please let me know.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>         Kindest regards,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>         Jan Middelkoop
+</I>&gt;&gt;<i>         Recreatie en Zorg Groep B.V.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>         -- 
+</I>&gt;&gt;<i>         Website:<A HREF="http://www.recreatie-zorg.nl/">http://www.recreatie-zorg.nl/</A>
+</I>&gt;&gt;<i>         E-mail:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jan at recreatie-zorg.nl</A>  &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jan at recreatie-zorg.nl</A>&gt;
+</I>&gt;&gt;<i>         Telephone:+31 10 714 22 97  &lt;tel:%2B31%2010%20714%2022%2097&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>         Op 07-06-13 10:15, Anders Bruun Olsen schreef:
+</I>&gt;&gt;&gt;<i>         Hi Jan,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>         The output from x2goclient indicates that it is trying to
+</I>&gt;&gt;&gt;<i>         use an SSH proxy. Can you double check that your x2go
+</I>&gt;&gt;&gt;<i>         session doesn't have SSH proxying enabled? (Go to Session
+</I>&gt;&gt;&gt;<i>         Preferences and make sure that &quot;Use Proxy server for SSH
+</I>&gt;&gt;&gt;<i>         connection&quot; isn't chosen)
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>         2013/6/6 Jan Middelkoop &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jan at recreatie-zorg.nl</A>
+</I>&gt;&gt;&gt;<i>         &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jan at recreatie-zorg.nl</A>&gt;&gt;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>             Hello!
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>             After not getting freenx working properly on a clean
+</I>&gt;&gt;&gt;<i>             install of CentOS 6.4, someone advised me to install
+</I>&gt;&gt;&gt;<i>             x2go server.  I was surprised by the ease of
+</I>&gt;&gt;&gt;<i>             installation, using the RHEL6 repository.  Using an x2go
+</I>&gt;&gt;&gt;<i>             client on Ubuntu 12.04 to connect, things worked
+</I>&gt;&gt;&gt;<i>             fantastic out of the box.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>             However, after a reboot of the CentOS 6.4 machine, the
+</I>&gt;&gt;&gt;<i>             client can no longer connect.  I've presented this issue
+</I>&gt;&gt;&gt;<i>             to #x2go on Freenode, where sunweaver was gracious
+</I>&gt;&gt;&gt;<i>             enough to provide some useful information.  He advised
+</I>&gt;&gt;&gt;<i>             me to post about my issue on this mailing list.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>             After an unsuccessful connection attempt, this is in
+</I>&gt;&gt;&gt;<i>             /var/log/syslog with debug log level:
+</I>&gt;&gt;&gt;<i>             <A HREF="http://pastebin.com/L3e4xP6g">http://pastebin.com/L3e4xP6g</A>  The x2go client says:
+</I>&gt;&gt;&gt;<i>             <A HREF="http://pastebin.com/CiGatMeS">http://pastebin.com/CiGatMeS</A>  When I connect, I get
+</I>&gt;&gt;&gt;<i>             those errors. When I re-connect it shows an active
+</I>&gt;&gt;&gt;<i>             session, but I can't resume it.  I can start a new one,
+</I>&gt;&gt;&gt;<i>             but then the same thing happens as the first time.  The
+</I>&gt;&gt;&gt;<i>             error message shows up and next time there's 2 sessions
+</I>&gt;&gt;&gt;<i>             in the session popup during login.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>             Per sunweaver's suggestions, I've tried   rm -f
+</I>&gt;&gt;&gt;<i>             /var/lib/x2go/x2go_sessions  and  x2godbadmin --createdb
+</I>&gt;&gt;&gt;<i>               but that didn't solve the problem.  There is also no
+</I>&gt;&gt;&gt;<i>             process x2gocleansessions running.  There is nothing
+</I>&gt;&gt;&gt;<i>             actually running with x2go in the name (ps aux | grep
+</I>&gt;&gt;&gt;<i>             x2go returns nothing).  When starting x2gocleansessions
+</I>&gt;&gt;&gt;<i>             manually, I get: <A HREF="http://pastebin.com/fExxSJ5p">http://pastebin.com/fExxSJ5p</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>             Another suggestion was to create a brand new user
+</I>&gt;&gt;&gt;<i>             account, but there I get the same error as with the
+</I>&gt;&gt;&gt;<i>             other user account.  I've tried a fresh account on both
+</I>&gt;&gt;&gt;<i>             server and client.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>             About the not locating x2gologlevel.pm
+</I>&gt;&gt;&gt;<i>             &lt;<A HREF="http://x2gologlevel.pm">http://x2gologlevel.pm</A>&gt; bit (the x2gocleansessions
+</I>&gt;&gt;&gt;<i>             error)... seems like it's include path is insufficient.
+</I>&gt;&gt;&gt;<i>              The file is in /usr/lib64/x2go/x2gologlevel.pm
+</I>&gt;&gt;&gt;<i>             &lt;<A HREF="http://x2gologlevel.pm">http://x2gologlevel.pm</A>&gt;.  Not sure how to fix that and
+</I>&gt;&gt;&gt;<i>             if it's indication of bigger problems.  Also
+</I>&gt;&gt;&gt;<i>             interesting... in the sudoers file there's a reference
+</I>&gt;&gt;&gt;<i>             to /usr/bin/x2gopgwrapper, but this executable does not
+</I>&gt;&gt;&gt;<i>             exist.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>             If you have any suggestions on things which I could try
+</I>&gt;&gt;&gt;<i>             that might shed further light on this, please let me know.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>             Also, the machine that's plagued with this issue is a
+</I>&gt;&gt;&gt;<i>             fresh installation, with nothing sensitive, critical or
+</I>&gt;&gt;&gt;<i>             even mildly important running there yet.  I could
+</I>&gt;&gt;&gt;<i>             provide you with ssh access to this machine so you can
+</I>&gt;&gt;&gt;<i>             have a look around and/or attempt to connect.  If that
+</I>&gt;&gt;&gt;<i>             helps, please find me on irc.freenode.net
+</I>&gt;&gt;&gt;<i>             &lt;<A HREF="http://irc.freenode.net">http://irc.freenode.net</A>&gt; in #x2go under nickname
+</I>&gt;&gt;&gt;<i>             Hyperbyte, so we can work something out.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>             Kindest regards,
+</I>&gt;&gt;&gt;<i>             Jan Middelkoop
+</I>&gt;&gt;&gt;<i>             _______________________________________________
+</I>&gt;&gt;&gt;<i>             X2Go-Dev mailing list
+</I>&gt;&gt;&gt;<i>             <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>&gt;
+</I>&gt;&gt;&gt;<i>             <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>         -- 
+</I>&gt;&gt;&gt;<i>         Anders Bruun Olsen
+</I>&gt;&gt;&gt;<i>         It-ansvarlig
+</I>&gt;&gt;&gt;<i>         Det Danske Sprog- og Litteraturselskab
+</I>&gt;&gt;&gt;<i>         (Society for Danish Language and Literature)
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>         _______________________________________________
+</I>&gt;&gt;&gt;<i>         X2Go-Dev mailing list
+</I>&gt;&gt;&gt;<i>         <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>  &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>&gt;
+</I>&gt;&gt;&gt;<i>         <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>         _______________________________________________
+</I>&gt;&gt;<i>         X2Go-Dev mailing list
+</I>&gt;&gt;<i>         <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>&gt;
+</I>&gt;&gt;<i>         <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     -- 
+</I>&gt;&gt;<i>     Anders Bruun Olsen
+</I>&gt;&gt;<i>     It-ansvarlig
+</I>&gt;&gt;<i>     Det Danske Sprog- og Litteraturselskab
+</I>&gt;&gt;<i>     (Society for Danish Language and Literature)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     _______________________________________________
+</I>&gt;&gt;<i>     X2Go-Dev mailing list
+</I>&gt;&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>  &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>&gt;
+</I>&gt;&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     _______________________________________________
+</I>&gt;<i>     X2Go-Dev mailing list
+</I>&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>&gt;
+</I>&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> -- 
+</I>&gt;<i> Anders Bruun Olsen
+</I>&gt;<i> It-ansvarlig
+</I>&gt;<i> Det Danske Sprog- og Litteraturselskab
+</I>&gt;<i> (Society for Danish Language and Literature)
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130610/9bfaeeea/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130610/9bfaeeea/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005779.html">[X2Go-Dev] x2go no longer works after reboot on CentOS 6.4
+</A></li>
+	<LI>Next message: <A HREF="005781.html">[X2Go-Dev] x2go no longer works after reboot on CentOS 6.4
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5780">[ date ]</a>
+              <a href="thread.html#5780">[ thread ]</a>
+              <a href="subject.html#5780">[ subject ]</a>
+              <a href="author.html#5780">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] libssh 0.6.0 -&gt; new features for X2Go Client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20libssh%200.6.0%20-%3E%20new%20features%20for%20X2Go%20Client&In-Reply-To=%3C52D5D53A.6080308%40cora.nwra.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006827.html">
+   <LINK REL="Next"  HREF="006830.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] libssh 0.6.0 -&gt; new features for X2Go Client</H1>
+    <B>Orion Poplawski</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20libssh%200.6.0%20-%3E%20new%20features%20for%20X2Go%20Client&In-Reply-To=%3C52D5D53A.6080308%40cora.nwra.com%3E"
+       TITLE="[X2Go-Dev] libssh 0.6.0 -&gt; new features for X2Go Client">orion at cora.nwra.com
+       </A><BR>
+    <I>Wed Jan 15 01:24:26 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006827.html">[X2Go-Dev] Bug#398: Automounter only mounts first partition of USB	media (at least in certain cases)
+</A></li>
+        <LI>Next message: <A HREF="006830.html">[X2Go-Dev] Bug#402: Numlock issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6829">[ date ]</a>
+              <a href="thread.html#6829">[ thread ]</a>
+              <a href="subject.html#6829">[ subject ]</a>
+              <a href="author.html#6829">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+On 08/30/2013 02:06 PM, Mike Gabriel wrote:
+&gt;<i> Hi all,
+</I>&gt;<i> 
+</I>&gt;<i> the libssh upstream developers released libssh 0.6.0rc1 some days ago
+</I>&gt;<i> [1].
+</I>&gt;<i> 
+</I>&gt;<i> Here is the list of new features that we hopefully find time and man
+</I>&gt;<i> power to cincorporate into X2Go Client:
+</I>&gt;<i> 
+</I>&gt;<i> Added new publicy key API. Added new userauth API. Added gssapi-mic
+</I>&gt;<i> userauth. ^^^^^^^^^^ -&gt; Kerberos based logins
+</I>&gt;<i> 
+</I>&gt;<i> Added new callback based server API. Added Elliptic Curve DSA (ECDSA)
+</I>&gt;<i> support (with OpenSSL). Added Elliptic Curve Diffie Hellman (ECDH)
+</I>&gt;<i> support. ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ -&gt; finally ECDSA support
+</I>&gt;<i> 
+</I>&gt;<i> Added improved logging system. Added SSH-agent forwarding. 
+</I>&gt;<i> ^^^^^^^^^^^^^^^^^^^^ -&gt; PyHoca-GUI already has this and it is cool!!! 
+</I>&gt;<i> Added key-reexchange. Improved documentation. Fixed timeout handling.
+</I>&gt;<i> 
+</I>&gt;<i> Greets, Mike
+</I>&gt;<i> 
+</I>&gt;<i> [1] <A HREF="http://www.libssh.org/2013/08/07/libssh-0-6-0rc1/">http://www.libssh.org/2013/08/07/libssh-0-6-0rc1/</A>
+</I>&gt;<i> 
+</I>
+Fedora just pushed this to stable, but it affects x2goclient negatively.  On
+connect I now get:
+
+The host key for this server was not found but an othertype of key exists.
+An attacker might change the default server key to confuse your client into
+thinking the key does not exist.
+For security reasons, it is recommended to stop the connection.
+Do you want to terminate the connection?
+
+<A HREF="https://bugzilla.redhat.com/show_bug.cgi?id=1053305">https://bugzilla.redhat.com/show_bug.cgi?id=1053305</A>
+
+
+- -- 
+Orion Poplawski
+Technical Manager                     303-415-9701 x222
+NWRA, Boulder/CoRA Office             FAX: 303-415-9702
+3380 Mitchell Lane                       <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at nwra.com</A>
+Boulder, CO 80301                   <A HREF="http://www.nwra.com">http://www.nwra.com</A>
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+Comment: Using GnuPG with Thunderbird - <A HREF="http://www.enigmail.net/">http://www.enigmail.net/</A>
+
+iEYEARECAAYFAlLV1TEACgkQORnzrtFC2/v1BACgr/Tmj9TCHIPhIxoDFeax5x9U
++JwAoKN03udy8FGA02h7jIv8nwMmAMgb
+=3jWg
+-----END PGP SIGNATURE-----
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006827.html">[X2Go-Dev] Bug#398: Automounter only mounts first partition of USB	media (at least in certain cases)
+</A></li>
+	<LI>Next message: <A HREF="006830.html">[X2Go-Dev] Bug#402: Numlock issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6829">[ date ]</a>
+              <a href="thread.html#6829">[ thread ]</a>
+              <a href="subject.html#6829">[ subject ]</a>
+              <a href="author.html#6829">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

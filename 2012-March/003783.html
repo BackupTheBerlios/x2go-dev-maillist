@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] NX3.5 speed degradation
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20NX3.5%20speed%20degradation&In-Reply-To=%3CCAGszEFW1JWo2hEPHT3Xh6Vdo5DYrnH6Y8Kzut806jPJjD6f2Uw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003782.html">
+   <LINK REL="Next"  HREF="003784.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] NX3.5 speed degradation</H1>
+    <B>Daniel Quiroga</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20NX3.5%20speed%20degradation&In-Reply-To=%3CCAGszEFW1JWo2hEPHT3Xh6Vdo5DYrnH6Y8Kzut806jPJjD6f2Uw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] NX3.5 speed degradation">sirderigo at gmail.com
+       </A><BR>
+    <I>Thu Mar 29 00:05:30 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003782.html">[X2Go-Dev] NX3.5 speed degradation
+</A></li>
+        <LI>Next message: <A HREF="003784.html">[X2Go-Dev] NX3.5 speed degradation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3783">[ date ]</a>
+              <a href="thread.html#3783">[ thread ]</a>
+              <a href="subject.html#3783">[ subject ]</a>
+              <a href="author.html#3783">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Unity does not work using x2go, try installing gnome 2.3 or xfce and
+launching the session.
+
+When i tried x2go and nx with unity it was really laggy because of the open
+gl display.
+
+Greetings
+
+2012/3/28 Eugene San &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">eugenesan at gmail.com</A>&gt;
+
+&gt;<i> Yes, I've used same hardware with identical connection settings.
+</I>&gt;<i> Also I've validated connection settings reported by NX during session
+</I>&gt;<i> setup.
+</I>&gt;<i> NX3.5 behaves bad no matter which network media used, I've tested
+</I>&gt;<i> with: 1000Gbit Lan, 100Mbit Lan, 50Kbit WAN, 100Kbit
+</I>&gt;<i> WLAN and localhost (127.0.0.1).
+</I>&gt;<i> To exclude specific hardware problems, several key tests were
+</I>&gt;<i> performed on several different machines.
+</I>&gt;<i>
+</I>&gt;<i> On Wed, Mar 28, 2012 at 14:15, Moritz Struebe
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Moritz.Struebe at informatik.uni-erlangen.de</A>&gt; wrote:
+</I>&gt;<i> &gt; Did you make sure you have the same connection settings (Network, Image
+</I>&gt;<i> &gt; compression, etc)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Cheers
+</I>&gt;<i> &gt; Morty
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; On 2012-03-28 14:05, Eugene San wrote:
+</I>&gt;<i> &gt;&gt; Hi all,
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; I want to discuss the subject.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Story goes like this:
+</I>&gt;<i> &gt;&gt; About 6 months, while planning upgrade (Ununtu 11.04-&gt;11.10) I've
+</I>&gt;<i> &gt;&gt; noticed severe degradation in speed of NX sessions.
+</I>&gt;<i> &gt;&gt; At the time I've decided to wait until LTS release, while being sure
+</I>&gt;<i> &gt;&gt; issue is related to GUI changes in Ubuntu.
+</I>&gt;<i> &gt;&gt; Recently I've reviewed the situation with 12.04 and found that problem
+</I>&gt;<i> &gt;&gt; is still there and related to NX and not to GUI changes in Ubuntu.
+</I>&gt;<i> &gt;&gt; My guess is that surrounding changes in distribution cause NX agent to
+</I>&gt;<i> &gt;&gt; misbehave.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Overall user experience became unusable even on LAN and localhost
+</I>&gt;<i> connections.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Now to the details:
+</I>&gt;<i> &gt;&gt; 1. Screen redraw operations lags heavily even on local links.
+</I>&gt;<i> &gt;&gt;     Instant (sub 0.5sec) on U10.04, up to 5 seconds on U12.04.
+</I>&gt;<i> &gt;&gt; 2. Constant screen redraws consume much more traffic.
+</I>&gt;<i> &gt;&gt;     Sub 100kbps on U10.04.
+</I>&gt;<i> &gt;&gt;     10mbps+ on U12.04 (Creating session with WAN quality settings and
+</I>&gt;<i> &gt;&gt; reconnecting with LAN, lowers bandwidth to sub 1mbps but picture
+</I>&gt;<i> &gt;&gt; quality suffers)
+</I>&gt;<i> &gt;&gt; 3. NX4 on U12.04 is faster 3x (in average) than 3.5 on U10.04.
+</I>&gt;<i> &gt;&gt; 4. NX3.5 on U12.04 is slower 3x then NX3.5 on U10.04 (some tests are
+</I>&gt;<i> &gt;&gt; x1000 slower!)
+</I>&gt;<i> &gt;&gt; 5. Hybrid NX3.5&lt;-&gt;NX4 is slow with NX3.5 as server and fast with NX4 as
+</I>&gt;<i> server.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Some details:
+</I>&gt;<i> &gt;&gt;   * I've evaluated both 32 and 64 bit platforms.
+</I>&gt;<i> &gt;&gt;   * I've compared fresh Ubuntu 10.04 and 12.04.
+</I>&gt;<i> &gt;&gt;   * Both Nomachine NX binaries and X2GO binaries (ppa:x2go/ppa) were
+</I>&gt;<i> tested.
+</I>&gt;<i> &gt;&gt;   * For reference I've performed NX4 and hybrid NX3.5&lt;-&gt;NX4 testing.
+</I>&gt;<i> &gt;&gt;   * Tested several usecases:
+</I>&gt;<i> &gt;&gt;     * Desktop with manual operation of terminal, webbrowser and random
+</I>&gt;<i> &gt;&gt; GUI application.
+</I>&gt;<i> &gt;&gt;     * Rootless UnixBench in graphics mode. (Note in 64bit test caches
+</I>&gt;<i> NX agent!)
+</I>&gt;<i> &gt;&gt;     * Desktop UnixBench in graphics mode. (Note in 64bit test caches NX
+</I>&gt;<i> agent!)
+</I>&gt;<i> &gt;&gt;     * Rootless Xterm with scrolling text (ls -R /)
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Please provide your feedbacks.
+</I>&gt;<i> &gt;&gt; _______________________________________________
+</I>&gt;<i> &gt;&gt; X2Go-Dev mailing list
+</I>&gt;<i> &gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> &gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; --
+</I>&gt;<i> &gt; Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+</I>&gt;<i> &gt; Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+</I>&gt;<i> &gt; Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+</I>&gt;<i> &gt; Martensstr. 1
+</I>&gt;<i> &gt; 91058 Erlangen
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Tel   : +49 9131 85-25419
+</I>&gt;<i> &gt; Fax   : +49 9131 85-28732
+</I>&gt;<i> &gt; eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+</I>&gt;<i> &gt; WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> &gt; X2Go-Dev mailing list
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+
+-- 
+Daniel Quiroga
+www.daniel-quiroga.com
+cel: 3012745740
+&#8212;&#191;Por qu&#233; nunca hablamos de Ezequiel?
+Apoy&#243; las cosas en el piso con mucha calma. Estir&#243; su mano como para
+acariciarme. Me mir&#243;. Baj&#243; la mano. Luego la vista y dijo en un susurro.
+&#8212;Hay cosas de las que es mejor no hablar.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120328/806c7ba0/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120328/806c7ba0/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003782.html">[X2Go-Dev] NX3.5 speed degradation
+</A></li>
+	<LI>Next message: <A HREF="003784.html">[X2Go-Dev] NX3.5 speed degradation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3783">[ date ]</a>
+              <a href="thread.html#3783">[ thread ]</a>
+              <a href="subject.html#3783">[ subject ]</a>
+              <a href="author.html#3783">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

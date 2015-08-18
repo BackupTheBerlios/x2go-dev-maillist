@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] error starting x2goagent
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20error%20starting%20x2goagent&In-Reply-To=%3C4A8D6848.3070304%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000085.html">
+   <LINK REL="Next"  HREF="000087.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] error starting x2goagent</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20error%20starting%20x2goagent&In-Reply-To=%3C4A8D6848.3070304%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] error starting x2goagent">paul at vandervlis.nl
+       </A><BR>
+    <I>Thu Aug 20 17:14:16 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000085.html">[X2go-dev] error starting x2goagent
+</A></li>
+        <LI>Next message: <A HREF="000087.html">[X2go-dev] install problems solved
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#86">[ date ]</a>
+              <a href="thread.html#86">[ thread ]</a>
+              <a href="subject.html#86">[ subject ]</a>
+              <a href="author.html#86">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Oelm&#252;ller, Christoph schreef:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> we are sporadically encoutering problems starting the x2goagent:
+</I>&gt;<i> 
+</I>&gt;<i> session.log says: 
+</I>&gt;<i> ================================================================ 
+</I>&gt;<i> NXAGENT - Version 3.3.0
+</I>&gt;<i> 
+</I>&gt;<i> Copyright (C) 2001, 2007 NoMachine. See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for
+</I>&gt;<i> more information.
+</I>&gt;<i> 
+</I>&gt;<i> Info: Agent running with pid '21323'. Session: Starting session at
+</I>&gt;<i> 'Wed Aug 19 12:09:46 2009'. Info: Proxy running in server mode with
+</I>&gt;<i> pid '21323'. Info: Waiting for connection from 'localhost' on port
+</I>&gt;<i> '1053'. Info: Aborting the procedure due to signal '1'. Error:
+</I>&gt;<i> Aborting session with 'X2goagent: Unable to open display
+</I>&gt;<i> 'nx/nx,options=/home/9ffc8ff2/.recobs/options:17''. Session: Aborting
+</I>&gt;<i> session at 'Wed Aug 19 12:10:19 2009'. Session: Session aborted at
+</I>&gt;<i> 'Wed Aug 19 12:10:19 2009'. 
+</I>&gt;<i> =================================================================
+</I>&gt;<i> 
+</I>&gt;<i> the options file looks like this: 
+</I>&gt;<i> ================================================================= 
+</I>&gt;<i> nx/nx,link=adsl,pack=16m-jpeg-8,limit=0,root=/home/9ffc8ff2/.recobs,cache=8M,images=32M,type=unix-kde-depth_32,id=Recobs-Agent,cookie=cd36e6c69a09ce555b5204a7c576045c,errors=/home/9ffc8ff2/.recobs/session.log,keyboard=de,kbtype=pc105/de,keybd=0,geometry=800x600,resize=0,fullscreen=0,accept=localhost,listen=1053:17
+</I>&gt;<i>  =================================================================
+</I>&gt;<i> 
+</I>&gt;<i> commandline starting the agent is: 
+</I>&gt;<i> ================================================================= 
+</I>&gt;<i> RECOBS_HOST=nx/nx,link=adsl,pack=${RECOBS_PACK},limit=0,root=${SESSION_DIR},cache=8M,images=32M,type=unix-kde-depth_32,\
+</I>&gt;<i>  id=Recobs-Agent,\ 
+</I>&gt;<i> cookie=${COOKIE},errors=${SESSION_DIR}/session.log,keyboard=&quot;de&quot;,kbtype=&quot;pc105/de&quot;,\
+</I>&gt;<i>  keybd=&quot;0&quot;,\ 
+</I>&gt;<i> geometry=&quot;800x600&quot;,resize=0,fullscreen=0,accept=localhost,listen=$GR_TUNNEL_PORT
+</I>&gt;<i>  echo &quot;${RECOBS_HOST}:${RECOBS_PORT}&quot; &gt;${SESSION_DIR}/options
+</I>&gt;<i> 
+</I>&gt;<i> DISPLAY=nx/nx,options=${SESSION_DIR}/options:${RECOBS_PORT} export
+</I>&gt;<i> DISPLAY
+</I>&gt;<i> 
+</I>&gt;<i> # ... LD_LIBRARY_PATH=&quot;${LD_LIBRARY_PATH}:/usr/lib/x2go&quot; export
+</I>&gt;<i> LD_LIBRARY_PATH
+</I>&gt;<i> 
+</I>&gt;<i> # add x-authorization xauth add ${HOSTNAME}/unix:${RECOBS_PORT}
+</I>&gt;<i> MIT-MAGIC-COOKIE-1 ${COOKIE} xauth add ${HOSTNAME}:${RECOBS_PORT}
+</I>&gt;<i> MIT-MAGIC-COOKIE-1 ${COOKIE}
+</I>&gt;<i> 
+</I>&gt;<i> # start agent NX_AGENT=&quot;:${RECOBS_PORT}&quot; $AGENT_BIN  -R -geometry
+</I>&gt;<i> 800x600 -name &quot;ReCoBS-Browser-Session&quot;  ${NX_AGENT}
+</I>&gt;<i> 2&gt;${SESSION_DIR}/session.log &amp; 
+</I>&gt;<i> =================================================================
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ssh-tunnel from client is estabished when starting the agent.
+</I>&gt;<i> 
+</I>&gt;<i> Any hints?! Do you know a manpage/documentation/... where the
+</I>&gt;<i> mentioned signals (...due to signal '1') are described?
+</I>&gt;<i>
+</I>&gt;<i> We are just using the your/nx components x2goagent incl. libs on
+</I>&gt;<i> server side. On client side we are using your nxproxy.exe, taken from
+</I>&gt;<i> your nxclient for windows package, but that shouldn't matter at this
+</I>&gt;<i> point.
+</I>&gt;<i> 
+</I>&gt;<i> Unfortunally the failure doesn't happen reproducable :-(
+</I>
+
+The only hint I can give is Google for the error, and you will see you
+are not alone. I know people using FreeNX have sometimes the same
+problem. Maybe there is a solution, I don't know.
+
+Searching the knoledgebase of Nomachine is another idea.
+
+With regards,
+Paul van der Vlis.
+
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000085.html">[X2go-dev] error starting x2goagent
+</A></li>
+	<LI>Next message: <A HREF="000087.html">[X2go-dev] install problems solved
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#86">[ date ]</a>
+              <a href="thread.html#86">[ thread ]</a>
+              <a href="subject.html#86">[ subject ]</a>
+              <a href="author.html#86">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

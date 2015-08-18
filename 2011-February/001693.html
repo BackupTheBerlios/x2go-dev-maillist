@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] VcXsrv
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20VcXsrv&In-Reply-To=%3C1296761180.17566.44.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001692.html">
+   <LINK REL="Next"  HREF="001694.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] VcXsrv</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20VcXsrv&In-Reply-To=%3C1296761180.17566.44.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] VcXsrv">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu Feb  3 20:26:20 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001692.html">[X2go-dev] VcXsrv
+</A></li>
+        <LI>Next message: <A HREF="001694.html">[X2go-dev] VcXsrv
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1693">[ date ]</a>
+              <a href="thread.html#1693">[ thread ]</a>
+              <a href="subject.html#1693">[ subject ]</a>
+              <a href="author.html#1693">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2011-02-03 at 13:54 -0500, Gerry Reno wrote:
+&gt;<i> On 02/03/2011 01:38 PM, John A. Sullivan III wrote:
+</I>&gt;<i> &gt; On Thu, 2011-02-03 at 18:27 +0100, Oleksandr Shneyder wrote:
+</I>&gt;<i> &gt;   
+</I>&gt;<i> &gt;&gt; Am 03.02.2011 16:56, schrieb --[ UxBoD ]--:
+</I>&gt;<i> &gt;&gt;     
+</I>&gt;<i> &gt;&gt;&gt; ----- Original Message -----
+</I>&gt;<i> &gt;&gt;&gt;       
+</I>&gt;<i> &gt;&gt;&gt;&gt; &lt;SNIP&gt;
+</I>&gt;<i> &gt;&gt;&gt;&gt; 1. VcXsrv crashes in multi-window mode during the start of x2goagent
+</I>&gt;<i> &gt;&gt;&gt;&gt; (it
+</I>&gt;<i> &gt;&gt;&gt;&gt; seems to work by resuming of x2goagent or in single-application mode).
+</I>&gt;<i> &gt;&gt;&gt;&gt; 2. VcXsrv is crashing or working incorrectly by reparrenting of
+</I>&gt;<i> &gt;&gt;&gt;&gt; x2goagent window (embedding in other window) in multi-window mode.
+</I>&gt;<i> &gt;&gt;&gt;&gt; 3. VcXsrv is working incorrectly when the user wants to resize a
+</I>&gt;<i> &gt;&gt;&gt;&gt; window
+</I>&gt;<i> &gt;&gt;&gt;&gt; in multi-window mode on Windows XP.
+</I>&gt;<i> &gt;&gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;&gt; &lt;SNIP&gt;
+</I>&gt;<i> &gt; The only reliable solution we have seen so far is X2Go over commercial
+</I>&gt;<i> &gt; Xming.  Thus, for X2Go to be production worthy for Windows users, we
+</I>&gt;<i> &gt; must either fix Xming or vcxsrv.  Xming is literally antagonistic to
+</I>&gt;<i> &gt; X2Go so our best bet is vcxsrv.  Let's hope the vcxsrv devs are able to
+</I>&gt;<i> &gt; fix this and we will devote whatever resources we can to work on it as
+</I>&gt;<i> &gt; well.  As always, thanks - John
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;   
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> John, that has been our assessment as well.
+</I>&gt;<i> 
+</I>&gt;<i> We've demoed x2go to some clients and let them work with it and we
+</I>&gt;<i> definitely need to have an Xserver that is stable and reliable.  And
+</I>&gt;<i> right now that is not the case.  And I'm getting pushback from the
+</I>&gt;<i> clients about the mouse issue and restarts.  For us xming commercial is
+</I>&gt;<i> something we're looking at but that very much muddies up things with a
+</I>&gt;<i> restrictive license.  If anyone has any ideas about how to produce some
+</I>&gt;<i> meaningful debug information with either Xming or VcXsrv that could lead
+</I>&gt;<i> to helping fix these problems please share it with us.  We'll be glad to
+</I>&gt;<i> help with testing.
+</I>&lt;snip&gt;
+That would be very appreciated.  I think the next step is already in
+motion; Phil has contacted the vcxsrv devs with whom he seems to get on
+well.  In the meantime, we can slot in the bits into the code to make it
+work with either X server and to call it when we have the session
+information as opposed to before like it is now.  That will give us
+rootless and fullscreen capabilities.  It will be even better if we can
+detect if there is an existing multiwindow.   We need to do all that
+regardless of whom we ultimately use.
+
+Alex, we would actually prefer you do that as we truly are not
+developers.  Do you have time for that portion, i.e., not fixing vcxsrv
+but simply changing the X2Go Client code? If, not, we'll take our best
+stab at it.
+
+Gerry, if we find the vcxsrv folks are not able to get to this right
+away, do you have anyone with X skills who could troubleshoot and fix
+it? That's way out of our league.  Thanks, all - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001692.html">[X2go-dev] VcXsrv
+</A></li>
+	<LI>Next message: <A HREF="001694.html">[X2go-dev] VcXsrv
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1693">[ date ]</a>
+              <a href="thread.html#1693">[ thread ]</a>
+              <a href="subject.html#1693">[ subject ]</a>
+              <a href="author.html#1693">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

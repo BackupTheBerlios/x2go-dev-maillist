@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2godesktopsharing group
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2godesktopsharing%20group&In-Reply-To=%3C5112D3DF.9090209%40cora.nwra.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004977.html">
+   <LINK REL="Next"  HREF="004974.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2godesktopsharing group</H1>
+    <B>Orion Poplawski</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2godesktopsharing%20group&In-Reply-To=%3C5112D3DF.9090209%40cora.nwra.com%3E"
+       TITLE="[X2Go-Dev] x2godesktopsharing group">orion at cora.nwra.com
+       </A><BR>
+    <I>Wed Feb  6 23:06:23 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004977.html">[X2Go-Dev] Processed: Re:  Bug#118: Fix desktop file
+</A></li>
+        <LI>Next message: <A HREF="004974.html">[X2Go-Dev] Bug#119: Windows does not open at requested size
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4972">[ date ]</a>
+              <a href="thread.html#4972">[ thread ]</a>
+              <a href="subject.html#4972">[ subject ]</a>
+              <a href="author.html#4972">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Could someone explain to me the need for the x2godesktopsharing group?
+
+I don't see any reference to it here: 
+<A HREF="http://www.x2go.org/doku.php/wiki:components:desktop-sharing">http://www.x2go.org/doku.php/wiki:components:desktop-sharing</A>
+
+The package doesn't do any checking in case the group does not exist:
+
+rogram terminated with signal 11, Segmentation fault.
+#0  0x000000000040adca in ShareTray::slotStartSharing (this=0xf78070) at 
+sharetray.cpp:326
+326                     chown ( socketFname.toAscii(),getuid(),getgrnam ( 
+&quot;x2godesktopsharing&quot; )-&gt;gr_gid );
+
+This results in a segfault if the group is not present.
+
+Also, is this the tool to use for a user to connect to their own desktop 
+session when they are away?
+
+Thanks!
+
+-- 
+Orion Poplawski
+Technical Manager                     303-415-9701 x222
+NWRA, Boulder Office                  FAX: 303-415-9702
+3380 Mitchell Lane                       <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at nwra.com</A>
+Boulder, CO 80301                   <A HREF="http://www.nwra.com">http://www.nwra.com</A>
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004977.html">[X2Go-Dev] Processed: Re:  Bug#118: Fix desktop file
+</A></li>
+	<LI>Next message: <A HREF="004974.html">[X2Go-Dev] Bug#119: Windows does not open at requested size
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4972">[ date ]</a>
+              <a href="thread.html#4972">[ thread ]</a>
+              <a href="subject.html#4972">[ subject ]</a>
+              <a href="author.html#4972">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] emesene
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20emesene&In-Reply-To=%3CCAO3%3DPA85uyHLkxEE1a9DaCa0FuHEEX4exQgOmORBBk65BpRjow%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004607.html">
+   <LINK REL="Next"  HREF="004608.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] emesene</H1>
+    <B>Helmer Teles</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20emesene&In-Reply-To=%3CCAO3%3DPA85uyHLkxEE1a9DaCa0FuHEEX4exQgOmORBBk65BpRjow%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] emesene">helmer.teles at gmail.com
+       </A><BR>
+    <I>Thu Nov 29 17:02:19 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004607.html">[X2Go-Dev] emesene
+</A></li>
+        <LI>Next message: <A HREF="004608.html">[X2Go-Dev] NEW: #x2go on IRC (freenode)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4616">[ date ]</a>
+              <a href="thread.html#4616">[ thread ]</a>
+              <a href="subject.html#4616">[ subject ]</a>
+              <a href="author.html#4616">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Nov 28, 2012 at 1:06 PM, Stefan Baur &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>
+&gt;<i> wrote:
+</I>
+&gt;<i> Am 28.11.2012 13:38, schrieb Helmer Teles:
+</I>&gt;<i>
+</I>&gt;<i>  Hello dear x2go devs.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> There seems to be a problem with emesene and latest x2goserver/x2goagent.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Could this be your problem, or at least part of it?
+</I>&gt;<i> <A HREF="http://blog.emesene.org/2012/**11/emesene-and-gtk3.html&lt;http://blog.emesene.org/2012/11/emesene-and-gtk3.html">http://blog.emesene.org/2012/**11/emesene-and-gtk3.html&lt;http://blog.emesene.org/2012/11/emesene-and-gtk3.html</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> -Stefan
+</I>&gt;<i> ______________________________**_________________
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+Hi Stefan,
+
+sorry for late reply.
+Downgraded to the ppa described but same problem persists.
+
+May it's the bug #62 as you have on the bug database righ now.
+
+Error log, a bit diferent but the same error.
+
+
+raceback (most recent call last):
+  File &quot;/usr/bin/emesene&quot;, line 32, in &lt;module&gt;
+    import emesene
+  File &quot;/usr/share/emesene/emesene/emesene.py&quot;, line 102, in &lt;module&gt;
+    import e3
+  File &quot;/usr/share/emesene/emesene/e3/__init__.py&quot;, line 3, in &lt;module&gt;
+    import common
+  File &quot;/usr/share/emesene/emesene/e3/common/__init__.py&quot;, line 23, in
+&lt;module&gt;
+    import notification
+  File &quot;/usr/share/emesene/emesene/e3/common/notification.py&quot;, line 21, in
+&lt;module&gt;
+    import gui
+  File &quot;/usr/share/emesene/emesene/gui/__init__.py&quot;, line 21, in &lt;module&gt;
+    from common import *
+  File &quot;/usr/share/emesene/emesene/gui/common/__init__.py&quot;, line 34, in
+&lt;module&gt;
+    if check_gtk3():
+  File &quot;/usr/share/emesene/emesene/gui/gtkui/__init__.py&quot;, line 205, in
+check_gtk3
+    import gtk
+  File &quot;/usr/lib/python2.7/dist-packages/gtk-2.0/gtk/__init__.py&quot;, line 40,
+in &lt;module&gt;
+    from gtk import _gtk
+ImportError: */usr/lib/i386-linux-gnu/libgdk-x11-2.0.so.0: undefined
+symbol: XRRFreeScreenResources*
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">hteles at Code5</A>:~$
+
+regards,
+--
+Helmer
+
+
+
+
+       .-.                   G N U
+       /v\                 L I N U X
+      // \\                   ---------
+     /( _ )\        May The Source Be
+    ^^     ^^             With You...
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121129/14292cee/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121129/14292cee/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004607.html">[X2Go-Dev] emesene
+</A></li>
+	<LI>Next message: <A HREF="004608.html">[X2Go-Dev] NEW: #x2go on IRC (freenode)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4616">[ date ]</a>
+              <a href="thread.html#4616">[ thread ]</a>
+              <a href="subject.html#4616">[ subject ]</a>
+              <a href="author.html#4616">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

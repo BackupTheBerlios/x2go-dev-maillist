@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] General question&#180;s
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%3D%3Futf-8%3Fq%3FGeneral_question%3DC2%3DB4s%3F%3D&In-Reply-To=%3C4AEF2B7D.2020705%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000155.html">
+   <LINK REL="Next"  HREF="000157.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] General question&#180;s</H1>
+    <B>Alternativende</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%3D%3Futf-8%3Fq%3FGeneral_question%3DC2%3DB4s%3F%3D&In-Reply-To=%3C4AEF2B7D.2020705%40gmx.de%3E"
+       TITLE="[X2go-dev] General question&#180;s">sauron99 at gmx.de
+       </A><BR>
+    <I>Mon Nov  2 19:57:01 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000155.html">[X2go-dev] x2go test
+</A></li>
+        <LI>Next message: <A HREF="000157.html">[X2go-dev] Remote sound/remote USB device access
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#156">[ date ]</a>
+              <a href="thread.html#156">[ thread ]</a>
+              <a href="subject.html#156">[ subject ]</a>
+              <a href="author.html#156">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Paul van der Vlis schrieb:
+&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Sauron99 at gmx.de</A> schreef:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     
+</I>&gt;&gt;&gt;<i> Hmm, I know this problem. But I thought the bug was repaired. Are
+</I>&gt;&gt;&gt;<i> you using the latest version?  In the past I did this:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> vi /usr/bin/x2gostartagent Direct after &quot;x2goagent&quot; on line 171
+</I>&gt;&gt;&gt;<i> I've added &quot;-dpi 96&quot;. ------- 171c171 &lt; LD_LIBRARY_PATH=$X2GO_LIB
+</I>&gt;&gt;&gt;<i> x2goagent  -$SESSION_TYPE -geometry ${X2GO_GEOMETRY} -name
+</I>&gt;&gt;&gt;<i> &quot;X2GO-${SESSION_NAME}&quot;  ${NX_AGENT} 2&gt;${SESSION_DIR}/session.log &amp; 
+</I>&gt;&gt;&gt;<i> ---
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;&gt;&gt;<i> LD_LIBRARY_PATH=$X2GO_LIB x2goagent -dpi 96 -$SESSION_TYPE
+</I>&gt;&gt;&gt;&gt;<i> -geometry
+</I>&gt;&gt;&gt;&gt;<i>         
+</I>&gt;&gt;&gt;<i> ${X2GO_GEOMETRY}  -name &quot;X2GO-${SESSION_NAME}&quot;  ${NX_AGENT} 
+</I>&gt;&gt;&gt;<i> 2&gt;${SESSION_DIR}/session.log &amp; 184c184 --------
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> Yes of course Im always up to date with my Debian :). I could fix the
+</I>&gt;&gt;<i> Problem with your solution. Hopefully it&#180;s been done in the next
+</I>&gt;&gt;<i> release.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Nice to hear.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;&gt;<i> I have experiences with older versions of Nomachine NXlcient with
+</I>&gt;&gt;&gt;<i> FreeNX what also uses NX, and my experience is that bigger moving
+</I>&gt;&gt;&gt;<i> things like films will not be nice shown. But maybe NX has become
+</I>&gt;&gt;&gt;<i> better on this &gt; point.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> Maybe it will be better in the future or is it sure? 
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Maybe it is better allready. My experiences are with older versions then
+</I>&gt;<i> used now.
+</I>&gt;<i>
+</I>&gt;<i> NX is not really new, I think this is not a strong side on NX.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Where do I find the NX version X2GO is using? 
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> aptitude -F '%p %V' --disable-columns search x2go
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://algebraicthunk.net/~dburrows/projects/aptitude/doc/en/ch02s03s05.html">http://algebraicthunk.net/~dburrows/projects/aptitude/doc/en/ch02s03s05.html</A>
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Will there be newer versions in the near future?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Yes, there is allready a newer version then X2go is using. See:
+</I>&gt;<i> <A HREF="http://www.nomachine.com/sources.php">http://www.nomachine.com/sources.php</A>
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;&gt;<i> Flash gives another problem (with older NX). Sometimes customers
+</I>&gt;&gt;&gt;<i> are calling me that everything is very slow in the session. Other
+</I>&gt;&gt;&gt;<i> sessions on the same server don't have that problem. This is always
+</I>&gt;&gt;&gt;<i> a flash problem. I ask them to close all browser windows and the
+</I>&gt;&gt;&gt;<i> problem is gone. They had a site with some flash open.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Another point about flash: I have heard that it uses much CPU on
+</I>&gt;&gt;&gt;<i> the server. I have also heard that the (beta) 64-bit version is
+</I>&gt;&gt;&gt;<i> better then the 32-bit version on this point.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> Hmh I hope that Flash and Java will work fine because it&#180;s really
+</I>&gt;&gt;<i> necessary for Schools to watch video&#180;s and Java Animations&#180;s online.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> I hope for you this will not become a show-stopper. But I have heart
+</I>&gt;<i> there are more schools using this.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> But first I have to get sound working. I have tried it yesterday with
+</I>&gt;&gt;<i> the GTK X2goclient but Gnome won&#180;t play any sound at all. It just
+</I>&gt;&gt;<i> says that there is no Audio device in my machine and that&#180;s it. Do I
+</I>&gt;&gt;<i> have to install pulseaudio or any other Packages manually?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Sorry, maybe somebody else can help you with this because I don't know it.
+</I>&gt;<i>
+</I>&gt;<i> With regards,
+</I>&gt;<i> Paul.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>   
+</I>Hi,
+yes the Sound thing is a bit sad, but I don&#180;t have a Solution for it 
+right now. I have installed pulseaudio on the Server side but with no 
+luck so far. I have no idea how to get the sound working if my server 
+has no Soundcard at all. I hope that I will have enough time in the next 
+days to give it another try. If this works I can focus on testing Java, 
+Flash and such stuff to get out if it&#180;s fast enough for my needs :).
+
+Greetings
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000155.html">[X2go-dev] x2go test
+</A></li>
+	<LI>Next message: <A HREF="000157.html">[X2go-dev] Remote sound/remote USB device access
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#156">[ date ]</a>
+              <a href="thread.html#156">[ thread ]</a>
+              <a href="subject.html#156">[ subject ]</a>
+              <a href="author.html#156">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

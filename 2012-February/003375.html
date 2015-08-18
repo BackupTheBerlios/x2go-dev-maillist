@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go Server + NXLibs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Server%20%2B%20NXLibs&In-Reply-To=%3CDD1CB082-7A54-4D9A-9350-490C99433EBA%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003374.html">
+   <LINK REL="Next"  HREF="003378.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go Server + NXLibs</H1>
+    <B>Bogdan-Andrei Taru</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Server%20%2B%20NXLibs&In-Reply-To=%3CDD1CB082-7A54-4D9A-9350-490C99433EBA%40gmail.com%3E"
+       TITLE="[X2Go-Dev] X2Go Server + NXLibs">bogdan.taru at gmail.com
+       </A><BR>
+    <I>Fri Feb 10 13:37:10 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003374.html">[X2Go-Dev] X2Go Server + NXLibs
+</A></li>
+        <LI>Next message: <A HREF="003378.html">[X2Go-Dev] X2Go Server + NXLibs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3375">[ date ]</a>
+              <a href="thread.html#3375">[ thread ]</a>
+              <a href="subject.html#3375">[ subject ]</a>
+              <a href="author.html#3375">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I'm trying to connect to a self-compilted and rpm-packaged X2GO Server (the self-compiled/packaged NX LIbs are installed). I also liked x2goagent to nxagent:
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at rhel6-64</A> x86_64]# ls -al /usr/lib/x2go/x2goagent 
+lrwxrwxrwx. 1 root root 16 Feb  4 04:01 /usr/lib/x2go/x2goagent -&gt; /usr/bin/nxagent
+
+But the connection still doesn't work. This is what the X2Go Server logs (debug mode):
+
+Feb  4 04:08:23 rhel6-64 /usr/bin/x2gostartagent: x2gostartagent called with options: 800x600 adsl 16m-jpeg-9 unix-kde-depth_24 us pc105/de 1 D KDE
+Feb  4 04:08:23 rhel6-64 /usr/bin/x2gosessionlimit[28283]: x2gosessionlimit has been called
+Feb  4 04:08:23 rhel6-64 /usr/bin/x2golistsessions[28287]: x2golistsessions has been called with options: --all-servers
+Feb  4 04:08:24 rhel6-64 /usr/bin/x2gofeature: x2gofeature called with options: X2GO_RUN_EXTENSIONS
+Feb  4 04:08:24 rhel6-64 /usr/share/x2go/x2gofeature.d/x2goserver-compat.features: x2goserver-compat.features called with options: X2GO_RUN_EXTENSIONS
+Feb  4 04:08:24 rhel6-64 /usr/share/x2go/x2gofeature.d/x2goserver-extensions.features: x2goserver-extensions.features called with options: X2GO_RUN_EXTENSIONS
+Feb  4 04:08:24 rhel6-64 /usr/bin/x2goserver-run-extensions: x2goserver-run-extensions called with options: bgd-50-1328324903_stDKDE_dp24 pre-start
+Feb  4 04:08:24 rhel6-64 /usr/bin/x2gostartagent: successfully started X2Go agent session with ID bgd-50-1328324903_stDKDE_dp24
+Feb  4 04:08:24 rhel6-64 /usr/bin/x2gofeature: x2gofeature called with options: X2GO_RUN_EXTENSIONS
+Feb  4 04:08:24 rhel6-64 /usr/share/x2go/x2gofeature.d/x2goserver-compat.features: x2goserver-compat.features called with options: X2GO_RUN_EXTENSIONS
+Feb  4 04:08:24 rhel6-64 /usr/share/x2go/x2gofeature.d/x2goserver-extensions.features: x2goserver-extensions.features called with options: X2GO_RUN_EXTENSIONS
+Feb  4 04:08:24 rhel6-64 /usr/bin/x2goserver-run-extensions: x2goserver-run-extensions called with options: bgd-50-1328324903_stDKDE_dp24 post-start
+
+
+This is what the client logs on the console:
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">bgd at rhel6-64</A> ~]$ x2goclient 
+Fontconfig warning: no &lt;cachedir&gt; elements found. Check configuration.
+Fontconfig warning: adding &lt;cachedir&gt;/var/cache/fontconfig&lt;/cachedir&gt;
+Fontconfig warning: adding &lt;cachedir&gt;~/.fontconfig&lt;/cachedir&gt;
+ONMainWindow constructor 
+
+Can't load translator (:/x2goclient_en_us) !
+
+Can't load translator  :/qt_en_US 
+ONMainWindows constructor finished, home Directory is: &quot;/home/bgd&quot; 
+
+read  2  sessions from config file 
+start new ssh connection to server: &quot;localhost&quot; : &quot;22&quot; krb:  false 
+
+ssh connection ok 
+
+continue normal x2go session 
+
+&quot;x2gostartagent 800x600 adsl 16m-jpeg-9 unix-kde-depth_24 us pc105/de 1 D KDE&quot; 
+
+Agent output: &quot;50
+bb89785cbd1b4977c1c63f09ed1fc09e
+28455
+bgd-50-1328324903_stDKDE_dp24
+30003
+30004
+30005
+&quot; 
+starting nxproxy with:  &quot;nxproxy -S nx/nx,options=/home/bgd/.x2go/S-bgd-50-1328324903_stDKDE_dp24/options:50&quot; 
+
+&quot;
+NXPROXY - Version 3.5.0
+
+Copyright (C) 2001, 2010 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Proxy running in client mode with pid '28515'.
+Session: Starting session at 'Sat Feb  4 04:08:24 2012'.
+Info: Connecting to remote host 'localhost:31003'.
+Info: Connection to remote proxy 'localhost:31003' established.
+&quot; 
+
+search proxy win:  &quot;X2GO-bgd-50-1328324903_stDKDE_dp24&quot; 
+&quot;channel_open_forward failed&quot; :  &quot;Channel opening failure: channel 45 error (2) Connection refused&quot; 
+
+&quot;channel_write failed&quot;  -  &quot;Remote channel is closed&quot; 
+
+&quot;Error: The remote NX proxy closed the connection.
+Error: Failure negotiating the session in stage '7'.
+Error: Wrong version or invalid session authentication cookie.
+Session: Terminating session at 'Sat Feb  4 04:08:25 2012'.
+Session: Session terminated at 'Sat Feb  4 04:08:25 2012'.
+&quot; 
+
+deleting proxy 
+
+nxproxy not running 
+
+proxy deleted 
+
+check command message 
+
+search proxy win:  &quot;X2GO-bgd-50-1328324903_stDKDE_dp24&quot; 
+search proxy win:  &quot;X2GO-bgd-50-1328324903_stDKDE_dp24&quot; 
+search proxy win:  &quot;X2GO-bgd-50-1328324903_stDKDE_dp24&quot; 
+search proxy win:  &quot;X2GO-bgd-50-1328324903_stDKDE_dp24&quot; 
+search proxy win:  &quot;X2GO-bgd-50-1328324903_stDKDE_dp24&quot; 
+search proxy win:  &quot;X2GO-bgd-50-1328324903_stDKDE_dp24&quot; 
+search proxy win:  &quot;X2GO-bgd-50-1328324903_stDKDE_dp24&quot; 
+search proxy win:  &quot;X2GO-bgd-50-1328324903_stDKDE_dp24&quot; 
+search proxy win:  &quot;X2GO-bgd-50-1328324903_stDKDE_dp24&quot; 
+search proxy win:  &quot;X2GO-bgd-50-1328324903_stDKDE_dp24&quot; 
+search proxy win:  &quot;X2GO-bgd-50-1328324903_stDKDE_dp24&quot; 
+
+
+
+
+Any ideas?
+Bogdan
+
+
+On 10.02.2012, at 12:42, Milan Kn&#237;&#382;ek wrote:
+
+&gt;<i> V Fri, 10 Feb 2012 11:22:35 +0100
+</I>&gt;<i> Bogdan-Andrei Taru &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">bogdan.taru at gmail.com</A>&gt; naps&#225;no:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Hi Oliver,
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> thanks for your reply! No, I had no idea I need a x2goagent wrapper.
+</I>&gt;&gt;<i> I found one in the nx-libs-source/bin/ directory, but it doesn't make
+</I>&gt;&gt;<i> any sense, because it calls another x2goagent:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> NX_LIBS=/usr/lib/nx
+</I>&gt;&gt;<i> exec $NX_LIBS/../x2go/x2goagent &quot;$@&quot;
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> How did you solve the problem?
+</I>&gt;&gt;<i> 
+</I>&gt;<i> Create a link to nxagent:
+</I>&gt;<i> 
+</I>&gt;<i> ln -s /usr/lib/nx/nxagent /usr/lib/x2go/x2goagent
+</I>&gt;<i> 
+</I>&gt;<i> I assume it is because of backward compatibility. The nxagent from
+</I>&gt;<i> nx-libs (NX redistributed) is patched so that it knows when it is run
+</I>&gt;<i> as &quot;x2goagent&quot; and when as &quot;nxagent&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> You can also have a look at the debian package to see what is installed
+</I>&gt;<i> and where:
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="http://packages.x2go.org/debian/pool/main/n/nx-libs/x2goagent_3.5.0.10-0+wheezy~main~250~build1_all.deb">http://packages.x2go.org/debian/pool/main/n/nx-libs/x2goagent_3.5.0.10-0+wheezy~main~250~build1_all.deb</A>
+</I>&gt;<i> 
+</I>&gt;<i> Do not use x2goagent version older then 3.5.0.10, since these
+</I>&gt;<i> were a separate binary, not just a wrapper to NX redistributed
+</I>&gt;<i> nxagent.
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Milan
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> <A HREF="http://www.milan-knizek.net/">http://www.milan-knizek.net/</A>
+</I>&gt;<i> About linux and photography (Czech only)
+</I>&gt;<i> O linuxu a fotografov&#225;n&#237;
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003374.html">[X2Go-Dev] X2Go Server + NXLibs
+</A></li>
+	<LI>Next message: <A HREF="003378.html">[X2Go-Dev] X2Go Server + NXLibs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3375">[ date ]</a>
+              <a href="thread.html#3375">[ thread ]</a>
+              <a href="subject.html#3375">[ subject ]</a>
+              <a href="author.html#3375">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

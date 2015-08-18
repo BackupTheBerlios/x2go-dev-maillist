@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Questions about the source
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Questions%20about%20the%20source&In-Reply-To=%3C4D84C843.3070907%40x2go.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001922.html">
+   <LINK REL="Next"  HREF="001929.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Questions about the source</H1>
+    <B>Heinz-M. Graesing</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Questions%20about%20the%20source&In-Reply-To=%3C4D84C843.3070907%40x2go.org%3E"
+       TITLE="[X2go-dev] Questions about the source">x2go-dev at x2go.org
+       </A><BR>
+    <I>Sat Mar 19 16:14:11 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001922.html">[X2go-dev] Questions about the source
+</A></li>
+        <LI>Next message: <A HREF="001929.html">[X2go-dev] Questions about the source
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1925">[ date ]</a>
+              <a href="thread.html#1925">[ thread ]</a>
+              <a href="subject.html#1925">[ subject ]</a>
+              <a href="author.html#1925">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Tyler,
+
+welcome on our List!
+
+Am 19.03.2011 07:35, schrieb Tyler Jameson Little:
+
+&gt;<i> Mike informed me that the x2go team is already developing browser plugins,
+</I>&gt;<i> but I wanted a way to integrate a remote session into a browser using pure
+</I>&gt;<i> HTML5 and JavaScript.  
+</I>
+His sounds very intersting!
+
+&gt;<i> Has the x2go team significantly modified the base NX server code?  If so,
+</I>&gt;<i> where can I get the full source code for the server (not just the scripts)?
+</I>
+So you've found the scripts in our git - the purpose of those scripts is
+to initiate the needed command on server side. This means they take care
+about the session management, the mounted directories, the audio
+redicrection and so on. The main task is done by those needed services
+and if you want to write a client on HTML/Javascript base you'll need to
+contact those services too.
+NX is a rendering protocol, so you wont find already rendered diff
+screen segments like vnc. A real native implementation would need to
+render all primitives drawn in the X screen to be converted to the HTML
+Canvas Element. I've played with the Canvas Element a lot, but I always
+needed some local components to do all the needed work. The result would
+again be an extension for the browser which needs to be installed - like
+our plugin solution. But the plugin is now a variant of x2goclient so it
+won't need another code base.
+But this is what I've experienced - I really would like to hear more of
+your ideas about this.
+
+What already can be done:
+Use a virtual x2go display with ajaxvnc (or any other HTML VNC solution)
+and access it via your browser. The occuring problem is, that you'll get
+no advantages to a pure vnc environment, because the nx/x2goagent is not
+displayed locally...
+
+
+&gt;<i> I will mostly want to be looking at where the data gets sent to the client,
+</I>&gt;<i> but I'm not sure where the best place to look for that would be.
+</I>
+The communication you are looking for is the communication between a
+X-client and a X-server. To make it more complicated - yes in this
+special case it is compressed and encrypted (ssh - I don't see how to
+access ssh via javascript) too.
+
+I really see a lot of Use Cases for such a client, because it could be
+used on totally closed brickware!
+
+So again - welcome on our list. Thank you for your interest and for
+sharing you idea with us. Maybe some more time is needed, but I don't
+consider this task as &quot;hopeless&quot; (as other projects are working on
+similar ideas):
+
+<A HREF="http://blogs.gnome.org/alexl/2011/03/15/gtk-html-backend-update/">http://blogs.gnome.org/alexl/2011/03/15/gtk-html-backend-update/</A>
+
+
+Regards,
+
+Heinz
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001922.html">[X2go-dev] Questions about the source
+</A></li>
+	<LI>Next message: <A HREF="001929.html">[X2go-dev] Questions about the source
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1925">[ date ]</a>
+              <a href="thread.html#1925">[ thread ]</a>
+              <a href="subject.html#1925">[ subject ]</a>
+              <a href="author.html#1925">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

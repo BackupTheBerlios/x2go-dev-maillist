@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] bash settings missing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20bash%20settings%20missing&In-Reply-To=%3C4B6966A3.7080700%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000304.html">
+   <LINK REL="Next"  HREF="000307.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] bash settings missing</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20bash%20settings%20missing&In-Reply-To=%3C4B6966A3.7080700%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] bash settings missing">paul at vandervlis.nl
+       </A><BR>
+    <I>Wed Feb  3 13:05:55 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000304.html">[X2go-dev] bash settings missing
+</A></li>
+        <LI>Next message: <A HREF="000307.html">[X2go-dev] bash settings missing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#306">[ date ]</a>
+              <a href="thread.html#306">[ thread ]</a>
+              <a href="subject.html#306">[ subject ]</a>
+              <a href="author.html#306">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>John A. Sullivan III schreef:
+&gt;<i> Hello, all.  Amidst our very successful testing of X2Go, we came across
+</I>&gt;<i> a permissions issue.  Our environment sets a default umask of 007 rather
+</I>&gt;<i> than the standard 022.  This was honored in our NoMachine environment.
+</I>&gt;<i> However, we recently started having access control issues where users
+</I>&gt;<i> could not edit each others' documents.  Sure enough, the default rights
+</I>&gt;<i> were rw_r__r__ rather than rw_rw____.  We checked our /etc/profile file
+</I>&gt;<i> in case something had changed and it is still a umask of 007.  We did a
+</I>&gt;<i> direct ssh and touched a file and it gave correct rw_rw____ rights so it
+</I>&gt;<i> appears to be something specific to X2Go.  From where does X2Go
+</I>&gt;<i> configure its bash environment?
+</I>&gt;<i> 
+</I>&gt;<i> We are using Hardy on the X2Go server (in process of transitioning to
+</I>&gt;<i> Lenny) and Lenny on the X2Go Client.  Thanks - John
+</I>
+What you can do is not starting Gnome or KDE, but start a script. In
+that script you can set the environment like the umask and you start
+Gnome or KDE. Something like this:
+
+umask 0002
+export TESTVAR=test21
+. ~/.gnomerc
+/usr/bin/gnome-session
+
+
+with regards,
+Paul van der Vlis.
+
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000304.html">[X2go-dev] bash settings missing
+</A></li>
+	<LI>Next message: <A HREF="000307.html">[X2go-dev] bash settings missing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#306">[ date ]</a>
+              <a href="thread.html#306">[ thread ]</a>
+              <a href="subject.html#306">[ subject ]</a>
+              <a href="author.html#306">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

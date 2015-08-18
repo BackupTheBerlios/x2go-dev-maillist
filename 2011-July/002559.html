@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Command line alternatives to x2goclient-cli
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Command%20line%20alternatives%20to%20x2goclient-cli&In-Reply-To=%3CCAAWyt1q%2BR1MjaRZwtO%3DZ8u-tq-2mdD0e5f%3Dg1snA967BAjoteQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002558.html">
+   <LINK REL="Next"  HREF="002560.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Command line alternatives to x2goclient-cli</H1>
+    <B>Daniel Lindgren</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Command%20line%20alternatives%20to%20x2goclient-cli&In-Reply-To=%3CCAAWyt1q%2BR1MjaRZwtO%3DZ8u-tq-2mdD0e5f%3Dg1snA967BAjoteQ%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] Command line alternatives to x2goclient-cli">bd.dali at gmail.com
+       </A><BR>
+    <I>Wed Jul 27 12:46:39 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002558.html">[X2go-Dev] Command line alternatives to x2goclient-cli
+</A></li>
+        <LI>Next message: <A HREF="002560.html">[X2go-Dev] Command line alternatives to x2goclient-cli
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2559">[ date ]</a>
+              <a href="thread.html#2559">[ thread ]</a>
+              <a href="subject.html#2559">[ subject ]</a>
+              <a href="author.html#2559">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+
+2011/7/27 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;:
+&gt;&gt;<i> - An option to automatically resume an existing session if there is
+</I>&gt;&gt;<i> one or create a new one if there isn't.
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://code.x2go.org/horde4/whups/ticket/?id=86">http://code.x2go.org/horde4/whups/ticket/?id=86</A>
+</I>
+Thanks!
+
+&gt;&gt;<i> - An option to suspend a running session if the windows is closed, not
+</I>&gt;&gt;<i> terminate it. Makes it possible to start pyhoca-cli in the background.
+</I>&gt;<i>
+</I>&gt;<i> This is actually the case. It now depends on the session mode you use:
+</I>&gt;<i> desktop, shadow or rootless.
+</I>&gt;<i>
+</I>&gt;<i> If you close a rootless session window (e.g. a firefox running on the X2go
+</I>&gt;<i> server), then of course the firefox application gets close and thus the
+</I>&gt;<i> session terminated.
+</I>&gt;<i>
+</I>&gt;<i> If you close a desktop session window (e.g. a GNOME desktop) then the
+</I>&gt;<i> session gets suspended...
+</I>&gt;<i>
+</I>&gt;<i> If you close a window with a shadow session (option --share-desktop) then
+</I>&gt;<i> the shadow session gets terminated, but not so the session that the shadow
+</I>&gt;<i> session was connected to.
+</I>
+OK, thanks for the info. I didn't set the session type at all, the
+command line I use looks like this (with added &quot;-t desktop&quot;):
+
+pyhoca-cli --server servername -c gnome-session -u username -k
+~/.ssh/id_dsa --add-to-known-hosts --sound none --kbd-layout se
+--kbd-type pc105/se -g 1238x929 --pack 16m-png-9 -t desktop
+
+I'm having trouble closing the window, nothing happens. I've tried
+clicking the close window control, choosing &quot;Close&quot; from the window
+menu and hitting Alt+F4 ... nothing. Minimize and maximize window
+controls work.
+
+If I start a session with x2goclient-cli to the same server I can
+close the window, i.e. it shouldn't be a server issue.
+
+I'm using pyhoca-cli version 0.1.4.1 on Debian Squeeze, the server is
+also Debian Squeeze with x2goserver 3.0.99.5.
+
+Cheers,
+Daniel
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002558.html">[X2go-Dev] Command line alternatives to x2goclient-cli
+</A></li>
+	<LI>Next message: <A HREF="002560.html">[X2go-Dev] Command line alternatives to x2goclient-cli
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2559">[ date ]</a>
+              <a href="thread.html#2559">[ thread ]</a>
+              <a href="subject.html#2559">[ subject ]</a>
+              <a href="author.html#2559">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

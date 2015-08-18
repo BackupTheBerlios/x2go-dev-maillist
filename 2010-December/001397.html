@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go with likewise-open (ldap) questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CAANLkTinCWc_4u_Q5W7bw8SgNzt2eetYbjc0FUq_p1Nj4%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001396.html">
+   <LINK REL="Next"  HREF="001401.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go with likewise-open (ldap) questions</H1>
+    <B>Ivan Boyadzhiev</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CAANLkTinCWc_4u_Q5W7bw8SgNzt2eetYbjc0FUq_p1Nj4%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] x2go with likewise-open (ldap) questions">ivancho.b at gmail.com
+       </A><BR>
+    <I>Wed Dec 15 21:21:14 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001396.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+        <LI>Next message: <A HREF="001401.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1397">[ date ]</a>
+              <a href="thread.html#1397">[ thread ]</a>
+              <a href="subject.html#1397">[ subject ]</a>
+              <a href="author.html#1397">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Neil,
+
+&gt;<i> I am using 3.01-08 for Ubuntu as client. This is the one that downloads by
+</I>&gt;<i> default from the debian library. I have also tried it with 3.01-04 for
+</I>&gt;<i> Windows and for Mac, but same results. I will try 3.03-13 and see if there
+</I>&gt;<i> are any differences, but I doubt it.
+</I>&gt;<i>
+</I>&gt;<i> Ok, you have really old clients. I have successful login with 3.01-13 in my
+</I>Windows 7
+I took it from here:
+<A HREF="http://x2go.obviously-nice.de/deb/pool-untested/x2goclient/x2goclient-3.01-13-setup.exe">http://x2go.obviously-nice.de/deb/pool-untested/x2goclient/x2goclient-3.01-13-setup.exe</A>
+I also have Ubuntu 10.10 as client, located on VMWare image. There I
+successfully connected and worked (had no sound, but this is something
+further). The client version is 3.01-14 (latest). I took it from here:
+<A HREF="http://x2go.obviously-nice.de/deb/pool-heuler/x2goclient/x2goclient_3.01-14_i386.deb">http://x2go.obviously-nice.de/deb/pool-heuler/x2goclient/x2goclient_3.01-14_i386.deb</A>
+
+&gt;<i>From your tests, it is clear that you have client version problem, and
+</I>nothing with authentication.
+
+
+&gt;<i>
+</I>&gt;<i> &gt;4. If authentication is good, but there is blank/black screen, then try
+</I>&gt;<i> &gt;another: OS, Client, Client version. As I said above, the latest version
+</I>&gt;<i> &gt;doesn't work in my scenario. Hint: Don't try to connect with client from
+</I>&gt;<i> the
+</I>&gt;<i> &gt;same server, as it is not possible. If you use Windows, try to find other
+</I>&gt;<i> &gt;OS, install other (virtual if possible) Windows, Linux, whatever is easy
+</I>&gt;<i> for
+</I>&gt;<i> &gt;you.
+</I>&gt;<i>
+</I>&gt;<i> Again, I have tried it with clients on Linux, Mac, Windows, all the same
+</I>&gt;<i> result: full GDM desktop with audio for local accounts, blank screen (but
+</I>&gt;<i> all successful messages in the log) for LW/LDAP users.
+</I>&gt;<i>
+</I>&gt;<i> Here is the moment to ask which version is your x2goserver. I'm using
+</I>3.0.1-5 for x2goserver; 3.0.1-1 for x2goserver-home; 3.0.1-1 for
+x2goserver-one. I've installed it through the repository added this line to
+/etc/apt/sources.list (then apt-get update):
+deb <A HREF="http://x2go.obviously-nice.de/deb/">http://x2go.obviously-nice.de/deb/</A> lenny main.
+
+I guess (still didn't check) there is newer server version, but I used the
+official way through the repository. I guess this is stable one?
+
+Bottom line: please, try to setup your x2go server and client as my
+versions.
+
+&gt;<i>  ************************
+</I>&gt;<i>
+</I>&gt;<i> BTW, as I'm fearing that if/when I get this issue resolved with the black
+</I>&gt;<i> screen showing up, that I will then have the audio problems, I will add
+</I>&gt;<i> these comments:
+</I>&gt;<i> -I have Likewise Open setup to connect to our domain as the Default Domain,
+</I>&gt;<i> thus all of our uid's do not use the format DOMAIN\user. Before, we all used
+</I>&gt;<i> these IDs, but since we currently only have one domain, I have set LW to use
+</I>&gt;<i> the default domain and so now we can login with just &quot;user&quot;. This also
+</I>&gt;<i> affects our directories and thus my .x2go sessions look like:
+</I>&gt;<i> /home/local/DOMAIN/nwhunt/.x2go/C-nwhunt-51-1292422868_stDGNOME_dp32 rather
+</I>&gt;<i> than
+</I>&gt;<i> /home/local/DOMAIN/nwhunt/.x2go/C-DOMAIN\nwhunt-51-1292422868_stDGNOME_dp32
+</I>&gt;<i> And within that directory are indeed the pulse audio files you mentioned
+</I>&gt;<i> were NOT there when you included the ~/.x2go/C-DOMAIN\userid-....
+</I>&gt;<i> .pulse-client.conf
+</I>&gt;<i> .pulse-cookie
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I will report back if I find anything more.
+</I>&gt;<i>
+</I>That's good, still it is better to have this issue resolved in case you have
+to connect to more than one domains. Currently I am using old likewise-open
+5.4.0.42111, but now I will install the version 6.
+
+P.S. As you can check the thread, the root cause of sound (and future share)
+problems is found, and even the source code is found, now development can
+check from their side and easily provide fix.
+But as you wrote above, with this configuration, you will not going to face
+sound problems.
+
+Best Regards
+Ivan
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101215/487ae6b1/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101215/487ae6b1/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001396.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+	<LI>Next message: <A HREF="001401.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1397">[ date ]</a>
+              <a href="thread.html#1397">[ thread ]</a>
+              <a href="subject.html#1397">[ subject ]</a>
+              <a href="author.html#1397">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

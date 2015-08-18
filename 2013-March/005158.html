@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] findbusyservers algorithm
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20findbusyservers%20algorithm&In-Reply-To=%3CCAFJm-UM2LvkseYdh8Ba%3Dh5w%3DKpiiXkjxr6rj_TVHHDsObZqFgQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005137.html">
+   <LINK REL="Next"  HREF="005165.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] findbusyservers algorithm</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20findbusyservers%20algorithm&In-Reply-To=%3CCAFJm-UM2LvkseYdh8Ba%3Dh5w%3DKpiiXkjxr6rj_TVHHDsObZqFgQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] findbusyservers algorithm">abo at dsl.dk
+       </A><BR>
+    <I>Tue Mar  5 11:51:06 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005137.html">[X2Go-Dev] findbusyservers algorithm
+</A></li>
+        <LI>Next message: <A HREF="005165.html">[X2Go-Dev] findbusyservers algorithm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5158">[ date ]</a>
+              <a href="thread.html#5158">[ thread ]</a>
+              <a href="subject.html#5158">[ subject ]</a>
+              <a href="author.html#5158">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2013/3/2 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+
+&gt;<i> We have tried running /usr/lib/x2go/x2gobroker-agent abo findbusyservers
+</I>&gt;&gt;<i> and got this output:
+</I>&gt;&gt;<i> OK
+</I>&gt;&gt;<i> 16:testterm2
+</I>&gt;&gt;<i> 83:testterm1
+</I>&gt;&gt;<i> Which tells me that it might be the x2gobroker-daemon which isn't using
+</I>&gt;&gt;<i> the
+</I>&gt;&gt;<i> information correctly.
+</I>&gt;<i>
+</I>&gt;<i> My plain guess is that this is related a DNS hostname / FQDN mismatching.
+</I>&gt;<i> The broker code has to become more tolerant about this.
+</I>&gt;<i>
+</I>
+Yes, after some more testing, that is indeed a problem. I have tried added
+some strategic debug-logging to the code and this is the content of
+busy_server_list in broker.base_broker.select_session(), after it gets info
+back from servers:
+
+busy_server_list: [(0, 'testterm1.dsl.lan'), (0, 'testterm2.dsl.lan'),
+(100, 'testterm2')]
+
+Meaning that it doesn't see those as the same. That is of course what bug
+#133 is about.
+
+A more interesting problem as I see it, is why testterm2 is being reported
+with 100 in the above. In fact, when I look at the value of server_list in
+agent.find_busy_servers() this is the content:
+
+busy_servers: {'testterm2': 100}
+
+That is when I have a couple of users logged in to testterm1 and a load of
+2.0 while testterm2 has no users and a load of 0.29. I still think
+something is wrong with the script that determines if a server is busy or
+not :)
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130305/8606b975/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130305/8606b975/attachment.html</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005137.html">[X2Go-Dev] findbusyservers algorithm
+</A></li>
+	<LI>Next message: <A HREF="005165.html">[X2Go-Dev] findbusyservers algorithm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5158">[ date ]</a>
+              <a href="thread.html#5158">[ thread ]</a>
+              <a href="subject.html#5158">[ subject ]</a>
+              <a href="author.html#5158">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

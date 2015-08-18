@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Windows X2Go printing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Windows%20X2Go%20printing&In-Reply-To=%3C1275165932.3376.1.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000481.html">
+   <LINK REL="Next"  HREF="000474.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Windows X2Go printing</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Windows%20X2Go%20printing&In-Reply-To=%3C1275165932.3376.1.camel%40localhost%3E"
+       TITLE="[X2go-dev] Windows X2Go printing">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat May 29 22:45:31 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000481.html">[X2go-dev] Windows X2Go printing
+</A></li>
+        <LI>Next message: <A HREF="000474.html">[X2go-dev] Password handling and CAPS lock issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#496">[ date ]</a>
+              <a href="thread.html#496">[ thread ]</a>
+              <a href="subject.html#496">[ subject ]</a>
+              <a href="author.html#496">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2010-05-19 at 10:37 -0400, John A. Sullivan III wrote:
+&gt;<i> On Wed, 2010-05-19 at 08:34 +0200, Oleksandr Shneyder wrote:
+</I>&gt;<i> &gt; John A. Sullivan III schrieb:
+</I>&gt;<i> &gt; &gt; On Tue, 2010-05-18 at 13:08 -0400, John A. Sullivan III wrote:
+</I>&gt;<i> &gt; &gt;&gt; Hello, all.  We are trying to finish off the punch list for our first
+</I>&gt;<i> &gt; &gt;&gt; major X2Go deployment so I expect to be sending lots of smaller issues
+</I>&gt;<i> &gt; &gt;&gt; to the list.
+</I>&gt;<i> &gt; &gt;&gt;
+</I>&gt;<i> &gt; &gt;&gt; One not so small issue is a problem with using the X2Go client printing
+</I>&gt;<i> &gt; &gt;&gt; on Windows stations.  The portability of this solution is magnificent
+</I>&gt;<i> &gt; &gt;&gt; but we are noticing that the windows client cannot directly print to the
+</I>&gt;<i> &gt; &gt;&gt; local printers.  Whenever we send a print job from the X2Go server to
+</I>&gt;<i> &gt; &gt;&gt; the Windows X2Go client (3.0.1-4), the print dialog properly displays.
+</I>&gt;<i> &gt; &gt;&gt; However, no matter which local printer we choose, whichever application
+</I>&gt;<i> &gt; &gt;&gt; Windows has associated with PDF files opens instead and displays the PDF
+</I>&gt;<i> &gt; &gt;&gt; rather than printing it.
+</I>&gt;<i> &gt; &gt;&gt;
+</I>&gt;<i> &gt; &gt;&gt; Has anyone else seen this behavior? It is 100% reproducible for us.  Why
+</I>&gt;<i> &gt; &gt;&gt; is this happening? Is there a workaround? We're about to dive into the
+</I>&gt;<i> &gt; &gt;&gt; code to see what we can find but really don't know what we are looking
+</I>&gt;<i> &gt; &gt;&gt; at or for so any guidance would be greatly appreciated - John
+</I>&gt;<i> &gt; &gt; &lt;snip&gt;
+</I>&gt;<i> &gt; &gt; Hmm . . . I'm noticing huge ifndef Q_OS_WIN sections eliminating almost
+</I>&gt;<i> &gt; &gt; all of the cupsprintersettingsdialog.cpp and cupsprint.cpp files.  Am I
+</I>&gt;<i> &gt; &gt; beating my head against the wall trying to get the Windows client to use
+</I>&gt;<i> &gt; &gt; the listed printers? As far as I can tell, one can't even access the
+</I>&gt;<i> &gt; &gt; printer settings no less print to them.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; Does it print only to the PDF application by design? If so, why do we
+</I>&gt;<i> &gt; &gt; bother to display all the other printers? It is very misleading to the
+</I>&gt;<i> &gt; &gt; users. I would think there should only be a view as PDF option.  Thanks
+</I>&gt;<i> &gt; &gt; &lt;snip&gt;
+</I>&gt;<i> &gt; Hello John,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Windows Client have not support for CUPS, it using Win API function
+</I>&gt;<i> &gt; &quot;ShellExecute&quot; with parameters &quot;print&quot;, printer name and PDF file. In
+</I>&gt;<i> &gt; this case Windows should send this file to application that associated
+</I>&gt;<i> &gt; with the file type &quot;PDF&quot;. It is a task of specified application to print
+</I>&gt;<i> &gt; this file. On my windows testing machine Adobe Acrobat 5.0 doing this
+</I>&gt;<i> &gt; job well. However, after the document will be printed on specified
+</I>&gt;<i> &gt; printer Adobe Acrobat open this document in &quot;view&quot; mode.
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> Oops! I might have misunderstood what you said.  Are you saying that,
+</I>&gt;<i> when you send the print job to the X2Go printer and choose a specific
+</I>&gt;<i> printer in the X2Go client print dialog, that Acrobat opens but the job
+</I>&gt;<i> prints automatically and the only problem is that Acrobat remains open
+</I>&gt;<i> or are you saying Acrobat opens and then you must use the Acrobat print
+</I>&gt;<i> function manually to send the print job?
+</I>&gt;<i> 
+</I>&gt;<i> The latter is what we are seeing.  Does wapi support the ShellExecuteEx
+</I>&gt;<i> call as opposed to ShellExecute? I'm pretty ignorant on this topic but,
+</I>&gt;<i> from what I read this morning, it looks like ShellExecuteEx does exit
+</I>&gt;<i> the called application when the requested action is completed.  Thanks -
+</I>&gt;<i> John
+</I>&lt;snip&gt;
+Can anyone clarify from experience: When printing using the X2Go client
+printing to print to local printers in Windows, does it open the pdf
+application AND automatically print the print job or does it simply open
+the pdf application? We are seeing the latter and want to confirm this
+is the expected behavior rather than something we mangled in the setup.
+Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000481.html">[X2go-dev] Windows X2Go printing
+</A></li>
+	<LI>Next message: <A HREF="000474.html">[X2go-dev] Password handling and CAPS lock issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#496">[ date ]</a>
+              <a href="thread.html#496">[ thread ]</a>
+              <a href="subject.html#496">[ subject ]</a>
+              <a href="author.html#496">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

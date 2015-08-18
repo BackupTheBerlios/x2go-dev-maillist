@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Help needed in debugging
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Help%20needed%20in%20debugging&In-Reply-To=%3CCALK7e_M%3DHp4MQKde%3D6hiN6x8i-MUaq448JzSmo16SddvKeeuhw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003297.html">
+   <LINK REL="Next"  HREF="003299.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Help needed in debugging</H1>
+    <B>Oliver Burger</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Help%20needed%20in%20debugging&In-Reply-To=%3CCALK7e_M%3DHp4MQKde%3D6hiN6x8i-MUaq448JzSmo16SddvKeeuhw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Help needed in debugging">oliver at mandrivauser.de
+       </A><BR>
+    <I>Sun Jan 29 22:33:54 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003297.html">[X2Go-Dev] Help needed in debugging
+</A></li>
+        <LI>Next message: <A HREF="003299.html">[X2Go-Dev] Help needed in debugging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3298">[ date ]</a>
+              <a href="thread.html#3298">[ thread ]</a>
+              <a href="subject.html#3298">[ subject ]</a>
+              <a href="author.html#3298">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2012/1/29 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;:
+&gt;&gt;<i> thanks for your answer. I changed the log level &#160;to debug and got the
+</I>&gt;&gt;<i> log output below.
+</I>&gt;<i> Below???
+</I>Oups....
+
+
+-----&gt;   snip   &lt;-----
+
+Jan 29 21:09:36 beteigeuze /usr/bin/x2golistsessions[8465]:
+x2golistsessions has been called with no option
+Jan 29 21:09:36 beteigeuze /usr/bin/x2gostartagent: x2gostartagent
+called with options: 800x600 lan 16m-jpeg-9 unix-kde-depth_24 de
+pc105/de 1 D LXDE
+Jan 29 21:09:36 beteigeuze /usr/bin/x2gostartagent: client announced
+itself as ,,192.168.1.201''
+Jan 29 21:09:36 beteigeuze /usr/bin/x2gosessionlimit[8492]:
+x2gosessionlimit has been called
+Jan 29 21:09:36 beteigeuze /usr/bin/x2golistsessions[8496]:
+x2golistsessions has been called with options: --all-servers
+Jan 29 21:09:36 beteigeuze /usr/lib/x2go/x2gogetdisplays[8513]:
+db_getdisplays called, server: beteigeuze.oli-home; return value:
+Jan 29 21:09:36 beteigeuze /usr/lib/x2go/x2goinsertsession[8531]:
+db_insertsession called, session ID: oli-50-1327867776_stDLXDE_dp24,
+server: beteigeuze.oli-home, session ID:
+oli-50-1327867776_stDLXDE_dp24
+Jan 29 21:09:37 beteigeuze /usr/lib/x2go/x2gogetports[8551]:
+db_getports called, server: beteigeuze.oli-home; return value:
+Jan 29 21:09:37 beteigeuze /usr/lib/x2go/x2goinsertport[8583]:
+db_insertport called, session ID: oli-50-1327867776_stDLXDE_dp24,
+server: beteigeuze.oli-home, SSH port: 30001
+Jan 29 21:09:37 beteigeuze /usr/lib/x2go/x2goinsertport[8610]:
+db_insertport called, session ID: oli-50-1327867776_stDLXDE_dp24,
+server: beteigeuze.oli-home, SSH port: 30002
+Jan 29 21:09:38 beteigeuze /usr/lib/x2go/x2goinsertport[8635]:
+db_insertport called, session ID: oli-50-1327867776_stDLXDE_dp24,
+server: beteigeuze.oli-home, SSH port: 30003
+Jan 29 21:09:38 beteigeuze /usr/bin/x2gofeature: x2gofeature called
+with options: X2GO_RUN_EXTENSIONS
+Jan 29 21:09:38 beteigeuze
+/usr/share/x2go/x2gofeature.d/x2goserver-compat.features:
+x2goserver-compat.features called with options: X2GO_RUN_EXTENSIONS
+Jan 29 21:09:38 beteigeuze
+/usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+x2goserver-extensions.features called with options:
+X2GO_RUN_EXTENSIONS
+Jan 29 21:09:38 beteigeuze /usr/bin/x2goserver-run-extensions:
+x2goserver-run-extensions called with options:
+oli-50-1327867776_stDLXDE_dp24 pre-start
+Jan 29 21:09:38 beteigeuze /usr/bin/x2gostartagent: successfully
+started X2go agent session with ID oli-50-1327867776_stDLXDE_dp24
+Jan 29 21:09:38 beteigeuze /usr/bin/x2gofeature: x2gofeature called
+with options: X2GO_RUN_EXTENSIONS
+Jan 29 21:09:38 beteigeuze
+/usr/share/x2go/x2gofeature.d/x2goserver-compat.features:
+x2goserver-compat.features called with options: X2GO_RUN_EXTENSIONS
+Jan 29 21:09:38 beteigeuze
+/usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+x2goserver-extensions.features called with options:
+X2GO_RUN_EXTENSIONS
+Jan 29 21:09:38 beteigeuze /usr/bin/x2goserver-run-extensions:
+x2goserver-run-extensions called with options:
+oli-50-1327867776_stDLXDE_dp24 post-start
+Jan 29 21:09:38 beteigeuze /usr/lib/x2go/x2gocreatesession[8743]:
+db_createsession called, session ID: oli-50-1327867776_stDLXDE_dp24,
+cookie: f6cbfebcde016faa90d03c7d4b6c8052, client: 192.168.1.201, pid:
+8695, graphics port: 30001, sound port: 30002, file sharing port:
+30003
+Jan 29 21:10:08 beteigeuze /usr/lib/x2go/x2gochangestatus[8882]:
+db_changestatus called, session ID: oli-50-1327867776_stDLXDE_dp24,
+new status: F
+Jan 29 21:10:08 beteigeuze /usr/bin/x2goumount-session[8898]:
+x2goumount-session has been called with options:
+oli-50-1327867776_stDLXDE_dp24
+Jan 29 21:10:08 beteigeuze /usr/bin/x2goumount-session[8898]:
+db_getdisplay called, session ID: oli-50-1327867776_stDLXDE_dp24;
+return value: 50
+Jan 29 21:10:08 beteigeuze /usr/bin/x2goumount-session[8898]:
+db_getmounts called, session ID: oli-50-1327867776_stDLXDE_dp24;
+return value:
+Jan 29 21:10:13 beteigeuze /usr/lib/x2go/x2golistsessions_sql[8924]:
+Purging finished session from X2go db, session ID:
+oli-50-1327867776_stDLXDE_dp24
+Jan 29 21:10:13 beteigeuze /usr/bin/x2goumount-session[8941]:
+x2goumount-session has been called with options:
+oli-50-1327867776_stDLXDE_dp24
+Jan 29 21:10:13 beteigeuze /usr/bin/x2goumount-session[8941]:
+db_getdisplay called, session ID: oli-50-1327867776_stDLXDE_dp24;
+return value:
+Jan 29 21:10:13 beteigeuze /usr/bin/x2goumount-session[8941]:
+db_getmounts called, session ID: oli-50-1327867776_stDLXDE_dp24;
+return value:
+-----&gt;   snip   &lt;-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003297.html">[X2Go-Dev] Help needed in debugging
+</A></li>
+	<LI>Next message: <A HREF="003299.html">[X2Go-Dev] Help needed in debugging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3298">[ date ]</a>
+              <a href="thread.html#3298">[ thread ]</a>
+              <a href="subject.html#3298">[ subject ]</a>
+              <a href="author.html#3298">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

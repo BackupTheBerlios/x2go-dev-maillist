@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] The vanishing mouse - xming source code
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20The%20vanishing%20mouse%20-%20xming%20source%20code&In-Reply-To=%3C1286579095.3396.38.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001155.html">
+   <LINK REL="Next"  HREF="001157.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] The vanishing mouse - xming source code</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20The%20vanishing%20mouse%20-%20xming%20source%20code&In-Reply-To=%3C1286579095.3396.38.camel%40localhost%3E"
+       TITLE="[X2go-dev] The vanishing mouse - xming source code">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat Oct  9 01:04:55 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001155.html">[X2go-dev] The vanishing mouse - xming source code
+</A></li>
+        <LI>Next message: <A HREF="001157.html">[X2go-dev] The vanishing mouse - xming source code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1156">[ date ]</a>
+              <a href="thread.html#1156">[ thread ]</a>
+              <a href="subject.html#1156">[ subject ]</a>
+              <a href="author.html#1156">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2010-10-08 at 23:00 +0200, Heinz-M. Graesing wrote:
+&gt;<i> Hello Brian,
+</I>&gt;<i> hello List,
+</I>&gt;<i> 
+</I>&gt;<i> since version 3.0-14 which was released on october 14th 2009, we don't 
+</I>&gt;<i> use xming &quot;as product&quot; any more. The reason was, that we were not happy 
+</I>&gt;<i> with it (as it was not &quot;free enough&quot;).
+</I>&gt;<i> So we found the following HowTo on freedesktop.org which describes how 
+</I>&gt;<i> you can build Xorg for windows on your own:
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="http://www.freedesktop.org/wiki/Xming/Building">http://www.freedesktop.org/wiki/Xming/Building</A>
+</I>&gt;<i> 
+</I>&gt;<i> The source can also be found inside the upcomming berlios git and in our 
+</I>&gt;<i> &quot;preparation git&quot;:
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="http://git.x2go.org/?a=tree&amp;p=x2go&amp;h=7ec005a61b74754785840be6626451617b6b6ec5&amp;hb=38b730a075cc77f747acf6fe585e0aeb728dda55&amp;f=windows">http://git.x2go.org/?a=tree&amp;p=x2go&amp;h=7ec005a61b74754785840be6626451617b6b6ec5&amp;hb=38b730a075cc77f747acf6fe585e0aeb728dda55&amp;f=windows</A>
+</I>&gt;<i> 
+</I>&gt;<i> The only change we made is to get it running with our plugin.
+</I>&gt;<i> We can't reproduce the described bug on our systems - so we can't fix it 
+</I>&gt;<i> at the moment, but we are willing to do so.
+</I>&gt;<i> 
+</I>&gt;<i> best regards,
+</I>&gt;<i> 
+</I>&gt;<i> Alex &amp; Heinz
+</I>&lt;snip&gt;
+That's interesting.  I was not aware that's how you bundled the Windows
+XServer.  As someone who used both 3.01-2 and 3.01-4, the performance
+improvement in 3.01-4 was astounding.  At least in our environment,
+3.01-2 was almost unusable - very, very slow.  3.01-4 was just as fast
+as using a Linux client.  I definitely do not want to step backwards in
+terms of performance.
+
+The bug is maddeningly random.  It seems to be provoked by some
+applications more than others.  We have users who lose the mouse between
+two and four times every day. Those users make heavy use of rdesktop.
+We were not initially able to reproduce the error.  We finally did by
+just letting it sit and having the screen saver kick (we start
+automatically at five minutes and lock after one).  That does not always
+provoke the error but it does occasionally.
+
+Right now, we are testing replacing the provided xming with the website
+paid version to see if the problem goes away.  Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001155.html">[X2go-dev] The vanishing mouse - xming source code
+</A></li>
+	<LI>Next message: <A HREF="001157.html">[X2go-dev] The vanishing mouse - xming source code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1156">[ date ]</a>
+              <a href="thread.html#1156">[ thread ]</a>
+              <a href="subject.html#1156">[ subject ]</a>
+              <a href="author.html#1156">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

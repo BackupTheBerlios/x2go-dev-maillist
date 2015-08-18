@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go with likewise-open (ldap) questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CAANLkTini3LCeQtRoHYPKzA%2BB_BP0Vifea%3DtTzqM16C4p%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001364.html">
+   <LINK REL="Next"  HREF="001367.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go with likewise-open (ldap) questions</H1>
+    <B>Ivan Boyadzhiev</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CAANLkTini3LCeQtRoHYPKzA%2BB_BP0Vifea%3DtTzqM16C4p%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] x2go with likewise-open (ldap) questions">ivancho.b at gmail.com
+       </A><BR>
+    <I>Tue Dec 14 08:14:37 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001364.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+        <LI>Next message: <A HREF="001367.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1365">[ date ]</a>
+              <a href="thread.html#1365">[ thread ]</a>
+              <a href="subject.html#1365">[ subject ]</a>
+              <a href="author.html#1365">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> have special group which contains users who have to have access. I've
+</I>&gt;<i> logged to LDAP locally on the ubuntu, and using command id I've checked the
+</I>&gt;<i> unique identification of that LDAP group. Then I've set this number to the
+</I>&gt;<i> x2gousers in the file /etx/groups. This &lt;snip&gt;
+</I>&gt;<i>
+</I>&gt;<i> 1. Connecting remotely with x2go client with LDAP credentials doesn't
+</I>&gt;<i> forward sound - thus no sound can be heard. This problem doesn't occur when
+</I>&gt;<i> I login locally on the Ubuntu with same LDAP credentials. When I'm logged in
+</I>&gt;<i> locally, the next remote login (using the client), has sound. However, I
+</I>&gt;<i> thought that it is something with groups for audio, but seems it is not, as
+</I>&gt;<i> I'm using very same credentials and the only difference is local and remote,
+</I>&gt;<i> this way all user permissions are same (confirmed)...
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i>
+</I>
+Update:
+/etx/groups was not the right path. The right path was: /etc/groups
+
+Issue 1: When logged locally with LDAP credentials, and then remotely with
+same LDAP credentials. The sound which is heard is actually heard from the
+Server, but not from the Client :(. I've just found out this, as the
+computers are physically next to each other.
+And the sound is heard on the client side, when logged with local (non LDAP)
+user.
+
+Best Regards
+Ivan
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101214/8ede62ae/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101214/8ede62ae/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001364.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+	<LI>Next message: <A HREF="001367.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1365">[ date ]</a>
+              <a href="thread.html#1365">[ thread ]</a>
+              <a href="subject.html#1365">[ subject ]</a>
+              <a href="author.html#1365">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

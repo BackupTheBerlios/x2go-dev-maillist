@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] nice, ionice with x2go?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20nice%2C%20ionice%20with%20x2go%3F&In-Reply-To=%3CBANLkTimdA3cDvCbxsRv0E-yxXViD6aua0w%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002367.html">
+   <LINK REL="Next"  HREF="002320.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] nice, ionice with x2go?</H1>
+    <B>John Williams</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20nice%2C%20ionice%20with%20x2go%3F&In-Reply-To=%3CBANLkTimdA3cDvCbxsRv0E-yxXViD6aua0w%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] nice, ionice with x2go?">jwilliams4200 at gmail.com
+       </A><BR>
+    <I>Mon Jun 27 20:45:36 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002367.html">[X2go-Dev] Disable session saving?
+</A></li>
+        <LI>Next message: <A HREF="002320.html">[X2go-Dev] nice, ionice with x2go?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2319">[ date ]</a>
+              <a href="thread.html#2319">[ thread ]</a>
+              <a href="subject.html#2319">[ subject ]</a>
+              <a href="author.html#2319">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Has anyone experimented with 'nice' or 'ionice' to improve x2go
+responsiveness? If so, what x2go processes might benefit?
+
+The linux server that I am running x2goserver on sometimes has high
+loads, both CPU and disk IO. However, there should be plenty of
+resources left, since never are all of the CPU cores maxed out, and
+the root filesystem is running on a fast SSD. Nevertheless, sometimes
+x2go responsivity will go to almost nothing for a few seconds.
+
+So, I was thinking to try x2go with 'nice -n -10' and 'ionice -c 2 -n
+0' or even 'ionice -c 1', but I am not sure how to go about that. Does
+there exist anywhere a short description of the jobs that x2go starts
+when it is invoked, and what each does? Currently I see:
+
+x2gocleansessions (root, PPID 0)
+x2goagent (user, PPID 1)
+x2goruncommand (user, PPID 0)
+ssh (.x2go) (user, PPID 0)
+sshfs (.x2go) (user, PPID 0)
+
+but I am not sure which are important to responsivity, and which
+scripts started which processes (so I can edit the scripts to insert
+'nice' commands).
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002367.html">[X2go-Dev] Disable session saving?
+</A></li>
+	<LI>Next message: <A HREF="002320.html">[X2go-Dev] nice, ionice with x2go?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2319">[ date ]</a>
+              <a href="thread.html#2319">[ thread ]</a>
+              <a href="subject.html#2319">[ subject ]</a>
+              <a href="author.html#2319">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Use case for an x2go user-group
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C1298064240.4497.46.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001774.html">
+   <LINK REL="Next"  HREF="001776.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Use case for an x2go user-group</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C1298064240.4497.46.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] Use case for an x2go user-group">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Feb 18 22:24:00 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001774.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+        <LI>Next message: <A HREF="001776.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1775">[ date ]</a>
+              <a href="thread.html#1775">[ thread ]</a>
+              <a href="subject.html#1775">[ subject ]</a>
+              <a href="author.html#1775">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks for taking the time to clarify the issues.  It is helping me
+achieve more balance in deciding if this is a good or bad move.  I'll
+respond in the text below - John
+
+On Fri, 2011-02-18 at 21:02 +0100, Alexander Wuerstlein wrote:
+&gt;<i> On 11-02-18 20:34, Gerry Reno &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">greno at verizon.net</A>&gt; wrote:
+</I>&gt;<i> &gt; On 02/18/2011 02:14 PM, Alexander Wuerstlein wrote:
+</I>&gt;<i> &gt; &gt; On 11-02-18 19:59, Gerry Reno &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">greno at verizon.net</A>&gt; wrote:
+</I>&gt;<i> &gt; &gt;   
+</I>&gt;<i> &gt; &gt;&gt; On 02/18/2011 01:18 PM, Reinhard Tartler wrote:
+</I>&gt;<i> &gt; &gt;&gt;     
+</I>&gt;<i> &gt; &gt;&gt;&gt; On Fri, Feb 18, 2011 at 18:52:28 (CET), John A. Sullivan III wrote:
+</I>Hey - that wasn't me - that was Gerry :)
+&gt;<i> &gt; &gt;&gt; Are you implying that every user on any x2go server would be able to
+</I>&gt;<i> &gt; &gt;&gt; launch a remote x2go desktop by default?
+</I>&gt;<i> &gt; &gt;&gt;     
+</I>&gt;<i> &gt; &gt; Yes.
+</I>&gt;<i> &gt; &gt;   
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; That would be a security hole.
+</I>&gt;<i> 
+</I>&gt;<i> In what sense? That would only be a security hole if x2go were less
+</I>&gt;<i> secure than simple ssh logins. If that is the case, those security
+</I>&gt;<i> problems should of course be fixed. But I don't see the risk in allowing
+</I>&gt;<i> x2go usage to users who can use ssh anyways.
+</I>I suppose that is true.  There are differences that we, as more
+experienced computers users might overlook.  Someone using ssh probably
+knows what they are doing (and are thus probably more dangerous!).  I
+would expect my engineers to be able to ssh to test, troubleshoot,
+configure these systems.  That's different than casual users causing
+havoc by pointing their x2go clients to other systems (in our case,
+easily identifiable as other user names).  Again, not arguing - just
+discussing.  As I mentioned, I am a bit ambivalent about it all - seeing
+reasons for and against.
+
+Hmm . . . honestly, as I think through the security implications, I'm
+starting to lean against.  Please indulge me by hearing me through a
+fairly complex thought.  I do understand that we are not removing the
+security but rather giving options.  If an admin wants to crank down the
+security more than the defaults, they can.  However, we are creating a
+potentially less secure environment by default and asking people to
+tighten rather than a more secure environment and allowing people to
+loosen - the worldwide lack of patched systems shows that doesn't work
+too well! So let's consider the following not so corner case.
+
+Picture a moderately secure environment where users are not given
+command line access and applications such as ssh (of course, they can
+always download a browser based java application to do ssh which is why
+we implement micro-perimeter security using the ISCS project at
+<A HREF="http://iscs.sourceforge.net">http://iscs.sourceforge.net</A> - shameless plug).  Regular users thus do
+not have ssh but they do have X2Go clients. Authentication is
+centralized via something like AD or LDAP.  An admin sets up X2Go on a
+server for ease of remote administration and is sloppy by not isolating
+it on a separate network with network access controls between it and the
+user or using local firewall rules or locking down the x2gopgwrapper
+script.  In their sloppy assumption that users can't fiddle with it
+because they don't have ssh, command line access, or the ability to
+install applications, they've given their entire X2Go community who can
+authenticate against LDAP/AD access to their server.
+
+I'm thinking we should err on the side of security and make it secure by
+default with the option to loosen.  That said, is there a way to achieve
+all goals? We do need to stop the sudo log spam. We do need to prevent
+misfired installations that required great expertise to sort out.  What
+if, instead of using sudo, we did lock down the x2go scripts by default
+with restricted ownership as suggested to those who responded to this
+thread concerned about security.  That leaves us with maintaining local
+groups but that is not the end of the world.  It eliminates the sudo
+problem and makes us secure by default rather than exception.
+&gt;<i> 
+</I>&gt;<i> &lt;snip&gt;&gt; 
+</I>
+&gt;<i> Adding appropriate syslog functionality to x2go could of course easily
+</I>&gt;<i> be done. But the sudo-logspam x2go causes is in on way any viable means
+</I>&gt;<i> of auditing and control, its much too easy to hide an attack in such a
+</I>&gt;<i> huge amount of logged lines.
+</I>I do agree with you there!
+&gt;<i> 
+</I>&lt;snip&gt;
+Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001774.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+	<LI>Next message: <A HREF="001776.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1775">[ date ]</a>
+              <a href="thread.html#1775">[ thread ]</a>
+              <a href="subject.html#1775">[ subject ]</a>
+              <a href="author.html#1775">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

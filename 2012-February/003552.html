@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] I18n - how to do it
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20I18n%20-%20how%20to%20do%20it&In-Reply-To=%3C4F421C9E.5060300%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003551.html">
+   <LINK REL="Next"  HREF="003553.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] I18n - how to do it</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20I18n%20-%20how%20to%20do%20it&In-Reply-To=%3C4F421C9E.5060300%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] I18n - how to do it">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Mon Feb 20 11:12:46 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003551.html">[X2Go-Dev] I18n - how to do it
+</A></li>
+        <LI>Next message: <A HREF="003553.html">[X2Go-Dev] I18n - how to do it
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3552">[ date ]</a>
+              <a href="thread.html#3552">[ thread ]</a>
+              <a href="subject.html#3552">[ subject ]</a>
+              <a href="author.html#3552">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike.
+
+On 2012-02-20 10:46, Mike Gabriel wrote:
+&gt;<i> Most important thing is that such a translation service does not
+</I>&gt;<i> conflict with manual translation commits. 
+</I>
+No, this should of course not be the case. Basically I am thinking of an
+upload and a download script. The upload-script will take the latest
+files from GIT and upload them to the server. This _can_ be triggered
+using a cron job or done manually. The download script will download the
+files and update the git. I'm not sure yet, whether it is better to do
+this manually or by using a cron job. None the loss the workload should
+not be lower than accepting a patch.
+Using the client is described in [1]. It even denies to update the local
+files when updating from the server, if you made local changes. :) Or if
+someone else checks a new version into git you can automatically update
+the version on the translation server.
+
+Cheers
+Morty
+
+[1] <A HREF="http://help.transifex.net/features/client/#auto-local">http://help.transifex.net/features/client/#auto-local</A>
+
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4992 bytes
+Desc: S/MIME Kryptografische Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120220/f6bf1231/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120220/f6bf1231/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003551.html">[X2Go-Dev] I18n - how to do it
+</A></li>
+	<LI>Next message: <A HREF="003553.html">[X2Go-Dev] I18n - how to do it
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3552">[ date ]</a>
+              <a href="thread.html#3552">[ thread ]</a>
+              <a href="subject.html#3552">[ subject ]</a>
+              <a href="author.html#3552">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Resuming &quot;running&quot; session
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Resuming%20%22running%22%20session&In-Reply-To=%3C1B8920A7-2153-4D37-B431-56765996CF25%40easyb.ch%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004891.html">
+   <LINK REL="Next"  HREF="004893.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Resuming &quot;running&quot; session</H1>
+    <B>Ezra B&#252;hler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Resuming%20%22running%22%20session&In-Reply-To=%3C1B8920A7-2153-4D37-B431-56765996CF25%40easyb.ch%3E"
+       TITLE="[X2Go-Dev] Resuming &quot;running&quot; session">lists at easyb.ch
+       </A><BR>
+    <I>Tue Jan 15 15:47:09 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004891.html">[X2Go-Dev] Bug#99: x2goclient segmentation fault
+</A></li>
+        <LI>Next message: <A HREF="004893.html">[X2Go-Dev] Resuming &quot;running&quot; session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4892">[ date ]</a>
+              <a href="thread.html#4892">[ thread ]</a>
+              <a href="subject.html#4892">[ subject ]</a>
+              <a href="author.html#4892">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello everyone
+
+Since commit 3335fca16afaa0792207228115e31630894dee71
+
+(X2Go resume session slot: double click on a selected session is supposed to resume that session. To make this feature functional for running sessions the session has to be suspended first.)
+
+resuming a &quot;running&quot; session (by double clicking it) is no longer possible unless you press suspend first. On Linux I get following error:
+
+&quot;channel_open_session failed&quot; :  &quot;Received SSH_MSG_DISCONNECT: 33554432:Received ieof for nonexistent channel 0.&quot; 
+
+Is this the desired behavior? I am used to closing the client without explicitly suspending the session. This leaves the session marked as &quot;running&quot;. When I start up the client again I want to be able to resume the session with the least effort as possible. In my opinion the right way to achieve this behavior would be to suspend the session when the client quits. Are there any thoughts on if and how this should be implemented?
+
+In my opinion simply restoring the behavior we had prior to 3335fc... would be wrong. Because when trying to resume a &quot;running&quot; session the &quot;resume&quot; button in the session dialog dialog would not be active, but resuming by double clicking still possible, which I find misleading.
+
+Here the complete transcript of an attempt to resume a running session:
+
+read  1  sessions from config file 
+start new ssh connection to server: &quot;my.host.ch&quot; : &quot;22&quot; krb:  false 
+
+ssh connection ok 
+
+continue normal x2go session 
+
+Agent output: &quot;gr_port=30127
+sound_port=30128
+fs_port=30129
+&quot; 
+new gr_port:  &quot;30127&quot; 
+
+new sound_port:  &quot;30128&quot; 
+
+new fs_port:  &quot;30129&quot; 
+
+starting nxproxy with:  &quot;nxproxy -S nx/nx,options=/home/easyb/.x2go/S-easyb-90-1358245865_stDxterm_dp32/options:90&quot; 
+
+&quot;
+NXPROXY - Version 3.5.0
+
+Copyright (C) 2001, 2010 NoMachine.
+See 
+<A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A>
+for more information.
+
+Info: Proxy running in client mode with pid '3771'.
+&quot; 
+
+&quot;Session: Starting session at 'Tue Jan 15 15:19:09 2013'.
+Info: Connecting to remote host 'localhost:31127'.
+Info: Connection to remote proxy 'localhost:31127' established.
+&quot; 
+
+&quot;channel_write failed&quot;  -  &quot;Remote channel is closed&quot; 
+
+&quot;Error: The remote NX proxy closed the connection.
+Error: Failure negotiating the session in stage '7'.
+Error: Wrong version or invalid session authentication cookie.
+Session: Terminating session at 'Tue Jan 15 15:19:09 2013'.
+&quot; 
+
+&quot;Session: Session terminated at 'Tue Jan 15 15:19:09 2013'.
+&quot; 
+
+deleting proxy 
+
+nxproxy not running 
+
+proxy deleted 
+
+checking exit status 
+check command message 
+
+&quot;channel_open_session failed&quot; :  &quot;Received SSH_MSG_DISCONNECT: 33554432:Received ieof for nonexistent channel 0.&quot;
+
+
+Cheers,
+Ezra.
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004891.html">[X2Go-Dev] Bug#99: x2goclient segmentation fault
+</A></li>
+	<LI>Next message: <A HREF="004893.html">[X2Go-Dev] Resuming &quot;running&quot; session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4892">[ date ]</a>
+              <a href="thread.html#4892">[ thread ]</a>
+              <a href="subject.html#4892">[ subject ]</a>
+              <a href="author.html#4892">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

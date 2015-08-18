@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2goserver load balancing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20load%20balancing&In-Reply-To=%3C20111111085256.106872a9zblh9tug%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003011.html">
+   <LINK REL="Next"  HREF="003015.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2goserver load balancing</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20load%20balancing&In-Reply-To=%3C20111111085256.106872a9zblh9tug%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] x2goserver load balancing">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Nov 11 08:52:56 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003011.html">[X2go-Dev] x2goserver load balancing
+</A></li>
+        <LI>Next message: <A HREF="003015.html">[X2go-Dev] x2goserver load balancing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3014">[ date ]</a>
+              <a href="thread.html#3014">[ thread ]</a>
+              <a href="subject.html#3014">[ subject ]</a>
+              <a href="author.html#3014">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Fr 11 Nov 2011 00:43:41 CET Vasilica Petcu wrote:
+
+&gt;<i> Hello to all,
+</I>&gt;<i>
+</I>&gt;<i> In the old versions of x2go, there is an option to install  
+</I>&gt;<i> x2goserver with load-balancing...
+</I>
+The default (Debianic) installation does install without load  
+balancing. The focus was to make it run out of the box, so:
+
+   o x2goserver db is sqlite (not postgresql)
+   o x2goserver works with local accounts
+   o for printing it is assumed: cups server := x2goserver
+
+&gt;<i> Is this option still available ? How can I achieve that ???
+</I>
+For load balancing you need to setup postgresql as DB backend:
+<A HREF="http://wiki.x2go.org/wiki:advanced:multi-node:x2goserver-pgsql">http://wiki.x2go.org/wiki:advanced:multi-node:x2goserver-pgsql</A>
+
+And you have to use LDAP for user, group and host management:
+(no current docs available yet, sorry!!!)
+
+And for printing you might want to read this:
+<A HREF="http://wiki.x2go.org/wiki:advanced:multi-node:x2goserver-printing">http://wiki.x2go.org/wiki:advanced:multi-node:x2goserver-printing</A>
+
+
+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20111111/df79099e/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20111111/df79099e/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003011.html">[X2go-Dev] x2goserver load balancing
+</A></li>
+	<LI>Next message: <A HREF="003015.html">[X2go-Dev] x2goserver load balancing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3014">[ date ]</a>
+              <a href="thread.html#3014">[ thread ]</a>
+              <a href="subject.html#3014">[ subject ]</a>
+              <a href="author.html#3014">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

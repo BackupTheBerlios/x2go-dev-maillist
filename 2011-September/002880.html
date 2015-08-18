@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2goserver goes pluggable
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20goes%20pluggable&In-Reply-To=%3C4E857FAF.8080009%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002877.html">
+   <LINK REL="Next"  HREF="002881.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2goserver goes pluggable</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20goes%20pluggable&In-Reply-To=%3C4E857FAF.8080009%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-Dev] x2goserver goes pluggable">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Fri Sep 30 10:37:03 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002877.html">[X2go-Dev] x2goserver goes pluggable
+</A></li>
+        <LI>Next message: <A HREF="002881.html">[X2go-Dev] x2goserver goes pluggable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2880">[ date ]</a>
+              <a href="thread.html#2880">[ thread ]</a>
+              <a href="subject.html#2880">[ subject ]</a>
+              <a href="author.html#2880">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 2011-09-30 09:08, Mike Gabriel wrote:
+&gt;&gt;<i> * what happens to stdout and stderr? What is propagated to the 
+</I>&gt;&gt;<i> client/logfile/&lt;/dev/null&gt;?
+</I>&gt;<i>
+</I>&gt;<i> The x2goserver-run-extensions script silence the sub-scripts complete. 
+</I>&gt;<i> Just committed to Git. Thanks.
+</I>
+IS this a good idea? That is no fun debugging - and maybe those scripts 
+want to output to the session log.
+
+&gt;<i>
+</I>&gt;&gt;<i> * Why always return 0? At least for pre-* it might be nice if 
+</I>&gt;&gt;<i> something can fail.
+</I>&gt;<i>
+</I>&gt;<i> Hmmmm... Really depends on the use case. On the one hand you are right 
+</I>&gt;<i> on the other hand failing extensions scare me. Hmmm...
+</I>
+Well, actually I was mainly thinking of pre-start. It can be abused to 
+implement access-control. Or you might not want to allow a new session 
+if some service fails to start. We have fail-* to clean up already 
+started services
+
+
+&gt;&gt;<i> * What about the environment? What information do I get 
+</I>&gt;&gt;<i> (client-string/version/username/remote ip)?
+</I>&gt;<i>
+</I>&gt;<i> You have the SESSION_NAME (as $1). With that the subscripts can obtain 
+</I>&gt;<i> the rest (from x2golistsessions etc.). 
+</I>
+Ah ok. Maybe a pointer to that wouldn't be too bad.
+
+
+Another thing came to mind: What about turning around the naming-sceme:
+start-pre
+start-post
+start-fail
+That way things that belong together are listed together (also thinking 
+of tab-compleation). I am happy with the current solution, too, though.
+
+And yet another idea: What about passing &quot;pre-start&quot; etc as first 
+parameter.  (similar to intit.d) That way every service only needs one 
+script and can use symlinks.
+
+Cheers
+Morty
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4482 bytes
+Desc: S/MIME Kryptografische Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110930/11eb6312/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110930/11eb6312/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002877.html">[X2go-Dev] x2goserver goes pluggable
+</A></li>
+	<LI>Next message: <A HREF="002881.html">[X2go-Dev] x2goserver goes pluggable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2880">[ date ]</a>
+              <a href="thread.html#2880">[ thread ]</a>
+              <a href="subject.html#2880">[ subject ]</a>
+              <a href="author.html#2880">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

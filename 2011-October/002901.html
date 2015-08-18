@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] 100% Reproducible: x2go session crash problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20100%25%20Reproducible%3A%20x2go%20session%20crash%20problem&In-Reply-To=%3C20111013105912.464617zg5rpsqqg0%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002900.html">
+   <LINK REL="Next"  HREF="002902.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] 100% Reproducible: x2go session crash problem</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20100%25%20Reproducible%3A%20x2go%20session%20crash%20problem&In-Reply-To=%3C20111013105912.464617zg5rpsqqg0%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] 100% Reproducible: x2go session crash problem">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Oct 13 10:59:12 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002900.html">[X2go-Dev] 100% Reproducible: x2go session crash problem
+</A></li>
+        <LI>Next message: <A HREF="002902.html">[X2go-Dev] Wiki relaunch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2901">[ date ]</a>
+              <a href="thread.html#2901">[ thread ]</a>
+              <a href="subject.html#2901">[ subject ]</a>
+              <a href="author.html#2901">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Andrew, hi Benjamin,
+
+On Do 13 Okt 2011 05:38:37 CEST Andrew Mason wrote:
+
+&gt;<i> On Wed, 12 Oct 2011 07:43:22 PM Benjamin Shadwick wrote:
+</I>&gt;&gt;<i> Andrew,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Does this happen using the x2go package versions in the stable PPA (*
+</I>&gt;&gt;<i> ppa:x2go/stable*)? I experienced the crashing issue with the nightly/testing
+</I>&gt;&gt;<i> PPA (*ppa:x2go/ppa*) on Ubuntu 11.04, but on advice from these mailing
+</I>&gt;&gt;<i> lists I reverted to the stable PPA versions and the problem went away.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I haven't yet tested with the new stable versions that were just released
+</I>&gt;&gt;<i> today; I'm hoping that the crash bug isn't now in those.
+</I>&gt;<i>
+</I>&gt;<i> Unless i've made a mistake removing and reinstalling the stable  
+</I>&gt;<i> packages I can
+</I>&gt;<i> still reliably crash the session.
+</I>&gt;<i>
+</I>&gt;<i> Just for sanity this is what ended up in my apt conf.d dir
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at rosetta</A>:/var# cat /etc/apt/sources.list.d/x2go-stable-lucid.list
+</I>&gt;<i> deb <A HREF="http://ppa.launchpad.net/x2go/stable/ubuntu">http://ppa.launchpad.net/x2go/stable/ubuntu</A> lucid main
+</I>&gt;<i>
+</I>&gt;<i> And this is the version of software currently installed.
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at rosetta</A>:/var# dpkg -l | grep x2go
+</I>&gt;<i> ii  x2goagent                            3.4.0.5-0~40~lucid1
+</I>&gt;<i> Special NX-ized client, was developed by NoM
+</I>
+The problem is known, it is buried in the way we currently build  
+(compile) x2goagent and the libxcomp* (nx-libs) packages.
+
+The NoMachine nx-X11 &amp; co packages heavily depend on one another and  
+thus a circular dependency ring has been created by NoMachine that's  
+not trivial to break up into a Debian/Ubuntu conform package build  
+mechanism. Reinhard Tartler is currently working on that with very  
+high priority.
+
+Please stay tuned, we are working on that.
+
+BTW: yesterday's releases package do not fix the above issue, but  
+bring more integrity into the other components of X2go.
+
+Greets,
+Mike
+
+PS: If you use the plasma-widget-x2go tool for KDE4... This will  
+probably be released with a follow-up version in 14 days and has been  
+fixed and prepared yesterday to work with the latest x2goserver code.  
+The packages are already available in the nightly-builds.
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20111013/00bd2477/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20111013/00bd2477/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002900.html">[X2go-Dev] 100% Reproducible: x2go session crash problem
+</A></li>
+	<LI>Next message: <A HREF="002902.html">[X2go-Dev] Wiki relaunch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2901">[ date ]</a>
+              <a href="thread.html#2901">[ thread ]</a>
+              <a href="subject.html#2901">[ subject ]</a>
+              <a href="author.html#2901">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

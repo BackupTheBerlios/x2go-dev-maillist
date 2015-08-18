@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Public key authentication on Mac OS X
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Public%20key%20authentication%20on%20Mac%20OS%20X&In-Reply-To=%3C4C003F70.8040800%40ionic.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000494.html">
+   <LINK REL="Next"  HREF="000497.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Public key authentication on Mac OS X</H1>
+    <B>Mihai Moldovan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Public%20key%20authentication%20on%20Mac%20OS%20X&In-Reply-To=%3C4C003F70.8040800%40ionic.de%3E"
+       TITLE="[X2go-dev] Public key authentication on Mac OS X">ionic at ionic.de
+       </A><BR>
+    <I>Sat May 29 00:10:56 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000494.html">[X2go-dev] Opening a session to user with encrypted home directory
+</A></li>
+        <LI>Next message: <A HREF="000497.html">[X2go-dev] update on the status of the new release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#495">[ date ]</a>
+              <a href="thread.html#495">[ thread ]</a>
+              <a href="subject.html#495">[ subject ]</a>
+              <a href="author.html#495">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+whilst using x2goclient on Mac OS X Snow Leopard, I came across a few
+problems.
+
+Initially, I thought I could just set up x2goclient to connect to my
+server which supports public key authentication. Actually, pubkey is my
+default authentication scheme when connecting to this very server and
+ssh always chooses it. Furthermore, the password for this very private
+key is saved in Mac OS X' keychain, providing a ssh-agent like (well,
+let's say identical) environment.
+
+First off, I guess you're only using the stock SSH client found on the
+machine yourself, so why don't you let it handle it the authentication
+and (optionally) query for a password, if this situation comes up?
+
+Secondly, if you dislike this, keychain integration is still very
+favorable on Mac OS X, as it saves the user the burden to provide a
+password for his private key. While this is not exactly very secure,
+it's very comfortable on the other hand. (Note: keychain can save the
+provided password and &quot;enter&quot; it automatically everytime the privkey is
+requested, but it's not necessary to do so. This said, users can of
+course choose whether the password is to be remembered or not.)
+
+I've seen that there is a way to select a private key for authentication
+in x2goclient. That's handy and I like it, really. As said before, ssh
+(and ssh-agent/keychain) could handle this as well, but it's nice to
+have such an option, i.e. when using a very specific key for this
+purpose only.
+
+Any disagreeing or agreeing thoughts on this?
+
+Best regards,
+
+
+Mihai
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 6111 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100529/4ba98d75/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100529/4ba98d75/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000494.html">[X2go-dev] Opening a session to user with encrypted home directory
+</A></li>
+	<LI>Next message: <A HREF="000497.html">[X2go-dev] update on the status of the new release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#495">[ date ]</a>
+              <a href="thread.html#495">[ thread ]</a>
+              <a href="subject.html#495">[ subject ]</a>
+              <a href="author.html#495">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

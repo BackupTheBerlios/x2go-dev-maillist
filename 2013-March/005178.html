@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Making an OSX x2goclient customized to your site
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Making%20an%20OSX%20x2goclient%20customized%20to%20your%20site&In-Reply-To=%3CCAFJm-UNpPajxhtumQoVx-5Txr%3DkenGja0-3O_xHiKcDx9hZx5w%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005177.html">
+   <LINK REL="Next"  HREF="005179.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Making an OSX x2goclient customized to your site</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Making%20an%20OSX%20x2goclient%20customized%20to%20your%20site&In-Reply-To=%3CCAFJm-UNpPajxhtumQoVx-5Txr%3DkenGja0-3O_xHiKcDx9hZx5w%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Making an OSX x2goclient customized to your site">abo at dsl.dk
+       </A><BR>
+    <I>Wed Mar  6 11:51:14 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005177.html">[X2Go-Dev] Bug#138: Workardound in X2Go Broker
+</A></li>
+        <LI>Next message: <A HREF="005179.html">[X2Go-Dev] Bug#137: crash when using the --session=&lt;name&gt; and	--hide flag with a key that need a password to unlock
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5178">[ date ]</a>
+              <a href="thread.html#5178">[ thread ]</a>
+              <a href="subject.html#5178">[ subject ]</a>
+              <a href="author.html#5178">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi guys,
+
+This is a short guide detailing my adventures in building x2goclient for my
+OSX users, so they can easily login to our upcoming load balanced
+x2goserver farm.
+
+Problem: In order to login to a load balanced farm you need to connect to a
+broker, which, at the time of writing this, requires x2goclient to be
+started with the --broker-url=&lt;url&gt; argument. This is not exactly
+userfriendly. Most normal desktop users aren't comfortable with the command
+line. On Linux and Windows you can distribute a new start shortcut with the
+correct --broker-url added (a .desktop file for Linux and who-knows for
+Windows). This isn't possible on OSX due to the way applications are
+packaged. You can still start apps like x2goclient from the command line
+with arguments and all, but it is a bit more complex and difficult on OSX
+than Linux.
+
+Solution: Build a custom x2goclient package containing a start-script which
+includes your broker-url, so users will automatically be connected to your
+broker when starting x2goclient by clicking the app icon. This makes your
+custom version unusable for power users who need to connect to different
+servers, but for making it easy for your ordinary users to work from home
+or on the road, it is great. They only need to install your customized
+x2goclient and know their username/password.
+
+Steps:
+1. You need a bunch of prerequisites to be able to build x2goclient:
+1a. Install XCode with command line utilities (guides available elsewhere
+online)
+1b. Install MacPorts. Remember to fix your PATH.
+1c. Install x2goclient from source using port, to get all dependencies:
+sudo port -s install x2goclient
+1d. Install dylibbundler: sudo port install dylibbundler
+2. Fix permissions on certain libraries, or dylibbundler will choke on
+them, and they won't be added to the finished .app:
+2a. In /opt/local/lib: chmod ug+w libssh.4.dylib libcrypto.1.0.0.dylib
+libssl.1.0.0.dylib (expects that your user is in group 'adm')
+2b. At the time of writing this, libtiff needs to be build with other
+parameters, than the binary version distributed by macports. As soon as a
+new revision of libtiff is released this step should be unnecessary. Until
+then, rebuild libtiff: sudo port -s -n upgrade --force tiff
+3. Grab the newest version of x2goclient source tarball from x2goclient
+4. Unpack it somewhere: tar -zxvf x2goclient-&lt;VERSION&gt;.tar.gz
+5. Go into it and create a file called x2goclient-start-script with this
+content:
+#!/usr/bin/env bash
+DIR=$(cd &quot;$(dirname &quot;$0&quot;)&quot;; pwd)
+exec $DIR/x2goclient.bin --broker-url=&lt;YOUR_BROKER_URL&gt;
+6. Make it +x: chmod +x x2goclient-start-script
+7. Modify macbuild.sh. Between the &quot;Bundling&quot; phase and the &quot;Creating DMG&quot;
+phase, add these lines:
+phase &quot;Setting up custom run script&quot;
+mv &quot;$APPBUNDLE/Contents/MacOS/x2goclient&quot;
+&quot;$APPBUNDLE/Contents/MacOS/x2goclient.bin&quot;
+cp x2goclient-start-script &quot;$APPBUNDLE/Contents/MacOS/x2goclient&quot;
+8. run macbuild.sh to get both a x2goclient.app and x2goclient.dmg
+
+When a newer version of x2goclient is released, just repeat steps 3 through
+8.
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130306/978d71f7/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130306/978d71f7/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005177.html">[X2Go-Dev] Bug#138: Workardound in X2Go Broker
+</A></li>
+	<LI>Next message: <A HREF="005179.html">[X2Go-Dev] Bug#137: crash when using the --session=&lt;name&gt; and	--hide flag with a key that need a password to unlock
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5178">[ date ]</a>
+              <a href="thread.html#5178">[ thread ]</a>
+              <a href="subject.html#5178">[ subject ]</a>
+              <a href="author.html#5178">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

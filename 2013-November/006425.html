@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#337: nxcomp doesn't compile against libc++ STL
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23337%3A%20nxcomp%20doesn%27t%20compile%20against%20libc%2B%2B%20STL&In-Reply-To=%3C20131105010515.GA1695%40towel.neverpanic.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006424.html">
+   <LINK REL="Next"  HREF="006428.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#337: nxcomp doesn't compile against libc++ STL</H1>
+    <B>Clemens Lang</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23337%3A%20nxcomp%20doesn%27t%20compile%20against%20libc%2B%2B%20STL&In-Reply-To=%3C20131105010515.GA1695%40towel.neverpanic.de%3E"
+       TITLE="[X2Go-Dev] Bug#337: nxcomp doesn't compile against libc++ STL">cal at macports.org
+       </A><BR>
+    <I>Tue Nov  5 02:05:15 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006424.html">[X2Go-Dev] Bug#323: 323 bug
+</A></li>
+        <LI>Next message: <A HREF="006428.html">[X2Go-Dev] Bug#338: gnome no longer working in Ubuntu 13.10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6425">[ date ]</a>
+              <a href="thread.html#6425">[ thread ]</a>
+              <a href="subject.html#6425">[ subject ]</a>
+              <a href="author.html#6425">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: nx-libs
+Version: 3.5.0.21
+
+The nx-libs-lite package does not compile on OS X Mavericks because
+Apple's clang compilers now default to compiling against the libc++ STL
+rather than (their outdated copy of) libstdc++.
+
+While the compiler still allows changing that, we should not rely on
+this being possible forever.
+
+The compiler chokes in Types.h, specifically the clear() methods in
+subclasses of vectors that use implementation details of the GNU STL.
+The attached patch fixes these compilation issues by not overriding the
+clear() method when compiling against libc++, since the libc++ headers
+seem to do essentially the same as the overriden method.
+
+HTH,
+-- 
+Clemens Lang
+MacPorts Developer
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: patch-nxcomp__Types.h-dont-use-STL-internals-on-libc++.diff
+Type: text/x-diff
+Size: 1141 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131105/6dc42c2f/attachment.diff">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131105/6dc42c2f/attachment.diff</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006424.html">[X2Go-Dev] Bug#323: 323 bug
+</A></li>
+	<LI>Next message: <A HREF="006428.html">[X2Go-Dev] Bug#338: gnome no longer working in Ubuntu 13.10
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6425">[ date ]</a>
+              <a href="thread.html#6425">[ thread ]</a>
+              <a href="subject.html#6425">[ subject ]</a>
+              <a href="author.html#6425">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

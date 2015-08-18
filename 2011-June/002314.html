@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Fedora issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Fedora%20issues&In-Reply-To=%3C86aad4xizf.fsf%40greenrd.plus.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002310.html">
+   <LINK REL="Next"  HREF="002315.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Fedora issues</H1>
+    <B>Robin Green</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Fedora%20issues&In-Reply-To=%3C86aad4xizf.fsf%40greenrd.plus.com%3E"
+       TITLE="[X2go-Dev] Fedora issues">greenrd at greenrd.org
+       </A><BR>
+    <I>Mon Jun 27 01:37:08 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002310.html">[X2go-Dev] X2go Thin Client environment based on Debian squeeze is ready for testing.
+</A></li>
+        <LI>Next message: <A HREF="002315.html">[X2go-Dev] Fedora issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2314">[ date ]</a>
+              <a href="thread.html#2314">[ thread ]</a>
+              <a href="subject.html#2314">[ subject ]</a>
+              <a href="author.html#2314">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I struggled mightily to get the git versions of x2goclient and
+x2goserver to work on two Fedora 15 machines today, and finally
+succeeded. Along the way I ran into a bunch of problems - here are some
+that I remember:
+
+1. Out of date or missing information on the wiki - known problem,
+and I guess I can help with this at least.
+
+2. The way the nxcomp Makefile installs symbolic links causes a subtle
+&quot;permission denied&quot; problem if SELinux is enforcing. The &quot;install&quot;
+command installs libraries with the correct SELinux context; the &quot;cp -a&quot;
+command does not install symbolic links with the correct context. (I do
+not know whether rpmbuild automatically fixes such problems; if it does,
+then this would only be a problem for installs from tarballs.)
+
+3. For some reason (I could not figure out why), the
+automatically-generated password was not inserted into the file
+~/.x2go/sqlpass. That file was empty. I worked around this by manually
+resetting the password to another random password and putting the
+password in that file.
+
+4. In x2gostartagent, X2GO_LIB does not seem to be set anywhere. So I
+added a line to set it.
+
+5. The Makefile of nxcomp installs the libraries into /usr/local/lib,
+not /usr/lib/x2go, by default. So I added /usr/local/lib to
+LD_LIBRARY_PATH in x2gostartagent.
+
+6. This is not an x2go bug, but Fedora has a very annoying problem that
+xauth keeps printing the message:
+xauth: /home/greenrd/.Xauthority not writable, changes will be ignored
+I do not know what causes this, or what its significance is. I
+workaround it by doing: rm ~/.Xauthority*
+
+7. It is necessary to set the hostname in /etc/hosts, or xauth will
+complain that the display is invalid. Strangely, the Fedora installation
+CD neglects to do this!
+
+8. At least one key, the left arrow key, doesn't work if you tell
+x2goclient to keep the same keyboard layout - I had to tell it my
+keyboard layout.
+
+-- 
+Robin Green
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002310.html">[X2go-Dev] X2go Thin Client environment based on Debian squeeze is ready for testing.
+</A></li>
+	<LI>Next message: <A HREF="002315.html">[X2go-Dev] Fedora issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2314">[ date ]</a>
+              <a href="thread.html#2314">[ thread ]</a>
+              <a href="subject.html#2314">[ subject ]</a>
+              <a href="author.html#2314">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

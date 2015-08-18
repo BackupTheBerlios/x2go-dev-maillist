@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Go media player for redirected video [was Re: EyeOS]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20media%20player%20for%20redirected%20video%20%5Bwas%20Re%3A%20EyeOS%5D&In-Reply-To=%3C1298426103.22418.27.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001797.html">
+   <LINK REL="Next"  HREF="001800.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Go media player for redirected video [was Re: EyeOS]</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20media%20player%20for%20redirected%20video%20%5Bwas%20Re%3A%20EyeOS%5D&In-Reply-To=%3C1298426103.22418.27.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] X2Go media player for redirected video [was Re: EyeOS]">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Feb 23 02:55:03 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001797.html">[X2go-dev] EyeOS
+</A></li>
+        <LI>Next message: <A HREF="001800.html">[X2go-dev] X2Go media player for redirected video [was Re:	EyeOS]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1799">[ date ]</a>
+              <a href="thread.html#1799">[ thread ]</a>
+              <a href="subject.html#1799">[ subject ]</a>
+              <a href="author.html#1799">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2011-02-22 at 18:42 -0500, Gerry Reno wrote:
+&lt;snip&gt;
+&gt;<i> I think they are just giving you a choice of viewing the video as
+</I>&gt;<i> embedded or non-embedded.
+</I>&gt;<i> 
+</I>&gt;<i> Either way it's still playing locally.
+</I>&lt;snip&gt;
+That really got me to thinking this evening as video is still a big
+problem for us.  Every time we present to a school, we hear how
+important it is to play videos.  We are potentially looking at a large
+PR firm but they are big multimedia users.  So, I got to thinking . . . 
+
+Could we take a page from the X2Go client printing to do something
+similar for video? The X2Go printer takes the pdf file and sends it via
+sshfs to the local system which then can use the associated PDF reader
+to open it.  What if X2GoServer installed a &quot;media player&quot; which did
+nothing more than take the video stream and send it to the physical
+computer to be played with whatever player the local system has
+configured? Doing that with a regular file should be trivial.  I'm not
+sure how one does that with a streaming video but I suppose it would be
+similar to spooling a print job to a file.  We could popup a dialog box
+(perhaps with a progress indicator) saying we are redirecting the video
+to the local computer.
+
+The X2Go Client would need another checkbox to activate redirection of
+video to local computer.  If checked, the client would activate a script
+on the X2Go server via ssh which would backup the existing mime-type
+associations and edit the association files to make the X2Go media
+player (spooler might be a better term) the default player for the
+appropriate mime-types for the specific user.  When a session is
+suspended or terminated, the original mime-types associations are
+restored.
+
+Browsers might be a bit of a challenge if they are not using default
+applications for video but we could always edit the rdf files for
+Firefox (not sure what Chrome uses).
+
+I have a pretty good handle on how mime-type associations are set for
+KDE, Gnome, and Trinity as well as Firefox and would be willing to
+determine what those edits need to be if someone else could do the X2Go
+Client code changes, the X2Go Server script to implement the edits, and
+the X2Go media spooler itself.  Does this sound possible? Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001797.html">[X2go-dev] EyeOS
+</A></li>
+	<LI>Next message: <A HREF="001800.html">[X2go-dev] X2Go media player for redirected video [was Re:	EyeOS]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1799">[ date ]</a>
+              <a href="thread.html#1799">[ thread ]</a>
+              <a href="subject.html#1799">[ subject ]</a>
+              <a href="author.html#1799">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

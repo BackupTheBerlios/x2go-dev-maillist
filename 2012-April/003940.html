@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] GNOME vs. Unity on Ubuntu precise
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20GNOME%20vs.%20Unity%20on%20Ubuntu%20precise&In-Reply-To=%3C4F9D51D7.1070008%40ubuntu.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003939.html">
+   <LINK REL="Next"  HREF="003933.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] GNOME vs. Unity on Ubuntu precise</H1>
+    <B>St&#233;phane Graber</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20GNOME%20vs.%20Unity%20on%20Ubuntu%20precise&In-Reply-To=%3C4F9D51D7.1070008%40ubuntu.com%3E"
+       TITLE="[X2Go-Dev] GNOME vs. Unity on Ubuntu precise">stgraber at ubuntu.com
+       </A><BR>
+    <I>Sun Apr 29 16:36:07 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003939.html">[X2Go-Dev] GNOME vs. Unity on Ubuntu precise
+</A></li>
+        <LI>Next message: <A HREF="003933.html">[X2Go-Dev] published applications - currently not Xinerama support
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3940">[ date ]</a>
+              <a href="thread.html#3940">[ thread ]</a>
+              <a href="subject.html#3940">[ subject ]</a>
+              <a href="author.html#3940">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+On 04/29/2012 04:31 PM, Mike Gabriel wrote:
+&gt;<i> Hi St&#233;phane,
+</I>&gt;<i> 
+</I>&gt;<i> thanks for clarifying all this!!!
+</I>&gt;<i> 
+</I>&gt;<i> On So 29 Apr 2012 15:52:32 CEST St&#233;phane Graber wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> To solve the problem properly, you'd need something that
+</I>&gt;&gt;<i> understands gnome-session and uses it as it's expected.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Here are some example calls of gnome-session: - gnome-session =&gt;
+</I>&gt;&gt;<i> starts the default session, on Ubuntu, unity-3d - gnome-session
+</I>&gt;&gt;<i> --session=ubuntu =&gt; starts unity-3d - gnome-session
+</I>&gt;&gt;<i> --session=ubuntu-2d =&gt; starts unity-2d - gnome-session
+</I>&gt;&gt;<i> --session=gnome =&gt; starts Gnome3 (shell) - gnome-session
+</I>&gt;&gt;<i> --session=gnome-fallback =&gt; starts the gnome 3.x fallback
+</I>&gt;&gt;<i> session
+</I>&gt;<i> 
+</I>&gt;<i> I have just committed a set of patches for x2goruncommand that does
+</I>&gt;<i> the following:
+</I>&gt;<i> 
+</I>&gt;<i> - cmd in ('unity', 'UNITY') and Ubuntu is precise or later -&gt;
+</I>&gt;<i> rewrite cmd to ,,gnome-session''
+</I>&gt;<i> 
+</I>&gt;<i> - cmd in ('gnome-session, 'GNOME') and Ubuntu is precise or later 
+</I>&gt;<i> -&gt; rewrite cmd to ,,gnome-session-fallback''
+</I>&gt;<i> 
+</I>&gt;<i> This seems to work.
+</I>&gt;<i> 
+</I>&gt;<i> However, I have troubles with X2Go window resizing, esp. when
+</I>&gt;<i> running a Unity session (I use pyhoca-gui as client).
+</I>&gt;<i> 
+</I>&gt;<i> Maybe my approach given above is not as clean as your ruleset, but
+</I>&gt;<i> we can ignore GNOME3 (compiz shell) and Unity (compiz shell) for
+</I>&gt;<i> X2Go anyway (IMHO). We rely on the fallback sessions to be
+</I>&gt;<i> supported in future and to become more and more stable.
+</I>&gt;<i> 
+</I>&gt;<i> Greets, Mike
+</I>&gt;<i> 
+</I>
+Using gnome-session instead of '/etc/X11/Xsession &quot;gnome-session
+- --session=ubuntu-2d&quot;' and gnome-session-fallback instead of
+'/etc/X11/Xsession &quot;gnome-session --session=gnome-fallback&quot;' isn't a
+good idea as any script in /etc/X11/Xsession.d will be bypassed.
+
+Looking at the current scripts in there, this will mostly affect
+accessibility, gconf, translated xdg directories, ibus and probably
+some others.
+I'd strongly recommend always starting a full desktop session through
+/etc/X11/Xsession unless you're trying to debug a very specific part
+of the session.
+
+- -- 
+St&#233;phane Graber
+Ubuntu developer
+<A HREF="http://www.ubuntu.com">http://www.ubuntu.com</A>
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+Comment: Using GnuPG with Mozilla - <A HREF="http://enigmail.mozdev.org/">http://enigmail.mozdev.org/</A>
+
+iQIcBAEBCgAGBQJPnVHXAAoJEMY4l01keS1nGYAQANiq8fN+Q5o3mY1o9LdFqG+g
+ksKk6CKiy/vq2madgxumjxNXbkrEpVvQqwKlJga6N3q+9bhgDaGiRDDi5mbmRUva
+ucNaW40Ijp81+5SGZqjzQo54jn9zf8FjNEiKGNJ+vw6zdRnz2+HIiIURtKNMu9dY
+VmZL0pDb+oMGeUDxu8aADGWhRUEy+IdHPUCerBa3U6f6hhAiPxhcubF1mXc82Ovk
+VtIbGEVxALF20roWVIKiTtAZvMRI5pFu4O8qNg0sbfxPGrmbIg+T05B2kSERAqLU
+ZvasGnReUEBG8+Yh7o6m9msSv4jctFjno9r37aOz38+iQVIql+IhMeZ36UwLCWi+
+eoqsFz0fe5Q7A1pA6n9ZkQ4pHEOaaKI2KgAi/B3K5MAHy5flNNQyTyh5bLjc+3qa
+3mTya6ze1totv13g1fOvRyOVeZ4KayV2j7c8J7suSz2aRclftTHm2MmJLLmPBhuD
+QRkyE/xKiS5UuvBg/UfAPWm7L9baO4s5j9RbwPuNlVCC5Q6mYBLBQIV4pugA5lES
+OiCcHyI6dDqdyX6tVmovLcQO1SRNMMd2TkuVmfs67Fg+wY4fpRhlCPhDjGHcoFr0
+7JOTiJeY59UtIYFAjx4SAaslkimjK4VVGgQmBuS4bPKlD3vYiKe3dqDBBNIaRcK0
+lUzO4maJczoP6uOhsM9P
+=HKb9
+-----END PGP SIGNATURE-----
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003939.html">[X2Go-Dev] GNOME vs. Unity on Ubuntu precise
+</A></li>
+	<LI>Next message: <A HREF="003933.html">[X2Go-Dev] published applications - currently not Xinerama support
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3940">[ date ]</a>
+              <a href="thread.html#3940">[ thread ]</a>
+              <a href="subject.html#3940">[ subject ]</a>
+              <a href="author.html#3940">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

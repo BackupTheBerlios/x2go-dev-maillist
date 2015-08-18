@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Traffic%20shaping%20nightmare%20-%20missing%20SSH%20TOS%20bits&In-Reply-To=%3C4F434AA6.6060408%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003558.html">
+   <LINK REL="Next"  HREF="003560.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Traffic%20shaping%20nightmare%20-%20missing%20SSH%20TOS%20bits&In-Reply-To=%3C4F434AA6.6060408%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Tue Feb 21 08:41:26 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003558.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+        <LI>Next message: <A HREF="003560.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3559">[ date ]</a>
+              <a href="thread.html#3559">[ thread ]</a>
+              <a href="subject.html#3559">[ subject ]</a>
+              <a href="author.html#3559">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 21.02.2012 07:05, schrieb John A. Sullivan III:
+&gt;<i> Hello, all.  I've been working on a project to implement traffic shaping
+</I>&gt;<i> to conform to 95th percentile billing including our X2Go virtual
+</I>&gt;<i> desktops.  One of the challenges is prioritizing the interactive X2Go
+</I>&gt;<i> traffic (screen, keyboard, mouse) differently from bulk traffic like
+</I>&gt;<i> local share transfers, printing, and possibly sound.  I thought this
+</I>&gt;<i> would be trivial because of the SSH transport since SSH sets the
+</I>&gt;<i> minimize-delay bit for interactive traffic and the maximize-throughput
+</I>&gt;<i> bit for bulk transfers.  Thus we could distinguish the packets by
+</I>&gt;<i> looking at the TOS bits.  This is how the default Linux pfifo_fast qdisc
+</I>&gt;<i> does it anyway.
+</I>&gt;<i> 
+</I>&gt;<i> I took a packet trace just to confirm it and, to my horror, I see that
+</I>&gt;<i> we are not setting any of the TOS bits and thus not prioritizing
+</I>&gt;<i> interactive traffic even with the default traffic shaping.
+</I>&gt;<i> 
+</I>&gt;<i> I'm guessing this is a casualty of moving to libssh.  Is there any way
+</I>&gt;<i> to set the TOS bits for interactive to 0x10, bulk to 0x08 as it is in
+</I>&gt;<i> OpenSSH?.  It would be really nice if sound could be configured either
+</I>&gt;<i> way according the the administrator's preference.  Unfortunately, I did
+</I>&gt;<i> not see anything in the libssh documentation to show how to do this
+</I>&gt;<i> although I do not claim to understand it.
+</I>&gt;<i> 
+</I>&gt;<i> This is a critical issue for any WAN based deployments like ours.
+</I>&gt;<i> Thanks - John
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+Hello John,
+
+I think it is a question for libssh mailing list.
+
+regards,
+Alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120221/f12eca2e/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120221/f12eca2e/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003558.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+	<LI>Next message: <A HREF="003560.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3559">[ date ]</a>
+              <a href="thread.html#3559">[ thread ]</a>
+              <a href="subject.html#3559">[ subject ]</a>
+              <a href="author.html#3559">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

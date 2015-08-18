@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Packaging%20nx-libs%20%28aka%20x2goagent%29%20for%20your%20distro&In-Reply-To=%3CCAJBj3vd5kxLcXn-Wp12T4yyqOni0irJ7%2B2fHbZHNAGS8RNChvg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003386.html">
+   <LINK REL="Next"  HREF="003389.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro</H1>
+    <B>John Williams</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Packaging%20nx-libs%20%28aka%20x2goagent%29%20for%20your%20distro&In-Reply-To=%3CCAJBj3vd5kxLcXn-Wp12T4yyqOni0irJ7%2B2fHbZHNAGS8RNChvg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro">jwilliams4200 at gmail.com
+       </A><BR>
+    <I>Sun Feb 12 01:20:28 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003386.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+        <LI>Next message: <A HREF="003389.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3387">[ date ]</a>
+              <a href="thread.html#3387">[ thread ]</a>
+              <a href="subject.html#3387">[ subject ]</a>
+              <a href="author.html#3387">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Feb 11, 2012 at 11:56 AM, Milan Kn&#237;&#382;ek &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">knizek.confy at gmail.com</A>&gt; wrote:
+&gt;<i> what is the status with &quot;make install&quot; for the packages included in
+</I>&gt;<i> nx-libs (i.e. nxcomp, nxcompext, nxcompshad, nxproxy, nxagent,
+</I>&gt;<i> 2goagent)?
+</I>&gt;<i>
+</I>&gt;<i> Unless I am doing something wrong, &quot;fakeroot make DESTDIR=/some/path
+</I>&gt;<i> install&quot; leads to installation of the libs&amp;binaries to usr/X11R6 and
+</I>&gt;<i> not all components required for x2goagent (incl. x2goagent wrapper
+</I>&gt;<i> itself) are installed anyway.
+</I>&gt;<i>
+</I>&gt;<i> To work around that, I am using &quot;install&quot; command for all the libs
+</I>&gt;<i> and binaries with the use of the precompiled DEB packages as a template.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> A second point: in Arch linux, the X2Go packages (incl. nx-libs) are in
+</I>&gt;<i> AUR (user-contributed repository), which does not support so called
+</I>&gt;<i> split packages (i.e. I cannot compile the nx-libs tar ball and
+</I>&gt;<i> create several packages in one go like you do in Debian) [1].
+</I>&gt;<i>
+</I>&gt;<i> So at the moment, the semi-automatic build process has to download and
+</I>&gt;<i> compile major part of nx-libs repeatedly for each of the dependency
+</I>&gt;<i> (nxcomp: requires nx-x11; nxagent: requires nx-x11, nxcomp,
+</I>&gt;<i> nxcompext, ..., nx-x11; etc...). It works, nonetheless it is slow and
+</I>&gt;<i> inefficient.
+</I>
+Yes, the makefile currently distributed with nx-libs (redistributed)
+is broken as you say. It sounds like someone is working on it (see
+post from Michael Kromer).
+
+As for the recompilation difficulty, I made an Archlinux package that
+installs everything from the nx-libs tarball at once, rather than
+splitting it into a lot of separate packages.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003386.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+	<LI>Next message: <A HREF="003389.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3387">[ date ]</a>
+              <a href="thread.html#3387">[ thread ]</a>
+              <a href="subject.html#3387">[ subject ]</a>
+              <a href="author.html#3387">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

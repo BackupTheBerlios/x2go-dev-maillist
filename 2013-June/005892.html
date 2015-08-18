@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#250: ultiple xorg.conf's in x2go TCE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23250%3A%20ultiple%20xorg.conf%27s%20in%20x2go%20TCE&In-Reply-To=%3C201306262203.44818.stephan.wagner%40itos-gmbh.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005888.html">
+   <LINK REL="Next"  HREF="005893.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#250: ultiple xorg.conf's in x2go TCE</H1>
+    <B>Stephan Wagner</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23250%3A%20ultiple%20xorg.conf%27s%20in%20x2go%20TCE&In-Reply-To=%3C201306262203.44818.stephan.wagner%40itos-gmbh.com%3E"
+       TITLE="[X2Go-Dev] Bug#250: ultiple xorg.conf's in x2go TCE">stephan.wagner at itos-gmbh.com
+       </A><BR>
+    <I>Wed Jun 26 22:03:44 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005888.html">[X2Go-Dev] Processed: your mail
+</A></li>
+        <LI>Next message: <A HREF="005893.html">[X2Go-Dev] Bug#251: User x2goclient expected,	but user x2gothinclient established
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5892">[ date ]</a>
+              <a href="thread.html#5892">[ thread ]</a>
+              <a href="subject.html#5892">[ subject ]</a>
+              <a href="author.html#5892">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2gothinclient
+Severity: wishlist
+
+
+On Mi 26 Jun 2013 18:02:20 CEST Stephan Wagner wrote:
+
+&gt;<i> We use the 'hostname' to distinguish the xorg.conf's for different thin
+</I>&gt;<i> clients. The attached init-script 'x2gohostname' replaces the default
+</I>&gt;<i> 'hostname' with the ethernet address of the network device eth0. Colons are
+</I>&gt;<i> replaced by dashes. Xorg will search the xorg.conf.&lt;hostname&gt; file in the
+</I>&gt;<i> directory /usr/etc/X11/, which correspond to
+</I>&gt;<i> /opt/x2gothinclient/chroot/usr/etc/X11/ in the PXE-boot environment.
+</I>&gt;<i>
+</I>&gt;<i> The init-script goes to /opt/x2gothinclient/chroot/etc/init.d/. Enter the
+</I>&gt;<i> chroot-environment executing 'x2gothinclient_shell'. 'update-rc.d  
+</I>&gt;<i> x2gohostname
+</I>&gt;<i> defaults' will generate the symlinks for the different run-levels.
+</I>&gt;<i>
+</I>&gt;<i> Hope this helps someone, Stephan
+</I>
+Can you please re-send this mail to <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">submit at bugs.x2go.org</A> and put the  
+below lines as first lines of the mail body:?:
+
+&quot;&quot;&quot;
+Package: x2gothinclient
+Severity: wishlist
+&quot;&quot;&quot;
+
+My suggestion would be to improve this script a little further. From  
+Debian Edu I know that it is rather easy to retrieve the hostname from  
+DNS.
+
+Like this: MAC -&gt; DHCP -&gt; retrieve IP -&gt; DNS -&gt; set FQDN (revDNS) as hostname
+
+If this fails, MAC as hostname is a fallback that is good enough.
+
+Thanks+Greets,
+Mike
+
+-- 
+__________________________________________________
+Dr. Stephan Wagner
+ITos GmbH
+Bitzi-Bendel 2555
+9642 Ebnat-Kappel
+Tel: +41 (0)71 990 05 94
+mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">swagner at itos-gmbh.com</A>
+<A HREF="http://www.itos-gmbh.com">http://www.itos-gmbh.com</A>
+--------------------------------------------------
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130626/15bbffab/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130626/15bbffab/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005888.html">[X2Go-Dev] Processed: your mail
+</A></li>
+	<LI>Next message: <A HREF="005893.html">[X2Go-Dev] Bug#251: User x2goclient expected,	but user x2gothinclient established
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5892">[ date ]</a>
+              <a href="thread.html#5892">[ thread ]</a>
+              <a href="subject.html#5892">[ subject ]</a>
+              <a href="author.html#5892">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

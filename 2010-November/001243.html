@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Compiling x2go Windows client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Compiling%20x2go%20Windows%20client&In-Reply-To=%3C1289319465.3370.1.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001242.html">
+   <LINK REL="Next"  HREF="001244.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Compiling x2go Windows client</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Compiling%20x2go%20Windows%20client&In-Reply-To=%3C1289319465.3370.1.camel%40localhost%3E"
+       TITLE="[X2go-dev] Compiling x2go Windows client">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Nov  9 17:17:45 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001242.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+        <LI>Next message: <A HREF="001244.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1243">[ date ]</a>
+              <a href="thread.html#1243">[ thread ]</a>
+              <a href="subject.html#1243">[ subject ]</a>
+              <a href="author.html#1243">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2010-11-09 at 15:45 +0000, --[ UxBoD ]-- wrote:
+&gt;<i> ----- Original Message -----
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I am attempting to compile the win client and have installed the QT
+</I>&gt;<i> &gt; SDK, MinGw and the x2goclient sources. They have been added to the
+</I>&gt;<i> &gt; environment path to allow the compilation binaries to be found. The
+</I>&gt;<i> &gt; readme says that one should rename x2goclient.pro with
+</I>&gt;<i> &gt; x2goclient.pro.windows yet the latter file does not exist?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I decided to press on and ran qmake followed by make which completed
+</I>&gt;<i> &gt; without any errors. I found the x2goclient.exe within the debug
+</I>&gt;<i> &gt; directory and once I ran it the normal client screen popped up but was
+</I>&gt;<i> &gt; immediately followed by the error &quot;Runtime Error!&quot; from the Microsoft
+</I>&gt;<i> &gt; Visual C++ Runtime Library.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Would very much appreciate some help in resolving the problem please.
+</I>&gt;<i> 
+</I>&gt;<i> Okay I have now got it to start vcxsrv, sshd and pulse by copying the x2goclient.exe binary to c:\program files\x2goclient\ though when I try and connect to a session it just hangs on connecting :( The code I changed was in onmainwindow.cpp to the following:
+</I>&gt;<i> 
+</I>&gt;<i> /* xorg-&gt; setWorkingDirectory ( appDir+&quot;\\xming&quot; ); */
+</I>&gt;<i> /* xorg-&gt;start ( appDir+&quot;\\xming\\xming.exe&quot;,args ); */
+</I>&gt;<i> xorg-&gt; setWorkingDirectory ( &quot;C:\\program files\\vcxsrv&quot; );
+</I>&gt;<i> xorg-&gt;setEnvironment ( env );
+</I>&gt;<i> xorg-&gt;start ( &quot;C:\\program files\\vcxsrv\\vcxsrv.exe&quot;,args );
+</I>&gt;<i> 
+</I>&gt;<i> What I have noticed though it that the binary I compile is huge compared to the one that is shipped.  Is that due to it being in some sort of debug mode or has the binary been stripped ?
+</I>
+What args are being passed? I would guess that the arguments (or at
+least the syntax) are different between Xming and vcxsrv.
+
+Regarding size, I wonder if your binary is statically linked instead of
+dynamically linked (not that I understand linking very well!) - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001242.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+	<LI>Next message: <A HREF="001244.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1243">[ date ]</a>
+              <a href="thread.html#1243">[ thread ]</a>
+              <a href="subject.html#1243">[ subject ]</a>
+              <a href="author.html#1243">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

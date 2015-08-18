@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20New%20session%20param%20for%20.x2goclient/sessions%20file%20%28was%0A%20Re%3A%20Change%20Title%20of%20Frontend%20of%20Pyhoca%29&In-Reply-To=%3C4ED6231A.8080704%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003058.html">
+   <LINK REL="Next"  HREF="003060.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20New%20session%20param%20for%20.x2goclient/sessions%20file%20%28was%0A%20Re%3A%20Change%20Title%20of%20Frontend%20of%20Pyhoca%29&In-Reply-To=%3C4ED6231A.8080704%40obviously-nice.de%3E"
+       TITLE="[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Wed Nov 30 13:35:38 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003058.html">[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+</A></li>
+        <LI>Next message: <A HREF="003060.html">[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3059">[ date ]</a>
+              <a href="thread.html#3059">[ thread ]</a>
+              <a href="subject.html#3059">[ subject ]</a>
+              <a href="author.html#3059">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 30.11.2011 13:30, schrieb Mike Gabriel:
+&gt;<i> Hi Alex,
+</I>&gt;<i> 
+</I>&gt;<i> On Mi 30 Nov 2011 13:15:19 CET Oleksandr Shneyder wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> I don't like it. As result you can get a wrong behaviour of a client, if
+</I>&gt;&gt;<i> you starting a session with new client and resuming it with old one. I
+</I>&gt;&gt;<i> don't think, that this feature is important enough to break
+</I>&gt;&gt;<i> compatibility with old versions of clients.
+</I>&gt;&gt;<i>
+</I>&gt;<i> 
+</I>&gt;<i> I have reverted the server-side changes in x2gostartagent. Instead, I
+</I>&gt;<i> have changed x2gostartagent in a way that it will check for the
+</I>&gt;<i> x2gofeature X2GO_FEATURE_SESSIONTITLE and if that is available it will
+</I>&gt;<i> call a subscript.
+</I>&gt;<i> 
+</I>&gt;<i> This feature X2GO_FEATURE_SESSIONTITL and the corresponding subscript
+</I>&gt;<i> ,,x2gosessiontitle'' are part of a new extension package I have added to
+</I>&gt;<i> x2goserver and called: x2goserver-pyhoca, an add-on package to improve
+</I>&gt;<i> functionality of pyhoca-gui and pyhoca-cli. This package will only be
+</I>&gt;<i> suggested by the core x2goserver package, so it will not be installed if
+</I>&gt;<i> people do not actively select it for installation.
+</I>&gt;<i> 
+</I>&gt;<i> This package currently contains two scripts only used by pyhoca:
+</I>&gt;<i> 
+</I>&gt;<i>   x2gosessiontitle
+</I>&gt;<i>   x2gosetkeyboard
+</I>&gt;<i> 
+</I>&gt;<i> The x2gosessiontitle subscript will then only generate a custom session
+</I>&gt;<i> title if the env var X2GO_FEATURE_SESSIONTITLE is set to ,,enabled''.
+</I>&gt;<i> This has to be done from the client when launching x2gostartagent.
+</I>&gt;<i> 
+</I>&gt;<i> I hope this approach allows us to keep the session title functionality
+</I>&gt;<i> and stay also compatible with old client implementations and between
+</I>&gt;<i> pyhoca and x2goclient.
+</I>&gt;<i> 
+</I>&gt;<i> Let me know what you think,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>
+it sounds ok for me.
+
+regards,
+alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20111130/4ee1aff7/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20111130/4ee1aff7/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003058.html">[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+</A></li>
+	<LI>Next message: <A HREF="003060.html">[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3059">[ date ]</a>
+              <a href="thread.html#3059">[ thread ]</a>
+              <a href="subject.html#3059">[ subject ]</a>
+              <a href="author.html#3059">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

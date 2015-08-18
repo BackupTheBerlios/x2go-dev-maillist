@@ -1,0 +1,321 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Mac OS X GUI - not connecting
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Mac%20OS%20X%20GUI%20-%20not%20connecting&In-Reply-To=%3CBF5459AC-A933-4363-90F9-7DFA6FFE5B84%40opensolutions.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003699.html">
+   <LINK REL="Next"  HREF="003730.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Mac OS X GUI - not connecting</H1>
+    <B>Stephan Diehl</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Mac%20OS%20X%20GUI%20-%20not%20connecting&In-Reply-To=%3CBF5459AC-A933-4363-90F9-7DFA6FFE5B84%40opensolutions.net%3E"
+       TITLE="[X2Go-Dev] Mac OS X GUI - not connecting">stephan.diehl at opensolutions.net
+       </A><BR>
+    <I>Sat Mar  3 17:12:40 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003699.html">[X2Go-Dev] Mac OS X GUI - not connecting
+</A></li>
+        <LI>Next message: <A HREF="003730.html">[X2Go-Dev] Building problems with x2goserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3704">[ date ]</a>
+              <a href="thread.html#3704">[ thread ]</a>
+              <a href="subject.html#3704">[ subject ]</a>
+              <a href="author.html#3704">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Mihai, thank you for your debug build. See my log attached:
+
+-----
+ONMainWindow constructor 
+
+ONMainWindows constructor finished, home Directory is: &quot;/Users/sdiehl&quot; 
+
+read  3  sessions from config file 
+start new ssh connection to server: &quot;someltsserver.com&quot; : &quot;1022&quot; krb:  false 
+
+[1] libssh 0.5.2 (c) 2003-2010 Aris Adamantiadis (<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">aris at 0xbadc0de.be</A>) Distributed under the LGPL, please refer to COPYING file for information about your rights, using threading threads_noop
+[3] host someltsserver.com matches an IP address
+[2] Nonblocking connection socket: 11
+[2] Socket connecting, now waiting for the callbacks to work
+[3] ssh_connect: Actual timeout : 60000
+[3] Received POLLOUT in connecting state
+[1] Socket connection callback: 1 (0)
+[3] Received banner: SSH-2.0-OpenSSH_5.8p1 Debian-7ubuntu1
+[1] SSH server banner: SSH-2.0-OpenSSH_5.8p1 Debian-7ubuntu1
+[1] Analyzing banner: SSH-2.0-OpenSSH_5.8p1 Debian-7ubuntu1
+[1] We are talking to an OpenSSH client version: 5.8 (50800)
+[3] Enabling POLLOUT for socket
+[3] Packet size decrypted: 852 (0x354)
+[3] Read a 852 bytes packet
+[3] 5 bytes padding, 851 bytes left in buffer
+[3] After padding, 846 bytes left in buffer
+[3] Final size 846
+[3] Type 20
+[3] Dispatching handler for packet type 20
+[3] Writing on the wire a packet having 141 bytes before
+[3] 141 bytes after comp + 6 padding bytes = 148 bytes packet
+[3] Enabling POLLOUT for socket
+[3] Writing on the wire a packet having 133 bytes before
+[3] 133 bytes after comp + 6 padding bytes = 140 bytes packet
+[3] Enabling POLLOUT for socket
+[3] Packet size decrypted: 700 (0x2bc)
+[3] Read a 700 bytes packet
+[3] 8 bytes padding, 699 bytes left in buffer
+[3] After padding, 691 bytes left in buffer
+[3] Final size 691
+[3] Type 31
+[3] Dispatching handler for packet type 31
+[2] Received SSH_KEXDH_REPLY
+[3] Writing on the wire a packet having 1 bytes before
+[3] 1 bytes after comp + 10 padding bytes = 12 bytes packet
+[3] Enabling POLLOUT for socket
+[2] SSH_MSG_NEWKEYS sent
+[3] Processing 16 bytes left in socket buffer
+[3] Packet size decrypted: 12 (0xc)
+[3] Read a 12 bytes packet
+[3] 10 bytes padding, 11 bytes left in buffer
+[3] After padding, 1 bytes left in buffer
+[3] Final size 1
+[3] Type 21
+[3] Dispatching handler for packet type 21
+[2] Received SSH_MSG_NEWKEYS
+[3] Set output algorithm to aes256-ctr
+[3] Set input algorithm to aes256-ctr
+[3] ssh_connect: Actual state : 7
+[3] Matching a hashed host: someltsserver.com match=0
+[3] Matching a hashed host: [someltsserver.com]:1022 match=0
+[3] Writing on the wire a packet having 17 bytes before
+[3] 17 bytes after comp + 10 padding bytes = 28 bytes packet
+[3] Encrypting packet with seq num: 3, len: 32
+[3] Sent SSH_MSG_SERVICE_REQUEST (service ssh-userauth)
+[3] Enabling POLLOUT for socket
+[3] Decrypting 16 bytes
+[3] Packet size decrypted: 28 (0x1c)
+[3] Read a 28 bytes packet
+[3] Decrypting 16 bytes
+[3] 10 bytes padding, 27 bytes left in buffer
+[3] After padding, 17 bytes left in buffer
+[3] Final size 17
+[3] Type 6
+[3] Dispatching handler for packet type 6
+[3] Received SSH_MSG_SERVICE_ACCEPT
+[3] Writing on the wire a packet having 58 bytes before
+[3] 58 bytes after comp + 17 padding bytes = 76 bytes packet
+[3] Encrypting packet with seq num: 4, len: 80
+[3] Enabling POLLOUT for socket
+[3] Decrypting 16 bytes
+[3] Packet size decrypted: 12 (0xc)
+[3] Read a 12 bytes packet
+[3] Decrypting 0 bytes
+[3] 10 bytes padding, 11 bytes left in buffer
+[3] After padding, 1 bytes left in buffer
+[3] Final size 1
+[3] Type 52
+[3] Dispatching handler for packet type 52
+[3] Received SSH_USERAUTH_SUCCESS
+[2] Authentication successful
+ssh connection ok 
+
+continue normal x2go session 
+
+[2] Creating a channel 43 with 64000 window and 32768 max packet
+[3] Writing on the wire a packet having 24 bytes before
+[3] 24 bytes after comp + 19 padding bytes = 44 bytes packet
+[3] Encrypting packet with seq num: 5, len: 48
+[3] Enabling POLLOUT for socket
+[3] Sent a SSH_MSG_CHANNEL_OPEN type session for channel 43
+[3] Decrypting 16 bytes
+[3] Packet size decrypted: 28 (0x1c)
+[3] Read a 28 bytes packet
+[3] Decrypting 16 bytes
+[3] 10 bytes padding, 27 bytes left in buffer
+[3] After padding, 17 bytes left in buffer
+[3] Final size 17
+[3] Type 91
+[3] Dispatching handler for packet type 91
+[3] Received SSH2_MSG_CHANNEL_OPEN_CONFIRMATION
+[2] Received a CHANNEL_OPEN_CONFIRMATION for channel 43:0
+[2] Remote window : 0, maxpacket : 32768
+[3] Writing on the wire a packet having 53 bytes before
+[3] 53 bytes after comp + 6 padding bytes = 60 bytes packet
+[3] Encrypting packet with seq num: 6, len: 64
+[3] Enabling POLLOUT for socket
+[3] Sent a SSH_MSG_CHANNEL_REQUEST exec
+[3] Decrypting 16 bytes
+[3] Packet size decrypted: 28 (0x1c)
+[3] Read a 28 bytes packet
+[3] Decrypting 16 bytes
+[3] 18 bytes padding, 27 bytes left in buffer
+[3] After padding, 9 bytes left in buffer
+[3] Final size 9
+[3] Type 93
+[3] Dispatching handler for packet type 93
+[2] Adding 2097152 bytes to channel (43:0) (from 0 bytes)
+[3] Processing 36 bytes left in socket buffer
+[3] Decrypting 16 bytes
+[3] Packet size decrypted: 12 (0xc)
+[3] Read a 12 bytes packet
+[3] Decrypting 0 bytes
+[3] 6 bytes padding, 11 bytes left in buffer
+[3] After padding, 5 bytes left in buffer
+[3] Final size 5
+[3] Type 99
+[3] Dispatching handler for packet type 99
+[3] Received SSH_CHANNEL_SUCCESS on channel (43:0)
+[2] Channel request exec success
+[3] Decrypting 16 bytes
+[3] Packet size decrypted: 12 (0xc)
+[3] Read a 12 bytes packet
+[3] Decrypting 0 bytes
+[3] 6 bytes padding, 11 bytes left in buffer
+[3] After padding, 5 bytes left in buffer
+[3] Final size 5
+[3] Type 96
+[3] Dispatching handler for packet type 96
+[3] Received eof on channel (43:0)
+[3] Writing on the wire a packet having 5 bytes before
+[3] 5 bytes after comp + 6 padding bytes = 12 bytes packet
+[3] Encrypting packet with seq num: 7, len: 16
+[3] Enabling POLLOUT for socket
+[3] Sent a EOF on client channel (43:0)
+[3] Writing on the wire a packet having 5 bytes before
+[3] 5 bytes after comp + 6 padding bytes = 12 bytes packet
+[3] Encrypting packet with seq num: 8, len: 16
+[3] Sent a close on client channel (43:0)
+&quot;x2gostartagent 1440x900 adsl 16m-jpeg-9 unix-kde-depth_32 de query 0 D LXDE&quot; 
+
+[2] Creating a channel 44 with 64000 window and 32768 max packet
+[3] Writing on the wire a packet having 24 bytes before
+[3] 24 bytes after comp + 19 padding bytes = 44 bytes packet
+[3] Encrypting packet with seq num: 9, len: 48
+[3] Sent a SSH_MSG_CHANNEL_OPEN type session for channel 44
+[3] Decrypting 16 bytes
+[3] Packet size decrypted: 44 (0x2c)
+[3] Read a 44 bytes packet
+[3] Decrypting 32 bytes
+[3] 18 bytes padding, 43 bytes left in buffer
+[3] After padding, 25 bytes left in buffer
+[3] Final size 25
+[3] Type 98
+[3] Dispatching handler for packet type 98
+[1] Error : Server specified invalid channel 43
+[3] Processing 36 bytes left in socket buffer
+[3] Decrypting 16 bytes
+[3] Packet size decrypted: 12 (0xc)
+[3] Read a 12 bytes packet
+[3] Decrypting 0 bytes
+[3] 6 bytes padding, 11 bytes left in buffer
+[3] After padding, 5 bytes left in buffer
+[3] Final size 5
+[3] Type 97
+[3] Dispatching handler for packet type 97
+[1] Error : Server specified invalid channel 43
+[3] Enabling POLLOUT for socket
+&quot;channel_open_session schlug fehl&quot; :  &quot;Server specified invalid channel 43&quot; 
+
+[3] Decrypting 16 bytes
+[3] Packet size decrypted: 28 (0x1c)
+[3] Read a 28 bytes packet
+[3] Decrypting 16 bytes
+[3] 10 bytes padding, 27 bytes left in buffer
+[3] After padding, 17 bytes left in buffer
+[3] Final size 17
+[3] Type 91
+[3] Dispatching handler for packet type 91
+[3] Received SSH2_MSG_CHANNEL_OPEN_CONFIRMATION
+[2] Received a CHANNEL_OPEN_CONFIRMATION for channel 44:1
+[2] Remote window : 0, maxpacket : 32768
+-----
+
+can you see something wrong? Or can you diff it with a working connection?
+
+Thank you
+Stephan
+
+Am 02.03.2012 um 17:10 schrieb Mihai Moldovan:
+
+&gt;<i> * On 02.03.2012 10:08 AM, Stephan Diehl wrote:
+</I>&gt;&gt;<i> Sorry, your new version has the same error on OS X 10.7.3. I can test 10.5.8
+</I>&gt;&gt;<i> later. Here is the log output:
+</I>&gt;<i> 
+</I>&gt;<i> Mmh, crap. Well, it's not related to Xorg. This error is coming from libssh.
+</I>&gt;<i> I've seen it before (on my server), but it was never fatal.
+</I>&gt;<i> 
+</I>&gt;<i> Please make sure you're running the newest possible version of x2goserver on
+</I>&gt;<i> your remote machine.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Is it possible to start the gui in debugging mode to see more log output?
+</I>&gt;<i> 
+</I>&gt;<i> Unfortunately, there is no other debug mode for x2go. However, I could give you
+</I>&gt;<i> some build with libssh debug support (it will be very noisy though.)
+</I>&gt;<i> There you go: <A HREF="http://www.ionic.de/x2goclient-git-1e13d3578f-2.dmg">http://www.ionic.de/x2goclient-git-1e13d3578f-2.dmg</A>
+</I>&gt;<i> 
+</I>&gt;<i> This may shed some light on the problem.
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+Stephan Diehl
+Gesch&#228;ftsf&#252;hrer
+
+Open Solutions GmbH &amp; Co. KG
+Luisenweg 109
+20537 Hamburg
+
+Fon: 040 / 7070806 - 70
+Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">stephan.diehl at opensolutions.net</A> 
+
+Registergericht: Amtsgericht Hamburg, HRA 105 704
+Pers&#246;nlich haftende Gesellschafterin: Open Solutions GmbH
+Registergericht: Amtsgericht Hamburg, HRB 999 00
+Gesch&#228;ftsf&#252;hrer: Stephan Diehl
+USt-Id-Nr: DE253775678; Steuer-Nr: 46/649/00349
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120303/41497467/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120303/41497467/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4372 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120303/41497467/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120303/41497467/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003699.html">[X2Go-Dev] Mac OS X GUI - not connecting
+</A></li>
+	<LI>Next message: <A HREF="003730.html">[X2Go-Dev] Building problems with x2goserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3704">[ date ]</a>
+              <a href="thread.html#3704">[ thread ]</a>
+              <a href="subject.html#3704">[ subject ]</a>
+              <a href="author.html#3704">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

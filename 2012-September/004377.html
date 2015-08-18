@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#41: Tarballs installation of nx-libs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2341%3A%20Tarballs%20installation%20of%20nx-libs&In-Reply-To=%3Calpine.LNX.2.01.1209272154560.5150%40nerf07.vanv.qr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004374.html">
+   <LINK REL="Next"  HREF="004380.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#41: Tarballs installation of nx-libs</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2341%3A%20Tarballs%20installation%20of%20nx-libs&In-Reply-To=%3Calpine.LNX.2.01.1209272154560.5150%40nerf07.vanv.qr%3E"
+       TITLE="[X2Go-Dev] Bug#41: Tarballs installation of nx-libs">jengelh at inai.de
+       </A><BR>
+    <I>Thu Sep 27 22:05:59 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004374.html">[X2Go-Dev] Bug#41: Tarballs installation of nx-libs
+</A></li>
+        <LI>Next message: <A HREF="004380.html">[X2Go-Dev] Bug#41: Tarballs installation of nx-libs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4377">[ date ]</a>
+              <a href="thread.html#4377">[ thread ]</a>
+              <a href="subject.html#4377">[ subject ]</a>
+              <a href="author.html#4377">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thursday 2012-09-27 21:21, Mike Gabriel wrote:
+
+&gt;<i> Package: x2goagent
+</I>&gt;<i> Severity: minor
+</I>&gt;<i> Version: 3.5.0.15
+</I>&gt;<i>
+</I>&gt;<i> The installation from tarball is quite broken in nx-libs (I guess we never
+</I>&gt;<i> addressed it as we have the Debian packaging).
+</I>&gt;<i>
+</I>&gt;<i> the code in nx-X11 is installed to /usr/lib/NX3. It should get installed to
+</I>&gt;<i>
+</I>&gt;<i> $(PREFIX)/lib/nx
+</I>&gt;<i>
+</I>&gt;<i> Putting this in my queue...
+</I>
+I don't see the problem here.
+
+/usr/lib/NX3 is the replacement location for /usr/X11R6 to please
+FHS check scripts, which would reject /usr/NX3.
+
+So, the XFree/NX binaries go into /usr/lib/NX3/bin and the libs
+into /usr/lib/NX3/lib(/nx).
+
+Of course you can try to use /usr as prefix instead of /usr/lib/NX3,
+but then the binaries would collide with the Xorg ones.
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004374.html">[X2Go-Dev] Bug#41: Tarballs installation of nx-libs
+</A></li>
+	<LI>Next message: <A HREF="004380.html">[X2Go-Dev] Bug#41: Tarballs installation of nx-libs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4377">[ date ]</a>
+              <a href="thread.html#4377">[ thread ]</a>
+              <a href="subject.html#4377">[ subject ]</a>
+              <a href="author.html#4377">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

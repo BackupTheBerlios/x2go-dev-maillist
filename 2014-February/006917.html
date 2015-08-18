@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] &quot;pidof: command not found&quot; error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%22pidof%3A%20command%20not%20found%22%20error&In-Reply-To=%3CCAMKht8jzv08m1p2rvD4G6zxCwGzJ6PtyuqUc449oVQDJ1oApTQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006916.html">
+   <LINK REL="Next"  HREF="006918.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] &quot;pidof: command not found&quot; error</H1>
+    <B>Michael DePaulo</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%22pidof%3A%20command%20not%20found%22%20error&In-Reply-To=%3CCAMKht8jzv08m1p2rvD4G6zxCwGzJ6PtyuqUc449oVQDJ1oApTQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] &quot;pidof: command not found&quot; error">mikedep333 at gmail.com
+       </A><BR>
+    <I>Sat Feb  1 15:28:45 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006916.html">[X2Go-Dev] &quot;pidof: command not found&quot; error
+</A></li>
+        <LI>Next message: <A HREF="006918.html">[X2Go-Dev] &quot;pidof: command not found&quot; error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6917">[ date ]</a>
+              <a href="thread.html#6917">[ thread ]</a>
+              <a href="subject.html#6917">[ subject ]</a>
+              <a href="author.html#6917">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I did some more investigation last night.
+
+1. Fedora has &quot;pidof&quot; under /usr/sbin .
+(Debian 7 has it under /bin/)
+
+2. Another problem is that x2gosuspend-desktopsharing is looking for
+x2gosyslog under /usr/lib/x2go/ instead of under /usr/lib64/x2go .
+(Debian 7 64-bit has it under /usr/lib/x2go/)
+
+3. Another problem is that x2goterminate-desktopsharing is looking for
+x2gosyslog under /usr/lib/x2go/ instead of under /usr/lib64/x2go .
+(Debian 7 64-bit has it under /usr/lib/x2go/)
+
+I can easily write and commit a fix for #1, but how should I fix #2 and #3?
+
+I propose that I replace this pseudocode:
+
+/usr/lib/x2go/x2gosyslog
+
+with this pseudocode:
+
+if (file exists: /usr/lib64/x2go/x2gosyslog ) then
+    /usr/lib64/x2go/x2gosyslog
+else
+    /usr/lib/x2go/x2gosyslog
+fi
+
+-Mike
+
+On Sat, Feb 1, 2014 at 4:00 AM, Stefan Baur
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>&gt; wrote:
+&gt;<i> Am 01.02.2014 01:14, schrieb Michael DePaulo:
+</I>&gt;&gt;<i> Has anyone seen this error when resuming fedora x2goserver sessions? I
+</I>&gt;&gt;<i> seem to be experiencing it often from my windows x2goclients.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> <A HREF="http://i.imgur.com/9Va5sJJ.png">http://i.imgur.com/9Va5sJJ.png</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This screenshot was taken on x2goclient 4.0.1.3 (Win 8.1 64-bit)
+</I>&gt;&gt;<i> connecting to x2goserver 4.0.1.10 (Fedora 20 64-bit).
+</I>&gt;<i>
+</I>&gt;<i> And you're sure you have &quot;pidof&quot; installed on the server?
+</I>&gt;<i> (Not sure of the package name in fedora; debian wheez has it in
+</I>&gt;<i> <A HREF="http://packages.debian.org/wheezy/sysvinit-utils">http://packages.debian.org/wheezy/sysvinit-utils</A>)
+</I>&gt;<i> Try &quot;which pidof&quot; to see if it's there.
+</I>&gt;<i> =&gt; If you don't have it, I guess you should try to locate the fedora
+</I>&gt;<i> package it is in, and file a bug against x2goserver that the proper
+</I>&gt;<i> dependency should be added to the fedora package.
+</I>&gt;<i>
+</I>&gt;<i> -Stefan
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I></PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006916.html">[X2Go-Dev] &quot;pidof: command not found&quot; error
+</A></li>
+	<LI>Next message: <A HREF="006918.html">[X2Go-Dev] &quot;pidof: command not found&quot; error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6917">[ date ]</a>
+              <a href="thread.html#6917">[ thread ]</a>
+              <a href="subject.html#6917">[ subject ]</a>
+              <a href="author.html#6917">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Goclient
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Goclient&In-Reply-To=%3CAANLkTimCjh8%3DwRoZ3KxSxmKHYU%2B14AcS7iFt9VW63m2%2B%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001007.html">
+   <LINK REL="Next"  HREF="001009.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Goclient</H1>
+    <B>Ricardo D&#237;az Mart&#237;n</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Goclient&In-Reply-To=%3CAANLkTimCjh8%3DwRoZ3KxSxmKHYU%2B14AcS7iFt9VW63m2%2B%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] X2Goclient">oceanosoftlapalma at gmail.com
+       </A><BR>
+    <I>Sat Sep 11 22:39:12 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001007.html">[X2go-dev] X2Goclient
+</A></li>
+        <LI>Next message: <A HREF="001009.html">[X2go-dev] X2Go client occasionally loses mouse cursor
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1008">[ date ]</a>
+              <a href="thread.html#1008">[ thread ]</a>
+              <a href="subject.html#1008">[ subject ]</a>
+              <a href="author.html#1008">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Are you trying to connect to localhost from the same virtual machine? If
+yes, then you must to connect to x2go server from outside virtual machine
+(f.e. from the host you when you are running the xen server).
+
+Regards,
+Ricardo D&#237;az
+
+2010/9/11 <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kamerun at immerda.ch</A> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kamerun at immerda.ch</A>&gt;
+
+&gt;<i> hello,
+</I>&gt;<i>
+</I>&gt;<i> i install x2go server on xen machine
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://www.x2go.org/fileadmin/doc/installation_x2go_debian_en.html#3.Installing%20X2goserver-ONE%20(One%20Node%20Edition">http://www.x2go.org/fileadmin/doc/installation_x2go_debian_en.html#3.Installing%20X2goserver-ONE%20(One%20Node%20Edition</A>)|outline&lt;<A HREF="http://www.x2go.org/fileadmin/doc/installation_x2go_debian_en.html#3.Installing%20X2goserver-ONE%20%28One%20Node%20Edition%29%7Coutline">http://www.x2go.org/fileadmin/doc/installation_x2go_debian_en.html#3.Installing%20X2goserver-ONE%20%28One%20Node%20Edition%29%7Coutline</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> pxe come to login but after login he cannot start
+</I>&gt;<i>
+</I>&gt;<i> it says that he cannot connect localhost
+</I>&gt;<i> when i go to console client
+</I>&gt;<i> i cannot ping localhost
+</I>&gt;<i> lo is there but not up
+</I>&gt;<i>
+</I>&gt;<i> i suppose the link in run by client is not done
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> i correct like this
+</I>&gt;<i> and it works, but i suppose it is a mistake or not?
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> x2gonoldapone:~/scripts-noldap-0ne# cd /opt/x2gothinclient/etc/network/
+</I>&gt;<i> x2gonoldapone:/opt/x2gothinclient/etc/network# ls
+</I>&gt;<i> if-down.d  if-post-down.d  if-pre-up.d  if-up.d  interfaces  run
+</I>&gt;<i> x2gonoldapone:/opt/x2gothinclient/etc/network# ls run
+</I>&gt;<i> x2gonoldapone:/opt/x2gothinclient/etc/network# ls -l
+</I>&gt;<i> total 24
+</I>&gt;<i> drwxr-xr-x 2 root root 4096 May  5  2008 if-down.d
+</I>&gt;<i> drwxr-xr-x 2 root root 4096 May  5  2008 if-post-down.d
+</I>&gt;<i> drwxr-xr-x 2 root root 4096 May  5  2008 if-pre-up.d
+</I>&gt;<i> drwxr-xr-x 2 root root 4096 Sep 11 08:33 if-up.d
+</I>&gt;<i> -rw-r--r-- 1 root root   30 Sep 11 08:21 interfaces
+</I>&gt;<i> drwxr-xr-x 2 root root 4096 Sep 11 08:21 run
+</I>&gt;<i> x2gonoldapone:/opt/x2gothinclient/etc/network# rm -r run
+</I>&gt;<i> x2gonoldapone:/opt/x2gothinclient/etc/network# ln -s /dev/shm run
+</I>&gt;<i> x2gonoldapone:/opt/x2gothinclient/etc/network# ls -l
+</I>&gt;<i> total 20
+</I>&gt;<i> drwxr-xr-x 2 root root 4096 May  5  2008 if-down.d
+</I>&gt;<i> drwxr-xr-x 2 root root 4096 May  5  2008 if-post-down.d
+</I>&gt;<i> drwxr-xr-x 2 root root 4096 May  5  2008 if-pre-up.d
+</I>&gt;<i> drwxr-xr-x 2 root root 4096 Sep 11 08:33 if-up.d
+</I>&gt;<i> -rw-r--r-- 1 root root   30 Sep 11 08:21 interfaces
+</I>&gt;<i> lrwxrwxrwx 1 root root    8 Sep 11 08:54 run -&gt;  /dev/shm
+</I>&gt;<i> x2gonoldapone:/opt/x2gothinclient/etc/network#
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> michel
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100911/29e549aa/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100911/29e549aa/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001007.html">[X2go-dev] X2Goclient
+</A></li>
+	<LI>Next message: <A HREF="001009.html">[X2go-dev] X2Go client occasionally loses mouse cursor
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1008">[ date ]</a>
+              <a href="thread.html#1008">[ thread ]</a>
+              <a href="subject.html#1008">[ subject ]</a>
+              <a href="author.html#1008">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

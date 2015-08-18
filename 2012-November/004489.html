@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#55: x2goplugin: Failed to resolve hostname
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2355%3A%20x2goplugin%3A%20Failed%20to%20resolve%20hostname&In-Reply-To=%3C20121103234214.400259mue33fjlc6%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004492.html">
+   <LINK REL="Next"  HREF="004500.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#55: x2goplugin: Failed to resolve hostname</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2355%3A%20x2goplugin%3A%20Failed%20to%20resolve%20hostname&In-Reply-To=%3C20121103234214.400259mue33fjlc6%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#55: x2goplugin: Failed to resolve hostname">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Nov  3 23:42:14 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004492.html">[X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions
+</A></li>
+        <LI>Next message: <A HREF="004500.html">[X2Go-Dev] Bug#55: x2goplugin: Failed to resolve hostname
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4489">[ date ]</a>
+              <a href="thread.html#4489">[ thread ]</a>
+              <a href="subject.html#4489">[ subject ]</a>
+              <a href="author.html#4489">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goplugin
+Severity: normal
+Version: 3.99.3.0-prerelease
+
+Hi Alex,
+
+I have added a package to x2goclient: x2goplugin-provider. If you  
+install this package (with apache2), you can open a demo plugin site  
+with this URL:
+
+<A HREF="http://localhost/x2goplugin.html">http://localhost/x2goplugin.html</A>
+
+The x2goplugin gets openend and an XFCE session (Debian wheezy default  
+desktop) should get started on host localhost (which should basically  
+work, if x2goserver is installed locally).
+
+However, when starting a session, I receive an error message:
+
+&quot;&quot;&quot;
+Failed to resolve hostname (Der Name oder der Dienst ist nicht bekannt)
+&quot;&quot;&quot;
+
+Either the error is in the x2goplugin code or in my x2goplugin.html:
+<A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=blob;f=provider/share/x2goplugin.html">http://code.x2go.org/gitweb?p=x2goclient.git;a=blob;f=provider/share/x2goplugin.html</A>
+
+Can you reproduce the reported issue with the latest  
+x2goplugin/x2goplugin-provider package? If yes, do you have a clue  
+what the reason for it is?
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121103/6b9458d9/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121103/6b9458d9/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004492.html">[X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions
+</A></li>
+	<LI>Next message: <A HREF="004500.html">[X2Go-Dev] Bug#55: x2goplugin: Failed to resolve hostname
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4489">[ date ]</a>
+              <a href="thread.html#4489">[ thread ]</a>
+              <a href="subject.html#4489">[ subject ]</a>
+              <a href="author.html#4489">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

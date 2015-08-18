@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Go media player for redirected video [was Re: EyeOS]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20media%20player%20for%20redirected%20video%20%5Bwas%20Re%3A%0A%20EyeOS%5D&In-Reply-To=%3C1298430968.22418.32.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001800.html">
+   <LINK REL="Next"  HREF="001802.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Go media player for redirected video [was Re: EyeOS]</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20media%20player%20for%20redirected%20video%20%5Bwas%20Re%3A%0A%20EyeOS%5D&In-Reply-To=%3C1298430968.22418.32.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] X2Go media player for redirected video [was Re: EyeOS]">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Feb 23 04:16:08 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001800.html">[X2go-dev] X2Go media player for redirected video [was Re:	EyeOS]
+</A></li>
+        <LI>Next message: <A HREF="001802.html">[X2go-dev] X2Go media player for redirected video [was Re:	EyeOS]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1801">[ date ]</a>
+              <a href="thread.html#1801">[ thread ]</a>
+              <a href="subject.html#1801">[ subject ]</a>
+              <a href="author.html#1801">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2011-02-22 at 21:09 -0500, Gerry Reno wrote:
+&gt;<i> On 02/22/2011 08:55 PM, John A. Sullivan III wrote:
+</I>&gt;<i> &gt; On Tue, 2011-02-22 at 18:42 -0500, Gerry Reno wrote:
+</I>&gt;<i> &gt; &lt;snip&gt;
+</I>&gt;<i> &gt;   
+</I>&gt;<i> &gt;&gt; I think they are just giving you a choice of viewing the video as
+</I>&gt;<i> &gt;&gt; embedded or non-embedded.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Either way it's still playing locally.
+</I>&gt;<i> &gt;&gt;     
+</I>&gt;<i> &gt; &lt;snip&gt;
+</I>&gt;<i> &gt; That really got me to thinking this evening as video is still a big
+</I>&gt;<i> &gt; problem for us.  Every time we present to a school, we hear how
+</I>&gt;<i> &gt; important it is to play videos.  We are potentially looking at a large
+</I>&gt;<i> &gt; PR firm but they are big multimedia users.  So, I got to thinking . . . 
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Could we take a page from the X2Go client printing to do something
+</I>&gt;<i> &gt; similar for video? The X2Go printer takes the pdf file and sends it via
+</I>&gt;<i> &gt; sshfs to the local system which then can use the associated PDF reader
+</I>&gt;<i> &gt; to open it.  What if X2GoServer installed a &quot;media player&quot; which did
+</I>&gt;<i> &gt; nothing more than take the video stream and send it to the physical
+</I>&gt;<i> &gt; computer to be played with whatever player the local system has
+</I>&gt;<i> &gt; configured? Doing that with a regular file should be trivial.  I'm not
+</I>&gt;<i> &gt; sure how one does that with a streaming video but I suppose it would be
+</I>&gt;<i> &gt; similar to spooling a print job to a file.  We could popup a dialog box
+</I>&gt;<i> &gt; (perhaps with a progress indicator) saying we are redirecting the video
+</I>&gt;<i> &gt; to the local computer.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; The X2Go Client would need another checkbox to activate redirection of
+</I>&gt;<i> &gt; video to local computer.  If checked, the client would activate a script
+</I>&gt;<i> &gt; on the X2Go server via ssh which would backup the existing mime-type
+</I>&gt;<i> &gt; associations and edit the association files to make the X2Go media
+</I>&gt;<i> &gt; player (spooler might be a better term) the default player for the
+</I>&gt;<i> &gt; appropriate mime-types for the specific user.  When a session is
+</I>&gt;<i> &gt; suspended or terminated, the original mime-types associations are
+</I>&gt;<i> &gt; restored.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Browsers might be a bit of a challenge if they are not using default
+</I>&gt;<i> &gt; applications for video but we could always edit the rdf files for
+</I>&gt;<i> &gt; Firefox (not sure what Chrome uses).
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I have a pretty good handle on how mime-type associations are set for
+</I>&gt;<i> &gt; KDE, Gnome, and Trinity as well as Firefox and would be willing to
+</I>&gt;<i> &gt; determine what those edits need to be if someone else could do the X2Go
+</I>&gt;<i> &gt; Client code changes, the X2Go Server script to implement the edits, and
+</I>&gt;<i> &gt; the X2Go media spooler itself.  Does this sound possible? Thanks - John
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;   
+</I>&gt;<i> 
+</I>Yes and no.  I'll respond below.
+
+&gt;<i> We just tell clients that if they want really good video performance
+</I>&gt;<i> then their users will need to use a local media player on their client
+</I>&gt;<i> machine to play video.
+</I>&gt;<i> 
+</I>&gt;<i> There's really no good solution to be able to do this from a media
+</I>&gt;<i> player on the remote desktop that delivers any type of acceptable
+</I>&gt;<i> performance.
+</I>I agree with this as long as we are using NX.
+&gt;<i> 
+</I>&gt;<i> Maybe when the entire world has 1Gbps internet but otherwise just
+</I>&gt;<i> configure things for a local media player.
+</I>I agree with this, too.  That's the idea of my post.
+&gt;<i> 
+</I>&gt;<i> And rather than trying to pass the actual content around it's just seems
+</I>&gt;<i> easier to post the content on a webserver that the users can access from
+</I>&gt;<i> their client machines.
+</I>This is where I disagree.  When we have control of the content and
+environment that works.  But that's not our environment.  We want as
+seamless a user experience as possible whether they are browsing the
+Internet and hit a video, clicking on an email attachment that happens
+to be video, or viewing some kind of embedded video content.  We expect
+our clients to be able to work as closely as possible to their physical
+environment in their virtual environment.  The onus is on us to make
+that possible as transparently as possible without changing their
+procedures.  That may not be true of all deployments but it is true of
+ours - John
+&lt;snip&gt;
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001800.html">[X2go-dev] X2Go media player for redirected video [was Re:	EyeOS]
+</A></li>
+	<LI>Next message: <A HREF="001802.html">[X2go-dev] X2Go media player for redirected video [was Re:	EyeOS]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1801">[ date ]</a>
+              <a href="thread.html#1801">[ thread ]</a>
+              <a href="subject.html#1801">[ subject ]</a>
+              <a href="author.html#1801">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

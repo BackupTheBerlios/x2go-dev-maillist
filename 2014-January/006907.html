@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#402:  Bug#402: Numlock issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23402%3A%20%20Bug%23402%3A%20Numlock%20issues&In-Reply-To=%3Cbfeb081fdd3ec995c47b4ee7c9c96654.squirrel%40amospalla.es%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006832.html">
+   <LINK REL="Next"  HREF="006912.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#402:  Bug#402: Numlock issues</H1>
+    <B>jordi at amospalla.es</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23402%3A%20%20Bug%23402%3A%20Numlock%20issues&In-Reply-To=%3Cbfeb081fdd3ec995c47b4ee7c9c96654.squirrel%40amospalla.es%3E"
+       TITLE="[X2Go-Dev] Bug#402:  Bug#402: Numlock issues">jordi at amospalla.es
+       </A><BR>
+    <I>Thu Jan 30 09:46:04 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006832.html">[X2Go-Dev] Bug#402:  Bug#402: Numlock issues
+</A></li>
+        <LI>Next message: <A HREF="006912.html">[X2Go-Dev] Bug#402: Numlock issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6907">[ date ]</a>
+              <a href="thread.html#6907">[ thread ]</a>
+              <a href="subject.html#6907">[ subject ]</a>
+              <a href="author.html#6907">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Package: x2goserver
+</I>&gt;<i> Version: 4.0.1.12-0x2go2+git20140108.809+wheezy.main.1
+</I>&gt;<i>
+</I>&gt;<i> Hello, numlock does not behave correctly. It behaves like if it was
+</I>&gt;<i> randomly and continuously toggling it state.
+</I>&gt;<i>
+</I>&gt;<i> Happens when numlock key is pressed, and after some time, it seems to
+</I>&gt;<i> stabilize in some state (on or off), but it can take some time.
+</I>&gt;<i>
+</I>&gt;<i> Happens on Mate 1.6 desktop environment over Debian 6. No problem on same
+</I>&gt;<i> host with a KDE session.
+</I>&gt;<i>
+</I>&gt;<i> If numlock state is modified with numlockx binary, it works as expected,
+</I>&gt;<i> only the key triggers this.
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user at host</A>:~$ while numlockx status; do sleep 0.1; done
+</I>&gt;<i> Numlock is off
+</I>&gt;<i> Numlock is off
+</I>&gt;<i> Numlock is on
+</I>&gt;<i> Numlock is on
+</I>&gt;<i> Numlock is off
+</I>&gt;<i> Numlock is on
+</I>&gt;<i> Numlock is off
+</I>&gt;<i> Numlock is on
+</I>&gt;<i> Numlock is off
+</I>&gt;<i> Numlock is on
+</I>&gt;<i> Numlock is off
+</I>&gt;<i> Numlock is off
+</I>&gt;<i> Numlock is on
+</I>&gt;<i> Numlock is on
+</I>&gt;<i> Numlock is off
+</I>&gt;<i> Numlock is on
+</I>&gt;<i> Numlock is on
+</I>&gt;<i> ...
+</I>
+Found that the Mate setting which makes numlock state change at a very
+high rate can be disabled by:
+  gsettings set org.mate.peripherals-keyboard remember-numlock-state false
+
+Still, users notify me that numlock change randomly. I did monitor
+numlock status with &quot;numlockx status&quot; command, and I can see it do
+change but very intermitently.
+
+I first monitored numlock status and actively changed it to on with a
+script.
+
+Lately, I added to the keyboard options, the equivalent to &quot;setxkbmap -o
+numpad:mac&quot;, which can be added to
+/org/mate/desktop/peripherals/keyboard/kbd/options with
+'compat\tnumpad:mac'
+
+Here is a dirty script, which every user runs at session startup:
+
+---------------%-----------------%------------------%------------------
+#!/bin/bash
+tab=&quot;$(printf &quot;\t&quot;)&quot;
+cadena=( $(dconf read /org/mate/desktop/peripherals/keyboard/kbd/options |
+sed -e 's/.*\[\|\]//g') )
+for (( i=0;i&lt;${#cadena[@]};i++ )); do
+	# esborrar '[', ']' i ','
+	cadena[$i]=&quot;$(printf &quot;${cadena[$i]}&quot; | sed -e 's/,//g')&quot;
+done
+if ! echo ${cadena[@]} | grep -q 'compat\snumpad:mac'; then
+	for (( i=0;i&lt;${#cadena[@]};i++ )); do
+		nova=&quot;$nova ${cadena[$i]},&quot;
+	done
+	nova=&quot;$nova 'compat${tab}numpad:mac'&quot;
+	dconf write /org/mate/desktop/peripherals/keyboard/kbd/options &quot;[ $nova ]&quot;
+fi
+gsettings set org.mate.peripherals-keyboard numlock-state          'on'
+---------------%-----------------%------------------%------------------
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006832.html">[X2Go-Dev] Bug#402:  Bug#402: Numlock issues
+</A></li>
+	<LI>Next message: <A HREF="006912.html">[X2Go-Dev] Bug#402: Numlock issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6907">[ date ]</a>
+              <a href="thread.html#6907">[ thread ]</a>
+              <a href="subject.html#6907">[ subject ]</a>
+              <a href="author.html#6907">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

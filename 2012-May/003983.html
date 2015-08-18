@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Adding , , -nolisten tcp'' to x2goagent cmdline options
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Adding%20%2C%20%2C%0A%20-nolisten%20tcp%27%27%20to%20x2goagent%20cmdline%20options&In-Reply-To=%3C20120516110857.165649ps9tqm3lpl%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003964.html">
+   <LINK REL="Next"  HREF="003971.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Adding , , -nolisten tcp'' to x2goagent cmdline options</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Adding%20%2C%20%2C%0A%20-nolisten%20tcp%27%27%20to%20x2goagent%20cmdline%20options&In-Reply-To=%3C20120516110857.165649ps9tqm3lpl%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Adding , , -nolisten tcp'' to x2goagent cmdline options">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed May 16 11:08:57 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003964.html">[X2Go-Dev] Adding ,,-nolisten tcp'' to x2goagent cmdline options
+</A></li>
+        <LI>Next message: <A HREF="003971.html">[X2Go-Dev] Full screen on Windows XP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3983">[ date ]</a>
+              <a href="thread.html#3983">[ thread ]</a>
+              <a href="subject.html#3983">[ subject ]</a>
+              <a href="author.html#3983">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>17Hi all,
+
+On Sa 12 Mai 2012 01:32:11 CEST Mike Gabriel wrote:
+
+&gt;<i> Hi Alex, hi others,
+</I>&gt;<i>
+</I>&gt;<i> a while ago someone posted to x2go-dev and x2go-user that x2goagent   
+</I>&gt;<i> listens on *:6050 (or higher) while running.
+</I>&gt;<i>
+</I>&gt;<i> I just tried to add ,,-nolisten tcp'' to the x2goagent startup  
+</I>&gt;<i> command  in x2gostartagent and it works (I can't see a difference  
+</I>&gt;<i> except the  TCP ports being closed). I also tested with desktop  
+</I>&gt;<i> sharing (shadow  sessions).
+</I>&gt;<i>
+</I>&gt;<i> WITHOUT -nolisten tcp:
+</I>&gt;<i> (<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">locadm at vidar</A>) {~} $ sudo lsof -i  | grep agent
+</I>&gt;<i> x2goagent 30753     mike    0u  IPv6 6685074      0t0  TCP *:6050 (LISTEN)
+</I>&gt;<i> x2goagent 30753     mike    1u  IPv4 6685075      0t0  TCP *:6050 (LISTEN)
+</I>&gt;<i> x2goagent 30753     mike    9u  IPv4 6685176      0t0  TCP   
+</I>&gt;<i> localhost:30001-&gt;localhost:37995 (ESTABLISHED)
+</I>&gt;<i>
+</I>&gt;<i> WITH -nolisten tcp:
+</I>&gt;<i> (<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">locadm at vidar</A>) {~} $ sudo lsof -i  | grep agent
+</I>&gt;<i> x2goagent 32102     mike    7u  IPv4 6691645      0t0  TCP   
+</I>&gt;<i> localhost:30001-&gt;localhost:38003 (ESTABLISHED)
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Any reason, why we do not add that to x2gostartagent?
+</I>
+for the record: -nolisten tcp is now one of the options x2goagent gets  
+launched with:
+<A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=147d22c44167b9b2d4afbdaf17262555a7af713b">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=147d22c44167b9b2d4afbdaf17262555a7af713b</A>
+
+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120516/2ffb3672/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120516/2ffb3672/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003964.html">[X2Go-Dev] Adding ,,-nolisten tcp'' to x2goagent cmdline options
+</A></li>
+	<LI>Next message: <A HREF="003971.html">[X2Go-Dev] Full screen on Windows XP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3983">[ date ]</a>
+              <a href="thread.html#3983">[ thread ]</a>
+              <a href="subject.html#3983">[ subject ]</a>
+              <a href="author.html#3983">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

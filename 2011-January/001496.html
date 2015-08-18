@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Port conflict when using x2go client och x2go server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Port%20conflict%20when%20using%20x2go%20client%20och%20x2go%20server&In-Reply-To=%3C1295113848.3386.16.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001495.html">
+   <LINK REL="Next"  HREF="001497.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Port conflict when using x2go client och x2go server</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Port%20conflict%20when%20using%20x2go%20client%20och%20x2go%20server&In-Reply-To=%3C1295113848.3386.16.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] Port conflict when using x2go client och x2go server">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat Jan 15 18:50:48 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001495.html">[X2go-dev] Port conflict when using x2go client och x2go server
+</A></li>
+        <LI>Next message: <A HREF="001497.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1496">[ date ]</a>
+              <a href="thread.html#1496">[ thread ]</a>
+              <a href="subject.html#1496">[ subject ]</a>
+              <a href="author.html#1496">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, 2011-01-15 at 16:34 +0100, Daniel Lindgren wrote:
+&gt;<i> Hello.
+</I>&gt;<i> 
+</I>&gt;<i> I've run into a problem when using x2go to remote control a server
+</I>&gt;<i> which in turn remote controls another server using x2go, i.e. client_a
+</I>&gt;<i> -&gt; server_a -&gt; server_b.
+</I>&gt;<i> 
+</I>&gt;<i> I can create the sessions without problem, but I can't reconnect to
+</I>&gt;<i> server_a if I suspend the session. I get an error message about &quot;the
+</I>&gt;<i> remote proxy closed the connection while negotiating ...&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> As far as I can see there is a port conflict. Ssh on client_a forwards
+</I>&gt;<i> local port 30001 to/from sshd on port 30001 on server_a, which in turn
+</I>&gt;<i> has an ssh that forwards local port 30001 to/from sshd on port 30001
+</I>&gt;<i> on server_b.
+</I>&gt;<i> 
+</I>&gt;<i> I've worked around it by manually changing SSH_PORT range in
+</I>&gt;<i> /usr/bin/x2gostartagent on server_b to start at 30100 (i.e. a
+</I>&gt;<i> different range than server_a uses).
+</I>&gt;<i> 
+</I>&gt;<i> I don''t know the inner workings of all x2go components, but by
+</I>&gt;<i> studying x2goclient-cli I'm guessing that separating port ranges to
+</I>&gt;<i> use when forwarding would solve it permanently; instead of using
+</I>&gt;<i> &quot;30001:localhost:30001&quot; one would use &quot;31001:localhost:30001&quot;, thereby
+</I>&gt;<i> separating ssh and sshd ports if they are running on the same machine.
+</I>&lt;snip&gt;
+That's an interesting proposal.  Thanks for tracking it down - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001495.html">[X2go-dev] Port conflict when using x2go client och x2go server
+</A></li>
+	<LI>Next message: <A HREF="001497.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1496">[ date ]</a>
+              <a href="thread.html#1496">[ thread ]</a>
+              <a href="subject.html#1496">[ subject ]</a>
+              <a href="author.html#1496">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

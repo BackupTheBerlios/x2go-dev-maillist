@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Python X2go: nxproxy problem with multiple sessions to different servers
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Python%20X2go%3A%20nxproxy%20problem%20with%20multiple%20sessions%0A%20to%20different%20servers&In-Reply-To=%3C4CE44AF3.7040601%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001276.html">
+   <LINK REL="Next"  HREF="001296.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Python X2go: nxproxy problem with multiple sessions to different servers</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Python%20X2go%3A%20nxproxy%20problem%20with%20multiple%20sessions%0A%20to%20different%20servers&In-Reply-To=%3C4CE44AF3.7040601%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] Python X2go: nxproxy problem with multiple sessions to different servers">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Wed Nov 17 22:36:51 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001276.html">[X2go-dev] Python X2go: nxproxy problem with multiple sessions to different servers
+</A></li>
+        <LI>Next message: <A HREF="001296.html">[X2go-dev] Python X2go: nxproxy problem with multiple sessions to different servers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1280">[ date ]</a>
+              <a href="thread.html#1280">[ thread ]</a>
+              <a href="subject.html#1280">[ subject ]</a>
+              <a href="author.html#1280">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 16.11.2010 19:46, schrieb Mike Gabriel:
+&gt;<i> Hi Alex, hi Heinz,
+</I>&gt;<i> 
+</I>&gt;<i> i have a problem that occured when coding Python X2go...
+</I>&gt;<i> 
+</I>&gt;<i> I have two servers. None of them has any X2go users connect to them.
+</I>&gt;<i> 
+</I>&gt;<i> When I connect to server 1 it offers SSH display tunnel NX-Proxy port
+</I>&gt;<i> 30001.
+</I>&gt;<i> 
+</I>&gt;<i> When I connect to server 2 it also offers SSH display tunnel NX-Proxy
+</I>&gt;<i> port 30001.
+</I>&gt;<i> 
+</I>&gt;<i> However, I cannot start two nxproxy instances listening on the same SSH
+</I>&gt;<i> tunnel port.
+</I>&gt;<i> 
+</I>&gt;<i> Is there a communication protocol in X2go that gives the server feedback
+</I>&gt;<i> if an offered port is already in use locally on the client? It actually
+</I>&gt;<i> is not only a graphics/nxproxy issue, it will also occur when tunneling
+</I>&gt;<i> sound or sshfs (only that I do not get that far without a tunnel for nx
+</I>&gt;<i> traffic).
+</I>&gt;<i> 
+</I>&gt;<i> Any help is appreciated...
+</I>&gt;<i> 
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>
+Hello Mike,
+
+You can try to connect with specified port, just before you opening a
+tunnel or starting the service that should listen to that port. If the
+connection failed, port is unused and you can use it.
+
+regards,
+alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101117/20f5c731/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101117/20f5c731/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001276.html">[X2go-dev] Python X2go: nxproxy problem with multiple sessions to different servers
+</A></li>
+	<LI>Next message: <A HREF="001296.html">[X2go-dev] Python X2go: nxproxy problem with multiple sessions to different servers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1280">[ date ]</a>
+              <a href="thread.html#1280">[ thread ]</a>
+              <a href="subject.html#1280">[ subject ]</a>
+              <a href="author.html#1280">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

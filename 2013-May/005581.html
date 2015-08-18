@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#202: Strange crash?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23202%3A%20Strange%20crash%3F&In-Reply-To=%3Czarafa.5188d6ba.6c42.521f702c6fc12a6c%40mail.int.lindix.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005582.html">
+   <LINK REL="Next"  HREF="005583.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#202: Strange crash?</H1>
+    <B>Dick Kniep</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23202%3A%20Strange%20crash%3F&In-Reply-To=%3Czarafa.5188d6ba.6c42.521f702c6fc12a6c%40mail.int.lindix.nl%3E"
+       TITLE="[X2Go-Dev] Bug#202: Strange crash?">dick at lindix.nl
+       </A><BR>
+    <I>Tue May  7 12:26:02 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005582.html">[X2Go-Dev] Bug#201: Acknowledgement (x2gobroker: incomplete install)
+</A></li>
+        <LI>Next message: <A HREF="005583.html">[X2Go-Dev] Bug#203: Waiting for keyboard to appear
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5581">[ date ]</a>
+              <a href="thread.html#5581">[ thread ]</a>
+              <a href="subject.html#5581">[ subject ]</a>
+              <a href="author.html#5581">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>package: x2goserver
+Severity: normal
+Version: 4.0.0.1-0~648~precise1
+
+I get a complaint from a user that when she tries to use the shared disk it will end the connection. Now I noticed that the windows userid has spaces in it and it fails to unmount that one. Maybe that is the cause. This is from syslog
+
+May  7 12:15:20 ambulantehulpverlening /usr/bin/x2gostartagent: successfully started X2Go agent session with ID mal00002-54-1367921719_stRstartcvix.sh_dp17
+May  7 12:15:28 ambulantehulpverlening /usr/bin/x2gomountdirs[20495]: successfully mounted Erik van <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Malenstein at 127.0.0.1</A>:30012/windrive/C/Users/Erik van Malenstein/.x2go/S-mal00002-54-1367921719_stRstartcvix.sh_dp17/spool to /tmp/.x2go-mal00002/spool/C-mal00002-54-1367921719_stRstartcvix.sh_dp17
+May  7 12:15:29 ambulantehulpverlening /usr/bin/x2gomountdirs[20534]: successfully mounted Erik van <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Malenstein at 127.0.0.1</A>:30012/windrive/C/Users/Erik van Malenstein/.x2go/S-mal00002-54-1367921719_stRstartcvix.sh_dp17/mimebox to /tmp/.x2go-mal00002/mimebox/C-mal00002-54-1367921719_stRstartcvix.sh_dp17
+May  7 12:15:31 ambulantehulpverlening /usr/bin/x2gosetkeyboard: Setting X keyboard according to /home/mal00002/.x2go/C-mal00002-54-1367921719_stRstartcvix.sh_dp17/keyboard
+May  7 12:15:33 ambulantehulpverlening /usr/bin/x2gomountdirs[20814]: successfully mounted Erik van <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Malenstein at 127.0.0.1</A>:30012/windrive/C/Users/Erik van Malenstein to /tmp/.x2go-mal00002/media/disk/_windrive_C_Users_Erik_van_Malenstein
+May  7 12:15:40 ambulantehulpverlening postfix/smtpd[32626]: connect from localhost[127.0.0.1]
+May  7 12:15:40 ambulantehulpverlening postfix/smtpd[32626]: disconnect from localhost[127.0.0.1]
+May  7 12:16:41 ambulantehulpverlening postfix/smtpd[32626]: connect from localhost[127.0.0.1]
+May  7 12:16:41 ambulantehulpverlening postfix/smtpd[32626]: disconnect from localhost[127.0.0.1]
+May  7 12:17:01 ambulantehulpverlening CRON[22972]: (root) CMD (   cd / &amp;&amp; run-parts --report /etc/cron.hourly)
+May  7 12:17:40 ambulantehulpverlening postfix/smtpd[32626]: connect from localhost[127.0.0.1]
+May  7 12:17:40 ambulantehulpverlening postfix/smtpd[32626]: disconnect from localhost[127.0.0.1]
+May  7 12:18:40 ambulantehulpverlening postfix/smtpd[32626]: connect from localhost[127.0.0.1]
+May  7 12:18:40 ambulantehulpverlening postfix/smtpd[32626]: disconnect from localhost[127.0.0.1]
+May  7 12:18:58 ambulantehulpverlening /usr/bin/x2goumount-session[25304]: successfully unmounted /tmp/.x2go-hoornjva/spool/C-hoornjva-51-1367917939_stRstartcvix.sh_dp17
+May  7 12:18:58 ambulantehulpverlening /usr/bin/x2goumount-session[25304]: successfully unmounted /tmp/.x2go-hoornjva/mimebox/C-hoornjva-51-1367917939_stRstartcvix.sh_dp17
+May  7 12:18:59 ambulantehulpverlening /usr/bin/x2goumount-session[25304]: successfully unmounted /tmp/.x2go-hoornjva/media/disk/_windrive_C_Users_Gele
+May  7 12:19:40 ambulantehulpverlening postfix/smtpd[32626]: connect from localhost[127.0.0.1]
+May  7 12:19:40 ambulantehulpverlening postfix/smtpd[32626]: disconnect from localhost[127.0.0.1]
+May  7 12:20:07 ambulantehulpverlening /usr/bin/x2goumount-session[26702]: successfully unmounted /tmp/.x2go-mal00002/spool/C-mal00002-54-1367921719_stRstartcvix.sh_dp17
+May  7 12:20:08 ambulantehulpverlening /usr/bin/x2goumount-session[26702]: successfully unmounted /tmp/.x2go-mal00002/mimebox/C-mal00002-54-1367921719_stRstartcvix.sh_dp17
+May  7 12:20:08 ambulantehulpverlening /usr/bin/x2goumount-session[26702]: ERROR: failed to unmount /tmp/.x2go-mal00002/media/disk/_windrive_C_Users_Erik_van_Malenstein
+
+
+Met vriendelijke groet,
+Dick Kniep
+Lindix BV
+tel. 036-5215580
+mob. 06-50991858
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005582.html">[X2Go-Dev] Bug#201: Acknowledgement (x2gobroker: incomplete install)
+</A></li>
+	<LI>Next message: <A HREF="005583.html">[X2Go-Dev] Bug#203: Waiting for keyboard to appear
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5581">[ date ]</a>
+              <a href="thread.html#5581">[ thread ]</a>
+              <a href="subject.html#5581">[ subject ]</a>
+              <a href="author.html#5581">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#104: avoid building of libxcomp1 in	/usr/(local/)nx/X11
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23104%3A%20avoid%20building%20of%20libxcomp1%20in%0A%09/usr/%28local/%29nx/X11&In-Reply-To=%3C20130212083307.294365g8vd5iklkj%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005000.html">
+   <LINK REL="Next"  HREF="005002.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#104: avoid building of libxcomp1 in	/usr/(local/)nx/X11</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23104%3A%20avoid%20building%20of%20libxcomp1%20in%0A%09/usr/%28local/%29nx/X11&In-Reply-To=%3C20130212083307.294365g8vd5iklkj%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#104: avoid building of libxcomp1 in	/usr/(local/)nx/X11">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Feb 12 08:33:07 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005000.html">[X2Go-Dev] Processed: Re: Bug#107: nx-libs makefile install messed	up
+</A></li>
+        <LI>Next message: <A HREF="005002.html">[X2Go-Dev] Processed: Re: Bug#104: avoid building of libxcomp1 in /usr/(local/)nx/X11
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5001">[ date ]</a>
+              <a href="thread.html#5001">[ thread ]</a>
+              <a href="subject.html#5001">[ subject ]</a>
+              <a href="author.html#5001">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>tag #104 pending
+thanks
+
+Hi Orion,
+
+On Do 17 Jan 2013 00:50:53 CET Mike Gabriel wrote:
+
+&gt;<i> Package: nx-libs
+</I>&gt;<i>
+</I>&gt;<i> ----- Weitergeleitete Nachricht von <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at cora.nwra.com</A> -----
+</I>&gt;<i>      Datum: Tue, 15 Jan 2013 15:26:53 -0700
+</I>&gt;<i>        Von: Orion Poplawski &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at cora.nwra.com</A>&gt;
+</I>&gt;<i> Antwort an: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i>    Betreff: Re: [X2Go-Dev] nx-libs-3.5.0.17 whacky install
+</I>&gt;<i>         An: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i>
+</I>&gt;<i> On 01/15/2013 03:13 PM, Orion Poplawski wrote:
+</I>&gt;&gt;<i> On 01/07/2013 02:46 AM, Mike Gabriel wrote:
+</I>&gt;&gt;&gt;<i> Hi Jan
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> On So 06 Jan 2013 19:30:15 CET Jan Engelhardt wrote:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Why do I get two Xcomp shared libraries (Xcomp.so.1 and Xcomp.so.3) that
+</I>&gt;&gt;&gt;&gt;<i> are equal anyway?
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> /usr/PFX/lib/nx/X11/libXcomp.so /usr/PFX/lib/nx/X11/libXcomp.so.1
+</I>&gt;&gt;&gt;&gt;<i> /usr/lib64/nx/libXcomp.a /usr/lib64/nx/libXcomp.so
+</I>&gt;&gt;&gt;&gt;<i> /usr/lib64/nx/libXcomp.so.3 /usr/lib64/nx/libXcomp.so.3.5.0 -rw-r--r-- 1
+</I>&gt;&gt;&gt;&gt;<i> abuild abuild 1200469 Jan  6 18:25 ./usr/PFX/lib/nx/X11/libXcomp.so
+</I>&gt;&gt;&gt;&gt;<i> lrwxrwxrwx 1 abuild abuild      11 Jan  6 18:25
+</I>&gt;&gt;&gt;&gt;<i> ./usr/PFX/lib/nx/X11/libXcomp.so.1 -&gt; libXcomp.so lrwxrwxrwx 1 abuild
+</I>&gt;&gt;&gt;&gt;<i> abuild      17 Jan  6 18:20 ./usr/lib64/nx/libXcomp.so -&gt;
+</I>&gt;&gt;&gt;&gt;<i> libXcomp.so.3.5.0 lrwxrwxrwx 1 abuild abuild      17 Jan  6 18:20
+</I>&gt;&gt;&gt;&gt;<i> ./usr/lib64/nx/libXcomp.so.3 -&gt; libXcomp.so.3.5.0 -rw-r--r-- 1 abuild
+</I>&gt;&gt;&gt;&gt;<i> abuild 1200469 Jan  6 18:25 ./usr/lib64/nx/libXcomp.so.3.5.0
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> This looks interesting. Seems like the libXcomp.so.1 file gets created
+</I>&gt;&gt;&gt;<i> somewhere during the nx-X11 build. I will check on that. Not sure how to
+</I>&gt;&gt;&gt;<i> solve this atm.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Seems to be in ./nx-X11/lib/X11/Imakefile:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> $(NX_XCOMPDEPTARGET):
+</I>&gt;&gt;<i>        ln -s $(NX_XCOMPLIBDIR)/$(NX_XCOMPLIBNAME)
+</I>&gt;&gt;<i> $(BUILDLIBDIR)/$(NX_XCOMPLIBNAME)
+</I>&gt;&gt;<i>        ln -s $(NX_XCOMPLIBDIR)/$(NX_XCOMPLIBNAME).1
+</I>&gt;&gt;<i> $(BUILDLIBDIR)/$(NX_XCOMPLIBNAME).1
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> clean::
+</I>&gt;&gt;<i>        rm -f $(BUILDLIBDIR)/$(NX_XCOMPLIBNAME)
+</I>&gt;&gt;<i>        rm -f $(BUILDLIBDIR)/$(NX_XCOMPLIBNAME).1
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> The attached seems to work for me.
+</I>
+Patch tested and applied to nx-libs.git:
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=258902bec76cc4828ab7453df7406957ce93048a">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=258902bec76cc4828ab7453df7406957ce93048a</A>
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130212/c1786d5b/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130212/c1786d5b/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005000.html">[X2Go-Dev] Processed: Re: Bug#107: nx-libs makefile install messed	up
+</A></li>
+	<LI>Next message: <A HREF="005002.html">[X2Go-Dev] Processed: Re: Bug#104: avoid building of libxcomp1 in /usr/(local/)nx/X11
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5001">[ date ]</a>
+              <a href="thread.html#5001">[ thread ]</a>
+              <a href="subject.html#5001">[ subject ]</a>
+              <a href="author.html#5001">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

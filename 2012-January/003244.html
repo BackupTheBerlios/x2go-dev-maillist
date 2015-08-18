@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2goserver patch
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20patch&In-Reply-To=%3C4F217E8C.1030102%40dotriver.eu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003242.html">
+   <LINK REL="Next"  HREF="003245.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2goserver patch</H1>
+    <B>Jean Milot</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20patch&In-Reply-To=%3C4F217E8C.1030102%40dotriver.eu%3E"
+       TITLE="[X2go-Dev] x2goserver patch">jmilot at dotriver.eu
+       </A><BR>
+    <I>Thu Jan 26 17:25:48 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003242.html">[X2go-Dev] x2goserver patch
+</A></li>
+        <LI>Next message: <A HREF="003245.html">[X2go-Dev] x2goserver patch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3244">[ date ]</a>
+              <a href="thread.html#3244">[ thread ]</a>
+              <a href="subject.html#3244">[ subject ]</a>
+              <a href="author.html#3244">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+We use freenx server. I would like to know how to use these patches for 
+our server.
+
+Thanks.
+
+Sincerely,
+
+Jean
+
+Le 26/01/2012 17:23, Mike Gabriel a &#233;crit :
+&gt;<i> Hi Jochen,
+</I>&gt;<i>
+</I>&gt;<i> On Do 26 Jan 2012 15:13:58 CET Jochen Schulz wrote:
+</I>&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> 3) we use kerberos here and to correctly pass the the KRB5CCNAME to 
+</I>&gt;&gt;&gt;&gt;<i> the
+</I>&gt;&gt;&gt;&gt;<i> running session i wrote a line with &quot;export KRB5CCNAME&quot; in
+</I>&gt;&gt;&gt;&gt;<i> x2goruncommand. This also is now obsolete because you implemented
+</I>&gt;&gt;&gt;&gt;<i> Xsession-support.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I use Kerberos a lot, too, and have not needed this so far. Even 
+</I>&gt;&gt;&gt;<i> without
+</I>&gt;&gt;&gt;<i> x2goserver-xsession installed. Could you specifiy on this?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> for the principle functionality of authentification/authorization via
+</I>&gt;&gt;<i> kerberos there is no problem. To succesfully use single-sign-on with
+</I>&gt;&gt;<i> kerberos or be able to held a kerberos-authorized nfsv4 mount you need a
+</I>&gt;&gt;<i> valid ticket-cache all the time and the software must know where to look
+</I>&gt;&gt;<i> (KRB5CCNAME). the way x2goruncommand was doing it, the started session
+</I>&gt;&gt;<i> (in our case it is gnome-session) didn't know anything about KRB5CCNAME
+</I>&gt;&gt;<i> and also all subsequent processes didn't know either.
+</I>&gt;<i>
+</I>&gt;<i> committed:
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=6e50ee147551291fc4dc8cd8a8d9a9817da7f90b">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=6e50ee147551291fc4dc8cd8a8d9a9817da7f90b</A> 
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+-- 
+Jean Milot  - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jmilot at dotriver.eu</A> - www.dotriver.eu&lt;<A HREF="http://www.dotriver.eu/">http://www.dotriver.eu/</A>&gt;
+5 passage de l'avenir, F-69200 V&#233;nissieux
+Fixe: +33 (0)4 27 46 39 80 Hotline: # 89  Fax: # 81
+
+Nos voeux pour 2012... <A HREF="http://www.dotriver.eu/a-propos/actualites/voeux-2012">http://www.dotriver.eu/a-propos/actualites/voeux-2012</A>
+Membre du projet &quot;nuage&quot; <A HREF="http://tinyurl.com/87lxo39">http://tinyurl.com/87lxo39</A> (cloud ouvert, &#233;cologique et relocalis&#233; en France)
+SolidariCloud, Serveurs solidaires pour les associations et les fondations <A HREF="http://tinyurl.com/69degxt">http://tinyurl.com/69degxt</A>
+
+Pas &#224; pas, agissons au quotidien pour pr&#233;server notre environnement. N'imprimez que si n&#233;cessaire, r&#233;duisez les d&#233;chets informatiques et &#233;conomisez l'&#233;nergie en utilisant les solutions DotRiver.
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120126/24a53fdb/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120126/24a53fdb/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003242.html">[X2go-Dev] x2goserver patch
+</A></li>
+	<LI>Next message: <A HREF="003245.html">[X2go-Dev] x2goserver patch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3244">[ date ]</a>
+              <a href="thread.html#3244">[ thread ]</a>
+              <a href="subject.html#3244">[ subject ]</a>
+              <a href="author.html#3244">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

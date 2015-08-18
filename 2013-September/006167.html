@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#302: No session resume
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23302%3A%20No%20session%20resume&In-Reply-To=%3CCANqJQBX27wfiEc5%2BVfsRWGAKrXYAdRnFfiiDSM58gXuU%2B9e9%3Dw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006165.html">
+   <LINK REL="Next"  HREF="006160.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#302: No session resume</H1>
+    <B>Avi Elbaz</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23302%3A%20No%20session%20resume&In-Reply-To=%3CCANqJQBX27wfiEc5%2BVfsRWGAKrXYAdRnFfiiDSM58gXuU%2B9e9%3Dw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#302: No session resume">avilebaz at gmail.com
+       </A><BR>
+    <I>Thu Sep  5 17:55:52 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006165.html">[X2Go-Dev] Bug#301: Execute commands given as arguments
+</A></li>
+        <LI>Next message: <A HREF="006160.html">[X2Go-Dev] Provision X2Go-TCE by Opscode Chef
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6167">[ date ]</a>
+              <a href="thread.html#6167">[ thread ]</a>
+              <a href="subject.html#6167">[ subject ]</a>
+              <a href="author.html#6167">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goserver
+Version: 4.0.1.6-0~712~precise1
+
+Hello,
+
+It is not possible to resume the session with windows X2Go client V.4.0.1.0
+, even if it is correctly suspended before.
+This problem appear with the x2goserver update from v
+4.0.0.2-0~667~precise1 to the last  4.0.1.6-0~712~precise1 version,
+before everything was working perfectly :/
+To have a new session I need to kill the previous one.
+Below I paste the content from some log,
+
+Best regards from Paris and thank a lot for your software,
+Avi
+
+
+*The windows file &quot;session&quot;:*
+*
+*
+*Loop: WARNING! Unrecognized session type 'unix-kde-depth_32'. Assuming
+agent session.**
+**Auth: WARNING! Failed to read data from the X auth command.**
+**Auth: WARNING! Generating a fake cookie for X authentication.**
+**Loop: WARNING! Could not retrieve the X server authentication cookie.*
+*
+*
+*The server session.log:*
+*
+**running as X2Go Agent**
+**
+**NXAGENT - Version 3.5.0**
+**
+**Copyright (C) 2001, 2011 NoMachine.**
+**See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.**
+**
+**Info: Agent running with pid '7219'.**
+**Session: Starting session at 'Thu Sep 5 16:54:51 2013'.**
+**Info: Proxy running in server mode with pid '7219'.**
+**Info: Waiting for connection from 'localhost' on port '30001'.**
+**Info: Accepted connection from '127.0.0.1'.**
+**Info: Connection with remote proxy completed.**
+**Info: Using ADSL link parameters 512/24/1/0.**
+**Info: Using agent parameters 5000/10/50/0/0.**
+**Info: Using cache parameters 4/4096KB/8192KB/8192KB.**
+**Info: Using pack method '16m-jpeg-7' with session 'unix-kde-depth_32'.**
+**Info: Using ZLIB data compression 1/1/32.**
+**Info: Using ZLIB stream compression 4/4.**
+**Info: No suitable cache file found.**
+**Info: Listening to X11 connections on display ':50'.**
+**Info: Established X client connection.**
+**Info: Using shared memory parameters 1/1/0/0K.**
+**Info: Using alpha channel in render extension.**
+**Info: Not using local device configuration changes.**
+**keyboard file created**
+**SessionPath not defined**
+**Session: Session started at 'Thu Sep 5 16:54:54 2013'.**
+**Info: Screen [0] resized to geometry [800x600] fullscreen [0].**
+**Info: Screen [0] resized to geometry [1616x1028] fullscreen [0].**
+**Session: Suspending session at 'Thu Sep 5 16:56:07 2013'.**
+**Info: Waiting the cleanup timeout to complete.**
+**Session: Session suspended at 'Thu Sep 5 16:56:07 2013'.**
+**Session: Resuming session at 'Thu Sep 5 16:56:20 2013'.**
+**Info: Proxy running in server mode with pid '7219'.**
+**Info: Waiting for connection from 'localhost' on port '30001'.**
+**Info: Aborting the procedure due to signal '15'.**
+**Session: Display failure detected at 'Thu Sep 5 16:57:02 2013'.**
+**Session: Suspending session at 'Thu Sep 5 16:57:02 2013'.**
+**Session: Session suspended at 'Thu Sep 5 16:57:02 2013'.** *
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130905/39718f52/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130905/39718f52/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006165.html">[X2Go-Dev] Bug#301: Execute commands given as arguments
+</A></li>
+	<LI>Next message: <A HREF="006160.html">[X2Go-Dev] Provision X2Go-TCE by Opscode Chef
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6167">[ date ]</a>
+              <a href="thread.html#6167">[ thread ]</a>
+              <a href="subject.html#6167">[ subject ]</a>
+              <a href="author.html#6167">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

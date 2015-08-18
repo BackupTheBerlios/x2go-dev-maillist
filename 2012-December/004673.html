@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#78: NX_xrandr lacks support from Xrandr 1.2 and	higher
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2378%3A%20NX_xrandr%20lacks%20support%20from%20Xrandr%201.2%20and%0A%09higher&In-Reply-To=%3CCAJ0ccea7N%3DA3YA81G-QF5-f250S9%2BwXRFTm32aWus%3D8%2BdVQDgw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004672.html">
+   <LINK REL="Next"  HREF="004674.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#78: NX_xrandr lacks support from Xrandr 1.2 and	higher</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2378%3A%20NX_xrandr%20lacks%20support%20from%20Xrandr%201.2%20and%0A%09higher&In-Reply-To=%3CCAJ0ccea7N%3DA3YA81G-QF5-f250S9%2BwXRFTm32aWus%3D8%2BdVQDgw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#78: NX_xrandr lacks support from Xrandr 1.2 and	higher">siretart at gmail.com
+       </A><BR>
+    <I>Thu Dec  6 13:39:02 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004672.html">[X2Go-Dev] Bug#78: NX_xrandr lacks support from Xrandr 1.2 and	higher
+</A></li>
+        <LI>Next message: <A HREF="004674.html">[X2Go-Dev] Bug#79: x2goruncommand is not &quot;user friendly&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4673">[ date ]</a>
+              <a href="thread.html#4673">[ thread ]</a>
+              <a href="subject.html#4673">[ subject ]</a>
+              <a href="author.html#4673">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Dec 6, 2012 at 1:17 PM, Mike Gabriel
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+&gt;<i> Hi Reinhard,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Do 06 Dez 2012 12:59:36 CET Reinhard Tartler wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Package: x2goagent
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> When starting a new x2go session, the startup scripts modify the
+</I>&gt;&gt;<i> LD_LIBRARY_PATH of all applications to include /usr/lib/nx/X11/Xrandr.
+</I>&gt;&gt;<i> This replaces the system libXrandr with the NX/X2go  provided one.
+</I>&gt;&gt;<i> Unfortunately, this breaks the xrandr utility:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> echo $LD_LIBRARY_PATH
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> /usr/lib/nx/X11/Xrandr:/usr/lib/nx/X11/Xinerama:/usr/lib/nx/X11
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> xrandr
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> xrandr: symbol lookup error: xrandr: undefined symbol:
+</I>&gt;&gt;<i> XRRGetScreenSizeRange
+</I>&gt;&gt;<i> zsh: exit 127   xrandr
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> this was done to work around a critical Ubuntu KDE bug in precise:
+</I>&gt;<i> <A HREF="https://bugs.launchpad.net/ubuntu/+source/libx11/+bug/985202">https://bugs.launchpad.net/ubuntu/+source/libx11/+bug/985202</A>
+</I>&gt;<i>
+</I>&gt;<i> The path add-on for Xrandr is only done for KDE sessions. I will be happy to
+</I>&gt;<i> revert that nasty hack, but before that, we need someone to dig into KDE and
+</I>&gt;<i> (if I recall correctly) the patches applied to libxfixes in Ubuntu 12.04 and
+</I>&gt;<i> beyond.
+</I>
+In that case I'm happy to confirm that your &quot;workaround&quot; does not fix
+anything in Kubuntu 12.10 nor when upgrading to raring.
+
+&gt;<i>
+</I>&gt;<i> If you disable the LD_LIBRARY_PATH code for Xrandr (x2goruncommand), then
+</I>&gt;<i> you will find regularly kwin crashes on KDE in precise+.
+</I>
+This also happens with this workaround.
+
+What does help, however, is downgrading the libxfixes3 package to the
+version in oneiric.
+
+-- 
+regards,
+    Reinhard
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004672.html">[X2Go-Dev] Bug#78: NX_xrandr lacks support from Xrandr 1.2 and	higher
+</A></li>
+	<LI>Next message: <A HREF="004674.html">[X2Go-Dev] Bug#79: x2goruncommand is not &quot;user friendly&quot;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4673">[ date ]</a>
+              <a href="thread.html#4673">[ thread ]</a>
+              <a href="subject.html#4673">[ subject ]</a>
+              <a href="author.html#4673">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

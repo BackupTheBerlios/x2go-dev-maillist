@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#333: Bug#333: Users can inject arbitrary data into	X2Go Client via .bashrc
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23333%3A%20Bug%23333%3A%20Users%20can%20inject%20arbitrary%20data%20into%0A%09X2Go%20Client%20via%20.bashrc&In-Reply-To=%3C20131029134147.Horde.pdvnenhY0dXSzSektCXoKg9%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006392.html">
+   <LINK REL="Next"  HREF="006394.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#333: Bug#333: Users can inject arbitrary data into	X2Go Client via .bashrc</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23333%3A%20Bug%23333%3A%20Users%20can%20inject%20arbitrary%20data%20into%0A%09X2Go%20Client%20via%20.bashrc&In-Reply-To=%3C20131029134147.Horde.pdvnenhY0dXSzSektCXoKg9%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#333: Bug#333: Users can inject arbitrary data into	X2Go Client via .bashrc">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Oct 29 14:41:47 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006392.html">[X2Go-Dev] Bug#333: Users can inject arbitrary data into X2Go	Client via .bashrc
+</A></li>
+        <LI>Next message: <A HREF="006394.html">[X2Go-Dev] Bug#333: X2Go issue (in src:x2goclient) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6400">[ date ]</a>
+              <a href="thread.html#6400">[ thread ]</a>
+              <a href="subject.html#6400">[ subject ]</a>
+              <a href="author.html#6400">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>clone #333 -1
+reassign -1 python-x2go
+retitle -1 Users can inject arbitrary data into Pyhoca-GUI via .bashrc
+thanks
+
+Hi All,
+
+On  Di 29 Okt 2013 13:36:14 CET, Mike Gabriel wrote:
+
+&gt;<i> Hi All,
+</I>&gt;<i>
+</I>&gt;<i> Dan Halbert made me aware of it being easily possible to inject  
+</I>&gt;<i> arbitrary data into X2Go Client via the server-side .bashrc file.  
+</I>&gt;<i> This surely is a security problem in X2Go.
+</I>&gt;<i>
+</I>&gt;<i> Thus, I found that we really need to do some sanity checks on  
+</I>&gt;<i> incoming output from X2Go Servers to avoid such injections.
+</I>&gt;<i>
+</I>&gt;<i> The idea is to invoke the server-side command with a UUID hash  
+</I>&gt;<i> before and after the actuall command invocation:
+</I>&gt;<i>
+</I>&gt;<i> 1. execute server-side command from X2Go Client:
+</I>&gt;<i>
+</I>&gt;<i> ssh &lt;user&gt;@&lt;server&gt; sh -c &quot;echo &lt;uuidhash&gt; &amp;&amp; &lt;x2gocmd&gt; &amp;&amp; echo &lt;uuidhash&gt;
+</I>&gt;<i>
+</I>&gt;<i> 2. read data from X2Go Server:
+</I>&gt;<i>
+</I>&gt;<i> X2GODATABEGIN:&lt;uuidhash&gt;
+</I>&gt;<i> &lt;x2godata_line1&gt;
+</I>&gt;<i> &lt;x2godata_line2&gt;
+</I>&gt;<i> ....
+</I>&gt;<i> &lt;x2godata_lineN&gt;
+</I>&gt;<i> X2GODATAEND:&lt;uuidhash&gt;
+</I>&gt;<i>
+</I>&gt;<i> 3. cut out the X2Go data returned by the server (in C++):
+</I>&gt;<i>
+</I>&gt;<i>       QString begin_marker = &quot;X2GODATABEGIN:&quot;+uuid+&quot;\n&quot;;
+</I>&gt;<i>       QString end_marker = &quot;X2GODATAEND:&quot;+uuid+&quot;\n&quot;;
+</I>&gt;<i>       int output_begin=stdOutString.indexOf(begin_marker) + \\
+</I>&gt;<i>                        begin_marker.length();
+</I>&gt;<i>       int output_end=stdOutString.indexOf(end_marker);
+</I>&gt;<i>       output = stdOutString.mid(output_begin, \\
+</I>&gt;<i>                                 output_end-output_begin);
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I have a patch locally for this and will commit it in a minute. We  
+</I>&gt;<i> can discuss the patch and move on from there when it's there.
+</I>&gt;<i>
+</I>&gt;<i> Unfortunately, this patch does not fix #327 as it is impossible to  
+</I>&gt;<i> use scp with echoing .bashrc files. With this patch applied, the  
+</I>&gt;<i> session starts, but setting up the SSHfs shares fails with locking  
+</I>&gt;<i> up X2Go Client.
+</I>&gt;<i>
+</I>&gt;<i> For people who depend on echoing .bashrc files, please read my last  
+</I>&gt;<i> post on #327.
+</I>&gt;<i>
+</I>&gt;<i> Mike
+</I>
+This actually also applies to Python X2Go.
+
+Mike
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-keys
+Size: 7251 bytes
+Desc: ?ffentlicher PGP-Schl?ssel
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/7b0b8bf0/attachment.key">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/7b0b8bf0/attachment.key</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/7b0b8bf0/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/7b0b8bf0/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006392.html">[X2Go-Dev] Bug#333: Users can inject arbitrary data into X2Go	Client via .bashrc
+</A></li>
+	<LI>Next message: <A HREF="006394.html">[X2Go-Dev] Bug#333: X2Go issue (in src:x2goclient) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6400">[ date ]</a>
+              <a href="thread.html#6400">[ thread ]</a>
+              <a href="subject.html#6400">[ subject ]</a>
+              <a href="author.html#6400">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

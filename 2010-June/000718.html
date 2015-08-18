@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goplugin test sites
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goplugin%20test%20sites&In-Reply-To=%3C1277934377.3459.8.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000715.html">
+   <LINK REL="Next"  HREF="000719.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goplugin test sites</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goplugin%20test%20sites&In-Reply-To=%3C1277934377.3459.8.camel%40localhost%3E"
+       TITLE="[X2go-dev] x2goplugin test sites">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Jun 30 23:46:17 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000715.html">[X2go-dev] x2goplugin test sites
+</A></li>
+        <LI>Next message: <A HREF="000719.html">[X2go-dev] session timeout management / idle management / lost processes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#718">[ date ]</a>
+              <a href="thread.html#718">[ thread ]</a>
+              <a href="subject.html#718">[ subject ]</a>
+              <a href="author.html#718">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2010-06-30 at 23:24 +0200, Mike Gabriel wrote:
+&gt;<i> Sorry, the former mail had the wrong subject line...
+</I>&gt;<i> 
+</I>&gt;<i> Hi List,
+</I>&gt;<i> 
+</I>&gt;<i> I am thinking about setting up a public x2goplugin test site. This  
+</I>&gt;<i> test site needs some features.
+</I>&gt;<i> 
+</I>&gt;<i>    o accessible from everywhere on the internet
+</I>&gt;<i>    o no access to the internet (local iptables, blocking outgoing connections)
+</I>&gt;<i>    o ssh key auto-login (username x2gotest)
+</I>&gt;<i>    o disposable homes
+</I>&gt;<i>        - on login generate homedir-name (/home/x2gotest.&lt;some-id&gt;)
+</I>&gt;<i>        - create /home/x2gotest.&lt;some-id&gt; from
+</I>&gt;<i>          pre-configured skel (pam_mkhomedir)
+</I>&gt;<i>        - on logout remove /home/x2gotest.&lt;some-id&gt;
+</I>&gt;<i>    o x2go session timeouts (5min)
+</I>&gt;<i>    o allow simultaneous sessions (limit number of simultaneous sessions)
+</I>&gt;<i>    o ... (anything forgotten)
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> If any of you can contribute to any of these aspects or add security  
+</I>&gt;<i> thoughts to the above list, please do so.
+</I>&gt;<i> 
+</I>&gt;<i> My questions:
+</I>&gt;<i> 
+</I>&gt;<i>    o when is the best moment to rename the home dir to a session  
+</I>&gt;<i> individual name?
+</I>&gt;<i>    o where can I hook into the logout x2go process to remove the  
+</I>&gt;<i> deprecated home
+</I>&gt;<i>      dir?
+</I>&gt;<i>    o does x2go support session timeouts natively?
+</I>&gt;<i>    o can x2go limit the number of allowed simultaneous sessions?
+</I>&gt;<i> 
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>Although I've not played with it much, I believe you can set limits
+in /etc/x2go/x2goserver.conf.  The code which checks it
+(x2gosessionlimit) doesn't quite make sense to me but I didn't digest it
+closely.  I posted my questions about it to the list a couple of months
+ago.  Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000715.html">[X2go-dev] x2goplugin test sites
+</A></li>
+	<LI>Next message: <A HREF="000719.html">[X2go-dev] session timeout management / idle management / lost processes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#718">[ date ]</a>
+              <a href="thread.html#718">[ thread ]</a>
+              <a href="subject.html#718">[ subject ]</a>
+              <a href="author.html#718">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

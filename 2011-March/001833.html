@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] PulseAudio and X2go (was Re: Looking for information on the future of x2go (and some other x2go-related stuff))
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20PulseAudio%20and%20X2go%20%28was%20Re%3A%20Looking%20for%20information%20on%0A%20the%20future%20of%20x2go%20%28and%20some%20other%20x2go-related%20stuff%29%29&In-Reply-To=%3C20110302173801.11226wj9lfbjtill%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001831.html">
+   <LINK REL="Next"  HREF="001835.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] PulseAudio and X2go (was Re: Looking for information on the future of x2go (and some other x2go-related stuff))</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20PulseAudio%20and%20X2go%20%28was%20Re%3A%20Looking%20for%20information%20on%0A%20the%20future%20of%20x2go%20%28and%20some%20other%20x2go-related%20stuff%29%29&In-Reply-To=%3C20110302173801.11226wj9lfbjtill%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] PulseAudio and X2go (was Re: Looking for information on the future of x2go (and some other x2go-related stuff))">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Mar  2 17:38:01 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001831.html">[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+</A></li>
+        <LI>Next message: <A HREF="001835.html">[X2go-dev] PulseAudio and X2go (was Re: Looking for information on the future of x2go (and some other x2go-related stuff))
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1833">[ date ]</a>
+              <a href="thread.html#1833">[ thread ]</a>
+              <a href="subject.html#1833">[ subject ]</a>
+              <a href="author.html#1833">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Stefan,
+
+On Mi 02 M&#228;r 2011 17:32:02 CET Stefan Baur wrote:
+
+&gt;<i> ALSA lib confmisc.c:392:(snd_func_concat) error evaluating strings
+</I>&gt;<i> ALSA lib conf.c:4170:(_snd_config_evaluate) function snd_func_concat  
+</I>&gt;<i> returned error: Datei oder Verzeichnis nicht gefunden
+</I>&gt;<i> ALSA lib confmisc.c:1251:(snd_func_refer) error evaluating name
+</I>&gt;<i> ALSA lib conf.c:4170:(_snd_config_evaluate) function snd_func_refer  
+</I>&gt;<i> returned error: Datei oder Verzeichnis nicht gefunden
+</I>&gt;<i> ALSA lib conf.c:4649:(snd_config_expand) Evaluate error: Datei oder  
+</I>&gt;<i> Verzeichnis nicht gefunden
+</I>&gt;<i> ALSA lib pcm.c:2190:(snd_pcm_open_noupdate) Unknown PCM default
+</I>&gt;<i> ALSA lib pcm_hw.c:1401:(_snd_pcm_hw_open) Invalid value for card
+</I>&gt;<i> ALSA lib confmisc.c:768:(parse_card) cannot find card '0'
+</I>&gt;<i> ALSA lib conf.c:4170:(_snd_config_evaluate) function  
+</I>&gt;<i> snd_func_card_driver returned error: Datei oder Verzeichnis nicht  
+</I>&gt;<i> gefunden
+</I>&gt;<i> ALSA lib confmisc.c:392:(snd_func_concat) error evaluating strings
+</I>&gt;<i> ALSA lib conf.c:4170:(_snd_config_evaluate) function snd_func_concat  
+</I>&gt;<i> returned error: Datei oder Verzeichnis nicht gefunden
+</I>&gt;<i> ALSA lib confmisc.c:1251:(snd_func_refer) error evaluating name
+</I>&gt;<i> ALSA lib conf.c:4170:(_snd_config_evaluate) function snd_func_refer  
+</I>&gt;<i> returned error: Datei oder Verzeichnis nicht gefunden
+</I>&gt;<i> ALSA lib conf.c:4649:(snd_config_expand) Evaluate error: Datei oder  
+</I>&gt;<i> Verzeichnis nicht gefunden
+</I>&gt;<i> ALSA lib pcm.c:2190:(snd_pcm_open_noupdate) Unknown PCM default
+</I>&gt;<i> ALSA lib pcm_hw.c:1401:(_snd_pcm_hw_open) Invalid value for card
+</I>
+This hints that firefox is not using PulseAudio. Maybe this  
+documentation helps a bit...
+<A HREF="https://wiki.ubuntu.com/PulseAudio">https://wiki.ubuntu.com/PulseAudio</A>
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 489 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110302/230231e6/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110302/230231e6/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001831.html">[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+</A></li>
+	<LI>Next message: <A HREF="001835.html">[X2go-dev] PulseAudio and X2go (was Re: Looking for information on the future of x2go (and some other x2go-related stuff))
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1833">[ date ]</a>
+              <a href="thread.html#1833">[ thread ]</a>
+              <a href="subject.html#1833">[ subject ]</a>
+              <a href="author.html#1833">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

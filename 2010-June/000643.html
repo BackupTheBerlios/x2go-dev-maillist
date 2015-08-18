@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] BUG-RERPORT: x2goprint will not work on NFS4/Kerberos	HOMES
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BUG-RERPORT%3A%20x2goprint%20will%20not%20work%20on%20NFS4/Kerberos%0A%09HOMES&In-Reply-To=%3C20100625235230.20104rgfktrh6sym%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000640.html">
+   <LINK REL="Next"  HREF="000651.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] BUG-RERPORT: x2goprint will not work on NFS4/Kerberos	HOMES</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BUG-RERPORT%3A%20x2goprint%20will%20not%20work%20on%20NFS4/Kerberos%0A%09HOMES&In-Reply-To=%3C20100625235230.20104rgfktrh6sym%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] BUG-RERPORT: x2goprint will not work on NFS4/Kerberos	HOMES">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jun 25 23:52:30 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000640.html">[X2go-dev] BUG-REPORT: x2goclient (Windows): pulseaudio missing pa_stream_proplist_update patch
+</A></li>
+        <LI>Next message: <A HREF="000651.html">[X2go-dev] new to the list, offering support
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#643">[ date ]</a>
+              <a href="thread.html#643">[ thread ]</a>
+              <a href="subject.html#643">[ subject ]</a>
+              <a href="author.html#643">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi there again,
+
+2 issues with CUPS/X2GO printing...
+
+1st issue:
+==========
+when mounting home directories via NFS (NFS3 with root_squash, NFS4  
+with any kind of Kerberos security feature) you cannot copy a file as  
+superuser ,,root'' to a user's HOME (x2goprint is called via  
+sudo(NOPASSWD) in the cups-x2go backend).
+
+The logical error is in the last stanza of the x2goprint file...  
+(quoted and marked below).
+
+Maybe there is already a solution for this. If not, let me know and I  
+propose a suggestion (and test it with krb5p security enabled servers).
+
+&lt;quote&gt;
+my $mounts=`sudo x2gopgwrapper getmounts $session`;
+if( $mounts=~m/$spooldir/)
+{
+
+vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+      move (&quot;$printdir/$file&quot;, &quot;$homedir/.x2go/C-$session/$file&quot;) or  
+die &quot;$!: Can't rename $file to $homedir/.x2go/C-$session/$file&quot;;
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      chown $uid, $gid, &quot;$homedir/.x2go/C-$session/$file&quot;;
+      system (&quot;su $user -c \&quot;mv $homedir/.x2go/C-$session/$file $spooldir\&quot;&quot;);
+
+      open (RFILE,&quot;&gt;$homedir/.x2go/C-$session/$file.ready&quot;);
+      print RFILE &quot;$file\n$title&quot;;
+      close (RFILE);
+
+      chown $uid, $gid, &quot;$homedir/.x2go/C-$session/$file.ready&quot;;
+      system (&quot;su $user -c \&quot;mv $homedir/.x2go/C-$session/$file.ready  
+$spooldir\&quot;&quot;);
+}
+&lt;/quote&gt;
+
+2nd issue:
+==========
+There is als some inconsistency between cups-x2go and x2goprint:
+
+cups-x2go:
+----------
+&lt;quote src=&quot;/usr/lib/cups/backend/cups-x2go&quot;&gt;
+$tempFile = &quot;$ENV{TMPDIR}/$jid-$uid-cupsjob$$&quot;;
+&lt;/quote&gt;
+
+BUT: $TMPDIR is not set, that's why first instances of CUPS's spool  
+jobs appear in the server's root directory &quot;/&quot;.
+
+Most important: by design $tempFile is a full path!!!
+
+x2goprint:
+----------
+$tempFile is picked up in x2goprint as $file
+
+&lt;quote src=&quot;/usr/bin/x2goprint&quot;&gt;
+my ($user, $session, $file, $titleFile)=@ARGV;
+&lt;/quote&gt;
+
+However, in x2goprint $file is interpreted as a filename without path...
+
+But maybe this problem als has been already addressed...
+
+I also get loads of stray job files on my x2goserver, especially if  
+the print mechanism is not working by some reason (e.g. broken reverse  
+ssh, because i was not able to configure my client properly... ;-) )
+
+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+eMail-LeseSchreibStunde: wochentags 8h-10h
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000640.html">[X2go-dev] BUG-REPORT: x2goclient (Windows): pulseaudio missing pa_stream_proplist_update patch
+</A></li>
+	<LI>Next message: <A HREF="000651.html">[X2go-dev] new to the list, offering support
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#643">[ date ]</a>
+              <a href="thread.html#643">[ thread ]</a>
+              <a href="subject.html#643">[ subject ]</a>
+              <a href="author.html#643">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

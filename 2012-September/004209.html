@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] bug#21: DirectRDP: button for , ,	terminate session'' actually just suspends the DirectRDP session
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20bug%2321%3A%20DirectRDP%3A%20button%20for%20%2C%20%2C%0A%09terminate%20session%27%27%20actually%20just%20suspends%20the%20DirectRDP%20session&In-Reply-To=%3C20120911112237.17713so97ywwp1b1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004208.html">
+   <LINK REL="Next"  HREF="004213.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] bug#21: DirectRDP: button for , ,	terminate session'' actually just suspends the DirectRDP session</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20bug%2321%3A%20DirectRDP%3A%20button%20for%20%2C%20%2C%0A%09terminate%20session%27%27%20actually%20just%20suspends%20the%20DirectRDP%20session&In-Reply-To=%3C20120911112237.17713so97ywwp1b1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] bug#21: DirectRDP: button for , ,	terminate session'' actually just suspends the DirectRDP session">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Sep 11 11:22:37 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004208.html">[X2Go-Dev] bug#20: x2goclient with DirectRDP on thin clients:	regain control of the x2goclient window after end of	DirectRDP session
+</A></li>
+        <LI>Next message: <A HREF="004213.html">[X2Go-Dev] bug#21:  bug#21: DirectRDP: button for , ,	terminate session'' actually just suspends the DirectRDP session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4209">[ date ]</a>
+              <a href="thread.html#4209">[ thread ]</a>
+              <a href="subject.html#4209">[ subject ]</a>
+              <a href="author.html#4209">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Version: 3.99.3.0-prerelease
+Severity: minor
+
+The x2goclient GUI in its middle (where the session log details can be  
+viewed) has a couple of buttons, the most on the left is for  
+,,terminate session''.
+
+With DirectRDP, this button does not terminate the session, it simply  
+terminates the RDP session. This is equal to a ,,suspend session'' call.
+
+Does RDP logic have a mechanism to terminate a session from outside  
+the session? If so, this should be implemented. If not, we should  
+grey-out that button or show a warning or similar.
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120911/3c8b4655/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120911/3c8b4655/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004208.html">[X2Go-Dev] bug#20: x2goclient with DirectRDP on thin clients:	regain control of the x2goclient window after end of	DirectRDP session
+</A></li>
+	<LI>Next message: <A HREF="004213.html">[X2Go-Dev] bug#21:  bug#21: DirectRDP: button for , ,	terminate session'' actually just suspends the DirectRDP session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4209">[ date ]</a>
+              <a href="thread.html#4209">[ thread ]</a>
+              <a href="subject.html#4209">[ subject ]</a>
+              <a href="author.html#4209">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

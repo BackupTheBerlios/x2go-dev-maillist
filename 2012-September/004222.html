@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Suggestion regarding the new bug tracker
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Suggestion%20regarding%20the%20new%20bug%20tracker&In-Reply-To=%3C20120911141921.12465d8k6n5671ah%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004219.html">
+   <LINK REL="Next"  HREF="004220.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Suggestion regarding the new bug tracker</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Suggestion%20regarding%20the%20new%20bug%20tracker&In-Reply-To=%3C20120911141921.12465d8k6n5671ah%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Suggestion regarding the new bug tracker">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Sep 11 14:19:21 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004219.html">[X2Go-Dev] Suggestion regarding the new bug tracker
+</A></li>
+        <LI>Next message: <A HREF="004220.html">[X2Go-Dev] rdesktop / freerdp-x11 backports available for Debian squeeze in X2Go package repos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4222">[ date ]</a>
+              <a href="thread.html#4222">[ thread ]</a>
+              <a href="subject.html#4222">[ subject ]</a>
+              <a href="author.html#4222">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Stefan,
+
+@all: we are talking about the new X2Go bug tracker: <A HREF="http://bugs.x2go.org">http://bugs.x2go.org</A>
+
+On Di 11 Sep 2012 13:39:34 CEST Stefan Baur wrote:
+
+&gt;<i> I would suggest moving the bug reports to a new mailing list, if  
+</I>&gt;<i> that is technically possible, say, one named x2go-bugs.
+</I>&gt;<i> That way, x2go-dev would be available for discussions regarding  
+</I>&gt;<i> further development, &quot;is-this-a-bug-or-am-I-doing-it-wrong&quot;, feature  
+</I>&gt;<i> enhancements etc. and x2go-bugs would be for the bug-tracking grunt  
+</I>&gt;<i> work.
+</I>
+There already is such a mailing list. It currently is used for weekly  
+status reports of the new bugtracker.
+
+&gt;<i> General ideas:
+</I>&gt;<i> - Every coder should subscribe to x2go-bugs as well.
+</I>
+I actually disagree with splitting up the traffic over a separate  
+mailing list. What people have experienced today is Mike dumping all  
+the issues that are currently in his head into the new BTS (bug  
+tracker system). This will not go on like that. It has been a bit  
+spammy, so I am sorry for today's flood.
+
+So.. I actually expect there neither to be more nor less traffic on  
+the x2go-dev mailing list than before the bug tracker. All the issues  
+that have been discussed on the x2go-dev mailing list can stay on the  
+list. The only difference is that we Cc: the corresponding bug number  
+when replying to the discussion. For this, people have to select  
+reply-to-all to all when replying.
+
+On the list we then have all issues discussed. In the webview frontend  
+of the bugtracker, we have the issues and the development state of the  
+issues documented issue by issue (and submitter by submitter, package  
+by package, etc.).
+
+&gt;<i> - Feature requests that have been agreed upon on x2go-dev should be  
+</I>&gt;<i> CCed to x2go-bugs *by the coder willing to pick up the task* to  
+</I>&gt;<i> avoid dupes.
+</I>
+No, messages concerning a bug have to be Cc:ed to the bugs number...  
+(&lt;bugno&gt;@bugs.x2go.org). This happens automatically if you select  
+,,reply-to-all''.
+
+What I have to make sure is that we do not get dupes on the x2go-dev  
+mailing list (the BTS is quite verbose if not configured correctly). I  
+am still observing this.
+
+&gt;<i> - Using two different lists will make it easier for list-newbies on  
+</I>&gt;<i> x2go-dev that may not yet know how to properly set up a filter rule  
+</I>&gt;<i> (central vs. individual administration).
+</I>
+list-newbies -&gt; x2go-user. The x2go-dev list is for developers, so I  
+do not expect newbies therearound ;-)
+
+&gt;<i> - Cross-posting bug reports from the bug-hunting mailing list to  
+</I>&gt;<i> x2go-dev will be allowed/tolerated for a limited amount of time  
+</I>&gt;<i> until we can be sure all the relevant developers are subscribed to  
+</I>&gt;<i> x2go-bugs (or whatever name we'll end up with).
+</I>
+Cross-posting is complicated...
+
+&gt;<i> - The automatic signature on x2go-dev should be amended with &quot;before  
+</I>&gt;<i> posting a bug, please check &lt;web page of bugtracker or web page of  
+</I>&gt;<i> x2go-bugs ML archive&gt; if your problem is already known.&quot;.
+</I>
+Yeah, we can improve footers of BTS and ML mails.
+
+&gt;<i> - Should an inexperienced list member post a new bug on x2go-dev,  
+</I>&gt;<i> one of the more experienced list members (preferably one of the  
+</I>&gt;<i> devs) should pick it up and reply with a message like &quot;added to  
+</I>&gt;<i> tracker, id is &lt;foo&gt;, see &lt;link to Tracker/ML archive)&gt;, thanks for  
+</I>&gt;<i> reporting the issue.&quot;
+</I>
+This will happen, as well.
+
+&gt;<i> - A similar approach would be in order for already known bugs, WONTFIXes etc.
+</I>
+Yeah.
+
+&gt;<i> Comments, anyone?
+</I>
+Greets,
+Mike
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120911/b886b7b9/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120911/b886b7b9/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004219.html">[X2Go-Dev] Suggestion regarding the new bug tracker
+</A></li>
+	<LI>Next message: <A HREF="004220.html">[X2Go-Dev] rdesktop / freerdp-x11 backports available for Debian squeeze in X2Go package repos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4222">[ date ]</a>
+              <a href="thread.html#4222">[ thread ]</a>
+              <a href="subject.html#4222">[ subject ]</a>
+              <a href="author.html#4222">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

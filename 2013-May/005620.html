@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#211: RPM packaging of X2Go Session Broker
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23211%3A%20RPM%20packaging%20of%20X2Go%20Session%20Broker&In-Reply-To=%3C20130515222154.20568tbzj8vh7142%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005617.html">
+   <LINK REL="Next"  HREF="005582.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#211: RPM packaging of X2Go Session Broker</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23211%3A%20RPM%20packaging%20of%20X2Go%20Session%20Broker&In-Reply-To=%3C20130515222154.20568tbzj8vh7142%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#211: RPM packaging of X2Go Session Broker">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed May 15 22:21:54 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005617.html">[X2Go-Dev] Bug#201:  Bug#201: x2gobroker: incomplete install
+</A></li>
+        <LI>Next message: <A HREF="005582.html">[X2Go-Dev] Bug#201: Acknowledgement (x2gobroker: incomplete install)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5620">[ date ]</a>
+              <a href="thread.html#5620">[ thread ]</a>
+              <a href="subject.html#5620">[ subject ]</a>
+              <a href="author.html#5620">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2gobroker
+Version: 0.0.2.1
+Severity: important
+
+Hi Jan,
+
+I open up a new bug for this. Please post updates to the new bug  
+number, if any.
+
+@all: this is a follow up of issue #201.
+
+On Mi 15 Mai 2013 16:37:06 CEST Jan Engelhardt wrote:
+
+&gt;<i>
+</I>&gt;<i> On Tuesday 2013-05-14 12:48, Mike Gabriel wrote:
+</I>&gt;&gt;<i> python-x2gobroker (mostly covered by setup.py):
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> /.
+</I>&gt;&gt;<i> /etc
+</I>&gt;&gt;<i> /etc/default
+</I>&gt;&gt;<i> /etc/default/python-x2gobroker
+</I>&gt;<i> [...]
+</I>
+I comment in the lines below where to find that file in the source  
+project x2gobroker.git (or in the installed package fileset)...
+
+Absolute paths mean: this is the path when installed.
+Relative paths mean: this is the path in x2gobroker.git
+
+&gt;<i> --- yourlist	2013-05-15 16:34:44.890113044 +0200
+</I>&gt;<i> +++ susepkg	2013-05-15 16:31:32.657658085 +0200
+</I>&gt;<i> @@ -1,22 +1,11 @@
+</I>&gt;<i> -/etc
+</I>&gt;<i> -/etc/apache2
+</I>&gt;<i> -/etc/apache2/conf.d
+</I>&gt;<i> -/etc/apache2/conf.d/x2gobroker-wsgi
+</I>
+Symlink -&gt; /etc/x2go/x2gobroker-wsgi.apache.conf
+
+&gt;<i> -/etc/apache2/sites-available
+</I>&gt;<i> -/etc/apache2/sites-available/x2gobroker
+</I>
+Symlink -&gt; /etc/x2go/x2gobroker-wsgi.apache.vhost
+
+&gt;<i> -/etc/default
+</I>&gt;<i> -/etc/default/python-x2gobroker
+</I>
+x2gobroker.git/debian/python-x2gobroker.default
+
+&gt;<i> -/etc/default/x2gobroker-authservice
+</I>
+x2gobroker.git/debian/x2gobroker-authservice.default
+
+&gt;<i> -/etc/default/x2gobroker-daemon
+</I>
+x2gobroker.git/debian/x2gobroker-daemon.default
+
+The files from /etc/default/* get sourced by the init scripts (see below).
+
+&gt;<i> -/etc/init.d
+</I>&gt;<i> -/etc/init.d/x2gobroker-authservice
+</I>
+x2gobroker.git/debian/x2gobroker-authservice.init
+
+&gt;<i> -/etc/init.d/x2gobroker-daemon
+</I>
+x2gobroker.git/debian/x2gobroker-daemon.init
+
+&gt;<i> -/etc/logrotate.d
+</I>&gt;<i>  /etc/logrotate.d/x2gobroker-authservice
+</I>&gt;<i>  /etc/logrotate.d/x2gobroker-daemon
+</I>&gt;<i>  /etc/logrotate.d/x2gobroker-wsgi
+</I>&gt;<i>  /etc/pam.d
+</I>&gt;<i>  /etc/pam.d/x2gobroker
+</I>&gt;<i> +/etc/permissions.d/x2gobroker.easy
+</I>&gt;<i> +/etc/permissions.d/x2gobroker.paranoid
+</I>&gt;<i> +/etc/permissions.d/x2gobroker.secure
+</I>
+What are these for? Anything we should adopt in the Debian package(s)?
+
+&gt;<i>  /etc/x2go
+</I>&gt;<i>  /etc/x2go/broker
+</I>&gt;<i>  /etc/x2go/broker/x2gobroker-authservice-logger.conf
+</I>&gt;<i> @@ -25,178 +14,108 @@
+</I>&gt;<i>  /etc/x2go/x2gobroker-wsgi.apache.conf
+</I>&gt;<i>  /etc/x2go/x2gobroker-wsgi.apache.vhost
+</I>&gt;<i>  /etc/x2go/x2gobroker.conf
+</I>&gt;<i> -/usr
+</I>&gt;<i> -/usr/bin
+</I>&gt;<i>  /usr/bin/x2gobroker-testauth
+</I>&gt;<i> -/usr/lib
+</I>&gt;<i> -/usr/lib/python2.7
+</I>&gt;<i> -/usr/lib/python2.7/site-packages
+</I>&gt;<i>  /usr/lib/python2.7/site-packages/x2gobroker
+</I>&gt;<i> -/usr/lib/python2.7/site-packages/x2gobroker-0.0.2.1.egg-info
+</I>
+[... skipping the python egg related files... ]
+
+&gt;<i>  /usr/lib/x2go
+</I>&gt;<i>  /usr/lib/x2go/x2gobroker-agent
+</I>&gt;<i>  /usr/lib/x2go/x2gobroker-agent.pl
+</I>&gt;<i> -/usr/sbin
+</I>&gt;<i>  /usr/sbin/x2gobroker
+</I>&gt;<i>  /usr/sbin/x2gobroker-authservice
+</I>&gt;<i>  /usr/sbin/x2gobroker-keygen
+</I>&gt;<i>  /usr/sbin/x2gobroker-pubkeyauthorizer
+</I>&gt;<i> -/usr/share
+</I>&gt;<i> -/usr/share/doc
+</I>&gt;<i> -/usr/share/doc/python-x2gobroker
+</I>&gt;<i> -/usr/share/doc/python-x2gobroker/NEWS.gz
+</I>&gt;<i> -/usr/share/doc/python-x2gobroker/README
+</I>&gt;<i> -/usr/share/doc/python-x2gobroker/TODO
+</I>&gt;<i> -/usr/share/doc/python-x2gobroker/buildinfo_all.gz
+</I>&gt;<i> -/usr/share/doc/python-x2gobroker/changelog.Debian.gz
+</I>&gt;<i> -/usr/share/doc/python-x2gobroker/copyright
+</I>&gt;<i> -/usr/share/doc/x2gobroker
+</I>&gt;<i> -/usr/share/doc/x2gobroker-agent
+</I>&gt;<i> -/usr/share/doc/x2gobroker-agent/NEWS.gz
+</I>&gt;<i> -/usr/share/doc/x2gobroker-agent/README
+</I>&gt;<i> -/usr/share/doc/x2gobroker-agent/TODO
+</I>
+NEWS.gz, README, TODO are rendered from  
+x2gobroker.git/{MEWS,README,TODO} for each bin:package.
+
+&gt;<i> -/usr/share/doc/x2gobroker-agent/buildinfo_amd64.gz
+</I>
+This file is auto-generated during build.
+
+&gt;<i> -/usr/share/doc/x2gobroker-agent/changelog.Debian.gz
+</I>
+x2gobroker.git/debian/changelog (abused as upstream changelog by X2Go  
+Dev Team)
+
+&gt;<i> -/usr/share/doc/x2gobroker-agent/copyright
+</I>
+x2gobroker.git/debian/copyright
+
+&gt;<i> -/usr/share/doc/x2gobroker-authservice
+</I>&gt;<i> -/usr/share/doc/x2gobroker-authservice/NEWS.gz
+</I>&gt;<i> -/usr/share/doc/x2gobroker-authservice/README
+</I>&gt;<i> -/usr/share/doc/x2gobroker-authservice/TODO
+</I>&gt;<i> -/usr/share/doc/x2gobroker-authservice/buildinfo_all.gz
+</I>&gt;<i> -/usr/share/doc/x2gobroker-authservice/changelog.Debian.gz
+</I>&gt;<i> -/usr/share/doc/x2gobroker-authservice/copyright
+</I>&gt;<i> -/usr/share/doc/x2gobroker-daemon
+</I>&gt;<i> -/usr/share/doc/x2gobroker-daemon/NEWS.gz
+</I>&gt;<i> -/usr/share/doc/x2gobroker-daemon/README
+</I>&gt;<i> -/usr/share/doc/x2gobroker-daemon/TODO
+</I>&gt;<i> -/usr/share/doc/x2gobroker-daemon/buildinfo_all.gz
+</I>&gt;<i> -/usr/share/doc/x2gobroker-daemon/changelog.Debian.gz
+</I>&gt;<i> -/usr/share/doc/x2gobroker-daemon/copyright
+</I>&gt;<i> -/usr/share/doc/x2gobroker-wsgi
+</I>&gt;<i> -/usr/share/doc/x2gobroker-wsgi/NEWS.gz
+</I>&gt;<i> -/usr/share/doc/x2gobroker-wsgi/README
+</I>&gt;<i> -/usr/share/doc/x2gobroker-wsgi/TODO
+</I>&gt;<i> -/usr/share/doc/x2gobroker-wsgi/buildinfo_all.gz
+</I>&gt;<i> -/usr/share/doc/x2gobroker-wsgi/changelog.Debian.gz
+</I>&gt;<i> -/usr/share/doc/x2gobroker-wsgi/copyright
+</I>&gt;<i> -/usr/share/doc/x2gobroker/NEWS.gz
+</I>&gt;<i> -/usr/share/doc/x2gobroker/README
+</I>&gt;<i> -/usr/share/doc/x2gobroker/TODO
+</I>&gt;<i> -/usr/share/doc/x2gobroker/buildinfo_all.gz
+</I>&gt;<i> -/usr/share/doc/x2gobroker/changelog.Debian.gz
+</I>&gt;<i> -/usr/share/doc/x2gobroker/copyright
+</I>
+Dito for the bin:package above.
+
+&gt;<i> -/usr/share/man
+</I>&gt;<i> -/usr/share/man/man8
+</I>&gt;<i> -/usr/share/man/man8/x2gobroker-authservice.8.gz
+</I>&gt;<i> -/usr/share/man/man8/x2gobroker-keygen.8.gz
+</I>&gt;<i> -/usr/share/man/man8/x2gobroker-pubkeyauthorizer.8.gz
+</I>&gt;<i> -/usr/share/man/man8/x2gobroker-testauth.8.gz
+</I>&gt;<i> -/usr/share/man/man8/x2gobroker.8.gz
+</I>
+These should get installed into your package, I guess. You can find them in
+
+x2gobroker.git/man/man8/*
+
+&gt;<i> -/usr/share/pyshared
+</I>&gt;<i> -/usr/share/pyshared/x2gobroker
+</I>&gt;<i> -/usr/share/pyshared/x2gobroker-0.0.2.1.egg-info
+</I>
+[ ... skipping some more python files ... ]
+
+&gt;<i> -/var
+</I>&gt;<i> -/var/log
+</I>
+&gt;<i>  /var/log/x2gobroker
+</I>
+make sure to install this directory
+
+   2750 x2gobroker:x2gobroker
+
+&gt;<i> +/var/lib/x2gobroker
+</I>
+This is the home directory of system user x2gobroker. Not that there  
+is some postinst magic in x2gobroker.git/debian/*.postinst scripts.  
+The magic does:
+
+   * create system user x2gobroker (x2gobroker-daemon, x2gobroker-wsgi,
+     x2gobroker-authservice, x2gobroker-agent requires that user)
+   * set permissions on the log directory
+
+Another thing that your package x2gobroker-agent should handle: the  
+file /usr/lib/x2go/x2gobroker-agent (the setuid wrapper for  
+x2gobroker-agent.pl) has to be installed setuid root.
+
+   4750 root:x2gobroker /usr/lib/x2go/x2gobroker-agent
+
+I hope this gets us a bit further.
+
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130515/70b7680d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130515/70b7680d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005617.html">[X2Go-Dev] Bug#201:  Bug#201: x2gobroker: incomplete install
+</A></li>
+	<LI>Next message: <A HREF="005582.html">[X2Go-Dev] Bug#201: Acknowledgement (x2gobroker: incomplete install)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5620">[ date ]</a>
+              <a href="thread.html#5620">[ thread ]</a>
+              <a href="subject.html#5620">[ subject ]</a>
+              <a href="author.html#5620">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

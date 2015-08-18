@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#140: x2gobroker: agent-query-mode in sessionprofiles	ignored
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23140%3A%20x2gobroker%3A%20agent-query-mode%20in%20sessionprofiles%0A%09ignored&In-Reply-To=%3CCAFJm-UP%2BK-ND-5syc0urRGxUr5EzizeKnuDzoaoDrcUGuyD2Uw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005185.html">
+   <LINK REL="Next"  HREF="005183.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#140: x2gobroker: agent-query-mode in sessionprofiles	ignored</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23140%3A%20x2gobroker%3A%20agent-query-mode%20in%20sessionprofiles%0A%09ignored&In-Reply-To=%3CCAFJm-UP%2BK-ND-5syc0urRGxUr5EzizeKnuDzoaoDrcUGuyD2Uw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#140: x2gobroker: agent-query-mode in sessionprofiles	ignored">abo at dsl.dk
+       </A><BR>
+    <I>Wed Mar  6 15:22:52 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005185.html">[X2Go-Dev] Processed: Re: Bug#137: crash when using the --session=&lt;name&gt; and --hide flag with a key that need a password to unlock
+</A></li>
+        <LI>Next message: <A HREF="005183.html">[X2Go-Dev] Bug#140: x2gobroker: agent-query-mode in sessionprofiles	ignored
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5180">[ date ]</a>
+              <a href="thread.html#5180">[ thread ]</a>
+              <a href="subject.html#5180">[ subject ]</a>
+              <a href="author.html#5180">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2gobroker
+Version: 0.0.0.6
+
+Having agent-query-mode=SSH set in a profile in
+/etc/x2go/broker/x2gobroker-sessionprofiles.conf is ignored. Instead
+default-agent-query-mode from /etc/x2go/x2gobroker.conf is used.
+When trying to login with x2goclient, this is logged on x2gobroker:
+
+2013-03-06 15:17:23,997 - broker - DEBUG -
+base_broker.X2GoBroker.get_agent_query_mode(): found
+default-agent-query-mode in global config section: local
+
+I see that the new autologin (which works) uses self.get_profile_broker()
+instead of self.config to access settings. This might be the source of the
+problem?
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130306/ae3d9488/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130306/ae3d9488/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005185.html">[X2Go-Dev] Processed: Re: Bug#137: crash when using the --session=&lt;name&gt; and --hide flag with a key that need a password to unlock
+</A></li>
+	<LI>Next message: <A HREF="005183.html">[X2Go-Dev] Bug#140: x2gobroker: agent-query-mode in sessionprofiles	ignored
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5180">[ date ]</a>
+              <a href="thread.html#5180">[ thread ]</a>
+              <a href="subject.html#5180">[ subject ]</a>
+              <a href="author.html#5180">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

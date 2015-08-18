@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Windows Client Issue
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Windows%20Client%20Issue&In-Reply-To=%3C20110705220042.431245zfvmnnibfu%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002408.html">
+   <LINK REL="Next"  HREF="002410.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Windows Client Issue</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Windows%20Client%20Issue&In-Reply-To=%3C20110705220042.431245zfvmnnibfu%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] Windows Client Issue">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Jul  5 22:00:42 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002408.html">[X2go-Dev] Windows Client Issue
+</A></li>
+        <LI>Next message: <A HREF="002410.html">[X2go-Dev] Windows Client Issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2409">[ date ]</a>
+              <a href="thread.html#2409">[ thread ]</a>
+              <a href="subject.html#2409">[ subject ]</a>
+              <a href="author.html#2409">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Daniel,
+
+On Di 05 Jul 2011 21:44:32 CEST Daniel Lindgren wrote:
+
+&gt;<i> Just did that, PyHoca-GUI works on Windows 7 x64. I had some trouble
+</I>&gt;<i> connecting initially, perhaps there were some leftover processes from
+</I>&gt;<i> previous x2goclient tests, but the last 5 times I've succesfully
+</I>&gt;<i> started/connected/resumed sessions. PyHoca uses a different color
+</I>&gt;<i> depth than x2goclient, &quot;dp17&quot; vs &quot;dp24&quot;, I couldn't resume old
+</I>&gt;<i> x2gclient sessions because of that, otherwise they seem
+</I>&gt;<i> interchangeable.
+</I>
+That sounds indeed weird. 17bit color depth is a really uncommon  
+value. In PyHoca-GUI I try to keep it simple: resume only sessions  
+that support the same color depth as the local desktop. This can be  
+fine-tuned still, but this implementation cleared up many problems I  
+had before.
+
+@Alex: I get the local color depth from win32api.GetSystemMetrics(2).  
+This 17bit value sounds really odd to me. How does x2goclient choose  
+its color depth???
+
+@Daniel: You are great! You found the bug. What is your desktop's  
+,,real'' color depth (right click on desktop, properties, settings of  
+gcard)? I guess it is something different from 17. Maybe you could be  
+more playful with local color depth (gcard settings)?
+
+Greets,
+Mike
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110705/aae2fef5/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110705/aae2fef5/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002408.html">[X2go-Dev] Windows Client Issue
+</A></li>
+	<LI>Next message: <A HREF="002410.html">[X2go-Dev] Windows Client Issue
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2409">[ date ]</a>
+              <a href="thread.html#2409">[ thread ]</a>
+              <a href="subject.html#2409">[ subject ]</a>
+              <a href="author.html#2409">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

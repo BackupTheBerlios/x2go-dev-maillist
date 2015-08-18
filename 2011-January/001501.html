@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Go Client Code Changes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20Client%20Code%20Changes&In-Reply-To=%3C4D3705DC.5000708%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001500.html">
+   <LINK REL="Next"  HREF="001504.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Go Client Code Changes</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20Client%20Code%20Changes&In-Reply-To=%3C4D3705DC.5000708%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] X2Go Client Code Changes">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Wed Jan 19 16:40:12 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001500.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+        <LI>Next message: <A HREF="001504.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1501">[ date ]</a>
+              <a href="thread.html#1501">[ thread ]</a>
+              <a href="subject.html#1501">[ subject ]</a>
+              <a href="author.html#1501">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello John, Phil, Moritz, list,
+
+I'll tray in this short mail to give answers on all your questions.
+
+1) Xming working correct with nxproxy only in &quot;multiwindow&quot; mode.
+2) Xming need some time to start and it started by parallel thread to
+reduce delay. It make not sense to start it by x2goconnections, this
+will only enlarge connection time on 3-5 sec and bring no effort
+3) Xming just ignoring &quot;keyhook&quot; option (I think because of multiwindow
+mode)
+4) &quot;right top click&quot; is a feature of x2goagent, not X11. It will be
+possible to make changes in x2goagent to disable it or make configurable,
+
+We would be happy to say &quot;Good By&quot; to Xming and old xorg-6 sources. I'll
+take a look on VcXsrv this week. It looks good, seems to be gpl-3
+(<A HREF="http://sourceforge.net/projects/vcxsrv/develop">http://sourceforge.net/projects/vcxsrv/develop</A>) and based on the xorg
+git(<A HREF="http://vcxsrv.sourceforge.net/">http://vcxsrv.sourceforge.net/</A>) git = Xorg-7. I think, John and Phil
+made a good experience with VcXsrv. I'll make some tests and will try to
+use it with x2goplugin. Possible, I'll need to make some changes, as I
+have made it with Xming. If VcXsrv will work good with x2goclient, we
+will include it in windows installer.
+
+Regards,
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110119/54c6585c/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110119/54c6585c/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001500.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+	<LI>Next message: <A HREF="001504.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1501">[ date ]</a>
+              <a href="thread.html#1501">[ thread ]</a>
+              <a href="subject.html#1501">[ subject ]</a>
+              <a href="author.html#1501">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

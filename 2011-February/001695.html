@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] VcXsrv
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20VcXsrv&In-Reply-To=%3C4D4B1B48.3060107%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001694.html">
+   <LINK REL="Next"  HREF="001701.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] VcXsrv</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20VcXsrv&In-Reply-To=%3C4D4B1B48.3060107%40verizon.net%3E"
+       TITLE="[X2go-dev] VcXsrv">greno at verizon.net
+       </A><BR>
+    <I>Thu Feb  3 22:16:56 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001694.html">[X2go-dev] VcXsrv
+</A></li>
+        <LI>Next message: <A HREF="001701.html">[X2go-dev] VcXsrv
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1695">[ date ]</a>
+              <a href="thread.html#1695">[ thread ]</a>
+              <a href="subject.html#1695">[ subject ]</a>
+              <a href="author.html#1695">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 02/03/2011 02:37 PM, Gerry Reno wrote:
+&gt;<i> On 02/03/2011 02:26 PM, John A. Sullivan III wrote:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> On Thu, 2011-02-03 at 13:54 -0500, Gerry Reno wrote:
+</I>&gt;&gt;<i>   
+</I>&gt;&gt;<i>     
+</I>&gt;&gt;&gt;<i> On 02/03/2011 01:38 PM, John A. Sullivan III wrote:
+</I>&gt;&gt;&gt;<i>     
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;&gt;&gt;<i> The only reliable solution we have seen so far is X2Go over commercial
+</I>&gt;&gt;&gt;&gt;<i> Xming.  Thus, for X2Go to be production worthy for Windows users, we
+</I>&gt;&gt;&gt;&gt;<i> must either fix Xming or vcxsrv.  Xming is literally antagonistic to
+</I>&gt;&gt;&gt;&gt;<i> X2Go so our best bet is vcxsrv.  Let's hope the vcxsrv devs are able to
+</I>&gt;&gt;&gt;&gt;<i> fix this and we will devote whatever resources we can to work on it as
+</I>&gt;&gt;&gt;&gt;<i> well.  As always, thanks - John
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;&gt;<i>       
+</I>&gt;&gt;&gt;&gt;<i>         
+</I>&gt;&gt;&gt;<i> John, that has been our assessment as well.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> We've demoed x2go to some clients and let them work with it and we
+</I>&gt;&gt;&gt;<i> definitely need to have an Xserver that is stable and reliable.  And
+</I>&gt;&gt;&gt;<i> right now that is not the case.  And I'm getting pushback from the
+</I>&gt;&gt;&gt;<i> clients about the mouse issue and restarts.  For us xming commercial is
+</I>&gt;&gt;&gt;<i> something we're looking at but that very much muddies up things with a
+</I>&gt;&gt;&gt;<i> restrictive license.  If anyone has any ideas about how to produce some
+</I>&gt;&gt;&gt;<i> meaningful debug information with either Xming or VcXsrv that could lead
+</I>&gt;&gt;&gt;<i> to helping fix these problems please share it with us.  We'll be glad to
+</I>&gt;&gt;&gt;<i> help with testing.
+</I>&gt;&gt;&gt;<i>     
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;<i> That would be very appreciated.  I think the next step is already in
+</I>&gt;&gt;<i> motion; Phil has contacted the vcxsrv devs with whom he seems to get on
+</I>&gt;&gt;<i> well.  In the meantime, we can slot in the bits into the code to make it
+</I>&gt;&gt;<i> work with either X server and to call it when we have the session
+</I>&gt;&gt;<i> information as opposed to before like it is now.  That will give us
+</I>&gt;&gt;<i> rootless and fullscreen capabilities.  It will be even better if we can
+</I>&gt;&gt;<i> detect if there is an existing multiwindow.   We need to do all that
+</I>&gt;&gt;<i> regardless of whom we ultimately use.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Alex, we would actually prefer you do that as we truly are not
+</I>&gt;&gt;<i> developers.  Do you have time for that portion, i.e., not fixing vcxsrv
+</I>&gt;&gt;<i> but simply changing the X2Go Client code? If, not, we'll take our best
+</I>&gt;&gt;<i> stab at it.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Gerry, if we find the vcxsrv folks are not able to get to this right
+</I>&gt;&gt;<i> away, do you have anyone with X skills who could troubleshoot and fix
+</I>&gt;&gt;<i> it? That's way out of our league.  Thanks, all - John
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   
+</I>&gt;&gt;<i>     
+</I>&gt;<i> John, if I did we'd have fixed it already. :-)
+</I>&gt;<i>
+</I>&gt;<i> X is not within our skill sets.
+</I>&gt;<i>
+</I>&gt;<i> General question, is it possible to build a debug version of X?  Can X
+</I>&gt;<i> be run under the control of a debugger?  If so, maybe breakpoints could
+</I>&gt;<i> be set until we narrowed down the section of code causing the problem or
+</I>&gt;<i> maybe we could tell where it was from a core file.  Just some thoughts.
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Gerry
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+I just looked at all the various mouse/keyboard issues that we've seen
+w/X and window managers.
+
+Multiple doodads... (had to restart X)
+Tried to focus the nofocus window (had to restart X)
+XID collision.  Trouble ahead. (had to restart X)
+unknown keypress (translated set 2, code 0xd9 on SERIAL) ...
+mouse pointer disappears but still works (had to restart X)
+mouse pointer zooms offscreen (had to restart X)
+dropdown menues stop working on mouse click (gnome-terminal)  (had to
+restart X)
+keystrokes fail in gnome-terminal - cursor turns to outlined block  (had
+to restart X)
+
+These occurred on both debian-based and redhat-based distros.
+
+So there is plenty of room for discovery for these X issues.  And some
+of them might ultimately be tied to the same solution.  I found that
+some of these issues have been reported for years to Xorg and are still
+not solved.  Of course some might be window manager issues.
+
+
+Regards,
+Gerry
+
+
+ 
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001694.html">[X2go-dev] VcXsrv
+</A></li>
+	<LI>Next message: <A HREF="001701.html">[X2go-dev] VcXsrv
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1695">[ date ]</a>
+              <a href="thread.html#1695">[ thread ]</a>
+              <a href="subject.html#1695">[ subject ]</a>
+              <a href="author.html#1695">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

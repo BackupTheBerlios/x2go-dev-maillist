@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#364: Bug#364: Please add config option to disable	bubble help text and change the wording of it
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23364%3A%20Bug%23364%3A%20Please%20add%20config%20option%20to%20disable%0A%09bubble%20help%20text%20and%20change%20the%20wording%20of%20it&In-Reply-To=%3CCAPWth0K0oht5FDNuw-xT6oh-kRrxEiDcKvsQf__eExB0gOXauw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006669.html">
+   <LINK REL="Next"  HREF="006666.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#364: Bug#364: Please add config option to disable	bubble help text and change the wording of it</H1>
+    <B>Ricardo D&#237;az Mart&#237;n</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23364%3A%20Bug%23364%3A%20Please%20add%20config%20option%20to%20disable%0A%09bubble%20help%20text%20and%20change%20the%20wording%20of%20it&In-Reply-To=%3CCAPWth0K0oht5FDNuw-xT6oh-kRrxEiDcKvsQf__eExB0gOXauw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#364: Bug#364: Please add config option to disable	bubble help text and change the wording of it">oceanosoftlapalma at gmail.com
+       </A><BR>
+    <I>Mon Dec 16 08:52:06 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006669.html">[X2Go-Dev] Bug#364: Bug#364: Please add config option to disable	bubble help text and change the wording of it
+</A></li>
+        <LI>Next message: <A HREF="006666.html">[X2Go-Dev] Bug#364: Bug#364: Please add config option to disable	bubble help text and change the wording of it
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6688">[ date ]</a>
+              <a href="thread.html#6688">[ thread ]</a>
+              <a href="subject.html#6688">[ subject ]</a>
+              <a href="author.html#6688">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2013/12/14 Stefan Baur &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>&gt;
+
+&gt;<i> Am 14.12.2013 21:16, schrieb Ricardo D&#237;az Mart&#237;n:
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>      And again, I'm kind of disappointed that we're adding silly eye
+</I>&gt;&gt;&gt;<i>     candy when there still are serious bugs to fix.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I added the pop-up because if you set on the x2goclient option &quot;hide
+</I>&gt;&gt;<i> windows on connect&quot; (as I usually do with my users settings) looks like
+</I>&gt;&gt;<i> nothing happens when you click on connect button. So some users try to
+</I>&gt;&gt;<i> do again and again and connection stuck. It's no an &quot;eye candy&quot;.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Okay, different use case, it seems. While I'm also setting &quot;hide windows
+</I>&gt;<i> on connect&quot;, I'm using the autolauncher in combination with it, so that
+</I>&gt;<i> after login, the application that my users need the most immediately pops
+</I>&gt;<i> up.  So maybe we could hide it when autolaunch (--autostart=&lt;app&gt;) is used?
+</I>&gt;<i> Still, I don't see why making it a configurable option would be bad. Either
+</I>&gt;<i> your users behave and don't change settings on their own, so it stays the
+</I>&gt;<i> way you configured it for them, or you set the --no-session-edit parameter
+</I>&gt;<i> to force them.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>  In addition, it's complete true there are serious bugs to fix instead to
+</I>&gt;&gt;<i> add this feature so you have some options:
+</I>&gt;&gt;<i> - Read in deep the code and send patches to fix them. And of course do
+</I>&gt;&gt;<i> it for free and using the time you must to be with your family, friends
+</I>&gt;&gt;<i> or doing some sports or something else...
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> While I'm not a &quot;frontline&quot; coder, and only do debugging when Mike#1 tells
+</I>&gt;<i> me what and how to do, I do happen to check for issues and report
+</I>&gt;<i> bugs/oddities, plus I'm occasionally active in x2go-i10n (since no English
+</I>&gt;<i> native speaker seems to have enough time to check our English messages),
+</I>&gt;<i> and a lot of that actually happens in my free time, like the last
+</I>&gt;<i> evaluation of the x2goclient.exe that Mike#2 had asked for.
+</I>&gt;<i>
+</I>&gt;<i> Also, I have a few things in the works that add value to the
+</I>&gt;<i> ThinClientEnvironment part of the project, it's just that I'm not
+</I>&gt;<i> committing the source directly but showing it to Mike#1 first, since TCE is
+</I>&gt;<i> his &quot;baby&quot; and he will know best where to add my code or how to tweak it to
+</I>&gt;<i> play along nicely.
+</I>&gt;<i> Just two examples: One thing, passed on to him about a year ago, was code
+</I>&gt;<i> to auto-detect an X2Go server similar to how WPAD (
+</I>&gt;<i> <A HREF="http://en.wikipedia.org/wiki/Web_Proxy_Autodiscovery_Protocol">http://en.wikipedia.org/wiki/Web_Proxy_Autodiscovery_Protocol</A>) works.
+</I>&gt;<i> Judging from a note I recently saw regarding the X2Go Session Broker, I'm
+</I>&gt;<i> guessing he's either using it or it has inspired him to come up with
+</I>&gt;<i> something similar.
+</I>&gt;<i> Another thing is an X2Go ThinClient that can be booted off a CD or USB
+</I>&gt;<i> memory stick, for cases where PXE booting isn't available.
+</I>&gt;<i> This is not for older clients that don't have a PXE boot rom - you can
+</I>&gt;<i> simply boot gPXE or iPXE off a CD on those - but for cases where PXE
+</I>&gt;<i> booting isn't available for other reasons, like:
+</I>&gt;<i> - You are allowed to run an X2Go server, but do not have permission to
+</I>&gt;<i> change or set up a PXE/NFS environment (a common situation when someone
+</I>&gt;<i> wants to demonstrate X2Go in a corporate setting).
+</I>&gt;<i> - You are travelling somewhere, want to connect to your X2Go server
+</I>&gt;<i> somewhere else over the Internet, didn't bring your own computer, only a
+</I>&gt;<i> USB key fob, and don't trust the Windows installation found on the machine
+</I>&gt;<i> you're being offered to use (if you can trust it, you can of course simply
+</I>&gt;<i> use x2goclient.exe in portable mode).
+</I>&gt;<i>
+</I>&gt;<i> Looking back in the X2Go-dev mailing list history, I can see 17 messages
+</I>&gt;<i> from you and 113 (yes, one hundred and thirteen compared to seventeen)
+</I>&gt;<i> messages from me. So let that sink in for a moment before you continue
+</I>&gt;<i> barking up the wrong tree.
+</I>&gt;<i>
+</I>
+
+Very thanks to write 113 (yes, one hundred and thirteen) messages. It's
+simple amazing. I wrote only 17... bad karma
+
+
+
+&gt;<i>
+</I>&gt;<i>
+</I>
+&gt;<i>  - Fork the project and add the features you want
+</I>&gt;&gt;<i> - Pay for commercial support to fix the bugs and your wishes
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> And that last point is what I've done previously, more than once. Maybe
+</I>&gt;<i> you'd like to check on the wiki who sponsored the development of the
+</I>&gt;<i> published applications feature, for example?
+</I>&gt;<i> <A HREF="http://wiki.x2go.org/doku.php/doc:sponsors">http://wiki.x2go.org/doku.php/doc:sponsors</A>
+</I>&gt;<i> <A HREF="http://wiki.x2go.org/doku.php/doc:deployment-stories:electronic-glovebox">http://wiki.x2go.org/doku.php/doc:deployment-stories:electronic-glovebox</A>
+</I>&gt;<i>
+</I>
+&gt;<i> Or the Windows &quot;interim&quot; x2goclient that comes with the old pulseaudio,
+</I>&gt;<i> that avoids the stuttering noises when playing Flash videos? That would be
+</I>&gt;<i> me (or, to be exact: the company that I am the sole owner of), in both
+</I>&gt;<i> cases.
+</I>&gt;<i>
+</I>&gt;<i> Also, you might want to check who provides the Apple Mac Mini (that is,
+</I>&gt;<i> the machine itself, the power, and the network connection) free of charge
+</I>&gt;<i> that is used for the MacOS x2goclient builds? Again, me/my company.
+</I>&gt;<i>
+</I>&gt;<i> Your attitude, however, is one that might force me to reconsider my
+</I>&gt;<i> investment of time and money into the project. Especially as the Mac stuff
+</I>&gt;<i> is currently of zero commercial value to me: I bought that machine only so
+</I>&gt;<i> that the project could deliver a great user experience across all three
+</I>&gt;<i> major operating system platforms (while some of my customers are Mac
+</I>&gt;<i> owners, I learned that they prefer to run Windows on Apple hardware, so
+</I>&gt;<i> they run x2goclient.exe).
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>Oh my good! Please don't reconsider your very huge investment (mac mini is
+very nice and expensive machine currently better than IBM mainframe). And
+thanks for paying the development of the published applications feature!
+Maybe it's nice for you because the product you sale is just this feature.
+
+
+
+&gt;<i>
+</I>&gt;<i>  I don't want to be rude but it's an opensource project and not very
+</I>&gt;&gt;<i> happy when somebody use the words &quot;silly eye candy&quot; talking about the
+</I>&gt;&gt;<i> time other people spent for free.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I don't want to be rude, either, but &quot;free&quot; isn't a valid excuse for
+</I>&gt;<i> &quot;bad&quot;. Nor has it ever been.
+</I>&gt;<i>
+</I>
+
+Sorry but people that fill a bug using word &quot;silly&quot; and still thinking it's
+the right way to do it got no more my respect.
+
+
+
+
+&gt;<i>
+</I>&gt;<i> See, you started with a seemingly harmless addition of an information
+</I>&gt;<i> &quot;bubble&quot;. Then someone else came along and added the session name. This is
+</I>&gt;<i> somewhere between feature creep and a color-of-the-bicycle-shed (
+</I>&gt;<i> <A HREF="http://en.wikipedia.org/wiki/Wikipedia:Avoid_Parkinson%27s">http://en.wikipedia.org/wiki/Wikipedia:Avoid_Parkinson%27s</A>_
+</I>&gt;<i> Bicycle_Shed_Effect) discussion, and I would like to remind everybody
+</I>&gt;<i> involved that we should avoid that.
+</I>&gt;<i>
+</I>
+
+Thanks for the link.
+
+
+
+
+&gt;<i>
+</I>&gt;<i> We should stick to the K.I.S.S. principle, get the serious bugs worked
+</I>&gt;<i> out, then add new features.
+</I>&gt;<i> I also doubt it makes debugging of currently existing bugs easier while
+</I>&gt;<i> new code for new features keeps getting added.
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131216/fee42816/attachment-0001.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131216/fee42816/attachment-0001.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006669.html">[X2Go-Dev] Bug#364: Bug#364: Please add config option to disable	bubble help text and change the wording of it
+</A></li>
+	<LI>Next message: <A HREF="006666.html">[X2Go-Dev] Bug#364: Bug#364: Please add config option to disable	bubble help text and change the wording of it
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6688">[ date ]</a>
+              <a href="thread.html#6688">[ thread ]</a>
+              <a href="subject.html#6688">[ subject ]</a>
+              <a href="author.html#6688">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

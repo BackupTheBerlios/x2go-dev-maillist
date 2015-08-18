@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Hardware SSH acceleration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Hardware%20SSH%20acceleration&In-Reply-To=%3C1285261172.3383.18.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001101.html">
+   <LINK REL="Next"  HREF="001074.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Hardware SSH acceleration</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Hardware%20SSH%20acceleration&In-Reply-To=%3C1285261172.3383.18.camel%40localhost%3E"
+       TITLE="[X2go-dev] Hardware SSH acceleration">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu Sep 23 18:59:32 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001101.html">[X2go-dev] Hardware SSH acceleration
+</A></li>
+        <LI>Next message: <A HREF="001074.html">[X2go-dev] Hello dead project...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1089">[ date ]</a>
+              <a href="thread.html#1089">[ thread ]</a>
+              <a href="subject.html#1089">[ subject ]</a>
+              <a href="author.html#1089">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2010-09-23 at 18:01 +0200, Jo-Erlend Schinstad wrote:
+&gt;<i> One possible solution:
+</I>&gt;<i> 
+</I>&gt;<i> 1) use PXE boot for your thin clients, mounting everything over the network.
+</I>&gt;<i> 2) in local GNOME, run only a bottom panel with menu for apps that
+</I>&gt;<i> needs to be run locally.
+</I>&gt;<i> 3) On the remote GNOME, run only a top panel.
+</I>&gt;<i> 
+</I>&gt;<i> Now, instead of running a complete GNOME session, simply run
+</I>&gt;<i> gnome-panel from x2go. That way, you'll have a &quot;mixed-mode&quot; session so
+</I>&gt;<i> that users feel like they're doing everything on the same machine,
+</I>&gt;<i> when in fact they're not.
+</I>&gt;<i> 
+</I>&gt;<i> It is a work-around, but it felt quite nice here.
+</I>&lt;snip&gt;
+That's a really neat idea.  We do something similar to provide seamless
+Windows applications for our remote desktops using seamlessRDP but I
+never thought of actually delivering the remote desktop itself that way.
+It would probably work for our Windows users, too.
+
+I have to think about the dangers of user error when it comes to data
+storage.  In our seamlessRDP environment, both the Windows applications
+and the X2Go applications are pointing to the same data store.  That
+would not be the case in this scenario.  The applications should keep
+things straight but I'm concerned about them using the wrong file
+manager and getting very confused.  Have to think it through but thanks
+for a creative solution - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001101.html">[X2go-dev] Hardware SSH acceleration
+</A></li>
+	<LI>Next message: <A HREF="001074.html">[X2go-dev] Hello dead project...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1089">[ date ]</a>
+              <a href="thread.html#1089">[ thread ]</a>
+              <a href="subject.html#1089">[ subject ]</a>
+              <a href="author.html#1089">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

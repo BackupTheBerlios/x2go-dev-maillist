@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] build x2GoServer for mandriva 2010.0
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20build%20x2GoServer%20for%20mandriva%202010.0&In-Reply-To=%3CCA%2BdW2FDc1WjjjXncDyO7iMZZX7fJ%3D_vduJQrqnOmQYakaTauSQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005885.html">
+   <LINK REL="Next"  HREF="005890.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] build x2GoServer for mandriva 2010.0</H1>
+    <B>carlos andres perez lopez</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20build%20x2GoServer%20for%20mandriva%202010.0&In-Reply-To=%3CCA%2BdW2FDc1WjjjXncDyO7iMZZX7fJ%3D_vduJQrqnOmQYakaTauSQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] build x2GoServer for mandriva 2010.0">carlinchisart at gmail.com
+       </A><BR>
+    <I>Wed Jun 26 00:55:24 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005885.html">[X2Go-Dev] build x2GoServer for mandriva 2010.0
+</A></li>
+        <LI>Next message: <A HREF="005890.html">[X2Go-Dev] build x2GoServer for mandriva 2010.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5889">[ date ]</a>
+              <a href="thread.html#5889">[ thread ]</a>
+              <a href="subject.html#5889">[ subject ]</a>
+              <a href="author.html#5889">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>HI Nable,
+
+Thanks for your answer, attach the file that generate wen i do make for
+x2goserver.
+
+Thanks
+
+
+2013/6/25 Nable 80 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">nable.maininbox at googlemail.com</A>&gt;
+
+&gt;<i> Hi, Carlos.
+</I>&gt;<i>
+</I>&gt;<i> Sorry, I don't have time to try to reproduce your setup right now but
+</I>&gt;<i> as a first attempt to debug this issue you can do
+</I>&gt;<i> ps ux -eH &gt; somefile.txt
+</I>&gt;<i> and find what is the exact commandline that waits for something.
+</I>&gt;<i>
+</I>&gt;<i> 2013/6/25, carlos andres perez lopez &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">carlinchisart at gmail.com</A>&gt;:
+</I>&gt;<i> &gt; Hi all,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; i'm following this guide
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> <A HREF="http://wiki.x2go.org/doku.php/wiki:development:build-howto-linux:x2goserver">http://wiki.x2go.org/doku.php/wiki:development:build-howto-linux:x2goserver</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; to compile and install x2goServer in mandriva 2010.0, the all
+</I>&gt;<i> dependences i
+</I>&gt;<i> &gt; compile and install, when i try to install nx-libraries I used the
+</I>&gt;<i> package
+</I>&gt;<i> &gt; full ( <A HREF="http://code.x2go.org/releases/source/nx-libs/">http://code.x2go.org/releases/source/nx-libs/</A>) and install
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; but when i do the 12 point, Install x2goserver from git, when i do make
+</I>&gt;<i> &gt; command i see this message
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; make[1]: Entering directory
+</I>&gt;<i> `/home/carlinchis/x2goserver/x2goserver-common'
+</I>&gt;<i> &gt; mkdir -p .build_man2html/html
+</I>&gt;<i> &gt; for man_page in `cd man &amp;&amp; find * -type f`; do mkdir -p `dirname
+</I>&gt;<i> &gt; .build_man2html/html/$man_page`; done
+</I>&gt;<i> &gt; for man_page in `cd man &amp;&amp; find * -type f`; do man2html man/$man_page &gt;
+</I>&gt;<i> &gt; .build_man2html/html/$man_page.html; done
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; and the make command not stop but noting happend,  the comand wait
+</I>&gt;<i> &gt; someting, but noting happend.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I follow the same guide in a opensuse 12.2 and i have the same problem
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Can any helpme?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; if i don't have one package, or other topic.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Thanks
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; P.D: Sorry for my English i speak Spanish.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Carlos Perez.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; --
+</I>&gt;<i> &gt; todo se puede mi warrior
+</I>&gt;<i> &gt; C.A.P.L
+</I>&gt;<i> &gt;
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+
+-- 
+todo se puede mi warrior
+C.A.P.L
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130625/07898da8/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130625/07898da8/attachment.html</A>&gt;
+-------------- next part --------------
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         2  0.0  0.0      0     0 ?        S&lt;   16:40   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [migration/0]
+root         4  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [ksoftirqd/0]
+root         5  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [events/0]
+root         6  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [khelper]
+root         7  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [async/mgr]
+root         8  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [kintegrityd/0]
+root         9  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [kblockd/0]
+root        10  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [kacpid]
+root        11  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [kacpi_notify]
+root        12  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [kacpi_hotplug]
+root        13  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [kseriod]
+root        14  0.0  0.0      0     0 ?        S    16:40   0:00   [khungtaskd]
+root        15  0.0  0.0      0     0 ?        S    16:40   0:00   [pdflush]
+root        16  0.0  0.0      0     0 ?        S    16:40   0:00   [pdflush]
+root        17  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [kswapd0]
+root        18  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [aio/0]
+root        19  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [crypto/0]
+root        22  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [kpsmoused]
+root        38  0.0  0.0      0     0 ?        S&lt;   16:40   0:01   [ata/0]
+root        39  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [ata_aux]
+root        41  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [scsi_eh_0]
+root        44  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [scsi_eh_1]
+root        45  0.0  0.0      0     0 ?        S&lt;   16:40   0:01   [scsi_eh_2]
+root        48  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [kjournald2]
+root       240  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [ksuspend_usbd]
+root       248  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [khubd]
+root       313  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [usbhid_resumer]
+root       355  0.0  0.0      0     0 ?        R&lt;   16:40   0:00   [kjournald2]
+root       834  0.0  0.0      0     0 ?        S&lt;   16:40   0:00   [kauditd]
+root         1  0.0  0.0   1796   612 ?        Ss   16:40   0:00 init [5]                                                                                                                                         
+root       137  0.0  0.0   2196   884 ?        S&lt;s  16:40   0:00   /sbin/udevd -d
+root      1523  0.0  0.0   2192   852 ?        S&lt;   16:40   0:00     /sbin/udevd -d
+root       583  0.0  0.0   1844   624 ?        Ss   16:40   0:00   syslogd -m 0
+root       600  0.0  0.0   1788   576 ?        Ss   16:40   0:00   /usr/sbin/acpid
+root       616  0.0  0.0   1792   464 ?        Ss   16:40   0:00   klogd -x
+14         637  0.0  0.1   2668  1120 ?        Ss   16:40   0:00   dbus-daemon --system
+18         657  0.0  0.4   6752  4392 ?        Ss   16:40   0:00   hald
+root       725  0.0  0.1   3568  1176 ?        S    16:40   0:00     hald-runner
+root       796  0.0  0.1   3644  1104 ?        S    16:40   0:00       hald-addon-input: Listening on /dev/input/event0 /dev/input/event3 /dev/input/event2
+18         802  0.0  0.0   3296  1000 ?        S    16:40   0:00       hald-addon-acpi: listening on acpid socket /var/run/acpid.socket
+root       888  0.0  0.1   3648  1112 ?        S    16:40   0:01       hald-addon-storage: polling /dev/sr0 (every 2 sec)
+root       660  0.0  0.2  17620  2864 ?        Ssl  16:40   0:00   /usr/sbin/console-kit-daemon
+root       831  0.0  0.0   3932   996 ?        S    16:40   0:00   /usr/bin/kdm -nodaemon
+root       833  0.3  2.3  31736 24240 tty7     Ss+  16:40   0:05     /etc/X11/X -deferglyphs 16 -nolisten tcp :0 vt7 -auth /var/run/xauth/A:0-c9cksY
+root       838  0.0  0.1   4864  1904 ?        S    16:40   0:00     -:0                   
+carlos     904  0.0  0.1   4344  1576 ?        Ss   16:40   0:00       /bin/sh /usr/bin/startkde
+carlos    1850  0.0  0.0   1776   368 ?        S    16:40   0:00         kwrapper4 ksmserver
+carlos     964  0.0  0.0   3352   720 ?        S    16:40   0:00   /usr/bin/dbus-launch --exit-with-session --sh-syntax
+carlos     965  0.0  0.1   2676  1068 ?        Ss   16:40   0:00   /usr/bin/dbus-daemon --fork --print-pid 5 --print-address 7 --session
+carlos     987  0.0  0.0   3952   848 ?        Ss   16:40   0:00   /usr/bin/imwheel -k
+carlos    1022  0.0  0.1   5996  1116 ?        Sl   16:40   0:00   /usr/bin/VBoxClient --autoresize
+carlos    1027  0.0  0.1   5996  1160 ?        Sl   16:40   0:00   /usr/bin/VBoxClient --seamless
+carlos    1069  0.0  0.0   4172   736 ?        Ss   16:40   0:00   gpg-agent --use-standard-socket --daemon --write-env-file /home/carlos/.gnupg/gpg-agent-info
+carlos    1091  0.0  0.2  15120  2888 ?        Ss   16:40   0:00   s2u --daemon=yes
+daemon    1365  0.0  0.0   2020   392 ?        Ss   16:40   0:00   /usr/sbin/atd -l 0.8
+root      1390  0.0  0.1   4200  1116 ?        Ss   16:40   0:00   crond
+root      1476  0.0  0.0   3216   664 ?        Sl   16:40   0:00   /usr/sbin/vboxadd-service
+carlos    1567  0.0  0.9  59016  9312 ?        Ss   16:40   0:00   kdeinit4: kdeinit4 Running...
+carlos    1761  0.0  0.7  61396  7988 ?        S    16:40   0:00     kdeinit4: klauncher [kdeinit] --fd=8
+carlos    1851  0.0  1.1  90312 12252 ?        Sl   16:40   0:00     kdeinit4: ksmserver [kdeinit]
+carlos    1853  0.0  2.1 243492 22644 ?        S    16:40   0:00       kwin -session 1028c1d320b210000137208628700000024220000_1372182342_458528
+carlos    2837  0.0  0.4  17240  5136 ?        S    16:41   0:00     /usr/bin/pam-panel-icon
+root      2867  0.0  0.0   2016   616 ?        S    16:41   0:00       /sbin/pam_timestamp_check -d root
+carlos    2847  0.0  2.5  45236 26008 ?        S    16:41   0:00     /usr/bin/perl /usr/bin/mdkapplet
+carlos    2849  0.1  2.6  42428 27876 ?        S    16:41   0:02     /usr/bin/perl /usr/bin/draksnapshot-applet
+carlos    2859  0.0  0.1  13628  1532 ?        Sl   16:41   0:00     /usr/bin/xsettings-kde
+carlos    2863  0.1  2.9  45152 30480 ?        S    16:41   0:02     /usr/bin/perl /usr/bin/net_applet
+carlos   14202  0.0  0.7  59688  7380 ?        S    17:04   0:00     kdeinit4: kio_trash [kdeinit] trash local:/home/carlos/tmp/ksocket-carlos/klauncherMT1761.slave-socket local:/home/carlos/tmp/ksocket-carlos/dolphinJ14201.slave-socket
+carlos   14203  0.0  0.6  59744  6844 ?        S    17:04   0:00     kdeinit4: kio_file [kdeinit] file local:/home/carlos/tmp/ksocket-carlos/klauncherMT1761.slave-socket local:/home/carlos/tmp/ksocket-carlos/dolphiny14201.slave-socket
+carlos   14205  0.1  1.4  86684 14608 ?        S    17:04   0:00     kdeinit4: kio_thumbnail [kdeinit] thumbnail local:/home/carlos/tmp/ksocket-carlos/klauncherMT1761.slave-socket local:/home/carlos/tmp/ksocket-carlos/dolphins14201.slave-socket
+root      1632  0.0  0.0   1820   520 ?        Ss   16:40   0:00   /sbin/ifplugd -I -b -i eth1
+carlos    1763  0.0  1.5  85928 16108 ?        S    16:40   0:00   kdeinit4: kded4 [kdeinit]
+carlos    1786  0.0  0.1   2900  1044 ?        S    16:40   0:00   /usr/lib/gam_server
+root      1958  0.0  0.0   2528   624 ?        Ss   16:40   0:00   dhclient -1 -q -lf /var/lib/dhcp/dhclient-eth1.leases -pf /var/run/dhclient-eth1.pid -cf /etc/dhclient-eth1.conf eth1
+carlos    1971  0.0  1.1  81784 11840 ?        S    16:40   0:00   kdeinit4: kglobalaccel [kdeinit]
+root      2047  0.0  0.0   3132   504 ?        S    16:40   0:00   /usr/sbin/hddtemp -d -l 127.0.0.1 /dev/hda
+avahi     2049  0.0  0.1   2844  1548 ?        Ss   16:40   0:00   avahi-daemon: running [linux.local]
+avahi     2050  0.0  0.0   2844   480 ?        Ss   16:40   0:00     avahi-daemon: chroot helper
+rpc       2067  0.0  0.0   2180   612 ?        Ss   16:40   0:00   rpcbind -i
+root      2111  0.0  0.1   3336  1248 ?        SNs  16:40   0:00   /usr/sbin/preload --verbose 1
+carlos    2126  0.0  1.7 234376 18080 ?        Sl   16:40   0:00   /usr/bin/knotify4
+carlos    2129  0.1  2.8 261816 29588 ?        Sl   16:40   0:01   kdeinit4: plasma-desktop [kdeinit]
+carlos    2640  0.0  1.2  85152 12920 ?        S    16:40   0:00   kdeinit4: kaccess [kdeinit]
+carlos    2736  0.0  1.0  82984 11060 ?        S    16:41   0:00   kdeinit4: nepomukserver [kdeinit]
+carlos    2737  0.0  3.0 304052 31616 ?        Sl   16:41   0:01   kdeinit4: krunner [kdeinit]
+root      2795  0.0  0.0   2208   536 ?        Ss   16:41   0:00   /usr/sbin/mandi -d
+root      2809  0.0  0.0   1780   460 tty1     Ss+  16:41   0:00   /sbin/mingetty tty1
+root      2810  0.0  0.0   1780   468 tty2     Ss+  16:41   0:00   /sbin/mingetty tty2
+root      2811  0.0  0.0   1780   464 tty3     Ss+  16:41   0:00   /sbin/mingetty tty3
+root      2812  0.0  0.0   1780   464 tty4     Ss+  16:41   0:00   /sbin/mingetty tty4
+root      2813  0.0  0.0   1780   464 tty5     Ss+  16:41   0:00   /sbin/mingetty tty5
+root      2814  0.0  0.0   1780   468 tty6     Ss+  16:41   0:00   /sbin/mingetty tty6
+carlos    2836  0.0  1.5  85024 16036 ?        S    16:41   0:00   kdeinit4: kmix [kdeinit] -session 1028c1d320b210000137217630300000024250009_1372182342_432171
+carlos    2848  0.0  0.4  94712  4844 ?        S&lt;sl 16:41   0:00   /usr/bin/pulseaudio --start --log-target=syslog
+carlos    2872  0.0  0.2  10908  2848 ?        S    16:41   0:00     /usr/lib/pulse/gconf-helper
+rtkit     2851  0.0  0.1  18692  1048 ?        SNl  16:41   0:00   /usr/lib/rtkit-daemon
+root      2857  0.0  0.3   5780  3188 ?        S    16:41   0:00   /usr/lib/polkit-1/polkitd
+carlos    2862  0.0  1.1  81760 12092 ?        S    16:41   0:00   kdeinit4: klipper [kdeinit]
+carlos    2865  0.0  1.4  84084 14884 ?        S    16:41   0:00   /usr/bin/korgac -icon korgac
+carlos    2874  0.0  0.2   6032  2660 ?        S    16:41   0:00   /usr/lib/gconfd-2
+carlos    2886  0.0  0.1   5812  1956 ?        S    16:41   0:00   /usr/lib/gvfsd
+carlos    2896  0.0  0.2  29928  2296 ?        Ssl  16:41   0:00   /usr/lib//gvfs-fuse-daemon /home/carlos/.gvfs
+carlos   13670  0.5  1.9  98836 20516 ?        Sl   17:03   0:00   kdeinit4: konsole [kdeinit]
+carlos   13672  0.0  0.2   4648  2084 pts/1    Ss   17:03   0:00     /bin/bash
+carlos   14650  0.0  0.0   3128   876 pts/1    S+   17:05   0:00       make
+carlos   14681  0.0  0.0   3180   972 pts/1    S+   17:05   0:00         make -C x2goserver-common build-indep
+carlos   14689  0.0  0.1   4316  1464 pts/1    S+   17:05   0:00           /bin/bash -c for man_page in `cd man &amp;&amp; find * -type f`; do man2html man/$man_page &gt; .build_man2html/html/$man_page.html; done
+carlos   14692  0.1  0.2   6116  3032 pts/1    S+   17:05   0:00             /usr/bin/perl /usr/bin/man2html man/man5/x2goserver.conf.5
+carlos   14614  0.0  0.2   4648  2068 pts/2    Rs   17:05   0:00     /bin/bash
+carlos   14820  0.0  0.0   2532   912 pts/2    R+   17:05   0:00       ps ux -eH
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005885.html">[X2Go-Dev] build x2GoServer for mandriva 2010.0
+</A></li>
+	<LI>Next message: <A HREF="005890.html">[X2Go-Dev] build x2GoServer for mandriva 2010.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5889">[ date ]</a>
+              <a href="thread.html#5889">[ thread ]</a>
+              <a href="subject.html#5889">[ subject ]</a>
+              <a href="author.html#5889">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

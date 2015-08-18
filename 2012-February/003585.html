@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2goclient.exe - Saving session settings to registry
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goclient.exe%20-%20Saving%20session%20settings%20to%20registry&In-Reply-To=%3CCAAWyt1oyjVZofZpkTiZrfkUtRG5Kkfh_QvKhJZDiqFZarVZCAQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003579.html">
+   <LINK REL="Next"  HREF="003586.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2goclient.exe - Saving session settings to registry</H1>
+    <B>Daniel Lindgren</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goclient.exe%20-%20Saving%20session%20settings%20to%20registry&In-Reply-To=%3CCAAWyt1oyjVZofZpkTiZrfkUtRG5Kkfh_QvKhJZDiqFZarVZCAQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] x2goclient.exe - Saving session settings to registry">bd.dali at gmail.com
+       </A><BR>
+    <I>Tue Feb 21 18:48:25 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003579.html">[X2Go-Dev] x2goclient.exe - Saving session settings to registry
+</A></li>
+        <LI>Next message: <A HREF="003586.html">[X2Go-Dev] x2goclient.exe - Saving session settings to registry
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3585">[ date ]</a>
+              <a href="thread.html#3585">[ thread ]</a>
+              <a href="subject.html#3585">[ subject ]</a>
+              <a href="author.html#3585">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> IMO, there should be at most one &quot;sessions&quot; file per user.
+</I>
+OK, NoMachine uses one file per session, but x2goclient.exe will use
+one file for all the sessions? That would make it  more difficult to
+have shared &quot;corporate defautl&quot; sessions together with user
+configurable sessions. If you'd need to update/add/remove default
+sessions you'd have to parse and edit the sessions file. If you have
+one file for each session, it's trivial to update/add/remove default
+session files without risking the user's personal sessions.
+
+Either way, storing the session config(s) in files is preferable to
+storing it in the registry.
+
+Cheers,
+Daniel
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003579.html">[X2Go-Dev] x2goclient.exe - Saving session settings to registry
+</A></li>
+	<LI>Next message: <A HREF="003586.html">[X2Go-Dev] x2goclient.exe - Saving session settings to registry
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3585">[ date ]</a>
+              <a href="thread.html#3585">[ thread ]</a>
+              <a href="subject.html#3585">[ subject ]</a>
+              <a href="author.html#3585">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

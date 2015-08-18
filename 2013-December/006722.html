@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#377: paramiko fails to recognize known_hosts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23377%3A%20paramiko%20fails%20to%20recognize%20known_hosts&In-Reply-To=%3Calpine.LSU.2.11.1312171513370.19574%40nerf08.vanv.qr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006721.html">
+   <LINK REL="Next"  HREF="006723.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#377: paramiko fails to recognize known_hosts</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23377%3A%20paramiko%20fails%20to%20recognize%20known_hosts&In-Reply-To=%3Calpine.LSU.2.11.1312171513370.19574%40nerf08.vanv.qr%3E"
+       TITLE="[X2Go-Dev] Bug#377: paramiko fails to recognize known_hosts">jengelh at inai.de
+       </A><BR>
+    <I>Tue Dec 17 15:14:59 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006721.html">[X2Go-Dev] Bug#377: paramiko fails to recognize known_hosts
+</A></li>
+        <LI>Next message: <A HREF="006723.html">[X2Go-Dev] Bug#377: paramiko fails to recognize known_hosts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6722">[ date ]</a>
+              <a href="thread.html#6722">[ thread ]</a>
+              <a href="subject.html#6722">[ subject ]</a>
+              <a href="author.html#6722">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+strace reveals this:
+
+2844  open(&quot;//.ssh/known_hosts&quot;, O_RDONLY) = -1 ENOENT (No such file or
+directory)
+
+Looking at the environ of a newly-started x2gobroker:
+
+# hexdump -C /proc/20044/environ
+00000000  00 00 00 00 00 00 00 00  00 00 00 00 00 00 00 00  |................|
+*
+00000840  00 00 00 00 00 00 00                              |.......|
+00000847
+#
+
+So the environment was modified inside python and I have no
+further clue on what its actual state is, whether the environ
+array just moved in memory (plausible), or destroyed in-place
+leaving nothing for paramiko.
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006721.html">[X2Go-Dev] Bug#377: paramiko fails to recognize known_hosts
+</A></li>
+	<LI>Next message: <A HREF="006723.html">[X2Go-Dev] Bug#377: paramiko fails to recognize known_hosts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6722">[ date ]</a>
+              <a href="thread.html#6722">[ thread ]</a>
+              <a href="subject.html#6722">[ subject ]</a>
+              <a href="author.html#6722">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

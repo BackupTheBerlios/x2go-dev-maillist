@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] RES: RES: Lubuntu as default session of x2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20RES%3A%20RES%3A%20Lubuntu%20as%20default%20session%20of%20x2go&In-Reply-To=%3CCADZYHDDJswv05X-G66ZXuxyP74mofQZ6eQ77ZdBHXww0feJaLg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003006.html">
+   <LINK REL="Next"  HREF="002996.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] RES: RES: Lubuntu as default session of x2go</H1>
+    <B>Benjamin Shadwick</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20RES%3A%20RES%3A%20Lubuntu%20as%20default%20session%20of%20x2go&In-Reply-To=%3CCADZYHDDJswv05X-G66ZXuxyP74mofQZ6eQ77ZdBHXww0feJaLg%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] RES: RES: Lubuntu as default session of x2go">benshadwick at gmail.com
+       </A><BR>
+    <I>Thu Nov 10 18:04:04 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003006.html">[X2go-Dev] RES: RES: Lubuntu as default session of x2go
+</A></li>
+        <LI>Next message: <A HREF="002996.html">[X2go-Dev] New package: x2goserver-xsession
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3009">[ date ]</a>
+              <a href="thread.html#3009">[ thread ]</a>
+              <a href="subject.html#3009">[ subject ]</a>
+              <a href="author.html#3009">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm not familiar with X11 session startup mechanics in general, so that
+stuff is gibberish to me. I thought about trying to find time to dig into
+it, but I'm having trouble motivating myself since I already have a
+sufficient workaround.
+
+In case it helps, here is discussion of the workaround:
+<A HREF="https://answers.launchpad.net/ubuntu/+question/157817">https://answers.launchpad.net/ubuntu/+question/157817</A>
+
+On Wed, Nov 9, 2011 at 7:44 AM, Mike Gabriel &lt;
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+
+&gt;<i> Hi Benjamin,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Mi 09 Nov 2011 16:29:11 CET Benjamin Shadwick wrote:
+</I>&gt;<i>
+</I>&gt;<i>  That's what I already do, except that with a default x2goserver install
+</I>&gt;&gt;<i> this results in a default XFCE session instead of a Xubuntu one,
+</I>&gt;&gt;<i> regardless
+</I>&gt;&gt;<i> of whether x2goserver-xsession is installed.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The only way I've been able to get a proper Xubuntu session via x2go is to
+</I>&gt;&gt;<i> run a custom script that sets a missing environment variable before
+</I>&gt;&gt;<i> calling
+</I>&gt;&gt;<i> startxfce4.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Tue, Nov 8, 2011 at 11:52 PM, Oleksandr Shneyder &lt;
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-</A>**nice.de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;&gt;
+</I>&gt;&gt;<i> wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>  Am 09.11.2011 08:35, schrieb Benjamin Shadwick:
+</I>&gt;&gt;&gt;<i> &gt; Thanks, Mike. Let me know when a new Windows x2goclient client with
+</I>&gt;&gt;&gt;<i> &gt; built-in support for XFCE is available and I will give it another go.
+</I>&gt;&gt;&gt;<i> &gt;
+</I>&gt;&gt;&gt;<i> &gt; - Ben S.
+</I>&gt;&gt;&gt;<i> &gt;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hello Benjamin,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> You can use x2goclient with any desktop environment. Choose &quot;Custom
+</I>&gt;&gt;&gt;<i> desktop&quot; Session type in session preferences and enter a command to
+</I>&gt;&gt;&gt;<i> start your desktop. In your case &quot;startxfce4&quot;. That's all.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> You can also create a shell script on your system which will execute for
+</I>&gt;&gt;&gt;<i> you what ever you want and specify the path to this script.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Regards,
+</I>&gt;&gt;&gt;<i> alex
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i> maybe it helps to take a look at the location in the X2Go server code
+</I>&gt;<i> where the xsession stuff gets called:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=**x2goserver.git;a=blob;f=**">http://code.x2go.org/gitweb?p=**x2goserver.git;a=blob;f=**</A>
+</I>&gt;<i> x2goserver/bin/x2goruncommand&lt;<A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=blob;f=x2goserver/bin/x2goruncommand">http://code.x2go.org/gitweb?p=x2goserver.git;a=blob;f=x2goserver/bin/x2goruncommand</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;<i> fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0xB588399B
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+
+-- 
+- Ben S.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20111110/31df231d/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20111110/31df231d/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003006.html">[X2go-Dev] RES: RES: Lubuntu as default session of x2go
+</A></li>
+	<LI>Next message: <A HREF="002996.html">[X2go-Dev] New package: x2goserver-xsession
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3009">[ date ]</a>
+              <a href="thread.html#3009">[ thread ]</a>
+              <a href="subject.html#3009">[ subject ]</a>
+              <a href="author.html#3009">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Explicitly set PREFIX=/usr when building x2goserver (was: Re: x2go and (none)security)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Explicitly%20set%20PREFIX%3D/usr%20when%20building%20x2goserver%0A%20%28was%3A%20Re%3A%20x2go%20and%20%28none%29security%29&In-Reply-To=%3C20130520221724.13542dzosfwzb5qs%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005663.html">
+   <LINK REL="Next"  HREF="005670.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Explicitly set PREFIX=/usr when building x2goserver (was: Re: x2go and (none)security)</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Explicitly%20set%20PREFIX%3D/usr%20when%20building%20x2goserver%0A%20%28was%3A%20Re%3A%20x2go%20and%20%28none%29security%29&In-Reply-To=%3C20130520221724.13542dzosfwzb5qs%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Explicitly set PREFIX=/usr when building x2goserver (was: Re: x2go and (none)security)">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon May 20 22:17:24 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005663.html">[X2Go-Dev] x2go and (none)security
+</A></li>
+        <LI>Next message: <A HREF="005670.html">[X2Go-Dev] x2go and (none)security
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5664">[ date ]</a>
+              <a href="thread.html#5664">[ thread ]</a>
+              <a href="subject.html#5664">[ subject ]</a>
+              <a href="author.html#5664">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Andreas, hi Jan
+
+On Mo 20 Mai 2013 20:03:36 CEST Andreas Radke wrote:
+
+&gt;<i> This commits breaks session popping up on the client here in ArchLinux.
+</I>&gt;<i> Reverting it in 4.0.0.2 makes it working again.
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=patch;h=011d14ae076ba6fec96cd1e019c4f82444ab0f9f">http://code.x2go.org/gitweb?p=x2goserver.git;a=patch;h=011d14ae076ba6fec96cd1e019c4f82444ab0f9f</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> We install the script to /usr/lib/x2go/x2gosqlitewrapper.pl. Something
+</I>&gt;<i> seems wrong here. Any idea? Anything from the logs I could provide?
+</I>
+I confirm this issue partly. I have to explicitly set PREFIX=/usr when  
+running the (Debian package) build logic (see /debian/rules for  
+details). Then the now-macro-coded path in  
+/usr/lib/x2go/x2gosqlitewrapper gets set correctly.
+
+Can you check if that helps?
+
+@Jan: probably this also affects the RPM based packaging...
+
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130520/293a95f6/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130520/293a95f6/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005663.html">[X2Go-Dev] x2go and (none)security
+</A></li>
+	<LI>Next message: <A HREF="005670.html">[X2Go-Dev] x2go and (none)security
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5664">[ date ]</a>
+              <a href="thread.html#5664">[ thread ]</a>
+              <a href="subject.html#5664">[ subject ]</a>
+              <a href="author.html#5664">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

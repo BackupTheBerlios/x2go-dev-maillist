@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] build: continue to run even in the absence of	AM_SILENT_RULES
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20build%3A%20continue%20to%20run%20even%20in%20the%20absence%20of%0A%09AM_SILENT_RULES&In-Reply-To=%3C1352651059-17108-1-git-send-email-jengelh%40inai.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004562.html">
+   <LINK REL="Next"  HREF="004555.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] build: continue to run even in the absence of	AM_SILENT_RULES</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20build%3A%20continue%20to%20run%20even%20in%20the%20absence%20of%0A%09AM_SILENT_RULES&In-Reply-To=%3C1352651059-17108-1-git-send-email-jengelh%40inai.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] build: continue to run even in the absence of	AM_SILENT_RULES">jengelh at inai.de
+       </A><BR>
+    <I>Sun Nov 11 17:24:19 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004562.html">[X2Go-Dev] [PATCH] Remove redundant tool &quot;socket-sucker&quot;
+</A></li>
+        <LI>Next message: <A HREF="004555.html">[X2Go-Dev] [PATCH] build: continue to run even in the absence of	AM_SILENT_RULES
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4554">[ date ]</a>
+              <a href="thread.html#4554">[ thread ]</a>
+              <a href="subject.html#4554">[ subject ]</a>
+              <a href="author.html#4554">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>---
+ configure.ac |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index a3688ca..b8df5bf 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -1,7 +1,7 @@
+ AC_INIT([lightdm-remote-session-x2go], [0.0.0.1])
+ 
+-AM_INIT_AUTOMAKE([1.11 -Wno-portability])
+-AM_SILENT_RULES([yes])
++AM_INIT_AUTOMAKE([-Wno-portability])
++m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
+ 
+ AC_PROG_CC
+ AC_PROG_INSTALL
+-- 
+1.7.10.4
+
+</PRE>
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004562.html">[X2Go-Dev] [PATCH] Remove redundant tool &quot;socket-sucker&quot;
+</A></li>
+	<LI>Next message: <A HREF="004555.html">[X2Go-Dev] [PATCH] build: continue to run even in the absence of	AM_SILENT_RULES
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4554">[ date ]</a>
+              <a href="thread.html#4554">[ thread ]</a>
+              <a href="subject.html#4554">[ subject ]</a>
+              <a href="author.html#4554">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

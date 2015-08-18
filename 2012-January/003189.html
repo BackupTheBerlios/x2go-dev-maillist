@@ -1,0 +1,399 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] PyHoca-GUI 'NoneType' is not iterable
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20PyHoca-GUI%20%27NoneType%27%20is%20not%20iterable&In-Reply-To=%3CCALWDQ0_z%2BAah4TmxuL8G5%3DnyhbVxck_g_%2BjjnkMk7hFqi8OJjA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003187.html">
+   <LINK REL="Next"  HREF="003190.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] PyHoca-GUI 'NoneType' is not iterable</H1>
+    <B>Blue</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20PyHoca-GUI%20%27NoneType%27%20is%20not%20iterable&In-Reply-To=%3CCALWDQ0_z%2BAah4TmxuL8G5%3DnyhbVxck_g_%2BjjnkMk7hFqi8OJjA%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] PyHoca-GUI 'NoneType' is not iterable">existentialmonk at gmail.com
+       </A><BR>
+    <I>Fri Jan 13 19:27:15 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003187.html">[X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)
+</A></li>
+        <LI>Next message: <A HREF="003190.html">[X2go-Dev] PyHoca-GUI 'NoneType' is not iterable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3189">[ date ]</a>
+              <a href="thread.html#3189">[ thread ]</a>
+              <a href="subject.html#3189">[ subject ]</a>
+              <a href="author.html#3189">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>(Apologies in advance if there is a non-dev bug reporting system. &#160;I
+didn't find one on a quick scan and just thought I'd send this to be
+helpful. &#160;Thanks for x2go ... it's shaping up as a nice piece of
+work!)
+
+Some change on the nightly PPA between yesterday and today killed my
+x2go setup. &#160;It's a repeatable bug. &#160;My x2go client runs on a heavily
+tweaked Ubuntu Lucid 64-bit box. &#160;It accesses an x2go server running
+on a vanilla Oneiric 64-bit box. &#160;This setup was working yesterday and
+has not been modified. &#160;But now, running pyhoca-gui after an apt-get
+upgrade, an x2go session authorizes with no problem but cannot launch
+a session. &#160;Logs follow.
+
+My very uninformed guess is that the issue is Python 2.7-specific
+expectations in pyhoca-gui, but that's probably just me being cynical
+:<i>-) &#160;Lucid is constrained to run Python 2.6 and my pyhoca is not in a
+</I>virtualenv, while my Oneiric is running Python 2.7.
+
+I'll switch to using the -stable distro for now, and that will no
+doubt tide me over. &#160;Please let me know if you'd like me to run tests
+or clarify anything. &#160;Or point out the painfully obvious mistake I'm
+making (gently; I'm a fairly new x2go user. :-)
+
+The client console log:
+||<i>   &gt; pyhoca-gui
+</I>||<i>   Xlib.protocol.request.QueryExtension
+</I>||<i>   pyhoca-gui[6563] (x2gosessregistry-pylib) NOTICE: registering
+</I>X2go session serverbox-test-Gnome-hack...
+||<i>   pyhoca-gui[6563] (x2goclient-pylib) NOTICE: initializing X2go session...
+</I>||<i>   pyhoca-gui[6563] (x2gosessregistry-pylib) NOTICE: registering
+</I>X2go session serverbox-from-Clientbox...
+||<i>   pyhoca-gui[6563] (x2goclient-pylib) NOTICE: initializing X2go session...
+</I>||<i>   pyhoca-gui[6563] (x2gosessregistry-pylib) NOTICE: registering
+</I>X2go session New session...
+||<i>   pyhoca-gui[6563] (x2goclient-pylib) NOTICE: initializing X2go session...
+</I>||<i>   pyhoca-gui[6563] (PyHoca-GUI) WARN: the current release of
+</I>PyHoca-GUI does not support client configuration
+||<i>   pyhoca-gui[6563] (x2gosessregistry-pylib) NOTICE: using already
+</I>initially-registered yet-unused session
+bada1e9c-3dd0-11e1-b44f-001b212deaa4
+||<i>   pyhoca-gui[6563] (x2goclient-pylib) NOTICE: initializing X2go session...
+</I>||<i>   pyhoca-gui[6563] (x2gocontrolsession-pylib) NOTICE: connecting to
+</I>[serverbox.home.lan]:22
+||<i>   pyhoca-gui[6563] (PyHoca-GUI) NOTICE: [serverbox-test-Gnome-hack
+</I>- connect] Authentication has been successful.
+||<i>   pyhoca-gui[6563] (x2gosessregistry-pylib) NOTICE: using already
+</I>initially-registered yet-unused session
+bada1e9c-3dd0-11e1-b44f-001b212deaa4
+||<i>   pyhoca-gui[6563] (x2goclient-pylib) NOTICE: initializing X2go session...
+</I>||<i>   pyhoca-gui[6563] (x2goproxy-pylib) ERROR: Bringing up NX3 proxy failed.
+</I>||<i>   pyhoca-gui[6563] (PyHoca-GUI) NOTICE: [serverbox-test-Gnome-hack
+</I>- session failure] The session startup failed.
+||<i>   Traceback (most recent call last):
+</I>||<i>     File &quot;/usr/lib/pymodules/python2.6/gevent/greenlet.py&quot;, line 405, in run
+</I>||<i>       result = self._run(*self.args, **self.kwargs)
+</I>||<i>     File &quot;/usr/lib/pymodules/python2.6/x2go/backends/terminal/_stdout.py&quot;,
+</I>line 800, in _find_session_window
+||<i>       window = utils.find_session_window(self.session_info.name)
+</I>||<i>     File &quot;/usr/lib/pymodules/python2.6/x2go/utils.py&quot;, line 483, in
+</I>find_session_window
+||<i>       if session_name in window.get_wm_name():
+</I>||<i>   TypeError: argument of type 'NoneType' is not iterable
+</I>||<i>   &lt;Greenlet at 0x2288b78: &lt;bound method
+</I>X2goTerminalSessionSTDOUT._find_session_window of
+&lt;x2go.backends.terminal._stdout.X2goTerminalSessionSTDOUT object at
+0x2364050&gt;&gt;(timeout=30)&gt; failed with TypeError
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+= = = = = = = = = = = = = = =
+
+The corresponding server log (more or less; I didn't tail -f it before running):
+||<i>    &gt; tail -1000 /var/log/syslog | grep x2go
+</I>||<i>    zsh: correct 'x2go' to '.x2go' [nyae]? n
+</I>||<i>    Jan 13 05:12:10 serverbox AptDaemon: INFO: CommitPackages() was
+</I>called: dbus.Array([dbus.String(u'')], signature=dbus.Signature('s')),
+dbus.Array([dbus.String(u'')], signature=dbus.Signature('s')),
+dbus.Array([dbus.String(u'')], signature=dbus.Signature('s')),
+dbus.Array([dbus.String(u'')], signature=dbus.Signature('s')),
+dbus.Array([dbus.String(u'language-pack-en'),
+dbus.String(u'language-pack-en-base'),
+dbus.String(u'language-pack-gnome-en'),
+dbus.String(u'language-pack-gnome-en-base'),
+dbus.String(u'libnx-mesa-extras-dev'), dbus.String(u'libnx-x11'),
+dbus.String(u'libnx-x11-dev'), dbus.String(u'libxcomp-dev'),
+dbus.String(u'libxcomp3'), dbus.String(u'libxcompext-dev'),
+dbus.String(u'libxcompext3'), dbus.String(u'libxcompshad-dev'),
+dbus.String(u'libxcompshad3'), dbus.String(u'nxagent'),
+dbus.String(u'nxauth'), dbus.String(u'nxproxy'),
+dbus.String(u'x2goagent')], signature=dbus.Signature('s')),
+dbus.Array([dbus.String(u'')], signature=dbus.Signature('s'))
+||<i>    Jan 13 05:12:10 serverbox AptDaemon.Worker: INFO: Committing
+</I>packages: dbus.Array([], signature=dbus.Signature('s')),
+dbus.Array([], signature=dbus.Signature('s')), dbus.Array([],
+signature=dbus.Signature('s')), dbus.Array([],
+signature=dbus.Signature('s')),
+dbus.Array([dbus.String(u'language-pack-en'),
+dbus.String(u'language-pack-en-base'),
+dbus.String(u'language-pack-gnome-en'),
+dbus.String(u'language-pack-gnome-en-base'),
+dbus.String(u'libnx-mesa-extras-dev'), dbus.String(u'libnx-x11'),
+dbus.String(u'libnx-x11-dev'), dbus.String(u'libxcomp-dev'),
+dbus.String(u'libxcomp3'), dbus.String(u'libxcompext-dev'),
+dbus.String(u'libxcompext3'), dbus.String(u'libxcompshad-dev'),
+dbus.String(u'libxcompshad3'), dbus.String(u'nxagent'),
+dbus.String(u'nxauth'), dbus.String(u'nxproxy'),
+dbus.String(u'x2goagent')], signature=dbus.Signature('s')),
+dbus.Array([], signature=dbus.Signature('s'))
+||<i>    Jan 13 05:12:11 serverbox AptDaemon.Worker: INFO: Committing
+</I>packages: dbus.Array([], signature=dbus.Signature('s')),
+dbus.Array([], signature=dbus.Signature('s')), dbus.Array([],
+signature=dbus.Signature('s')), dbus.Array([],
+signature=dbus.Signature('s')),
+dbus.Array([dbus.String(u'language-pack-en'),
+dbus.String(u'language-pack-en-base'),
+dbus.String(u'language-pack-gnome-en'),
+dbus.String(u'language-pack-gnome-en-base'),
+dbus.String(u'libnx-mesa-extras-dev'), dbus.String(u'libnx-x11'),
+dbus.String(u'libnx-x11-dev'), dbus.String(u'libxcomp-dev'),
+dbus.String(u'libxcomp3'), dbus.String(u'libxcompext-dev'),
+dbus.String(u'libxcompext3'), dbus.String(u'libxcompshad-dev'),
+dbus.String(u'libxcompshad3'), dbus.String(u'nxagent'),
+dbus.String(u'nxauth'), dbus.String(u'nxproxy'),
+dbus.String(u'x2goagent')], signature=dbus.Signature('s')),
+dbus.Array([], signature=dbus.Signature('s'))
+||<i>    Jan 13 05:24:39 serverbox /usr/bin/x2gostartagent:
+</I>x2gostartagent called with options: 1918x1169 lan 16m-jpeg-9
+unix-kde-depth_24 null null/null 1 D XFCE4
+||<i>    Jan 13 05:24:39 serverbox /usr/bin/x2gosessionlimit[6669]:
+</I>x2gosessionlimit has been called
+||<i>    Jan 13 05:24:39 serverbox /usr/bin/x2golistsessions[6672]:
+</I>x2golistsessions has been called with options: --all-servers
+||<i>    Jan 13 05:24:40 serverbox /usr/bin/x2gofeature: x2gofeature
+</I>called with options: X2GO_RUN_EXTENSIONS
+||<i>    Jan 13 05:24:40 serverbox
+</I>/usr/share/x2go/x2gofeature.d/x2godesktopsharing.features:
+x2godesktopsharing.features called with options: X2GO_RUN_EXTENSIONS
+||<i>    Jan 13 05:24:40 serverbox
+</I>/usr/share/x2go/x2gofeature.d/x2goserver-compat.features:
+x2goserver-compat.features called with options: X2GO_RUN_EXTENSIONS
+||<i>    Jan 13 05:24:40 serverbox
+</I>/usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+x2goserver-extensions.features called with options:
+X2GO_RUN_EXTENSIONS
+||<i>    Jan 13 05:24:40 serverbox /usr/bin/x2goserver-run-extensions:
+</I>x2goserver-run-extensions called with options:
+wkh-50-1326450279_stDXFCE4_dp24 pre-start
+||<i>    Jan 13 05:24:40 serverbox /usr/bin/x2gostartagent: successfully
+</I>started X2go agent session with ID wkh-50-1326450279_stDXFCE4_dp24
+||<i>    Jan 13 05:24:40 serverbox /usr/bin/x2gofeature: x2gofeature
+</I>called with options: X2GO_RUN_EXTENSIONS
+||<i>    Jan 13 05:24:41 serverbox
+</I>/usr/share/x2go/x2gofeature.d/x2godesktopsharing.features:
+x2godesktopsharing.features called with options: X2GO_RUN_EXTENSIONS
+||<i>    Jan 13 05:24:41 serverbox
+</I>/usr/share/x2go/x2gofeature.d/x2goserver-compat.features:
+x2goserver-compat.features called with options: X2GO_RUN_EXTENSIONS
+||<i>    Jan 13 05:24:41 serverbox
+</I>/usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+x2goserver-extensions.features called with options:
+X2GO_RUN_EXTENSIONS
+||<i>    Jan 13 05:24:41 serverbox /usr/bin/x2goserver-run-extensions:
+</I>x2goserver-run-extensions called with options:
+wkh-50-1326450279_stDXFCE4_dp24 post-start
+||<i>    Jan 13 05:25:09 serverbox /usr/bin/x2goumount-session[7039]:
+</I>x2goumount-session has been called with options:
+wkh-50-1326450279_stDXFCE4_dp24
+||<i>    Jan 13 05:25:15 serverbox /usr/bin/x2goumount-session[7080]:
+</I>x2goumount-session has been called with options:
+wkh-50-1326450279_stDXFCE4_dp24
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+= = = = = = = = = = = = = = =
+
+Versions on the client box:
+---------------------------------
+
+&gt;<i> sudo dpkg -l | grep x2go
+</I>ii  cups-x2go
+3.0.0.4-0~56~lucid1                                    X2GO printer
+for CUPS
+ii  pinentry-x2go
+0.7.5.2-0~18~lucid1                                    Qt4-based PIN
+or pass-phrase entry dialog for x2goclient
+ii  python-x2go
+0.1.2.0-0~616~lucid1                                   Python module
+for X2Go client support
+ii  x2goagent
+2:3.5.0.4-0~154~lucid1                                 NX agent
+ii  x2goclient
+3.99.0.3-0~129~lucid1                                  X2Go Client
+application (Qt4)
+ii  x2gognomebindings
+2.0.1.4-0~48~lucid1                                    Description:
+x2gognomebindings (GNOME mimetypes for X2go)
+ii  x2golxdebindings
+1.0.1.2-0~17~lucid1                                    LXDE bindings
+for X2go
+ii  x2goserver
+3.0.99.9-0~411~lucid1                                  X2go server
+daemon scripts
+ii  x2goserver-compat
+3.0.99.9-0~411~lucid1                                  X2go server
+daemon scripts (backwards compatitbity to old client
+ii  x2goserver-extensions
+3.0.99.9-0~411~lucid1                                  X2go server
+daemon scripts (extensions)
+ii  x2goserver-printing
+3.0.99.9-0~411~lucid1                                  X2go server
+daemon scripts (printing)
+ii  x2goserver-pyhoca
+3.0.99.9-0~411~lucid1                                  X2go server
+daemon scripts (add-ons for pyhoca client)
+ii  x2goserver-xsession
+3.0.99.9-0~411~lucid1                                  X2go server
+daemon scripts (Xsession runner)
+
+&gt;<i> sudo dpkg -l | grep pyhoca
+</I>ii  pyhoca-cli
+0.1.4.3-0~111~lucid1                                   Command line
+X2Go client written in Python
+ii  pyhoca-gui
+0.1.0.11-0~530~lucid1                                  Graphical X2Go
+client written in (wx)Python
+ii  x2goserver-pyhoca
+3.0.99.9-0~411~lucid1                                  X2go server
+daemon scripts (add-ons for pyhoca client)
+
+&gt;<i> sudo dpkg -l | grep nx
+</I>ii  iconx                                            9.4.3-2ubuntu3
+                                     Executor for Icon, a high-level
+programming language
+ii  libnx-mesa-extras-dev
+2:3.5.0.4-0~154~lucid1                                 Library headers
+for nx-X11 (extra headers)
+ii  libnx-x11
+2:3.5.0.4-0~154~lucid1                                 nx-X11
+ii  libnxcl1                                         0.9-3
+                                     NX X compression client library
+ii  lynx-cur                                         2.8.8dev.2-1
+                                     Text-mode WWW Browser with NLS
+support (development version)
+ii  lynx-cur-wrapper                                 2.8.8dev.2-1
+                                     Wrapper for lynx-cur
+ii  nginx-common
+1.0.11-1ppa1~lucid                                     small, but very
+powerful and efficient web server (common files)
+rc  nginx-extras                                     1.0.4-1ppa1~lucid
+                                     nginx web server with full set of
+core modules and extras
+ii  nginx-full
+1.0.11-1ppa1~lucid                                     nginx web
+server with full set of core modules
+rc  nx-common
+0.3.1-0ubuntu4~karmic1                                 NX server
+common package.
+ii  nxagent
+2:3.5.0.4-0~154~lucid1                                 NX agent
+ii  nxauth
+2:3.5.0.4-0~154~lucid1                                 NX xauth
+rc  nxlibs
+1:3.3.0-6-0ubuntu3~karmic1                             NX support
+libraries
+ii  nxproxy
+2:3.5.0.4-0~154~lucid1                                 NX proxy
+ii  qtnx                                             0.9-3
+                                     NX client for QT
+
+= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
+= = = = = = = = = = = = = = =
+
+Versions on the server box:
+----------------------------------
+
+=&gt; sudo dpkg -l | grep x2go
+ii  cups-x2go
+3.0.0.4-0~56~oneiric1                     X2GO printer for CUPS
+ii  pinentry-x2go
+0.7.5.2-0~18~oneiric1                     Qt4-based PIN or pass-phrase
+entry dialog for x2goclient
+ii  python-x2go
+0.1.2.0-0~616~oneiric1                    Python module for X2Go
+client support
+ii  x2goagent
+2:3.5.0.4-0~154~oneiric1                  NX agent
+ii  x2goclient
+3.99.0.3-0~129~oneiric1                   X2Go Client application
+(Qt4)
+ii  x2godesktopsharing
+3.0.1.4-0~67~oneiric1                     share X2go desktops with
+other users (via shadow sessions)
+ii  x2gognomebindings
+2.0.1.4-0~48~oneiric1                     Description:
+x2gognomebindings (GNOME mimetypes for X2go)
+ii  x2golxdebindings
+1.0.1.2-0~17~oneiric1                     LXDE bindings for X2go
+ii  x2goserver
+3.0.99.9-0~411~oneiric1                   X2go server daemon scripts
+ii  x2goserver-compat
+3.0.99.9-0~411~oneiric1                   X2go server daemon scripts
+(backwards compatitbity to old client versions)
+ii  x2goserver-extensions
+3.0.99.9-0~411~oneiric1                   X2go server daemon scripts
+(extensions)
+ii  x2goserver-printing
+3.0.99.9-0~411~oneiric1                   X2go server daemon scripts
+(printing)
+ii  x2goserver-pyhoca
+3.0.99.9-0~411~oneiric1                   X2go server daemon scripts
+(add-ons for pyhoca client)
+ii  x2goserver-xsession
+3.0.99.9-0~411~oneiric1                   X2go server daemon scripts
+(Xsession runner)
+
+&gt;<i> sudo dpkg -l | grep pyhoca
+</I>ii  pyhoca-cli
+0.1.4.3-0~111~oneiric1                    Command line X2Go client
+written in Python
+ii  pyhoca-gui
+0.1.0.11-0~530~oneiric1                   Graphical X2Go client
+written in (wx)Python
+ii  x2goserver-pyhoca
+3.0.99.9-0~411~oneiric1                   X2go server daemon scripts
+(add-ons for pyhoca client)
+
+&gt;<i> sudo dpkg -l | grep nx
+</I>ii  libnx-mesa-extras-dev
+2:3.5.0.4-0~154~oneiric1                  Library headers for nx-X11
+(extra headers)
+ii  libnx-x11
+2:3.5.0.4-0~154~oneiric1                  nx-X11
+ii  libnx-x11-dev
+2:3.5.0.4-0~154~oneiric1                  Library headers for nx-X11
+ii  nxagent
+2:3.5.0.4-0~154~oneiric1                  NX agent
+ii  nxauth
+2:3.5.0.4-0~154~oneiric1                  NX xauth
+ii  nxproxy
+2:3.5.0.4-0~154~oneiric1                  NX proxy
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003187.html">[X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)
+</A></li>
+	<LI>Next message: <A HREF="003190.html">[X2go-Dev] PyHoca-GUI 'NoneType' is not iterable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3189">[ date ]</a>
+              <a href="thread.html#3189">[ thread ]</a>
+              <a href="subject.html#3189">[ subject ]</a>
+              <a href="author.html#3189">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#129: X Error: BadAccess (attempt to access private	resource denied) 10 - Extension: 129 (MIT-SHM)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23129%3A%20X%20Error%3A%20BadAccess%20%28attempt%20to%20access%20private%0A%09resource%20denied%29%2010%20-%20Extension%3A%20129%20%28MIT-SHM%29&In-Reply-To=%3CCAPWth0KKkMnovz_6QbjrkX6ULS5pCrcnM1HEeTtUF9bf9rUPJg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005122.html">
+   <LINK REL="Next"  HREF="005228.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#129: X Error: BadAccess (attempt to access private	resource denied) 10 - Extension: 129 (MIT-SHM)</H1>
+    <B>Ricardo D&#237;az Mart&#237;n</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23129%3A%20X%20Error%3A%20BadAccess%20%28attempt%20to%20access%20private%0A%09resource%20denied%29%2010%20-%20Extension%3A%20129%20%28MIT-SHM%29&In-Reply-To=%3CCAPWth0KKkMnovz_6QbjrkX6ULS5pCrcnM1HEeTtUF9bf9rUPJg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#129: X Error: BadAccess (attempt to access private	resource denied) 10 - Extension: 129 (MIT-SHM)">oceanosoftlapalma at gmail.com
+       </A><BR>
+    <I>Sun Mar  3 20:44:02 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005122.html">[X2Go-Dev] Bug#129: X Error: BadAccess (attempt to access private	resource denied) 10 - Extension: 129 (MIT-SHM)
+</A></li>
+        <LI>Next message: <A HREF="005228.html">[X2Go-Dev] Bug#129: X Error: BadAccess (attempt to access private	resource denied) 10 - Extension: 129 (MIT-SHM)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5144">[ date ]</a>
+              <a href="thread.html#5144">[ thread ]</a>
+              <a href="subject.html#5144">[ subject ]</a>
+              <a href="author.html#5144">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+In addition I got also problem running some qt4 based app. Using gdb to
+debug these apps looks like the problem is in /usr/lib/nx/X11/libNX_X11.so.6
+
+Hope it helps to you to find the bug.
+
+Regards,
+Ricardo
+
+2013/3/1 Ricardo D&#237;az Mart&#237;n &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oceanosoftlapalma at gmail.com</A>&gt;
+
+&gt;<i> Package: x2goagent
+</I>&gt;<i> Version: 3.5.0.17
+</I>&gt;<i>
+</I>&gt;<i> I just installed x2go server in kubuntu 12.10 x64 and can connect without
+</I>&gt;<i> problems.
+</I>&gt;<i>
+</I>&gt;<i> Problem is when I tryed to run something app using kdesudo o sudo I
+</I>&gt;<i> allways get:
+</I>&gt;<i>
+</I>&gt;<i> X Error: BadAccess (attempt to access private resource denied) 10
+</I>&gt;<i>   Extension:    129 (MIT-SHM)
+</I>&gt;<i>   Minor opcode: 1 (X_ShmAttach)
+</I>&gt;<i>   Resource id:  0x4000010
+</I>&gt;<i> X Error: BadShmSeg (invalid shared segment parameter) 128
+</I>&gt;<i>   Extension:    129 (MIT-SHM)
+</I>&gt;<i>   Minor opcode: 5 (X_ShmCreatePixmap)
+</I>&gt;<i>   Resource id:  0x40000ab
+</I>&gt;<i> X Error: BadDrawable (invalid Pixmap or Window parameter) 9
+</I>&gt;<i> ...
+</I>&gt;<i> ...
+</I>&gt;<i> ...
+</I>&gt;<i>
+</I>&gt;<i> And only can see the app's windows with a full grey color inside. If the
+</I>&gt;<i> app background got more than one colour I can see them but no controls
+</I>&gt;<i>
+</I>&gt;<i> I can confirm the same issue in other kubuntu 12.10 server updated from
+</I>&gt;<i> 12.04
+</I>&gt;<i>
+</I>&gt;<i> I'm using x2goserver from stable x2go ppa and system are full update.
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130303/88e80e7a/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130303/88e80e7a/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005122.html">[X2Go-Dev] Bug#129: X Error: BadAccess (attempt to access private	resource denied) 10 - Extension: 129 (MIT-SHM)
+</A></li>
+	<LI>Next message: <A HREF="005228.html">[X2Go-Dev] Bug#129: X Error: BadAccess (attempt to access private	resource denied) 10 - Extension: 129 (MIT-SHM)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5144">[ date ]</a>
+              <a href="thread.html#5144">[ thread ]</a>
+              <a href="subject.html#5144">[ subject ]</a>
+              <a href="author.html#5144">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#268: x2goruncommand - set IMEXIT=&quot;false&quot; for	gnome-terminal
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23268%3A%20x2goruncommand%20-%20set%20IMEXIT%3D%22false%22%20for%0A%09gnome-terminal&In-Reply-To=%3C20130723222509.23294yw9vs3c6eg5%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005977.html">
+   <LINK REL="Next"  HREF="005979.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#268: x2goruncommand - set IMEXIT=&quot;false&quot; for	gnome-terminal</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23268%3A%20x2goruncommand%20-%20set%20IMEXIT%3D%22false%22%20for%0A%09gnome-terminal&In-Reply-To=%3C20130723222509.23294yw9vs3c6eg5%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#268: x2goruncommand - set IMEXIT=&quot;false&quot; for	gnome-terminal">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Jul 23 22:25:09 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005977.html">[X2Go-Dev] Bug#267: x2golistsessions - import db_changestatus into	main namespace
+</A></li>
+        <LI>Next message: <A HREF="005979.html">[X2Go-Dev] Bug#269: Xinerama not working on RPM based distros
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5976">[ date ]</a>
+              <a href="thread.html#5976">[ thread ]</a>
+              <a href="subject.html#5976">[ subject ]</a>
+              <a href="author.html#5976">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goserver
+Version: 4.1.0.0
+Tag: patch
+
+----- Weitergeleitete Nachricht von <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">rok.mandeljc at gmail.com</A> -----
+      Datum: Tue, 23 Jul 2013 20:44:16 +0200
+        Von: Rok Mandeljc &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">rok.mandeljc at gmail.com</A>&gt;
+Antwort an: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+    Betreff: [X2Go-Dev] Patch: x2goruncommand - set IMEXIT=&quot;false&quot; for  
+gnome-terminal
+         An: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+
+Hello,
+
+another patch from my attempt to set up x2go on my Fedora 19 box. It  
+would appear that gnome-terminal in GNOME 3.8 returns immediately and  
+runs in background, whereas the previous versions did not do so.  
+Consequently, IMEXIT=&quot;false&quot; should be set for gnome-terminal in the  
+&quot;TERMINAL&quot; switch in x2goruncommand. If not, the terminal window  
+appears on client for a second, then closes and the session is  
+proclaimed to be finished. Patch attached.
+
+Regards,
+     Rok
+
+
+
+
+----- Ende der weitergeleiteten Nachricht -----
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: x2goruncommand-gnome-terminal-w-f19.patch
+Type: text/x-patch
+Size: 855 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130723/03588b72/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130723/03588b72/attachment.bin</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130723/03588b72/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130723/03588b72/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005977.html">[X2Go-Dev] Bug#267: x2golistsessions - import db_changestatus into	main namespace
+</A></li>
+	<LI>Next message: <A HREF="005979.html">[X2Go-Dev] Bug#269: Xinerama not working on RPM based distros
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5976">[ date ]</a>
+              <a href="thread.html#5976">[ thread ]</a>
+              <a href="subject.html#5976">[ subject ]</a>
+              <a href="author.html#5976">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

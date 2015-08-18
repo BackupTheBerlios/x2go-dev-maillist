@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#139: x2goclient: No keyboard input at login in	broker-mode on OSX
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23139%3A%20x2goclient%3A%20No%20keyboard%20input%20at%20login%20in%0A%09broker-mode%20on%20OSX&In-Reply-To=%3CCAFJm-UPJtAmHECoZy8BiVANco0JAXe2LyxLsMJPVfFHxCQZevQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005172.html">
+   <LINK REL="Next"  HREF="005177.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#139: x2goclient: No keyboard input at login in	broker-mode on OSX</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23139%3A%20x2goclient%3A%20No%20keyboard%20input%20at%20login%20in%0A%09broker-mode%20on%20OSX&In-Reply-To=%3CCAFJm-UPJtAmHECoZy8BiVANco0JAXe2LyxLsMJPVfFHxCQZevQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#139: x2goclient: No keyboard input at login in	broker-mode on OSX">abo at dsl.dk
+       </A><BR>
+    <I>Wed Mar  6 10:36:48 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005172.html">[X2Go-Dev] Bug#138: httpbroker client in X2Go Client does not set	content type &quot;application/x-www-form-urlencoded&quot;
+</A></li>
+        <LI>Next message: <A HREF="005177.html">[X2Go-Dev] Bug#138: Workardound in X2Go Broker
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5174">[ date ]</a>
+              <a href="thread.html#5174">[ thread ]</a>
+              <a href="subject.html#5174">[ subject ]</a>
+              <a href="author.html#5174">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Version: 4.0.0.4
+Severity: grave
+
+The newly released version of x2goclient for Mac OSX is unusable when used
+in broker-mode.
+When started with --broker-url a dialog pops up handling authentication
+against the broker. After this is done, you choose a session. This next
+authentication dialog is the problem. The cursor is placed in the
+login-field and is blinking, but nothing appears when keys are pressed on
+the keyboard. The system bell (*dunk*) is chimed upon each keystroke.
+Clicking in the field does not change anything. You can place focus in the
+password field, but no input happens here either.
+
+I have also tried setting the broker in noauth mode, so auth is only needed
+when connecting to the actual terminal servers. The problem is also present
+here. No initial auth dialog is displayed (of course), but when a session
+is chosen, the auth dialog will not accept any input.
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130306/e8df5cfb/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130306/e8df5cfb/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005172.html">[X2Go-Dev] Bug#138: httpbroker client in X2Go Client does not set	content type &quot;application/x-www-form-urlencoded&quot;
+</A></li>
+	<LI>Next message: <A HREF="005177.html">[X2Go-Dev] Bug#138: Workardound in X2Go Broker
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5174">[ date ]</a>
+              <a href="thread.html#5174">[ thread ]</a>
+              <a href="subject.html#5174">[ subject ]</a>
+              <a href="author.html#5174">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

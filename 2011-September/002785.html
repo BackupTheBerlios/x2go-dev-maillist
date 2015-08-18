@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Status load balancing in X2go, and alternatives
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Status%20load%20balancing%20in%20X2go%2C%20and%20alternatives&In-Reply-To=%3C1316151071.25356.15.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002767.html">
+   <LINK REL="Next"  HREF="002804.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Status load balancing in X2go, and alternatives</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Status%20load%20balancing%20in%20X2go%2C%20and%20alternatives&In-Reply-To=%3C1316151071.25356.15.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] Status load balancing in X2go, and alternatives">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Sep 16 07:31:11 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002767.html">[X2go-Dev] Status load balancing in X2go, and alternatives
+</A></li>
+        <LI>Next message: <A HREF="002804.html">[X2go-Dev] Status load balancing in X2go, and alternatives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2785">[ date ]</a>
+              <a href="thread.html#2785">[ thread ]</a>
+              <a href="subject.html#2785">[ subject ]</a>
+              <a href="author.html#2785">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2011-09-14 at 09:43 +0200, Paul van der Vlis wrote:
+&gt;<i> Op 13-09-11 12:44, Mike Gabriel schreef:
+</I>&gt;<i> &gt; Hi again,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; On Di 13 Sep 2011 11:19:38 CEST Paul van der Vlis wrote:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;&gt; What is the status of load balancing in X2go?
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Is it eventually an idea to use an load balancing system what is more
+</I>&gt;<i> &gt;&gt; generic? Someone experience with X2go?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; X2go has load balancing included in x2goclient code. On possible
+</I>&gt;<i> &gt; mechanism for load balancing is using LDAP. We currently do not offer
+</I>&gt;<i> &gt; LDAP bootstrap utilities any more, though. And it is not documented in
+</I>&gt;<i> &gt; the Wiki either. A real deficit that you digged out.
+</I>&gt;<i> 
+</I>&gt;<i> Do you think the older LDAP bootstrap utilities will still work?
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Tools for X2go http broker based load balancing are currently under
+</I>&gt;<i> &gt; development, but not yet released for the public. This is all x2goclient
+</I>&gt;<i> &gt; based, currently.
+</I>&gt;<i> 
+</I>&gt;<i> What do you mean with &quot;http broker based&quot;?  (I really don't understand
+</I>&gt;<i> what you mean)  Who is working on it?  Is it in git?
+</I>&gt;<i> 
+</I>&gt;<i> What do you know about bigger excisting installations? Are there
+</I>&gt;<i> installations with load balancing, eventually with an older version of X2go?
+</I>&gt;<i> 
+</I>&gt;<i> With regards,
+</I>&gt;<i> Paul.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>We are building that scale of environment.  For better or worse, we have
+been so overrun with consulting work that we are way behind where we
+hoped to be in our X2Go build but we have taken a different approach.
+
+We integrated X2Go and Linux-VServer.  Each user has a dedicated system
+(great for things like non-repudiation) but the extra resource
+requirements are minimal.  We then moved the x2gocleansession
+processing to the VServer host so there is only one daemon running every
+five seconds instead of hundreds.
+
+We also adapted the database to use schemas - one per user, and triggers
+for coordinating individual user changes with the master database used
+by x2gocleansession and other reporting utilities we created.  Thus, we
+have a single database for all those potentially hundreds of X2Go
+servers.
+
+Finally, we adapted the x2go printing so that we could use a single CUPS
+server for all X2Go users and not have hundreds of instances of CUPS
+running.
+
+So far it has scaled very nicely but I am way behind in seeing how we
+would make the same changes to 3.99 - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002767.html">[X2go-Dev] Status load balancing in X2go, and alternatives
+</A></li>
+	<LI>Next message: <A HREF="002804.html">[X2go-Dev] Status load balancing in X2go, and alternatives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2785">[ date ]</a>
+              <a href="thread.html#2785">[ thread ]</a>
+              <a href="subject.html#2785">[ subject ]</a>
+              <a href="author.html#2785">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

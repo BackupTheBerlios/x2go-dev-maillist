@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Multiple%20X2goclient%20instances%20fail&In-Reply-To=%3C1311773608.3165.3.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002564.html">
+   <LINK REL="Next"  HREF="002576.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Multiple%20X2goclient%20instances%20fail&In-Reply-To=%3C1311773608.3165.3.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Jul 27 15:33:28 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002564.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+        <LI>Next message: <A HREF="002576.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2567">[ date ]</a>
+              <a href="thread.html#2567">[ thread ]</a>
+              <a href="subject.html#2567">[ subject ]</a>
+              <a href="author.html#2567">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2011-07-27 at 14:41 +0200, Oleksandr Shneyder wrote:
+&gt;<i> Am 27.07.2011 14:33, schrieb Mike Gabriel:
+</I>&gt;<i> &gt; Hi Alex,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; On Mi 27 Jul 2011 13:52:46 CEST Oleksandr Shneyder wrote:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;&gt; Am 22.07.2011 06:38, schrieb John A. Sullivan III:
+</I>&gt;<i> &gt;&gt;&gt; I believe I have tested this on both Linux and Windows - becoming a bit
+</I>&gt;<i> &gt;&gt;&gt; of a blur after a long hot day!.  In previous versions of X2GoClient, I
+</I>&gt;<i> &gt;&gt;&gt; could open multiple instances and connect to multiple different X2Go
+</I>&gt;<i> &gt;&gt;&gt; Server simultaneously.  It was not official and it generated a few
+</I>&gt;<i> &gt;&gt;&gt; errors but it worked.  This is actually a highly desirable feature for a
+</I>&gt;<i> &gt;&gt;&gt; possible very large account of ours.
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; For some reason, that has stopped working in 3.99.  It did not work in
+</I>&gt;<i> &gt;&gt;&gt; 3.0.1.18 either.  It does work in Pyhoca so I do not think it is an
+</I>&gt;<i> &gt;&gt;&gt; impossibility.  If at all possible, we would like to see this
+</I>&gt;<i> &gt;&gt;&gt; functionality restored - preferably officially but even accidentally as
+</I>&gt;<i> &gt;&gt;&gt; it was would do :)  Thanks - John
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; _______________________________________________
+</I>&gt;<i> &gt;&gt;&gt; X2go-Dev mailing list
+</I>&gt;<i> &gt;&gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> &gt;&gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Hello John,
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Unfortunately, I can't reproduce this. I was able to start a several
+</I>&gt;<i> &gt;&gt; sessions simultaneously on debian and win7, see screen shots:
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; <A HREF="http://www.x2go.org/screenshots/multisess-debian.png">http://www.x2go.org/screenshots/multisess-debian.png</A>
+</I>&gt;<i> &gt;&gt; <A HREF="http://www.x2go.org/screenshots/multisess-win7.png">http://www.x2go.org/screenshots/multisess-win7.png</A>
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Thanks for all your testing!!!!
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; If I recall John correctly, her meant:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;   start x2goclient, connect to session A as user A
+</I>&gt;<i> &gt;   start another x2goclient, also connect to session A as user A
+</I>&gt;<i> &gt;       (that is a second session as the same user to the same server)
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; John, could you please cross-check this?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Thanks,
+</I>&gt;<i> &gt; Mike
+</I>&gt;<i> &gt; 
+</I>&gt;<i> 
+</I>&gt;<i> As I understood, John meant, connecting with user A to server A, start
+</I>&gt;<i> second client and connecting as user B to server B. But it does not
+</I>&gt;<i> matter, I've tried all variants:
+</I>&gt;<i> 
+</I>&gt;<i> A-&gt;A
+</I>&gt;<i> B-&gt;B
+</I>&gt;<i> 
+</I>&gt;<i> A-&gt;A
+</I>&gt;<i> B-&gt;A
+</I>&gt;<i> 
+</I>&gt;<i> A-&gt;A
+</I>&gt;<i> A-&gt;B
+</I>&gt;<i> 
+</I>&gt;<i> A-&gt;A
+</I>&gt;<i> A-&gt;A
+</I>&gt;<i> 
+</I>&gt;<i> regards,
+</I>&gt;<i> alex
+</I>&lt;snip&gt;
+Oleksandr is correct - two separate users connected to two separate X2Go
+servers.  I can do the initial connection but, within a few seconds, the
+first session times out.  I've seen this myself on Debian and Windows XP
+and another tester confirmed it on Windows 7 64 bit.  I'll try to dig
+out more details.  Thanks very much for investigating - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002564.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+	<LI>Next message: <A HREF="002576.html">[X2go-Dev] 3.99 Testing - Multiple X2goclient instances fail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2567">[ date ]</a>
+              <a href="thread.html#2567">[ thread ]</a>
+              <a href="subject.html#2567">[ subject ]</a>
+              <a href="author.html#2567">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

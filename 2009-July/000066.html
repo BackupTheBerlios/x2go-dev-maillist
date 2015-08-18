@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Problems after installing x2go 3.01
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Problems%20after%20installing%20x2go%203.01&In-Reply-To=%3C4A72858E.3080703%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000065.html">
+   <LINK REL="Next"  HREF="000067.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Problems after installing x2go 3.01</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Problems%20after%20installing%20x2go%203.01&In-Reply-To=%3C4A72858E.3080703%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] Problems after installing x2go 3.01">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Fri Jul 31 07:47:58 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000065.html">[X2go-dev] Problems after installing x2go 3.01
+</A></li>
+        <LI>Next message: <A HREF="000067.html">[X2go-dev] Problems after installing x2go 3.01  RESOLVED
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#66">[ date ]</a>
+              <a href="thread.html#66">[ thread ]</a>
+              <a href="subject.html#66">[ subject ]</a>
+              <a href="author.html#66">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Paul,
+unfortunately I cannot say what is your problem. Try to remove
+x2goserver package with apt-get --purge remove x2goserver and install it
+again. I will upload new x2go packages today at evening. Try to install
+it later from our repository.
+
+Paul van der Vlis schrieb:
+
+&gt;<i> Hello,
+</I>&gt;<i> 
+</I>&gt;<i> I installed x2go 3.01 (a beta) with dates from 16-22 juli.
+</I>&gt;<i> First everything worked fine and some bugs where gone, like the
+</I>&gt;<i> keyboard-bug. I installed &quot;x2goserver-home&quot; too.
+</I>&gt;<i> 
+</I>&gt;<i> But now x2go does not work anymore. I cannot get a connection. Maybe it
+</I>&gt;<i> was after I executed by mistake this script: /usr/bin/x2gostartagent.
+</I>&gt;<i> I rebooted the machine, the problem is not gone.
+</I>&gt;<i> 
+</I>&gt;<i> It is difficult to copy some of the error-messages of the KDE-client
+</I>&gt;<i> because they are gone very fast, but I saw this kind of things while
+</I>&gt;<i> connecting to localhost:
+</I>&gt;<i> 
+</I>&gt;<i> Error: Failure negotiating the session in stage '7'.
+</I>&gt;<i> Error: Wrong version or invalid session authentication cookie.
+</I>&gt;<i> Session: Terminating session at 'Thu Jul 30 09:48:31 2009'.
+</I>&gt;<i> Session: Session terminated at 'Thu Jul 30 09:48:31 2009'.
+</I>&gt;<i> or:
+</I>&gt;<i> Info: Using ZLIB data compression 1/1/32.
+</I>&gt;<i> Info: Using ZLIB stream compression 4/4.
+</I>&gt;<i> Info: No suitable cache file found.
+</I>&gt;<i> Info: Forwarding X11 connections to display ':0.0'.
+</I>&gt;<i> Session: Session started at 'Thu Jul 30 09:51:00 2009'.
+</I>&gt;<i> Warning: Protocol mismatch or no X authentication data.
+</I>&gt;<i> or:
+</I>&gt;<i> (...)  reaching a usable state.
+</I>&gt;<i> Info: This can be due to the local X server refusing access to the client.
+</I>&gt;<i> Info: Please check authorization provided by the remote X application.
+</I>&gt;<i> Session: Session terminated at 'Thu Jul 30 09:53:13 2009'.
+</I>&gt;<i> 
+</I>&gt;<i> When I connect from a laptop with the GTK-client I get an error:
+</I>&gt;<i> cat /home/paul/.x2go/C-.../cmdoutput  file does not excist.
+</I>&gt;<i> 
+</I>&gt;<i> Is there a better way to get the log?
+</I>&gt;<i> Is there a way to let the server log?
+</I>&gt;<i> 
+</I>&gt;<i> Maybe it is important to tell that I have a multiseat X setup here, but
+</I>&gt;<i> before x2go did work without problem.
+</I>&gt;<i> (A multseat setup is a computer what can be used by more then one
+</I>&gt;<i> person. In my situation there are 2 monitors, 2 keyboards, 2 mouses. You
+</I>&gt;<i> can configure it in gdm.conf and xorg.conf.)
+</I>&gt;<i> 
+</I>&gt;<i> With regards,
+</I>&gt;<i> Paul van der Vlis.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 260 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090731/3d1daa73/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090731/3d1daa73/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000065.html">[X2go-dev] Problems after installing x2go 3.01
+</A></li>
+	<LI>Next message: <A HREF="000067.html">[X2go-dev] Problems after installing x2go 3.01  RESOLVED
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#66">[ date ]</a>
+              <a href="thread.html#66">[ thread ]</a>
+              <a href="subject.html#66">[ subject ]</a>
+              <a href="author.html#66">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

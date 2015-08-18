@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] findbusyservers algorithm
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20findbusyservers%20algorithm&In-Reply-To=%3C20130305131925.17494g6vaof891al%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005158.html">
+   <LINK REL="Next"  HREF="005166.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] findbusyservers algorithm</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20findbusyservers%20algorithm&In-Reply-To=%3C20130305131925.17494g6vaof891al%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] findbusyservers algorithm">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Mar  5 13:19:25 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005158.html">[X2Go-Dev] findbusyservers algorithm
+</A></li>
+        <LI>Next message: <A HREF="005166.html">[X2Go-Dev] findbusyservers algorithm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5165">[ date ]</a>
+              <a href="thread.html#5165">[ thread ]</a>
+              <a href="subject.html#5165">[ subject ]</a>
+              <a href="author.html#5165">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Anders,
+
+On Di 05 M&#228;r 2013 11:51:06 CET Anders Bruun Olsen wrote:
+
+&gt;<i> 2013/3/2 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i>
+</I>&gt;&gt;<i> We have tried running /usr/lib/x2go/x2gobroker-agent abo findbusyservers
+</I>&gt;&gt;&gt;<i> and got this output:
+</I>&gt;&gt;&gt;<i> OK
+</I>&gt;&gt;&gt;<i> 16:testterm2
+</I>&gt;&gt;&gt;<i> 83:testterm1
+</I>&gt;&gt;&gt;<i> Which tells me that it might be the x2gobroker-daemon which isn't using
+</I>&gt;&gt;&gt;<i> the
+</I>&gt;&gt;&gt;<i> information correctly.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> My plain guess is that this is related a DNS hostname / FQDN mismatching.
+</I>&gt;&gt;<i> The broker code has to become more tolerant about this.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Yes, after some more testing, that is indeed a problem. I have tried added
+</I>&gt;<i> some strategic debug-logging to the code and this is the content of
+</I>&gt;<i> busy_server_list in broker.base_broker.select_session(), after it gets info
+</I>&gt;<i> back from servers:
+</I>&gt;<i>
+</I>&gt;<i> busy_server_list: [(0, 'testterm1.dsl.lan'), (0, 'testterm2.dsl.lan'),
+</I>&gt;<i> (100, 'testterm2')]
+</I>&gt;<i>
+</I>&gt;<i> Meaning that it doesn't see those as the same. That is of course what bug
+</I>&gt;<i> #133 is about.
+</I>&gt;<i>
+</I>&gt;<i> A more interesting problem as I see it, is why testterm2 is being reported
+</I>&gt;<i> with 100 in the above. In fact, when I look at the value of server_list in
+</I>&gt;<i> agent.find_busy_servers() this is the content:
+</I>&gt;<i>
+</I>&gt;<i> busy_servers: {'testterm2': 100}
+</I>&gt;<i>
+</I>&gt;<i> That is when I have a couple of users logged in to testterm1 and a load of
+</I>&gt;<i> 2.0 while testterm2 has no users and a load of 0.29. I still think
+</I>&gt;<i> something is wrong with the script that determines if a server is busy or
+</I>&gt;<i> not :)
+</I>
+the find_busy_servers output is a percentage value and only lists  
+servers that have users logged on via X2Go.
+
+So a ,,100'' for one server means:
+
+   o that one server is somehow busy (with one user or many)
+   o the other server is idle and does not have X2Go users logged on
+
+Examples:
+
+   term1: 2 users, term2: 2 users -&gt; 50:50
+   term1: 1 user, term2 0 users -&gt; 100
+   term1: 10 users, term2 5 users -&gt; 66:33
+   and so on...
+
+I agree that we can later add more intelligent load detection, but for  
+now I will leave it as this.
+
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130305/5813567f/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130305/5813567f/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005158.html">[X2Go-Dev] findbusyservers algorithm
+</A></li>
+	<LI>Next message: <A HREF="005166.html">[X2Go-Dev] findbusyservers algorithm
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5165">[ date ]</a>
+              <a href="thread.html#5165">[ thread ]</a>
+              <a href="subject.html#5165">[ subject ]</a>
+              <a href="author.html#5165">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] client inconsistencies when resizing GNOME sessions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20client%20inconsistencies%20when%20resizing%20GNOME%20sessions&In-Reply-To=%3C20131024073940.Horde.u17_ykUA66FlGvovsj8p5A1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006353.html">
+   <LINK REL="Next"  HREF="006356.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] client inconsistencies when resizing GNOME sessions</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20client%20inconsistencies%20when%20resizing%20GNOME%20sessions&In-Reply-To=%3C20131024073940.Horde.u17_ykUA66FlGvovsj8p5A1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] client inconsistencies when resizing GNOME sessions">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Oct 24 09:39:40 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006353.html">[X2Go-Dev] client inconsistencies when resizing GNOME sessions
+</A></li>
+        <LI>Next message: <A HREF="006356.html">[X2Go-Dev] Bug#330: Incorrect detection of color depth on Windows
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6366">[ date ]</a>
+              <a href="thread.html#6366">[ thread ]</a>
+              <a href="subject.html#6366">[ subject ]</a>
+              <a href="author.html#6366">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Pedro,
+
+On  Mo 21 Okt 2013 19:14:22 CEST, Pedro Pinto wrote:
+
+&gt;<i> I've found some inconsistent X2GO client behaviour, and was hoping  
+</I>&gt;<i> someone could shed
+</I>&gt;<i> some light.
+</I>&gt;<i>
+</I>&gt;<i> In short, it seems that the C++ x2goclient for Mac is able to handle  
+</I>&gt;<i> &quot;session resizing&quot; correctly,
+</I>&gt;<i> but Pyhoca-GUI for Linux isn't, even though they are configured with  
+</I>&gt;<i> exaclty the same
+</I>&gt;<i> session parameters.
+</I>
+&gt;<i> Specifically:
+</I>&gt;<i>
+</I>&gt;<i> --- when I start a GNOME-fallback session using the Pyhoca-GUI for Linux, the
+</I>&gt;<i>     remote desktop appears with a &quot;constant geometry&quot;, where  
+</I>&gt;<i> resizing the local session
+</I>&gt;<i>     window simply crops the view of the remote GNOME-fallback desktop.
+</I>
+I had this behaviour on my systems, as well. For a long time. I just  
+now tested PyHoca-GUI and the following I observe:
+
+   Pyhoca-GUI / Python X2Go version: 0.4.0.8 / 0.4.0.8
+   start session with 800x600 px
+   session window appears with 800x600, but then resizes to some large size
+   I can (with Debian wheezy as X2Go Server) play with the window  
+borders and the session inside
+     resizes correctly
+   if I hit fullscreen mode (CTRL+ALT+F) the session resizes correctly  
+to fullscreen mode
+   but if I return for fullscreen mode (hit CTRL+ALT+F once more), the  
+resizing capabilities are fully gone
+
+&gt;<i> -- on the other hand, using the C++ x2go client for Mac, I can  
+</I>&gt;<i> successfuly resize the
+</I>&gt;<i>    local session window, and the remote GNOME-fallback desktop also  
+</I>&gt;<i> resizes automatically.
+</I>
+   For me, the x2goclient behaviour (Linux, 4.0.1.2-preview from  
+nightly builds)
+   Q: Is the initial session size as you configured it in the X2Go  
+session profile?
+   Q: what happens when switching to and back from fullscreen mode?
+
+&gt;<i> -- strangely, I can get Pyhoca-GUI to *also* resize properly if I do  
+</I>&gt;<i> the following:
+</I>&gt;<i>
+</I>&gt;<i>      1) Start a GNOME-fallback session with the C++ x2goclient for  
+</I>&gt;<i> Mac, then suspend the session.
+</I>&gt;<i>
+</I>&gt;<i>      2) Use Pyhoca-GUI for linux to resume the session in 1).  Then,  
+</I>&gt;<i> Pyhoca-GUI is able
+</I>&gt;<i>          to handle session resizing properly, ie, resizing the local  
+</I>&gt;<i> session window will resize the
+</I>&gt;<i>          remote GNOME desktop.
+</I>
+This I cannot confirm.
+
+&gt;<i> This last point suggests that the resizing issue is not a GNOME bug,  
+</I>&gt;<i> but an issue with the X2GO client.
+</I>
+Ok...
+
+Can you launch x2goclient and pyhoca-gui in --debug mode and send  
+those debug logs to me privately?
+
+&gt;<i> Also, let me mention how this relates to the bug in <A HREF="http://bugs.x2go.org/42.">http://bugs.x2go.org/42.</A>
+</I>&gt;<i> Using the C++ x2goclient for Mac,  I verified that this happens:
+</I>&gt;<i>
+</I>&gt;<i>  o with GNOME3 the window appears in the expected size and then gets resized
+</I>&gt;<i>    from inside the starting up GNOME3 session
+</I>
+This is some GNOME internal stuff. I have not come to investigating  
+that any further...
+
+&gt;<i> but these don't:
+</I>&gt;<i>
+</I>&gt;<i> o I can manually resize the window afterwards via the client-side window
+</I>&gt;<i>    manager (play with your mouse on the window borders...)
+</I>
+I normally using a tiling desktop shell (i3), so normally I do not  
+have window decorations. I just tested inside a client-side MATE  
+session and indeed, using the window borders works fine for resizing.
+
+&gt;<i>  o Still, the desktop shell inside does not adapt its size
+</I>&gt;<i> On the contrary, the C++ X2goclient is able to perform the  
+</I>&gt;<i> auto-resizing correctly.
+</I>
+As said above: my Pyhoca-gui version can handle that, as well.
+
+&gt;<i> Versions that I'm using:
+</I>&gt;<i>
+</I>&gt;<i> -- C++ X2goclient for Mac, version 4.0.1.0
+</I>&gt;<i> -- Pyhoca GUI for Linux, version 0.4.0.8
+</I>
+my client-side versions I have mentioned above
+
+&gt;<i> -- x2goagent: 3.5.0.20
+</I>&gt;<i> -- x2goserver: 4.0.1.6
+</I>&gt;<i> -- x2goserver-extensions: 4.0.1.6
+</I>&gt;<i> -- x2goserver-pyhoca: 4.0.1.6
+</I>
+my X2Go Server / Agent package versions are identical. The server is a  
+vanilla Debian wheezy.
+
+Mike
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-keys
+Size: 7251 bytes
+Desc: ?ffentlicher PGP-Schl?ssel
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131024/af0343c1/attachment.key">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131024/af0343c1/attachment.key</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131024/af0343c1/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131024/af0343c1/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006353.html">[X2Go-Dev] client inconsistencies when resizing GNOME sessions
+</A></li>
+	<LI>Next message: <A HREF="006356.html">[X2Go-Dev] Bug#330: Incorrect detection of color depth on Windows
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6366">[ date ]</a>
+              <a href="thread.html#6366">[ thread ]</a>
+              <a href="subject.html#6366">[ subject ]</a>
+              <a href="author.html#6366">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Segmentation fault with x2goclient
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Segmentation%20fault%20with%20x2goclient&In-Reply-To=%3C20110605180933.GB3315%40vore1.evilfreak.qq%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002277.html">
+   <LINK REL="Next"  HREF="002279.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Segmentation fault with x2goclient</H1>
+    <B>Martin Oehler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Segmentation%20fault%20with%20x2goclient&In-Reply-To=%3C20110605180933.GB3315%40vore1.evilfreak.qq%3E"
+       TITLE="[X2go-dev] Segmentation fault with x2goclient">martin.oehler at gmx.net
+       </A><BR>
+    <I>Sun Jun  5 20:09:33 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002277.html">[X2go-dev] Segmentation fault with x2goclient
+</A></li>
+        <LI>Next message: <A HREF="002279.html">[X2go-dev] Segmentation fault with x2goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2278">[ date ]</a>
+              <a href="thread.html#2278">[ thread ]</a>
+              <a href="subject.html#2278">[ subject ]</a>
+              <a href="author.html#2278">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+
+On Sun, Jun 05, 2011 at 06:54:04PM +0200, Mike Gabriel wrote:
+&gt;<i> On So 05 Jun 2011 17:24:10 CEST Martin Oehler wrote:
+</I>&gt;<i> 
+</I>&gt;<i> I encounter such inconsistencies, as well, when working with X2go
+</I>&gt;<i> client. I have added a work around to python X2go to catch these
+</I>&gt;<i> irregularities. This workaround was put together at times that
+</I>&gt;<i> x2goserver was not yet a Git project (thus, at a time I had no
+</I>&gt;<i> influence on the server code myself).
+</I>
+we use the x2gothinclient setup (booted from a Knoppix) at various 
+installations with GPG cards connected to a LDAP or an ADS with 
+very good results so far. Most patches I needed were of rather 
+cosmetic type (putting the card back after a session suspend, clearing 
+the username inside the card after a session and so on). The x2go 
+system is now upgraded since the display manager mode is available
+(and one doesn't need an LDAP server for only providing the session 
+type, thanks a lot to Heinz for this).
+
+In short: so far, the bugs are bearable for the benefit. Sometimes
+a session seems to be crashed and needs a reset but it's happening 
+not very often.
+
+&gt;<i> &gt;Can we discuss a bugfix for this?
+</I>&gt;<i> 
+</I>&gt;<i> Sure!
+</I>&gt;<i> 
+</I>&gt;<i> &gt;I really don't know why the DISPLAY-line is returned for a short time
+</I>&gt;<i> &gt;after a session suspend, the 52 can be seen in the normal one-line-output
+</I>&gt;<i> &gt;from x2golistsessions.
+</I>&gt;<i> 
+</I>&gt;<i> You do not seem like having an idea, yet? If you can find a hint,
+</I>&gt;<i> let me know. I may find time to look at code more closely on
+</I>&gt;<i> Tuesday/Wednesday.
+</I>
+I think I have a precise idea, it's the statement
+
+  print &quot;DISPLAY=$display\n&quot;;
+
+in line 49 of x2goumount-session. After removing the line the 
+session reconnect is stable again (there are only a few results
+when searching the x2goserver package with a grep for DISPLAY).
+
+We could declare this a fix but since there is a lot of command output 
+parsing I would feel better if someone who is more familiar with the 
+code could affirm that this line isn't needed somewhere else. So far
+I have no problems with this change.
+
+&gt;<i> If you use pyhoca-gui and start it from the command line, you can
+</I>&gt;<i> encounter such issues in irregular intervals, as well. Whenever they
+</I>&gt;<i> occur, some output is shouted to stderr and you won't miss it...
+</I>
+I'm very sorry, I didn't test pyhoca-gui or cli yet.
+
+Kind regards,
+Martin
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002277.html">[X2go-dev] Segmentation fault with x2goclient
+</A></li>
+	<LI>Next message: <A HREF="002279.html">[X2go-dev] Segmentation fault with x2goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2278">[ date ]</a>
+              <a href="thread.html#2278">[ thread ]</a>
+              <a href="subject.html#2278">[ subject ]</a>
+              <a href="author.html#2278">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

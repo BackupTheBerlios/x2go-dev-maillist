@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#386: Make automatic DPI setting available for all	platforms X2Go Client builds for
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23386%3A%20Make%20automatic%20DPI%20setting%20available%20for%20all%0A%09platforms%20X2Go%20Client%20builds%20for&In-Reply-To=%3C20131230130241.Horde.D77EWQx47MyGC13zzx9MLA9%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006761.html">
+   <LINK REL="Next"  HREF="006763.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#386: Make automatic DPI setting available for all	platforms X2Go Client builds for</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23386%3A%20Make%20automatic%20DPI%20setting%20available%20for%20all%0A%09platforms%20X2Go%20Client%20builds%20for&In-Reply-To=%3C20131230130241.Horde.D77EWQx47MyGC13zzx9MLA9%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#386: Make automatic DPI setting available for all	platforms X2Go Client builds for">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Dec 30 14:02:41 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006761.html">[X2Go-Dev] Bug#385: Redirect incoming audio stream from TCP to the	PA unix domain socket file
+</A></li>
+        <LI>Next message: <A HREF="006763.html">[X2Go-Dev] Bug#387: use dbus-launch to start recent gnome-terminal	applications
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6762">[ date ]</a>
+              <a href="thread.html#6762">[ thread ]</a>
+              <a href="subject.html#6762">[ subject ]</a>
+              <a href="author.html#6762">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Severity: wishlist
+Version: 4.0.1.3
+
+TL;DR: on all platforms X2Go Client builds for...
+
+   o detect the client-side DPI of the current display
+   o use this DPI inside the X2Go Session
+   o mention the word ,,automatic'' with the DPI setup in X2Go  
+Client's session profile manager
+
+IIRC, there is such code already around in X2Go Client code, but it  
+needs some QA and more testing.
+
+Mike
+
+taken from a private / German communication...
+
+&quot;&quot;&quot;
+&gt;&gt;&gt;<i> * Warum mu&#223; man die DPI des Bildschirms angeben? xdpyinfo gibt doch
+</I>&gt;&gt;&gt;<i>   die Informationen aus. K&#246;nnt Ihr da auch noch eine &quot;Automatik&quot;
+</I>&gt;&gt;&gt;<i>   machen? Alternativ w&#252;rde ich gerne den Use Case f&#252;r diese Option
+</I>&gt;&gt;&gt;<i>   verstehen. Wenn sie nicht gesetzt ist, dann sind bei mir die
+</I>&gt;&gt;&gt;<i>   Schriften viel zu klein, mit 96 sah es dann OK aus.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Im X2Go Client ist mittlerweile eigentlich ein Patch, der (wenn  
+</I>&gt;&gt;<i> keine DPI-Zahl explizit gew&#228;hlt ist) eigentlich die lokale DPI-Zahl  
+</I>&gt;&gt;<i> ausliest und dann f&#252;r die Sitzung verwendet. Es kann sein, dass der  
+</I>&gt;&gt;<i> Patch nur unter Linux mitgebaut wird (m&#252;sste ich nachschauen, aber  
+</I>&gt;&gt;<i> Alex ist das wahrscheinlich fitter, als ich).
+</I>
+&gt;<i> Das w&#228;re sch&#246;n wenn das funktioniert und dann die DPI Einstellung  
+</I>&gt;<i> f&#252;r den User erkennbar auf &quot;Auto&quot; steht. Aktuell kann man einen  
+</I>&gt;<i> Haken setzen oder nicht, das erkl&#228;rt aber nicht was passiert wenn  
+</I>&gt;<i> der Haken nicht gesetzt ist. Also im UI noch etwas umbauen so da&#223;  
+</I>&gt;<i> man dann ohne Haken ein Auto sieht und mit Haken eine Zahl eingeben  
+</I>&gt;<i> kann. Und der Haken k&#246;nnte dann vielleicht Autodetect DPI hei&#223;en  
+</I>&gt;<i> oder sowas. Oder Ihr habt halt die Sektio DPI und einen Haken f&#252;r  
+</I>&gt;<i> Auto und ein Feld, dass bei gesetztem Haken grau und leer wird.
+</I>&quot;&quot;&quot;
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131230/191f0a11/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131230/191f0a11/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006761.html">[X2Go-Dev] Bug#385: Redirect incoming audio stream from TCP to the	PA unix domain socket file
+</A></li>
+	<LI>Next message: <A HREF="006763.html">[X2Go-Dev] Bug#387: use dbus-launch to start recent gnome-terminal	applications
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6762">[ date ]</a>
+              <a href="thread.html#6762">[ thread ]</a>
+              <a href="subject.html#6762">[ subject ]</a>
+              <a href="author.html#6762">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

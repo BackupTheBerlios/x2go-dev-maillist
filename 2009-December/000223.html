@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go and ssh-key based login
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20and%20ssh-key%20based%20login&In-Reply-To=%3Cdfff13870912120717l3fc95afo7b79c9ae1e0296a2%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000222.html">
+   <LINK REL="Next"  HREF="000224.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go and ssh-key based login</H1>
+    <B>jasper van der marel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20and%20ssh-key%20based%20login&In-Reply-To=%3Cdfff13870912120717l3fc95afo7b79c9ae1e0296a2%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] x2go and ssh-key based login">jaspervandermarel at gmail.com
+       </A><BR>
+    <I>Sat Dec 12 16:17:45 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000222.html">[X2go-dev] x2go and ssh-key based login
+</A></li>
+        <LI>Next message: <A HREF="000224.html">[X2go-dev] ssh-keygen login and session shadowing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#223">[ date ]</a>
+              <a href="thread.html#223">[ thread ]</a>
+              <a href="subject.html#223">[ subject ]</a>
+              <a href="author.html#223">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Robin,
+
+That solution doesn't work because when using sshkeys there is no
+option to fill in the password.
+You simply get the error message permission denied (public key).
+
+In second instance you get a window to fill in a username/password but
+this only applies to password auyjentication.
+I have tighten the security on the server (changed the ssh port and
+only allowing ssh keys to authenticate). so password authenication
+doesn't work
+
+Best regards,
+
+Jasper van der Marel
+
+2009/12/12 Robin Gloster &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">robin.gloster at googlemail.com</A>&gt;:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> In the password field, ypu have to type in the ssh-key password and not the
+</I>&gt;<i> user password.
+</I>&gt;<i> Then all should work.
+</I>&gt;<i>
+</I>&gt;<i> Best regards,
+</I>&gt;<i>
+</I>&gt;<i> Robin
+</I>&gt;<i>
+</I>&gt;<i> 2009/12/12 jasper van der marel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jaspervandermarel at gmail.com</A>&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> To secure an x2go terminalserver enviroment from the bad big world
+</I>&gt;&gt;<i> outside we are thinking of implementing ssh-key based authenication.
+</I>&gt;&gt;<i> This works wonderfully with unencrypted ssh-keys. With encrypted
+</I>&gt;&gt;<i> ssh-keys it won't work because of the password challenge. Is there any
+</I>&gt;&gt;<i> way it can work with the x2goclient ? Then we can change the passwords
+</I>&gt;&gt;<i> set on the ssh-keys at an interval instead of reissuing ssh-keys. Any
+</I>&gt;&gt;<i> other ideas about implementing otp passwords with x2go are very
+</I>&gt;&gt;<i> welcome ;)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In case you are wondering or interested about the client we are
+</I>&gt;&gt;<i> planning to implement x2go as a terminalserver solution:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> <A HREF="http://www.osor.eu/news/more-health-care-organisations-adopting-open-source">http://www.osor.eu/news/more-health-care-organisations-adopting-open-source</A>
+</I>&gt;&gt;<i> -&gt; part about Antonius Hospital in the Netherlands
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> With kind regards,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Jasper van der Marel
+</I>&gt;&gt;<i> Stone-IT
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> <A HREF="http://www.stone-it.com">http://www.stone-it.com</A>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2go-dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000222.html">[X2go-dev] x2go and ssh-key based login
+</A></li>
+	<LI>Next message: <A HREF="000224.html">[X2go-dev] ssh-keygen login and session shadowing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#223">[ date ]</a>
+              <a href="thread.html#223">[ thread ]</a>
+              <a href="subject.html#223">[ subject ]</a>
+              <a href="author.html#223">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

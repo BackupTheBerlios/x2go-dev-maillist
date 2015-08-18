@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#253: ONMainWindow::closeEvent: If statement depends	on uninitialised value.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23253%3A%20ONMainWindow%3A%3AcloseEvent%3A%20If%20statement%20depends%0A%09on%20uninitialised%20value.&In-Reply-To=%3C51CDDBC3.7040701%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005899.html">
+   <LINK REL="Next"  HREF="005901.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#253: ONMainWindow::closeEvent: If statement depends	on uninitialised value.</H1>
+    <B>Heinrich Schuchardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23253%3A%20ONMainWindow%3A%3AcloseEvent%3A%20If%20statement%20depends%0A%09on%20uninitialised%20value.&In-Reply-To=%3C51CDDBC3.7040701%40gmx.de%3E"
+       TITLE="[X2Go-Dev] Bug#253: ONMainWindow::closeEvent: If statement depends	on uninitialised value.">xypron.glpk at gmx.de
+       </A><BR>
+    <I>Fri Jun 28 20:53:55 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005899.html">[X2Go-Dev] [X2Go-User] X2Go and ssh forwarding
+</A></li>
+        <LI>Next message: <A HREF="005901.html">[X2Go-Dev] Bug#255: Debug package for x2goclient.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5900">[ date ]</a>
+              <a href="thread.html#5900">[ thread ]</a>
+              <a href="subject.html#5900">[ subject ]</a>
+              <a href="author.html#5900">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Version: 4.0.1.0
+Severity: normal
+
+
+Dear maintainer,
+
+if in ONMainWindow::ONMainWindow parseParameter(args[i]) fails, close() 
+is called generating a QCLoseEvent.
+
+Up to this point variable trayNoclose has not been initialized. Hence in 
+ONMainWindow::closeEvent an unitialised variable trayNoclose is used in 
+statement
+
+if (trayNoclose &amp;&amp; !brokerMode).
+
+Due to initialization brokerMode=false.
+
+Obviously the behavior of closeEvent() is undefined.
+
+Furthermore in ONMainWindow::closeClient() decisions are based on 
+unitialized variables trayIcon, and useLdap.
+
+Please, initialize at least these variables before calling close().
+
+
+Example:
+valgrind x2goclient --leak-check=full
+(--leak-check=full is an illegal parameter for x2goclient)
+
+results in:
+
+==7660== Conditional jump or move depends on uninitialised value(s)
+==7660==    at 0x468D1C: ONMainWindow::closeEvent(QCloseEvent*) 
+(onmainwindow.cpp:1415)
+
+Best regards
+
+Heinrich Schuchardt
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005899.html">[X2Go-Dev] [X2Go-User] X2Go and ssh forwarding
+</A></li>
+	<LI>Next message: <A HREF="005901.html">[X2Go-Dev] Bug#255: Debug package for x2goclient.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5900">[ date ]</a>
+              <a href="thread.html#5900">[ thread ]</a>
+              <a href="subject.html#5900">[ subject ]</a>
+              <a href="author.html#5900">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

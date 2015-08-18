@@ -1,0 +1,313 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Patch to Fix x2goagent / nxagent With New LibCairo
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Patch%20to%20Fix%20x2goagent%20/%20nxagent%20With%20New%20LibCairo&In-Reply-To=%3CCAA%2B0xP0LevZCyH90KX35Xgk8CiDQxwvOTMQj2XaBhN1bf_WMXA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003960.html">
+   <LINK REL="Next"  HREF="003979.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Patch to Fix x2goagent / nxagent With New LibCairo</H1>
+    <B>Jim Burnes</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Patch%20to%20Fix%20x2goagent%20/%20nxagent%20With%20New%20LibCairo&In-Reply-To=%3CCAA%2B0xP0LevZCyH90KX35Xgk8CiDQxwvOTMQj2XaBhN1bf_WMXA%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Patch to Fix x2goagent / nxagent With New LibCairo">jvburnes at gmail.com
+       </A><BR>
+    <I>Fri May 11 01:05:41 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003960.html">[X2Go-Dev] Patch to Fix x2goagent / nxagent With New LibCairo
+</A></li>
+        <LI>Next message: <A HREF="003979.html">[X2Go-Dev] Patch to Fix x2goagent / nxagent With New LibCairo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3961">[ date ]</a>
+              <a href="thread.html#3961">[ thread ]</a>
+              <a href="subject.html#3961">[ subject ]</a>
+              <a href="author.html#3961">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Here you go:
+
+
+
+On Thu, May 10, 2012 at 3:21 PM, Jim Burnes &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jvburnes at gmail.com</A>&gt; wrote:
+
+&gt;<i> Sure.  I'll just send it as an attachment.   Super busy right now so I'll
+</I>&gt;<i> do it later tonight.
+</I>&gt;<i> On May 10, 2012 2:14 PM, &quot;Mike Gabriel&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i> wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hi Jim,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Do 10 Mai 2012 21:49:31 CEST Jim Burnes wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>  No problem.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I still need a text/plain MIME type attachment with your patch.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thanks!
+</I>&gt;&gt;<i> Mike
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;&gt;<i> mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;&gt;<i> fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> GnuPG Key ID 0xB588399B
+</I>&gt;&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> freeBusy:
+</I>&gt;&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2Go-Dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120510/33c94409/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120510/33c94409/attachment.html</A>&gt;
+-------------- next part --------------
+*** x2go/nx-libs-3.5.0.12/nx-X11/programs/Xserver/hw/nxagent/Render.c	2012-03-07 14:04:02.000000000 -0700
+--- x2go-new/nx-libs-3.5.0.12/nx-X11/programs/Xserver/hw/nxagent/Render.c	2012-05-10 11:09:39.631786853 -0600
+***************
+*** 995,1000 ****
+--- 995,1030 ----
+    #endif
+  }
+  
++ 
++ int nxagentShouldDeferComposite(PicturePtr pSrc, PicturePtr pMask, PicturePtr pDst)
++ {
++ 
++ int drawableDst;
++ int linkDeferred;
++ int unSyncedSrcMask;
++ 
++ 	drawableDst      =  ( nxagentRenderVersionMajor == 0 &amp;&amp; 
++ 	                      nxagentRenderVersionMinor == 8 &amp;&amp;
++ 		              (pDst) -&gt; pDrawable -&gt; type == DRAWABLE_PIXMAP
++                             );
++ 
++ 	linkDeferred     =  ( nxagentOption(DeferLevel) &gt;= 2 &amp;&amp;                                                              
++                               nxagentOption(LinkType) &lt; LINK_TYPE_ADSL
++                             );
++ 		       
++ 	unSyncedSrcMask  =  ( nxagentOption(DeferLevel) == 1 &amp;&amp;
++                               (pDst) -&gt; pDrawable -&gt; type == DRAWABLE_PIXMAP &amp;&amp;
++                               (
++ 			       (pSrc -&gt; pDrawable &amp;&amp; (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized)) ||
++ 	                       ((pMask) &amp;&amp; pMask -&gt; pDrawable &amp;&amp; (nxagentDrawableStatus((pMask) -&gt; pDrawable) == NotSynchronized))
++ 			      )
++ 			    );
++ 
++ 
++ 	return drawableDst || linkDeferred || unSyncedSrcMask;
++ }
++ 
++ 
+  void nxagentComposite(CARD8 op, PicturePtr pSrc, PicturePtr pMask, PicturePtr pDst,
+                            INT16 xSrc, INT16 ySrc, INT16 xMask, INT16 yMask, INT16 xDst,
+                                INT16 yDst, CARD16 width, CARD16 height)
+***************
+*** 1036,1043 ****
+    }
+  
+    #endif
+! 
+!   if (NXAGENT_SHOULD_DEFER_COMPOSITE(pSrc, pMask, pDst))
+    {
+      pDstRegion = nxagentCreateRegion(pDst -&gt; pDrawable, NULL, xDst, yDst, width, height);
+  
+--- 1066,1073 ----
+    }
+  
+    #endif
+!   /* if (NXAGENT_SHOULD_DEFER_COMPOSITE(pSrc, pMask, pDst)) */
+!   if (nxagentShouldDeferComposite(pSrc, pMask, pDst))
+    {
+      pDstRegion = nxagentCreateRegion(pDst -&gt; pDrawable, NULL, xDst, yDst, width, height);
+  
+***************
+*** 1095,1101 ****
+      }
+    }
+  
+!   if (pMask != NULL &amp;&amp; pMask -&gt; pDrawable != pSrc -&gt; pDrawable &amp;&amp;
+            pMask -&gt; pDrawable != pDst -&gt; pDrawable)
+    {
+      nxagentSynchronizeShmPixmap(pMask -&gt; pDrawable, xMask, yMask, width, height);
+--- 1125,1132 ----
+      }
+    }
+  
+!   if ((pMask) &amp;&amp; (pMask-&gt;pDrawable) &amp;&amp; 
+!           pMask -&gt; pDrawable != pSrc -&gt; pDrawable &amp;&amp;
+            pMask -&gt; pDrawable != pDst -&gt; pDrawable)
+    {
+      nxagentSynchronizeShmPixmap(pMask -&gt; pDrawable, xMask, yMask, width, height);
+***************
+*** 1259,1265 ****
+     * on the real X server.
+     */
+  
+!   if (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized)
+    {
+      #ifdef TEST
+      fprintf(stderr, &quot;nxagentGlyphs: Synchronizing source [%s] at [%p].\n&quot;,
+--- 1290,1296 ----
+     * on the real X server.
+     */
+  
+!   if (pSrc -&gt; pDrawable &amp;&amp; (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized))
+    {
+      #ifdef TEST
+      fprintf(stderr, &quot;nxagentGlyphs: Synchronizing source [%s] at [%p].\n&quot;,
+***************
+*** 1302,1315 ****
+        nxagentSynchronizeBox(pSrc -&gt; pDrawable, &amp;glyphBox, NEVER_BREAK);
+      }
+  
+!     if (pSrc -&gt; pDrawable -&gt; type == DRAWABLE_PIXMAP)
+      {
+        nxagentIncreasePixmapUsageCounter((PixmapPtr) pSrc -&gt; pDrawable);
+      }
+    }
+  
+!   if (pSrc -&gt; pDrawable != pDst -&gt; pDrawable &amp;&amp;
+!           nxagentDrawableStatus(pDst -&gt; pDrawable) == NotSynchronized)
+    {
+      #ifdef TEST
+      fprintf(stderr, &quot;nxagentGlyphs: Synchronizing destination [%s] at [%p].\n&quot;,
+--- 1333,1347 ----
+        nxagentSynchronizeBox(pSrc -&gt; pDrawable, &amp;glyphBox, NEVER_BREAK);
+      }
+  
+!     if (pSrc -&gt; pDrawable &amp;&amp; (pSrc -&gt; pDrawable -&gt; type == DRAWABLE_PIXMAP))
+      {
+        nxagentIncreasePixmapUsageCounter((PixmapPtr) pSrc -&gt; pDrawable);
+      }
+    }
+  
+! 
+!   if (pSrc -&gt; pDrawable &amp;&amp; (pSrc -&gt; pDrawable != pDst -&gt; pDrawable &amp;&amp;
+!           nxagentDrawableStatus(pDst -&gt; pDrawable) == NotSynchronized))
+    {
+      #ifdef TEST
+      fprintf(stderr, &quot;nxagentGlyphs: Synchronizing destination [%s] at [%p].\n&quot;,
+***************
+*** 1749,1755 ****
+      return;
+    }
+  
+!   if (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized)
+    {
+      #ifdef TEST
+      fprintf(stderr, &quot;nxagentTrapezoids: Going to synchronize the source drawable at [%p].\n&quot;,
+--- 1781,1789 ----
+      return;
+    }
+  
+!   /* the following blocks need fixing to ignore null values of pDrawable */
+! 
+!   if (pSrc -&gt; pDrawable &amp;&amp; (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized))  
+    {
+      #ifdef TEST
+      fprintf(stderr, &quot;nxagentTrapezoids: Going to synchronize the source drawable at [%p].\n&quot;,
+***************
+*** 1843,1849 ****
+     * operation like nxagentTrapezoids() does.
+     */
+  
+!   if (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized)
+    {
+      #ifdef TEST
+      fprintf(stderr, &quot;nxagentTriangles: Going to synchronize the source drawable at [%p].\n&quot;,
+--- 1877,1885 ----
+     * operation like nxagentTrapezoids() does.
+     */
+  
+! 
+! 
+!   if (pSrc -&gt; pDrawable &amp;&amp; (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized)) 
+    {
+      #ifdef TEST
+      fprintf(stderr, &quot;nxagentTriangles: Going to synchronize the source drawable at [%p].\n&quot;,
+***************
+*** 1920,1926 ****
+     * operation like nxagentTrapezoids() does.
+     */
+  
+!   if (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized)
+    {
+      #ifdef TEST
+      fprintf(stderr, &quot;nxagentTriStrip: Going to synchronize the source drawable at [%p].\n&quot;,
+--- 1956,1963 ----
+     * operation like nxagentTrapezoids() does.
+     */
+  
+! 
+!   if (pSrc -&gt; pDrawable &amp;&amp; (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized))
+    {
+      #ifdef TEST
+      fprintf(stderr, &quot;nxagentTriStrip: Going to synchronize the source drawable at [%p].\n&quot;,
+***************
+*** 1997,2003 ****
+     * operation like nxagentTrapezoids() does.
+     */
+  
+!   if (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized)
+    {
+      #ifdef TEST
+      fprintf(stderr, &quot;nxagentTriFan: Going to synchronize the source drawable at [%p].\n&quot;,
+--- 2034,2041 ----
+     * operation like nxagentTrapezoids() does.
+     */
+  
+! 
+!   if (pSrc -&gt; pDrawable &amp;&amp; (nxagentDrawableStatus(pSrc -&gt; pDrawable) == NotSynchronized))  
+    {
+      #ifdef TEST
+      fprintf(stderr, &quot;nxagentTriFan: Going to synchronize the source drawable at [%p].\n&quot;,
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003960.html">[X2Go-Dev] Patch to Fix x2goagent / nxagent With New LibCairo
+</A></li>
+	<LI>Next message: <A HREF="003979.html">[X2Go-Dev] Patch to Fix x2goagent / nxagent With New LibCairo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3961">[ date ]</a>
+              <a href="thread.html#3961">[ thread ]</a>
+              <a href="subject.html#3961">[ subject ]</a>
+              <a href="author.html#3961">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

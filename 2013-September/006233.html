@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#305: x2goruncommand depends on external 'which'	command
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23305%3A%20x2goruncommand%20depends%20on%20external%20%27which%27%0A%09command&In-Reply-To=%3CCANmXxHN7%3DYev9fyoLQQvMT2MNf0r4EEV%2BYbummb-5q-uHPB%2BHA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006193.html">
+   <LINK REL="Next"  HREF="006200.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#305: x2goruncommand depends on external 'which'	command</H1>
+    <B>J&#252;rgen H&#246;tzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23305%3A%20x2goruncommand%20depends%20on%20external%20%27which%27%0A%09command&In-Reply-To=%3CCANmXxHN7%3DYev9fyoLQQvMT2MNf0r4EEV%2BYbummb-5q-uHPB%2BHA%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#305: x2goruncommand depends on external 'which'	command">juergen at archlinux.org
+       </A><BR>
+    <I>Wed Sep 11 19:28:42 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006193.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goclient) has been	marked as closed
+</A></li>
+        <LI>Next message: <A HREF="006200.html">[X2Go-Dev] Bug#305: X2Go issue (in src:x2goserver) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6233">[ date ]</a>
+              <a href="thread.html#6233">[ thread ]</a>
+              <a href="subject.html#6233">[ subject ]</a>
+              <a href="author.html#6233">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goserver
+Version: 4.1.0.0-preview
+
+I had a hard time to track down this issue.
+
+On a minimal ArchLinux installation, every session exited with this error:
+
+Sep 10 17:51:43 bitzer.hoetzel.info systemd-logind[176]: New session 33 of
+user juergen.
+Sep 10 17:51:43 bitzer.hoetzel.info /usr/bin/x2goruncommand[24784]: ERROR:
+command  failed to execute
+
+The root cause was the missing 'which' package:
+<A HREF="https://www.archlinux.org/packages/core/x86_64/which/.">https://www.archlinux.org/packages/core/x86_64/which/.</A>
+This packages is not part of a minimal installation.
+
+Patch enclosed (use bash-internal type command)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130911/321d892f/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130911/321d892f/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 0001-Don-t-depend-on-external-which-command.patch
+Type: application/octet-stream
+Size: 1005 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130911/321d892f/attachment.obj">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130911/321d892f/attachment.obj</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006193.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goclient) has been	marked as closed
+</A></li>
+	<LI>Next message: <A HREF="006200.html">[X2Go-Dev] Bug#305: X2Go issue (in src:x2goserver) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6233">[ date ]</a>
+              <a href="thread.html#6233">[ thread ]</a>
+              <a href="subject.html#6233">[ subject ]</a>
+              <a href="author.html#6233">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

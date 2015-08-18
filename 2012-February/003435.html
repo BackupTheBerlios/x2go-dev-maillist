@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20xauth%20file%20location%20mismatch%20in%0A%20x2gostartagent&In-Reply-To=%3C20120215225746.608728tj67ee3sre%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003433.html">
+   <LINK REL="Next"  HREF="003479.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20xauth%20file%20location%20mismatch%20in%0A%20x2gostartagent&In-Reply-To=%3C20120215225746.608728tj67ee3sre%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Feb 15 22:57:46 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003433.html">[X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent
+</A></li>
+        <LI>Next message: <A HREF="003479.html">[X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3435">[ date ]</a>
+              <a href="thread.html#3435">[ thread ]</a>
+              <a href="subject.html#3435">[ subject ]</a>
+              <a href="author.html#3435">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Milan,
+
+On Mi 15 Feb 2012 21:23:56 CET Milan Kn&#237;&#382;ek wrote:
+
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> the /usr/bin/x2gostartagent script does not sufficiently specify the
+</I>&gt;<i> location of $XAUTHORITY file for the xauth command, while the command
+</I>&gt;<i> line for starting x2goagent refers to a specific location
+</I>&gt;<i> $HOME/.Xauthority.
+</I>&gt;<i>
+</I>&gt;<i> Usually, this works, because if nothing is specified on the command
+</I>&gt;<i> line for xauth and the $XAUTHORITY variable is not defined, it falls
+</I>&gt;<i> back to $HOME/.Xauthority.
+</I>&gt;<i>
+</I>&gt;<i> Nonetheless, recent GDM versions set XAUTHORITY
+</I>&gt;<i> to /var/run/gdm/auth-for-$USER-blabla/database.
+</I>&gt;<i>
+</I>&gt;<i> As a result, when opening a shadow session as another
+</I>&gt;<i> user, /usr/bin/x2gostartagent adds the cookie to $XAUTHORITY
+</I>&gt;<i> (/var/run/gdm...) and then starts x2goagent -auth $HOME/.Xauthority,
+</I>&gt;<i> which fails obviously.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> The attached patch removes the -f $HOME/.Xauthority parameter from the
+</I>&gt;<i> x2goagent command line to resolve the problem. It also removes a
+</I>&gt;<i> redundant '-S' parameter (there is already $SESSION_TYPE there).
+</I>&gt;<i>
+</I>&gt;<i> Can users of other distributions or display managers test if it does not
+</I>&gt;<i> break something else? (It works on Arch Linux with GDM and Xfce.)
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i>
+</I>&gt;<i> Milan
+</I>
+To me, your patch makes sense...
+
+Alex? Others? Comments?
+
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120215/2f532fa2/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120215/2f532fa2/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003433.html">[X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent
+</A></li>
+	<LI>Next message: <A HREF="003479.html">[X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3435">[ date ]</a>
+              <a href="thread.html#3435">[ thread ]</a>
+              <a href="subject.html#3435">[ subject ]</a>
+              <a href="author.html#3435">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

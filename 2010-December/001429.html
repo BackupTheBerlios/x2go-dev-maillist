@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] documentation fixes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20documentation%20fixes&In-Reply-To=%3CAANLkTi%3DkWH%2BipNxvRFvMHayfFzn9fGd6Z3MW1wW57%3DdD%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001430.html">
+   <LINK REL="Next"  HREF="001431.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] documentation fixes</H1>
+    <B>Florian Effenberger</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20documentation%20fixes&In-Reply-To=%3CAANLkTi%3DkWH%2BipNxvRFvMHayfFzn9fGd6Z3MW1wW57%3DdD%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] documentation fixes">floeff at gmail.com
+       </A><BR>
+    <I>Thu Dec 30 11:32:13 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001430.html">[X2go-dev] Mac client can't find X11 sometimes
+</A></li>
+        <LI>Next message: <A HREF="001431.html">[X2go-dev] documentation fixes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1429">[ date ]</a>
+              <a href="thread.html#1429">[ thread ]</a>
+              <a href="subject.html#1429">[ subject ]</a>
+              <a href="author.html#1429">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I would recommend some changes to the documentation:
+
+- When using a SSH key, the passphrase (at least on Mac) is not stored
+by the system's SSH agent, but it looks like the key password has to
+be entered into the password field in x2go. Took me quite a while to
+figure out. ;-)
+
+- For installing the package key on Ubuntu and probably Debian, the
+following command is easier than the one in the documentation:
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com C509840B96F89133
+
+- For adding the apt archive, I recommend using
+echo &quot;deb <A HREF="http://x2go.obviously-nice.de/deb/">http://x2go.obviously-nice.de/deb/</A> lenny main&quot; &gt;&gt;
+/etc/apt/sources.list.d/x2go.list
+instead of adding to sources.list directly.
+
+Florian
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001430.html">[X2go-dev] Mac client can't find X11 sometimes
+</A></li>
+	<LI>Next message: <A HREF="001431.html">[X2go-dev] documentation fixes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1429">[ date ]</a>
+              <a href="thread.html#1429">[ thread ]</a>
+              <a href="subject.html#1429">[ subject ]</a>
+              <a href="author.html#1429">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

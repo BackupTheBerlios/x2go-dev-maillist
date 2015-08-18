@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH 3/8] Rely on shlibs files instead of hard coding	library dependencies
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%203/8%5D%20Rely%20on%20shlibs%20files%20instead%20of%20hard%20coding%0A%09library%20dependencies&In-Reply-To=%3C1355314398-35495-4-git-send-email-siretart%40tauware.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004727.html">
+   <LINK REL="Next"  HREF="004724.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH 3/8] Rely on shlibs files instead of hard coding	library dependencies</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%203/8%5D%20Rely%20on%20shlibs%20files%20instead%20of%20hard%20coding%0A%09library%20dependencies&In-Reply-To=%3C1355314398-35495-4-git-send-email-siretart%40tauware.de%3E"
+       TITLE="[X2Go-Dev] [PATCH 3/8] Rely on shlibs files instead of hard coding	library dependencies">siretart at tauware.de
+       </A><BR>
+    <I>Wed Dec 12 13:13:13 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004727.html">[X2Go-Dev] [PATCH 2/8] make xfonts-base a recommends
+</A></li>
+        <LI>Next message: <A HREF="004724.html">[X2Go-Dev] [PATCH 3/8] Rely on shlibs files instead of hard coding library dependencies
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4712">[ date ]</a>
+              <a href="thread.html#4712">[ thread ]</a>
+              <a href="subject.html#4712">[ subject ]</a>
+              <a href="author.html#4712">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>If stricter dependencies are really required, they should absolutely be
+specified in the slibs file instead
+---
+ debian/control |   21 ++++++++-------------
+ 1 file changed, 8 insertions(+), 13 deletions(-)
+
+diff --git a/debian/control b/debian/control
+index be83f79..78cc0b4 100644
+--- a/debian/control
++++ b/debian/control
+@@ -32,7 +32,7 @@ Architecture: any
+ Depends:
+  ${shlibs:Depends},
+  ${misc:Depends},
+-Breaks: nxlibs (&lt;=3.5.1)
++Breaks: nxlibs (&lt;= 3.5.1)
+ Replaces: nxlibs
+ Description: nx-X11
+  NX is a software suite which implements very efficient
+@@ -48,7 +48,7 @@ Architecture: any
+ Breaks: nxlibs-dev (&lt;=3.5.1)
+ Replaces: nxlibs-dev
+ Depends:
+- libnx-x11 (&gt;= ${source:Version}), libnx-x11 (&lt;&lt; ${source:Version}.1~),
++ libnx-x11 (= ${binary:Version}),
+  ${misc:Depends},
+ Description: Library headers for nx-X11
+  NX is a software suite which implements very efficient
+@@ -62,7 +62,7 @@ Package: libnx-mesa-extras-dev
+ Section: libdevel
+ Architecture: any
+ Depends:
+- libnx-x11-dev (&gt;= ${source:Version}), libnx-x11-dev (&lt;&lt; ${source:Version}.1~),
++ libnx-x11-dev (= ${binary:Version}),
+  ${misc:Depends},
+ Description: Library headers for nx-X11 (extra headers)
+  NX is a software suite which implements very efficient
+@@ -75,7 +75,6 @@ Description: Library headers for nx-X11 (extra headers)
+ Package: nxagent
+ Architecture: any
+ Depends:
+- libnx-x11 (&gt;= ${source:Version}), libnx-x11 (&lt;&lt; ${source:Version}.1~),
+  ${shlibs:Depends},
+  ${misc:Depends},
+ Recommends:
+@@ -102,7 +101,7 @@ Description: NX agent
+ Package: x2goagent
+ Architecture: all
+ Depends:
+- nxagent (&gt;= ${source:Version}), nxagent (&lt;&lt; ${source:Version}.1~),
++ nxagent (&gt;= ${source:Version})
+  ${misc:Depends},
+ Suggests:
+  x2goserver
+@@ -124,7 +123,6 @@ Description: X2Go agent
+ Package: nxproxy
+ Architecture: any
+ Depends:
+- libxcomp3 (&gt;= ${source:Version}), libxcomp3 (&lt;&lt; ${source:Version}.1~),
+  ${shlibs:Depends},
+  ${misc:Depends},
+ Description: NX proxy
+@@ -137,7 +135,6 @@ Description: NX proxy
+ Package: nxauth
+ Architecture: any
+ Depends:
+- libnx-x11 (&gt;= ${source:Version}), libnx-x11 (&lt;&lt; ${source:Version}.1~),
+  ${shlibs:Depends},
+  ${misc:Depends},
+ Description: NX xauth
+@@ -152,7 +149,7 @@ Architecture: any
+ Depends:
+  ${shlibs:Depends},
+  ${misc:Depends},
+-Breaks: nxcomp (&lt;=3.5.1)
++Breaks: nxcomp (&lt;= 3.5.1)
+ Replaces: nxcomp
+ Description: NX X compression library
+  NX is a software suite which implements very efficient
+@@ -179,7 +176,6 @@ Description: NX X compression library headers
+ Package: libxcompext3
+ Architecture: any
+ Depends:
+- libnx-x11 (&gt;= ${source:Version}), libnx-x11 (&lt;&lt; ${source:Version}.1~),
+  ${shlibs:Depends},
+  ${misc:Depends},
+ Breaks: nxcompext (&lt;=3.5.1)
+@@ -195,7 +191,7 @@ Package: libxcompext-dev
+ Architecture: any
+ Section: libdevel
+ Depends:
+- libxcompext3 (=${binary:Version}),
++ libxcompext3 (= ${binary:Version}),
+  ${misc:Depends},
+  libxcomp-dev,
+ Breaks: nxcompext-dev (&lt;=3.5.1)
+@@ -212,7 +208,6 @@ Package: libxcompshad3
+ Section: x11
+ Architecture: any
+ Depends:
+- libnx-x11 (&gt;= ${source:Version}), libnx-x11 (&lt;&lt; ${source:Version}.1~),
+  ${shlibs:Depends},
+  ${misc:Depends},
+ Breaks: nxcompshad (&lt;=3.5.1)
+@@ -228,9 +223,9 @@ Package: libxcompshad-dev
+ Section: libdevel
+ Architecture: any
+ Depends:
+- libxcompshad3 (=${binary:Version}),
++ libxcompshad3 (= ${binary:Version}),
+  ${misc:Depends},
+-Breaks: nxcompshad-dev (&lt;=3.5.1)
++Breaks: nxcompshad-dev (&lt;= 3.5.1)
+ Replaces: nxcompshad-dev
+ Description: NX shadowing library headers
+  NX is a software suite which implements very efficient
+-- 
+1.7.10.4
+
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004727.html">[X2Go-Dev] [PATCH 2/8] make xfonts-base a recommends
+</A></li>
+	<LI>Next message: <A HREF="004724.html">[X2Go-Dev] [PATCH 3/8] Rely on shlibs files instead of hard coding library dependencies
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4712">[ date ]</a>
+              <a href="thread.html#4712">[ thread ]</a>
+              <a href="subject.html#4712">[ subject ]</a>
+              <a href="author.html#4712">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

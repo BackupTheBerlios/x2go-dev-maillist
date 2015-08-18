@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [RFC] [PATCH] Raise SSH connection timeout to 60 seconds.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BRFC%5D%20%5BPATCH%5D%20Raise%20SSH%20connection%20timeout%20to%2060%0A%20seconds.&In-Reply-To=%3C20120229164223.203448c5blhkfcyn%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003648.html">
+   <LINK REL="Next"  HREF="003649.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [RFC] [PATCH] Raise SSH connection timeout to 60 seconds.</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BRFC%5D%20%5BPATCH%5D%20Raise%20SSH%20connection%20timeout%20to%2060%0A%20seconds.&In-Reply-To=%3C20120229164223.203448c5blhkfcyn%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [RFC] [PATCH] Raise SSH connection timeout to 60 seconds.">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Feb 29 16:42:23 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003648.html">[X2Go-Dev] [RFC] [PATCH] Raise SSH connection timeout to 60 seconds.
+</A></li>
+        <LI>Next message: <A HREF="003649.html">[X2Go-Dev] @Alex: Mihai's patches
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3668">[ date ]</a>
+              <a href="thread.html#3668">[ thread ]</a>
+              <a href="subject.html#3668">[ subject ]</a>
+              <a href="author.html#3668">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mihai,
+
+On So 26 Feb 2012 16:26:57 CET Mihai Moldovan wrote:
+
+&gt;<i> The default of 10 seconds is pretty low, especially when using
+</I>&gt;<i> tcp_wrappers with the identd option turned on. Wait for a 60 seconds
+</I>&gt;<i> timeout.
+</I>&gt;<i>
+</I>&gt;<i> Signed-off-by: Mihai Moldovan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">ionic at ionic.de</A>&gt;
+</I>&gt;<i> ---
+</I>&gt;<i>  sshmasterconnection.cpp |    4 ++++
+</I>&gt;<i>  1 files changed, 4 insertions(+), 0 deletions(-)
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/sshmasterconnection.cpp b/sshmasterconnection.cpp
+</I>&gt;<i> index 2626346..9c6626a 100644
+</I>&gt;<i> --- a/sshmasterconnection.cpp
+</I>&gt;<i> +++ b/sshmasterconnection.cpp
+</I>&gt;<i> @@ -137,6 +137,7 @@ void SshMasterConnection::run()
+</I>&gt;<i>  #endif
+</I>&gt;<i>
+</I>&gt;<i>  //     int verbosity=SSH_LOG_PROTOCOL;
+</I>&gt;<i> +    long timeout = 60;
+</I>&gt;<i>
+</I>&gt;<i>      my_ssh_session = ssh_new();
+</I>&gt;<i>      if ( my_ssh_session == NULL )
+</I>&gt;<i> @@ -153,6 +154,9 @@ void SshMasterConnection::run()
+</I>&gt;<i>      ssh_options_set ( my_ssh_session, SSH_OPTIONS_SSH_DIR,
+</I>&gt;<i> (mainWnd-&gt;getHomeDirectory()+&quot;/ssh&quot;).toAscii());
+</I>&gt;<i>  #endif
+</I>&gt;<i>  //     ssh_options_set(my_ssh_session, SSH_OPTIONS_LOG_VERBOSITY,
+</I>&gt;<i> &amp;verbosity);
+</I>&gt;<i> +
+</I>&gt;<i> +    ssh_options_set(my_ssh_session, SSH_OPTIONS_TIMEOUT, &amp;timeout);
+</I>&gt;<i> +
+</I>&gt;<i>      if ( !sshConnect() )
+</I>&gt;<i>      {
+</I>&gt;<i>          QString err=ssh_get_error ( my_ssh_session );
+</I>&gt;<i> --
+</I>&gt;<i> 1.7.9
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+Patch has been applied:
+<A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=db39c41e27721872a3c235298c42c41d202d35b6">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=db39c41e27721872a3c235298c42c41d202d35b6</A>
+
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120229/526cd141/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120229/526cd141/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003648.html">[X2Go-Dev] [RFC] [PATCH] Raise SSH connection timeout to 60 seconds.
+</A></li>
+	<LI>Next message: <A HREF="003649.html">[X2Go-Dev] @Alex: Mihai's patches
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3668">[ date ]</a>
+              <a href="thread.html#3668">[ thread ]</a>
+              <a href="subject.html#3668">[ subject ]</a>
+              <a href="author.html#3668">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

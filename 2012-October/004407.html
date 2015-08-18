@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#44: Segmentation Violation in	ONMainWindow::slotProxyFinished(
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2344%3A%20Segmentation%20Violation%20in%0A%09ONMainWindow%3A%3AslotProxyFinished%28&In-Reply-To=%3C20121001184709.96107dzg2mcpqv4d%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004406.html">
+   <LINK REL="Next"  HREF="004413.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#44: Segmentation Violation in	ONMainWindow::slotProxyFinished(</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2344%3A%20Segmentation%20Violation%20in%0A%09ONMainWindow%3A%3AslotProxyFinished%28&In-Reply-To=%3C20121001184709.96107dzg2mcpqv4d%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#44: Segmentation Violation in	ONMainWindow::slotProxyFinished(">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Oct  1 18:47:09 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004406.html">[X2Go-Dev] Bug#44: Segmentation Violation in	ONMainWindow::slotProxyFinished(
+</A></li>
+        <LI>Next message: <A HREF="004413.html">[X2Go-Dev] Bug#44: Segmentation Violation in	ONMainWindow::slotProxyFinished(
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4407">[ date ]</a>
+              <a href="thread.html#4407">[ thread ]</a>
+              <a href="subject.html#4407">[ subject ]</a>
+              <a href="author.html#4407">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Heinrich,
+
+On Mo 01 Okt 2012 16:11:54 CEST Oleksandr Shneyder wrote:
+
+&gt;<i> Am 30.09.2012 10:26, schrieb glpk xypron:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Dear maintainer,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I have compiled git version origin/master of x2goclient on a  
+</I>&gt;&gt;<i> vanilla Debian Wheezy i386.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Connecting to a SSH server creates an error signal 11 (SIGSEGV) for  
+</I>&gt;&gt;<i> illegally accessing memory.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I ran x2goclient again with valgrind. Please, find the output in  
+</I>&gt;&gt;<i> the appendix.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Best regards
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Heirnich Schuchardt
+</I>&gt;<i>
+</I>&gt;<i> Hello Heirnich,
+</I>&gt;<i>
+</I>&gt;<i> I made a lot of changes in SSH classes today:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=ef8c9486314e87bf6aeb748b46b1c35f1b975213">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=ef8c9486314e87bf6aeb748b46b1c35f1b975213</A>
+</I>&gt;<i>
+</I>&gt;<i> I think, that should solve problem, that you described.
+</I>&gt;<i>
+</I>
+Can you please verify that the issue you reported is gone and--if  
+so--send a mail to
+
+&quot;&quot;&quot;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">control at bugs.x2go.org</A>
+Subject: (none)
+Body:
+  tags #44 pending
+  thanks
+&quot;&quot;&quot;
+
+That would be awesome!!!
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121001/55e631ed/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121001/55e631ed/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004406.html">[X2Go-Dev] Bug#44: Segmentation Violation in	ONMainWindow::slotProxyFinished(
+</A></li>
+	<LI>Next message: <A HREF="004413.html">[X2Go-Dev] Bug#44: Segmentation Violation in	ONMainWindow::slotProxyFinished(
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4407">[ date ]</a>
+              <a href="thread.html#4407">[ thread ]</a>
+              <a href="subject.html#4407">[ subject ]</a>
+              <a href="author.html#4407">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

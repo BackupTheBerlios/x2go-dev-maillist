@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Building nx-libs (nx-X11) from tarballs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Building%20nx-libs%20%28nx-X11%29%20from%20tarballs&In-Reply-To=%3CCAJBj3vdOTxEsJKvJszuiCpNHTfvgDi-61M6OXGJ0zCE3ERRZSA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003164.html">
+   <LINK REL="Next"  HREF="003169.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Building nx-libs (nx-X11) from tarballs</H1>
+    <B>John Williams</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Building%20nx-libs%20%28nx-X11%29%20from%20tarballs&In-Reply-To=%3CCAJBj3vdOTxEsJKvJszuiCpNHTfvgDi-61M6OXGJ0zCE3ERRZSA%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] Building nx-libs (nx-X11) from tarballs">jwilliams4200 at gmail.com
+       </A><BR>
+    <I>Sat Jan  7 09:12:08 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003164.html">[X2go-Dev] Untrusted library search path in x2gostartagent bash script
+</A></li>
+        <LI>Next message: <A HREF="003169.html">[X2go-Dev] Building nx-libs (nx-X11) from tarballs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3165">[ date ]</a>
+              <a href="thread.html#3165">[ thread ]</a>
+              <a href="subject.html#3165">[ subject ]</a>
+              <a href="author.html#3165">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Two questions:
+
+1) What is the current status of the great nx-libs rework that was
+mentioned last November? Is there any solution to building nxcomp,
+nxcompext, and nxcompshad against the NX libraries rather than the X
+libraries? (If I have that right?)
+
+2) Why am I getting a compile error when I try to build nx-X11 from
+the source tarballs at  <A HREF="http://code.x2go.org/releases/source/nx-libs/">http://code.x2go.org/releases/source/nx-libs/</A>
+?
+
+I downloaded all of the tarballs from nx-libs: nx-X11, nxagent,
+nxauth, nxcomp, nxcompext, nxcompshad, nxproxy
+
+I expanded them all into the same directory (nxagent and nxauth
+actually installed into a subdirectory of nx-X11), then I changed into
+the nx-X11 directory and ran &quot;make World&quot;. The build proceeded well
+for a long time, but then hit an error:
+
+
+make[5]: Leaving directory
+`/builds/nx-libs/src/nx-X11/programs/Xserver/miext/damage'
+making all in programs/Xserver/hw/nxagent...
+make[5]: Entering directory
+`/builds/nx-libs/src/nx-X11/programs/Xserver/hw/nxagent'
+rm -f NXrandr.o
+gcc -c -g -O3 -fno-strict-aliasing -ansi -Wall -Wpointer-arith -Wundef
+   -I. -I../../../../../nxcomp -I../../../../..
+/nxcompext -I../../../../../nxcompshad
+-I../../../../extras/Mesa/include          -I../../../../exports/inc
+lude/X11 -I../../../../include/fonts           -I../../mi
+-I../../include -I../../os            -I../../miext/damage -
+I../../miext/cw          -I../../GL/glx -I../../GL/include
+-I../../../../lib/GL/include -I../../Xext            -I../.
+./../../include/extensions -I../../../../exports/include/X11
+-I../../fb -I../../mfb -I../../render -I../../../..
+/lib/font/include -I../../../../lib/Xrandr  -I../../../..
+-I../../../../exports/include   -Dlinux -D__amd64__ -D_POSIX
+_C_SOURCE=199309L                           -D_POSIX_SOURCE
+-D_XOPEN_SOURCE                                 -D_BSD_SOU
+RCE -D_SVID_SOURCE                                 -D_LARGEFILE_SOURCE
+-D_FILE_OFFSET_BITS=64
+         -D_GNU_SOURCE                           -DSHAPE -DXINPUT
+-DXKB  -DXAPPGROUP    -DXCSECURITY -DTOGCUP   -DXF86
+BIGFONT -DDPMSExtension            -DRENDER -DRANDR       -DXFIXES
+-DDAMAGE -DCOMPOSITE -DXEVIE    -DGCCUSESGAS -DAVOI
+D_GLYPHBLT -DPIXPRIV -DSINGLEDEPTH
+-DXFreeXDGA -DXvExtension                                -
+DXFree86Server                                -DXF86VIDMODE
+               -DXvMCExtension
+                -DSMART_SCHEDULE
+-DBUILDDEBUG -DXResExtension
+        -DX_BYTE_ORDER=X_LITTLE_ENDIAN
+-DXORG_VERSION_CURRENT=&quot;(((6) * 10000000) + ((9) * 100
+000) + ((0) * 1000) + 0)&quot; -D_XSERVER64 -DNDEBUG   -DFUNCPROTO=15
+-DNARROWPROTO   -g -DDDXOSINIT -DSERVER_LOCK -DDDXOSF
+ATALERROR                           -DDDXOSVERRORF -DDDXTIME -DMITMISC
+-DXTEST -DXTRAP      -DXSYNC -DXCMISC -DXRECORD
+      -DMITSHM -DBIGREQS -DXF86VIDMODE        -DXF86MISC -DDBE
+-DDPMSExtension -DEVI   -DXV -DXVMC    -DGLXEXT -D__GLX
+_ALIGN64           -DRES -DNXAGENT_UPGRADE           -UXF86VIDMODE
+-UXFreeXDGA -UXF86MISC -UXF86DRI -UXFree86LOADER
+        -DNXAGENT_SERVER           -DNXAGENT_CONSTRAINCURSOR
+-DNXAGENT_FONTCACHE_SIZE=50           -DNXAGENT
+_GLYPHCACHE -DNXAGENT_GLYPHCACHE_SIZE=50           -DNXAGENT_SHAPE2
+       -DNXAGENT_FIXKEYS           -DNXAGENT_CL
+IPBOARD           -DNXAGENT_EXPOSURES           -DNXAGENT_FONTEXCLUDE
+         -DNXAGENT_PACKEDIMAGES           -DNXA
+GENT_VISIBILITY           -DNXAGENT_WAKEUP=1000
+-DNXAGENT_ONSTART           -DNXAGENT_SPLASH           -DNXA
+GENT_ARTSD           -UNX_DEBUG_INPUT           -UPANORAMIX
+-UDEBUG_TREE   NXrandr.c
+In file included from X/NXrandr.c:64:0,
+                 from NXrandr.c:3:
+./../../randr/randrstr.h:69:30: error: &#8216;RRNumberRequests&#8217; undeclared
+here (not in a function)
+./../../randr/randrstr.h:85:5: error: unknown type name &#8216;xRRModeInfo&#8217;
+./../../randr/randrstr.h:477:20: error: unknown type name &#8216;xRRModeInfo&#8217;
+./../../randr/randrstr.h:648:12: error: unknown type name &#8216;xRRModeInfo&#8217;
+In file included from NXrandr.c:3:0:
+
+
+Next, I cloned nx-libs.git and tried to build it from the latest git.
+That build succeeded. I looked at the log of the git build at the same
+area where the tarball build failed, but there was no NXrandr.c in the
+git build log. There was an NXxrandr in the git build log (notice the
+additonal 'x'). But it is not a simple substitution of NXxrandr.c for
+NXrandr.c. In the same portion of the build log shown above for the
+tarballs, the git build is trying to compile NXwindow.c. So it looks
+like something is quite different in the git nx-libs. Did someone add
+or change some header files or include statements?
+
+Did I do something wrong? Or is there a problem with the source tarballs?
+
+Here is a portion of the log from the successful build I did of nx-X11
+from the git repository, corresponding to the tarball log shown above:
+
+make[5]: Leaving directory
+`/builds/nx-libs-git/nx-X11/programs/Xserver/miext/damage'
+making all in programs/Xserver/hw/nxagent...
+make[5]: Entering directory
+`/builds/nx-libs-git/nx-X11/programs/Xserver/hw/nxagent'
+rm -f NXwindow.o
+gcc -c -g -O3 -fno-strict-aliasing -ansi -Wall -Wpointer-arith -Wundef
+   -I. -I../../../../../nxcomp -I../../../../../nxcompext
+-I../../../../../nxcompshad
+-I../../../../extras/Mesa/include
+-I../../../../exports/include/X11 -I../../../../include/fonts
+ -I../../mi -I../../include -I../../os            -I../../miext/damage
+-I../../miext/cw          -I../../GL/glx -I../../GL/include
+-I../../../../lib/GL/include -I../../Xext
+-I../../../../include/extensions -I../../../../exports/include/X11
+  -I../../fb -I../../mfb -I../../render -I../../../../lib/font/include
+-I../../../../lib/Xrandr  -I../../../.. -I../../../../exports/include
+ -Dlinux -D__amd64__ -D_POSIX_C_SOURCE=199309L
+  -D_POSIX_SOURCE -D_XOPEN_SOURCE
+-D_BSD_SOURCE -D_SVID_SOURCE
+-D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64
+     -D_GNU_SOURCE                           -DSHAPE -DXINPUT -DXKB
+-DXAPPGROUP    -DXCSECURITY -DTOGCUP   -DXF86BIGFONT -DDPMSExtension
+         -DRENDER -DRANDR       -DXFIXES -DDAMAGE -DCOMPOSITE -DXEVIE
+  -DGCCUSESGAS -DAVOID_GLYPHBLT -DPIXPRIV -DSINGLEDEPTH
+          -DXFreeXDGA -DXvExtension
+-DXFree86Server                                -DXF86VIDMODE
+                -DXvMCExtension
+-DSMART_SCHEDULE                                -DBUILDDEBUG
+-DXResExtension
+        -DX_BYTE_ORDER=X_LITTLE_ENDIAN
+-DXORG_VERSION_CURRENT=&quot;(((6) * 10000000) + ((9) * 100000) + ((0) *
+1000) + 0)&quot; -D_XSERVER64 -DNDEBUG   -DFUNCPROTO=15 -DNARROWPROTO   -g
+-DDDXOSINIT -DSERVER_LOCK -DDDXOSFATALERROR
+-DDDXOSVERRORF -DDDXTIME -DMITMISC -DXTEST -DXTRAP      -DXSYNC
+-DXCMISC -DXRECORD      -DMITSHM -DBIGREQS -DXF86VIDMODE
+-DXF86MISC -DDBE -DDPMSExtension -DEVI   -DXV -DXVMC    -DGLXEXT
+-D__GLX_ALIGN64           -DRES -DNXAGENT_UPGRADE
+-UXF86VIDMODE -UXFreeXDGA -UXF86MISC -UXF86DRI -UXFree86LOADER
+  -DNXAGENT_SERVER           -DNXAGENT_CONSTRAINCURSOR
+-DNXAGENT_FONTCACHE_SIZE=50           -DNXAGENT_GLYPHCACHE
+-DNXAGENT_GLYPHCACHE_SIZE=50           -DNXAGENT_SHAPE2
+-DNXAGENT_FIXKEYS           -DNXAGENT_CLIPBOARD
+-DNXAGENT_EXPOSURES           -DNXAGENT_FONTEXCLUDE
+-DNXAGENT_PACKEDIMAGES           -DNXAGENT_VISIBILITY
+-DNXAGENT_WAKEUP=1000           -DNXAGENT_ONSTART
+-DNXAGENT_SPLASH           -DNXAGENT_ARTSD           -UNX_DEBUG_INPUT
+     -DRANDR_10_INTERFACE    -DRANDR_12_INTERFACE
+-UPANORAMIX           -UDEBUG_TREE   NXwindow.c
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003164.html">[X2go-Dev] Untrusted library search path in x2gostartagent bash script
+</A></li>
+	<LI>Next message: <A HREF="003169.html">[X2go-Dev] Building nx-libs (nx-X11) from tarballs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3165">[ date ]</a>
+              <a href="thread.html#3165">[ thread ]</a>
+              <a href="subject.html#3165">[ subject ]</a>
+              <a href="author.html#3165">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

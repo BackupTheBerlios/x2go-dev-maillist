@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] x2goserver.git/bin/x2goumount-session
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20x2goserver.git/bin/x2goumount-session&In-Reply-To=%3C20120211012601.76516xaosmo70iop%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003372.html">
+   <LINK REL="Next"  HREF="003376.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] x2goserver.git/bin/x2goumount-session</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20x2goserver.git/bin/x2goumount-session&In-Reply-To=%3C20120211012601.76516xaosmo70iop%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] x2goserver.git/bin/x2goumount-session">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Feb 11 01:26:01 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003372.html">[X2Go-Dev] [PATCH] x2goserver.git/bin/x2goumount-session
+</A></li>
+        <LI>Next message: <A HREF="003376.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3380">[ date ]</a>
+              <a href="thread.html#3380">[ thread ]</a>
+              <a href="subject.html#3380">[ subject ]</a>
+              <a href="author.html#3380">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alex,
+
+On Fr 10 Feb 2012 11:31:16 CET Milan Kn&#237;?ek wrote:
+
+&gt;<i> 0001: the DESKTOP file for shares of /cygwin/C:/some/path got not
+</I>&gt;<i> removed due to redundant &quot;/cygwin/&quot; string.
+</I>
+I have tested this one. Issue is confirmed, patch fixes issue, patch applied:
+<A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=8ac7d8934719d90fcd35769836c02c3e3a54f85b">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=8ac7d8934719d90fcd35769836c02c3e3a54f85b</A>
+
+&gt;<i> 0002: the $HOME/media or $HOME/media/${USER}_media symlink got not
+</I>&gt;<i> removed after session end.
+</I>&gt;<i>
+</I>&gt;<i> 0003: the /tmp/${USER}_media mount points tree got not removed after
+</I>&gt;<i> session end.
+</I>&gt;<i>
+</I>&gt;<i> I am not sure about the latter two patches - could they create some
+</I>&gt;<i> problems in case the user has two paralel sessions active? (Can it even
+</I>&gt;<i> happen?)
+</I>
+I am not sure about these, either. Alex, can you take a look at patch  
+0002 and 0003 and let us know if there is a reason for not removing  
+those seemingly left-over folders? If there is no reason for not  
+removing, I guess we should better remove the folders and symlinks.
+
+Greets,
+Mike
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120211/eea5a5cd/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120211/eea5a5cd/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003372.html">[X2Go-Dev] [PATCH] x2goserver.git/bin/x2goumount-session
+</A></li>
+	<LI>Next message: <A HREF="003376.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3380">[ date ]</a>
+              <a href="thread.html#3380">[ thread ]</a>
+              <a href="subject.html#3380">[ subject ]</a>
+              <a href="author.html#3380">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

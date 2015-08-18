@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#276: Bug#276: qt/kde applications does not work as	root.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23276%3A%20Bug%23276%3A%20qt/kde%20applications%20does%20not%20work%20as%0A%09root.&In-Reply-To=%3C20130730002503.20873y4n4tfolgov%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006016.html">
+   <LINK REL="Next"  HREF="006020.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#276: Bug#276: qt/kde applications does not work as	root.</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23276%3A%20Bug%23276%3A%20qt/kde%20applications%20does%20not%20work%20as%0A%09root.&In-Reply-To=%3C20130730002503.20873y4n4tfolgov%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#276: Bug#276: qt/kde applications does not work as	root.">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Jul 30 00:25:03 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006016.html">[X2Go-Dev] Bug#276: qt/kde applications does not work as root.
+</A></li>
+        <LI>Next message: <A HREF="006020.html">[X2Go-Dev] Processed: Re: Bug#276: qt/kde applications does not work as root.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6019">[ date ]</a>
+              <a href="thread.html#6019">[ thread ]</a>
+              <a href="subject.html#6019">[ subject ]</a>
+              <a href="author.html#6019">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>reassign #276 x2goserver
+found #276 4.0.1.6
+thanks
+
+Hi Pascal,
+
+reassigning this bug report to X2Go Server, not X2Go Client.
+
+On Mo 29 Jul 2013 15:30:03 CEST Pascal d'Hermilly wrote:
+
+&gt;<i> When I start qt/kde applications on the x2go server via the  
+</I>&gt;<i> x2goclient, I get a grey application and a lot of error messages in  
+</I>&gt;<i> the konsole. A workaround seems to be to change the graphicssystem  
+</I>&gt;<i> to native instead of raster. However raster is the default in  
+</I>&gt;<i> Kubuntu and it doesnt work when running things as root or through  
+</I>&gt;<i> sudo.
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">administrator at desktops-x2go</A>:~$ sudo dolphin --graphicssystem raster
+</I>&gt;<i> X Error: BadDrawable (invalid Pixmap or Window parameter) 9
+</I>&gt;<i>   Major opcode: 62 (X_CopyArea)
+</I>&gt;<i>   Resource id:  0x420007d
+</I>&gt;<i> X Error: BadDrawable (invalid Pixmap or Window parameter) 9
+</I>&gt;<i>   Major opcode: 62 (X_CopyArea)
+</I>&gt;<i>   Resource id:  0x420007d
+</I>&gt;<i> X Error: BadDrawable (invalid Pixmap or Window parameter) 9
+</I>&gt;<i>   Major opcode: 62 (X_CopyArea)
+</I>&gt;<i>   Resource id:  0x420007d
+</I>&gt;<i> X Error: BadDrawable (invalid Pixmap or Window parameter) 9
+</I>&gt;<i>   Major opcode: 62 (X_CopyArea)
+</I>&gt;<i>   Resource id:  0x420007d
+</I>&gt;<i> X Error: BadPixmap (invalid Pixmap parameter) 4
+</I>&gt;<i>   Major opcode: 54 (X_FreePixmap)
+</I>&gt;<i>   Resource id:  0x420007d
+</I>&gt;<i> X Error: BadShmSeg (invalid shared segment parameter) 128
+</I>&gt;<i>   Extension:    129 (MIT-SHM)
+</I>&gt;<i>   Minor opcode: 2 (X_ShmDetach)
+</I>&gt;<i>   Resource id:  0x420007c
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">administrator at desktops-x2go</A>:~$ sudo dolphin --graphicssystem native
+</I>&gt;<i>
+</I>&gt;<i> this works fine. Also gtk applications such as gimp works fine as root.
+</I>&gt;<i>
+</I>&gt;<i> This is quite a problem when you want to add/remove users and do  
+</I>&gt;<i> other administrative things in KDE.
+</I>&gt;<i>
+</I>
+In x2goruncommand (the server-side script that is responsible for any  
+application startup) sets this env var:
+
+&quot;&quot;&quot;
+# disable rastering in &gt;= KDE4.8 and Qt4.8
+export QT_GRAPHICSSYSTEM=native
+&quot;&quot;&quot;
+
+That piece of info probably gets lost during the sudo call you perform.
+
+Maybe you want to play with /etc/sudoers...
+
+&quot;&quot;&quot; special line in sudo
+%admins ALL=(ALL) SETENV: /usr/bin/dolphin
+&quot;&quot;&quot;
+
+And then: sudo dolphin
+
+Does that work?
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130730/ed5c222c/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130730/ed5c222c/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006016.html">[X2Go-Dev] Bug#276: qt/kde applications does not work as root.
+</A></li>
+	<LI>Next message: <A HREF="006020.html">[X2Go-Dev] Processed: Re: Bug#276: qt/kde applications does not work as root.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6019">[ date ]</a>
+              <a href="thread.html#6019">[ thread ]</a>
+              <a href="subject.html#6019">[ subject ]</a>
+              <a href="author.html#6019">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

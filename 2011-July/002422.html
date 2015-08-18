@@ -1,0 +1,577 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] pyhoca/x2go, ubuntu 10.10,	Android Tablet -- status update
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20pyhoca/x2go%2C%20ubuntu%2010.10%2C%0A%09Android%20Tablet%20--%20status%20update&In-Reply-To=%3CCAFX-c4tDW-X8Ck7%3DeC6EFbcyz8FCb6Hfanc1dOAUcwb1kFtWoQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002419.html">
+   <LINK REL="Next"  HREF="002428.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] pyhoca/x2go, ubuntu 10.10,	Android Tablet -- status update</H1>
+    <B>brian mullan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20pyhoca/x2go%2C%20ubuntu%2010.10%2C%0A%09Android%20Tablet%20--%20status%20update&In-Reply-To=%3CCAFX-c4tDW-X8Ck7%3DeC6EFbcyz8FCb6Hfanc1dOAUcwb1kFtWoQ%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] pyhoca/x2go, ubuntu 10.10,	Android Tablet -- status update">bmullan.mail at gmail.com
+       </A><BR>
+    <I>Sat Jul  9 13:54:12 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002419.html">[X2go-Dev] X2go real life usage
+</A></li>
+        <LI>Next message: <A HREF="002428.html">[X2go-Dev] pyhoca/x2go, ubuntu 10.10, Android Tablet -- status update
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2422">[ date ]</a>
+              <a href="thread.html#2422">[ thread ]</a>
+              <a href="subject.html#2422">[ subject ]</a>
+              <a href="author.html#2422">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I've gotten to where I can launch pyhoca-gui on Ubuntu 10.10 which is
+running in a chroot environment with Android v2.34 on the $249 Nook Color
+Tablet
+
+I get to the point of a successful connection but then pyhoca-gui dies while
+logging me in.
+
+This log captures
+first attempt where I forgot to change USER= and HOME= to point to a
+non-root user ID
+second attempt was after I'd set both of those then executed pyhoca-gui and
+tried to connect/login to a remote AWS EC2 x2go server
+
+The following is the xsession-errors log contents:
+
+= = = = = = = = = = = = = = =  = = =
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at localhost</A>:~# *more .xsession-errors*
+Xsession: X session started for root at Wed Jul  6 03:22:11 EDT 2011
+X Error of failed request:  BadValue (integer parameter out of range for
+operation)
+  Major opcode of failed request:  109 (X_ChangeHosts)
+  Value in failed request:  0x5
+  Serial number of failed request:  6
+  Current serial number in output stream:  8
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+x-session-manager[2108]: WARNING: GSIdleMonitor: IDLETIME counter not found
+x-session-manager[2108]: WARNING: Could not connect to ConsoleKit: Failed to
+connect to socket /var/run/dbus/system_bus_socket: Connection refused
+x-session-manager[2108]: WARNING: Could not connect to ConsoleKit: Failed to
+connect to socket /var/run/dbus/system_bus_socket: Connection refused
+GNOME_KEYRING_CONTROL=/tmp/keyring-8ZDnJ7
+SSH_AUTH_SOCK=/tmp/keyring-8ZDnJ7/ssh
+GNOME_KEYRING_PID=2145
+GNOME_KEYRING_CONTROL=/tmp/keyring-8ZDnJ7
+SSH_AUTH_SOCK=/tmp/keyring-8ZDnJ7/ssh
+GNOME_KEYRING_CONTROL=/tmp/keyring-8ZDnJ7
+SSH_AUTH_SOCK=/tmp/keyring-8ZDnJ7/ssh
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+*** ERROR ***
+TI:03:22:20    TH:0x328a0    FI:gpm-main.c    FN:main,220
+ - This program cannot start until you start the dbus system service.
+It is &lt;b&gt;strongly recommended&lt;/b&gt; you reboot your computer after starting
+this service.
+Traceback:
+    gnome-power-manager() [0x1c5a2]
+    gnome-power-manager() [0x141ac]
+    /lib/libc.so.6(__libc_start_main+0xb5) [0x407ec526]
+
+** (gnome-settings-daemon:2148): WARNING **: Unable to start xrandr manager:
+RAN
+DR extension is not present
+shm_open() failed: Function not implemented
+Home directory /home/bmullan not ours.
+socket(): Address family not supported by protocol
+Home directory /home/bmullan not ours.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+(gnome-settings-daemon:2148): GLib-CRITICAL **: g_hash_table_destroy:
+assertion `hash_table != NULL' failed
+
+(gnome-settings-daemon:2148): GLib-CRITICAL **: g_hash_table_destroy:
+assertion `hash_table != NULL' failed
+
+** (gnome-settings-daemon:2148): WARNING **: XKB extension not available
+
+** (gnome-settings-daemon:2148): WARNING **: Neither XKeyboard not Xfree86's
+key
+board extensions are available,
+no way to support keyboard autorepeat rate settings
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Unable to find a synaptics device.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+
+** (polkit-gnome-authentication-agent-1:2158): WARNING **: Error connecting
+to bus: org.freedesktop.DBus.Error.NoServer: Failed to connect to socket
+/var/run/dbus/system_bus_socket: Connection refused
+
+** (gnome-settings-daemon:2148): WARNING **: XKB extension not available
+
+** (gnome-settings-daemon:2148): WARNING **: Neither XKeyboard not Xfree86's
+keyboard extensions are available,no way to support keyboard autorepeat rate
+settings
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Unable to find a synaptics device.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+
+** (polkit-gnome-authentication-agent-1:2158): WARNING **: Error connecting
+to bus: org.freedesktop.DBus.Error.NoServer: Failed to connect to socket
+/var/run/dbus/system_bus_socket: Connection refused
+
+process 2158: arguments to dbus_connection_get_data() were incorrect,
+assertion
+&quot;connection != NULL&quot; failed in file dbus-connection.c line 5980.
+This is normally a bug in some application using the D-Bus library.
+process 2158: arguments to dbus_connection_set_data() were incorrect,
+assertion
+&quot;connection != NULL&quot; failed in file dbus-connection.c line 5935.
+This is normally a bug in some application using the D-Bus library.
+
+** ERROR **: Not enough memory to set up DBusConnection for use with GLib
+aborting...
+
+(gnome-settings-daemon:2148): GVFS-RemoteVolumeMonitor-WARNING **: invoking
+IsSupported() failed for remote volume monitor with dbus name
+org.gtk.Private.GduVolumeMonitor:
+org.freedesktop.DBus.Error.Spawn.ChildSignaled: Process
+/usr/lib/gvfs/gvfs-gdu-volume-monitor received signal 6
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+shm_open() failed: Function not implemented
+Home directory /home/bmullan not ours.
+socket(): Address family not supported by protocol
+Connection failure: Connection refused
+** (nm-applet:2157): WARNING **: &lt;WARN&gt;  bus_init(): Could not get the
+system bus.  Make sure the message bus daemon is running!  Message: Failed
+to connect to socket /var/run/dbus/system_bus_socket: Connection refused
+
+
+** (nm-applet:2157): CRITICAL **: nm_remote_settings_system_new: assertion
+`bus
+!= NULL' failed
+
+** (nm-applet:2157): CRITICAL **: nm_settings_service_export: assertion
+`priv-&gt;b
+us != NULL' failed
+
+** (nm-applet:2157): CRITICAL **: dbus_g_proxy_call: assertion
+`DBUS_IS_G_PROXY
+(proxy)' failed
+
+** (nm-applet:2157): WARNING **: &lt;WARN&gt;  request_name(): Could not acquire
+the N
+etworkManagerUserSettings service.
+  Error: (-1) (unknown)
+
+Window manager warning: Log level 32: could not find XKB extension.
+
+(gnome-panel:2160): GVFS-RemoteVolumeMonitor-WARNING **: invoking
+IsSupported()
+failed for remote volume monitor with dbus name
+org.gtk.Private.GduVolumeMonitor
+:<i> org.freedesktop.DBus.Error.Spawn.ChildSignaled: Process
+</I>/usr/lib/gvfs/gvfs-gdu-volume-monitor received signal 6
+Unable to open desktop file firefox.desktop for panel launcher
+
+(nautilus:2162): GVFS-RemoteVolumeMonitor-WARNING **: invoking IsSupported()
+failed for remote volume monitor with dbus name
+org.gtk.Private.GduVolumeMonitor:
+org.freedesktop.DBus.Error.Spawn.ChildSignaled: Process
+/usr/lib/gvfs/gvfs-gdu-volume-monitor received signal 6
+x-session-manager[2108]: libupower-glib-WARNING: Couldn't connect to system
+bus:
+ Failed to connect to socket /var/run/dbus/system_bus_socket: Connection
+refused
+x-session-manager[2108]: WARNING: Could not connect to ConsoleKit: Failed to
+connect to socket /var/run/dbus/system_bus_socket: Connection refused
+x-session-manager[2108]: WARNING: Could not connect to ConsoleKit: Failed to
+connect to socket /var/run/dbus/system_bus_socket: Connection refused
+06/07/2011 03:22:58 AM Autoprobing TCP port in (all) network interface
+06/07/2011 03:22:58 AM Listening IPv6://[::]:5900
+06/07/2011 03:22:58 AM Listening IPv4://0.0.0.0:5900
+06/07/2011 03:22:58 AM Autoprobing selected port 5900
+06/07/2011 03:22:58 AM Advertising security type: 'TLS' (18)
+06/07/2011 03:22:58 AM Advertising authentication type: 'VNC Authentication'
+(2)
+06/07/2011 03:22:58 AM Advertising security type: 'VNC Authentication' (2)
+
+** (vino-server:2154): WARNING **: Couldn't connect to system bus: Failed to
+connect to socket /var/run/dbus/system_bus_socket: Connection refused
+** Message: Received signal 11, exiting...
+
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+pyhoca-gui[2365] (PyHoca-GUI) WARN: the current release of PyHoca-GUI does
+not support client configuration
+Window manager warning: Window 0x480008f (PyHoca-GUI) sets an MWM hint
+indicating it isn't resizable, but sets min size 293 x 80 and max size 619 x
+619; this doesn't make much sense.
+Window manager warning: Window 0x480008f (PyHoca-GUI) sets an MWM hint
+indicating it isn't resizable, but sets min size 293 x 80 and max size 619 x
+619; this doesn't make much sense.
+pyhoca-gui[2365] (PyHoca-GUI) NOTICE: [AWS EC2 - profile added] A new
+session profile has been added.
+pyhoca-gui[2365] (x2gosessregistry-pylib) NOTICE: registering X2go session
+AWS EC2...
+pyhoca-gui[2365] (x2goclient-pylib) NOTICE: initializing X2go session...
+pyhoca-gui[2365] (x2gocontrolsession-pylib) NOTICE: connecting to
+50.19.6.239
+pyhoca-gui[2365] (x2gosession-pylib) NOTICE: SSH host key verification for
+host
+
+pyhoca-gui[2365] (x2goclient-pylib) NOTICE: initializing X2go session...
+pyhoca-gui[2365] (x2gocontrolsession-pylib) NOTICE: connecting to
+50.19.6.239
+pyhoca-gui[2365] (x2gosession-pylib) NOTICE: SSH host key verification for
+host [50.19.6.239]:22 with SSH-RSA fingerprint
+,,68:2a:16:65:6d:e8:7e:b7:25:fe:4b:05:68:05:73:7d'' initiated. We are seeing
+this X2go server for the first time.
+pyhoca-gui[2365] (x2gocontrolsession-pylib) NOTICE: connecting to
+50.19.6.239
+pyhoca-gui[2365] (PyHoca-GUI) NOTICE: [AWS EC2 - connect] Authentication has
+been successful.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+** Message: secret service operation failed: Couldn't create item: An error
+occurred on the device
+** Message: secret service operation failed: Couldn't create item: An error
+occurred on the device
+** Message: secret service operation failed: Couldn't create item: An error
+occurred on the device
+** Message: secret service operation failed: Couldn't create item: An error
+occurred on the device
+** Message: secret service operation failed: Couldn't create item: An error
+occurred on the device
+** Message: secret service operation failed: Couldn't create item: An error
+occurred on the device
+** Message: secret service operation failed: Couldn't create item: An error
+occurred on the device
+** Message: secret service operation failed: Couldn't create item: An error
+occurred on the device
+** Message: secret service operation failed: Couldn't create item: An error
+occurred on the device
+** Message: secret service operation failed: Couldn't create item: An error
+occurred on the device
+** Message: secret service operation failed: Couldn't create item: An error
+occurred on the device
+** Message: secret service operation failed: Couldn't create item: An error
+occurred on the device
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+
+(gnome-desktop-item-edit:2498): GVFS-RemoteVolumeMonitor-WARNING **:
+invoking Is Supported() failed for remote volume monitor with dbus name
+org.gtk.Private.GduVolumeMonitor:
+org.freedesktop.DBus.Error.Spawn.ChildSignaled: Process
+/usr/lib/gvfs/gvfs-gdu-volume-monitor received signal 6
+*** glibc detected *** gnome-desktop-item-edit: free(): corrupted unsorted
+chunks: 0x000da300 ***
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+
+(gnome-desktop-item-edit:2509): GVFS-RemoteVolumeMonitor-WARNING **:
+invoking Is
+Supported() failed for remote volume monitor with dbus name
+org.gtk.Private.GduVolumeMonitor:
+org.freedesktop.DBus.Error.Spawn.ChildSignaled: Process
+/usr/lib/gvfs/gvfs-gdu-volume-monitor received signal 6
+x-session-manager[2108]: WARNING: Could not connect to ConsoleKit: Failed to
+connect to socket /var/run/dbus/system_bus_socket: Connection refused
+x-session-manager[2108]: WARNING: Could not connect to ConsoleKit: Failed to
+connect to socket /var/run/dbus/system_bus_socket: Connection refused
+x-session-manager[2108]: WARNING: Could not connect to ConsoleKit: Failed to
+connect to socket /var/run/dbus/system_bus_socket: Connection refused
+x-session-manager[2108]: WARNING: Could not connect to ConsoleKit: Failed to
+connect to socket /var/run/dbus/system_bus_socket: Connection refused
+(nautilus:2162): Eel-WARNING **: &quot;nautilus-directory.c: directories&quot; hash
+table still has 3 elements at quit time
+Window manager warning: CurrentTime used to choose focus window; focus
+window may not be correct.
+Window manager warning: Got a request to focus the no_focus_window with a
+timestamp of 0.  This shouldn't happen!
+
+(gnome-panel:2160): Gtk-WARNING **: Attempting to store changes into
+`/root/.rec
+ently-used.xbel', but failed: Failed to create file
+'/root/.recently-used.xbel.Y
+9V2XV': Invalid argument
+Xsession: X session started for root at Thu Jul  7 03:43:12 EDT 2011
+X Error of failed request:  BadValue (integer parameter out of range for
+operation)
+  Major opcode of failed request:  109 (X_ChangeHosts)
+  Value in failed request:  0x5
+  Serial number of failed request:  6
+  Current serial number in output stream:  8
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+x-session-manager[1874]: WARNING: GSIdleMonitor: IDLETIME counter not found
+x-session-manager[1874]: WARNING: Could not connect to ConsoleKit: Failed to
+con
+nect to socket /var/run/dbus/system_bus_socket: Connection refused
+x-session-manager[1874]: WARNING: Could not connect to ConsoleKit: Failed to
+con
+nect to socket /var/run/dbus/system_bus_socket: Connection refused
+GNOME_KEYRING_CONTROL=/tmp/keyring-4RcYQw
+SSH_AUTH_SOCK=/tmp/keyring-4RcYQw/ssh
+GNOME_KEYRING_PID=1912
+GNOME_KEYRING_CONTROL=/tmp/keyring-4RcYQw
+SSH_AUTH_SOCK=/tmp/keyring-4RcYQw/ssh
+GNOME_KEYRING_CONTROL=/tmp/keyring-4RcYQw
+SSH_AUTH_SOCK=/tmp/keyring-4RcYQw/ssh
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+*** ERROR ***
+TI:03:43:17    TH:0x32078    FI:gpm-main.c    FN:main,220
+ - This program cannot start until you start the dbus system service.
+It is &lt;b&gt;strongly recommended&lt;/b&gt; you reboot your computer after starting
+this service.
+Traceback:
+    gnome-power-manager() [0x1c5a2]
+    gnome-power-manager() [0x141ac]
+    /lib/libc.so.6(__libc_start_main+0xb5) [0x407ec526]
+
+** (gnome-settings-daemon:1915): WARNING **: Unable to start xrandr manager:
+RANDR extension is not present
+shm_open() failed: Function not implemented
+Home directory /home/bmullan not ours.
+socket(): Address family not supported by protocol
+Home directory /home/bmullan not ours.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+
+(gnome-settings-daemon:1915): GLib-CRITICAL **: g_hash_table_destroy:
+assertion `hash_table != NULL' failed
+
+(gnome-settings-daemon:1915): GLib-CRITICAL **: g_hash_table_destroy:
+assertion `hash_table != NULL' failed
+** (gnome-settings-daemon:1915): WARNING **: Neither XKeyboard not Xfree86's
+keyboard extensions are available no way to support keyboard autorepeat rate
+settings
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+
+** (polkit-gnome-authentication-agent-1:1925): WARNING **: Error connecting
+to bus: org.freedesktop.DBus.Error.NoServer: Failed to connect to socket
+/var/run/dbus/system_bus_socket: Connection refused
+
+process 1925: arguments to dbus_connection_get_data() were incorrect,
+assertion &quot;connection != NULL&quot; failed in file dbus-connection.c line 5980.
+This is normally a bug in some application using the D-Bus library.
+process 1925: arguments to dbus_connection_set_data() were incorrect,
+assertion &quot;connection != NULL&quot; failed in file dbus-connection.c line 5935.
+This is normally a bug in some application using the D-Bus library.
+
+** ERROR **: Not enough memory to set up DBusConnection for use with GLib
+aborting...
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;XInputExtension&quot; missing on display &quot;:1.0&quot;.
+Unable to find a synaptics device.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+
+(gnome-settings-daemon:1915): GVFS-RemoteVolumeMonitor-WARNING **: invoking
+IsSu
+pported() failed for remote volume monitor with dbus name
+org.gtk.Private.GduVol
+umeMonitor: org.freedesktop.DBus.Error.Spawn.ChildSignaled: Process
+/usr/lib/gvf
+s/gvfs-gdu-volume-monitor received signal 6
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+shm_open() failed: Function not implemented
+Home directory /home/bmullan not ours.
+socket(): Address family not supported by protocol Connection failure:
+Connection refused
+
+** (nm-applet:1924): WARNING **: &lt;WARN&gt;  bus_init(): Could not get the
+system bus.  Make sure the message bus daemon is running!  Message: Failed
+to connect to socket /var/run/dbus/system_bus_socket: Connection refused
+
+
+** (nm-applet:1924): CRITICAL **: nm_remote_settings_system_new: assertion
+`bus != NULL' failed
+
+** (nm-applet:1924): CRITICAL **: nm_settings_service_export: assertion
+`priv-&gt;bus != NULL' failed
+
+** (nm-applet:1924): CRITICAL **: dbus_g_proxy_call: assertion
+`DBUS_IS_G_PROXY (proxy)' failed
+
+Window manager warning: Log level 32: could not find XKB extension.
+
+(gnome-panel:1927): GVFS-RemoteVolumeMonitor-WARNING **: invoking
+IsSupported()
+failed for remote volume monitor with dbus name
+org.gtk.Private.GduVolumeMonitor:
+org.freedesktop.DBus.Error.Spawn.ChildSignaled: Process
+/usr/lib/gvfs/gvfs-gdu-volume-monitor received signal 6
+
+(nautilus:1929): GVFS-RemoteVolumeMonitor-WARNING **: invoking IsSupported()
+failed for remote volume monitor with dbus name
+org.gtk.Private.GduVolumeMonitor: o
+rg.freedesktop.DBus.Error.Spawn.ChildSignaled: Process
+/usr/lib/gvfs/gvfs-gdu-volume-monitor received signal 6
+Unable to open desktop file firefox.desktop for panel launcher
+x-session-manager[1874]: libupower-glib-WARNING: Couldn't connect to system
+bus: Failed to connect to socket /var/run/dbus/system_bus_socket: Connection
+refused
+x-session-manager[1874]: WARNING: Could not connect to ConsoleKit: Failed to
+con
+nect to socket /var/run/dbus/system_bus_socket: Connection refused
+x-session-manager[1874]: WARNING: Could not connect to ConsoleKit: Failed to
+connect to socket /var/run/dbus/system_bus_socket: Connection refused
+07/07/2011 03:43:57 Autoprobing TCP port in (all) network interface
+07/07/2011 03:43:57 Listening IPv6://[::]:5900
+07/07/2011 03:43:57 Listening IPv4://0.0.0.0:5900
+07/07/2011 03:43:57 Autoprobing selected port 5900
+07/07/2011 03:43:57 Advertising security type: 'TLS' (18)
+07/07/2011 03:43:57 Advertising authentication type: 'VNC Authentication'
+(2)
+07/07/2011 03:43:57 Advertising security type: 'VNC Authentication' (2)
+
+** (vino-server:1921): WARNING **: Couldn't connect to system bus: Failed to
+connect to socket /var/run/dbus/system_bus_socket: Connection refused
+** Message: Received signal 11, exiting...
+
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+pyhoca-gui[2068] (x2gosessregistry-pylib) NOTICE: registering X2go session
+AWS EC2...
+pyhoca-gui[2068] (x2goclient-pylib) NOTICE: initializing X2go session...
+pyhoca-gui[2068] (PyHoca-GUI) WARN: the current release of PyHoca-GUI does
+not support client configuration
+Window manager warning: Window 0x1800085 (PyHoca-GUI) sets an MWM hint
+indicating it isn't resizable, but sets min size 293 x 80 and max size 619 x
+619; this doesn't make much sense.
+Window manager warning: Window 0x1800085 (PyHoca-GUI) sets an MWM hint
+indicating it isn't resizable, but sets min size 293 x 80 and max size 619 x
+619; this doesn't make much sense.
+pyhoca-gui[2068] (PyHoca-GUI) NOTICE: [AWS EC2 - modified] Changes to
+profile have been saved.
+pyhoca-gui[2068] (x2gosessregistry-pylib) NOTICE: using already
+initially-regist
+ered yet-unused session 9df3fca6-a86d-11e0-8d29-58671a1a874b
+pyhoca-gui[2068] (x2goclient-pylib) NOTICE: initializing X2go session...
+pyhoca-gui[2068] (x2gocontrolsession-pylib) NOTICE: connecting to
+50.17.34.191
+pyhoca-gui[2068] (x2gosession-pylib) NOTICE: SSH host key verification for
+host
+[50.17.34.191]:22 with SSH-RSA fingerprint
+,,68:2a:16:65:6d:e8:7e:b7:25:fe:4b:05
+:<i>68:05:73:7d'' initiated. We are seeing this X2go server for the first time.
+</I>pyhoca-gui[2068] (x2gocontrolsession-pylib) NOTICE: connecting to
+50.17.34.191
+pyhoca-gui[2068] (PyHoca-GUI) NOTICE: [AWS EC2 - connect failure]
+Authentication failed!
+pyhoca-gui[2068] (x2gosessregistry-pylib) NOTICE: using already
+initially-regist
+ered yet-unused session 9df3fca6-a86d-11e0-8d29-58671a1a874b
+pyhoca-gui[2068] (x2goclient-pylib) NOTICE: initializing X2go session...
+pyhoca-gui[2068] (x2gocontrolsession-pylib) NOTICE: connecting to
+50.17.34.191
+pyhoca-gui[2068] (x2gocontrolsession-pylib) NOTICE: connecting to
+50.17.34.191
+pyhoca-gui[2068] (PyHoca-GUI) NOTICE: [AWS EC2 - connect] Authentication has
+been successful.
+No handlers could be found for logger &quot;paramiko.transport&quot;
+Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+pyhoca-gui[2262] (x2gosessregistry-pylib) NOTICE: registering X2go session
+AWS EC2...
+pyhoca-gui[2262] (x2goclient-pylib) NOTICE: initializing X2go session...
+pyhoca-gui[2262] (PyHoca-GUI) WARN: the current release of PyHoca-GUI does
+not s
+upport client configuration
+Traceback (most recent call last):
+  File &quot;/usr/lib/pymodules/python2.6/pyhoca/wxgui/frontend.py&quot;, line 647, in
+OnP
+rintingPreferences
+    _pp_dialog = printingprefs.PyHocaGUI_PrintingPreferences(self)
+  File &quot;/usr/lib/pymodules/python2.6/pyhoca/wxgui/printingprefs.py&quot;, line
+77, in
+ __init__
+    cups_connection = cups.Connection()
+RuntimeError: failed to connect to server
+Window manager warning: Window 0x18000b7 (PyHoca-GUI) sets an MWM hint
+indicatin
+g it isn't resizable, but sets min size 293 x 80 and max size 619 x 619;
+this doesn't make much sense.
+Window manager warning: Window 0x18000b7 (PyHoca-GUI) sets an MWM hint
+indicatin
+g it isn't resizable, but sets min size 293 x 80 and max size 619 x 619;
+this doesn't make much sense.
+pyhoca-gui[2262] (x2gosessregistry-pylib) NOTICE: using already
+initially-regist
+ered yet-unused session 1243d788-a86f-11e0-8d29-58671a1a874b
+pyhoca-gui[2262] (x2goclient-pylib) NOTICE: initializing X2go session...
+pyhoca-gui[2262] (x2gocontrolsession-pylib) NOTICE: connecting to
+50.17.34.191
+pyhoca-gui[2262] (x2gocontrolsession-pylib) NOTICE: connecting to
+50.17.34.191
+pyhoca-gui[2262] (PyHoca-GUI) NOTICE: [AWS EC2 - connect] Authentication has
+been successful.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110709/15176fec/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110709/15176fec/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002419.html">[X2go-Dev] X2go real life usage
+</A></li>
+	<LI>Next message: <A HREF="002428.html">[X2go-Dev] pyhoca/x2go, ubuntu 10.10, Android Tablet -- status update
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2422">[ date ]</a>
+              <a href="thread.html#2422">[ thread ]</a>
+              <a href="subject.html#2422">[ subject ]</a>
+              <a href="author.html#2422">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

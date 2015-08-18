@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Issue with 100% cpu usage in x2goclient + libssh	0.6.0
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Issue%20with%20100%25%20cpu%20usage%20in%20x2goclient%20%2B%20libssh%0A%090.6.0&In-Reply-To=%3C52E05605.1080104%40phoca-gmbh.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006857.html">
+   <LINK REL="Next"  HREF="006863.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Issue with 100% cpu usage in x2goclient + libssh	0.6.0</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Issue%20with%20100%25%20cpu%20usage%20in%20x2goclient%20%2B%20libssh%0A%090.6.0&In-Reply-To=%3C52E05605.1080104%40phoca-gmbh.de%3E"
+       TITLE="[X2Go-Dev] Issue with 100% cpu usage in x2goclient + libssh	0.6.0">o.shneyder at phoca-gmbh.de
+       </A><BR>
+    <I>Thu Jan 23 00:36:37 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006857.html">[X2Go-Dev] Issue with 100% cpu usage in x2goclient + libssh 0.6.0
+</A></li>
+        <LI>Next message: <A HREF="006863.html">[X2Go-Dev] Issue with 100% cpu usage in x2goclient + libssh 0.6.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6860">[ date ]</a>
+              <a href="thread.html#6860">[ thread ]</a>
+              <a href="subject.html#6860">[ subject ]</a>
+              <a href="author.html#6860">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Orion,
+
+We can't wait forever in ssh_select, we must perform other tasks in
+loop, for example accepting forwarded connections. However, I have
+already increased a select timeout and made a lot of other changes in
+ssh code of X2Go Client. The changes are not yet in master GIT because
+they depend on reverse forwarding fixes, that I made to libssh. As soon
+as we have libssh packages ready, I'll push my local commits to GIT.
+
+regards,
+Alex
+
+
+Am 22.01.2014 22:36, schrieb Orion Poplawski:
+&gt;<i> With libssh 0.6.0, x2goclient consumes 100% cpu on connection.  The trigger
+</I>&gt;<i> for this is that ssh_select() was rewritten to use poll() instead of select().
+</I>&gt;<i>  poll() has a timeout in milliseconds, select() in microseconds.  x2goclient
+</I>&gt;<i> requests a timeout of 500 microseconds which is getting rounded down to a
+</I>&gt;<i> timeout of 0 milliseconds for poll().
+</I>&gt;<i> 
+</I>&gt;<i> However, this still seems to point to some poor coding on the part of
+</I>&gt;<i> x2goclient that we're using such short timeouts.  Why can't we just wait
+</I>&gt;<i> forever in ssh_select() in SshMasterConnection::channelLoop() ?
+</I>&gt;<i> 
+</I>
+
+-- 
+----------------------------------------------------
+Oleksandr Shneyder  | Email: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">o.shneyder at phoca-gmbh.de</A>
+phoca GmbH          | Tel. : 0911 - 14870374 0
+Br&#228;uhausgasse 9     | Fax. : 0911 - 14870374 9
+D-82205 Gilching    | Mobil: 0163 - 49 64 461
+
+Gesch&#228;ftsf&#252;hrung:
+Dipl.-Inf. Oleksandr Shneyder
+
+Amtsgericht M&#252;nchen | <A HREF="http://www.phoca-gmbh.de">http://www.phoca-gmbh.de</A>
+HRB 196 658         | <A HREF="http://www.x2go.org">http://www.x2go.org</A>
+USt-IdNr.: DE281977973
+----------------------------------------------------
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 259 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20140123/a87e7e59/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20140123/a87e7e59/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006857.html">[X2Go-Dev] Issue with 100% cpu usage in x2goclient + libssh 0.6.0
+</A></li>
+	<LI>Next message: <A HREF="006863.html">[X2Go-Dev] Issue with 100% cpu usage in x2goclient + libssh 0.6.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6860">[ date ]</a>
+              <a href="thread.html#6860">[ thread ]</a>
+              <a href="subject.html#6860">[ subject ]</a>
+              <a href="author.html#6860">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

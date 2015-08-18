@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] SVN-offer, Repos-Usage, X2go python bindings and coaching (was: Re: Hello dead project...)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20SVN-offer%2C%20Repos-Usage%2C%0A%20X2go%20python%20bindings%20and%20coaching%20%28was%3A%20Re%3A%20Hello%20dead%20project...%29&In-Reply-To=%3C20100924233131.1039467vnr0dth2r%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001113.html">
+   <LINK REL="Next"  HREF="001114.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] SVN-offer, Repos-Usage, X2go python bindings and coaching (was: Re: Hello dead project...)</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20SVN-offer%2C%20Repos-Usage%2C%0A%20X2go%20python%20bindings%20and%20coaching%20%28was%3A%20Re%3A%20Hello%20dead%20project...%29&In-Reply-To=%3C20100924233131.1039467vnr0dth2r%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] SVN-offer, Repos-Usage, X2go python bindings and coaching (was: Re: Hello dead project...)">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Sep 24 23:31:31 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001113.html">[X2go-dev] Hello dead project...
+</A></li>
+        <LI>Next message: <A HREF="001114.html">[X2go-dev] Hello dead project...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1121">[ date ]</a>
+              <a href="thread.html#1121">[ thread ]</a>
+              <a href="subject.html#1121">[ subject ]</a>
+              <a href="author.html#1121">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi there,
+
+On Fr 24 Sep 2010 16:42:49 CEST Paul Menzel wrote:
+
+&gt;<i> if I understood Oleksandr correctly he (unfortunately) does not use Git
+</I>&gt;<i> for his development work. If I am not mistaken from a talk with Heinz he
+</I>&gt;<i> is using Subversion/SVN. But besides that I do not know anything about
+</I>&gt;<i> Heinz&#8217; or Oleksandr&#8217; development setup at all.
+</I>
+If that might be of any help I could offer an intermediate (or  
+permanent?) subversion repository on:
+<A HREF="http://svn.das-netzwerkteam.de/websvn">http://svn.das-netzwerkteam.de/websvn</A>
+
+SVN users could continue using SVN, GIT/BZR users can choose their  
+favourite VCS locally.
+
+I've been following the heated discussion and had to my tongue not to  
+contribute on the list... However, there are a few aspects I would  
+like to add...
+
+1.
+Maybe asking the guy from gpl-violations.org for support and  
+counselling might well be a good idea. As far as I have heard and read  
+he is a very positive, good-willing and supportive man and maybe he  
+can clarify the situation.
+
+Normally, the attorneys from GPL-Violations support you in creating a  
+project setup and workflow that is GPL conformant. As far as I heard,  
+rather than pointing with the finger at you for your past issues and  
+telling you what a bad guy you have been, they support you in getting  
+things straight for the future. I do think this might be helpful, also  
+in terms of project and developer reputation.
+
+2.
+A repository that contains the very latest code (i.e. esp. last  
+night's coding of Alex and Heinz) should be the only usage scenario  
+thinkable. This is what people you want to contribute are asking for  
+(including me).
+
+@Alex: it is not necessary to run a GIT (or similar product)  
+repository just for your files under obviously-nice.de/deb. This the  
+location people install their debian systems from. I recommend a plain  
+apache for this purpose (as there currently is). Additionally it might  
+be nice to have an archive for older packages or distros (but neither  
+in form of a VCS repository). But may be I misunderstood you in one of  
+your former postings where you mentioned the planned GIT on your server.
+
+3.
+Access control to a public X2go repository (using SVN terminology)...
+
+o developers and contributors have an account
+o Alex and Heinz work on /trunk (ideally 2-3 check-ins per week, only if there
+   is some valuable code to check-in, of course)
+o community can request branches under /branch and copy latest /trunk
+   (not some old tar.gz) to their branch and do customization there
+o Alex and Heinz can pick the good ideas and fixes from the branches and merge
+   them into trunk
+
+(In GIT terminology, replace /trunk with ,,master'' branch, rest ist  
+the same.)
+
+4.
+Only last weekend I have started on implementing an ltsp-x2goclient  
+(an x2goclient that plugins into LTSP). Unfortunately, I had used  
+J&#246;rg's python implementation that ran into licensing troubles  
+(<A HREF="http://github.com/joerg86/pyx2go">http://github.com/joerg86/pyx2go</A>) just today. As I plan to continue  
+the work on the python based ltsp-x2goclient I will have to creatively  
+rewrite what used to be called pyx2go. The result of this upcoming  
+work will be a complete rewrite from scratch and it will be published  
+under GPL (what a waste of time!!!!). It will neither be bound to a  
+contractor or similar. Thus, people who started with pyx2go will soon  
+have an alternative python module that will be fully compatible with  
+the dead project pyx2go.
+
+
+5.
+For any form of conflict management, coaching, moderation within the  
+project may I recommend a very competent and communicative woman to  
+the X2go project, namely my love and partner and most valuable  
+colleague and councellor. Please contact me privately for her contact  
+data if there is any need in the project concerning  communication,  
+conflict manament, personal coaching, moderation. The work she can  
+offer can be done via phone or in person (however, not via mail...).
+
+light+love,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001113.html">[X2go-dev] Hello dead project...
+</A></li>
+	<LI>Next message: <A HREF="001114.html">[X2go-dev] Hello dead project...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1121">[ date ]</a>
+              <a href="thread.html#1121">[ thread ]</a>
+              <a href="subject.html#1121">[ subject ]</a>
+              <a href="author.html#1121">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

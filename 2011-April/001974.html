@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20concept%20for%20X2go%20session%20lock-down%20to%20kiosk-mode%0A%20%28was%20Re%3A%20X2go%20is%20insecure%29&In-Reply-To=%3Cvmime.4d9588ef.80e.22fb014dd12663b%40mail.pl20%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001976.html">
+   <LINK REL="Next"  HREF="001977.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)</H1>
+    <B>Dick Kniep</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20concept%20for%20X2go%20session%20lock-down%20to%20kiosk-mode%0A%20%28was%20Re%3A%20X2go%20is%20insecure%29&In-Reply-To=%3Cvmime.4d9588ef.80e.22fb014dd12663b%40mail.pl20%3E"
+       TITLE="[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)">dick.kniep at lindix.nl
+       </A><BR>
+    <I>Fri Apr  1 10:12:31 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001976.html">[X2go-dev] concept for X2go session lock-down to	kiosk-mode	(was Re: X2go is insecure)
+</A></li>
+        <LI>Next message: <A HREF="001977.html">[X2go-dev] X2go FF4 / Chrome plugin support?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1974">[ date ]</a>
+              <a href="thread.html#1974">[ thread ]</a>
+              <a href="subject.html#1974">[ subject ]</a>
+              <a href="author.html#1974">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi LIst,
+
+&#160;
+
+I completely agree with you John, it looks like some people understand the need for this and others simply don't see the point (and probably for good reasons).&#160; 
+
+However the problem is more complex than it seems, because to be able to use a wrapper, changes must be implemented in the clients. This is because the client cannot simply say anymore:
+
+&#160;
+
+x2gomount ... ... ... 
+
+&#160;
+
+or any other command it needs to execute on the server, but it has to start this command thru the wrapper. So not only do we have to change the client, but also without extra measures we will be incompatible with earlier clients and most definitely older clients will not work with a newer server.
+
+&#160;
+
+That is, IF we implement this as a standard part of the X2go package. We could implement this by adding a package (x2gokiosk?) that alters the ssh config and adds the wrapper. Requirements for this solution are:
+
+&#160;
+
+An api is needed for communications between the server and the client that defines:
+
+&#160; &#160;&#160; - Kind of server that is there (x2goserver or x2gokiosk)
+
+&#160; &#160;&#160; - Version of the interface
+
+&#160; &#160;&#160; - Possibility to retrieve the allowed commands from the server
+
+&#160;
+
+In that case we get the best of both worlds. If one wants the extra security the x2gokiosk package offers, x2gokiosk is installed and there is no problem that older clients cannot connect anymore, because the user has chosen for the extra security. 
+
+&#160;
+
+However if a newer client connects to an older server without the x2gokiosk package it should be able to see that there is no secure x2gokiosk on the other side and it should use the old way of connecting. In that case, also an older client with a newer server (no x2gokiosk) will work as expected.
+
+
+Cheers,
+
+Dick Kniep
+
+-----Oorspronkelijk bericht-----
+Van: John A. Sullivan III &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt;
+Verzonden: vr 01-04-11 02:56:09
+Aan: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>; 
+Onderwerp: Re: [X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+
+On Fri, 2011-04-01 at 02:44 +0200, Dick Kniep wrote:
+&gt;<i> Hi list,
+</I>&gt;<i> 
+</I>&gt;<i> &#160;
+</I>&gt;<i> 
+</I>&gt;<i> Reading all comments on my stone in the pond I still think it is not
+</I>&gt;<i> really clear what the problem is (and my proposed solution)
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I do not want to secure the entire server. I only want a door that can
+</I>&gt;<i> be locked. So I allow a user to use the terminal. Okay he is allowed
+</I>&gt;<i> to use the terminal and so he can do anything he likes. No problem. 
+</I>&gt;<i> 
+</I>&gt;<i> &#160;
+</I>&gt;<i> 
+</I>&gt;<i> Or I say on the server the user may only use program XYZ. XYZ starts
+</I>&gt;<i> and that is all. If XYZ deletes my system that is Okay by me. The user
+</I>&gt;<i> had access to that program and that is it.
+</I>&gt;<i> 
+</I>&gt;<i> &#160;
+</I>&gt;<i> 
+</I>&gt;<i> This can be enforced by my simple solution. From the client a command
+</I>&gt;<i> is sent, say &quot;Start terminal&quot;. Then in the wrapper, the user is
+</I>&gt;<i> matched with the command and if the match exists, the command is
+</I>&gt;<i> allowed and is executed. If not, the request is rejected.
+</I>&gt;<i> 
+</I>&gt;<i> &#160;
+</I>&gt;<i> 
+</I>&gt;<i> Maybe this can be achieved also by apparmor, but it looks to me that
+</I>&gt;<i> apparmor is intended to secure the entire system which is really not
+</I>&gt;<i> what I want. (Or maybe I am mistaken because of lack of knowledge of
+</I>&gt;<i> apparmor)
+</I>&lt;snip&gt;
+Again I confess that I've not taken a lot of time to digest this issue
+but, I wonder if the back and forth is cause because for some users,
+this would be a highly desirable feature whereas, for others, it not
+only makes no sense but would be a significant obstacle. &#160;Can it be
+built as a configurable option that can be enabled with a setting in
+x2go.conf (or whatever file we are using for configuration)? - John
+
+_______________________________________________
+X2go-dev mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+
+!DSPAM:4d9522a930777730779061!
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110401/f3498cef/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110401/f3498cef/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001976.html">[X2go-dev] concept for X2go session lock-down to	kiosk-mode	(was Re: X2go is insecure)
+</A></li>
+	<LI>Next message: <A HREF="001977.html">[X2go-dev] X2go FF4 / Chrome plugin support?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1974">[ date ]</a>
+              <a href="thread.html#1974">[ thread ]</a>
+              <a href="subject.html#1974">[ subject ]</a>
+              <a href="author.html#1974">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

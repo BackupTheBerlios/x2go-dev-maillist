@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23131%3A%20Build%20scripts%20for%20DMG%20generation%20on%20OS%20X&In-Reply-To=%3C20130301213049.12856ndmzluzwlix%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005132.html">
+   <LINK REL="Next"  HREF="005134.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23131%3A%20Build%20scripts%20for%20DMG%20generation%20on%20OS%20X&In-Reply-To=%3C20130301213049.12856ndmzluzwlix%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Mar  1 21:30:49 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005132.html">[X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X
+</A></li>
+        <LI>Next message: <A HREF="005134.html">[X2Go-Dev] Processed: Re: Bug#131: Build scripts for DMG generation on OS X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5133">[ date ]</a>
+              <a href="thread.html#5133">[ thread ]</a>
+              <a href="subject.html#5133">[ subject ]</a>
+              <a href="author.html#5133">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>tag #131 pending
+thanks
+
+Hi Clemens,
+
+On Fr 01 M&#228;r 2013 18:31:39 CET Clemens Lang wrote:
+
+&gt;<i> Package: x2goclient
+</I>&gt;<i> Version: 4.0.0.1
+</I>&gt;<i> Tags: patch
+</I>&gt;<i>
+</I>&gt;<i> As previously discussed in IRC I have created a script to build a
+</I>&gt;<i> x2goclient.dmg on OS X. Please find attached a patch against the
+</I>&gt;<i> qmake project (my system doesn't have an SDK for 10.5 anymore, and can
+</I>&gt;<i> also no longer generate PPC code; instead the required settings are set
+</I>&gt;<i> in macbuild.sh). Building i386 is no longer necessary for 10.7+ either.
+</I>&gt;<i>
+</I>&gt;<i> Also attached is a tarball holding all files required to build a disk
+</I>&gt;<i> image, which are
+</I>&gt;<i>  - macbuild.sh, the script building a dmg image
+</I>&gt;<i>  - macdmg.DS_Store, a .DS_Store file for the final disk image,
+</I>&gt;<i>    positioning the icons and setting the background image
+</I>&gt;<i>  - pkg-dmg, a perl script to simplify building disk images
+</I>&gt;<i>  - {png,svg}/macinstaller_background.*, graphics used as background of
+</I>&gt;<i>    the disk image.
+</I>&gt;<i>
+</I>&gt;<i> Please merge this into x2goclient trunk.
+</I>
+Thanks for the great work on this! Please check the latest commits on  
+x2goclient.git (branches: master and release/4.0.0.x) and let me know  
+if everything is in place.
+
+If that is the case, I would bump a release of 4.0.0.4 and you could  
+send me the x2goclient.dmg for Mac OS.
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130301/f79004d3/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130301/f79004d3/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005132.html">[X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X
+</A></li>
+	<LI>Next message: <A HREF="005134.html">[X2Go-Dev] Processed: Re: Bug#131: Build scripts for DMG generation on OS X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5133">[ date ]</a>
+              <a href="thread.html#5133">[ thread ]</a>
+              <a href="subject.html#5133">[ subject ]</a>
+              <a href="author.html#5133">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

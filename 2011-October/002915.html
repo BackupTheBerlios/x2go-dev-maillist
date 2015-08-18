@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Problem with windows x2go client 3.99.0.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Problem%20with%20windows%20x2go%20client%203.99.0.1&In-Reply-To=%3CCAAWyt1rE8w6ZQac1GiqWcC7nvWqzV9Pg22weO0hujrVGaRAQnQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002914.html">
+   <LINK REL="Next"  HREF="002916.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Problem with windows x2go client 3.99.0.1</H1>
+    <B>Daniel Lindgren</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Problem%20with%20windows%20x2go%20client%203.99.0.1&In-Reply-To=%3CCAAWyt1rE8w6ZQac1GiqWcC7nvWqzV9Pg22weO0hujrVGaRAQnQ%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] Problem with windows x2go client 3.99.0.1">bd.dali at gmail.com
+       </A><BR>
+    <I>Sun Oct 16 07:13:30 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002914.html">[X2go-Dev] Problem with windows x2go client 3.99.0.1
+</A></li>
+        <LI>Next message: <A HREF="002916.html">[X2go-Dev] Problem with windows x2go client 3.99.0.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2915">[ date ]</a>
+              <a href="thread.html#2915">[ thread ]</a>
+              <a href="subject.html#2915">[ subject ]</a>
+              <a href="author.html#2915">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;&gt;<i> &gt;&gt;&gt;&gt; x2go client 3.99.0.1 (and 3.99.0.0 and 3.01.18) is not working under
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; windows 7. Session is established but connection timeout. On the server
+</I>&gt;&gt;<i> &gt;&gt;&gt;&gt; side in log: sshd[1903]: error: connect_to localhost port 30001: failed.
+</I>
+Two things I've had problems with that sound similar:
+
+1) Symantec antivirus on 64-bit Windows 7 seems to interfere with x2go
+clients newer than 3.0-13, even if Symantec antivirus is completely
+disabled. Try 3.01-13 from
+<A HREF="http://code.x2go.org/releases/binary-win32/x2goclient/pre-git/">http://code.x2go.org/releases/binary-win32/x2goclient/pre-git/</A> or
+uninstall antivirus. Microsoft Security Essentials (free for personal
+use) worked with 3.99.0.1 on W7 x64 last time I tried.
+
+2) If the server that you're connecting to also is a client (ClientA
+-&gt; ServerA -&gt; ServerB), there could be a port conflict. Default
+incoming port 30001 is already in use by an outgoing tunnel on the
+same port. Try modifying /usr/bin/x2gostartagent on ServerA and change
+the port interval from 30000 to 30200. Do the same on ServerB, but use
+30400. Close all existing client sessions to/from the servers in the
+chain and try again.
+
+Cheers,
+Daniel
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002914.html">[X2go-Dev] Problem with windows x2go client 3.99.0.1
+</A></li>
+	<LI>Next message: <A HREF="002916.html">[X2go-Dev] Problem with windows x2go client 3.99.0.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2915">[ date ]</a>
+              <a href="thread.html#2915">[ thread ]</a>
+              <a href="subject.html#2915">[ subject ]</a>
+              <a href="author.html#2915">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

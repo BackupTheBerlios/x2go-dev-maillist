@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Status load balancing in X2go, and alternatives
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Status%20load%20balancing%20in%20X2go%2C%20and%20alternatives&In-Reply-To=%3C1316466157.1082.19.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002804.html">
+   <LINK REL="Next"  HREF="002806.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Status load balancing in X2go, and alternatives</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Status%20load%20balancing%20in%20X2go%2C%20and%20alternatives&In-Reply-To=%3C1316466157.1082.19.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] Status load balancing in X2go, and alternatives">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Mon Sep 19 23:02:37 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002804.html">[X2go-Dev] Status load balancing in X2go, and alternatives
+</A></li>
+        <LI>Next message: <A HREF="002806.html">[X2go-Dev] Status load balancing in X2go, and alternatives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2805">[ date ]</a>
+              <a href="thread.html#2805">[ thread ]</a>
+              <a href="subject.html#2805">[ subject ]</a>
+              <a href="author.html#2805">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2011-09-19 at 22:38 +0200, Paul van der Vlis wrote:
+&gt;<i> Op 16-09-11 07:31, John A. Sullivan III schreef:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; We are building that scale of environment.  For better or worse, we have
+</I>&gt;<i> &gt; been so overrun with consulting work that we are way behind where we
+</I>&gt;<i> &gt; hoped to be in our X2Go build but we have taken a different approach.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; We integrated X2Go and Linux-VServer.  Each user has a dedicated system
+</I>&gt;<i> &gt; (great for things like non-repudiation) but the extra resource
+</I>&gt;<i> &gt; requirements are minimal.  
+</I>&gt;<i> 
+</I>&gt;<i> Even with RAM? I think every user needs his own OpenOffice in RAM, so
+</I>&gt;<i> you need much more RAM this way. But maybe I'm wrong.
+</I>Nope - with the impressive hashification feature of VServer there is
+only a single copy of the binary in memory.  So if I have four hundred
+identical systems, I consume the disk space of one system and the memory
+footprint of one system (not quite realistic as it will have more
+binaries loaded than a single user would likely use but 300 users may
+have a single copy of OO in memory, 275 may have a single copy of
+Firefox, 50 a single copy of GIMP, etc., and the user data may consume
+considerably more than the binary (especially with massive Firefox
+memory leaks as we sometimes see).
+&gt;<i> 
+</I>&gt;<i> We have been thinking about using Linux containers. But we decide first
+</I>&gt;<i> to work with some shared virtual machines because we have more
+</I>&gt;<i> experience with that.  <A HREF="http://lxc.sourceforge.net/">http://lxc.sourceforge.net/</A>
+</I>&gt;<i> 
+</I>&gt;<i> &gt; We then moved the x2gocleansession
+</I>&gt;<i> &gt; processing to the VServer host so there is only one daemon running every
+</I>&gt;<i> &gt; five seconds instead of hundreds.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; We also adapted the database to use schemas - one per user, and triggers
+</I>&gt;<i> &gt; for coordinating individual user changes with the master database used
+</I>&gt;<i> &gt; by x2gocleansession and other reporting utilities we created.  Thus, we
+</I>&gt;<i> &gt; have a single database for all those potentially hundreds of X2Go
+</I>&gt;<i> &gt; servers.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Finally, we adapted the x2go printing so that we could use a single CUPS
+</I>&gt;<i> &gt; server for all X2Go users and not have hundreds of instances of CUPS
+</I>&gt;<i> &gt; running.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; So far it has scaled very nicely but I am way behind in seeing how we
+</I>&gt;<i> &gt; would make the same changes to 3.99 - John
+</I>&gt;<i> 
+</I>&gt;<i> Does every user have it's own IP on the server?
+</I>Each user has their own VM and thus their own IP and, since the VMs do
+not have root capability or system level privileges, they cannot change
+their IPs (or do things like sniff packets).  This works really nicely
+when we overlay Firepiping on the system (<A HREF="http://iscs.sourceforge.net">http://iscs.sourceforge.net</A>)
+so that we can granularly restrict what packets users can send on the
+network to shut down any snooping or attempts at escalating privileges -
+John
+&gt;<i> 
+</I>&gt;<i> With regards,
+</I>&gt;<i> Paul.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002804.html">[X2go-Dev] Status load balancing in X2go, and alternatives
+</A></li>
+	<LI>Next message: <A HREF="002806.html">[X2go-Dev] Status load balancing in X2go, and alternatives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2805">[ date ]</a>
+              <a href="thread.html#2805">[ thread ]</a>
+              <a href="subject.html#2805">[ subject ]</a>
+              <a href="author.html#2805">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

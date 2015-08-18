@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Upgrading our git branches to NX 3.5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Upgrading%20our%20git%20branches%20to%20NX%203.5&In-Reply-To=%3C20110629205748.14634apahr99e9po%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002337.html">
+   <LINK REL="Next"  HREF="002341.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Upgrading our git branches to NX 3.5</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Upgrading%20our%20git%20branches%20to%20NX%203.5&In-Reply-To=%3C20110629205748.14634apahr99e9po%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] Upgrading our git branches to NX 3.5">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Jun 29 20:57:48 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002337.html">[X2go-Dev] Upgrading our git branches to NX 3.5
+</A></li>
+        <LI>Next message: <A HREF="002341.html">[X2go-Dev] Upgrading our git branches to NX 3.5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2339">[ date ]</a>
+              <a href="thread.html#2339">[ thread ]</a>
+              <a href="subject.html#2339">[ subject ]</a>
+              <a href="author.html#2339">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Reinhard,
+
+On Mi 29 Jun 2011 16:52:47 CEST Reinhard Tartler wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> I've started to upgrade the git branches on code.x2go.org to 3.5. So far
+</I>&gt;<i> I've completed:
+</I>&gt;<i>
+</I>&gt;<i>  - nxcomp
+</I>&gt;<i>  - nxcompext
+</I>&gt;<i>  - nxcompshad
+</I>&gt;<i>  - nxproxy
+</I>
+Very great so far!!!
+
+&gt;<i> x2goagent is still missing, and this is a bit hairy. In order to find
+</I>&gt;<i> out what has been actually changed compared to NX, I've compared the
+</I>&gt;<i> sources in nxagent-3.4.0-5.tar.gz to what we ship in x2goagent. Here, I
+</I>&gt;<i> noticed that 'our' x2goagent tarball actually combines several NX
+</I>&gt;<i> 'upstream' tarballs, among others 'nxagent' and 'nx-x11'. It is not
+</I>&gt;<i> totally clear to me what tarballs have been exactly used to construct
+</I>&gt;<i> the x2goagent sources.
+</I>&gt;<i>
+</I>&gt;<i> As for modifications, I've grepped through all sources for 'x2go'
+</I>&gt;<i> markers, and compared those files against the NX version. Find the diff
+</I>&gt;<i> attached to this e-mail. Alex, do you remember any additional changes
+</I>&gt;<i> that have been done to the NX sources?
+</I>&gt;<i>
+</I>&gt;<i> As comparison, I've had a look what the freenx team is doing [1]. It
+</I>&gt;<i> seems that they have had similar problems and also combined several
+</I>&gt;<i> tarballs into the source package 'nx-x11'. Feel free to check.
+</I>&gt;<i>
+</I>&gt;<i> [1] <A HREF="https://launchpad.net/~freenx-team/+archive/ppa/+packages">https://launchpad.net/~freenx-team/+archive/ppa/+packages</A>
+</I>&gt;<i>
+</I>&gt;<i> So, how to upgrade all this mess? Well, TBH, I think the FreeNX guys are
+</I>&gt;<i> doing a great job with their package.  They have accumulated a fair
+</I>&gt;<i> number of patches (18 to my counting) so far, which are mostly
+</I>&gt;<i> undocumented but generally look reasonable on the first glance. I think
+</I>&gt;<i> it would make sense to consider using their 'nx-x11' package as basis
+</I>&gt;<i> for x2goagent and add the x2go modification as additional patch to that
+</I>&gt;<i> package.
+</I>&gt;<i>
+</I>&gt;<i> Comments/Flames welcome.
+</I>
+Alex has already patched/upgraded x2goagent to version 3.5.0.x by  
+incorporating nxagent 3.5.0-x. Unfortunately, not yet in Git.
+
+The current plan is (telephone session with Heinz yesterday) that he  
+will send me his work at the weekend and I would then upload his code  
+to x2goagent.git (if that is fine by you). Maybe then, we should take  
+individual looks at the freenx patches?!?
+
+Would that work for you? Sorry for overlaps at this point!!!
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110629/2dfebe9a/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110629/2dfebe9a/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002337.html">[X2go-Dev] Upgrading our git branches to NX 3.5
+</A></li>
+	<LI>Next message: <A HREF="002341.html">[X2go-Dev] Upgrading our git branches to NX 3.5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2339">[ date ]</a>
+              <a href="thread.html#2339">[ thread ]</a>
+              <a href="subject.html#2339">[ subject ]</a>
+              <a href="author.html#2339">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

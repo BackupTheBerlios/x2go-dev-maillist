@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go-Dev Digest, Vol 58, Issue 7
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go-Dev%20Digest%2C%20Vol%2058%2C%20Issue%207&In-Reply-To=%3C20131011141813.GK9276%40cip.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006329.html">
+   <LINK REL="Next"  HREF="006331.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go-Dev Digest, Vol 58, Issue 7</H1>
+    <B>Alexander Wuerstlein</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go-Dev%20Digest%2C%20Vol%2058%2C%20Issue%207&In-Reply-To=%3C20131011141813.GK9276%40cip.informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] X2Go-Dev Digest, Vol 58, Issue 7">snalwuer at cip.informatik.uni-erlangen.de
+       </A><BR>
+    <I>Fri Oct 11 16:18:13 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006329.html">[X2Go-Dev] X2Go-Dev Digest, Vol 58, Issue 7
+</A></li>
+        <LI>Next message: <A HREF="006331.html">[X2Go-Dev] Bug#320: windows client terminating by ctrl+alt+f
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6330">[ date ]</a>
+              <a href="thread.html#6330">[ thread ]</a>
+              <a href="subject.html#6330">[ subject ]</a>
+              <a href="author.html#6330">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 13-10-11 15:50, Madog &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">madogdevelopment at gmail.com</A>&gt; wrote:
+&gt;<i> Hi Stefan:
+</I>&gt;<i> 
+</I>&gt;<i> Thanks so much for the ping back&#8230;.my sense is while what you are
+</I>&gt;<i> suggesting is &quot;the right way&quot;, it's not practical for our user base
+</I>&gt;<i> (i.e., to ask them to generate an ssh key, email etc.).  
+</I>
+What you are suggesting is dangerously negligent with regards to
+security. Key exchanges by sending around private key material amounts
+to no sensible encryption or security at all, only a weak simulation
+thereof. Which might fool some of your users thereby endangering their
+privacy, the integrity of their data and of your service.
+
+You may be able to make the process more user-friendly by automating
+things, e.g. create a nice GUI for key creation and a phone dialogue
+system or automatically printed mail-in form to verify fingerprint and
+userid, but the basic steps will remain:
+- user creates keypair
+- user sends public key and fingerprint along with his userid.
+- you verify that public key and fingerprint match
+- you verify the authenticity of fingerprint and userid
+- only if the previous two steps were successful: you authorize the
+  public key for this userid.
+- the private key must never leave the user's computer
+
+A similar process is used to assure the user of your servers
+authenticity by means of the server's hostkey fingerprint.
+
+&gt;<i> So that might bring me back to the other parts of the email - can we
+</I>&gt;<i> work with some sort of encrypted tunnel without using ssh?
+</I>
+Maybe you could modify the x2go components to tunnel via openssl or
+gnutls, but that does not really solve your problem. You need a secure
+way to authenticate the user and for that you either need a verified
+public key from the user (be it X.509 or ssh) or the user needs to set
+some kind of password in a secure way. There are ways to do this, but
+one needs to be careful to ensure mutual authentication, which is
+exactly the same kind of problem as with the ssh keys.
+
+Also, generally any kind of &quot;build-your-own&quot;-security is very dangerous.
+History has shown that each of those homegrown solutions were lacking in
+important aspects, at least in the first few iterations of CVEs...
+Try to use ssh and do it the right way, you and your customers will be
+happier in the long run.
+
+
+
+Ciao,
+
+Alexander Wuerstlein.
+</PRE>
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006329.html">[X2Go-Dev] X2Go-Dev Digest, Vol 58, Issue 7
+</A></li>
+	<LI>Next message: <A HREF="006331.html">[X2Go-Dev] Bug#320: windows client terminating by ctrl+alt+f
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6330">[ date ]</a>
+              <a href="thread.html#6330">[ thread ]</a>
+              <a href="subject.html#6330">[ subject ]</a>
+              <a href="author.html#6330">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

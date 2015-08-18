@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Client-side%20printing%20not%20working%20%28most%20likely%20due%20to%20the%0A%20x2goserver-printing%20package%20being%20unavailable%20for%20installation%29&In-Reply-To=%3C4EEB5362.3070809%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003102.html">
+   <LINK REL="Next"  HREF="003117.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Client-side%20printing%20not%20working%20%28most%20likely%20due%20to%20the%0A%20x2goserver-printing%20package%20being%20unavailable%20for%20installation%29&In-Reply-To=%3C4EEB5362.3070809%40stefanbaur.de%3E"
+       TITLE="[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Fri Dec 16 15:19:14 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003102.html">[X2go-Dev] Printing-related question for Windows X2go client users
+</A></li>
+        <LI>Next message: <A HREF="003117.html">[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3116">[ date ]</a>
+              <a href="thread.html#3116">[ thread ]</a>
+              <a href="subject.html#3116">[ subject ]</a>
+              <a href="author.html#3116">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi List,
+
+I installed a new X2Go server and wanted to try out client-side printing.
+
+The server is running Debian Squeeze, with the following X2Go- and 
+CUPS-related packages installed:
+
+ii cups 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - server
+ii cups-bsd 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - BSD commands
+ii cups-client 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - client 
+programs (SysV)
+ii cups-common 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - common 
+files
+ii cups-driver-gutenprint 5.2.6-1 printer drivers for CUPS
+ii cups-ppdc 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - PPD 
+manipulation utilities
+ii cups-x2go 3.0.0.3-0~x2go1+squeeze~main~54~build1 X2GO printer for CUPS
+ii cupsddk 1.4.4-7+squeeze1 Common UNIX Printing System (transitional 
+package)
+ii cupsys 1.3.8-1+lenny10 Common UNIX Printing System (transitional package)
+ii cupsys-client 1.3.8-1+lenny10 Common UNIX Printing System 
+(transitional package)
+ii ghostscript-cups 8.71~dfsg2-9 The GPL Ghostscript PostScript/PDF 
+interpreter - CUPS filters
+ii hplip-cups 3.10.6-2 HP Linux Printing and Imaging - CUPS Raster 
+driver (hpcups)
+ii libcups2 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - Core library
+ii libcupscgi1 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - CGI 
+library
+ii libcupsdriver1 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - 
+Driver library
+ii libcupsimage2 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - 
+Raster image library
+ii libcupsmime1 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - MIME 
+library
+ii libcupsppdc1 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - PPD 
+manipulation library
+ii libxcompext3 1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1 NX X11 
+protocol compression extensions library
+ii libxcompshad3 3.5.0-2-0~x2go-bpo1+lenny~main~24~build1 NX shadowing 
+library
+ii x2go-keyring 2011.12.07+squeeze~main~12~build1 GnuPG keys of X2go 
+developers
+ii x2goagent 3.5.0.2-0~x2go1+squeeze~main~49~build1 Special X2go-ized X 
+agent, forked from NX-X11 (NoMachine)
+ii x2goserver 3.0.99.8-0~x2go-bpo1+lenny~main~388~build1 X2go server 
+daemon scripts
+ii x2goserver-extensions 3.0.99.8-0~x2go-bpo1+lenny~main~388~build1 X2go 
+server daemon scripts (extensions)
+
+I was unable to follow the instructions from 
+<A HREF="http://wiki.x2go.org/wiki:components:printing,">http://wiki.x2go.org/wiki:components:printing,</A> as &quot;apt-get install 
+x2goserver-printing&quot; complains:
+
+&gt;<i> Some packages could not be installed. This may mean that you have
+</I>&gt;<i> requested an impossible situation or if you are using the unstable
+</I>&gt;<i> distribution that some required packages have not yet been created
+</I>&gt;<i> or been moved out of Incoming.
+</I>&gt;<i> The following information may help to resolve the situation:
+</I>&gt;<i>
+</I>&gt;<i> The following packages have unmet dependencies:
+</I>&gt;<i>  x2goserver-printing : Depends: x2goserver (&lt; 
+</I>&gt;<i> 3.0.99.8-0~x2go1+squeeze~main~373~build1.1~) but 
+</I>&gt;<i> 3.0.99.8-0~x2go-bpo1+lenny~main~388~build1 is to be installed
+</I>&gt;<i> E: Broken packages
+</I>&gt;<i>
+</I>
+I decided to continue anyways and set up printing as described:
+
+&gt;<i> Description: Virtual X2GO Printer
+</I>&gt;<i>    Location: Cloud
+</I>&gt;<i>      Driver: Generic CUPS-X2GO Printer (color, 2-sided printing)
+</I>&gt;<i>  Connection: cups-x2go:/
+</I>&gt;<i>    Defaults: job-sheets=none, none media=iso_a4_210x297mm sides=one-sided
+</I>
+On the client side (Windows 7 Home Premium, German, 32-bit) I installed 
+X2Go Client V. 3.99.0.2.
+I enabled client-side printing in the session settings, and configured 
+the local default printer in the X2Go Client general settings.
+
+Nothing happens when I try to print, so I guess I can't do without the 
+x2goserver-printing package.
+
+What needs to be done?
+
+Kind Regards,
+Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003102.html">[X2go-Dev] Printing-related question for Windows X2go client users
+</A></li>
+	<LI>Next message: <A HREF="003117.html">[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3116">[ date ]</a>
+              <a href="thread.html#3116">[ thread ]</a>
+              <a href="subject.html#3116">[ subject ]</a>
+              <a href="author.html#3116">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

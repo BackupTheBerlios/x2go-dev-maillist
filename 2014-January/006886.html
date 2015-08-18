@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#414: X2Go issue (in src:x2goserver) has been marked	as pending for release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23414%3A%20X2Go%20issue%20%28in%20src%3Ax2goserver%29%20has%20been%20marked%0A%09as%20pending%20for%20release&In-Reply-To=%3C20140128180452.2F87F5DB17%40ymir%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006884.html">
+   <LINK REL="Next"  HREF="006887.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#414: X2Go issue (in src:x2goserver) has been marked	as pending for release</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23414%3A%20X2Go%20issue%20%28in%20src%3Ax2goserver%29%20has%20been%20marked%0A%09as%20pending%20for%20release&In-Reply-To=%3C20140128180452.2F87F5DB17%40ymir%3E"
+       TITLE="[X2Go-Dev] Bug#414: X2Go issue (in src:x2goserver) has been marked	as pending for release">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Jan 28 19:04:52 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006884.html">[X2Go-Dev] Processed: your mail
+</A></li>
+        <LI>Next message: <A HREF="006887.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goserver) has been marked as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6886">[ date ]</a>
+              <a href="thread.html#6886">[ thread ]</a>
+              <a href="subject.html#6886">[ subject ]</a>
+              <a href="author.html#6886">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>tag #414 pending
+fixed #414 4.0.1.14
+thanks
+
+Hello,
+
+X2Go issue #414 (src:x2goserver) reported by you has been
+fixed in X2Go Git. You can see the changelog below, and you can
+check the diff of the fix at:
+
+    <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=b3717e6">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=b3717e6</A>
+
+The issue will most likely be fixed in src:x2goserver (4.0.1.14).
+
+light+love
+X2Go Git Admin (on behalf of the sender of this mail)
+
+---
+commit b3717e6fcae16de8e695dee5ba78021b5ab6e39a
+Author: Orion Poplawski &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at cora.nwra.com</A>&gt;
+Date:   Tue Jan 28 18:57:58 2014 +0100
+
+    Fix wrong path to xinitrd.d in Xsession (section for RPM based distros). Also, add some existence/readability checking. (Fixes: #414).
+
+diff --git a/debian/changelog b/debian/changelog
+index a121f94..6b201f8 100644
+--- a/debian/changelog
++++ b/debian/changelog
+@@ -1,9 +1,15 @@
+ x2goserver (4.0.1.14-0x2go1) UNRELEASED; urgency=low
+ 
++  [ Mike Gabriel ]
+   * New upstream release (4.0.1.14):
+     - Log SSHFS output and errors to ~/.x2go/C-&lt;session&gt;/sshfs-mounts.log.
+       (Fixes: #415).
+ 
++  [ Orion Poplawski ]
++  * New upstream release (4.0.1.14):
++    - Fix wrong path to xinitrd.d in Xsession (section for RPM based distros).
++      Also, add some existence/readability checking. (Fixes: #414).
++
+  -- Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;  Tue, 28 Jan 2014 13:41:38 +0100
+ 
+ x2goserver (4.0.1.13-0x2go1) unstable; urgency=low
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006884.html">[X2Go-Dev] Processed: your mail
+</A></li>
+	<LI>Next message: <A HREF="006887.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goserver) has been marked as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6886">[ date ]</a>
+              <a href="thread.html#6886">[ thread ]</a>
+              <a href="subject.html#6886">[ subject ]</a>
+              <a href="author.html#6886">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

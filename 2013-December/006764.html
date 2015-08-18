@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#389: Spelling/English language syntax patches to	x2goclient
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23389%3A%20Spelling/English%20language%20syntax%20patches%20to%0A%09x2goclient&In-Reply-To=%3C52C178C3.3000006%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006763.html">
+   <LINK REL="Next"  HREF="006765.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#389: Spelling/English language syntax patches to	x2goclient</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23389%3A%20Spelling/English%20language%20syntax%20patches%20to%0A%09x2goclient&In-Reply-To=%3C52C178C3.3000006%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Bug#389: Spelling/English language syntax patches to	x2goclient">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Mon Dec 30 14:44:35 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006763.html">[X2Go-Dev] Bug#387: use dbus-launch to start recent gnome-terminal	applications
+</A></li>
+        <LI>Next message: <A HREF="006765.html">[X2Go-Dev] Bug#388: New wiki account for Schlomo Schapiro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6764">[ date ]</a>
+              <a href="thread.html#6764">[ thread ]</a>
+              <a href="subject.html#6764">[ subject ]</a>
+              <a href="author.html#6764">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>package: x2goclient
+severity: normal
+version: 4.0.1.3
+
+These patches fix some spelling/English language syntax issues in 
+x2goclient.
+
+-Stefan
+-------------- next part --------------
+&gt;<i>From be21c758269ea1908a48e5beef53f23e7c521eda Mon Sep 17 00:00:00 2001
+</I>From: &quot;Stefan Baur (BAUR-ITCS UG haftungsbeschraenkt)&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kontakt at baur-itcs.de</A>&gt;
+Date: Mon, 30 Dec 2013 13:54:52 +0100
+Subject: [PATCH 1/5] Fixed spelling/English language syntax
+
+---
+ httpbrokerclient.cpp |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/httpbrokerclient.cpp b/httpbrokerclient.cpp
+index 6e7e067..991089f 100644
+--- a/httpbrokerclient.cpp
++++ b/httpbrokerclient.cpp
+@@ -172,7 +172,7 @@ void HttpBrokerClient::slotSshServerAuthError(int error, QString sshMessage, Ssh
+         return ;
+     case SSH_SERVER_FILE_NOT_FOUND:
+         errMsg=tr ( &quot;Could not find known host file.&quot;
+-                    &quot;If you accept the host key here, the file will be automatically created&quot; );
++                    &quot;If you accept the host key here, the file will be automatically created.&quot; );
+         break;
+ 
+     case SSH_SERVER_NOT_KNOWN:
+-- 
+1.7.10.4
+
+-------------- next part --------------
+&gt;<i>From cc077d113608f73957e8137e5995b94806b3e373 Mon Sep 17 00:00:00 2001
+</I>From: &quot;Stefan Baur (BAUR-ITCS UG haftungsbeschraenkt)&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kontakt at baur-itcs.de</A>&gt;
+Date: Mon, 30 Dec 2013 13:55:00 +0100
+Subject: [PATCH 2/5] Fixed spelling/English language syntax
+
+---
+ onmainwindow.cpp |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/onmainwindow.cpp b/onmainwindow.cpp
+index b49230c..ccec923 100644
+--- a/onmainwindow.cpp
++++ b/onmainwindow.cpp
+@@ -3059,7 +3059,7 @@ void ONMainWindow::slotSshServerAuthError ( int error, QString sshMessage, SshMa
+         return ;
+     case SSH_SERVER_FILE_NOT_FOUND:
+         errMsg=tr ( &quot;Could not find known host file.&quot;
+-                    &quot;If you accept the host key here, the file will be automatically created&quot; );
++                    &quot;If you accept the host key here, the file will be automatically created.&quot; );
+         break;
+ 
+     case SSH_SERVER_NOT_KNOWN:
+@@ -9835,7 +9835,7 @@ void ONMainWindow::slotConfigXinerama()
+     QRect newGeometry=proxyWinGeometry();
+     if (newGeometry.isNull())
+     {
+-        x2goWarningf(7)&lt;&lt; tr(&quot;Error getting window geometry (window closed)?&quot;);
++        x2goWarningf(7)&lt;&lt; tr(&quot;Error getting window geometry. (Window closed?)&quot;);
+         xineramaTimer-&gt;stop();
+         return;
+     }
+-- 
+1.7.10.4
+
+-------------- next part --------------
+&gt;<i>From 54a23b21a6db02cc207665157cdca170b33c04d1 Mon Sep 17 00:00:00 2001
+</I>From: &quot;Stefan Baur (BAUR-ITCS UG haftungsbeschraenkt)&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kontakt at baur-itcs.de</A>&gt;
+Date: Mon, 30 Dec 2013 13:56:04 +0100
+Subject: [PATCH 3/5] Fixed spelling/English language syntax
+
+---
+ sessionwidget.cpp |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/sessionwidget.cpp b/sessionwidget.cpp
+index 5874a92..5a2895a 100644
+--- a/sessionwidget.cpp
++++ b/sessionwidget.cpp
+@@ -307,7 +307,7 @@ void SessionWidget::slot_proxyGetKey()
+                          &quot;portable mode. You should &quot;
+                          &quot;use a path on your usb device &quot;
+                          &quot;to be able to access your data &quot;
+-                         &quot;whereever you are&quot; ),
++                         &quot;whereever you are.&quot; ),
+                     QMessageBox::Ok,QMessageBox::NoButton );
+                 slot_getKey();
+                 return;
+@@ -420,7 +420,7 @@ void SessionWidget::slot_getKey()
+                          &quot;portable mode. You should &quot;
+                          &quot;use a path on your usb device &quot;
+                          &quot;to be able to access your data &quot;
+-                         &quot;whereever you are&quot; ),
++                         &quot;whereever you are.&quot; ),
+                     QMessageBox::Ok,QMessageBox::NoButton );
+                 slot_getKey();
+                 return;
+-- 
+1.7.10.4
+
+-------------- next part --------------
+&gt;<i>From e8bff102e4c34e095246393cf3590b3769da4319 Mon Sep 17 00:00:00 2001
+</I>From: &quot;Stefan Baur (BAUR-ITCS UG haftungsbeschraenkt)&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kontakt at baur-itcs.de</A>&gt;
+Date: Mon, 30 Dec 2013 13:56:10 +0100
+Subject: [PATCH 4/5] Fixed spelling/English language syntax
+
+---
+ sharewidget.cpp |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/sharewidget.cpp b/sharewidget.cpp
+index 1c24191..d6c52b3 100644
+--- a/sharewidget.cpp
++++ b/sharewidget.cpp
+@@ -177,7 +177,7 @@ void ShareWidget::slot_openDir()
+                          &quot;portable mode. You should &quot;
+                          &quot;use a path on your usb device &quot;
+                          &quot;to be able to access your data &quot;
+-                         &quot;whereever you are&quot; ),
++                         &quot;whereever you are.&quot; ),
+                     QMessageBox::Ok,QMessageBox::NoButton );
+                 slot_openDir();
+                 return;
+-- 
+1.7.10.4
+
+-------------- next part --------------
+&gt;<i>From 6e30cbb2331031f3d74b092e17045e9c2b000e47 Mon Sep 17 00:00:00 2001
+</I>From: &quot;Stefan Baur (BAUR-ITCS UG haftungsbeschraenkt)&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kontakt at baur-itcs.de</A>&gt;
+Date: Mon, 30 Dec 2013 13:56:17 +0100
+Subject: [PATCH 5/5] Fixed spelling/English language syntax
+
+---
+ sshmasterconnection.cpp |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/sshmasterconnection.cpp b/sshmasterconnection.cpp
+index aa8269d..a206e6e 100755
+--- a/sshmasterconnection.cpp
++++ b/sshmasterconnection.cpp
+@@ -1149,7 +1149,7 @@ bool SshMasterConnection::userAuthKrb()
+     if (!ssh.waitForFinished(20000))
+     {
+         sshProcErrString=ssh.errorString();
+-        authErrors&lt;&lt;tr(&quot;Failed to start SSH Client. Please check your installation and GSSApi configuration&quot;);
++        authErrors&lt;&lt;tr(&quot;Failed to start SSH Client. Please check your installation and GSSApi configuration.&quot;);
+         authErrors&lt;&lt;sshProcErrString;
+ #ifdef DEBUG
+         x2goDebug&lt;&lt;&quot;ssh not finished:&quot; &lt;&lt;sshProcErrString&lt;&lt;endl;
+@@ -1175,7 +1175,7 @@ bool SshMasterConnection::userAuthKrb()
+ 
+     if (ssh.exitCode() == 0 &amp;&amp; ssh.exitStatus() == 0 &amp;&amp; outp== user)
+         return true;
+-    authErrors&lt;&lt;tr(&quot;Check your GSSApi configuration or choose another authentication method&quot;);
++    authErrors&lt;&lt;tr(&quot;Check your GSSApi configuration or choose another authentication method.&quot;);
+     return false;
+ }
+ 
+-- 
+1.7.10.4
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006763.html">[X2Go-Dev] Bug#387: use dbus-launch to start recent gnome-terminal	applications
+</A></li>
+	<LI>Next message: <A HREF="006765.html">[X2Go-Dev] Bug#388: New wiki account for Schlomo Schapiro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6764">[ date ]</a>
+              <a href="thread.html#6764">[ thread ]</a>
+              <a href="subject.html#6764">[ subject ]</a>
+              <a href="author.html#6764">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

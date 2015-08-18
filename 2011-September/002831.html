@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] X2Go printing crash [was: libssh, nagle, and performance issues]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20X2Go%20printing%20crash%20%5Bwas%3A%20libssh%2C%20nagle%2C%0A%20and%20performance%20issues%5D&In-Reply-To=%3C1316753579.1082.173.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002830.html">
+   <LINK REL="Next"  HREF="002813.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] X2Go printing crash [was: libssh, nagle, and performance issues]</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20X2Go%20printing%20crash%20%5Bwas%3A%20libssh%2C%20nagle%2C%0A%20and%20performance%20issues%5D&In-Reply-To=%3C1316753579.1082.173.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] X2Go printing crash [was: libssh, nagle, and performance issues]">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Sep 23 06:52:59 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002830.html">[X2go-Dev] X2Go printing crash [was: libssh, nagle, and performance issues]
+</A></li>
+        <LI>Next message: <A HREF="002813.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2831">[ date ]</a>
+              <a href="thread.html#2831">[ thread ]</a>
+              <a href="subject.html#2831">[ subject ]</a>
+              <a href="author.html#2831">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2011-09-22 at 14:51 -0400, John A. Sullivan III wrote:
+&gt;<i> On Thu, 2011-09-22 at 07:51 +0200, Oleksandr Shneyder wrote:
+</I>&gt;<i> &gt; Am 21.09.2011 22:55, schrieb John A. Sullivan III:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; I tried to intercept it with ddd but that didn't work.  Interestingly,
+</I>&gt;<i> &gt; &gt; its messages were that the program closed normally as if x2goprinting is
+</I>&gt;<i> &gt; &gt; invoking a close event.  I'll see what I can do to get this to run from
+</I>&gt;<i> &gt; &gt; a debugger but it is a showstopping bug for us - John
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> &gt; Hallo John,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I still thinking, that client crashes because it cannot work with output
+</I>&gt;<i> &gt; from your server. Can you give me a X2Go account on one of your servers,
+</I>&gt;<i> &gt; where you have troubles with printing?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; regards
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> Thanks, Alex.  I'm working on getting that set up for you.
+</I>&gt;<i> Interestingly, even if I cancel the print job from the x2go print
+</I>&gt;<i> dialog, x2goclient still exits - John
+</I>&gt;<i> 
+</I>&lt;snip&gt;
+Argh! the printing seems to be misbehaving on the demo system - taking a
+long time and often failing.  I do not see where it is messing up.
+However, I do wonder if we have a backwards compatibility problem.  Here
+is what is happening on our server end.  The cups-x2go backend perl
+script has been modified so the jobs are sent with the following:
+
+system (&quot;scp -i $printdsa $pfile $tfile x2goprint\@$x2goserver:&quot;);
+system( &quot;ssh -i $printdsa  x2goprint\@$x2goserver \&quot;sudo x2goprint
+$userName $sess $bname $bname.title\&quot;&quot; );
+
+In other words, we are transferring the print and title file and placing
+it in the x2goprint user's home directory (which happens to
+be /var/spool/x2goprint) and then invoking x2goprint in the x2go server
+via an ssh command.
+
+The x2goprint command is from 3.0.1-5.  It just seems to move the file
+to the appropriate directory:
+
+my ($tm,$tm,$uid,$gid,$tm,$tm,$tm,$homedir)=getpwnam(&quot;x2goprint&quot;);
+my $printdir=$homedir;
+
+my $title;
+if( -e &quot;$printdir/$titleFile&quot;)
+{
+     open (TITLE,&quot;&lt;$printdir/$titleFile&quot;);
+     $title=&lt;TITLE&gt;;
+     close (TITLE);
+     unlink(&quot;$printdir/$titleFile&quot;);
+}
+
+
+($tm,$tm,$uid,$gid,$tm,$tm,$tm,$homedir)=getpwnam($user);
+
+my $spooldir=&quot;/tmp/spool_$user/$session&quot;;
+
+my $mounts=`sudo x2gopgwrapper getmounts $session`;
+if( $mounts=~m/$spooldir/)
+{
+     move (&quot;$printdir/$file&quot;, &quot;$spooldir&quot;) or die &quot;$!: Can't rename
+$file to $homedir/.x2go/C-$session/$file&quot;;
+#     chown $uid, $gid, &quot;$homedir/.x2go/C-$session/$file&quot;;
+#     system (&quot;su $user -c \&quot;mv $homedir/.x2go/C-$session/$file
+$spooldir\&quot;&quot;);
+
+     my $counter = 0;
+     while ( ! -f &quot;$spooldir/$file.ready&quot; &amp;&amp; $counter &lt; 10 )
+     {
+        open (RFILE,&quot;&gt;$spooldir/$file.ready&quot;);
+        print RFILE &quot;$file\n$title&quot;;
+        close (RFILE);
+        $counter = $counter + 1;
+     }
+     if ( $counter &gt; 1 ) { syslog(&quot;info&quot;, &quot;Failed to write ready file -
+Count $counter - C-$session/$file&quot;); }
+
+To get to the demo system, point your client to vdhost01.pacifera.com
+and use port 442.  Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002830.html">[X2go-Dev] X2Go printing crash [was: libssh, nagle, and performance issues]
+</A></li>
+	<LI>Next message: <A HREF="002813.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2831">[ date ]</a>
+              <a href="thread.html#2831">[ thread ]</a>
+              <a href="subject.html#2831">[ subject ]</a>
+              <a href="author.html#2831">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

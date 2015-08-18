@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] New major distribution builds available for X2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3C20120220092253.15316od32z0jcdlp%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003533.html">
+   <LINK REL="Next"  HREF="003540.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] New major distribution builds available for X2go</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3C20120220092253.15316od32z0jcdlp%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] New major distribution builds available for X2go">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Feb 20 09:22:53 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003533.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+        <LI>Next message: <A HREF="003540.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3536">[ date ]</a>
+              <a href="thread.html#3536">[ thread ]</a>
+              <a href="subject.html#3536">[ subject ]</a>
+              <a href="author.html#3536">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alex,
+
+On Mo 20 Feb 2012 08:41:22 CET Oleksandr Shneyder wrote:
+
+&gt;<i> Am 18.02.2012 02:33, schrieb Mike Gabriel:
+</I>&gt;<i> [............]
+</I>&gt;&gt;<i>     &#9500;&#9472;&#9472; libxomGeneric.so
+</I>&gt;&gt;<i>     &#9500;&#9472;&#9472; libxomGeneric.so.2 -&gt; libxomGeneric.so
+</I>&gt;&gt;<i>     &#9492;&#9472;&#9472; Xinerama
+</I>&gt;&gt;<i>         &#9500;&#9472;&#9472; libNX_X11.so.6 -&gt; ../../../libX11.so.6
+</I>&gt;&gt;<i>         &#9500;&#9472;&#9472; libNX_Xext.so.6 -&gt; ../../../libXext.so.6
+</I>&gt;&gt;<i>         &#9500;&#9472;&#9472; libNX_Xinerama.so -&gt; libNX_Xinerama.so.1.0
+</I>&gt;&gt;<i>         &#9500;&#9472;&#9472; libNX_Xinerama.so.1 -&gt; libNX_Xinerama.so.1.0
+</I>&gt;&gt;<i>         &#9500;&#9472;&#9472; libNX_Xinerama.so.1.0
+</I>&gt;&gt;<i>         &#9500;&#9472;&#9472; libXinerama.so -&gt; libNX_Xinerama.so
+</I>&gt;&gt;<i>         &#9492;&#9472;&#9472; libXinerama.so.1 -&gt; libNX_Xinerama.so.1
+</I>&gt;<i> [............]
+</I>&gt;<i>
+</I>&gt;<i> It works, but now we have libNX_Xinerama.so.1 twice: in
+</I>&gt;<i> /usr/lib/nx/X11/Xinerama/ and in /usr/lib/nx/X11/
+</I>&gt;<i>
+</I>&gt;<i> because there no need to have libNX_Xinerama (only libXinerama) in
+</I>&gt;<i> /usr/lib/nx/X11/Xinerama/ I would not install libNX_Xinerama.so.1.0 in
+</I>&gt;<i> this directory, but only make links:
+</I>&gt;<i>
+</I>&gt;<i> libXinerama.so.* -&gt; ../libNX_Xinerama.so.*
+</I>
+like this?
+
+[...]
+&#9500;&#9472;&#9472; libxomGeneric.so
+&#9500;&#9472;&#9472; libxomGeneric.so.2 -&gt; libxomGeneric.so
+&#9492;&#9472;&#9472; Xinerama
+     &#9500;&#9472;&#9472; libNX_X11.so.6 -&gt; ../../../libX11.so.6
+     &#9500;&#9472;&#9472; libNX_Xext.so.6 -&gt; ../../../libXext.so.6
+     &#9500;&#9472;&#9472; libXinerama.so -&gt; ../libNX_Xinerama.so
+     &#9492;&#9472;&#9472; libXinerama.so.1 -&gt; ../libNX_Xinerama.so.1
+
+I have the patch pending on my notebook, waiting for your ok.
+
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120220/6630409b/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120220/6630409b/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003533.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+	<LI>Next message: <A HREF="003540.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3536">[ date ]</a>
+              <a href="thread.html#3536">[ thread ]</a>
+              <a href="subject.html#3536">[ subject ]</a>
+              <a href="author.html#3536">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

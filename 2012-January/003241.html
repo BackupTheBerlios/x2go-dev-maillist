@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2goserver patch
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20patch&In-Reply-To=%3C4F215FA6.8070207%40math.uni-goettingen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003239.html">
+   <LINK REL="Next"  HREF="003242.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2goserver patch</H1>
+    <B>Jochen Schulz</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20patch&In-Reply-To=%3C4F215FA6.8070207%40math.uni-goettingen.de%3E"
+       TITLE="[X2go-Dev] x2goserver patch">schulz at math.uni-goettingen.de
+       </A><BR>
+    <I>Thu Jan 26 15:13:58 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003239.html">[X2go-Dev] x2goserver patch (was: Re: NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing))
+</A></li>
+        <LI>Next message: <A HREF="003242.html">[X2go-Dev] x2goserver patch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3241">[ date ]</a>
+              <a href="thread.html#3241">[ thread ]</a>
+              <a href="subject.html#3241">[ subject ]</a>
+              <a href="author.html#3241">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi!
+
+&gt;<i> Committed, will be in x2goserver 3.0.99.10...
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=e887a2beb7d4d82f9401ebf219f6e13f38635114">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=e887a2beb7d4d82f9401ebf219f6e13f38635114</A>
+</I>
+Thanks! i will check it out.
+
+&gt;&gt;<i> 3) we use kerberos here and to correctly pass the the KRB5CCNAME to the
+</I>&gt;&gt;<i> running session i wrote a line with &quot;export KRB5CCNAME&quot; in
+</I>&gt;&gt;<i> x2goruncommand. This also is now obsolete because you implemented
+</I>&gt;&gt;<i> Xsession-support.
+</I>&gt;<i> 
+</I>&gt;<i> I use Kerberos a lot, too, and have not needed this so far. Even without
+</I>&gt;<i> x2goserver-xsession installed. Could you specifiy on this?
+</I>
+for the principle functionality of authentification/authorization via
+kerberos there is no problem. To succesfully use single-sign-on with
+kerberos or be able to held a kerberos-authorized nfsv4 mount you need a
+valid ticket-cache all the time and the software must know where to look
+(KRB5CCNAME). the way x2goruncommand was doing it, the started session
+(in our case it is gnome-session) didn't know anything about KRB5CCNAME
+and also all subsequent processes didn't know either.
+
+	Jochen
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: schulz.vcf
+Type: text/x-vcard
+Size: 347 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120126/19513d22/attachment.vcf">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120126/19513d22/attachment.vcf</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 5005 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120126/19513d22/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120126/19513d22/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003239.html">[X2go-Dev] x2goserver patch (was: Re: NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing))
+</A></li>
+	<LI>Next message: <A HREF="003242.html">[X2go-Dev] x2goserver patch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3241">[ date ]</a>
+              <a href="thread.html#3241">[ thread ]</a>
+              <a href="subject.html#3241">[ subject ]</a>
+              <a href="author.html#3241">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

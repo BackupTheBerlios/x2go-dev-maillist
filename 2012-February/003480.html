@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Re%3A%20x2godesktopsharing%20SIGSEV%20-%20how%20to%0A%20compile%20with%20debugging%20info%3F&In-Reply-To=%3C20120218005542.91585btmv34wnkse%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003410.html">
+   <LINK REL="Next"  HREF="003482.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Re%3A%20x2godesktopsharing%20SIGSEV%20-%20how%20to%0A%20compile%20with%20debugging%20info%3F&In-Reply-To=%3C20120218005542.91585btmv34wnkse%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Feb 18 00:55:42 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003410.html">[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+</A></li>
+        <LI>Next message: <A HREF="003482.html">[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3480">[ date ]</a>
+              <a href="thread.html#3480">[ thread ]</a>
+              <a href="subject.html#3480">[ subject ]</a>
+              <a href="author.html#3480">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi All,
+
+On Mo 13 Feb 2012 22:10:26 CET Milan Kn&#237;&#382;ek wrote:
+
+&gt;<i> V Sun, 12 Feb 2012 22:48:02 +0100
+</I>&gt;<i> Milan Kn&#237;&#382;ek &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">knizek.confy at gmail.com</A>&gt; naps&#225;no:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hello,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I get Segmentation fault when I right-click on x2godesktopsharing
+</I>&gt;&gt;<i> icon in the system tray and choose &quot;Activate Desktop Sharing&quot;. (Arch
+</I>&gt;&gt;<i> Linux.)
+</I>&gt;<i>
+</I>&gt;<i> The segfault was due to non-existent &quot;x2godesktopsharing&quot; group in the
+</I>&gt;<i> system.
+</I>&gt;<i>
+</I>&gt;<i> This involves two matters:
+</I>&gt;<i>
+</I>&gt;<i> x Arch Linux does not allow for group names longer then 16 characters.
+</I>&gt;<i>
+</I>&gt;<i> x x2godesktopsharing should check for existence of the group and quit
+</I>&gt;<i> nicely otherwise.
+</I>&gt;<i>
+</I>&gt;<i> Since I am not a coder, I was able to solve only the first issue -
+</I>&gt;<i> patches are attached. (The debian postinst script should probably
+</I>&gt;<i> handle the original group name as well - e.g. move the members to the
+</I>&gt;<i> new group.)
+</I>&gt;<i>
+</I>&gt;<i> It would be nice if it is accepted upstream, since a similar limitation
+</I>&gt;<i> might also exist on other *nix systems.
+</I>
+I need some feedback from the other devs how to handle this. We/I  
+changed from group x2godesktopshare to x2godesktopsharing more or less  
+recently, but was not aware of gid-lenght limitations in POSIX.
+
+What do other devs think of reverting the group name change?
+
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120218/030197fb/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120218/030197fb/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003410.html">[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+</A></li>
+	<LI>Next message: <A HREF="003482.html">[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3480">[ date ]</a>
+              <a href="thread.html#3480">[ thread ]</a>
+              <a href="subject.html#3480">[ subject ]</a>
+              <a href="author.html#3480">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

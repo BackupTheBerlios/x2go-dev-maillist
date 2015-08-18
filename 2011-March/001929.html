@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Questions about the source
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Questions%20about%20the%20source&In-Reply-To=%3CAANLkTi%3DyvE5CNGmYFw860OaBupbOhx8xm0oQqCSVM7Bg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001925.html">
+   <LINK REL="Next"  HREF="001930.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Questions about the source</H1>
+    <B>Tyler Jameson Little</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Questions%20about%20the%20source&In-Reply-To=%3CAANLkTi%3DyvE5CNGmYFw860OaBupbOhx8xm0oQqCSVM7Bg%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] Questions about the source">beatgammit at gmail.com
+       </A><BR>
+    <I>Sat Mar 19 19:43:55 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001925.html">[X2go-dev] Questions about the source
+</A></li>
+        <LI>Next message: <A HREF="001930.html">[X2go-dev] Questions about the source
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1929">[ date ]</a>
+              <a href="thread.html#1929">[ thread ]</a>
+              <a href="subject.html#1929">[ subject ]</a>
+              <a href="author.html#1929">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks everyone for your input.  Here in my idea outlined in steps:
+
+
+   1. Rewrite the interface with SSH to instead forward the compressed
+   traffic over HTTP to the browser
+      1. Create a module for NodeJS
+      2. Create a websocket with a browser that supports websockets
+      3. Transmit data over the websocket
+   2. Decompress the chunks as they come on the browser
+   3. Update each chunk on the HTML canvas
+
+I think the HTML5 canvas is robust enough to support an entire x session,
+especially with hardware acceleration, which is common in many modern
+browsers, particularly IE 9, Chrome, Opera, and Safari (I think Firefox 4
+will handle it too).  I'm not sure if there are many differences  between
+the server on Linux, Mac and Windows, but I figured I'd start with Gnome on
+Linux for the server, and Chrome for the client.
+
+I figure I'd not bother encrypting the traffic as that can be done over
+HTTPS.  Ajax has a lot of overhead because each Ajax request has it's own
+HTTP header, so I thought I'd try to use websockets where available so new
+chunks can be pushed to the client without any HTTP overhead.  I don't want
+to use VNC because it has way too much overhead and is also kind of buggy (I
+have used an implementation called guacamole which does the same thing mine
+does except with VNC).  I also like the idea of being able to transmit only
+a single window.  From what I've read, x2go is capable of this, and possibly
+much more.
+
+I can't do anything else as asking you for some patience.
+
+
+Don't worry, I am very much in an early development phase and I don't need
+the most current software.  I'm just glad that I've found a group this
+helpful.
+
+We will not be using one of the big Git portals like Github, though. This is
+&gt;<i> mainly because of date protection laws in Germany that we would like to be
+</I>&gt;<i> compliant with (Google analytics et al.).
+</I>
+
+I was thinking of hosting my modifications of the code on GitHub.  I am in
+the United States of America, so we obviously don't have the same laws as
+Germany does.  Should I not post my code on GitHub?  I would really like to
+share my changes, and I already use GitHub for a lot of my other open source
+projects, but I'd be willing to not include x2go's code on my GitHub account
+and instead give instructions for obtaining the code.
+
+Then look at the url. The following command did work for me:
+git clone <A HREF="git://i4git.informatik.uni-erlangen.de/x2goagent.git">git://i4git.informatik.uni-erlangen.de/x2goagent.git</A>
+Does it work for you now?
+
+
+Yes, thank you. I was trying to access the code under the projects/
+directory, but obviously that didn't work.
+
+Which repositories are necessary for getting a simple server up and running?
+ I don't need anything like sound, printing, etc, just enough to get a
+normal NX server running on gnome.  I'll start with this and when I get
+something setup, I'll add features.
+
+Once I get a basic server up and running, I can experiment with turning it
+into a NodeJS module and pipe it over HTTP.  I was thinking about using
+OpenNX as a reference for my client because it said it was a drop-in
+replacement for the original NX client.
+
+Mike mentioned that the source will be released under the AGPL.  Is there
+any chance that it could ever be released under a less restrictive license?
+ I would like to release my code under the MIT or similar license, but I
+will try to abide by the AGPL as closely as possible.  I may have more
+questions about whether I can release my code under a different license as I
+get closer to a working product.  Once I get something up and running.
+
+On Sat, Mar 19, 2011 at 9:14 AM, Heinz-M. Graesing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at x2go.org</A>&gt;wrote:
+
+&gt;<i> Hi Tyler,
+</I>&gt;<i>
+</I>&gt;<i> welcome on our List!
+</I>&gt;<i>
+</I>&gt;<i> Am 19.03.2011 07:35, schrieb Tyler Jameson Little:
+</I>&gt;<i>
+</I>&gt;<i> &gt; Mike informed me that the x2go team is already developing browser
+</I>&gt;<i> plugins,
+</I>&gt;<i> &gt; but I wanted a way to integrate a remote session into a browser using
+</I>&gt;<i> pure
+</I>&gt;<i> &gt; HTML5 and JavaScript.
+</I>&gt;<i>
+</I>&gt;<i> His sounds very intersting!
+</I>&gt;<i>
+</I>&gt;<i> &gt; Has the x2go team significantly modified the base NX server code?  If so,
+</I>&gt;<i> &gt; where can I get the full source code for the server (not just the
+</I>&gt;<i> scripts)?
+</I>&gt;<i>
+</I>&gt;<i> So you've found the scripts in our git - the purpose of those scripts is
+</I>&gt;<i> to initiate the needed command on server side. This means they take care
+</I>&gt;<i> about the session management, the mounted directories, the audio
+</I>&gt;<i> redicrection and so on. The main task is done by those needed services
+</I>&gt;<i> and if you want to write a client on HTML/Javascript base you'll need to
+</I>&gt;<i> contact those services too.
+</I>&gt;<i> NX is a rendering protocol, so you wont find already rendered diff
+</I>&gt;<i> screen segments like vnc. A real native implementation would need to
+</I>&gt;<i> render all primitives drawn in the X screen to be converted to the HTML
+</I>&gt;<i> Canvas Element. I've played with the Canvas Element a lot, but I always
+</I>&gt;<i> needed some local components to do all the needed work. The result would
+</I>&gt;<i> again be an extension for the browser which needs to be installed - like
+</I>&gt;<i> our plugin solution. But the plugin is now a variant of x2goclient so it
+</I>&gt;<i> won't need another code base.
+</I>&gt;<i> But this is what I've experienced - I really would like to hear more of
+</I>&gt;<i> your ideas about this.
+</I>&gt;<i>
+</I>&gt;<i> What already can be done:
+</I>&gt;<i> Use a virtual x2go display with ajaxvnc (or any other HTML VNC solution)
+</I>&gt;<i> and access it via your browser. The occuring problem is, that you'll get
+</I>&gt;<i> no advantages to a pure vnc environment, because the nx/x2goagent is not
+</I>&gt;<i> displayed locally...
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> &gt; I will mostly want to be looking at where the data gets sent to the
+</I>&gt;<i> client,
+</I>&gt;<i> &gt; but I'm not sure where the best place to look for that would be.
+</I>&gt;<i>
+</I>&gt;<i> The communication you are looking for is the communication between a
+</I>&gt;<i> X-client and a X-server. To make it more complicated - yes in this
+</I>&gt;<i> special case it is compressed and encrypted (ssh - I don't see how to
+</I>&gt;<i> access ssh via javascript) too.
+</I>&gt;<i>
+</I>&gt;<i> I really see a lot of Use Cases for such a client, because it could be
+</I>&gt;<i> used on totally closed brickware!
+</I>&gt;<i>
+</I>&gt;<i> So again - welcome on our list. Thank you for your interest and for
+</I>&gt;<i> sharing you idea with us. Maybe some more time is needed, but I don't
+</I>&gt;<i> consider this task as &quot;hopeless&quot; (as other projects are working on
+</I>&gt;<i> similar ideas):
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://blogs.gnome.org/alexl/2011/03/15/gtk-html-backend-update/">http://blogs.gnome.org/alexl/2011/03/15/gtk-html-backend-update/</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i>
+</I>&gt;<i> Heinz
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110319/6751cbe8/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110319/6751cbe8/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001925.html">[X2go-dev] Questions about the source
+</A></li>
+	<LI>Next message: <A HREF="001930.html">[X2go-dev] Questions about the source
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1929">[ date ]</a>
+              <a href="thread.html#1929">[ thread ]</a>
+              <a href="subject.html#1929">[ subject ]</a>
+              <a href="author.html#1929">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

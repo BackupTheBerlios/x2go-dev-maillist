@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fwd%3A%20%5BBug%201033876%5D%20New%3A%20x2go%20session%20does%20not%20set%0A%20correct%20keyboard%20type&In-Reply-To=%3C5298AFA9.4060402%40cora.nwra.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006502.html">
+   <LINK REL="Next"  HREF="006529.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type</H1>
+    <B>Orion Poplawski</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fwd%3A%20%5BBug%201033876%5D%20New%3A%20x2go%20session%20does%20not%20set%0A%20correct%20keyboard%20type&In-Reply-To=%3C5298AFA9.4060402%40cora.nwra.com%3E"
+       TITLE="[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type">orion at cora.nwra.com
+       </A><BR>
+    <I>Fri Nov 29 16:15:53 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006502.html">[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+</A></li>
+        <LI>Next message: <A HREF="006529.html">[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6528">[ date ]</a>
+              <a href="thread.html#6528">[ thread ]</a>
+              <a href="subject.html#6528">[ subject ]</a>
+              <a href="author.html#6528">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 11/28/2013 01:46 AM, Mike Gabriel wrote:
+&gt;<i> Hi Orion,
+</I>&gt;<i>
+</I>&gt;<i> On  Do 28 Nov 2013 01:12:18 CET, Orion Poplawski wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> This in x2gostartagent seems wrong:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> if [ &quot;$X2GO_SET_KBD&quot; == &quot;0&quot; ] || [ &quot;$X2GO_KBD_TYPE&quot; != &quot;auto&quot; ]; then
+</I>&gt;&gt;<i>         $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;blocking creation of
+</I>&gt;&gt;<i> agent's keyboard file ${SESSION_DIR}/keyboard as requested by session
+</I>&gt;&gt;<i> startup command&quot;
+</I>&gt;&gt;<i>         mkdir -p ${SESSION_DIR}/keyboard
+</I>&gt;&gt;<i> fi
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In the normal case, X2GO_SET_KBD is 1 and the type is specified as
+</I>&gt;&gt;<i> pc105/us or pc105/gb, etc.  Since X2GO_KBD_TYPE != auto it does not
+</I>&gt;&gt;<i> set the keyboard setttings.
+</I>&gt;<i>
+</I>&gt;<i> This is a bit hacky, I agree. Let me start from the beginning...
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> The ~/.x2go/&lt;session&gt;/keyboard file gets created by x2goagent. Always.
+</I>&gt;<i> It is a file containing settings for the client-side keyboard. This
+</I>&gt;<i> parameter in this file can be used to configure the session keyboard
+</I>&gt;<i> automagically.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Now, we have three different keyboard setup types (actually four):
+</I>&gt;<i>
+</I>&gt;<i> 1. do not do anything about keyboard setup
+</I>&gt;<i>
+</I>&gt;<i>    -&gt; X2GO_SET_KBD = 0
+</I>&gt;<i>    -&gt; X2GO_KBD_TYPE = null/null (or so)
+</I>&gt;<i>
+</I>&gt;<i> 2. set a keyboard specified in X2Go Client
+</I>&gt;<i>
+</I>&gt;<i>    -&gt; X2GO_SET_KBD = 1
+</I>&gt;<i>    -&gt; X2GO_KBD_TYPE = pc105/de (or so)
+</I>&gt;<i>
+</I>
+So, in this case, how are the keyboard settings supposed to be applied?
+
+&gt;<i> 3. auto-detect client-side keyboard
+</I>&gt;<i>
+</I>&gt;<i>    -&gt; X2GO_SET_KBD = 1
+</I>&gt;<i>    -&gt; X2GO_KBD_TYPE = auto
+</I>&gt;<i>
+</I>&gt;<i> Only with this third parameter combination we want the
+</I>&gt;<i> ~/.x2go/&lt;session&gt;/keyboard to be created by x2goagent. Best (only?) way
+</I>&gt;<i> for this is blocking the file name with a directory. x2goagent will
+</I>&gt;<i> silently stumble over this blocked directory/file name and it will not
+</I>&gt;<i> create the keyboard file.
+</I>&gt;<i>
+</I>&gt;<i> (4. from Mac OS X you can theoretically use X2GO_KBD_TYPE = query. In
+</I>&gt;<i> X2Go Client, however, there is code that sets X2GO_KBD_TYPE=query and
+</I>&gt;<i> X2GO_SET_KBD=0, this basically disables the X2GO_KBD_TYPE=query. I
+</I>&gt;<i> tested with a Mac User on IRC lately how the effect would be if we
+</I>&gt;<i> switched this combination to X2GO_KBD_TYPE=query and X2GO_SET_KBD=1. On
+</I>&gt;<i> his setup that change worked, so I added that to the latest X2Go Server
+</I>&gt;<i> release. However, Anders has just reported a f****-up keyboard layout
+</I>&gt;<i> since the latest X2Go Server release and I suspect that that code is
+</I>&gt;<i> effecting that).
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Next fact that comes into play here now is: the script x2gosetkeyboard.
+</I>&gt;<i> This script is responsible for reading the ~/.x2go/&lt;session&gt;/keyboard,
+</I>&gt;<i> extracting its information and running setxkbmap on the X2Go session's
+</I>&gt;<i> $DISPLAY. This, I found, is only good working well, if that
+</I>&gt;<i> x2gosetkeyboard call is evoked from x2goruncommand. However,
+</I>&gt;<i> x2goruncommand does not know about X2GO_SET_KBD and X2GO_KBD_TYPE.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Thus, I have to leave a message for x2gosetkeyboard via the
+</I>&gt;<i> x2gostartagent script. The information required is: is x2gosetkeyboard
+</I>&gt;<i> supposed to run or not. This I do with creating
+</I>&gt;<i> ~/.x2go/&lt;session&gt;/keyboard as a directory prior to launching x2goagent.
+</I>&gt;<i>
+</I>&gt;<i> So, IMHO the if clause above is just selecting the described case.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i> I'm not sure what is trying to be done here.  An earlier comparison is:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> if [ &quot;$X2GO_SET_KBD&quot; == &quot;0&quot; ] || [ &quot;$X2GO_KBD_TYPE&quot; == &quot;auto&quot; ];then
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> X2GO_HOST=&quot;nx/nx,link=${X2GO_LINK},pack=${X2GO_PACK},limit=0,root=${SESSION_DIR},cache=8M,images=32M,type=${X2GO_TYPE},id=${SESSION_NAME},cookie=$X2GO_COOKIE,errors=${SESSION_LOG},kbtype=null/null,${option_geometry}resize=${X2GO_RESIZE},fullscreen=${X2GO_FULLSCREEN},accept=${REMOTE},listen=${GR_PORT},client=linux,menu=0&quot;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> else
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> X2GO_HOST=&quot;nx/nx,link=${X2GO_LINK},pack=${X2GO_PACK},limit=0,root=${SESSION_DIR},cache=8M,images=32M,type=${X2GO_TYPE},id=${SESSION_NAME},cookie=$X2GO_COOKIE,errors=${SESSION_LOG},kbtype=${X2GO_KBD_TYPE},${option_geometry}resize=${X2GO_RESIZE},fullscreen=${X2GO_FULLSCREEN},accept=${REMOTE},listen=${GR_PORT},client=linux,menu=0&quot;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> fi
+</I>&gt;<i>
+</I>&gt;<i> This one is also correct... In this if clause we set the NX option
+</I>&gt;<i> kbtype=null/null or kbtype=${X2GO_KBD_TYPE}. We only want to set
+</I>&gt;<i> kbtype=${X2GO_KBD_TYPE}, if it is not auto and X2GO_SET_KBD is enabled.
+</I>&gt;<i> This is handled by the above quoted if-clause IMHO.
+</I>&gt;<i>
+</I>&gt;&gt;<i> So you probably want a == auto.
+</I>&gt;<i>
+</I>&gt;<i> Don't think so...
+</I>
+You may be right - we tried this and apparently it doesn't help (with 
+both KDE and XFCE).  I wonder if something in the desktop environment 
+settings is overriding the settings.
+
+-- 
+Orion Poplawski
+Technical Manager                     303-415-9701 x222
+NWRA/CoRA Division                    FAX: 303-415-9702
+3380 Mitchell Lane                  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at cora.nwra.com</A>
+Boulder, CO 80301              <A HREF="http://www.cora.nwra.com">http://www.cora.nwra.com</A>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006502.html">[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+</A></li>
+	<LI>Next message: <A HREF="006529.html">[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6528">[ date ]</a>
+              <a href="thread.html#6528">[ thread ]</a>
+              <a href="subject.html#6528">[ subject ]</a>
+              <a href="author.html#6528">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

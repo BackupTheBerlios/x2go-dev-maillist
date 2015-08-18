@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Nothing to do with X2go - Question about X11 terminal
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Nothing%20to%20do%20with%20X2go%20-%20Question%20about%20X11%20terminal&In-Reply-To=%3C4BF029A0.1010500%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000465.html">
+   <LINK REL="Next"  HREF="000469.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Nothing to do with X2go - Question about X11 terminal</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Nothing%20to%20do%20with%20X2go%20-%20Question%20about%20X11%20terminal&In-Reply-To=%3C4BF029A0.1010500%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] Nothing to do with X2go - Question about X11 terminal">paul at vandervlis.nl
+       </A><BR>
+    <I>Sun May 16 19:21:36 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000465.html">[X2go-dev] Nothing to do with X2go - Question about X11 terminal
+</A></li>
+        <LI>Next message: <A HREF="000469.html">[X2go-dev] Nothing to do with X2go - Question about X11 terminal
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#467">[ date ]</a>
+              <a href="thread.html#467">[ thread ]</a>
+              <a href="subject.html#467">[ subject ]</a>
+              <a href="author.html#467">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I expect you can netboot with the device. But you need a tftp server and
+your own DHCP server for that. Read about it, X2go offers what you want.
+
+GDM/XDMCP is the wrong way. X2go don't uses it. That's for LTSP.
+
+With regards,
+Paul van der Vlis.
+
+
+Johnson Lukose schreef:
+&gt;<i> Dear Sirs, may I post a question regarding a non-x2go issue?
+</I>&gt;<i> 
+</I>&gt;<i> If it is ok, here is my query;
+</I>&gt;<i> I have Linux Mint 8 (Helena / Ubuntu 9.10) installed on my desktop at
+</I>&gt;<i> home.  A friend of mine was clearing his office and gave me a piece of
+</I>&gt;<i> Wyse Winterm WT5420XL.  I grabbed it with the view of connecting this
+</I>&gt;<i> thin client to my desktop so that my family can access the desktop.
+</I>&gt;<i> 
+</I>&gt;<i> I thought it was plug and play but it is not so.  I don't know where to
+</I>&gt;<i> begin / how to get started. 
+</I>&gt;<i> 
+</I>&gt;<i> I looked at <A HREF="http://www.wyse.com">http://www.wyse.com</A> but WT5420XL was not even listed in the
+</I>&gt;<i> product range!  The firmware is Winterm 5000 series / V1.0.6 (Build
+</I>&gt;<i> 407).  The closest is WT5440XL.  Anyway, the website has only references
+</I>&gt;<i> of hooking up to Citrix or similar high priced thin client server
+</I>&gt;<i> environments.  There is no reference of hooking up to a standard Linux
+</I>&gt;<i> Mint / Ubuntu desktop, for any of their products in their product range.
+</I>&gt;<i> 
+</I>&gt;<i> I am connected to the internet via an Aztech ADSL (4-port + Wifi)
+</I>&gt;<i> router-modem.  This Aztech router-modem is the DHCP server.  I connected
+</I>&gt;<i> the WT5420XL to this router-modem.  My desktop is 192.168.1.100, the
+</I>&gt;<i> WT5420XL is 192.168.1.101
+</I>&gt;<i> 
+</I>&gt;<i> In the WT5420XL Terminal Properties / Network I selected &quot;Obtain an IP
+</I>&gt;<i> address from a DHCP server&quot;.  When I click to Terminal Properties /
+</I>&gt;<i> SysInfo I can see that in the TCP/IP Settings the IP Address is
+</I>&gt;<i> 192.168.1.101, Gateway 192.168.1.1 (Aztech router-modem).
+</I>&gt;<i> 
+</I>&gt;<i> In /etc/gdm/custom.conf the setting is as follows;
+</I>&gt;<i> ************************************************************
+</I>&gt;<i> # GDM configuration storage
+</I>&gt;<i> 
+</I>&gt;<i> [xdmcp]
+</I>&gt;<i> Enable=true
+</I>&gt;<i> DisplaysPerHost=2
+</I>&gt;<i> 
+</I>&gt;<i> [chooser]
+</I>&gt;<i> 
+</I>&gt;<i> [security]
+</I>&gt;<i> 
+</I>&gt;<i> [debug]
+</I>&gt;<i> 
+</I>&gt;<i> [daemon]
+</I>&gt;<i> TimedLoginEnable=false
+</I>&gt;<i> AutomaticLoginEnable=false
+</I>&gt;<i> TimedLogin=johnson
+</I>&gt;<i> AutomaticLogin=johnson
+</I>&gt;<i> TimedLoginDelay=30
+</I>&gt;<i> ************************************************************
+</I>&gt;<i> In the Winterm Connection Manager / Configure I click on Add / New
+</I>&gt;<i> Connection and select X Connection.  In Winterm Connection Manager /
+</I>&gt;<i> Configure / XSetup / Start I select &quot;Remote Desktop Mode&quot;.  In Winterm
+</I>&gt;<i> Connection Manager / Configure / XSetup / Connect I select XDMCP-Query
+</I>&gt;<i> and for XDMCP Server I enter 192.168.1.100.  And I give this the Title
+</I>&gt;<i> &quot;Linux1&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> In In the Winterm Connection Manager / Connections I click on &quot;Linux1&quot;,
+</I>&gt;<i> the screen goes into black&amp;white mode than a few seconds later the error
+</I>&gt;<i> box &quot;Xconnection error / No respond from XDMCP server.&quot; appears. 
+</I>&gt;<i> Clicking OK will bring me back to the Winterm Connection Manager screen.
+</I>&gt;<i> 
+</I>&gt;<i> I have been searching the web and stumbled across x2go's website.
+</I>&gt;<i> 
+</I>&gt;<i> If this is not an appropriate question here, please point me to a
+</I>&gt;<i> relevant forum.
+</I>&gt;<i> 
+</I>&gt;<i> thanks.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------------------------------------------------
+</I>&gt;<i> Hotmail: Trusted email with powerful SPAM protection. Sign up now.
+</I>&gt;<i> &lt;<A HREF="https://signup.live.com/signup.aspx?id=60969">https://signup.live.com/signup.aspx?id=60969</A>&gt;
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------------------------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000465.html">[X2go-dev] Nothing to do with X2go - Question about X11 terminal
+</A></li>
+	<LI>Next message: <A HREF="000469.html">[X2go-dev] Nothing to do with X2go - Question about X11 terminal
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#467">[ date ]</a>
+              <a href="thread.html#467">[ thread ]</a>
+              <a href="subject.html#467">[ subject ]</a>
+              <a href="author.html#467">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

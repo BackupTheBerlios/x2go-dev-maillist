@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Off-the-shelf thin clients
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Off-the-shelf%20thin%20clients&In-Reply-To=%3C4C498922.8090705%40debian.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000883.html">
+   <LINK REL="Next"  HREF="000892.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Off-the-shelf thin clients</H1>
+    <B>Philipp Huebner</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Off-the-shelf%20thin%20clients&In-Reply-To=%3C4C498922.8090705%40debian.org%3E"
+       TITLE="[X2go-dev] Off-the-shelf thin clients">debalance at debian.org
+       </A><BR>
+    <I>Fri Jul 23 14:20:50 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000883.html">[X2go-dev] Off-the-shelf thin clients
+</A></li>
+        <LI>Next message: <A HREF="000892.html">[X2go-dev] Off-the-shelf thin clients
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#888">[ date ]</a>
+              <a href="thread.html#888">[ thread ]</a>
+              <a href="subject.html#888">[ subject ]</a>
+              <a href="author.html#888">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On 22.07.2010 16:52, John A. Sullivan III wrote:
+&gt;<i> Hello, all.  We have two clients interested in using thin clients to
+</I>&gt;<i> access X2Go Server.  This is not an area of expertise for me.  I do see
+</I>&gt;<i> the documentation on creating an image for a thin client with X2Go as
+</I>&gt;<i> the display manager.
+</I>&gt;<i> 
+</I>&gt;<i> However, does anyone know of any thin clients that will run relatively
+</I>&gt;<i> &quot;off-the-shelf&quot; with X2Go either by using the firefox plugin or a simple
+</I>&gt;<i> installation of the standard X2Go client? Thanks - John
+</I>
+I collected some experience with thin clients from HP. The image is a
+stripped down Debian where all access to command line has been blocked
+and the dpkg binary manually deleted.
+
+It's not hard to modify the system, just boot Linux from either PXE or USB.
+
+They have Firefox installed, so you should be able to use the X2go
+firefox plugin.
+
+Extract /usr/bin/dpkg from the dpkg package and copy it in, and you're
+able to install packages. This way you should also be able to include
+the x2goclient.
+
+I preferred to have real PXE thinclients and set up a chroot on a
+Skolelinux Terminalserver: <A HREF="http://blog.debalance.de/?p=125">http://blog.debalance.de/?p=125</A>
+
+
+Regards,
+-- 
+ .''`.   Philipp Huebner &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">debalance at debian.org</A>&gt;
+:<i> :'  :  pgp fp: 6719 25C5 B8CD E74A 5225  3DF9 E5CA 8C49 25E4 205F
+</I>`. `'`   HP: <A HREF="http://www.debalance.de,">http://www.debalance.de,</A> Skype: philipp-huebner
+  `-     ICQ: 235-524-440, Jabber: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">der_schakal at jabber.org</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100723/2928a2f6/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100723/2928a2f6/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000883.html">[X2go-dev] Off-the-shelf thin clients
+</A></li>
+	<LI>Next message: <A HREF="000892.html">[X2go-dev] Off-the-shelf thin clients
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#888">[ date ]</a>
+              <a href="thread.html#888">[ thread ]</a>
+              <a href="subject.html#888">[ subject ]</a>
+              <a href="author.html#888">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

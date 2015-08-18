@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2go, printing, Vserver, PostgreSQL
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2go%2C%20printing%2C%20Vserver%2C%20PostgreSQL&In-Reply-To=%3C20120923205338.19012fb37kz57s1e%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004305.html">
+   <LINK REL="Next"  HREF="004313.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2go, printing, Vserver, PostgreSQL</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2go%2C%20printing%2C%20Vserver%2C%20PostgreSQL&In-Reply-To=%3C20120923205338.19012fb37kz57s1e%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] X2go, printing, Vserver, PostgreSQL">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sun Sep 23 20:53:38 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004305.html">[X2Go-Dev] X2go, printing, Vserver, PostgreSQL
+</A></li>
+        <LI>Next message: <A HREF="004313.html">[X2Go-Dev] X2go, printing, Vserver, PostgreSQL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4307">[ date ]</a>
+              <a href="thread.html#4307">[ thread ]</a>
+              <a href="subject.html#4307">[ subject ]</a>
+              <a href="author.html#4307">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Ted,
+
+I am not sure (and do not have the time to x-check) if the wiki page  
+contains what I provide as info in this mail. If there is a mismatch  
+between wiki and my info could you please update the wiki page? Thanks  
+in advance.
+
+On Sa 22 Sep 2012 17:17:04 CEST  wrote:
+
+&gt;<i> SETUP
+</I>&gt;<i> 1) On Vserver Guest (x2go server):
+</I>&gt;<i> - Installed and set up PostgreSQL; added the &quot;user&quot; to postgres  
+</I>&gt;<i> (user1) to be used when connecting from the x2go client to the x2go  
+</I>&gt;<i> server and PostgreSQL database (x2godgadmin --adduser user1).
+</I>&gt;<i> - Installed x2go-server-printing
+</I>
+If you can login via X2Go and you use PostgreSQL as db backend then  
+your PostgreSQL setup is correct.
+
+&gt;<i> 2) On Vserver Host (Cups Server):
+</I>&gt;<i> - Installed cups-x2go
+</I>&gt;<i> - Used &quot;<A HREF="http://localhost:631">http://localhost:631</A>&quot; and added the virtual x2go printer and  
+</I>&gt;<i> shared it (we couldn't see it on the client unless we shared it)
+</I>&gt;<i> - Used Visudo to add &quot;x2goprint ALL=(ALL) NOPASSWD: /usr/bin/x2goprint
+</I>&gt;<i> - Set up SSH Keys using  
+</I>&gt;<i> <A HREF="http://www.x2go.org/doku.php/wiki:advanced:multi-node:x2goserver-printing">http://www.x2go.org/doku.php/wiki:advanced:multi-node:x2goserver-printing</A>
+</I>
+Issue 1)
+The sudo line for x2goprint user has to be placed on every X2Go server  
+(Vserver guest in your case).
+
+Issue 2)
+As <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at cups-server</A> (Vserver host) you have to be able to run this command:
+
+   $ ssh -lx2goprint -i /root/.ssh/id_dsa-x2goprint &lt;x2goserver&gt;
+
+The default key algorithm in Debian is RSA, we recommend DSA, but it  
+does not matter. Just make sure that you have the private key on the  
+cups-server under the above name and the corresponding public key in
+
+   ~x2goprint/.ssh/autorized_keys
+
+Make sure that ~x2goprint/.ssh has restrictive permissions (0700).  
+Same for files in that folder.
+
+&gt;<i> NOTE:  we had trouble getting the keys to copy over (ssh-copy-id  
+</I>&gt;<i> /usr/bin/ssh-copy-id: ERROR: No identities found).  We cannot ping  
+</I>&gt;<i> the Guest from the Host by server name (e.g.,  
+</I>&gt;<i> vserver1.mydomain.com), but can by ip address.  We ended up creating  
+</I>&gt;<i> /home/x2goprint/.ssh/authorized_keys and adding the contents of
+</I>
+Why /home/x2goprint??? The default installation procedure creates a  
+home for x2goprint: /var/spool/x2goprint, so the public key has to be  
+placed in
+
+   /var/spool/x2goprint/.ssh/authorized_keys
+
+&gt;<i> id_dsa-x2goprint.pub by hand.  We then issued ssh -i   
+</I>&gt;<i> /root/.ssh/id_dsa-x2goprint <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2goprint at x192.168.1.112</A> and got:
+</I>&gt;<i> Is this &quot;Permission denied (publickey).&quot; the cause of our problems?
+</I>
+You have to make sure that DNS works properly. For a quick test, use  
+/etc/hosts to place hostnames and IPs in. X2Go uses the hostnames to  
+connect between different machines. Check the output of  
+x2golistsessions (4th field).
+
+&gt;<i> It appears to have added an RSA key where we think the keys created  
+</I>&gt;<i> where DSA...
+</I>
+See above. The key algorithm does not matter. The ssh login (see  
+above) has to work.
+
+&gt;<i> 4)  Observations
+</I>&gt;<i> On the Vserver host (cups server)
+</I>&gt;<i> a)  the print job files show up in /var/spool/cups
+</I>&gt;<i> b)  in <A HREF="http://localhost:631">http://localhost:631</A> the print jobs show as completed
+</I>&gt;<i> c)  there are no errors in /var/log/cups/error_log and the page_log  
+</I>&gt;<i> and access_log seem to restister the successful print job and access  
+</I>&gt;<i> to the cups
+</I>
+The next step to check: on the X2Go server (vserver guest) in
+
+   /var/spool/x2goprint/
+
+If files do not appear there, check the SSH key login and check that  
+DNS works.
+
+Then the cups-x2go backend on the cups server (Vserver host) executes  
+the x2goprint command (on the vserver guest) via SSH. This only works if
+
+  (a) the SSH login from <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at cups-server</A> to <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2goprint at x2goserver</A> works
+  (b) the x2goprint user is allowed to execute the x2goprint with sudo
+
+&gt;<i> 5)  Help
+</I>&gt;<i> Q:  is this some sort of DNS issue - we can't ping  
+</I>&gt;<i> &quot;vserver1.mydomain.com&quot; but assume this is a protocol/firewall issue  
+</I>&gt;<i> and not the problem in terms of printing.
+</I>
+DNS has to work!!!
+
+&gt;<i> Q:  John Sullivan wondered if this is a permissions issue (i.e.,  
+</I>&gt;<i> does the cups server have write access to the client spool  
+</I>&gt;<i> directory):  if this is the issue, we're not sure how to test or fix  
+</I>&gt;<i> it.  We looked at the permissions on the &quot;working&quot; vs. &quot;not working&quot;  
+</I>&gt;<i> set ups on the spool directory and couldn't see any differences, but  
+</I>&gt;<i> may be missing the point.
+</I>
+cups -&gt; cups spool dir -&gt; cups-x2go
+
+cups-x2go -&gt; copy print job to <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2goprint at x2goserver</A>:~x2goprint
+cups-x2go -&gt; executes via SSH on x2goserver: ,,sudo x2goprint &lt;options&gt;''
+
+,,sudo x2goprint &lt;options&gt;'' script (on x2goserver) copies the spool  
+file into /tmp/.x2go-&lt;uid&gt;/spool/&lt;session&gt;/. Under this spool dir the  
+sshfs client-side spool directory is mounted. So now, the print job  
+files are on the X2Go Client.
+
+&gt;<i> Q:  Vserver uses an fstab configu outside of the vserver itself  
+</I>&gt;<i> where /tmp is listed as &quot;none	/tmp		tmpfs	size=128m,mode=1777	0 0&quot;  
+</I>&gt;<i> (and the /etc/fstab inside the Vserver only has &quot;# UNCONFIGURED  
+</I>&gt;<i> FSTAB FOR BASE SYSTEM&quot;).  Does the Vserver fstab set up get in the  
+</I>&gt;<i> way of the spool link writing to the /tmp/.x2go....folder on the  
+</I>&gt;<i> client?  If so, this sound like it might be along the lines of John  
+</I>&gt;<i> Sullivan's suggestion.
+</I>
+This should not be an issue.
+
+&gt;<i> Q:  did the errors we got when generated the ssh keys matter  
+</I>&gt;<i> &quot;(Permission denied (publickey).&quot;?  The content of the Vserver/Cups  
+</I>&gt;<i> Server host known hosts has:
+</I>&gt;<i> - a prefix of &quot;|1|Ha2q5mBmGyrl4CYri92TPRb6NNU=|3gihEfRTYU8UHwI4FrQcSq29Exg=&quot;
+</I>&gt;<i> - then the contents of the authorized_keys on the Vserver Guest/x2go  
+</I>&gt;<i> server /home/user1/.ssh/authorized_keys file up to but excluding the  
+</I>&gt;<i> &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at vserver1.mydomain.com</A>&quot;
+</I>
+Ahhh... this is another issue. You have to generate a known_hosts file  
+for <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at cups-server</A> that allows the login to <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2goprint at x2goserver</A>  
+(with SSH key /root/.ssh/id_dsa-x2goprint.
+
+For this, just to be sure, do several manual ssh logins from  
+cups-server to x2goserver:
+
+   ssh -lx2goprint &lt;ip&gt;
+   ssh -lx2goprint &lt;hostname&gt;
+   ssh -lx2goprint &lt;hostname&gt;.&lt;fqdn&gt;
+
+&gt;<i> Or did we create DSA keys but somehow when trying to add them got  
+</I>&gt;<i> crossed up with RSA keys (e.g., Warning: Permanently added  
+</I>&gt;<i> '192.168.1.112' (RSA) to the list of known hosts.&quot;).
+</I>
+Again, DSA or RSA doesn't really matter. Only thing important: you  
+have to be able to log in from <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at cups-server</A> to  
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2goprint at x2goserver</A> without password. Consult other SSH docs on the  
+web, if that is nothing you set up regularly.
+
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120923/00b9c98e/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120923/00b9c98e/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004305.html">[X2Go-Dev] X2go, printing, Vserver, PostgreSQL
+</A></li>
+	<LI>Next message: <A HREF="004313.html">[X2Go-Dev] X2go, printing, Vserver, PostgreSQL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4307">[ date ]</a>
+              <a href="thread.html#4307">[ thread ]</a>
+              <a href="subject.html#4307">[ subject ]</a>
+              <a href="author.html#4307">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

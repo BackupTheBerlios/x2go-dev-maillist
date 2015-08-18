@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] cups-x2go and new x2goserver
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20cups-x2go%20and%20new%20x2goserver&In-Reply-To=%3C4E563EDA.9030907%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002730.html">
+   <LINK REL="Next"  HREF="002735.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] cups-x2go and new x2goserver</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20cups-x2go%20and%20new%20x2goserver&In-Reply-To=%3C4E563EDA.9030907%40obviously-nice.de%3E"
+       TITLE="[X2go-Dev] cups-x2go and new x2goserver">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Thu Aug 25 14:23:54 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002730.html">[X2go-Dev] wiki page
+</A></li>
+        <LI>Next message: <A HREF="002735.html">[X2go-Dev] cups-x2go and new x2goserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2734">[ date ]</a>
+              <a href="thread.html#2734">[ thread ]</a>
+              <a href="subject.html#2734">[ subject ]</a>
+              <a href="author.html#2734">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello list,
+
+I've made some small changes in cups-x2go to make it work with actual
+version of x2goserver. The changes are already in GIT.
+
+@Mike: the preinst script of obsolete package &quot;x2goprint&quot; has modified
+sudoers file to allow user x2goprint execute program
+&quot;/usr/bin/x2goprint&quot;. This script has also added a user x2goprint to system:
+
+#useradd -s /bin/bash -d /var/spool/x2goprint/ -r x2goprint
+
+#mkdir /var/spool/x2goprint/
+
+#chown x2goprint /var/spoo/x2goprint/
+
+#chmod 700 /var/spool/x2goprint/
+
+Now, this job user should do by himself. Creation process of x2goprint
+is not documented in our wiki. This process should be good documented or
+made by some configuration script.
+
+regards,
+alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110825/2f5f02be/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110825/2f5f02be/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002730.html">[X2go-Dev] wiki page
+</A></li>
+	<LI>Next message: <A HREF="002735.html">[X2go-Dev] cups-x2go and new x2goserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2734">[ date ]</a>
+              <a href="thread.html#2734">[ thread ]</a>
+              <a href="subject.html#2734">[ subject ]</a>
+              <a href="author.html#2734">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

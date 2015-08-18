@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20allow%20user%20to%20set%20his%20preferred%20applications%0A%20in%20%7E/.x2go/applications&In-Reply-To=%3CCAJ0cceYyUF22zL-x-8LceBhuJHOD9E%3DR5oizvdcOVsvEtk4z-w%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004640.html">
+   <LINK REL="Next"  HREF="004643.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20allow%20user%20to%20set%20his%20preferred%20applications%0A%20in%20%7E/.x2go/applications&In-Reply-To=%3CCAJ0cceYyUF22zL-x-8LceBhuJHOD9E%3DR5oizvdcOVsvEtk4z-w%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications">siretart at gmail.com
+       </A><BR>
+    <I>Tue Dec  4 14:03:40 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004640.html">[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+</A></li>
+        <LI>Next message: <A HREF="004643.html">[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4642">[ date ]</a>
+              <a href="thread.html#4642">[ thread ]</a>
+              <a href="subject.html#4642">[ subject ]</a>
+              <a href="author.html#4642">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Dec 4, 2012 at 1:58 PM, Mike Gabriel
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+
+&gt;<i> I see a push for this patch is still pending. I have two comments on the
+</I>&gt;<i> patch (belated, sorry):
+</I>&gt;<i>
+</I>&gt;<i> It would be fine to have the default/preferred applications configurable
+</I>&gt;<i> system-wide and on a per-user basis. Can you add that?
+</I>
+Err, the &quot;system-wide&quot; is currently hardcoded in the binary. Do you
+want to source additionally from some file in
+/etc/x2goserver/applications? What file should have precedence, the
+system-wide file or the file in the user home? And why?
+
+&gt;<i> Then: the name applications in ~/.x2go and /etc/x2go is already reserved.
+</I>&gt;<i> Expected is a directory or dir-symlink that contains / points to a folder
+</I>&gt;<i> with .desktop files. This is used in the x2gogetapps script and is part of
+</I>&gt;<i> the X2Go Published Applications feature.
+</I>
+Where is the specification/documentation for that? What would be the
+best place for this configuration setting?
+
+&gt;<i>
+</I>&gt;<i> Please consider using another name instead of ,,applications'' for the
+</I>&gt;<i> proposed environment file.
+</I>
+For instance X2GO_DEFAULT_APP_WWWBROWSER?
+
+Isn't that a bit too verbose?
+
+-- 
+regards,
+    Reinhard
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004640.html">[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+</A></li>
+	<LI>Next message: <A HREF="004643.html">[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4642">[ date ]</a>
+              <a href="thread.html#4642">[ thread ]</a>
+              <a href="subject.html#4642">[ subject ]</a>
+              <a href="author.html#4642">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

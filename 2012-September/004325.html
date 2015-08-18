@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2334%3A%20SSH_OPTIONS_FD&In-Reply-To=%3C50616ED5.7010209%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004324.html">
+   <LINK REL="Next"  HREF="004326.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#34: SSH_OPTIONS_FD</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2334%3A%20SSH_OPTIONS_FD&In-Reply-To=%3C50616ED5.7010209%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] Bug#34: SSH_OPTIONS_FD">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Tue Sep 25 10:44:05 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004324.html">[X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+</A></li>
+        <LI>Next message: <A HREF="004326.html">[X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4325">[ date ]</a>
+              <a href="thread.html#4325">[ thread ]</a>
+              <a href="subject.html#4325">[ subject ]</a>
+              <a href="author.html#4325">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 2012-09-25 10:25, Mike Gabriel wrote:
+&gt;<i>
+</I>&gt;<i> On Di 25 Sep 2012 05:08:19 CEST glpk xypron wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> I am not aware of proxies being contacted over https.
+</I>&gt;<i>
+</I>&gt;<i> Hmmm... this indeed is true... The feature will mostly be an
+</I>&gt;<i> inside-to-outside connection. Hmmm... To get it clear, would we send
+</I>&gt;<i> http-proxy authentication strings in cleartext to the proxy server or
+</I>&gt;<i> would we send the remote X2Go server credentials to the proxy in
+</I>&gt;<i> cleartext.
+</I>
+Client ---http &amp; Basic Auth---&gt; proxy (Basic Auth) -&gt; New Socket
+Using this new socket:
+Client ---SSL ---- Socket at Proxy ---Still same SSL---&gt; Server
+
+This we first authenticate unencrypted at the proxy using the proxy
+user/pass. Then the SSL connection is made to the server and we
+authenticate against the server.
+
+
+&gt;<i>
+</I>&gt;<i> Sending proxy auth in cleartext probably is common practice (?). Most
+</I>&gt;<i> proxy setups do not even need an auth-against-the-proxy.
+</I>
+Yep, but some do.
+
+&gt;<i>
+</I>&gt;<i> This feature clearly needs a good documentation so that we do not
+</I>&gt;<i> false security alarms on the mailing lists!!! 
+</I>
+Nay, I think this is a matter of the gui that must clearly suggest, that
+this user/password is for the proxy.
+
+/--- Proxy-----------------------\
+|<i> Enable: 
+</I>|<i> Address : 
+</I>|<i> User (optinal):
+</I>|<i> Password (optional):
+</I>\-------------------------------/
+
+Morty
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 5005 bytes
+Desc: S/MIME Kryptografische Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120925/983efe69/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120925/983efe69/attachment.bin</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004324.html">[X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+</A></li>
+	<LI>Next message: <A HREF="004326.html">[X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4325">[ date ]</a>
+              <a href="thread.html#4325">[ thread ]</a>
+              <a href="subject.html#4325">[ subject ]</a>
+              <a href="author.html#4325">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

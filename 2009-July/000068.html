@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Password in plain text!?!?!?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Password%20in%20plain%20text%21%3F%21%3F%21%3F&In-Reply-To=%3C4A72DF99.3050802%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000064.html">
+   <LINK REL="Next"  HREF="000065.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Password in plain text!?!?!?</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Password%20in%20plain%20text%21%3F%21%3F%21%3F&In-Reply-To=%3C4A72DF99.3050802%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] Password in plain text!?!?!?">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Fri Jul 31 14:12:09 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000064.html">[X2go-dev] Password in plain text!?!?!?
+</A></li>
+        <LI>Next message: <A HREF="000065.html">[X2go-dev] Problems after installing x2go 3.01
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#68">[ date ]</a>
+              <a href="thread.html#68">[ thread ]</a>
+              <a href="subject.html#68">[ subject ]</a>
+              <a href="author.html#68">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello list,
+I have found the bug described by Alexander.
+If x2goclient will terminated during ssh connection, it can not
+delete/hide file with password and it is possible to read this password
+from file in userhome\.x2go\ssh\. This file is still inaccessible for
+users that are not owner of this file, but in case of public access to
+machine (especially running windows) it is possible that unauthorized
+person read password from hard disk.
+
+To fix this bug I made some changes in x2goclient. Now x2goclient work
+as SSH_ASKPASS program. It read password from master application via
+protected local socket. To get password client must send to master
+application 128-bit cookie which is valid for only one password request.
+So, x2goclient not need to save password on disk any more.
+
+You can install x2goclient (qt) 3.0.1-2 for linux from our repository
+right now. You can also download Windows version form our site at
+evening or right now using this direct link:
+<A HREF="http://x2go.obviously-nice.de/deb/pool-lenny/x2goclient/x2goclient-3.01-2-setup.exe">http://x2go.obviously-nice.de/deb/pool-lenny/x2goclient/x2goclient-3.01-2-setup.exe</A>
+
+I will include the same changes in gtk,maemo and macos clients next week.
+
+Yours sincerely,
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 260 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090731/5bd91c80/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090731/5bd91c80/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000064.html">[X2go-dev] Password in plain text!?!?!?
+</A></li>
+	<LI>Next message: <A HREF="000065.html">[X2go-dev] Problems after installing x2go 3.01
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#68">[ date ]</a>
+              <a href="thread.html#68">[ thread ]</a>
+              <a href="subject.html#68">[ subject ]</a>
+              <a href="author.html#68">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

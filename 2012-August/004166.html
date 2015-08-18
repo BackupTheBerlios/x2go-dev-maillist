@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [gel&#246;st] pinentry-x2go: Missing replaces/conflicts with pinentry-x2go-gtk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%0A%20%3D%3Fiso-8859-1%3Fq%3F%3D5Bgel%3DF6st%3D5D_pinentry-x2go%3D3A_Missing%3F%3D%0A%20%3D%3Fiso-8859-1%3Fq%3F_replaces/conflicts_with_pinentry-x2go-gtk%3F%3D&In-Reply-To=%3C1345534287.16112.1.camel%40mattotaupa%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004165.html">
+   <LINK REL="Next"  HREF="004167.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [gel&#246;st] pinentry-x2go: Missing replaces/conflicts with pinentry-x2go-gtk</H1>
+    <B>Paul Menzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%0A%20%3D%3Fiso-8859-1%3Fq%3F%3D5Bgel%3DF6st%3D5D_pinentry-x2go%3D3A_Missing%3F%3D%0A%20%3D%3Fiso-8859-1%3Fq%3F_replaces/conflicts_with_pinentry-x2go-gtk%3F%3D&In-Reply-To=%3C1345534287.16112.1.camel%40mattotaupa%3E"
+       TITLE="[X2Go-Dev] [gel&#246;st] pinentry-x2go: Missing replaces/conflicts with pinentry-x2go-gtk">paulepanter at users.sourceforge.net
+       </A><BR>
+    <I>Tue Aug 21 09:31:27 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004165.html">[X2Go-Dev] pinentry-x2go: Missing replaces/conflicts with pinentry-x2go-gtk
+</A></li>
+        <LI>Next message: <A HREF="004167.html">[X2Go-Dev] GNOME session does not fully start up and just shows	background
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4166">[ date ]</a>
+              <a href="thread.html#4166">[ thread ]</a>
+              <a href="subject.html#4166">[ subject ]</a>
+              <a href="author.html#4166">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear Mike,
+
+
+Am Montag, den 20.08.2012, 10:30 +0200 schrieb Mike Gabriel:
+
+&gt;<i> On So 19 Aug 2012 13:04:14 CEST Paul Menzel wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; upgrading X2Go packages from Lenny to Squeeze versions, that means
+</I>&gt;<i> &gt; replacing
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;         # x2go Repository
+</I>&gt;<i> &gt;         # deb <A HREF="http://x2go.obviously-nice.de/deb/">http://x2go.obviously-nice.de/deb/</A> lenny main
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; with
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;         # X2Go Repository
+</I>&gt;<i> &gt;         deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze main
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I get the following error for `pinentry-x2go`.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;         dpkg: Fehler beim Bearbeiten von  
+</I>&gt;<i> &gt; /var/cache/apt/archives/pinentry-x2go_0.7.5.4-0~x2go1+squeeze~main~28~build1_i386.deb  
+</I>&gt;<i> &gt; (--unpack):
+</I>&gt;<i> &gt;          Versuch, &#187;/usr/share/info/pinentry.info.gz&#171; zu  
+</I>&gt;<i> &gt; &#252;berschreiben, welches auch in Paket pinentry-x2go-gtk 0.7.5-1 ist
+</I>&gt;<i> 
+</I>&gt;<i> The pinentry.info.gz file should not have been in either of the  
+</I>&gt;<i> packages as it conflicts with the same file in the pinentry-doc  
+</I>&gt;<i> package from Debian/Ubuntu.
+</I>&gt;<i> 
+</I>&gt;<i> Thus, I have remove the file completely from the package for now.
+</I>&gt;<i> 
+</I>&gt;<i> I placed Conflicts/Replaces fields into the control files of  
+</I>&gt;<i> pinentry-x2go and x2goclient, so that the obsolete -gtk versions of  
+</I>&gt;<i> those packages get removed.
+</I>&gt;<i> 
+</I>&gt;<i> New packages for the main area of our repos:
+</I>&gt;<i> deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze main
+</I>&gt;<i> 
+</I>&gt;<i> ... should be available very soon.
+</I>
+thanks a million for the quick reply and action taking! The new packages
+were installed during the next upgrade.
+
+
+Thanks,
+
+Paul
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120821/80b2a255/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120821/80b2a255/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004165.html">[X2Go-Dev] pinentry-x2go: Missing replaces/conflicts with pinentry-x2go-gtk
+</A></li>
+	<LI>Next message: <A HREF="004167.html">[X2Go-Dev] GNOME session does not fully start up and just shows	background
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4166">[ date ]</a>
+              <a href="thread.html#4166">[ thread ]</a>
+              <a href="subject.html#4166">[ subject ]</a>
+              <a href="author.html#4166">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

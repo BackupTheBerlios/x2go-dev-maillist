@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#323: x2go server refuses client with 'Error: Wrong	version or invalid session authentication cookie.'
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23323%3A%20x2go%20server%20refuses%20client%20with%20%27Error%3A%20Wrong%0A%09version%20or%20invalid%20session%20authentication%20cookie.%27&In-Reply-To=%3C3112399.Az4Yrmv0PE%40stunted%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006402.html">
+   <LINK REL="Next"  HREF="006382.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#323: x2go server refuses client with 'Error: Wrong	version or invalid session authentication cookie.'</H1>
+    <B>harry mangalam</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23323%3A%20x2go%20server%20refuses%20client%20with%20%27Error%3A%20Wrong%0A%09version%20or%20invalid%20session%20authentication%20cookie.%27&In-Reply-To=%3C3112399.Az4Yrmv0PE%40stunted%3E"
+       TITLE="[X2Go-Dev] Bug#323: x2go server refuses client with 'Error: Wrong	version or invalid session authentication cookie.'">harry.mangalam at uci.edu
+       </A><BR>
+    <I>Mon Oct 14 06:34:07 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006402.html">[X2Go-Dev] Processed: Re: Bug#322: RDP connection through SSH proxy: Unable to execute: rdesktop
+</A></li>
+        <LI>Next message: <A HREF="006382.html">[X2Go-Dev] Bug#323: Bug#323: x2go server refuses client with	'Error: Wrong version or invalid session authentication cookie.'
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6335">[ date ]</a>
+              <a href="thread.html#6335">[ thread ]</a>
+              <a href="subject.html#6335">[ subject ]</a>
+              <a href="author.html#6335">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goserver
+Version: 4.0.1 
+x86_64, CentOS 6.4, kernel 2.6.32-358.18.1.el6.centos.plus.x86_64
+
+(also x2go version 4.0.1.6 (self-compiled) on the same platform)
+
+Problem:
+After a server OS lockup and reboot, the previously working x2goserver would 
+not allow client connections from Mac, Linux, Windows.  After re-installing 
+x2gserver (x2goserver-4.0.1.6-1.1.x86_64) and x2goagent 
+(x2goagent-3.5.0.20-4.1.x86_64), it refused to connect with the client-side 
+message:
+
+===
+Session: Starting session at 'Fri Oct 11 18:11:36 2013'.
+Info: Connecting to remote host 'localhost:31030'.
+Info: Connection to remote proxy 'localhost:31030' established.
+Error: The remote NX proxy closed the connection.
+Error: Failure negotiating the session in stage '7'.
+Error: Wrong version or invalid session authentication cookie.
+Session: Terminating session at 'Fri Oct 11 18:11:37 2013'.
+Session: Session terminated at 'Fri Oct 11 18:11:37 2013'.
+===
+(dont know if this is complete since the popup only lasts 2s.)
+This error has been cited multiple times in various fora and lists, but no one 
+seems to have been able to solve it.  
+
+I can passwordlessly ssh to both servers just fine from other Linux clients. 
+
+If I don't use the ssh keys, I can enter my password and the result is the 
+same. 
+
+The server seems to be initializing the session since if I try to log in 
+multiple times, there are new sessions listed, but I'm not allowed to connect 
+to them. I can only terminate or suspend them.  
+
+Terminating them does appear to work since they are not listed on following 
+sessions if I do.  
+
+The problem does seem to be related to authentication or authorization; we use 
+ldap-based auth on the server and it's working fine otherwise, except for 
+x2go.
+
+Thanks for your work!
+
+harry
+
+---
+Harry Mangalam - Research Computing, OIT, Rm 225 MSTB, UC Irvine
+[m/c 2225] / 92697 Google Voice Multiplexer: (949) 478-4487
+415 South Circle View Dr, Irvine, CA, 92697 [shipping]
+MSTB Lat/Long: (33.642025,-117.844414) (paste into Google Maps)
+---
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131013/36934955/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131013/36934955/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006402.html">[X2Go-Dev] Processed: Re: Bug#322: RDP connection through SSH proxy: Unable to execute: rdesktop
+</A></li>
+	<LI>Next message: <A HREF="006382.html">[X2Go-Dev] Bug#323: Bug#323: x2go server refuses client with	'Error: Wrong version or invalid session authentication cookie.'
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6335">[ date ]</a>
+              <a href="thread.html#6335">[ thread ]</a>
+              <a href="subject.html#6335">[ subject ]</a>
+              <a href="author.html#6335">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

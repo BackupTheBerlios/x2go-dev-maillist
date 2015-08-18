@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2goclient.exe - Saving session settings to registry
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goclient.exe%20-%20Saving%20session%20settings%20to%20registry&In-Reply-To=%3C1329863162.2788.152.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003599.html">
+   <LINK REL="Next"  HREF="003606.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2goclient.exe - Saving session settings to registry</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goclient.exe%20-%20Saving%20session%20settings%20to%20registry&In-Reply-To=%3C1329863162.2788.152.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2Go-Dev] x2goclient.exe - Saving session settings to registry">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Feb 21 23:26:02 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003599.html">[X2Go-Dev] x2goclient.exe - Saving session settings to registry
+</A></li>
+        <LI>Next message: <A HREF="003606.html">[X2Go-Dev] x2goclient.exe - Saving session settings to registry
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3605">[ date ]</a>
+              <a href="thread.html#3605">[ thread ]</a>
+              <a href="subject.html#3605">[ subject ]</a>
+              <a href="author.html#3605">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2012-02-21 at 22:19 +0100, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A> wrote:
+&gt;<i> Am 21.02.2012 22:09, schrieb Heinz-M. Graesing:
+</I>&gt;<i> &gt; Hello Stefan,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Am 21.02.2012 15:51, schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>:
+</I>&gt;<i> &gt;&gt; Hi List,
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Using the &quot;sessions&quot; file is the default for Linux and AFAIK also for
+</I>&gt;<i> &gt;&gt; Mac OS X, so why the variation in x2goclient.exe?
+</I>&gt;<i> &gt; The &quot;registry db&quot; is the official recommended place to store application
+</I>&gt;<i> &gt; settings on this platform.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; This means that people (and applications) working with this system are
+</I>&gt;<i> &gt; looking for such information inside the registry - not an ini file.
+</I>&gt;<i> 
+</I>&gt;<i> There is no way to &quot;preseed&quot; a user profile, though, aside from some 
+</I>&gt;<i> hacks using reg.exe and a login script, as everything gets written to 
+</I>&gt;<i> HKEY_CURRENT_USER. You cannot set a domain- or machine-specific 
+</I>&gt;<i> default/template (the User named &quot;.Default&quot; does not what one might 
+</I>&gt;<i> think it does ;-)) . Also, once it is written to HKEY_CURRENT_USER, the 
+</I>&gt;<i> user can change it at will, there is no way to set it to read-only 
+</I>&gt;<i> (while there is --no-session-edit, there's nothing to stop the user from 
+</I>&gt;<i> clicking on x2goclient.exe directly).
+</I>&gt;<i> 
+</I>&gt;<i> Then again, the problem should become moot in about three weeks time, 
+</I>&gt;<i> when selectively publishing applications becomes available. ;-)
+</I>&gt;<i> 
+</I>&gt;<i> &gt; As this option is already is introduced I think a second option can only
+</I>&gt;<i> &gt; be introduced as &quot;optional&quot;.
+</I>&gt;<i> Or, you could add an autosensing capability: If there's a sessions file 
+</I>&gt;<i> present, pick that, if not, write to the registry. That way, copying a 
+</I>&gt;<i> sessions file / touching an empty file in the default location would 
+</I>&gt;<i> tell x2goclient that it should refrain from storing data in the registry.
+</I>&lt;snip&gt;
+I'm a Windows ignoramus but is this something that could be set with a
+GPO? - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003599.html">[X2Go-Dev] x2goclient.exe - Saving session settings to registry
+</A></li>
+	<LI>Next message: <A HREF="003606.html">[X2Go-Dev] x2goclient.exe - Saving session settings to registry
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3605">[ date ]</a>
+              <a href="thread.html#3605">[ thread ]</a>
+              <a href="subject.html#3605">[ subject ]</a>
+              <a href="author.html#3605">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

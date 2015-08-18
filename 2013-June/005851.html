@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#240:  Bug#240: ecdsa-sha2-nistp256 not supported
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23240%3A%20%20Bug%23240%3A%20ecdsa-sha2-nistp256%20not%20supported&In-Reply-To=%3C20130621103504.15043c3htzhtmam0%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005830.html">
+   <LINK REL="Next"  HREF="005853.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#240:  Bug#240: ecdsa-sha2-nistp256 not supported</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23240%3A%20%20Bug%23240%3A%20ecdsa-sha2-nistp256%20not%20supported&In-Reply-To=%3C20130621103504.15043c3htzhtmam0%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#240:  Bug#240: ecdsa-sha2-nistp256 not supported">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jun 21 10:35:04 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005830.html">[X2Go-Dev] Bug#240: ecdsa-sha2-nistp256 not supported
+</A></li>
+        <LI>Next message: <A HREF="005853.html">[X2Go-Dev] Processed: Re: Bug#240: ecdsa-sha2-nistp256 not supported
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5851">[ date ]</a>
+              <a href="thread.html#5851">[ thread ]</a>
+              <a href="subject.html#5851">[ subject ]</a>
+              <a href="author.html#5851">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>merge #240 #106
+thanks
+
+Hi Heinrich,
+
+On So 16 Jun 2013 21:25:13 CEST Heinrich Schuchardt wrote:
+
+&gt;<i> What I observed is that the entries in known_hosts created by ssh  
+</I>&gt;<i> that are not supported contain a string ecdsa-sha2-nistp256 instead  
+</I>&gt;<i> of ssh-rsa.
+</I>&gt;<i> Hashed entries with ssh-rsa are supported.
+</I>&gt;<i>
+</I>&gt;<i> readelf -d /usr/bin/x2goclient
+</I>&gt;<i> |does not show a dependency on libcrypto which contains the elliptic  
+</I>&gt;<i> curve cryptography functions while
+</I>&gt;<i> readlef -d /usr/bin/ssh
+</I>&gt;<i> shows such a dependency.|
+</I>
+The problem actually is that there is no ECDSA key support in libssh2  
+(which is used by X2Go Client). Unfortunately, most recent (Open)SSH  
+implementation do use ECDSA as the default key type.
+
+Thus, I will merge this bug report with #106 which tackles the same problem.
+
+Thanks+Greets,
+Mike (who is waiting desperately for the libssh2 developers to  
+implement ECDSA)
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130621/8a29ec68/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130621/8a29ec68/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005830.html">[X2Go-Dev] Bug#240: ecdsa-sha2-nistp256 not supported
+</A></li>
+	<LI>Next message: <A HREF="005853.html">[X2Go-Dev] Processed: Re: Bug#240: ecdsa-sha2-nistp256 not supported
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5851">[ date ]</a>
+              <a href="thread.html#5851">[ thread ]</a>
+              <a href="subject.html#5851">[ subject ]</a>
+              <a href="author.html#5851">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

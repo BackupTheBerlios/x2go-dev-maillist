@@ -1,0 +1,499 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] bug#18: Connecting via SSH proxy fails after a control	session got disconnected due to network timeouts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20bug%2318%3A%20Connecting%20via%20SSH%20proxy%20fails%20after%20a%20control%0A%09session%20got%20disconnected%20due%20to%20network%20timeouts&In-Reply-To=%3C20120911093537.12376hbr9mzn3zk9%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004205.html">
+   <LINK REL="Next"  HREF="004227.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] bug#18: Connecting via SSH proxy fails after a control	session got disconnected due to network timeouts</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20bug%2318%3A%20Connecting%20via%20SSH%20proxy%20fails%20after%20a%20control%0A%09session%20got%20disconnected%20due%20to%20network%20timeouts&In-Reply-To=%3C20120911093537.12376hbr9mzn3zk9%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] bug#18: Connecting via SSH proxy fails after a control	session got disconnected due to network timeouts">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Sep 11 09:35:37 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004205.html">[X2Go-Dev] bug#17: LXDE bindings: desktop icons of shared folders	do not reliably show the correct icon
+</A></li>
+        <LI>Next message: <A HREF="004227.html">[X2Go-Dev] bug#18: bug#18: Connecting via SSH proxy fails after a	control session got disconnected due to network timeouts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4206">[ date ]</a>
+              <a href="thread.html#4206">[ thread ]</a>
+              <a href="subject.html#4206">[ subject ]</a>
+              <a href="author.html#4206">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: python-x2go
+Version 0.2.0.9
+Severity: normal
+
+Python X2Go crashes sometimes...
+
+  1. session established
+  2. network fails
+  3. session receives a network timeout
+  4. session and connection will get taken down by python-x2go code
+  5. on re-connect and then session restart/resume the below exception pops up
+
+The problem is often seen when SSH proxy connections are used. Not  
+seen yet with direct SSH connections.
+
+&quot;&quot;&quot;
+pyhoca-gui[9112] (x2gocontrolsession-pylib) NOTICE: connecting to  
+[127.0.0.1]:58513
+Traceback (most recent call last):
+   File &quot;/usr/lib/pymodules/python2.6/gevent/greenlet.py&quot;, line 390, in run
+     result = self._run(*self.args, **self.kwargs)
+   File &quot;/usr/lib/python2.6/dist-packages/x2go/forward.py&quot;, line 148,  
+in x2go_forward_tunnel_handle
+     r, w, x = select.select([self.fw_socket, self.chan], [], [])
+   File &quot;/usr/lib/pymodules/python2.6/gevent/select.py&quot;, line 62, in select
+     raise error(*ex.args)
+error: (2, 'Datei oder Verzeichnis nicht gefunden')
+&lt;Greenlet at 0x3434e20: &lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13 address=127.0.0.1:58513 handle=&lt;bound method  
+X2goFwServer.x2go_forward_tunnel_handle of &lt;X2goFwServer at 0x3874090  
+fileno=13  
+address=127.0.0.1:58513&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;(&lt;socket at 0x35c9f90 fileno=15 sock=127.0.0.1:5851, ('127.0.0.1', 36176))&gt; failed with  
+error
+
+No handlers could be found for logger &quot;paramiko.transport&quot;
+&quot;&quot;&quot;
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120911/eb21e2d5/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120911/eb21e2d5/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004205.html">[X2Go-Dev] bug#17: LXDE bindings: desktop icons of shared folders	do not reliably show the correct icon
+</A></li>
+	<LI>Next message: <A HREF="004227.html">[X2Go-Dev] bug#18: bug#18: Connecting via SSH proxy fails after a	control session got disconnected due to network timeouts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4206">[ date ]</a>
+              <a href="thread.html#4206">[ thread ]</a>
+              <a href="subject.html#4206">[ subject ]</a>
+              <a href="author.html#4206">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

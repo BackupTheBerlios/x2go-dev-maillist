@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20Windows%20binary%204.0.1.2pre01&In-Reply-To=%3CCAMKht8jc8tLQ5XD51zRLFYigXLGxz%2BCXTWgXPZu8QC_zKAEt4w%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006576.html">
+   <LINK REL="Next"  HREF="006579.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01</H1>
+    <B>Michael DePaulo</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20Windows%20binary%204.0.1.2pre01&In-Reply-To=%3CCAMKht8jc8tLQ5XD51zRLFYigXLGxz%2BCXTWgXPZu8QC_zKAEt4w%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01">mikedep333 at gmail.com
+       </A><BR>
+    <I>Mon Dec  9 15:35:07 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006576.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+</A></li>
+        <LI>Next message: <A HREF="006579.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6585">[ date ]</a>
+              <a href="thread.html#6585">[ thread ]</a>
+              <a href="subject.html#6585">[ subject ]</a>
+              <a href="author.html#6585">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Dec 8, 2013 at 5:37 PM, John Williams &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jwilliams4200 at gmail.com</A>&gt; wrote:
+&gt;<i> On Sat, Dec 7, 2013 at 6:19 PM, Michael DePaulo &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mikedep333 at gmail.com</A>&gt; wrote:
+</I>&gt;&gt;<i> - For a high-level changelog of what has been fixed/improved in
+</I>&gt;&gt;<i> 4.0.1.2 so far, see:
+</I>&gt;&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=blob;f=debian/changelog;h=11e76e53b25c393932ea9c5c9f1e0b580352442e;hb=119635850c8408e45d2d2dca2f3c5b013f8da1c6">http://code.x2go.org/gitweb?p=x2goclient.git;a=blob;f=debian/changelog;h=11e76e53b25c393932ea9c5c9f1e0b580352442e;hb=119635850c8408e45d2d2dca2f3c5b013f8da1c6</A>
+</I>&gt;<i>
+</I>&gt;<i> I always like to look at changelogs, but I am not adept at navigating
+</I>&gt;<i> a gitweb. This changelog is quite different (and more informative for
+</I>&gt;<i> me) than the normal git log that I was able to navigate to myself.
+</I>&gt;<i>
+</I>&gt;<i> How did you determine the URL for this particular changelog? Will that
+</I>&gt;<i> URL for the changelog stay the same in the future, or will a new URL
+</I>&gt;<i> be required when a new version is tagged/released? How would I find a
+</I>&gt;<i> changelog URL for a new version?
+</I>
+John, I forgot to reply to this question earlier.
+
+What I linked you to was not a git changelog / commit log (I am not
+familiar with git terminology), but the debian/changelog file that is
+manually edited by x2go devs. This file is far easier to read than the
+full git changelog. That link is to the revision of that file from git
+hash 119635850c8408e45d2d2dca2f3c5b013f8da1c6  (2013-12-06), which is
+what 4.0.1.2pre01 is built from. When 4.0.1.2 is released,
+debian/changelog will most likely be updated to list additional
+changes. So you will not be able to use that URL; see the instructions
+below instead. I determined the URL by going to the git web, selecting
+that hash, and viewing the tree for it. I then browsed to the
+debian/changelog file within the tree.
+
+Whenever a new version of x2goclient is released, the changelog since
+the last release is in the announcement. You can view the changelog
+for all releases of x2goclient by doing one of the following:
+1. Browsing the x2Go-Announcement archives:
+<A HREF="https://lists.berlios.de/pipermail/x2go-announcement/">https://lists.berlios.de/pipermail/x2go-announcement/</A>
+2. You can follow this simple gitweb link, click &quot;debian&quot;, then
+&quot;changelog&quot;. This will show you the latest revision of that file:
+<A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=tree">http://code.x2go.org/gitweb?p=x2goclient.git;a=tree</A>
+3. Viewing the debian/changelog file on your system, if it is running
+debian/ubuntu. E.g., with this command in this dir:
+/usr/share/doc/x2goserver$ zcat changelog.Debian.gz
+4. You can download the .deb, extract its contents, and view the
+above-mentioned file.
+
+-Mike DePaulo
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006576.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+</A></li>
+	<LI>Next message: <A HREF="006579.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6585">[ date ]</a>
+              <a href="thread.html#6585">[ thread ]</a>
+              <a href="subject.html#6585">[ subject ]</a>
+              <a href="author.html#6585">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

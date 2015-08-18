@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not	set	correct keyboard type
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fwd%3A%20%5BBug%201033876%5D%20New%3A%20x2go%20session%20does%20not%0A%09set%09correct%20keyboard%20type&In-Reply-To=%3C1385801066.1416.2.camel%40Nokia-N900%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006529.html">
+   <LINK REL="Next"  HREF="006486.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not	set	correct keyboard type</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fwd%3A%20%5BBug%201033876%5D%20New%3A%20x2go%20session%20does%20not%0A%09set%09correct%20keyboard%20type&In-Reply-To=%3C1385801066.1416.2.camel%40Nokia-N900%3E"
+       TITLE="[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not	set	correct keyboard type">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Nov 30 09:44:26 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006529.html">[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+</A></li>
+        <LI>Next message: <A HREF="006486.html">[X2Go-Dev] Do any of the browser plugins still work, please?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6530">[ date ]</a>
+              <a href="thread.html#6530">[ thread ]</a>
+              <a href="subject.html#6530">[ subject ]</a>
+              <a href="author.html#6530">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Orion,
+
+----- Original message -----
+&gt;<i> On 11/28/2013 01:46 AM, Mike Gabriel wrote:
+</I>&gt;<i> &gt; Hi Orion,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; On&#160;  Do 28 Nov 2013 01:12:18 CET, Orion Poplawski wrote:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; This in x2gostartagent seems wrong:
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; if [ &quot;$X2GO_SET_KBD&quot; == &quot;0&quot; ] || [ &quot;$X2GO_KBD_TYPE&quot; != &quot;auto&quot; ]; then
+</I>&gt;<i> &gt; &gt; $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;blocking creation of
+</I>&gt;<i> &gt; &gt; agent's keyboard file ${SESSION_DIR}/keyboard as requested by session
+</I>&gt;<i> &gt; &gt; startup command&quot;
+</I>&gt;<i> &gt; &gt; mkdir -p ${SESSION_DIR}/keyboard
+</I>&gt;<i> &gt; &gt; fi
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; In the normal case, X2GO_SET_KBD is 1 and the type is specified as
+</I>&gt;<i> &gt; &gt; pc105/us or pc105/gb, etc.&#160;  Since X2GO_KBD_TYPE != auto it does not
+</I>&gt;<i> &gt; &gt; set the keyboard setttings.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; This is a bit hacky, I agree. Let me start from the beginning...
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The ~/.x2go/&lt;session&gt;/keyboard file gets created by x2goagent. Always.
+</I>&gt;<i> &gt; It is a file containing settings for the client-side keyboard. This
+</I>&gt;<i> &gt; parameter in this file can be used to configure the session keyboard
+</I>&gt;<i> &gt; automagically.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Now, we have three different keyboard setup types (actually four):
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 1. do not do anything about keyboard setup
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; -&gt; X2GO_SET_KBD = 0
+</I>&gt;<i> &gt; -&gt; X2GO_KBD_TYPE = null/null (or so)
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 2. set a keyboard specified in X2Go Client
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; -&gt; X2GO_SET_KBD = 1
+</I>&gt;<i> &gt; -&gt; X2GO_KBD_TYPE = pc105/de (or so)
+</I>&gt;<i> &gt; 
+</I>&gt;<i> 
+</I>&gt;<i> So, in this case, how are the keyboard settings supposed to be applied?
+</I>
+I still owe you an answer to this...
+
+The keyboard layout and the variant (Python X2Go only) in this case will get set via the client. Scan for setxkbmap in onmainwindow.cpp of X2Go Client for details.
+
+The X2GO_KBD_TYPE will be passed to nxagent, directly.
+
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976148
+
+GnuPG Key ID 0x25771B13
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006529.html">[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+</A></li>
+	<LI>Next message: <A HREF="006486.html">[X2Go-Dev] Do any of the browser plugins still work, please?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6530">[ date ]</a>
+              <a href="thread.html#6530">[ thread ]</a>
+              <a href="subject.html#6530">[ subject ]</a>
+              <a href="author.html#6530">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

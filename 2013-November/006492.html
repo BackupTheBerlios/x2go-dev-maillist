@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#348: Bug#348: x2goserver 4.0.1.8: screws up keyboard	for Mac users
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23348%3A%20Bug%23348%3A%20x2goserver%204.0.1.8%3A%20screws%20up%20keyboard%0A%09for%20Mac%20users&In-Reply-To=%3C20131126232230.Horde.vTD-MhP7XDtATw9Vvl1_AQ1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006489.html">
+   <LINK REL="Next"  HREF="006493.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#348: Bug#348: x2goserver 4.0.1.8: screws up keyboard	for Mac users</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23348%3A%20Bug%23348%3A%20x2goserver%204.0.1.8%3A%20screws%20up%20keyboard%0A%09for%20Mac%20users&In-Reply-To=%3C20131126232230.Horde.vTD-MhP7XDtATw9Vvl1_AQ1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#348: Bug#348: x2goserver 4.0.1.8: screws up keyboard	for Mac users">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Nov 27 00:22:30 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006489.html">[X2Go-Dev] Bug#348: x2goserver 4.0.1.8: screws up keyboard for Mac	users
+</A></li>
+        <LI>Next message: <A HREF="006493.html">[X2Go-Dev] Bug#348: Bug#348: x2goserver 4.0.1.8: screws up keyboard	for Mac users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6492">[ date ]</a>
+              <a href="thread.html#6492">[ thread ]</a>
+              <a href="subject.html#6492">[ subject ]</a>
+              <a href="author.html#6492">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Anders,
+
+On  Di 26 Nov 2013 11:30:19 CET, Anders Bruun Olsen wrote:
+
+&gt;<i> Package: x2goserver
+</I>&gt;<i> Version: 4.0.1.8
+</I>&gt;<i> Severity: critical
+</I>&gt;<i>
+</I>&gt;<i> After upgrading to x2goserver 4.0.1.8 the keyboard is completely screwed up
+</I>&gt;<i> in x2goclient on Mac.
+</I>&gt;<i> Downgrading x2goserver to 4.0.1.6 fixes the problem. The problem must have
+</I>&gt;<i> been introduced in 4.0.1.7 or 4.0.1.8. Perhaps that new keyboard layout
+</I>&gt;<i> detection?
+</I>&gt;<i>
+</I>&gt;<i> My setup:
+</I>&gt;<i> Server is Ubuntu 12.04 with XFCE 4.10.
+</I>&gt;<i> Client is OSX 10.9 and I have tested with x2goclient 4.0.0.4, 4.0.1.1 and
+</I>&gt;<i> latest git.
+</I>
+can you be available on IRC tomorrow for tracking this down? There  
+actually is a commit that probably has caused this, so you should  
+already manually revert that commit [1] on your servers.
+
+Sorry for this!
+Mike
+
+[1]  
+<A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=a7d331d0fc0e2e1814a081d434fad5d5d1d6511a">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=a7d331d0fc0e2e1814a081d434fad5d5d1d6511a</A>
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131126/20d58c4d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131126/20d58c4d/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006489.html">[X2Go-Dev] Bug#348: x2goserver 4.0.1.8: screws up keyboard for Mac	users
+</A></li>
+	<LI>Next message: <A HREF="006493.html">[X2Go-Dev] Bug#348: Bug#348: x2goserver 4.0.1.8: screws up keyboard	for Mac users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6492">[ date ]</a>
+              <a href="thread.html#6492">[ thread ]</a>
+              <a href="subject.html#6492">[ subject ]</a>
+              <a href="author.html#6492">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

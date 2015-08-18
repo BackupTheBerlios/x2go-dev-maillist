@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [XREF] [Qt bugreports] (QTBUG-24729) Out of source building for App bundles broken (Info.plist and ICON)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BXREF%5D%20%5BQt%20bugreports%5D%20%28QTBUG-24729%29%20Out%20of%20source%0A%20building%20for%20App%20bundles%20broken%20%28Info.plist%20and%20ICON%29&In-Reply-To=%3C4F5D784C.5050005%40ionic.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003775.html">
+   <LINK REL="Next"  HREF="003772.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [XREF] [Qt bugreports] (QTBUG-24729) Out of source building for App bundles broken (Info.plist and ICON)</H1>
+    <B>Mihai Moldovan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BXREF%5D%20%5BQt%20bugreports%5D%20%28QTBUG-24729%29%20Out%20of%20source%0A%20building%20for%20App%20bundles%20broken%20%28Info.plist%20and%20ICON%29&In-Reply-To=%3C4F5D784C.5050005%40ionic.de%3E"
+       TITLE="[X2Go-Dev] [XREF] [Qt bugreports] (QTBUG-24729) Out of source building for App bundles broken (Info.plist and ICON)">ionic at ionic.de
+       </A><BR>
+    <I>Mon Mar 12 05:15:08 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003775.html">[X2Go-Dev] RDP services
+</A></li>
+        <LI>Next message: <A HREF="003772.html">[X2Go-Dev] Error/Bug: Arrow keys on keyboard are mismapped
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3768">[ date ]</a>
+              <a href="thread.html#3768">[ thread ]</a>
+              <a href="subject.html#3768">[ subject ]</a>
+              <a href="author.html#3768">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>And this is why I don't like qmake. ;)
+
+-------- Original Message --------
+
+Mihai Moldovan created QTBUG-24729:
+--------------------------------------
+
+             Summary: Out of source building for App bundles broken (Info.plist and ICON)
+                 Key: QTBUG-24729
+                 URL: <A HREF="https://bugreports.qt-project.org/browse/QTBUG-24729">https://bugreports.qt-project.org/browse/QTBUG-24729</A>
+             Project: Qt
+          Issue Type: Bug
+          Components: Build tools: qmake
+    Affects Versions: 4.8.0, 4.7.4
+            Reporter: Mihai Moldovan
+            Assignee: Oswald Buddenhagen
+         Attachments: qt.patch
+
+Out of source building is currently broken when adding a custom Info.list file (and consequently also an icon) on Mac OS X.
+
+Consider this layout:
+
+src/
+  app.pro
+  Info.plist
+  icon.icns
+  build/
+    app.app (to be created by make)
+
+Go to build and run qmake ../app.pro.
+ 
+The problem lies within qmake, which &quot;fixifies&quot; the Info.plist path from &quot;Info.plist&quot; to &quot;../Info.plist&quot; and then can't find the find the file anymore, as qmake changes the cwd to the .pro file's directory (thus, in this example, src/).
+
+Add both parameters out_d and in_d to MakefileGenerator::fileFixify as Option::output_dir to prevent qmake from &quot;fixing&quot; the file path to a path relative from the (out of source) build dir to the source dir, so that exists() can actually find the file where ever it is, specified by the user and relative to the source dir.
+
+        
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4369 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120312/97017cd5/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120312/97017cd5/attachment.bin</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003775.html">[X2Go-Dev] RDP services
+</A></li>
+	<LI>Next message: <A HREF="003772.html">[X2Go-Dev] Error/Bug: Arrow keys on keyboard are mismapped
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3768">[ date ]</a>
+              <a href="thread.html#3768">[ thread ]</a>
+              <a href="subject.html#3768">[ subject ]</a>
+              <a href="author.html#3768">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] headless client with pyx2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20headless%20client%20with%20pyx2go&In-Reply-To=%3C1285270643.3097.1117.camel%40asus%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001084.html">
+   <LINK REL="Next"  HREF="001095.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] headless client with pyx2go</H1>
+    <B>J&#246;rg Sawatzki</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20headless%20client%20with%20pyx2go&In-Reply-To=%3C1285270643.3097.1117.camel%40asus%3E"
+       TITLE="[X2go-dev] headless client with pyx2go">joerg.sawatzki at web.de
+       </A><BR>
+    <I>Thu Sep 23 21:37:23 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001084.html">[X2go-dev] headless client with pyx2go
+</A></li>
+        <LI>Next message: <A HREF="001095.html">[X2go-dev] headless client with pyx2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1092">[ date ]</a>
+              <a href="thread.html#1092">[ thread ]</a>
+              <a href="subject.html#1092">[ subject ]</a>
+              <a href="author.html#1092">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dick,
+
+if you want insight into the way how x2go works, do not expect any help
+from the developers. The pyx2go thing has NOTHING to do with the main
+x2go project - I created it because I was tired after I asked again and
+again for GIT access to contribute to Heinz' and Alex' work.
+All the work I have done so far is based on hard reverse engineering,
+trying out things, playing around - not the most effective way but
+better than waiting for ages and still don't get a way to contribute.
+
+The project is at <A HREF="http://github.com/joerg86/pyx2go">http://github.com/joerg86/pyx2go</A> and you should not
+ask Mike to give you write access as he won't be able to do so.
+
+Clone the repository, make changes, let me check them and then I'll
+commit then. If I see that you are maintaining a good coding style and
+always provide unit tests as well, you have good chances to get write
+access. Even though the pyx2go stuff is still a bit hackish, I want to
+maintain a high quality of code in the long run. 
+
+So, once again to be sure you really got it: pyx2go is NOT x2go - it was
+born out of my personal FRUSTRATION, because all my efforts to help with
+contributions were ignored by Heinz and Alex. They have been the two
+only developers of the official x2go for the last three years and they
+will probably stay the only developers for the rest of their lives.
+
+
+J&#246;rg
+
+Am Donnerstag, den 23.09.2010, 18:15 +0200 schrieb Dick Kniep:
+&gt;<i> Hi Mike and list,
+</I>&gt;<i> 
+</I>&gt;<i> We are seasoned python developers and thus very capable in assisting in the build of pyx2go client. We could fund some of the development, but we prefer to assist in the development ourselves, because that way we have some influence in the development and also in the speed of the development. That is also why I asked for documentation.
+</I>&gt;<i> 
+</I>&gt;<i> If you have started a project for this, we would be happy to participate. So if you have an svn server or something and could give me read/write access we would definitely help. But......
+</I>&gt;<i> 
+</I>&gt;<i> We do need some information on the architecture that we would use. We have looked at the way information is  exchanged with the server and I start to understand some of it, but a lot is still blurry. So PLEASE give me some insight in the architecture and what component implements which part.
+</I>&gt;<i> 
+</I>&gt;<i> Dick Kniep
+</I>&gt;<i> Lindix BV
+</I>&gt;<i> tel. 036-5215580
+</I>&gt;<i> mob. 06-50991858
+</I>&gt;<i> 
+</I>&gt;<i> -----Oorspronkelijk bericht-----
+</I>&gt;<i> Van: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i> Verzonden: wo 22-09-10 03:16:36
+</I>&gt;<i> Aan: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>; 
+</I>&gt;<i> Onderwerp: Re: [X2go-dev] headless client with pyx2go
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Hey Dick,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; On Di 21 Sep 2010 15:18:12 CEST Dick Kniep wrote:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; &gt; Hi list,
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; We want to develop a headless client in python using pyx2go.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; The application should have the following features:
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; 1. All parameters except for the password should come from a profile  
+</I>&gt;<i> &gt; &gt; stored in the users home directory
+</I>&gt;<i> &gt; &gt; 2. The user should have the possibility to enter the password, the  
+</I>&gt;<i> &gt; &gt; username and the server, where the username and the server should be  
+</I>&gt;<i> &gt; &gt; retrieved from the profile
+</I>&gt;<i> &gt; &gt; 3. The client should support clientside printing as the x2go client
+</I>&gt;<i> &gt; &gt; 4. The home directory (or another directory) on the clientside  
+</I>&gt;<i> &gt; &gt; should be mounted with fuse on the serverside
+</I>&gt;<i> &gt; &gt; 5. The client should start XMing with all appropriate parameters
+</I>&gt;<i> &gt; &gt; 6. It should be possible to start an application from the server  
+</I>&gt;<i> &gt; &gt; side by starting a file. So if a file called test.doc exists and  
+</I>&gt;<i> &gt; &gt; that file is started, MS-Word should start.
+</I>&gt;<i> &gt; &gt; 7. The profile should be maintained by a separate program (nice gui  
+</I>&gt;<i> &gt; &gt; application)
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; We've got the demo.py running. However when it ends, the session is  
+</I>&gt;<i> &gt; &gt; terminated correctly, but a thread remains active. Probably the  
+</I>&gt;<i> &gt; &gt; thread should be joined with the mainprogram.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; Could anyone help us with documentation on the use of fuse and the  
+</I>&gt;<i> &gt; &gt; way commands are passed from client to server vice-versa?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Just last weekend I (with J&#246;rgs great help) I have started working on  
+</I>&gt;<i> &gt; such a headless client implementation.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The working title for the project is pyx2go-cli and once there is some  
+</I>&gt;<i> &gt; stability within it, it will be available with J&#246;rgs python-x2go  
+</I>&gt;<i> &gt; library on GitHub. There will also be Debian/Ubuntu packages available.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; If you have the possibility of funding such development work (and  
+</I>&gt;<i> &gt; thus, speed it up), I (and probably also J&#246;rg) will be happy to  
+</I>&gt;<i> &gt; provide you with support and code.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Best,
+</I>&gt;<i> &gt; Mike Gabriel
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; -- 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; DAS-NETZWERKTEAM
+</I>&gt;<i> &gt; mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;<i> &gt; fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; freeBusy:
+</I>&gt;<i> &gt; <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> &gt; X2go-dev mailing list
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; !DSPAM:4c9958f438085362964316!
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001084.html">[X2go-dev] headless client with pyx2go
+</A></li>
+	<LI>Next message: <A HREF="001095.html">[X2go-dev] headless client with pyx2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1092">[ date ]</a>
+              <a href="thread.html#1092">[ thread ]</a>
+              <a href="subject.html#1092">[ subject ]</a>
+              <a href="author.html#1092">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#404: Parts of the username are sanitized away in the	session name.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23404%3A%20Parts%20of%20the%20username%20are%20sanitized%20away%20in%20the%0A%09session%20name.&In-Reply-To=%3C201401191252.40203.klaus%40linuxavdelingen.no%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006913.html">
+   <LINK REL="Next"  HREF="006834.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#404: Parts of the username are sanitized away in the	session name.</H1>
+    <B>Klaus Ade Johnstad</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23404%3A%20Parts%20of%20the%20username%20are%20sanitized%20away%20in%20the%0A%09session%20name.&In-Reply-To=%3C201401191252.40203.klaus%40linuxavdelingen.no%3E"
+       TITLE="[X2Go-Dev] Bug#404: Parts of the username are sanitized away in the	session name.">klaus at linuxavdelingen.no
+       </A><BR>
+    <I>Sun Jan 19 12:52:35 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006913.html">[X2Go-Dev] Processed: Re: Numlock issues
+</A></li>
+        <LI>Next message: <A HREF="006834.html">[X2Go-Dev] Bug#404: Bug#404: Parts of the username are sanitized	away in the session name.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6833">[ date ]</a>
+              <a href="thread.html#6833">[ thread ]</a>
+              <a href="subject.html#6833">[ subject ]</a>
+              <a href="author.html#6833">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goserver
+Version: 4.0.1.12
+I have a user that is unable to login to a Debian Wheezy server using 
+xfce4. She is able to login with ssh and with nx, but not with x2go. 
+Her username is &#171;eaan&#187;, and this is what happens when she tries to run 
+x2gostartagent:
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">eaan at server</A>:~$ x2gostartagent
+eaan is not authorized at /usr/lib/x2go/x2gosqlitewrapper.pl line 526.
+:<i> /usr/lib/x2go/x2gosqlitewrapper insertsession 51 server 
+</I>en-51-1390073858 at /usr/lib/x2go/x2godbwrapper.pm line 320.
+
+Notize how her username &#171;eaan&#187; somehow is sanitized into &#171;en&#187; in the 
+session name, the aa's are gone.
+
+
+-- 
+Klaus Ade Johnstad
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">klaus at linuxavdelingen.no</A>
+Mobil:938 69 567
+
+67E61D18B2C44F8A3DA35C6D849F9F5F 26FA477D
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20140119/cef470da/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20140119/cef470da/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006913.html">[X2Go-Dev] Processed: Re: Numlock issues
+</A></li>
+	<LI>Next message: <A HREF="006834.html">[X2Go-Dev] Bug#404: Bug#404: Parts of the username are sanitized	away in the session name.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6833">[ date ]</a>
+              <a href="thread.html#6833">[ thread ]</a>
+              <a href="subject.html#6833">[ subject ]</a>
+              <a href="author.html#6833">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

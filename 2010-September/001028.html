@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] headless client with pyx2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20headless%20client%20with%20pyx2go&In-Reply-To=%3C20100922031620.20265pg4t26t15us%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001026.html">
+   <LINK REL="Next"  HREF="001027.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] headless client with pyx2go</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20headless%20client%20with%20pyx2go&In-Reply-To=%3C20100922031620.20265pg4t26t15us%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] headless client with pyx2go">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Sep 22 03:16:20 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001026.html">[X2go-dev] headless client with pyx2go
+</A></li>
+        <LI>Next message: <A HREF="001027.html">[X2go-dev] a2go-client for MAC
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1028">[ date ]</a>
+              <a href="thread.html#1028">[ thread ]</a>
+              <a href="subject.html#1028">[ subject ]</a>
+              <a href="author.html#1028">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hey Dick,
+
+On Di 21 Sep 2010 15:18:12 CEST Dick Kniep wrote:
+
+&gt;<i> Hi list,
+</I>&gt;<i>
+</I>&gt;<i> We want to develop a headless client in python using pyx2go.
+</I>&gt;<i>
+</I>&gt;<i> The application should have the following features:
+</I>&gt;<i>
+</I>&gt;<i> 1. All parameters except for the password should come from a profile  
+</I>&gt;<i> stored in the users home directory
+</I>&gt;<i> 2. The user should have the possibility to enter the password, the  
+</I>&gt;<i> username and the server, where the username and the server should be  
+</I>&gt;<i> retrieved from the profile
+</I>&gt;<i> 3. The client should support clientside printing as the x2go client
+</I>&gt;<i> 4. The home directory (or another directory) on the clientside  
+</I>&gt;<i> should be mounted with fuse on the serverside
+</I>&gt;<i> 5. The client should start XMing with all appropriate parameters
+</I>&gt;<i> 6. It should be possible to start an application from the server  
+</I>&gt;<i> side by starting a file. So if a file called test.doc exists and  
+</I>&gt;<i> that file is started, MS-Word should start.
+</I>&gt;<i> 7. The profile should be maintained by a separate program (nice gui  
+</I>&gt;<i> application)
+</I>&gt;<i>
+</I>&gt;<i> We've got the demo.py running. However when it ends, the session is  
+</I>&gt;<i> terminated correctly, but a thread remains active. Probably the  
+</I>&gt;<i> thread should be joined with the mainprogram.
+</I>&gt;<i>
+</I>&gt;<i> Could anyone help us with documentation on the use of fuse and the  
+</I>&gt;<i> way commands are passed from client to server vice-versa?
+</I>
+Just last weekend I (with J&#246;rgs great help) I have started working on  
+such a headless client implementation.
+
+The working title for the project is pyx2go-cli and once there is some  
+stability within it, it will be available with J&#246;rgs python-x2go  
+library on GitHub. There will also be Debian/Ubuntu packages available.
+
+If you have the possibility of funding such development work (and  
+thus, speed it up), I (and probably also J&#246;rg) will be happy to  
+provide you with support and code.
+
+Best,
+Mike Gabriel
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001026.html">[X2go-dev] headless client with pyx2go
+</A></li>
+	<LI>Next message: <A HREF="001027.html">[X2go-dev] a2go-client for MAC
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1028">[ date ]</a>
+              <a href="thread.html#1028">[ thread ]</a>
+              <a href="subject.html#1028">[ subject ]</a>
+              <a href="author.html#1028">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

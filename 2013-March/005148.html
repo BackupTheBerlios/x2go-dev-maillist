@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23131%3A%20Build%20scripts%20for%20DMG%20generation%20on%20OS%20X&In-Reply-To=%3CCAFJm-UMpPDKapw51trwBjC5URky6MWVMADKAcsygbUteit4Ghw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005146.html">
+   <LINK REL="Next"  HREF="005150.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23131%3A%20Build%20scripts%20for%20DMG%20generation%20on%20OS%20X&In-Reply-To=%3CCAFJm-UMpPDKapw51trwBjC5URky6MWVMADKAcsygbUteit4Ghw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X">abo at dsl.dk
+       </A><BR>
+    <I>Mon Mar  4 14:52:23 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005146.html">[X2Go-Dev] Processed: Re: Bug#131: Build scripts for DMG generation on OS X
+</A></li>
+        <LI>Next message: <A HREF="005150.html">[X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5148">[ date ]</a>
+              <a href="thread.html#5148">[ thread ]</a>
+              <a href="subject.html#5148">[ subject ]</a>
+              <a href="author.html#5148">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have just tried building it on my MacBook Pro with OSX 10.8.2 and have
+run into a small problem. I have installed dependencies using brew, not
+macports, and it doesn't find libssh.h. Is there a way to add to the
+include path for the make system or is there a problem with the way it
+detects where files are located?
+
+x2goclient-4.0.0.4 abo$ find /usr/local -name libssh.h
+/usr/local/Cellar/libssh/0.5.4/include/libssh/libssh.h
+
+x2goclient-4.0.0.4 abo$ ./macbuild.sh
+...
+In file included from sharewidget.cpp:19:
+In file included from ./onmainwindow.h:44:
+./sshmasterconnection.h:21:10: fatal error: 'libssh/libssh.h' file not found
+#include &lt;libssh/libssh.h&gt;
+         ^
+In file included from settingswidget.cpp:19:
+In file included from ./onmainwindow.h:44:
+./sshmasterconnection.h:21:10: fatal error: 'libssh/libssh.h' file not found
+#include &lt;libssh/libssh.h&gt;
+         ^
+1 error generated.
+
+
+
+2013/3/4 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+
+&gt;<i> close #131
+</I>&gt;<i> thanks
+</I>&gt;<i>
+</I>&gt;<i> Hi Clemens,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Sa 02 M&#228;r 2013 18:17:02 CET Clemens Lang wrote:
+</I>&gt;<i>
+</I>&gt;<i>  Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Fri, Mar 01, 2013 at 09:30:49PM +0100, Mike Gabriel wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Thanks for the great work on this! Please check the latest commits on
+</I>&gt;&gt;&gt;<i> x2goclient.git (branches: master and release/4.0.0.x) and let me know
+</I>&gt;&gt;&gt;<i> if everything is in place.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> If that is the case, I would bump a release of 4.0.0.4 and you could
+</I>&gt;&gt;&gt;<i> send me the x2goclient.dmg for Mac OS.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> works fine.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> 4.0.0.4 of X2Go Client has just been released.
+</I>&gt;<i>
+</I>&gt;<i> Thanks+Greets,
+</I>&gt;<i>
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+</I>&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130304/b6c5832b/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130304/b6c5832b/attachment.html</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005146.html">[X2Go-Dev] Processed: Re: Bug#131: Build scripts for DMG generation on OS X
+</A></li>
+	<LI>Next message: <A HREF="005150.html">[X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5148">[ date ]</a>
+              <a href="thread.html#5148">[ thread ]</a>
+              <a href="subject.html#5148">[ subject ]</a>
+              <a href="author.html#5148">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

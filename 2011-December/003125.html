@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Can not use FreeNX alongside latest X2Go packages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Can%20not%20use%20FreeNX%20alongside%20latest%20X2Go%20packages&In-Reply-To=%3C4EEBBD5D.10408%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003124.html">
+   <LINK REL="Next"  HREF="003126.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Can not use FreeNX alongside latest X2Go packages</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Can%20not%20use%20FreeNX%20alongside%20latest%20X2Go%20packages&In-Reply-To=%3C4EEBBD5D.10408%40stefanbaur.de%3E"
+       TITLE="[X2go-Dev] Can not use FreeNX alongside latest X2Go packages">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Fri Dec 16 22:51:25 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003124.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages (was: Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation))
+</A></li>
+        <LI>Next message: <A HREF="003126.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3125">[ date ]</a>
+              <a href="thread.html#3125">[ thread ]</a>
+              <a href="subject.html#3125">[ subject ]</a>
+              <a href="author.html#3125">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 16.12.2011 22:32, schrieb Mike Gabriel:
+&gt;<i> Hi Stefan,
+</I>&gt;<i>
+</I>&gt;<i> On Fr 16 Dez 2011 16:10:08 CET Stefan Baur wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> During my debug session, I noticed that these two packages:
+</I>&gt;&gt;&gt;<i> ii libxcompext3 1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1 NX X11 
+</I>&gt;&gt;&gt;<i> protocol compression extensions library
+</I>&gt;&gt;&gt;<i> ii libxcompshad3 3.5.0-2-0~x2go-bpo1+lenny~main~24~build1 NX 
+</I>&gt;&gt;&gt;<i> shadowing library
+</I>&gt;<i>
+</I>&gt;<i> Please try the NX packages from the heuler Repos. We have 
+</I>&gt;<i> re-engineered building NX packages for Debian/Ubuntu. The heuler 
+</I>&gt;<i> packages should be fully compatible with FreeNX. Though the 
+</I>&gt;<i> nxagent/nxauth binaries are not yet tested.
+</I>&gt;<i>
+</I>&gt;<i> If you encounter any problems with those, please report that here.
+</I>
+So I should add
+deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze heuler
+to my sources.list, is that correct?
+
+&gt;<i>
+</I>&gt;&gt;<i> So I tried uninstalling and reinstalling them.
+</I>&gt;&gt;<i> Trying to uninstall them, I got a warning that this would uninstall 
+</I>&gt;&gt;<i> the FreeNX packages as well, so I repackaged all of the named 
+</I>&gt;&gt;<i> packages (freenx
+</I>&gt;&gt;<i> freenx-media, freenx-session-launcher, freenx-rdp, freenx-server, 
+</I>&gt;&gt;<i> freenx-vnc, nxagent, x2goserver-printing, x2goserver-extensions, 
+</I>&gt;&gt;<i> x2goserver, x2goagent) using dpkg-repack just to be safe.
+</I>&gt;<i>
+</I>&gt;<i> Ok... should not be needed with the NX packages in the heuler Repos.
+</I>&gt;<i>
+</I>&gt;&gt;<i> After that, I proceeded with the uninstall/reinstall and re-added the 
+</I>&gt;&gt;<i> FreeNX packages.
+</I>&gt;<i>
+</I>&gt;<i> From what repos do you install FreeNX, I would like to cross-check 
+</I>&gt;<i> your experience.
+</I>
+I had used
+deb <A HREF="http://ppa.launchpad.net/freenx-team/ppa/ubuntu">http://ppa.launchpad.net/freenx-team/ppa/ubuntu</A> intrepid main
+deb-src <A HREF="http://ppa.launchpad.net/freenx-team/ppa/ubuntu">http://ppa.launchpad.net/freenx-team/ppa/ubuntu</A> intrepid main
+
+but it seems they are broken:
+apt-get install --reinstall freenx
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Reinstallation of freenx is not possible, it cannot be downloaded.
+
+I think I saw a message mentioning errors with this repository on the 
+freenx-knx mailing list a short while ago, but hadn't bothered, as I 
+kept local copies of the required *.deb files...
+
+Trying
+deb <A HREF="http://ppa.launchpad.net/freenx-team/ppa/ubuntu">http://ppa.launchpad.net/freenx-team/ppa/ubuntu</A> lucid main
+deb-src <A HREF="http://ppa.launchpad.net/freenx-team/ppa/ubuntu">http://ppa.launchpad.net/freenx-team/ppa/ubuntu</A> lucid main
+
+does pull new freenx*.deb packages, but not libxcompext3:
+apt-get install --reinstall libxcompext3
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Reinstallation of libxcompext3 is not possible, it cannot be downloaded.
+
+Trying to find out which libxcompext3 my system knows about, I tried this:
+apt-cache show libxcompext3| egrep '(Maintainer|Version|Filename)'
+
+With the following result (Newlines added for clarity):
+
+Maintainer: Ubuntu MOTU Developers &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">ubuntu-motu at lists.ubuntu.com</A>&gt;
+Version: 1:3.5.0-1-0ubuntu1
+Filename: pool/main/n/nxcompext/libxcompext3_3.5.0-1-0ubuntu1_i386.deb
+
+Version: 1:3.5.0-1-2
+Maintainer: Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+Filename: pool/main/libx/libxcompext3/libxcompext3_3.5.0-1-2_i386.deb
+
+Maintainer: Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+Version: 1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1
+
+The last one doesn't show a &quot;Filename&quot; entry and seems to be the one 
+currently installed on my system, judging by the matching &quot; 
+1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1&quot;.
+
+I'm anything but an expert on how to interpret this output.  Please let 
+me know if there are any specific commands I should try that might 
+provide further helpful info.
+
+
+Kind Regards,
+Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003124.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages (was: Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation))
+</A></li>
+	<LI>Next message: <A HREF="003126.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3125">[ date ]</a>
+              <a href="thread.html#3125">[ thread ]</a>
+              <a href="subject.html#3125">[ subject ]</a>
+              <a href="author.html#3125">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

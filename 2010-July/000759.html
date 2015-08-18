@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] BUG?: plugin stuck in auth rejection
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BUG%3F%3A%20plugin%20stuck%20in%20auth%20rejection&In-Reply-To=%3C4C36CEFD.9060203%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000786.html">
+   <LINK REL="Next"  HREF="000760.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] BUG?: plugin stuck in auth rejection</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BUG%3F%3A%20plugin%20stuck%20in%20auth%20rejection&In-Reply-To=%3C4C36CEFD.9060203%40verizon.net%3E"
+       TITLE="[X2go-dev] BUG?: plugin stuck in auth rejection">greno at verizon.net
+       </A><BR>
+    <I>Fri Jul  9 09:25:49 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000786.html">[X2go-dev] plugin is crashing firefox on Ubuntu 10.04 i386
+</A></li>
+        <LI>Next message: <A HREF="000760.html">[X2go-dev] BUG?: plugin stuck in auth rejection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#759">[ date ]</a>
+              <a href="thread.html#759">[ thread ]</a>
+              <a href="subject.html#759">[ subject ]</a>
+              <a href="author.html#759">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Using plugin 3.01-11.
+  I logged into a session and then later terminated that session.  
+However, the session termination was a little strange in that it kept 
+respawning connection processes and then terminating over and over.  So 
+I press the Back button to go back to the plugin website page.  There I 
+reload and relaunch the plugin.  then I put in my password and now it 
+refuses to log me in.
+
+Here are the errors:
+
+The remote proxy closed the connection while negotiating
+the session. This may be due to the wrong authentication
+credentials passed to the server.
+
+Info: Proxy running in client mode with pid '1798'.
+Session: Starting session at 'Fri Jul  9 02:41:36 2010'.
+Info: Connecting to remote host 'localhost:30002'.
+Info: Connection to remote proxy 'localhost:30002' established.
+Error: The remote NX proxy closed the connection.
+Error: Failure negotiating the session in stage '7'.
+Error: Wrong version or invalid session authentication cookie.
+Session: Terminating session at 'Fri Jul  9 02:41:36 2010'.
+Session: Session terminated at 'Fri Jul  9 02:41:36 2010'.
+Connection timeout, aborting
+
+I've checked the password and it is correct.
+
+.xsession-errors:
+===================================================
+** (gnome-settings-daemon:3406): WARNING **: Connection failed, 
+reconnecting...
+Invalid shared memory segment size
+
+** (gnome-settings-daemon:3406): WARNING **: Connection failed, 
+reconnecting...
+
+** (gnome-settings-daemon:3406): WARNING **: Connection failed, 
+reconnecting...
+
+** (gnome-settings-daemon:3406): WARNING **: Connection failed, 
+reconnecting...
+
+** (gnome-settings-daemon:3406): WARNING **: Connection failed, 
+reconnecting...
+
+** (gnome-settings-daemon:3406): WARNING **: Connection failed, 
+reconnecting...
+
+** (gnome-settings-daemon:3406): WARNING **: Connection failed, 
+reconnecting...
+Can't load translator (:/x2goclient_en_us) !
+
+Can't load translator (:/qt_en_US) !
+
+config file:  &quot;/home/greno/.x2go/ssh/gen/x2go.cfg-OBbarg&quot;
+
+embed  window id:  48234506
+
+** (gnome-settings-daemon:3406): WARNING **: Connection failed, 
+reconnecting...
+tunnel : &quot;localhost&quot; : &quot;30002&quot; : &quot;30001&quot; : false
+
+tunnel : &quot;localhost&quot; : &quot;30002&quot; : &quot;4713&quot; : true
+
+starting nxproxy with:  &quot;nxproxy -S 
+nx/nx,options=/home/greno/.x2go/S-greno-50-1278658109_stDGNOME_dp24/options:50&quot; 
+
+
+QProcess: Destroyed while process is still running.
+QProcess: Destroyed while process is still running.
+check command message
+
+Window manager warning: Invalid WM_TRANSIENT_FOR window 0x3e00011 
+specified for 0x3e0000f (X2Go - 50).
+
+** (gnome-settings-daemon:3406): WARNING **: Connection failed, 
+reconnecting...
+
+** (gnome-settings-daemon:3406): WARNING **: Connection failed, 
+reconnecting...
+
+** (gnome-settings-daemon:3406): WARNING **: Connection failed, 
+reconnecting...
+===================================================
+
+
+
+Has anyone else encountered this problem?
+I've checked things like ~/.Xauthority and even recreated it, still no joy.
+
+Gerry
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000786.html">[X2go-dev] plugin is crashing firefox on Ubuntu 10.04 i386
+</A></li>
+	<LI>Next message: <A HREF="000760.html">[X2go-dev] BUG?: plugin stuck in auth rejection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#759">[ date ]</a>
+              <a href="thread.html#759">[ thread ]</a>
+              <a href="subject.html#759">[ subject ]</a>
+              <a href="author.html#759">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

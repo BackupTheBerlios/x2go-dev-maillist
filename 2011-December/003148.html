@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Specific package versions wanted / Question regarding repository content
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Specific%20package%20versions%20wanted%20/%20Question%0A%20regarding%20repository%20content&In-Reply-To=%3C4EFB6680.4060302%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003147.html">
+   <LINK REL="Next"  HREF="003151.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Specific package versions wanted / Question regarding repository content</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Specific%20package%20versions%20wanted%20/%20Question%0A%20regarding%20repository%20content&In-Reply-To=%3C4EFB6680.4060302%40stefanbaur.de%3E"
+       TITLE="[X2go-Dev] Specific package versions wanted / Question regarding repository content">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Wed Dec 28 19:57:04 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003147.html">[X2go-Dev] Specific package versions wanted / Question regarding repository content
+</A></li>
+        <LI>Next message: <A HREF="003151.html">[X2go-Dev] Specific package versions wanted / Question regarding repository content
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3148">[ date ]</a>
+              <a href="thread.html#3148">[ thread ]</a>
+              <a href="subject.html#3148">[ subject ]</a>
+              <a href="author.html#3148">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 28.12.2011 15:02, schrieb Mike Gabriel:
+&gt;<i> Hi Stefan,
+</I>&gt;<i>
+</I>&gt;<i> On Mi 28 Dez 2011 09:43:36 CET Stefan Baur wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hi list,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> as I'm still trying to figure out what exactly happened here 
+</I>&gt;&gt;<i> (<A HREF="https://lists.berlios.de/pipermail/x2go-dev/2011-December/003122.html">https://lists.berlios.de/pipermail/x2go-dev/2011-December/003122.html</A>), 
+</I>&gt;&gt;<i> I'm looking for the following two packages in these specific versions:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> libxcompext3=1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1
+</I>&gt;&gt;<i> libxcompshad3=3.5.0-2-0~x2go-bpo1+lenny~main~24~build1
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Does anybody know which repository I have to enable to be able to 
+</I>&gt;&gt;<i> pull exactly those?
+</I>&gt;<i>
+</I>&gt;&gt;<i> So far I tried:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> lenny main
+</I>&gt;<i>   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+</I>&gt;<i>   This is the right one.
+</I>&gt;<i>
+</I>
+No, it isn't... this one contains
+libxcompext3=1:3.5.0-1-2
+libxcompshad3=3.5.0-2-2
+
+
+&gt;<i> If you enable more than the correct repos, you get the newest package 
+</I>&gt;<i> in terms of alphanumerical comparison...
+</I>
+Still, specifying an exact package version should work, as long as it's 
+present in the repository - which it isn't, as I'm still getting the 
+error shown below:
+
+&gt;<i>
+</I>&gt;&gt;<i> but I keep getting
+</I>&gt;&gt;<i> apt-get install 
+</I>&gt;&gt;<i> libxcompext3=1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1 
+</I>&gt;&gt;<i> libxcompshad3=3.5.0-2-0~x2go-bpo1+lenny~main~24~build1
+</I>&gt;&gt;<i> Reading package lists... Done
+</I>&gt;&gt;<i> Building dependency tree
+</I>&gt;&gt;<i> Reading state information... Done
+</I>&gt;&gt;<i> E: Version '1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1' for 
+</I>&gt;&gt;<i> 'libxcompext3' was not found
+</I>&gt;&gt;<i> E: Version '3.5.0-2-0~x2go-bpo1+lenny~main~24~build1' for 
+</I>&gt;&gt;<i> 'libxcompshad3' was not found
+</I>&gt;<i>
+</I>I tried removing the parts after the ~ to see if maybe that was 
+confusing apt-get, but no:
+
+apt-get install libxcompext3=1:3.5.0-1-0 libxcompshad3=3.5.0-2-0
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+E: Version '1:3.5.0-1-0' for 'libxcompext3' was not found
+E: Version '3.5.0-2-0' for 'libxcompshad3' was not found
+
+
+[snip]
+
+&gt;<i> On squeeze+ please use the packages currently in heuler and report 
+</I>&gt;<i> your experiences with stability.  I would love to move those NX 
+</I>&gt;<i> packages in heuler to main (i.e. considered stable by upstream) but I 
+</I>&gt;<i> need more feedback on that. This has been agreed with Oleksandr 
+</I>&gt;<i> yesterday in a chat session.
+</I>
+If I temporarily add the heuler repository, install the packages, then 
+disable it again - will I be able to upgrade to newer versions once they 
+become part of main, or will this cause breakage on my systems?
+
+-Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003147.html">[X2go-Dev] Specific package versions wanted / Question regarding repository content
+</A></li>
+	<LI>Next message: <A HREF="003151.html">[X2go-Dev] Specific package versions wanted / Question regarding repository content
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3148">[ date ]</a>
+              <a href="thread.html#3148">[ thread ]</a>
+              <a href="subject.html#3148">[ subject ]</a>
+              <a href="author.html#3148">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

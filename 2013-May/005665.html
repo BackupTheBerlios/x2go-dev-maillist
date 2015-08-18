@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#139: x2goclient: No keyboard input at login on OSX
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23139%3A%20x2goclient%3A%20No%20keyboard%20input%20at%20login%20on%20OSX&In-Reply-To=%3CA7B82976-C07B-4A41-952A-8589DF3AFDC9%40dartmouth.edu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005685.html">
+   <LINK REL="Next"  HREF="005668.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#139: x2goclient: No keyboard input at login on OSX</H1>
+    <B>Matthew L. Dailey</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23139%3A%20x2goclient%3A%20No%20keyboard%20input%20at%20login%20on%20OSX&In-Reply-To=%3CA7B82976-C07B-4A41-952A-8589DF3AFDC9%40dartmouth.edu%3E"
+       TITLE="[X2Go-Dev] Bug#139: x2goclient: No keyboard input at login on OSX">matthew.l.dailey at dartmouth.edu
+       </A><BR>
+    <I>Mon May 20 21:52:07 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005685.html">[X2Go-Dev] Bug#214: Bug#214: Bug#214: Add maximun available desktop	area to session resolutions combo box
+</A></li>
+        <LI>Next message: <A HREF="005668.html">[X2Go-Dev] Bug#177: X2Go issue (in src:x2goclient) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5665">[ date ]</a>
+              <a href="thread.html#5665">[ thread ]</a>
+              <a href="subject.html#5665">[ subject ]</a>
+              <a href="author.html#5665">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings,
+
+I just wanted to report that we're seeing this identical behavior, but in a slightly different way on our Mac OS X clients that are *not* running in broker mode.
+
+When we run the client, everything works well and we are able to start a session. However, if we either terminate or suspend the session, we are no longer able to enter a password in the dialog. The cursor is blinking in the password field, but no characters can be entered. All other functionality seems to work, however - other sessions can be clicked on the right side and settings of sessions can be edited. The workaround is to quit and restart the client.
+
+I had a look at the x2goclient code, and this is a bit out of my league, but something that looked suspicious to me on first glance was passForm-&gt;setEnabled() in onmainwindow.cpp. I wonder if this is getting set to false when then session runs and then not getting set back to true when the session ends or is suspended. Just a thought...
+
+Please let me know if you need any other info to help track this down.
+
+-- 
+Matthew L. Dailey
+Systems Administrator
+Thayer School of Engineering
+Dartmouth College
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005685.html">[X2Go-Dev] Bug#214: Bug#214: Bug#214: Add maximun available desktop	area to session resolutions combo box
+</A></li>
+	<LI>Next message: <A HREF="005668.html">[X2Go-Dev] Bug#177: X2Go issue (in src:x2goclient) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5665">[ date ]</a>
+              <a href="thread.html#5665">[ thread ]</a>
+              <a href="subject.html#5665">[ subject ]</a>
+              <a href="author.html#5665">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] [BUG] Evdev-keyboard-mapping only works if under Settings &#187;keep keyboard layout&#171; disabled (was: keyboard not working quite right in gtk client...)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%3D%3Fiso-8859-1%3Fq%3F%3D5BBUG%3D5D_Evdev-keyboard-mapping_only_w%3F%3D%0A%20%3D%3Fiso-8859-1%3Fq%3Forks_if_under_Settings_%3DBBkeep_keyboard_layout%3DAB_disabled%3F%3D%0A%20%3D%3Fiso-8859-1%3Fq%3F_%3D28was%3D3A_keyboard_not_working_quite_right_in_gtk_client%3F%3D%0A%20%3D%3Fiso-8859-1%3Fq%3F%3D2E%3D2E%3D2E%3D29%3F%3D&In-Reply-To=%3C1252857308.17453.26.camel%40mattotaupa.wohnung.familie-menzel.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000100.html">
+   <LINK REL="Next"  HREF="000101.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] [BUG] Evdev-keyboard-mapping only works if under Settings &#187;keep keyboard layout&#171; disabled (was: keyboard not working quite right in gtk client...)</H1>
+    <B>Paul Menzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%3D%3Fiso-8859-1%3Fq%3F%3D5BBUG%3D5D_Evdev-keyboard-mapping_only_w%3F%3D%0A%20%3D%3Fiso-8859-1%3Fq%3Forks_if_under_Settings_%3DBBkeep_keyboard_layout%3DAB_disabled%3F%3D%0A%20%3D%3Fiso-8859-1%3Fq%3F_%3D28was%3D3A_keyboard_not_working_quite_right_in_gtk_client%3F%3D%0A%20%3D%3Fiso-8859-1%3Fq%3F%3D2E%3D2E%3D2E%3D29%3F%3D&In-Reply-To=%3C1252857308.17453.26.camel%40mattotaupa.wohnung.familie-menzel.net%3E"
+       TITLE="[X2go-dev] [BUG] Evdev-keyboard-mapping only works if under Settings &#187;keep keyboard layout&#171; disabled (was: keyboard not working quite right in gtk client...)">paulepanter at users.sourceforge.net
+       </A><BR>
+    <I>Sun Sep 13 17:55:08 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000100.html">[X2go-dev] openPGP-card
+</A></li>
+        <LI>Next message: <A HREF="000101.html">[X2go-dev] Compile nxproxy.exe [AW:  error starting x2goagent]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#98">[ date ]</a>
+              <a href="thread.html#98">[ thread ]</a>
+              <a href="subject.html#98">[ subject ]</a>
+              <a href="author.html#98">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear list,
+
+
+Am Dienstag, den 26.05.2009, 14:04 -0400 schrieb Douglas M. Stanley:
+&gt;<i> I recently set up x2go in a xen guest, and when I try to connect to it with the
+</I>&gt;<i> gtk client, the keyboard isn't right. Everything seems to work, except the arrow
+</I>&gt;<i> keys. If I turn numlock on/off, then the arrows on the keypad seem to work, but
+</I>&gt;<i> not the normal arrow keys. I've tried everything I can think of to set the keyboard
+</I>&gt;<i> both on the client and on the actual host. Everything is set to 105key qwerty US,
+</I>&gt;<i> but the arrow keys still don't work.
+</I>
+[&#8230;]
+
+As written by Heinz [1] this issue was fixed in x2goserver 3.0.0-2.
+
+Today I noticed this problem again on a different system and found out
+that I had not disabled the check box &#187;Tastaturlayout behalten&#171; under
+Sitzungsvoreinstellungen &#8594; Einstellungen &#8594; Tastatur (translation: keep
+keyboard layout under system settings &#8594; settings &#8594; keyboard).
+
+The forms are set to de pc105/de and it then works for me although I am
+using a different keyboard layout (Neo [2]) for one user (under the
+session x2goclient_gtk is started from and in the started GNOME session
+which is loading a xmodmap file during start up).
+
+So the wrong keyboard mapping still shows up, if you want to keep the
+layout. Is this intended? Should there be a warning or explanation next
+to the check box?
+
+
+Thanks,
+
+Paul
+
+
+[1] <A HREF="https://lists.berlios.de/pipermail/x2go-dev/2009-July/000049.html">https://lists.berlios.de/pipermail/x2go-dev/2009-July/000049.html</A>
+[2] <A HREF="http://neo-layout.org/">http://neo-layout.org/</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: Dies ist ein digital signierter Nachrichtenteil
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090913/99bd1d5f/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090913/99bd1d5f/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000100.html">[X2go-dev] openPGP-card
+</A></li>
+	<LI>Next message: <A HREF="000101.html">[X2go-dev] Compile nxproxy.exe [AW:  error starting x2goagent]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#98">[ date ]</a>
+              <a href="thread.html#98">[ thread ]</a>
+              <a href="subject.html#98">[ subject ]</a>
+              <a href="author.html#98">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Use case for an x2go user-group
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C4D5ED886.60201%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001772.html">
+   <LINK REL="Next"  HREF="001775.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Use case for an x2go user-group</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C4D5ED886.60201%40verizon.net%3E"
+       TITLE="[X2go-dev] Use case for an x2go user-group">greno at verizon.net
+       </A><BR>
+    <I>Fri Feb 18 21:37:26 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001772.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+        <LI>Next message: <A HREF="001775.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1774">[ date ]</a>
+              <a href="thread.html#1774">[ thread ]</a>
+              <a href="subject.html#1774">[ subject ]</a>
+              <a href="author.html#1774">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 02/18/2011 03:02 PM, Alexander Wuerstlein wrote:
+&gt;<i> On 11-02-18 20:34, Gerry Reno &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">greno at verizon.net</A>&gt; wrote:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> On 02/18/2011 02:14 PM, Alexander Wuerstlein wrote:
+</I>&gt;&gt;<i>     
+</I>&gt;&gt;&gt;<i> On 11-02-18 19:59, Gerry Reno &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">greno at verizon.net</A>&gt; wrote:
+</I>&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;&gt;&gt;<i> On 02/18/2011 01:18 PM, Reinhard Tartler wrote:
+</I>&gt;&gt;&gt;&gt;<i>     
+</I>&gt;&gt;&gt;&gt;<i>         
+</I>&gt;&gt;&gt;&gt;&gt;<i> On Fri, Feb 18, 2011 at 18:52:28 (CET), John A. Sullivan III wrote:
+</I>&gt;&gt;&gt;&gt;&gt;<i>           
+</I>&gt;&gt;&gt;&gt;<i> Are you implying that every user on any x2go server would be able to
+</I>&gt;&gt;&gt;&gt;<i> launch a remote x2go desktop by default?
+</I>&gt;&gt;&gt;&gt;<i>     
+</I>&gt;&gt;&gt;&gt;<i>         
+</I>&gt;&gt;&gt;<i> Yes.
+</I>&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> That would be a security hole.
+</I>&gt;&gt;<i>     
+</I>&gt;<i> In what sense? That would only be a security hole if x2go were less
+</I>&gt;<i> secure than simple ssh logins. If that is the case, those security
+</I>&gt;<i> problems should of course be fixed. But I don't see the risk in allowing
+</I>&gt;<i> x2go usage to users who can use ssh anyways.
+</I>&gt;<i>   
+</I>
+Yes, it's similar but not exactly the same as ssh.  You might want to
+let a vendor/app-support have ssh access but not allow them a desktop.
+In neither case should the default be 'wide-open' access.
+
+
+&gt;<i>   
+</I>&gt;&gt;&gt;&gt;<i> We don't have any problems with the current mechanism of 'x2gousers'
+</I>&gt;&gt;&gt;&gt;<i> providing the control.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> And in fact in most OS you see 'groups' are specifically there for the
+</I>&gt;&gt;&gt;&gt;<i> express purpose of controlling access to functionality.
+</I>&gt;&gt;&gt;&gt;<i>     
+</I>&gt;&gt;&gt;&gt;<i>         
+</I>&gt;&gt;&gt;<i> Yes, but in large setups, groups become very hard to manage. Large
+</I>&gt;&gt;&gt;<i> groups with thousands of users tend to be an administration burden, also
+</I>&gt;&gt;&gt;<i> a large number of additional groups for each user tends to be
+</I>&gt;&gt;&gt;<i> problematic with many operating systems or setups (NIS, SQL, older
+</I>&gt;&gt;&gt;<i> unices, etc).
+</I>&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> Well, qualified sysadmins have been managing large installations quite
+</I>&gt;&gt;<i> successfully for about 50 years now.
+</I>&gt;&gt;<i>     
+</I>&gt;<i> Yes, success comes from expirience and the right set of tools. And my
+</I>&gt;<i> expirience tells me that groups are often not the ideal tool for the
+</I>&gt;<i> job. Again, we wouldn't necessarily need to do away with the 'x2gousers'
+</I>&gt;<i> group, we just would make the process more flexible to allow for
+</I>&gt;<i> authorization mechanisms other than by group membership.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;&gt;<i> And our approach wouldn't make the
+</I>&gt;&gt;&gt;<i> 'x2gousers' group go away if you still want to use it: You can simply
+</I>&gt;&gt;&gt;<i> make the x2gowrapper executable only for that group and not for others.
+</I>&gt;&gt;&gt;<i> Then you have exactly the same functionality as with 'sudo', but without
+</I>&gt;&gt;&gt;<i> the hassle of setting up the sudo configuration (wich does never seem to
+</I>&gt;&gt;&gt;<i> work automatically on installation). That would also be the suggested
+</I>&gt;&gt;&gt;<i> migration path i guess. Additionally you can of course use database
+</I>&gt;&gt;&gt;<i> black/whitelists, or you can set x2gowrapper o+rx and only use database
+</I>&gt;&gt;&gt;<i> black/whitelists. In that sense our approach would also be far more
+</I>&gt;&gt;&gt;<i> flexible than the current sudo approach.
+</I>&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> It doesn't make the 'x2gousers' group go away.  But it removes all the
+</I>&gt;&gt;<i> 'sudo' functionality which does it's job of auditing and control very well.
+</I>&gt;&gt;<i>     
+</I>&gt;<i> Adding appropriate syslog functionality to x2go could of course easily
+</I>&gt;<i> be done. But the sudo-logspam x2go causes is in on way any viable means
+</I>&gt;<i> of auditing and control, its much too easy to hide an attack in such a
+</I>&gt;<i> huge amount of logged lines.
+</I>&gt;<i>   
+</I>
+That is why there are log-parsing tools.  Even 'grep' can get rid of 99%
+of useless log stuff.
+
+
+&gt;<i>   
+</I>&gt;&gt;<i> I don't get what is complained about here:  sudo being difficult.  It is
+</I>&gt;&gt;<i> not difficult at all.  Use 'visudo' as you should and it works very well.
+</I>&gt;&gt;<i>     
+</I>&gt;<i> Yes, but for example the debian package installation does not use
+</I>&gt;<i> visudo, instead it just tries to edit the sudoers file to the best of
+</I>&gt;<i> its abilities. Which, if the sudoers file has been altered before,
+</I>&gt;<i> usually fails. That leads to frustrated first-time users and possibly
+</I>&gt;<i> screwed up sudo configuration either by the script or the user, which
+</I>&gt;<i> could be a huge security problem.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> If you try direct access to the sudoers file then you have to take extra
+</I>&gt;&gt;<i> precautions.  If you're not doing that then of course you will run into
+</I>&gt;&gt;<i> problems.
+</I>&gt;&gt;<i>     
+</I>&gt;<i> Which is, in other words, &quot;sudo configuration is fragile and difficult&quot;
+</I>&gt;<i> ;)
+</I>&gt;<i>   
+</I>
+This is no more difficult than an application having to update any other
+config file.  By your standard every application configuration is
+'fragile and difficult'.
+
+In the case of configs, you have the install put the 'new' file in place
+as FILE.new and you provide a message to the user/install-log saying
+that the sysadmin must MERGE the old config file and new config file.
+
+We already do this for a number of applications on
+upgrades/installations.  x2go is no different here.
+
+
+I do think this topic needs quite a bit more thought and study before
+any change should be undertaken. 
+
+There is LDAP to consider, local users/groups, John's 1-1 vm scenario,
+regular 1-M vm scenario. 
+
+Right now there are no problems with the 'sudo' approach for these
+scenarios.  At least none that anyone is screaming about.  So I think we
+need to be careful before making drastic changes.
+
+
+Regards,
+Gerry
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001772.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+	<LI>Next message: <A HREF="001775.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1774">[ date ]</a>
+              <a href="thread.html#1774">[ thread ]</a>
+              <a href="subject.html#1774">[ subject ]</a>
+              <a href="author.html#1774">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

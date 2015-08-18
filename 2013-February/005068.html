@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] fuse and X2Go printing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20fuse%20and%20X2Go%20printing&In-Reply-To=%3C5124D068.2000902%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005066.html">
+   <LINK REL="Next"  HREF="005070.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] fuse and X2Go printing</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20fuse%20and%20X2Go%20printing&In-Reply-To=%3C5124D068.2000902%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] fuse and X2Go printing">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Wed Feb 20 14:32:24 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005066.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+        <LI>Next message: <A HREF="005070.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5068">[ date ]</a>
+              <a href="thread.html#5068">[ thread ]</a>
+              <a href="subject.html#5068">[ subject ]</a>
+              <a href="author.html#5068">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 2013-02-20 11:55, Stefan Baur wrote:
+&gt;&gt;<i> So as result we will have a PDF
+</I>&gt;&gt;<i> File on server and it not a problem it all to download it to client
+</I>&gt;&gt;<i> system.
+</I>&gt;<i>
+</I>&gt;<i> Yes, it is a problem.  Sorry, but it is a horrible design decision to
+</I>&gt;<i> convert data back and forth, causing disk IO and CPU cycles when
+</I>&gt;<i> there's no good reason to do so. 
+</I>
+Well, actually there is: Relieabilty and Maintainability. My solution
+has 3 little steps.
+1) Create pdf on the server (easy to check and not to difficult too debug)
+2) Copy file to client (easy to check, and can even be verified)
+3) Print pdf. This is also something quite easy to get running. Just
+exec &quot;someprog --print $FILE&quot;
+
+While with your solution there is a multitude of things that can go
+wrong. It's really hard to find out whether it's a server side, client
+side, x2go-client (ssh forwarding), driver compability or whatever
+issue. The data gets piped through a lot of systems and you need quite a
+bit of knowledge to debug that. Also you need to handle connection
+losses - something that is not too easy either as you don't have direct
+control over the system having to cope with that.
+Further on reliability and maintainability is much more important than a
+little bit of performance.
+The spooler-dir also allows you to easily do things like adding
+&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">print at clinet</A>&quot;-button to OpenOffice (or any other scriptable app) by
+exporting the current document as pdf to the spool-dir.
+
+Cheers
+Morty
+
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 5005 bytes
+Desc: S/MIME Kryptografische Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130220/0739b8ae/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130220/0739b8ae/attachment.bin</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005066.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+	<LI>Next message: <A HREF="005070.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5068">[ date ]</a>
+              <a href="thread.html#5068">[ thread ]</a>
+              <a href="subject.html#5068">[ subject ]</a>
+              <a href="author.html#5068">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

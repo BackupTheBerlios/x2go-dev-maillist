@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2goclient.exe - Saving session settings to registry
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goclient.exe%20-%20Saving%20session%20settings%20to%20registry&In-Reply-To=%3C4F43AF86.6050408%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003601.html">
+   <LINK REL="Next"  HREF="003575.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2goclient.exe - Saving session settings to registry</H1>
+    <B>newsgroups.mail2 at stefanbaur.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goclient.exe%20-%20Saving%20session%20settings%20to%20registry&In-Reply-To=%3C4F43AF86.6050408%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] x2goclient.exe - Saving session settings to registry">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Tue Feb 21 15:51:50 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003601.html">[X2Go-Dev] X2Goplugin
+</A></li>
+        <LI>Next message: <A HREF="003575.html">[X2Go-Dev] x2goclient.exe - Saving session settings to registry
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3574">[ date ]</a>
+              <a href="thread.html#3574">[ thread ]</a>
+              <a href="subject.html#3574">[ subject ]</a>
+              <a href="author.html#3574">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi List,
+
+is there any particular reason why x2goclient.exe will save session 
+settings to the registry and will only use a &quot;sessions&quot; file when called 
+with &quot;--portable&quot;?
+Using the &quot;sessions&quot; file is the default for Linux and AFAIK also for 
+Mac OS X, so why the variation in x2goclient.exe?
+
+IMO, using the sessions file by default simplifies handling across 
+client operating systems (especially as there is no import/export option 
+between the &quot;sessions&quot; file on Windows and the registry). That's why 
+saving to the registry should be dropped if nobody uses it, or made 
+optional (&quot;--save-to-registry&quot; or somehing like that) if there are a few 
+users that need it.
+
+So, to the Windows client users out there: Can anyone of you think of a 
+reason that speaks against saving the settings in a file?
+
+Until we have a decision on that, my workaround is a link with the 
+following destination:
+X:\x2goclient.exe --portable --home=%USERPROFILE%
+(where X: is a read-only network drive, and %USERPROFILE% is a reserved 
+variable on Windows that contains the path to the user's home directory)
+BTW, Alex will soon implement a change so that the sessions file can be 
+stored on the read-only network drive as well.
+
+-Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003601.html">[X2Go-Dev] X2Goplugin
+</A></li>
+	<LI>Next message: <A HREF="003575.html">[X2Go-Dev] x2goclient.exe - Saving session settings to registry
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3574">[ date ]</a>
+              <a href="thread.html#3574">[ thread ]</a>
+              <a href="subject.html#3574">[ subject ]</a>
+              <a href="author.html#3574">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

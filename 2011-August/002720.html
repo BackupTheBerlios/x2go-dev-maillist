@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] [X2go-User] [SOLVED] Re: Instructions for manual	install from source tarballs on a less well-known distribution
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BX2go-User%5D%20%5BSOLVED%5D%20Re%3A%20Instructions%20for%20manual%0A%09install%20from%20source%20tarballs%20on%20a%20less%20well-known%20distribution&In-Reply-To=%3C3295415.43r0f5CR9j%40tervel%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002719.html">
+   <LINK REL="Next"  HREF="002721.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] [X2go-User] [SOLVED] Re: Instructions for manual	install from source tarballs on a less well-known distribution</H1>
+    <B>Ivan Kabaivanov</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BX2go-User%5D%20%5BSOLVED%5D%20Re%3A%20Instructions%20for%20manual%0A%09install%20from%20source%20tarballs%20on%20a%20less%20well-known%20distribution&In-Reply-To=%3C3295415.43r0f5CR9j%40tervel%3E"
+       TITLE="[X2go-Dev] [X2go-User] [SOLVED] Re: Instructions for manual	install from source tarballs on a less well-known distribution">chepati at yahoo.com
+       </A><BR>
+    <I>Thu Aug 18 01:01:55 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002719.html">[X2go-Dev] [X2go-User] [SOLVED] Re: Instructions for manual install from source tarballs on a less well-known distribution
+</A></li>
+        <LI>Next message: <A HREF="002721.html">[X2go-Dev] x2goclient patch and x2goruncommand patch (was: Re: [X2go-User] [SOLVED] Re: Instructions for manual install from source tarballs on a less well-known distribution)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2720">[ date ]</a>
+              <a href="thread.html#2720">[ thread ]</a>
+              <a href="subject.html#2720">[ subject ]</a>
+              <a href="author.html#2720">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>ok, resending this after having subscribed to the x2go-dev list.
+
+
+
+On Wednesday 17 August 2011 23:32:53 Mike Gabriel wrote:
+
+&gt;<i> &gt; $ cat /usr/bin/x2goagent
+</I>&gt;<i> &gt; #!/bin/bash
+</I>&gt;<i> &gt; X2GO_LIBS=/usr/lib/x2go LD_LIBRARY_PATH=/usr/lib/x2go exec
+</I>&gt;<i> &gt; /usr/bin/x2goagent.original $@
+</I>&gt;<i> 
+</I>&gt;<i> This should not be necessary... With Debian it also works with
+</I>&gt;<i> libxcomp* being installed in /usr/lib.
+</I>&gt;<i> 
+</I>&gt;<i> There used to be times when x2go shipped its own NX libs with
+</I>&gt;<i> /usr/lib/x2go as path, but that's not so any more. x2go uses pure NX
+</I>&gt;<i> libs, only x2goagent is a fork of nxagent.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I install just the libs required by x2goagent binary like so:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; mkdir -p  /usr/lib/x2go/
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; make World
+</I>&gt;<i> &gt; cp -a lib/Xext/libXext.so* /usr/lib/x2go/
+</I>&gt;<i> &gt; cp -a lib/X11/libX11.so* /usr/lib/x2go/
+</I>&gt;<i> &gt; cp -a lib/Xpm/libXpm.so* /usr/lib/x2go/
+</I>&gt;<i> &gt; cp -a lib/Xrender/libXrender.so* /usr/lib/x2go/
+</I>&gt;<i> &gt; cp -a lib/Xfixes/libXfixes.so* /usr/lib/x2go/
+</I>&gt;<i> &gt; cp -a lib/Xtst/libXtst.so* /usr/lib/x2go/
+</I>&gt;<i> &gt; cp -a lib/Xdamage/libXdamage.so* /usr/lib/x2go/
+</I>&gt;<i> &gt; cp -a lib/Xrandr/libXrandr.so* /usr/lib/x2go/
+</I>&gt;<i> &gt; cp -a lib/Xcomposite/libXcomposite.so* /usr/lib/x2go/
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; install -m755 programs/Xserver/x2goagent /usr/bin/x2goagent.original
+</I>&gt;<i> 
+</I>&gt;<i> Please check that again. That should not be necessary. It could be
+</I>&gt;<i> misleading if you put it like that in the X2go wiki. I bet there is
+</I>&gt;<i> another way with using default library paths.
+</I>
+
+Mike,  please check the LFS server install wiki page.  I wrote up the 
+instructions for nxcomp, nxcompext, nxcompshad, nxproxy and x2goagentand will 
+finish the rest tomorrow.  As you'll see I'm installing libXcomp* in the 
+standard /usr/lib path.  However, looks like x2goagent is built from a 
+modified x.org (6.9?) source tree and when linked at runtime with the system 
+libX11 and other standard x.org libs it fails with an obscure message:
+
+~/.x2go]$ cat C-ivan-50-1313618948_stDKDE_dp24/session.log 
+
+NXAGENT - Version 3.5.0.2
+
+Copyright (C) 2001, 2011 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Agent running with pid '2457'.
+Session: Starting session at 'Thu Aug 18 01:09:11 2011'.
+Error: Aborting session with 'X2goagent: Unable to open display 
+'nx/nx,options=/home/ivan/.x2go/C-ivan-50-1313618948_stDKDE_dp24/options:50''.
+Session: Aborting session at 'Thu Aug 18 01:09:11 2011'.
+Session: Session aborted at 'Thu Aug 18 01:09:11 2011'.
+
+That's why I did an ldd on the x2goagent binary and copied just the 'custom' 
+x.org libs into /usr/lib/x2go and put them in the wrapper.
+
+what I'll do is try to narrow down to the exact library that breaks x2goagent 
+and just copy it.  Not sure if there's a better approach.  Don't wanna do a 
+static build either...
+
+
+&gt;<i> 
+</I>&gt;<i> &gt; And finally, I need to patch x2goclient because it's not consistent in
+</I>&gt;<i> &gt; its assumption of where the startkde script is:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; ~/x2goclient]# sed -i &quot;s,/usr/bin/startkde,startkde,g&quot; onmainwindow.cpp
+</I>&gt;<i> &gt; ~/x2goclient]# sed -i &quot;s,startkde,/usr/local/kde/bin/startkde,g&quot;
+</I>&gt;<i> &gt; onmainwindow_part3.cpp
+</I>&gt;<i> 
+</I>&gt;<i> Could you send a diff for that??? x2goclient should not refer to a
+</I>&gt;<i> hard coded path for startkde.
+</I>
+something like this?
+
+diff -Naur x2goclient/onmainwindow.cpp.original x2goclient/onmainwindow.cpp
+--- x2goclient/onmainwindow.cpp.original        2011-08-18 01:30:09.000000000 
++0300
++++ x2goclient/onmainwindow.cpp 2011-08-18 01:31:11.000000000 +0300
+@@ -2172,7 +2172,7 @@
+         }
+ 
+     }
+-    sessionCmd=&quot;/usr/bin/startkde&quot;;
++    sessionCmd=&quot;startkde&quot;;
+     LDAPSndSys=&quot;ARTS_SERVER&quot;;
+     LDAPSndStartServer=true;
+     startSound=false;
+
+diff -Naur x2goclient/x2goclient_de.ts.original x2goclient/x2goclient_de.ts
+--- x2goclient/x2goclient_de.ts.original        2011-08-18 01:30:33.000000000 
++0300
++++ x2goclient/x2goclient_de.ts 2011-08-18 01:31:51.000000000 +0300
+@@ -2192,8 +2192,8 @@
+         &lt;translation&gt;deaktiviert&lt;/translation&gt;
+     &lt;/message&gt;
+     &lt;message&gt;
+-        &lt;source&gt;/usr/bin/startkde&lt;/source&gt;
+-        &lt;translation type=&quot;obsolete&quot;&gt;/usr/bin/startkde&lt;/translation&gt;
++        &lt;source&gt;startkde&lt;/source&gt;
++        &lt;translation type=&quot;obsolete&quot;&gt;startkde&lt;/translation&gt;
+     &lt;/message&gt;
+     &lt;message&gt;
+         &lt;location filename=&quot;sessionbutton.cpp&quot; line=&quot;329&quot;/&gt;
+
+
+
+However, as I'm a KDE user, I can't test GNOME and LXDE.
+
+
+
+&gt;<i> 
+</I>&gt;<i> @Alex: any idea about this:
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at minobo</A>:~/MyDocuments/4projects/x2go-upstream/x2goclient$ grep -ri
+</I>&gt;<i>   /usr/bin/startkde *
+</I>&gt;<i> onmainwindow.cpp:    sessionCmd=&quot;/usr/bin/startkde&quot;;
+</I>&gt;<i> x2goclient_de.ts:        &lt;source&gt;/usr/bin/startkde&lt;/source&gt;
+</I>&gt;<i> x2goclient_de.ts:        &lt;translation
+</I>&gt;<i> type=&quot;obsolete&quot;&gt;/usr/bin/startkde&lt;/translation&gt;
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Mind you, I install kde in /usr/local/kde, and that's why I need these
+</I>&gt;<i> &gt; sed substitutions.  If your kde prefix is in /usr, you should be ok. 
+</I>&gt;<i> &gt; However, this brings up the question -- why donesn't x2go search in
+</I>&gt;<i> &gt; PATH for startkde, and instead hardcodes its location?
+</I>&gt;<i> 
+</I>&gt;<i> However, there currently are hard-coded path in the x2goserver
+</I>&gt;<i> (server!) script ,,x2goruncommand''. This is not optimal.
+</I>&gt;<i> 
+</I>&gt;<i> @Alex: Should we migrate them to non-fullpath calls
+</I>&gt;<i> 
+</I>&gt;<i>    /usr/bin/gnome-terminal -&gt; gnome-terminal
+</I>&gt;<i>    etc.
+</I>&gt;<i> 
+</I>
+
+How about this:
+
+diff -Naur x2goserver/x2goserver/bin/x2goruncommand.original 
+x2goserver/x2goserver/bin/x2goruncommand
+--- x2goserver/x2goserver/bin/x2goruncommand.original   2011-08-18 
+01:47:13.000000000 +0300
++++ x2goserver/x2goserver/bin/x2goruncommand    2011-08-18 01:55:14.000000000 
++0300
+@@ -83,19 +83,18 @@
+ 
+ if [ &quot;$cmd&quot; == &quot;TERMINAL&quot; ]; then
+        IMEXIT=&quot;true&quot;
+-       if [ -e &quot;/usr/bin/konsole&quot; ]; then
+-               cmd=&quot;/usr/bin/konsole&quot;
++       if bash +h -c &quot;type konsole&quot; &gt; /dev/null 2&gt;&amp;1; then
++               cmd=`type konsole | awk '{print $3}'`
+                # KDE4 konsole behaves differently from other terminals
+                IMEXIT=&quot;false&quot;
+-       elif  [ -e &quot;/usr/bin/gnome-terminal&quot; ]; then
+-               cmd=&quot;/usr/bin/gnome-terminal&quot;
+-       elif  [ -e &quot;/usr/bin/lxterminal&quot; ]; then
+-               cmd=&quot;/usr/bin/lxterminal&quot;
+-       elif  [ -e &quot;/usr/bin/rxvt&quot; ]; then
+-               cmd=&quot;/usr/bin/rxvt&quot;
+-       elif  [ -e &quot;/usr/bin/xterm&quot; ]; then
+-               cmd=&quot;/usr/bin/xterm&quot;
+-       fi
++       elif bash +h -c &quot;type gnome-terminal&quot; &gt; /dev/null 2&gt;&amp;1; then
++               cmd=`type gnome-terminal | awk '{print $3}'`
++       elif bash +h -c &quot;type lxterminal&quot; &gt; /dev/null 2&gt;&amp;1; then
++               cmd=`type lxterminal | awk '{print $3}'`
++       elif bash +h -c &quot;type rxvt&quot; &gt; /dev/null 2&gt;&amp;1; then
++               cmd=`type rxvt | awk '{print $3}'`
++       elif bash +h -c &quot;type xterm&quot; &gt; /dev/null 2&gt;&amp;1; then
++               cmd=`type xterm | awk '{print $3}'`
+ fi
+ 
+ EXEC=`which $cmd`
+
+actually I would remove 'which' altogether.  However, type is a bash built-in 
+function if I'm not mistaken, so on distributions where bash is not the 
+default shell, this may present problems...
+
+I didn't find the location of startkde hardcoded anywhere in x2goserver.
+
+IvanK.
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002719.html">[X2go-Dev] [X2go-User] [SOLVED] Re: Instructions for manual install from source tarballs on a less well-known distribution
+</A></li>
+	<LI>Next message: <A HREF="002721.html">[X2go-Dev] x2goclient patch and x2goruncommand patch (was: Re: [X2go-User] [SOLVED] Re: Instructions for manual install from source tarballs on a less well-known distribution)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2720">[ date ]</a>
+              <a href="thread.html#2720">[ thread ]</a>
+              <a href="subject.html#2720">[ subject ]</a>
+              <a href="author.html#2720">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

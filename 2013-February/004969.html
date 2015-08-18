@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#115: example working with qemu
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23115%3A%20example%20working%20with%20qemu&In-Reply-To=%3C510BD9F6.4000103%40tbz-pariv.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004960.html">
+   <LINK REL="Next"  HREF="004961.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#115: example working with qemu</H1>
+    <B>Thomas Guettler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23115%3A%20example%20working%20with%20qemu&In-Reply-To=%3C510BD9F6.4000103%40tbz-pariv.de%3E"
+       TITLE="[X2Go-Dev] Bug#115: example working with qemu">hv at tbz-pariv.de
+       </A><BR>
+    <I>Fri Feb  1 16:06:30 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004960.html">[X2Go-Dev] Processed: your mail
+</A></li>
+        <LI>Next message: <A HREF="004961.html">[X2Go-Dev] Bug#116: Only install what is needed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4969">[ date ]</a>
+              <a href="thread.html#4969">[ thread ]</a>
+              <a href="subject.html#4969">[ subject ]</a>
+              <a href="author.html#4969">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2gothinclientmanagement
+Version: 1.0.1.6-0~272~precise1
+
+Please provide the needed files, to get a working example
+how to boot with qemu and pxe
+
+
+<A HREF="http://www.x2go.org/doku.php/wiki:components:tce">http://www.x2go.org/doku.php/wiki:components:tce</A>
+
+Please add something like this to the documentation:
+
+you can test PXE boot like this:
+
+qemu-system-i386 -bootp <A HREF="tftp://10.0.2.2/pxelinux.0">tftp://10.0.2.2/pxelinux.0</A>  -tftp /usr/share/x2go/tce/tftpboot/
+
+There need to be some more files to get this working in /usr/share/x2go/tce/tftpboot/
+
+AFAIK pxelinux.0 is missing  vesamenu.c32, too.
+
+  Thank you
+
+-- 
+Thomas Guettler, <A HREF="http://www.thomas-guettler.de/">http://www.thomas-guettler.de/</A>
+E-Mail: guettli (*) thomas-guettler + de
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004960.html">[X2Go-Dev] Processed: your mail
+</A></li>
+	<LI>Next message: <A HREF="004961.html">[X2Go-Dev] Bug#116: Only install what is needed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4969">[ date ]</a>
+              <a href="thread.html#4969">[ thread ]</a>
+              <a href="subject.html#4969">[ subject ]</a>
+              <a href="author.html#4969">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

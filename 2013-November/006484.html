@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Two additions to X2Go-TCE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Two%20additions%20to%20X2Go-TCE&In-Reply-To=%3C5293E19A.2040401%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006487.html">
+   <LINK REL="Next"  HREF="006489.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Two additions to X2Go-TCE</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Two%20additions%20to%20X2Go-TCE&In-Reply-To=%3C5293E19A.2040401%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Two additions to X2Go-TCE">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Tue Nov 26 00:47:38 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006487.html">[X2Go-Dev] Bug#323: x2go server refuses client with 'Error: Wrong	version or invalid session authentication cookie.'
+</A></li>
+        <LI>Next message: <A HREF="006489.html">[X2Go-Dev] Bug#348: x2goserver 4.0.1.8: screws up keyboard for Mac	users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6484">[ date ]</a>
+              <a href="thread.html#6484">[ thread ]</a>
+              <a href="subject.html#6484">[ subject ]</a>
+              <a href="author.html#6484">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+as those of you also subscribed to the x2go-user mailing list might 
+already have noticed, I'm currently evaluating X2Go-ThinClient-Edition.
+This is purely for my own, at-home use, as opposed to the published 
+application mode, which I'm using commercially.
+
+One thing that has always annoyed me about X2Go is the mechanism for 
+printing to a locally-attached client printer.
+
+Especially in a thinclient, LAN-only setup, it seems like an unnecessary 
+complex solution to a trivial problem.
+
+My solution: Make the ThinClients behave like a &quot;HP JetDirect&quot; card.
+
+This can easily be done like this (on the server supplying the TC NFS root):
+
+chroot /opt/x2gothinclient/chroot
+apt-get install openbsd-inetd -y
+echo &quot;9100 stream tcp nowait root /bin/dd if=- of=/dev/usb/lp0 bs=1024k&quot; 
+ &gt;&gt; /etc/inetd.conf
+echo &quot;9101 stream tcp nowait root /bin/dd if=- of=/dev/usb/lp1 bs=1024k&quot; 
+ &gt;&gt; /etc/inetd.conf
+
+Assumption: Thinclients will have no more than two locally attached 
+printers. For more, simply keep adding lines and increment the port 
+numbers by 1 (9102: /dev/usb/lpt2, 9103: /dev/usb/lpt3, etc).
+
+For more flexibility, this could also be created dynamically at boot, by 
+turning inetd.conf into a symlink to a writable file on a ramdisk, and a 
+script checking for the presence of /dev/usb/lp* and /dev/lp* (in case 
+somebody uses an ancient computer with a parallel printer as thinclient).
+
+With this addition (either statically as shown above, or with the use of 
+a script), all you need to do on the CUPS server is set up a printer and 
+specify <A HREF="socket://name-or-ip-of-the-thinclient:portnumber,">socket://name-or-ip-of-the-thinclient:portnumber,</A> e.g. 
+<A HREF="socket://thinclient01.example.com:9100,">socket://thinclient01.example.com:9100,</A> as AppSocket/HP JetDirect URI in 
+CUPS.
+
+Now, this will end up in a mess if you're assigning IPs dynamically via 
+DHCP, and you aren't matching them up with the thinclients' MAC addresses.
+
+The easy solution for that would be using a DNS name, however, right 
+now, it looks like all X2Go thin clients don't request/suggest a DNS 
+name via DHCP, and use the same name &quot;x2gothinclient&quot; locally. Seems 
+like &quot;send host-name = gethostname();&quot; in  /etc/dhcp/dhclient.conf 
+somehow doesn't work properly in the thin client environment - possibly 
+because PXE already pulls a DHCP IP and doesn't know about the name? I'm 
+not sure what the mechanism there does.
+
+Therefore, I would like to suggest the addition of some code that adds 
+an individual name to each client, and requests/suggests that via DHCP.
+The MAC address would come in handy for that.
+A method to query the MAC address of the currently active interface 
+would be:
+
+IFACE=$(route -n | awk '/^0.0.0.0/ { print $8 }' | head -1)
+MAC=$( ip a l $IFACE | awk '/^ *link/ { print $2 }' | tr ':' '-' )
+hostname &quot;$(cat /etc/hostname)-$MAC&quot; # this sets the hostname
+dhclient -sf /dev/null $IFACE # this re-registers our lease and updates 
+the name on the DHCP/DNS server, without complaining about a read-only 
+resolv.conf-file
+# NB: Yes, you really need to use /dev/null, not /dev/zero.
+
+Notes:
+1) This is a quick hack, feel free to improve it
+2) I'm not sure where this should be inserted, only that it should be 
+inserted. ;-) Right now, I'm running it in rc.local, but there must be a 
+better place for this. The earlier in the boot process, the better. 
+Maybe as a script in /etc/network/if-up.d/ ?
+3) I don't know if changing the host name without changing /etc/hostname 
+and /etc/hosts might have some undesired side effects. If it does, these 
+files might have to be symlinked to a ramdisk.
+
+-Stefan
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006487.html">[X2Go-Dev] Bug#323: x2go server refuses client with 'Error: Wrong	version or invalid session authentication cookie.'
+</A></li>
+	<LI>Next message: <A HREF="006489.html">[X2Go-Dev] Bug#348: x2goserver 4.0.1.8: screws up keyboard for Mac	users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6484">[ date ]</a>
+              <a href="thread.html#6484">[ thread ]</a>
+              <a href="subject.html#6484">[ subject ]</a>
+              <a href="author.html#6484">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

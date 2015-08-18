@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] x2goserver.git/bin/x2goumount-session
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20x2goserver.git/bin/x2goumount-session&In-Reply-To=%3C20120210113116.3cf0eb4a%40athlon.garagome%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003477.html">
+   <LINK REL="Next"  HREF="003380.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] x2goserver.git/bin/x2goumount-session</H1>
+    <B>Milan Kn&#237;&#382;ek</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20x2goserver.git/bin/x2goumount-session&In-Reply-To=%3C20120210113116.3cf0eb4a%40athlon.garagome%3E"
+       TITLE="[X2Go-Dev] [PATCH] x2goserver.git/bin/x2goumount-session">knizek.confy at gmail.com
+       </A><BR>
+    <I>Fri Feb 10 11:31:16 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003477.html">[X2Go-Dev] X2Go bindings for Xfce and others
+</A></li>
+        <LI>Next message: <A HREF="003380.html">[X2Go-Dev] [PATCH] x2goserver.git/bin/x2goumount-session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3372">[ date ]</a>
+              <a href="thread.html#3372">[ thread ]</a>
+              <a href="subject.html#3372">[ subject ]</a>
+              <a href="author.html#3372">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+find attached the following patches for bin/x2goumount-session script:
+
+0001: the DESKTOP file for shares of /cygwin/C:/some/path got not
+removed due to redundant &quot;/cygwin/&quot; string.
+
+0002: the $HOME/media or $HOME/media/${USER}_media symlink got not
+removed after session end.
+
+0003: the /tmp/${USER}_media mount points tree got not removed after
+session end.
+
+I am not sure about the latter two patches - could they create some
+problems in case the user has two paralel sessions active? (Can it even
+happen?)
+
+Will you please review and possibly commit to git?
+
+Regards,
+Milan
+-- 
+<A HREF="http://www.milan-knizek.net/">http://www.milan-knizek.net/</A>
+About linux and photography (Czech only)
+O linuxu a fotografov&#225;n&#237;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 0001-Fix-removal-of-DESKTOP-file-for-MS-Windows-shared-di.patch
+Type: text/x-patch
+Size: 745 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120210/d575b74a/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120210/d575b74a/attachment.bin</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 0002-Fix-removal-of-symlink-in-HOME-directory.patch
+Type: text/x-patch
+Size: 1009 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120210/d575b74a/attachment-0001.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120210/d575b74a/attachment-0001.bin</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 0003-fix-removal-of-tmp-USER-_media-mount-points.patch
+Type: text/x-patch
+Size: 888 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120210/d575b74a/attachment-0002.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120210/d575b74a/attachment-0002.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003477.html">[X2Go-Dev] X2Go bindings for Xfce and others
+</A></li>
+	<LI>Next message: <A HREF="003380.html">[X2Go-Dev] [PATCH] x2goserver.git/bin/x2goumount-session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3372">[ date ]</a>
+              <a href="thread.html#3372">[ thread ]</a>
+              <a href="subject.html#3372">[ subject ]</a>
+              <a href="author.html#3372">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

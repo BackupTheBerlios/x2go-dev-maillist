@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go with likewise-open (ldap) questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CC505792E7472474DAC90E6C2844BBD96717EFC%40destroyer.VSTI.LOCAL%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001408.html">
+   <LINK REL="Next"  HREF="001416.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go with likewise-open (ldap) questions</H1>
+    <B>Neil W. Hunt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CC505792E7472474DAC90E6C2844BBD96717EFC%40destroyer.VSTI.LOCAL%3E"
+       TITLE="[X2go-dev] x2go with likewise-open (ldap) questions">nwhunt at vsticorp.com
+       </A><BR>
+    <I>Fri Dec 17 17:27:29 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001408.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+        <LI>Next message: <A HREF="001416.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1409">[ date ]</a>
+              <a href="thread.html#1409">[ thread ]</a>
+              <a href="subject.html#1409">[ subject ]</a>
+              <a href="author.html#1409">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>John,
+
+we are a software development organization, mainly Java-based, and like most organizations we predominantly have full Windows desktops for all of our users. We are looking to move towards a Linux-based thin client environment in the following way:
+-we've been evaluating x2go vs. FreeNX and while both are extremely performant and desktop-like experiences, the audio support from x2go has pushed us this way
+-we predominantly deploy our applications on Linux, so by running Ubuntu as our desktop environment it's less change from dev to prod
+-we want to be able to more quickly roll out new software development tools so by having a standardized desktop environment that can be controlled centrally, it makes it much easier to do this
+-obviously we want to save money and by purchasing very thin desktop units and an open-source host OS such as Ubuntu, and convincing people that most of the functionality they require with the traditional MS Office suite can be found with OpenOffice, we see potentially dramatic cost savings
+-we are tying it into our Active Directory (hence all my Likewise questions) so it was imperative we got that working, which now we do
+-we are in the process of evaluating the x2gothinclient environment and trying to network boot into an x2go client. Right now, we just have a light Ubuntu OS on the local disk with a full screen windowing system that basically creates a kiosk mode and loads the x2go client full screen, so end users don't even know there's an OS underneath. But we really would like to move to the netboot environment, alleviate the need for local disks, and run the x2gothinclient settings - so you might hear from me again soon!
+
+I just spoke to our CTO about how helpful you've all been and we're feeling very good about x2go and the community in general. If we could help with a donation or something like that, is there anything in particular that would helpful to you all?
+
+Neil
+
+
+-----Original Message-----
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-bounces at lists.berlios.de</A> on behalf of John A. Sullivan III
+Sent: Fri 12/17/2010 10:52 AM
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+Subject: Re: [X2go-dev] x2go with likewise-open (ldap) questions
+ 
+On Fri, 2010-12-17 at 10:36 -0500, Neil W. Hunt wrote:
+&gt;<i> Here is all the good news:
+</I>&gt;<i> 
+</I>&gt;<i> Thanks for the suggestion about /bin/sh pointing to /bin/bash rather
+</I>&gt;<i> than /bin/dash. As soon as I changed that, regardless of Likewise or
+</I>&gt;<i> Ubuntu version, we are up and running! No more black screen and full
+</I>&gt;<i> audio sound when using default domain (I understand the code changes
+</I>&gt;<i> will happen so we don't have to use default domain but instead and use
+</I>&gt;<i> DOMAIN\username in the future).
+</I>&gt;<i> 
+</I>&gt;<i> We are very excited about rolling this out at our organization and
+</I>&gt;<i> will be in touch in the future.
+</I>&gt;<i> 
+</I>&gt;<i> Neil
+</I>&gt;<i> 
+</I>&lt;snip&gt;
+I'm glad that fixed it, Neil.  It sounds like you are looking at a large
+deployment.  Are the physical desktop clients primarily Windows? - John
+
+_______________________________________________
+X2go-dev mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+
+
+This e-mail and any attachments are for the intended recipient(s) only and may contain proprietary, confidential material. If you are not the intended recipient, (even if the email address above is yours) do not use, retain, copy or disclose any part of this communication or any attachment as it is strictly prohibited and may be unlawful. If you believe that you have received this e-mail in error, please notify the sender immediately and permanently delete. This email may be a personal communication from the sender and as such does not represent the views of the company.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: winmail.dat
+Type: application/ms-tnef
+Size: 4788 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101217/980400d8/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101217/980400d8/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001408.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+	<LI>Next message: <A HREF="001416.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1409">[ date ]</a>
+              <a href="thread.html#1409">[ thread ]</a>
+              <a href="subject.html#1409">[ subject ]</a>
+              <a href="author.html#1409">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

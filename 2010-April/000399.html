@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Ubuntu 9.10 and Kcontrol module
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Ubuntu%209.10%20and%20Kcontrol%20module&In-Reply-To=%3C1270230936.13535.13.camel%40Family.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000398.html">
+   <LINK REL="Next"  HREF="000397.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Ubuntu 9.10 and Kcontrol module</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Ubuntu%209.10%20and%20Kcontrol%20module&In-Reply-To=%3C1270230936.13535.13.camel%40Family.pacifera.com%3E"
+       TITLE="[X2go-dev] Ubuntu 9.10 and Kcontrol module">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Apr  2 19:55:36 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000398.html">[X2go-dev] Ubuntu 9.10 and Kcontrol module
+</A></li>
+        <LI>Next message: <A HREF="000397.html">[X2go-dev] Ubuntu 9.10 and Kcontrol module
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#399">[ date ]</a>
+              <a href="thread.html#399">[ thread ]</a>
+              <a href="subject.html#399">[ subject ]</a>
+              <a href="author.html#399">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2010-04-02 at 19:23 +0200, Paul van der Vlis wrote:
+&gt;<i> brian mullan schreef:
+</I>&gt;<i> &gt; Paul van der Vlis &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">paul at ...</A>&gt; writes:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;&gt;&gt; Cyril Vergne schreef:
+</I>&gt;<i> &gt;&gt;&gt; But there is a big problem about x2go on Ubuntu : No
+</I>&gt;<i> &gt;&gt;&gt; administration console.
+</I>&gt;<i> &gt;&gt; I am not sure what you exactly need. I don't use the administration
+</I>&gt;<i> &gt;&gt; module. You can live without it 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Paul I think what the person was referring to was what I 
+</I>&gt;<i> &gt; encountered lately.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; If I download the x2go-server (full server) and follow the 
+</I>&gt;<i> &gt; debian instructions for installing the &quot;full server&quot; on ubuntu
+</I>&gt;<i> &gt; (there was no example to do the same for ubuntu just debian)
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; <A HREF="http://www.x2go.org/uploads/tx_skpdfviewer/">http://www.x2go.org/uploads/tx_skpdfviewer/</A>
+</I>&gt;<i> &gt; installation_x2go_debian_en_01.pdf
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The build/install fails because of dependency's on the 
+</I>&gt;<i> &gt; kcontrol module which doesn't exist any longer in the ubuntu 
+</I>&gt;<i> &gt; repositories.   So I've yet to be able to try the full-version
+</I>&gt;<i> &gt; of the x2go solution.
+</I>&gt;<i> 
+</I>&gt;<i> I am a Gnome user so I don't want kcontrol-modules.
+</I>&gt;<i> 
+</I>&gt;<i> I have never tried them and never missed them. I think you can manage
+</I>&gt;<i> users with them in LDAP, but there are more ways to manage users in LDAP...
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I don't know if that is a kde change that has occurred or what 
+</I>&gt;<i> &gt; but for me I couldn't get that installation to succeed.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; So I was left with x2go-home which does work well but its not 
+</I>&gt;<i> &gt; meant to be scalable.
+</I>&gt;<i> 
+</I>&gt;<i> I use small installations, but I think you don't need this packages to
+</I>&gt;<i> be scalable. You need Postgres and LDAP. But maybe I am wrong.
+</I>&lt;snip&gt;
+We are a KDE site.  I have not used the tools for primarily two reasons:
+1) ignorance - we hope to look at them at some point
+2) Platform - we use CentOS Directory Server and not OpenLDAP.  We will
+need to digest the schema and see how we port it before we can use it.
+
+Regarding scalability, we are building an environment to accommodate
+thousands of X2Go desktops (hopefully - business plans are one thing -
+reality can be another).  We also run one X2Go desktop per virtual
+machine using VServer in a fairly secure environment.
+
+The scalability and platform issues are where we have made some changes.
+We use a central PostgreSQL server.  We altered the X2Go database
+scripts to not use the PostgreSQL super user and to use one schema per
+desktop so no one can see another user's session information.  We
+created a separate sessions table owned by the super user and updated
+from the desktop tables via a trigger.  This gives us a central view of
+all sessions with restricted access.
+
+We do not use x2gocleansessions on each desktop lest we have thousands
+of processes all hitting against the database every five seconds and
+each consuming CPU cycles on the desktop.  It also requires more
+privileges in the virtual machine than we are willing to give based upon
+our security model.  Instead, we disabled the x2goserver init script and
+moved the session cleaning to the VServer host which pulls upon the
+central session table.
+
+We then centralized the printing on a single CUPS server and altered
+cups-x2go so that it can support multiple X2Go Servers.  We pull the
+server information from the central session table (I believe - I haven't
+looked at that in a while).
+
+So one can build a highly scalable environment.  That doesn't mean the
+tools are not important.  I suspect storing information in LDAP will be
+essential when the broker product becomes available.  I suppose it is
+valuable now if one wants to eliminate manual configuration of the
+client.  In our case, access is across the Internet for all users and
+the LDAP server is not publicly exposed.  We've thus handled it another
+way.  Hope this helps - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000398.html">[X2go-dev] Ubuntu 9.10 and Kcontrol module
+</A></li>
+	<LI>Next message: <A HREF="000397.html">[X2go-dev] Ubuntu 9.10 and Kcontrol module
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#399">[ date ]</a>
+              <a href="thread.html#399">[ thread ]</a>
+              <a href="subject.html#399">[ subject ]</a>
+              <a href="author.html#399">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

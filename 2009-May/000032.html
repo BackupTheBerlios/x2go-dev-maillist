@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] keyboard not working quite right in gtk client...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20keyboard%20not%20working%20quite%20right%20in%20gtk%20client...&In-Reply-To=%3Cfe6a97cf0905261657g3dec0906y3b97c18506f5c895%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000030.html">
+   <LINK REL="Next"  HREF="000037.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] keyboard not working quite right in gtk client...</H1>
+    <B>Brian Moss</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20keyboard%20not%20working%20quite%20right%20in%20gtk%20client...&In-Reply-To=%3Cfe6a97cf0905261657g3dec0906y3b97c18506f5c895%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] keyboard not working quite right in gtk client...">jbrianmoss at gmail.com
+       </A><BR>
+    <I>Wed May 27 01:57:08 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000030.html">[X2go-dev] keyboard not working quite right in gtk client...
+</A></li>
+        <LI>Next message: <A HREF="000037.html">[X2go-dev] keyboard not working quite right in gtk client...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#32">[ date ]</a>
+              <a href="thread.html#32">[ thread ]</a>
+              <a href="subject.html#32">[ subject ]</a>
+              <a href="author.html#32">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> I am also having the problem with the Qt client.
+
+Need to read through 1 and 2.
+
+On Tue, May 26, 2009 at 6:33 PM, Paul Menzel &lt;
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">paulepanter at users.sourceforge.net</A>&gt; wrote:
+
+&gt;<i> Dear Douglas,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Am Dienstag, den 26.05.2009, 14:04 -0400 schrieb Douglas M. Stanley:
+</I>&gt;<i>
+</I>&gt;<i> [&#8230;]
+</I>&gt;<i>
+</I>&gt;<i> &gt; I recently set up x2go in a xen guest, and when I try to connect to it
+</I>&gt;<i> with the
+</I>&gt;<i> &gt; gtk client, the keyboard isn't right. Everything seems to work, except
+</I>&gt;<i> the arrow
+</I>&gt;<i> &gt; keys. If I turn numlock on/off, then the arrows on the keypad seem to
+</I>&gt;<i> work, but
+</I>&gt;<i> &gt; not the normal arrow keys. I've tried everything I can think of to set
+</I>&gt;<i> the keyboard
+</I>&gt;<i> &gt; both on the client and on the actual host. Everything is set to 105key
+</I>&gt;<i> qwerty US,
+</I>&gt;<i> &gt; but the arrow keys still don't work.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; The maemo client using the directional pad seemed to work fine simulating
+</I>&gt;<i> the arrow
+</I>&gt;<i> &gt; keys, so I'm not sure if it would work with the QT client or not as I
+</I>&gt;<i> haven't tried
+</I>&gt;<i> &gt; that client yet.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Anyone else run into this issue yet? It may very well be due to the
+</I>&gt;<i> machine running
+</I>&gt;<i> &gt; under xen, so I'm not sure if anyone else is doing something similar or
+</I>&gt;<i> not.
+</I>&gt;<i>
+</I>&gt;<i> I do have the same problem and I believe it is related to FreeNX and not
+</I>&gt;<i> XEN.
+</I>&gt;<i>
+</I>&gt;<i> Which desktop environment do you use? Have you tried this with other
+</I>&gt;<i> X2go clients? I use x2goclient_gtk and GNOME (on the remote machine). In
+</I>&gt;<i> the beginning I get an error from gnome-settings-daemon 2.24 (it
+</I>&gt;<i> crashed) [1].
+</I>&gt;<i>
+</I>&gt;<i> The up-arrow is mapped to print and so on. (You can check this with
+</I>&gt;<i> xev.)
+</I>&gt;<i>
+</I>&gt;<i> This bug with FreeNX is being discussed on [2]. Unfortunately I have not
+</I>&gt;<i> had time to try this out because the fixed gnome-settings-daemon has not
+</I>&gt;<i> entered Debian Sid yet.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Thanks,
+</I>&gt;<i>
+</I>&gt;<i> Paul
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> [1] <A HREF="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=528499">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=528499</A>
+</I>&gt;<i> [2] <A HREF="http://lists.kde.org/?l=freenx-knx&amp;m=123072320912229&amp;w=2">http://lists.kde.org/?l=freenx-knx&amp;m=123072320912229&amp;w=2</A>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090526/11a1a565/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090526/11a1a565/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000030.html">[X2go-dev] keyboard not working quite right in gtk client...
+</A></li>
+	<LI>Next message: <A HREF="000037.html">[X2go-dev] keyboard not working quite right in gtk client...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#32">[ date ]</a>
+              <a href="thread.html#32">[ thread ]</a>
+              <a href="subject.html#32">[ subject ]</a>
+              <a href="author.html#32">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

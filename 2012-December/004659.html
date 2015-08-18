@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#75: fails to use RSA SSH keys
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2375%3A%20fails%20to%20use%20RSA%20SSH%20keys&In-Reply-To=%3CCAJ0ccebW1NGXNEoYT5sfKK9F3O2TeW%3Dvt%2BaYS5qATeKaoTZ0xw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004654.html">
+   <LINK REL="Next"  HREF="004661.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#75: fails to use RSA SSH keys</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2375%3A%20fails%20to%20use%20RSA%20SSH%20keys&In-Reply-To=%3CCAJ0ccebW1NGXNEoYT5sfKK9F3O2TeW%3Dvt%2BaYS5qATeKaoTZ0xw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#75: fails to use RSA SSH keys">siretart at gmail.com
+       </A><BR>
+    <I>Thu Dec  6 09:53:32 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004654.html">[X2Go-Dev] Bug#75: fails to use RSA SSH keys
+</A></li>
+        <LI>Next message: <A HREF="004661.html">[X2Go-Dev] Bug#75: fails to use RSA SSH keys
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4659">[ date ]</a>
+              <a href="thread.html#4659">[ thread ]</a>
+              <a href="subject.html#4659">[ subject ]</a>
+              <a href="author.html#4659">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Dec 6, 2012 at 9:48 AM, Mike Gabriel
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+&gt;<i> Hi Reinhard,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Do 06 Dez 2012 09:11:51 CET Reinhard Tartler wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Package: pyhoca-gui
+</I>&gt;&gt;<i> Version: 0.2.0.4-0~789~precise1
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The configuration dialogue asks for a private RSA/DSA keys.
+</I>&gt;&gt;<i> Unfortunately, when I try to use my RSA SSH key, the connection fails
+</I>&gt;&gt;<i> with &quot;not a valid DSA key&quot;. Which is correct, but not helpful.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> BTW, when browsing for a keyfile, the window title of the file browser
+</I>&gt;&gt;<i> says (in german) &quot;select public SSH Key&quot;. I guess it still wants a
+</I>&gt;&gt;<i> private one instead.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I have also observed this behaviour. My main SSH key is an RSA key and it
+</I>&gt;<i> works fine.
+</I>
+That sentence does not make sense to me. Can you confirm that RSA keys
+do not work or not?
+
+&gt;<i>
+</I>&gt;<i> So problem 1 is the error message: it says DSA (hard-coded) but it can mean
+</I>&gt;<i> RSA/DSA.
+</I>&gt;<i>
+</I>&gt;<i> The ,,not a valid DSA key'' refers to a local private SSH key that does not
+</I>&gt;<i> get accepted by the server (no matter if the key locally is RSA or DSA).
+</I>
+Well, this means that the error message then is both wrong and not helpful.
+
+&gt;<i> What is the exact SSH configuration in the sessions file? Do you use
+</I>&gt;<i> detction of default key names in the config?
+</I>
+This is my the relevant part of my ~/.x2goclient/sessions file
+
+[20121202161237781818]
+iconvfrom = UTF-8
+height = 600
+speed = 2
+setsessiontitle = 0
+sessiontitle =
+layout = us
+width = 800
+krblogin = 0
+soundsystem = pulse
+autostart = 0
+type = pc105/us
+sndport = 4713
+sshproxyuser =
+usekbd = 1
+autologin = 0
+sound = 1
+rootless = 0
+sshproxyhost =
+name = &lt;REMOVED FOR PRIVACY&gt;
+iconvto = UTF-8
+directrdp = 0
+sshport = 22
+startsoundsystem = 0
+pack = 16m-jpeg
+defsndport = 1
+useiconv = 0
+multidisp = 0
+export = &quot;;&quot;
+fullscreen = 0
+useexports = 0
+quality = 9
+xdmcpserver = localhost
+xinerama = 0
+rdpoptions = -u X2GO_USER -p X2GO_PASSWORD
+print = 0
+usesshproxy = 0
+sshproxytunnel = :1::1
+variant = altgr-intl
+sshproxykeyfile =
+fstunnel = 1
+applications = TERMINAL, WWWBROWSER, MAILCLIENT, OFFICE
+host = &lt;REMOVED FOR PRIVACY&gt;
+mimeboxextensions =
+user = tartler
+key =
+directrdpsettings =
+icon = /usr/share/icons/PyHoca/128x128/pyhoca-session.png
+mimeboxaction = OPEN
+rdpport = 3389
+rdpserver =
+soundtunnel = 1
+rdpclient = rdesktop
+command = KDE
+dpi = 96
+published = 0
+setdpi = 0
+usemimebox = 0
+
+
+
+-- 
+regards,
+    Reinhard
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004654.html">[X2Go-Dev] Bug#75: fails to use RSA SSH keys
+</A></li>
+	<LI>Next message: <A HREF="004661.html">[X2Go-Dev] Bug#75: fails to use RSA SSH keys
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4659">[ date ]</a>
+              <a href="thread.html#4659">[ thread ]</a>
+              <a href="subject.html#4659">[ subject ]</a>
+              <a href="author.html#4659">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

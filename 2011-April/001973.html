@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20concept%20for%20X2go%20session%20lock-down%20to%20kiosk-mode%0A%20%28was%20Re%3A%20X2go%20is%20insecure%29&In-Reply-To=%3C20110401080715.GO27445%40cip.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001971.html">
+   <LINK REL="Next"  HREF="001975.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)</H1>
+    <B>Alexander Wuerstlein</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20concept%20for%20X2go%20session%20lock-down%20to%20kiosk-mode%0A%20%28was%20Re%3A%20X2go%20is%20insecure%29&In-Reply-To=%3C20110401080715.GO27445%40cip.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)">snalwuer at cip.informatik.uni-erlangen.de
+       </A><BR>
+    <I>Fri Apr  1 10:07:15 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001971.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+        <LI>Next message: <A HREF="001975.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1973">[ date ]</a>
+              <a href="thread.html#1973">[ thread ]</a>
+              <a href="subject.html#1973">[ subject ]</a>
+              <a href="author.html#1973">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 11-04-01 04:58, Gerry Reno &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">greno at verizon.net</A>&gt; wrote:
+&gt;<i> On 03/31/2011 08:44 PM, Dick Kniep wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Hi list,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;  
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Reading all comments on my stone in the pond I still think it is not
+</I>&gt;<i> &gt; really clear what the problem is (and my proposed solution)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I do not want to secure the entire server. I only want a door that can
+</I>&gt;<i> &gt; be locked. So I allow a user to use the terminal. Okay he is allowed
+</I>&gt;<i> &gt; to use the terminal and so he can do anything he likes. No problem.
+</I>
+What you want and need is something similar to scponly[0] as a shell for
+all users that should be restricted in that way. That way you ensure
+security by starting with a restricted set of commands and allowing
+stuff instead of starting with an &quot;allow all&quot; policy that a normal shell
+is, applying some usually broken kind of filtering and then allowing
+stuff again. 
+
+&gt;<i> &gt; Or I say on the server the user may only use program XYZ. XYZ starts
+</I>&gt;<i> &gt; and that is all. If XYZ deletes my system that is Okay by me. The user
+</I>&gt;<i> &gt; had access to that program and that is it.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;  
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; This can be enforced by my simple solution. From the client a command
+</I>&gt;<i> &gt; is sent, say &quot;Start terminal&quot;. Then in the wrapper, the user is
+</I>&gt;<i> &gt; matched with the command and if the match exists, the command is
+</I>&gt;<i> &gt; allowed and is executed. If not, the request is rejected.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;  
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Maybe this can be achieved also by apparmor, but it looks to me that
+</I>&gt;<i> &gt; apparmor is intended to secure the entire system which is really not
+</I>&gt;<i> &gt; what I want. (Or maybe I am mistaken because of lack of knowledge of
+</I>&gt;<i> &gt; apparmor)
+</I>
+I don't think this could be achieved by apparmor. You could try
+SELinux and I'm sure something working and secure will come out, but its
+very complex. Imagine the original SSH process (i think you can
+configure that with pam_selinux) setting a restricted security context
+that only allows to execute a very restricted set of commands to set up
+an x2go session (i.e. label all those commands executable for that
+security context, but not anything else). That x2go session setup then
+needs the capability to elevate its security context to something more
+permissive such that a normal application could do its job. But since
+quite a handful of x2go is written in shell or perl, you will also need
+to allow those for the restricted security context while ensuring that
+the user can't do anything out of line. Could work, but its very hard
+and complex to achieve.
+
+&gt;<i> It looks like you want an &quot;authorization&quot; solution.  And that is what
+</I>&gt;<i> functionality like &quot;sudo&quot; is meant for.  You make your users members of
+</I>&gt;<i> a certain group and then give that group rights to only specific
+</I>&gt;<i> executables.  If they try to execute anything else, the command will fail.
+</I>
+How would you do that? sudo is not a generic authorization solution that
+magically forbids you from executing anything, sudo allows you to change
+your uid or gid in special circumstances. That may be used as an
+authorization solution in case that user has some special rights. But
+last I checked, a system where the contents of /usr/bin is not a+rx
+doesn't really work without a major amount of pain...
+
+
+
+
+Ciao,
+
+Alexander Wuerstlein.
+
+[0] <A HREF="http://sublimation.org/scponly/wiki/index.php/Main_Page">http://sublimation.org/scponly/wiki/index.php/Main_Page</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001971.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+	<LI>Next message: <A HREF="001975.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1973">[ date ]</a>
+              <a href="thread.html#1973">[ thread ]</a>
+              <a href="subject.html#1973">[ subject ]</a>
+              <a href="author.html#1973">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

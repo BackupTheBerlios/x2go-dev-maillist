@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go not working on ubuntu 10.10?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20not%20working%20on%20ubuntu%2010.10%3F&In-Reply-To=%3C4D399288.6090808%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001532.html">
+   <LINK REL="Next"  HREF="001536.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go not working on ubuntu 10.10?</H1>
+    <B>jmm</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20not%20working%20on%20ubuntu%2010.10%3F&In-Reply-To=%3C4D399288.6090808%40gmail.com%3E"
+       TITLE="[X2go-dev] x2go not working on ubuntu 10.10?">jagermeistermeister at gmail.com
+       </A><BR>
+    <I>Fri Jan 21 15:04:56 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001532.html">[X2go-dev] x2go not working on ubuntu 10.10?
+</A></li>
+        <LI>Next message: <A HREF="001536.html">[X2go-dev] Fwd: X2go-dev Digest, Vol 25, Issue 20
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1535">[ date ]</a>
+              <a href="thread.html#1535">[ thread ]</a>
+              <a href="subject.html#1535">[ subject ]</a>
+              <a href="author.html#1535">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I can also confirm that this bug is present in ubuntu 10.04 LTS,
+
+I followed the steps in this article: 
+<A HREF="http://cloud.ubuntu.com/2010/11/show-off-ubuntu-desktop-on-cloud/">http://cloud.ubuntu.com/2010/11/show-off-ubuntu-desktop-on-cloud/</A>
+(Except I skipped the optional step. Also the first time I skipped the 
+`apt-get distupgrade` to see if it was caused by Ubuntu 10.10. The 
+second time I tried it with the distupgrade as well, to no avail.)
+
+I used the official Canonical 32 bit Ubuntu AMI (ami-a2f405cb found on 
+<A HREF="http://uec-images.ubuntu.com/releases/10.04/release/">http://uec-images.ubuntu.com/releases/10.04/release/</A>). I am using a 
+m1.small instance.
+
+Here is the same log again, but this time from my new attempt:
+
+# cat session.log
+/usr/bin/x2goagent: line 1: -e: command not found
+
+NXAGENT - Version 3.4.0
+
+Copyright (C) 2001, 2007 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Agent running with pid '32760'.
+Session: Starting session at 'Fri Jan 21 13:51:16 2011'.
+Info: Proxy running in server mode with pid '32760'.
+Info: Waiting for connection from 'localhost' on port '30001'.
+Info: Accepted connection from '127.0.0.1'.
+Warning: Connected to remote version 3.2.0 with local version 3.4.0.
+Info: Connection with remote proxy completed.
+Info: Using ADSL link parameters 512/24/1/0.
+Info: Using agent parameters 5000/10/50/0/0.
+Info: Using cache parameters 4/4096KB/8192KB/8192KB.
+Info: Using pack method '16m-jpeg-9' with session 'unix-kde-depth_24'.
+Info: Using ZLIB data compression 1/1/32.
+Info: Using ZLIB stream compression 4/4.
+Info: No suitable cache file found.
+Info: Listening to X11 connections on display ':50'.
+Warning: The channel for FD#5 channel ID#1 was not marked as finishing.
+Error: Aborting session with 'X2goagent: Unable to open display 
+'nx/nx,options=/home/ubuntu/.x2go/C-ubuntu-50-1295617875_stDGNOME_dp24/options:50''.
+Session: Aborting session at 'Fri Jan 21 13:51:24 2011'.
+Session: Session aborted at 'Fri Jan 21 13:51:24 2011'.
+Warning: Signals were not blocked in process with pid '32760'.
+Info: Your session has died before reaching an usable state.
+Info: This can be due to the remote X server refusing access to the client.
+Info: Please check the authorization provided by your X application.
+Info: Waiting the cleanup timeout to complete.
+
+
+Oleksandr Shneyder wrote:
+&gt;<i> Am 21.01.2011 11:21, schrieb jmm:
+</I>&gt;<i>   
+</I>&gt;&gt;&gt;<i> $ cat session.log
+</I>&gt;&gt;&gt;<i> /usr/bin/x2goagent: line 1: -e: command not found
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;<i>
+</I>&gt;<i> please check, if your /usr/bin/x2goagent look so:
+</I>&gt;<i>
+</I>&gt;<i> #!/bin/bash
+</I>&gt;<i>     X2GO_LIBS=/usr/lib/x2go LD_LIBRARY_PATH=/usr/lib/x2go exec
+</I>&gt;<i> /usr/lib/x2go/x2goagent $@
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;<i> ------------------------------------------------------------------------
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>   
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/eec49b32/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/eec49b32/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001532.html">[X2go-dev] x2go not working on ubuntu 10.10?
+</A></li>
+	<LI>Next message: <A HREF="001536.html">[X2go-dev] Fwd: X2go-dev Digest, Vol 25, Issue 20
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1535">[ date ]</a>
+              <a href="thread.html#1535">[ thread ]</a>
+              <a href="subject.html#1535">[ subject ]</a>
+              <a href="author.html#1535">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

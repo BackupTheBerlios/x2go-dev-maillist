@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goclient hangs on login
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20hangs%20on%20login&In-Reply-To=%3C20091021103034.166110%40gmx.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000134.html">
+   <LINK REL="Next"  HREF="000135.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goclient hangs on login</H1>
+    <B>Traugott Simon</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20hangs%20on%20login&In-Reply-To=%3C20091021103034.166110%40gmx.net%3E"
+       TITLE="[X2go-dev] x2goclient hangs on login">Sauron99 at gmx.de
+       </A><BR>
+    <I>Wed Oct 21 12:30:34 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000134.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+        <LI>Next message: <A HREF="000135.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#129">[ date ]</a>
+              <a href="thread.html#129">[ thread ]</a>
+              <a href="subject.html#129">[ subject ]</a>
+              <a href="author.html#129">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+ok I have added a picture of my processes to this mail. I hope that this is ok. Yes maybe its an LDAP related thing.. I will have a look into the logs later today and will report it soon.
+
+
+Greetings 
+
+
+-------- Original-Nachricht --------
+&gt;<i> Datum: Wed, 21 Oct 2009 11:07:56 +0200
+</I>&gt;<i> Von: Paul van der Vlis &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">paul at vandervlis.nl</A>&gt;
+</I>&gt;<i> An: x2go-mailing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>&gt;
+</I>&gt;<i> Betreff: Re: [X2go-dev] x2goclient hangs on login
+</I>
+&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Sauron99 at gmx.de</A> schreef:
+</I>&gt;<i> &gt; Hello list, this is my very first post to this list and Im quite sure
+</I>&gt;<i> &gt; a few will follow ;). Anyway I have a Problem with the configuration
+</I>&gt;<i> &gt; of X2goserver. Im finished with the LDAP stuff and so on and want to
+</I>&gt;<i> &gt; try it out now. But for some reason after logging in with the
+</I>&gt;<i> &gt; X2goclient it hangs right after clicking on &quot;Ok&quot;. On serverside some
+</I>&gt;<i> &gt; processes starting up but nothing happens... I haven&#180;t complete the
+</I>&gt;<i> &gt; PXE, ATFTPD and DHCP stuff and so on but the normal connect via
+</I>&gt;<i> &gt; x2goclient should work, right?
+</I>&gt;<i> 
+</I>&gt;<i> Right. I have X2go running without LDAP, PXE boot, TFTP, DHCP and it
+</I>&gt;<i> works fine. It works &quot;out of the box&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> Maybe your problems are LDAP related?
+</I>&gt;<i> 
+</I>&gt;<i> Other people have x2go running with LDAP.
+</I>&gt;<i> 
+</I>&gt;<i> The server-proces only drops broken sessions out of the database.
+</I>&gt;<i> 
+</I>&gt;<i> There is no server-process running if you have no session.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Do I have to add the clients that are able to connect to X2GO
+</I>&gt;<i> &gt; somewhere first??
+</I>&gt;<i> 
+</I>&gt;<i> No, but the users need to be in the groups x2gousers and fuse. When it's
+</I>&gt;<i> right the setup has done that for you.
+</I>&gt;<i> 
+</I>&gt;<i> With regards,
+</I>&gt;<i> Paul van der Vlis.
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+-- 
+Jetzt kostenlos herunterladen: Internet Explorer 8 und Mozilla Firefox 3.5 -
+sicherer, schneller und einfacher! <A HREF="http://portal.gmx.net/de/go/chbrowser">http://portal.gmx.net/de/go/chbrowser</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: hangs.jpg
+Type: image/jpeg
+Size: 187498 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20091021/1d57100f/attachment.jpg">https://lists.berlios.de/pipermail/x2go-dev/attachments/20091021/1d57100f/attachment.jpg</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000134.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+	<LI>Next message: <A HREF="000135.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#129">[ date ]</a>
+              <a href="thread.html#129">[ thread ]</a>
+              <a href="subject.html#129">[ subject ]</a>
+              <a href="author.html#129">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

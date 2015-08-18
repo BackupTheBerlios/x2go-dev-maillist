@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] GNOME session does not fully start up and just shows	background
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20GNOME%20session%20does%20not%20fully%20start%20up%20and%20just%20shows%0A%09background&In-Reply-To=%3C1345718714.5637.23.camel%40mattotaupa%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004166.html">
+   <LINK REL="Next"  HREF="004168.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] GNOME session does not fully start up and just shows	background</H1>
+    <B>Paul Menzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20GNOME%20session%20does%20not%20fully%20start%20up%20and%20just%20shows%0A%09background&In-Reply-To=%3C1345718714.5637.23.camel%40mattotaupa%3E"
+       TITLE="[X2Go-Dev] GNOME session does not fully start up and just shows	background">paulepanter at users.sourceforge.net
+       </A><BR>
+    <I>Thu Aug 23 12:45:14 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004166.html">[X2Go-Dev] [gel&#246;st] pinentry-x2go: Missing replaces/conflicts with pinentry-x2go-gtk
+</A></li>
+        <LI>Next message: <A HREF="004168.html">[X2Go-Dev] GNOME session does not fully start up and just shows background
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4167">[ date ]</a>
+              <a href="thread.html#4167">[ thread ]</a>
+              <a href="subject.html#4167">[ subject ]</a>
+              <a href="author.html#4167">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear X2Go folks,
+
+
+using Debian Sid/unstable with
+
+        ii  pinentry-x2go                                 0.7.5.5-0~x2go2+squeeze~main~39~build1   i386         Qt4-based PIN or pass-phrase entry dialog for x2goclient
+        un  pinentry-x2go-gtk                             &lt;keine&gt;                                               (keine Beschreibung vorhanden)
+        ii  x2go-keyring                                  2012.07.23+squeeze~main~17~build1        all          GnuPG keys of all X2Go developers and the X2Go archive
+        ii  x2goagent                                     2:3.5.0.14-0+squeeze~main~312~build1     all          X2Go agent
+        ii  x2goclient                                    3.99.2.2-0~x2go1+squeeze~main~240~build1 i386         X2Go Client application (Qt4)
+        ii  x2goserver                                    3.1.1.3-0~x2go1+squeeze~main~571~build1  i386         X2Go server daemon scripts
+        un  x2goserver-compat                             &lt;keine&gt;                                               (keine Beschreibung vorhanden)
+        ii  x2goserver-extensions                         3.1.1.3-0~x2go1+squeeze~main~571~build1  all          X2Go server daemon scripts (extensions)
+        un  x2goserver-fmbindings                         &lt;keine&gt;                                               (keine Beschreibung vorhanden)
+        un  x2goserver-home                               &lt;keine&gt;                                               (keine Beschreibung vorhanden)
+        un  x2goserver-one                                &lt;keine&gt;                                               (keine Beschreibung vorhanden)
+        un  x2goserver-printing                           &lt;keine&gt;                                               (keine Beschreibung vorhanden)
+        un  x2goserver-pyhoca                             &lt;keine&gt;                                               (keine Beschreibung vorhanden)
+        ii  x2goserver-xsession                           3.1.1.3-0~x2go1+squeeze~main~571~build1  all          X2Go server daemon scripts (Xsession runner)
+
+        $ x2goversion
+        x2goserver: 3.1.1.3
+        x2goserver-extensions: 3.1.1.3
+        x2goserver-xsession: 3.1.1.3
+
+logging in to GNOME does not complete. Executing `/usr/bin/xterm` works.
+Also logging in locally works without problems.
+
+The symptom with the incomplete GNOME session is, that the X2Go full
+screen window starts up and is replaced by the Debian background image.
+Then the GNOME keyring password window pops up. Entering the password
+nothing else happens. The mouse pointer can be moved but no panel is
+started. `htop` also does not show any activity.
+
+        $ pstree -c -l -A
+        [&#8230;]
+             |-x2goagent
+             |-x2gocleansessio---3*[sh]
+             |-x2goruncommand---gnome-session-+-bluetooth-apple---{bluetooth-apple}
+             |                                |-evolution-alarm---2*[{evolution-alarm}]
+             |                                |-gdu-notificatio
+             |                                |-gnome-fallback----2*[{gnome-fallback-}]
+             |                                |-gnome-panel---2*[{gnome-panel}]
+             |                                |-gnome-screensav---2*[{gnome-screensav}]
+             |                                |-gnome-settings----2*[{gnome-settings-}]
+             |                                |-gnome-sound-app---{gnome-sound-app}
+             |                                |-hp-systray---hp-systray---hp-systray
+             |                                |-metacity---2*[{metacity}]
+             |                                |-nm-applet---{nm-applet}
+             |                                |-notification-da---{notification-da}
+             |                                |-polkit-gnome-au---{polkit-gnome-au}
+             |                                |-system-config-p
+             |                                |-tracker-miner-f---2*[{tracker-miner-f}]
+             |                                |-tracker-store---6*[{tracker-store}]
+             |                                |-update-notifier
+             |                                |-zeitgeist-datah---{zeitgeist-datah}
+             |                                `-3*[{gnome-session}]
+        [&#8230;]
+
+Closing `x2goclient` by pressing Ctrl + q removes the windows, but the
+processes are still listed on the server. `x2golistsessions` does not
+list anything though.
+
+Could you give a hint on how to debug such an issue?
+
+
+Thanks,
+
+Paul
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120823/30bc55a6/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120823/30bc55a6/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004166.html">[X2Go-Dev] [gel&#246;st] pinentry-x2go: Missing replaces/conflicts with pinentry-x2go-gtk
+</A></li>
+	<LI>Next message: <A HREF="004168.html">[X2Go-Dev] GNOME session does not fully start up and just shows background
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4167">[ date ]</a>
+              <a href="thread.html#4167">[ thread ]</a>
+              <a href="subject.html#4167">[ subject ]</a>
+              <a href="author.html#4167">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

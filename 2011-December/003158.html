@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] [PATCH] Traditional Chinese(zh_TW) translation for	x2goclient
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BPATCH%5D%20Traditional%20Chinese%28zh_TW%29%20translation%20for%0A%09x2goclient&In-Reply-To=%3CCAF9Uv0WvkeG8iUX2X8kXR8riB4rym8uOnGJ4F2GuzoPxnGVo0g%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003157.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] [PATCH] Traditional Chinese(zh_TW) translation for	x2goclient</H1>
+    <B>Arlo Liu</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BPATCH%5D%20Traditional%20Chinese%28zh_TW%29%20translation%20for%0A%09x2goclient&In-Reply-To=%3CCAF9Uv0WvkeG8iUX2X8kXR8riB4rym8uOnGJ4F2GuzoPxnGVo0g%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] [PATCH] Traditional Chinese(zh_TW) translation for	x2goclient">arlo.liu at atrustcorp.com
+       </A><BR>
+    <I>Sat Dec 31 05:34:08 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003157.html">[X2go-Dev] [PATCH] Traditional Chinese(zh_TW) translation for x2goclient
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3158">[ date ]</a>
+              <a href="thread.html#3158">[ thread ]</a>
+              <a href="subject.html#3158">[ subject ]</a>
+              <a href="author.html#3158">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks for your help, many regions need both language and country code
+to identify the correct locale,
+due to the 50KB attachment limitation, i have repacked this patch to zip
+archive file as attached file.
+
+regards.
+Arlo
+
+2011/12/31 Moritz Str&#252;be &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Moritz.Struebe at informatik.uni-erlangen.de</A>&gt;
+
+&gt;<i> Am 30.12.2011 21:21, Reinhard Tartler schrieb:
+</I>&gt;<i> &gt;      QString filename=QString ( &quot;:/x2goclient_%1&quot; ).arg (
+</I>&gt;<i> &gt;                           QLocale::system().name() );
+</I>&gt;<i> &gt; -    filename=filename.toLower();
+</I>&gt;<i> &gt; +    //filename=filename.toLower();
+</I>&gt;<i> &gt;      if ( !x2goclientTranslator-&gt;load ( filename ) )
+</I>&gt;<i>
+</I>&gt;<i> I think we're safe to use the patch:
+</I>&gt;<i>
+</I>&gt;<i> &quot;Returns the language and country of this locale as a string of the form
+</I>&gt;<i> &quot;language_country&quot;, where language is a lowercase, two-letter ISO 639
+</I>&gt;<i> language code, and country is an uppercase, two- or three-letter ISO
+</I>&gt;<i> 3166 country code.&quot;
+</I>&gt;<i> <A HREF="http://developer.qt.nokia.com/doc/qt-4.8/qlocale.html#name">http://developer.qt.nokia.com/doc/qt-4.8/qlocale.html#name</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Cheers
+</I>&gt;<i> Morty
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+
+-- 
+Arlo Liu
+Atrust Computer Corp.
+<A HREF="http://www.atrustcorp.com">http://www.atrustcorp.com</A>
+Tel: +886-3-3288837 ext.71
+Fax: +886-3-3288973
+3F., No.361, Fusing 1st Rd., Gueishan Township, Taoyuan County 333, Taiwan
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20111231/ff3bd478/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20111231/ff3bd478/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 0001-add-zh_tw-translation.zip
+Type: application/zip
+Size: 15225 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20111231/ff3bd478/attachment.zip">https://lists.berlios.de/pipermail/x2go-dev/attachments/20111231/ff3bd478/attachment.zip</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003157.html">[X2go-Dev] [PATCH] Traditional Chinese(zh_TW) translation for x2goclient
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3158">[ date ]</a>
+              <a href="thread.html#3158">[ thread ]</a>
+              <a href="subject.html#3158">[ subject ]</a>
+              <a href="author.html#3158">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] BUG?: plugin stuck in auth rejection
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BUG%3F%3A%20plugin%20stuck%20in%20auth%20rejection&In-Reply-To=%3C4C375548.80309%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000764.html">
+   <LINK REL="Next"  HREF="000766.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] BUG?: plugin stuck in auth rejection</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BUG%3F%3A%20plugin%20stuck%20in%20auth%20rejection&In-Reply-To=%3C4C375548.80309%40verizon.net%3E"
+       TITLE="[X2go-dev] BUG?: plugin stuck in auth rejection">greno at verizon.net
+       </A><BR>
+    <I>Fri Jul  9 18:58:48 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000764.html">[X2go-dev] BUG?: plugin stuck in auth rejection
+</A></li>
+        <LI>Next message: <A HREF="000766.html">[X2go-dev] BUG?: plugin stuck in auth rejection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#765">[ date ]</a>
+              <a href="thread.html#765">[ thread ]</a>
+              <a href="subject.html#765">[ subject ]</a>
+              <a href="author.html#765">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 07/09/2010 12:44 PM, Gerry Reno wrote:
+&gt;<i> On 07/09/2010 12:33 PM, Gerry Reno wrote:
+</I>&gt;&gt;<i> On 07/09/2010 12:11 PM, Gerry Reno wrote:
+</I>&gt;&gt;&gt;<i> On 07/09/2010 03:52 AM, John A. Sullivan III wrote:
+</I>&gt;&gt;&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;&gt;&gt;<i> I really don't know what is going wrong but what happens if you try
+</I>&gt;&gt;&gt;&gt;<i> logging on via ssh? Does it give you any more understandable error
+</I>&gt;&gt;&gt;&gt;<i> message? - John
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hi John,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>   Yes, I tried that and using ssh I can always log in just fine, no 
+</I>&gt;&gt;&gt;<i> errors.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I've uninstalled and reinstalled the plugin - no change, still same 
+</I>&gt;&gt;&gt;<i> problem.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Something has the plugin thoroughly confused.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> In trying to connect to 192.168.1.46, &quot;Show details&quot; shows this:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Info: Proxy running in client mode with pid '17787'.
+</I>&gt;&gt;&gt;<i> Session: Starting session at 'Fri Jul  9 12:07:49 2010'.
+</I>&gt;&gt;&gt;<i> Info: Connecting to remote host 'localhost:30002'.
+</I>&gt;&gt;&gt;<i> Info: Connection to remote proxy 'localhost:30002' established.
+</I>&gt;&gt;&gt;<i> Error: The remote NX proxy closed the connection.
+</I>&gt;&gt;&gt;<i> Error: Failure negotiating the session in stage '7'.
+</I>&gt;&gt;&gt;<i> Error: Wrong version or invalid session authentication cookie.
+</I>&gt;&gt;&gt;<i> Session: Terminating session at 'Fri Jul  9 12:07:49 2010'.
+</I>&gt;&gt;&gt;<i> Session: Session terminated at 'Fri Jul  9 12:07:49 2010'.
+</I>&gt;&gt;&gt;<i> Connection timeout, aborting
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I don't see that IP address anywhere in the detail listing.  Is that 
+</I>&gt;&gt;&gt;<i> normal?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Gerry
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In looking at one of the logs:
+</I>&gt;&gt;<i> ======================================
+</I>&gt;&gt;<i> /usr/bin/x2goagent: line 1: -e: command not found
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> NXAGENT - Version 3.4.0
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Copyright (C) 2001, 2007 NoMachine.
+</I>&gt;&gt;<i> See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Info: Agent running with pid '20759'.
+</I>&gt;&gt;<i> Session: Starting session at 'Fri Jul  9 12:17:44 2010'.
+</I>&gt;&gt;<i> Info: Proxy running in server mode with pid '20759'.
+</I>&gt;&gt;<i> Info: Waiting for connection from 'localhost' on port '30001'.
+</I>&gt;&gt;<i> Info: Accepted connection from '127.0.0.1'.
+</I>&gt;&gt;<i> Error: The remote NX proxy closed the connection.
+</I>&gt;&gt;<i> Error: Failure negotiating the session in stage '7'.
+</I>&gt;&gt;<i> Error: Aborting session with 'X2goagent: Unable to open display 
+</I>&gt;&gt;<i> 'nx/nx,options=/home/greno/.x2go/C-greno-50-1278692263_stDGNOME_dp24/options:50''. 
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Session: Aborting session at 'Fri Jul  9 12:17:44 2010'.
+</I>&gt;&gt;<i> Session: Session aborted at 'Fri Jul  9 12:17:44 2010'.
+</I>&gt;&gt;<i> ======================================
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Here is the server.x2go file:
+</I>&gt;&gt;<i> ======================================
+</I>&gt;&gt;<i> session=Remote Session
+</I>&gt;&gt;<i> server=192.168.1.46
+</I>&gt;&gt;<i> user=greno
+</I>&gt;&gt;<i> sshport=22
+</I>&gt;&gt;<i> command=GNOME
+</I>&gt;&gt;<i> rootless=false
+</I>&gt;&gt;<i> dpi=96
+</I>&gt;&gt;<i> kbdlayout=us
+</I>&gt;&gt;<i> kbdtype=pc105/us
+</I>&gt;&gt;<i> speed=lan
+</I>&gt;&gt;<i> compression=16m-png-jpeg
+</I>&gt;&gt;<i> quality=9
+</I>&gt;&gt;<i> sound=true
+</I>&gt;&gt;<i> exportfs=true
+</I>&gt;&gt;<i> showtoolbar=true
+</I>&gt;&gt;<i> showstatusbar=true
+</I>&gt;&gt;<i> ======================================
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I've done a 'xhost +' in a user terminal window on the 192.168.1.46 
+</I>&gt;&gt;<i> machine several times but it doesn't seem to help.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Gerry
+</I>&gt;&gt;<i>
+</I>&gt;<i> Here is what I find in /usr/bin/x2goagent:
+</I>&gt;<i> -e #!/bin/bash
+</I>&gt;<i>     X2GO_LIBS=/usr/lib/x2go LD_LIBRARY_PATH=/usr/lib/x2go exec 
+</I>&gt;<i> /usr/lib/x2go/x2goagent $@
+</I>&gt;<i>
+</I>&gt;<i> Now does that look right?
+</I>&gt;<i>
+</I>&gt;<i> Last night I installed x2goserver-one on my localhost in order to do 
+</I>&gt;<i> some quick local tests.  Perhaps this file got written like this from 
+</I>&gt;<i> the install?
+</I>&gt;<i>
+</I>&gt;<i> Gerry
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+More info:
+
+Using Ubuntu Lucid:
+I removed the x2goserver package and reinstalled x2goserver-one.  That 
+cleared the &quot;/usr/bin/x2goagent: line 1: -e: command not found&quot; error.  
+However, the &quot;cannot open display&quot; error still persists.  Still 
+rejecting auth.
+
+
+Gerry
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000764.html">[X2go-dev] BUG?: plugin stuck in auth rejection
+</A></li>
+	<LI>Next message: <A HREF="000766.html">[X2go-dev] BUG?: plugin stuck in auth rejection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#765">[ date ]</a>
+              <a href="thread.html#765">[ thread ]</a>
+              <a href="subject.html#765">[ subject ]</a>
+              <a href="author.html#765">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

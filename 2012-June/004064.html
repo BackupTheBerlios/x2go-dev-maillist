@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Segfault issue with x2goserver.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Segfault%20issue%20with%20x2goserver.&In-Reply-To=%3CCALxOYEZPtWpntyXepVDe-O3yzXiDeWW1z2e-uEcOZfyX2sbsvg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004063.html">
+   <LINK REL="Next"  HREF="004067.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Segfault issue with x2goserver.</H1>
+    <B>Nable 80</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Segfault%20issue%20with%20x2goserver.&In-Reply-To=%3CCALxOYEZPtWpntyXepVDe-O3yzXiDeWW1z2e-uEcOZfyX2sbsvg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Segfault issue with x2goserver.">nable.maininbox at googlemail.com
+       </A><BR>
+    <I>Wed Jun  6 08:25:54 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004063.html">[X2Go-Dev] [PATCHv2] [NX] Add patch: 052_nxcomp_macos10-nxauth-location.full+lite.patch, change nxauth search location on Mac OS X to $NX_SYSTEM/nxauth to facilitate application bundle building.
+</A></li>
+        <LI>Next message: <A HREF="004067.html">[X2Go-Dev] releasing x2goclient before pull pulseaudio changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4064">[ date ]</a>
+              <a href="thread.html#4064">[ thread ]</a>
+              <a href="subject.html#4064">[ subject ]</a>
+              <a href="author.html#4064">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi.
+At first, thank you for extremely quick answer.
+
+If this issue is known, then it may be good to add 'Conflicts:
+libcairo (&gt;= 1.12)' to debian/control file of main version of
+x2goagent. It could save some hair of new users from becoming gray.
+
+I've tried both of your pieces of advice.
+On 32bit server i've downgraded libcairo to 1.8 (it would be better to
+have 1.10 but it's available in repo no more) and also had to
+downgrade everything that depends on it.
+After that both nxserver and x2goserver work good. If i have time i'll
+also try newer nxserver (i really enjoy their lightweight Win32
+client), although i've heard that freenx lacks support and tends to
+become abandoned.
+
+On 64bit server i've updated x2go server apps to wheezy/heuler
+versions and it also works now. lxterminal and chromium seems to be
+slow (although, chromium via `ssh -X' never worked fast; lxterminal
+scrolls slowly but it's not dramatically slow) and icedove doesn't
+seem to be slow at all.
+
+Although, issue about problems with resuming is actual: both
+lxterminal and icedove lose all text labels and cannot show any text
+(see attached screenshot of menu ) until i close them and open again
+(minimize + restore or resize doesn't help).
+
+One more thing, about exporting client dirs to x2go session: it works
+only when i set (in x2goclient session settings) local encoding to
+windows-1251, but my OS and FS supports and uses unicode, does anybody
+work on fixing such support in x2goclient?
+Also even when I set local encoding to cp1251, on server side I see
+that dots from the beginning of filenames (yes, I have folders with
+names like .ssh, files .bashrc, etc) are stripped. That doesn't seem
+to be correct behavior.
+
+Thanks again for your answer, also I hope that I can help in improving
+x2go project too.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 123.PNG
+Type: image/png
+Size: 4563 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120606/9da6b77d/attachment.png">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120606/9da6b77d/attachment.png</A>&gt;
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004063.html">[X2Go-Dev] [PATCHv2] [NX] Add patch: 052_nxcomp_macos10-nxauth-location.full+lite.patch, change nxauth search location on Mac OS X to $NX_SYSTEM/nxauth to facilitate application bundle building.
+</A></li>
+	<LI>Next message: <A HREF="004067.html">[X2Go-Dev] releasing x2goclient before pull pulseaudio changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4064">[ date ]</a>
+              <a href="thread.html#4064">[ thread ]</a>
+              <a href="subject.html#4064">[ subject ]</a>
+              <a href="author.html#4064">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

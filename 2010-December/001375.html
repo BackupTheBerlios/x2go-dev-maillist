@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go with likewise-open (ldap) questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3C1292344205.3385.5.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001374.html">
+   <LINK REL="Next"  HREF="001372.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go with likewise-open (ldap) questions</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3C1292344205.3385.5.camel%40localhost%3E"
+       TITLE="[X2go-dev] x2go with likewise-open (ldap) questions">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Dec 14 17:30:05 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001374.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+        <LI>Next message: <A HREF="001372.html">[X2go-dev] firefox plugin --verbose output?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1375">[ date ]</a>
+              <a href="thread.html#1375">[ thread ]</a>
+              <a href="subject.html#1375">[ subject ]</a>
+              <a href="author.html#1375">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2010-12-14 at 16:58 +0200, Ivan Boyadzhiev wrote:
+&gt;<i>         
+</I>&gt;<i>         &lt;snip&gt;
+</I>&gt;<i>         I admit to not reading this carefully as I am running out the
+</I>&gt;<i>         door but
+</I>&gt;<i>         doesn't one also need to be a member of fuse (file sharing)
+</I>&gt;<i>         and pulse,
+</I>&gt;<i>         pulse-access, and pulse-rt? - John
+</I>&gt;<i>         
+</I>&gt;<i>         
+</I>&gt;<i>         
+</I>&gt;<i>         
+</I>&gt;<i> 
+</I>&gt;<i> Ok, after my final investigations, it seems problem with the escape of
+</I>&gt;<i> &quot;@&quot; which is changed to DOMAIN&quot;\&quot;User. Everything else is the same.
+</I>&gt;<i> Only, only pulseaudio ssh forward doesn't happen. I have found this
+</I>&gt;<i> inside /var/log/syslog:
+</I>&gt;<i> 
+</I>&gt;<i> Dec 14 16:01:43 bgtrmx02 pulseaudio[11757]: pid.c: Failed to open PID
+</I>&gt;<i> file
+</I>&gt;<i> '/home/likewise-open/DOMAIN/iboyadzi/.pulse/512381a4f3b57a9260ac14f100000005-runtime/pid': No such file or directory
+</I>&gt;<i> Dec 14 16:01:43 bgtrmx02 pulseaudio[11757]: pid.c: Failed to open PID
+</I>&gt;<i> file
+</I>&gt;<i> '/home/likewise-open/DOMAIN/iboyadzi/.pulse/512381a4f3b57a9260ac14f100000005-runtime/pid': No such file or directory
+</I>&gt;<i> 
+</I>&gt;<i> - I've compared 2 newly created user folders (local and LDAP). There
+</I>&gt;<i> had differences:
+</I>&gt;<i>  * media symlink to /tmp/DOMAIN\USER_media wasn't successful for LDAP
+</I>&gt;<i> user
+</I>&gt;<i>  * LDAP user has .pulse folder with the pid error above
+</I>&gt;<i>  * local user has .pulse-client.conf and .pulse-cookie inside
+</I>&gt;<i> ~/.x2go/C-Username...dp32/
+</I>&gt;<i>  
+</I>&gt;<i> - ps axwww compare showed no difference 
+</I>&gt;<i> 
+</I>&gt;<i> The point with LDAP user logged in locally, has same effect as
+</I>&gt;<i> changing /dev/snd/* files permissions to 0666 (SUBSYSTEM==&quot;sound&quot;,
+</I>&gt;<i> MODE=&quot;0666&quot; part), and thus the sound is hearing on the server side. 
+</I>&gt;<i> 
+</I>&gt;<i> My questions:
+</I>&gt;<i> 1. Do you know how this SSH Pulseaudio forwarding is implemented. I
+</I>&gt;<i> would like to try to create manually a new pulseaudio forwarding to
+</I>&gt;<i> current remote LDAP account session.
+</I>&gt;<i> 2. Can you show me where in the sources, are the parts written both
+</I>&gt;<i> for the server and client side. When I get more deep understanding how
+</I>&gt;<i> this pulseaudio is happening I would provide exact reason why it
+</I>&gt;<i> fails.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks and Best Regards
+</I>&gt;<i> Ivan
+</I>&lt;snip&gt;
+Hi, Ivan.  Alas, I'm still flying in and out but you can find most of
+the scripts on the server under /usr/bin/x2go*.  These scripts are
+invoked by the client via ssh.
+
+We'll see if the list allows it through but I've attached an OpenOffice
+document of our analysis of what happens when an X2Go session starts and
+stops.  It is a very rough document - really a scratch sheet of notes -
+but at least it is something to help you along. It may not be 100%
+accurate.  Good luck - John
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: X2GoNotes.odt
+Type: application/vnd.oasis.opendocument.text
+Size: 36044 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101214/0757ed96/attachment.odt">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101214/0757ed96/attachment.odt</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001374.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+	<LI>Next message: <A HREF="001372.html">[X2go-dev] firefox plugin --verbose output?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1375">[ date ]</a>
+              <a href="thread.html#1375">[ thread ]</a>
+              <a href="subject.html#1375">[ subject ]</a>
+              <a href="author.html#1375">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

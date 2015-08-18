@@ -1,0 +1,476 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Segfaults in latest x2goclient
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Segfaults%20in%20latest%20x2goclient&In-Reply-To=%3C50CA1D6B.5060500%40cora.nwra.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004751.html">
+   <LINK REL="Next"  HREF="004753.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Segfaults in latest x2goclient</H1>
+    <B>Orion Poplawski</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Segfaults%20in%20latest%20x2goclient&In-Reply-To=%3C50CA1D6B.5060500%40cora.nwra.com%3E"
+       TITLE="[X2Go-Dev] Segfaults in latest x2goclient">orion at cora.nwra.com
+       </A><BR>
+    <I>Thu Dec 13 19:24:43 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004751.html">[X2Go-Dev] Fwd: Returned mail: see transcript for details
+</A></li>
+        <LI>Next message: <A HREF="004753.html">[X2Go-Dev] Segfaults in latest x2goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4752">[ date ]</a>
+              <a href="thread.html#4752">[ thread ]</a>
+              <a href="subject.html#4752">[ subject ]</a>
+              <a href="author.html#4752">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm trying out the latest x2goclient git against the latest x2goserver git and 
+am getting segfaults when I try to connect.  There is likely something wrong 
+of the server side install, but the client shouldn't segfault.  I'm not very 
+familiar with the code so I'm not much help I'm afraid.
+
+checking exit status
+check command message
+
+Program received signal SIGSEGV, Segmentation fault.
+QProcessManager::remove (this=0x3d98ed5520 &lt;processManager()::processManager&gt;,
+     process=&lt;optimized out&gt;) at io/qprocess_unix.cpp:301
+301         int serial = process-&gt;d_func()-&gt;serial;
+(gdb) bt
+#0  QProcessManager::remove (this=0x3d98ed5520 
+&lt;processManager()::processManager&gt;,
+     process=&lt;optimized out&gt;) at io/qprocess_unix.cpp:301
+#1  0x0000003d98b0e34a in QProcessPrivate::_q_startupNotification (this=0xb57700)
+     at io/qprocess.cpp:1099
+#2  0x0000003d98b1230e in qt_static_metacall (_c=QMetaObject::InvokeMetaMethod,
+     _a=&lt;optimized out&gt;, _id=&lt;optimized out&gt;, _o=&lt;optimized out&gt;)
+     at .moc/release-shared/moc_qprocess.cpp:89
+#3  QProcess::qt_static_metacall (_o=&lt;optimized out&gt;, _c=&lt;optimized out&gt;, 
+_id=&lt;optimized out&gt;,
+     _a=&lt;optimized out&gt;) at .moc/release-shared/moc_qprocess.cpp:68
+#4  0x0000003d98b8cebf in QMetaObject::activate (sender=0xbe3a90, m=&lt;optimized 
+out&gt;,
+     local_signal_index=&lt;optimized out&gt;, argv=0x7fffffffcf00) at 
+kernel/qobject.cpp:3539
+#5  0x0000003d98bd7c5e in QSocketNotifier::activated (this=&lt;optimized out&gt;, 
+_t1=24)
+     at .moc/release-shared/moc_qsocketnotifier.cpp:102
+#6  0x0000003d98b9489b in QSocketNotifier::event (this=0xbe3a90, e=0x7fffffffd4e0)
+     at kernel/qsocketnotifier.cpp:317
+#7  0x0000003d9c9ca5cc in QApplicationPrivate::notify_helper 
+(this=<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">this at entry</A>=0x7af230,
+     receiver=<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">receiver at entry</A>=0xbe3a90, e=<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">e at entry</A>=0x7fffffffd4e0) at 
+kernel/qapplication.cpp:4562
+#8  0x0000003d9c9cea4a in QApplication::notify (this=0x7fffffffd870, 
+receiver=0xbe3a90,
+     e=0x7fffffffd4e0) at kernel/qapplication.cpp:4423
+#9  0x0000003d98b77a8e in QCoreApplication::notifyInternal (this=0x7fffffffd870,
+     receiver=0xbe3a90, event=0x7fffffffd4e0) at kernel/qcoreapplication.cpp:946
+#10 0x0000003d98ba58d8 in sendEvent (event=0x7fffffffd4e0, receiver=&lt;optimized 
+out&gt;)
+     at kernel/qcoreapplication.h:231
+#11 socketNotifierSourceDispatch (source=0x7b2c00) at 
+kernel/qeventdispatcher_glib.cpp:110
+#12 0x0000003d92247a75 in g_main_context_dispatch () from /lib64/libglib-2.0.so.0
+#13 0x0000003d92247da8 in g_main_context_iterate.isra.24 () from 
+/lib64/libglib-2.0.so.0
+#14 0x0000003d92247e64 in g_main_context_iteration () from /lib64/libglib-2.0.so.0
+#15 0x0000003d98ba60d6 in QEventDispatcherGlib::processEvents (this=0x7b0650, 
+flags=...)
+     at kernel/qeventdispatcher_glib.cpp:424
+#16 0x0000003d9ca6a73e in QGuiEventDispatcherGlib::processEvents 
+(this=&lt;optimized out&gt;,
+     flags=...) at kernel/qguieventdispatcher_glib.cpp:207
+#17 0x0000003d98b767df in QEventLoop::processEvents 
+(this=<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">this at entry</A>=0x7fffffffd720, flags=...)
+     at kernel/qeventloop.cpp:149
+#18 0x0000003d98b76a68 in QEventLoop::exec (this=0x7fffffffd720, flags=...)
+     at kernel/qeventloop.cpp:204
+#19 0x0000003d98b7b858 in QCoreApplication::exec () at 
+kernel/qcoreapplication.cpp:1218
+#20 0x00000000004be89b in x2goMain (argc=1, argv=&lt;optimized out&gt;) at 
+../ongetpass.cpp:81
+#21 0x0000003d8d621a05 in __libc_start_main (main=0x418da0 &lt;main(int, 
+char**)&gt;, argc=1,
+     ubp_av=0x7fffffffd988, init=&lt;optimized out&gt;, fini=&lt;optimized out&gt;,
+     rtld_fini=&lt;optimized out&gt;, stack_end=0x7fffffffd978) at libc-start.c:225
+#22 0x0000000000418e01 in _start ()
+(gdb) print process
+$1 = &lt;optimized out&gt;
+(gdb) list
+296
+297     void QProcessManager::remove(QProcess *process)
+298     {
+299         QMutexLocker locker(&amp;mutex);
+300
+301         int serial = process-&gt;d_func()-&gt;serial;
+302         QProcessInfo *info = children.take(serial);
+303     #if defined (QPROCESS_DEBUG)
+304         if (info)
+305             qDebug() &lt;&lt; &quot;QProcessManager::remove() removing pid&quot; &lt;&lt; 
+info-&gt;pid &lt;&lt; &quot;process&quot; &lt;&lt; info-&gt;process;
+(gdb) up
+#1  0x0000003d98b0e34a in QProcessPrivate::_q_startupNotification (this=0xb57700)
+     at io/qprocess.cpp:1099
+1099        findExitCode();
+(gdb) list
+1094        processError = QProcess::FailedToStart;
+1095        emit q-&gt;error(processError);
+1096    #ifdef Q_OS_UNIX
+1097        // make sure the process manager removes this entry
+1098        waitForDeadChild();
+1099        findExitCode();
+1100    #endif
+1101        cleanup();
+1102        return false;
+1103    }
+
+valgrind:
+
+==17848== Thread 4:
+==17848== Syscall param sendmsg(mmsg[0].msg_hdr) points to uninitialised byte(s)
+==17848==    at 0x3D8D6F3D6B: sendmmsg (sendmmsg.c:36)
+==17848==    by 0x3D8F20B4D6: __libc_res_nsend (res_send.c:1132)
+==17848==    by 0x3D8F208BDF: __libc_res_nquery (res_query.c:226)
+==17848==    by 0x3D8F2095FF: __libc_res_nsearch (res_query.c:582)
+==17848==    by 0x1420EAC7: _nss_dns_gethostbyname4_r (dns-host.c:309)
+==17848==    by 0x3D8D6D9AF1: gaih_inet (getaddrinfo.c:845)
+==17848==    by 0x3D8D6DD750: getaddrinfo (getaddrinfo.c:2359)
+==17848==    by 0x3D91E15158: ??? (in /usr/lib64/libssh.so.4.2.3)
+==17848==    by 0x3D91E15846: ??? (in /usr/lib64/libssh.so.4.2.3)
+==17848==    by 0x3D91E26A77: ??? (in /usr/lib64/libssh.so.4.2.3)
+==17848==    by 0x3D91E1487B: ssh_connect (in /usr/lib64/libssh.so.4.2.3)
+==17848==    by 0x49780E: SshMasterConnection::sshConnect() 
+(sshmasterconnection.cpp:555)
+==17848==  Address 0x15c117b0 is on thread 4's stack
+==17848==
+deleting proxy
+
+nxproxy not running
+
+proxy deleted
+
+checking exit status
+check command message
+
+==17848== Thread 1:
+==17848== Conditional jump or move depends on uninitialised value(s)
+==17848==    at 0x46564F: ONMainWindow::slotProxyFinished(int, 
+QProcess::ExitStatus) (onmainwindow.cpp:5279)
+==17848==    by 0x4C7FDF: ONMainWindow::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_onmainwindow.cpp:393)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98B0E050: QProcess::error(QProcess::ProcessError) 
+(moc_qprocess.cpp:162)
+==17848==    by 0x3D98B0E339: QProcessPrivate::_q_startupNotification() 
+(qprocess.cpp:1095)
+==17848==    by 0x3D98B1230D: QProcess::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_qprocess.cpp:89)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98BD7C5D: QSocketNotifier::activated(int) 
+(moc_qsocketnotifier.cpp:102)
+==17848==    by 0x3D98B9489A: QSocketNotifier::event(QEvent*) 
+(qsocketnotifier.cpp:317)
+==17848==    by 0x3D9C9CA5CB: QApplicationPrivate::notify_helper(QObject*, 
+QEvent*) (qapplication.cpp:4562)
+==17848==    by 0x3D9C9CEA49: QApplication::notify(QObject*, QEvent*) 
+(qapplication.cpp:4423)
+==17848==    by 0x3D98B77A8D: QCoreApplication::notifyInternal(QObject*, 
+QEvent*) (qcoreapplication.cpp:946)
+==17848==
+==17848== Invalid read of size 8
+==17848==    at 0x3D98B54FCB: QProcessPrivate::waitForDeadChild() 
+(qprocess_p.h:200)
+==17848==    by 0x3D98B0E341: QProcessPrivate::_q_startupNotification() 
+(qprocess.cpp:1098)
+==17848==    by 0x3D98B1230D: QProcess::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_qprocess.cpp:89)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98BD7C5D: QSocketNotifier::activated(int) 
+(moc_qsocketnotifier.cpp:102)
+==17848==    by 0x3D98B9489A: QSocketNotifier::event(QEvent*) 
+(qsocketnotifier.cpp:317)
+==17848==    by 0x3D9C9CA5CB: QApplicationPrivate::notify_helper(QObject*, 
+QEvent*) (qapplication.cpp:4562)
+==17848==    by 0x3D9C9CEA49: QApplication::notify(QObject*, QEvent*) 
+(qapplication.cpp:4423)
+==17848==    by 0x3D98B77A8D: QCoreApplication::notifyInternal(QObject*, 
+QEvent*) (qcoreapplication.cpp:946)
+==17848==    by 0x3D98BA58D7: socketNotifierSourceDispatch(_GSource*, int 
+(*)(void*), void*) (qcoreapplication.h:231)
+==17848==    by 0x3D92247A74: g_main_context_dispatch (in 
+/usr/lib64/libglib-2.0.so.0.3400.2)
+==17848==    by 0x3D92247DA7: ??? (in /usr/lib64/libglib-2.0.so.0.3400.2)
+==17848==  Address 0xdce0df8 is 8 bytes inside a block of size 584 free'd
+==17848==    at 0x4A0738C: operator delete(void*) (vg_replace_malloc.c:480)
+==17848==    by 0x3D98B8DF5B: QObject::~QObject() (qscopedpointer.h:62)
+==17848==    by 0x3D98B0E2D8: QProcess::~QProcess() (qprocess.cpp:1158)
+==17848==    by 0x465725: ONMainWindow::slotProxyFinished(int, 
+QProcess::ExitStatus) (onmainwindow.cpp:5237)
+==17848==    by 0x4C7FDF: ONMainWindow::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_onmainwindow.cpp:393)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98B0E050: QProcess::error(QProcess::ProcessError) 
+(moc_qprocess.cpp:162)
+==17848==    by 0x3D98B0E339: QProcessPrivate::_q_startupNotification() 
+(qprocess.cpp:1095)
+==17848==    by 0x3D98B1230D: QProcess::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_qprocess.cpp:89)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98BD7C5D: QSocketNotifier::activated(int) 
+(moc_qsocketnotifier.cpp:102)
+==17848==    by 0x3D98B9489A: QSocketNotifier::event(QEvent*) 
+(qsocketnotifier.cpp:317)
+==17848==
+==17848== Invalid read of size 4
+==17848==    at 0x3D98B54FCF: QProcessPrivate::waitForDeadChild() 
+(qprocess_unix.cpp:1234)
+==17848==    by 0x3D98B0E341: QProcessPrivate::_q_startupNotification() 
+(qprocess.cpp:1098)
+==17848==    by 0x3D98B1230D: QProcess::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_qprocess.cpp:89)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98BD7C5D: QSocketNotifier::activated(int) 
+(moc_qsocketnotifier.cpp:102)
+==17848==    by 0x3D98B9489A: QSocketNotifier::event(QEvent*) 
+(qsocketnotifier.cpp:317)
+==17848==    by 0x3D9C9CA5CB: QApplicationPrivate::notify_helper(QObject*, 
+QEvent*) (qapplication.cpp:4562)
+==17848==    by 0x3D9C9CEA49: QApplication::notify(QObject*, QEvent*) 
+(qapplication.cpp:4423)
+==17848==    by 0x3D98B77A8D: QCoreApplication::notifyInternal(QObject*, 
+QEvent*) (qcoreapplication.cpp:946)
+==17848==    by 0x3D98BA58D7: socketNotifierSourceDispatch(_GSource*, int 
+(*)(void*), void*) (qcoreapplication.h:231)
+==17848==    by 0x3D92247A74: g_main_context_dispatch (in 
+/usr/lib64/libglib-2.0.so.0.3400.2)
+==17848==    by 0x3D92247DA7: ??? (in /usr/lib64/libglib-2.0.so.0.3400.2)
+==17848==  Address 0xdce0ff8 is 520 bytes inside a block of size 584 free'd
+==17848==    at 0x4A0738C: operator delete(void*) (vg_replace_malloc.c:480)
+==17848==    by 0x3D98B8DF5B: QObject::~QObject() (qscopedpointer.h:62)
+==17848==    by 0x3D98B0E2D8: QProcess::~QProcess() (qprocess.cpp:1158)
+==17848==    by 0x465725: ONMainWindow::slotProxyFinished(int, 
+QProcess::ExitStatus) (onmainwindow.cpp:5237)
+==17848==    by 0x4C7FDF: ONMainWindow::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_onmainwindow.cpp:393)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98B0E050: QProcess::error(QProcess::ProcessError) 
+(moc_qprocess.cpp:162)
+==17848==    by 0x3D98B0E339: QProcessPrivate::_q_startupNotification() 
+(qprocess.cpp:1095)
+==17848==    by 0x3D98B1230D: QProcess::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_qprocess.cpp:89)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98BD7C5D: QSocketNotifier::activated(int) 
+(moc_qsocketnotifier.cpp:102)
+==17848==    by 0x3D98B9489A: QSocketNotifier::event(QEvent*) 
+(qsocketnotifier.cpp:317)
+==17848==
+==17848== Warning: invalid file descriptor -1 in syscall read()
+==17848== Invalid read of size 4
+==17848==    at 0x3D98B54FEC: QProcessPrivate::waitForDeadChild() 
+(qprocess_unix.cpp:1238)
+==17848==    by 0x3D98B0E341: QProcessPrivate::_q_startupNotification() 
+(qprocess.cpp:1098)
+==17848==    by 0x3D98B1230D: QProcess::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_qprocess.cpp:89)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98BD7C5D: QSocketNotifier::activated(int) 
+(moc_qsocketnotifier.cpp:102)
+==17848==    by 0x3D98B9489A: QSocketNotifier::event(QEvent*) 
+(qsocketnotifier.cpp:317)
+==17848==    by 0x3D9C9CA5CB: QApplicationPrivate::notify_helper(QObject*, 
+QEvent*) (qapplication.cpp:4562)
+==17848==    by 0x3D9C9CEA49: QApplication::notify(QObject*, QEvent*) 
+(qapplication.cpp:4423)
+==17848==    by 0x3D98B77A8D: QCoreApplication::notifyInternal(QObject*, 
+QEvent*) (qcoreapplication.cpp:946)
+==17848==    by 0x3D98BA58D7: socketNotifierSourceDispatch(_GSource*, int 
+(*)(void*), void*) (qcoreapplication.h:231)
+==17848==    by 0x3D92247A74: g_main_context_dispatch (in 
+/usr/lib64/libglib-2.0.so.0.3400.2)
+==17848==    by 0x3D92247DA7: ??? (in /usr/lib64/libglib-2.0.so.0.3400.2)
+==17848==  Address 0xdce0ef0 is 256 bytes inside a block of size 584 free'd
+==17848==    at 0x4A0738C: operator delete(void*) (vg_replace_malloc.c:480)
+==17848==    by 0x3D98B8DF5B: QObject::~QObject() (qscopedpointer.h:62)
+==17848==    by 0x3D98B0E2D8: QProcess::~QProcess() (qprocess.cpp:1158)
+==17848==    by 0x465725: ONMainWindow::slotProxyFinished(int, 
+QProcess::ExitStatus) (onmainwindow.cpp:5237)
+==17848==    by 0x4C7FDF: ONMainWindow::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_onmainwindow.cpp:393)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98B0E050: QProcess::error(QProcess::ProcessError) 
+(moc_qprocess.cpp:162)
+==17848==    by 0x3D98B0E339: QProcessPrivate::_q_startupNotification() 
+(qprocess.cpp:1095)
+==17848==    by 0x3D98B1230D: QProcess::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_qprocess.cpp:89)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98BD7C5D: QSocketNotifier::activated(int) 
+(moc_qsocketnotifier.cpp:102)
+==17848==    by 0x3D98B9489A: QSocketNotifier::event(QEvent*) 
+(qsocketnotifier.cpp:317)
+==17848==
+==17848== Invalid read of size 8
+==17848==    at 0x3D98B54F1B: QProcessManager::remove(QProcess*) 
+(qprocess_unix.cpp:301)
+==17848==    by 0x3D98B5501F: QProcessPrivate::waitForDeadChild() 
+(qprocess_unix.cpp:1239)
+==17848==    by 0x3D98B0E341: QProcessPrivate::_q_startupNotification() 
+(qprocess.cpp:1098)
+==17848==    by 0x3D98B1230D: QProcess::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_qprocess.cpp:89)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98BD7C5D: QSocketNotifier::activated(int) 
+(moc_qsocketnotifier.cpp:102)
+==17848==    by 0x3D98B9489A: QSocketNotifier::event(QEvent*) 
+(qsocketnotifier.cpp:317)
+==17848==    by 0x3D9C9CA5CB: QApplicationPrivate::notify_helper(QObject*, 
+QEvent*) (qapplication.cpp:4562)
+==17848==    by 0x3D9C9CEA49: QApplication::notify(QObject*, QEvent*) 
+(qapplication.cpp:4423)
+==17848==    by 0x3D98B77A8D: QCoreApplication::notifyInternal(QObject*, 
+QEvent*) (qcoreapplication.cpp:946)
+==17848==    by 0x3D98BA58D7: socketNotifierSourceDispatch(_GSource*, int 
+(*)(void*), void*) (qcoreapplication.h:231)
+==17848==    by 0x3D92247A74: g_main_context_dispatch (in 
+/usr/lib64/libglib-2.0.so.0.3400.2)
+==17848==  Address 0xddcdad8 is 8 bytes inside a block of size 16 free'd
+==17848==    at 0x4A0738C: operator delete(void*) (vg_replace_malloc.c:480)
+==17848==    by 0x465725: ONMainWindow::slotProxyFinished(int, 
+QProcess::ExitStatus) (onmainwindow.cpp:5237)
+==17848==    by 0x4C7FDF: ONMainWindow::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_onmainwindow.cpp:393)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98B0E050: QProcess::error(QProcess::ProcessError) 
+(moc_qprocess.cpp:162)
+==17848==    by 0x3D98B0E339: QProcessPrivate::_q_startupNotification() 
+(qprocess.cpp:1095)
+==17848==    by 0x3D98B1230D: QProcess::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_qprocess.cpp:89)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98BD7C5D: QSocketNotifier::activated(int) 
+(moc_qsocketnotifier.cpp:102)
+==17848==    by 0x3D98B9489A: QSocketNotifier::event(QEvent*) 
+(qsocketnotifier.cpp:317)
+==17848==    by 0x3D9C9CA5CB: QApplicationPrivate::notify_helper(QObject*, 
+QEvent*) (qapplication.cpp:4562)
+==17848==    by 0x3D9C9CEA49: QApplication::notify(QObject*, QEvent*) 
+(qapplication.cpp:4423)
+==17848==
+==17848== Invalid read of size 4
+==17848==    at 0x3D98B54F28: QProcessManager::remove(QProcess*) 
+(qprocess_unix.cpp:301)
+==17848==    by 0x3D98B5501F: QProcessPrivate::waitForDeadChild() 
+(qprocess_unix.cpp:1239)
+==17848==    by 0x3D98B0E341: QProcessPrivate::_q_startupNotification() 
+(qprocess.cpp:1098)
+==17848==    by 0x3D98B1230D: QProcess::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_qprocess.cpp:89)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98BD7C5D: QSocketNotifier::activated(int) 
+(moc_qsocketnotifier.cpp:102)
+==17848==    by 0x3D98B9489A: QSocketNotifier::event(QEvent*) 
+(qsocketnotifier.cpp:317)
+==17848==    by 0x3D9C9CA5CB: QApplicationPrivate::notify_helper(QObject*, 
+QEvent*) (qapplication.cpp:4562)
+==17848==    by 0x3D9C9CEA49: QApplication::notify(QObject*, QEvent*) 
+(qapplication.cpp:4423)
+==17848==    by 0x3D98B77A8D: QCoreApplication::notifyInternal(QObject*, 
+QEvent*) (qcoreapplication.cpp:946)
+==17848==    by 0x3D98BA58D7: socketNotifierSourceDispatch(_GSource*, int 
+(*)(void*), void*) (qcoreapplication.h:231)
+==17848==    by 0x3D92247A74: g_main_context_dispatch (in 
+/usr/lib64/libglib-2.0.so.0.3400.2)
+==17848==  Address 0x244 is not stack'd, malloc'd or (recently) free'd
+==17848==
+==17848==
+==17848== Process terminating with default action of signal 11 (SIGSEGV)
+==17848==  Access not within mapped region at address 0x244
+==17848==    at 0x3D98B54F28: QProcessManager::remove(QProcess*) 
+(qprocess_unix.cpp:301)
+==17848==    by 0x3D98B5501F: QProcessPrivate::waitForDeadChild() 
+(qprocess_unix.cpp:1239)
+==17848==    by 0x3D98B0E341: QProcessPrivate::_q_startupNotification() 
+(qprocess.cpp:1098)
+==17848==    by 0x3D98B1230D: QProcess::qt_static_metacall(QObject*, 
+QMetaObject::Call, int, void**) (moc_qprocess.cpp:89)
+==17848==    by 0x3D98B8CEBE: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (qobject.cpp:3539)
+==17848==    by 0x3D98BD7C5D: QSocketNotifier::activated(int) 
+(moc_qsocketnotifier.cpp:102)
+==17848==    by 0x3D98B9489A: QSocketNotifier::event(QEvent*) 
+(qsocketnotifier.cpp:317)
+==17848==    by 0x3D9C9CA5CB: QApplicationPrivate::notify_helper(QObject*, 
+QEvent*) (qapplication.cpp:4562)
+==17848==    by 0x3D9C9CEA49: QApplication::notify(QObject*, QEvent*) 
+(qapplication.cpp:4423)
+==17848==    by 0x3D98B77A8D: QCoreApplication::notifyInternal(QObject*, 
+QEvent*) (qcoreapplication.cpp:946)
+==17848==    by 0x3D98BA58D7: socketNotifierSourceDispatch(_GSource*, int 
+(*)(void*), void*) (qcoreapplication.h:231)
+==17848==    by 0x3D92247A74: g_main_context_dispatch (in 
+/usr/lib64/libglib-2.0.so.0.3400.2)
+
+-- 
+Orion Poplawski
+Technical Manager                     303-415-9701 x222
+NWRA, Boulder Office                  FAX: 303-415-9702
+3380 Mitchell Lane                       <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at nwra.com</A>
+Boulder, CO 80301                   <A HREF="http://www.nwra.com">http://www.nwra.com</A>
+</PRE>
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004751.html">[X2Go-Dev] Fwd: Returned mail: see transcript for details
+</A></li>
+	<LI>Next message: <A HREF="004753.html">[X2Go-Dev] Segfaults in latest x2goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4752">[ date ]</a>
+              <a href="thread.html#4752">[ thread ]</a>
+              <a href="subject.html#4752">[ subject ]</a>
+              <a href="author.html#4752">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

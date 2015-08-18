@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Windows 7 and libssh
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Windows%207%20and%20libssh&In-Reply-To=%3C1812855766.372.1294785234254.JavaMail.root%40office.splatnix.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001482.html">
+   <LINK REL="Next"  HREF="001484.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Windows 7 and libssh</H1>
+    <B>--[ UxBoD ]--</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Windows%207%20and%20libssh&In-Reply-To=%3C1812855766.372.1294785234254.JavaMail.root%40office.splatnix.net%3E"
+       TITLE="[X2go-dev] Windows 7 and libssh">uxbod at splatnix.net
+       </A><BR>
+    <I>Tue Jan 11 23:33:54 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001482.html">[X2go-dev] Windows 7 and libssh
+</A></li>
+        <LI>Next message: <A HREF="001484.html">[X2go-dev] Windows 7 and libssh
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1483">[ date ]</a>
+              <a href="thread.html#1483">[ thread ]</a>
+              <a href="subject.html#1483">[ subject ]</a>
+              <a href="author.html#1483">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Original Message -----
+&gt;<i> On Tue, 2011-01-11 at 19:55 +0000, --[ UxBoD ]-- wrote:
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I am compiling up the x2go client to use vcxsrv on Windows 7 which
+</I>&gt;<i> &gt; worked fine. Though when I run the 3.0.14 libssh version it hangs on
+</I>&gt;<i> &gt; connecting. I thought it could have been my compilation for which I
+</I>&gt;<i> &gt; tried the standard installation and that does exactly the same. If I
+</I>&gt;<i> &gt; then kill the client using the red X in the corner I receive a
+</I>&gt;<i> &gt; dialogue box with a message from sudo asking if I have had the risks
+</I>&gt;<i> &gt; explained to me :) Is anybody else this type of behavior ??
+</I>&gt;<i> Hi, Phil. I don't know what has changed but it almost smells like the
+</I>&gt;<i> client side changes uncovered a problem on the server side. I'm not
+</I>&gt;<i> sure but that almost certainly a message from one of the scripts
+</I>&gt;<i> running
+</I>&gt;<i> on the server side being reflected to stdout on ssh running on the
+</I>&gt;<i> client.
+</I>&gt;<i> 
+</I>&gt;<i> We could probably find out where the problem is by adding a series of
+</I>&gt;<i> logger commands to the server side scripts to see where the server
+</I>&gt;<i> side
+</I>&gt;<i> script processing is stopping. I'm not sure if we need to suppress
+</I>&gt;<i> stdout on the server or client side and if that would solve any of the
+</I>&gt;<i> problems.
+</I>&gt;<i> 
+</I>&gt;<i> I don't know a lot about sudo but I wonder if we need to pass it the
+</I>&gt;<i> -n
+</I>&gt;<i> parameter to suppress that message. Just a bunch of guesses; I hope
+</I>&gt;<i> they help - John
+</I>
+Then would the problem not be apparent when the same client is run on Windows XP ?
+-- 
+Thanks, Phil
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001482.html">[X2go-dev] Windows 7 and libssh
+</A></li>
+	<LI>Next message: <A HREF="001484.html">[X2go-dev] Windows 7 and libssh
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1483">[ date ]</a>
+              <a href="thread.html#1483">[ thread ]</a>
+              <a href="subject.html#1483">[ subject ]</a>
+              <a href="author.html#1483">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

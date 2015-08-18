@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2go connection problem to a Vserver
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2go%20connection%20problem%20to%20a%20Vserver&In-Reply-To=%3C8CF3BC4E4A0F61D-C88-203D%40webmail-d045.sysops.aol.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004149.html">
+   <LINK REL="Next"  HREF="004151.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2go connection problem to a Vserver</H1>
+    <B>senrabdet at aol.com</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2go%20connection%20problem%20to%20a%20Vserver&In-Reply-To=%3C8CF3BC4E4A0F61D-C88-203D%40webmail-d045.sysops.aol.com%3E"
+       TITLE="[X2Go-Dev] X2go connection problem to a Vserver">senrabdet at aol.com
+       </A><BR>
+    <I>Sun Jul 29 19:15:32 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004149.html">[X2Go-Dev] [X2Go-User] Unable to open a session when default shell is /bin/tcsh
+</A></li>
+        <LI>Next message: <A HREF="004151.html">[X2Go-Dev] X2go connection problem to a Vserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4150">[ date ]</a>
+              <a href="thread.html#4150">[ thread ]</a>
+              <a href="subject.html#4150">[ subject ]</a>
+              <a href="author.html#4150">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>To Whom It May Concern:
+
+We are trying to get x2go to work with a Vserver instance but cannot connect.  We've done some looking at x2go posts into the error, but we're not sure the responses apply to using Vserver and are still looking for some help (apologies if we should have been able to find this on our own). 
+
+The error is first:
+
+&quot;X2go-51 The remote proxy closed the connection while negotiating the session.  This may be due to the wrong authentication credentials passed to the server.&quot;  The window includes an &quot;OK&quot; button.
+
+If we press the OK button, we get to the x2go login screen where you can enter a password...if we enter the password, we get:
+
+&quot;Error  Connection failed channel_open_session failed - Writing packet:  error on socket (or connection closed):  Broken pipe.&quot;
+
+On the client, in the &quot;sessions&quot; file we see:
+
+Loop:  PANIC!  The remote NX Proxy closed the connection.
+Loop:  PANIC!  Failure negotiating the session in stage '7'.
+Loop:  PANIC! Wrong version or invalid session authentication cookie.
+
+In both the client &quot;options&quot; file, the cookie looks to be the same as the cookie in the server
+
+FYI - we can ping the Vserver instance, and we can ssh into the Vserver successfully, ping 8.8.8.8 from there etc.  Also, initially when this wouldn't work, we though maybe we had issues with how we had set up desktops in the Vserver (which is still possible:  we're using gnome, gdm) but when we spun up another Vserver and set up VNC, it serves the desktop correctly so at first blush this seems to be a networking/ports/firewall/sshd/routing type of issue.
+
+However, we're still having trouble getting a regular X session to run over SSH.....but are assuming at the moment (possibly incorrectly) that the X2go errors we're getting are an issue on their own, possibly in addition to running an X session on a Vserver.
+
+...And...at various points (though not on the current server instances), we set up x2go on the host and could connect to that over our LAN.  Again, the current instances only have x2go running on the Vserver guest.
+
+SETUP
+
+1)  OpenSsh-Server
+
+We have openssh-server running only on the Vserver guest (we tried having it on the host too, but that didn't seem to matter).   We are using port 22.  We've tried using a ListenAddress xxx.xxx.xxx.xxx which is the IP of the host, but this doesn't seem to matter.
+
+2) X2go 
+
+Likewise X2go server is only installed on the Vserver instance (though again we tried it on both the host and guest with no differences we could see).
+
+We set up x2go on Ubuntu 10.4 server (both host and guest)using:
+apt-get install python-software-properties
+add-apt-repository ppa:x2go/stable
+apt-get update
+apt-get install -y x2goserver
+apt-get install -y x2goserver-extensions
+
+2) We made sure from a client that we can successfully ssh.  Again, this may not mean anything, but we can VNC to the guest desktop successfully.
+
+3)  We try x2go from a linux client (Ubuntu 10.10, x2go version 3.99.1.1) and get the errors described above.
+
+Q:  are we using too old a client version?
+Q:  is this a firewall issue - we don't have iptables or ufw set up
+Q:  is this a matter of changing entries in hosts, hostname, network/interfaces, etc on the Vserver and/or host?
+
+FYI some time back Mike Garbriel responded to one of our inquires (thanks Mike) on using chroot (<A HREF="http://comments.gmane.org/gmane.linux.terminal-server.x2go.devel/3720">http://comments.gmane.org/gmane.linux.terminal-server.x2go.devel/3720</A>) that mentions (we're assuming for the sake of our example that using port 22 in sshd_config meet this suggestion):
+
+
+If you work with pure chroots then install x2goserver into each  
+chroot. Configure the chroot's SSH daemon to listen on a specific SSH  
+port.
+
+So at the end you have
+
+   chroot-1 - &lt;port-1&gt;
+   chroot-2 - &lt;port-2&gt;
+
+Setup up X2Go client to connect to your host, for chroot-1 choose  
+&lt;port-1&gt; in your X2Go client configuration, &lt;port-2&gt; for chroot-2, etc.
+
+Help appreciated!  Thanks,
+
+Ted
+
+ 
+
+
+
+
+
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120729/9ebc5838/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120729/9ebc5838/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004149.html">[X2Go-Dev] [X2Go-User] Unable to open a session when default shell is /bin/tcsh
+</A></li>
+	<LI>Next message: <A HREF="004151.html">[X2Go-Dev] X2go connection problem to a Vserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4150">[ date ]</a>
+              <a href="thread.html#4150">[ thread ]</a>
+              <a href="subject.html#4150">[ subject ]</a>
+              <a href="author.html#4150">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

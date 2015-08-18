@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] @Alex, @Mike - more info - BUG REPORT - X2Go Client 3.99.2.1-rc2 does not work on Windows XP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%40Alex%2C%0A%20%40Mike%20-%20more%20info%20-%20BUG%20REPORT%20-%20X2Go%20Client%203.99.2.1-rc2%20does%20not%0A%20work%20on%20Windows%20XP&In-Reply-To=%3C4F8FD486.80302%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003871.html">
+   <LINK REL="Next"  HREF="003874.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] @Alex, @Mike - more info - BUG REPORT - X2Go Client 3.99.2.1-rc2 does not work on Windows XP</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%40Alex%2C%0A%20%40Mike%20-%20more%20info%20-%20BUG%20REPORT%20-%20X2Go%20Client%203.99.2.1-rc2%20does%20not%0A%20work%20on%20Windows%20XP&In-Reply-To=%3C4F8FD486.80302%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] @Alex, @Mike - more info - BUG REPORT - X2Go Client 3.99.2.1-rc2 does not work on Windows XP">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Thu Apr 19 11:01:58 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003871.html">[X2Go-Dev] BUG REPORT - X2Go Client 3.99.2.1-rc2 does not work on Windows XP
+</A></li>
+        <LI>Next message: <A HREF="003874.html">[X2Go-Dev] @Alex, @Mike - more info - BUG REPORT - X2Go Client 3.99.2.1-rc2 does not work on Windows XP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3873">[ date ]</a>
+              <a href="thread.html#3873">[ thread ]</a>
+              <a href="subject.html#3873">[ subject ]</a>
+              <a href="author.html#3873">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 18.04.2012 21:22, schrieb Oleksandr Shneyder:
+&gt;<i> Am 18.04.2012 18:25, schrieb Stefan Baur:
+</I>&gt;&gt;<i> Am 18.04.2012 18:21, schrieb John A. Sullivan III:
+</I>&gt;&gt;&gt;<i> On Wed, 2012-04-18 at 12:57 +0200, Stefan Baur wrote:
+</I>&gt;&gt;&gt;&gt;<i> Am 17.04.2012 12:28, schrieb Oleksandr Shneyder:
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;&gt;&gt;<i> I am unable to start the client on Windows XP (it works on Windows 7 and
+</I>&gt;&gt;&gt;&gt;<i> Vista):
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> ---------------------------
+</I>&gt;&gt;&gt;&gt;<i> x2goclient.exe - Fehler in Anwendung
+</I>&gt;&gt;&gt;&gt;<i> ---------------------------
+</I>&gt;&gt;&gt;&gt;<i> Die Anwendung konnte nicht richtig initialisiert werden (0xc0150002).
+</I>&gt;&gt;&gt;&gt;<i> Klicken Sie auf &quot;OK&quot;, um die Anwendung zu beenden.
+</I>&gt;&gt;&gt;&gt;<i> ---------------------------
+</I>&gt;&gt;&gt;&gt;<i> OK
+</I>&gt;&gt;&gt;&gt;<i> ---------------------------
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;&gt;<i> Strange - I successfully installed and ran it on XP yesterday - John
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This could be because you have the files listed here
+</I>&gt;&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=pyhoca-contrib.git;a=tree;f=mswin/ms-vc-runtime;hb=74ed44ebd5f59d0eb28c89ede0beca711416089a">http://code.x2go.org/gitweb?p=pyhoca-contrib.git;a=tree;f=mswin/ms-vc-runtime;hb=74ed44ebd5f59d0eb28c89ede0beca711416089a</A>
+</I>&gt;&gt;<i> elsewhere on the machine... (Assuming it is due to the reason Mike
+</I>&gt;&gt;<i> suggested in his reply.)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Do you think you could cross-check on a fresh XP Professional SP3
+</I>&gt;&gt;<i> install (no other applications installed) and
+</I>&gt;&gt;<i> <A HREF="http://code.x2go.org/releases/binary-win32/x2goclient/x2goclient-3.99.2.1-rc2-setup.exe?">http://code.x2go.org/releases/binary-win32/x2goclient/x2goclient-3.99.2.1-rc2-setup.exe?</A>
+</I>
+&gt;<i> I've build this version on our new build server (W7) installed by
+</I>&gt;<i> Mike(thank you once again, Mike). This is a release build, not debug. I
+</I>&gt;<i> have no Windows XP to try it.
+</I>
+I experimented a bit:
+It takes two files from
+<A HREF="http://code.x2go.org/gitweb?p=pyhoca-contrib.git;a=tree;f=mswin/ms-vc-runtime;hb=74ed44ebd5f59d0eb28c89ede0beca711416089a">http://code.x2go.org/gitweb?p=pyhoca-contrib.git;a=tree;f=mswin/ms-vc-runtime;hb=74ed44ebd5f59d0eb28c89ede0beca711416089a</A>
+
+Microsoft.VC90.CRT.manifest
+msvcr90.dll
+
+If I copy these into the x2goclient directory, the new client works (as 
+in, starts up - haven't tried connecting yet) on XP, too.
+
+What's strange is that the other two DLL files are not needed even 
+though they are referenced in the manifest file.
+
+@Alex + @Mike:
+Could you please work this out together?  I'm not sure if all that is 
+needed is to include these files into the archive that the installer 
+unpacks into the x2goclient folder, or if that is an ugly hack.
+
+Daniel Lindgren wrote:
+&gt;<i> No problems running 3.99.2.1-rc2 on Windows XP. I have
+</I>&gt;<i> VC2005/VC2008/VC2010 redists all installed.
+</I>
+So I guess the general question is: Can (=legal?) and should (=proper 
+way of handling this issue?) we include the DLL/manifest files in the 
+installer, or should we require the installation of the VC&lt;something&gt; 
+redists/pull their official installer along and run it from within ours? 
+  Requiring the redists/forching their install through our installer 
+probably will break portable mode, though, as it will install the files 
+to the system directory and not the x2go directory...
+
+Further info:
+The last installer to run on XP without this hack is:
+x2goclient-3.99.2.0-rc2-setup.exe
+
+-Stefan
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003871.html">[X2Go-Dev] BUG REPORT - X2Go Client 3.99.2.1-rc2 does not work on Windows XP
+</A></li>
+	<LI>Next message: <A HREF="003874.html">[X2Go-Dev] @Alex, @Mike - more info - BUG REPORT - X2Go Client 3.99.2.1-rc2 does not work on Windows XP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3873">[ date ]</a>
+              <a href="thread.html#3873">[ thread ]</a>
+              <a href="subject.html#3873">[ subject ]</a>
+              <a href="author.html#3873">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

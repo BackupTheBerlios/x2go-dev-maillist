@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2gobasepath and Debian Lenny
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2gobasepath%20and%20Debian%20Lenny&In-Reply-To=%3C4E84F1E7.1090600%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002882.html">
+   <LINK REL="Next"  HREF="002870.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2gobasepath and Debian Lenny</H1>
+    <B>Peter Henn</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2gobasepath%20and%20Debian%20Lenny&In-Reply-To=%3C4E84F1E7.1090600%40gmx.de%3E"
+       TITLE="[X2go-Dev] x2gobasepath and Debian Lenny">peter_henn at gmx.de
+       </A><BR>
+    <I>Fri Sep 30 00:32:07 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002882.html">[X2go-Dev] x2goserver goes pluggable
+</A></li>
+        <LI>Next message: <A HREF="002870.html">[X2go-Dev] x2gobasepath and Debian Lenny
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2869">[ date ]</a>
+              <a href="thread.html#2869">[ thread ]</a>
+              <a href="subject.html#2869">[ subject ]</a>
+              <a href="author.html#2869">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+
+today I tried packaging/building the x2goserver-3.0.99.6. from your git
+for my Debian Lenny. On my system that perl script 'x2gobasepath' did
+not that what it should do. It prints just nothing instead of &quot;/usr&quot;.
+
+When I use the default Debian stuff building the package, that script
+itself is installed in
+	/usr/bin/x2gobasepath
+and the perl lib are installed in
+	/usr/lib/x2go
+
+My temporary fix was just modifying the print in x2gobasepath to get the
+required &quot;/usr&quot; for my system. But that should not be the final solution.
+
+----
+
+However I tried that &quot;self compiled&quot; and &quot;self packaged&quot; way, because
+I run crazy about reproducible session crashes of my xfce4 desktop of my
+64bit server.
+X2goagent seems to die without any hint in the session logs, if I use
+that one from the Lenny repo: <A HREF="http://packages.x2go.org/debian/,">http://packages.x2go.org/debian/,</A> when I
+close a synaptic, gimp, eclipse, HP-toolbox .... and other tools.
+Unfortunately the number of tools seem to become an increasing number
+the last weeks. Interesting was that it depends on:
+a) when that critical tool was started (e.g. just after the session
+startup or later)
+b) if I used the start menu or a terminal (e.g. sudo synaptic worked
+fine, but starting from menu crashes the session often)
+
+The self compiled stuff seems to be now more stable for these first
+hours (finger crossed). So either it depends on the compile machine and
+some library dependencies or it may be a heap memory problem of
+x2goagent. And yes, I know that you wrote the stability might have
+something to do with the old X-server compiled-in into the x2goagent ...
+
+If that finally doesn't help preventing the crash pain, I hope I can ask
+you, if the new x2goserver-3.0.99.6.0 would work together with the old
+stable x2goagent-3.4.0-3-1 to prevent all these silly sudo log messages
+from the old x2goserver-3.0.1-5 in my rsyslog data base.
+
+
+Kind Regards and thank you for that great remote desktop tool.
+
+Peter
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002882.html">[X2go-Dev] x2goserver goes pluggable
+</A></li>
+	<LI>Next message: <A HREF="002870.html">[X2go-Dev] x2gobasepath and Debian Lenny
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2869">[ date ]</a>
+              <a href="thread.html#2869">[ thread ]</a>
+              <a href="subject.html#2869">[ subject ]</a>
+              <a href="author.html#2869">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

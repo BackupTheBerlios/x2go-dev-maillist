@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] pinentry-x2go: Missing replaces/conflicts with	pinentry-x2go-gtk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20pinentry-x2go%3A%20Missing%20replaces/conflicts%20with%0A%09pinentry-x2go-gtk&In-Reply-To=%3C1345374254.15146.7.camel%40mattotaupa%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004163.html">
+   <LINK REL="Next"  HREF="004165.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] pinentry-x2go: Missing replaces/conflicts with	pinentry-x2go-gtk</H1>
+    <B>Paul Menzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20pinentry-x2go%3A%20Missing%20replaces/conflicts%20with%0A%09pinentry-x2go-gtk&In-Reply-To=%3C1345374254.15146.7.camel%40mattotaupa%3E"
+       TITLE="[X2Go-Dev] pinentry-x2go: Missing replaces/conflicts with	pinentry-x2go-gtk">paulepanter at users.sourceforge.net
+       </A><BR>
+    <I>Sun Aug 19 13:04:14 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004163.html">[X2Go-Dev] @Alex: Fallback to PulseAudio 0.9.6 required	(Windows)
+</A></li>
+        <LI>Next message: <A HREF="004165.html">[X2Go-Dev] pinentry-x2go: Missing replaces/conflicts with pinentry-x2go-gtk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4164">[ date ]</a>
+              <a href="thread.html#4164">[ thread ]</a>
+              <a href="subject.html#4164">[ subject ]</a>
+              <a href="author.html#4164">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear X2Go folks,
+
+
+upgrading X2Go packages from Lenny to Squeeze versions, that means
+replacing
+
+        # x2go Repository
+        # deb <A HREF="http://x2go.obviously-nice.de/deb/">http://x2go.obviously-nice.de/deb/</A> lenny main
+
+with
+
+        # X2Go Repository
+        deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze main
+
+I get the following error for `pinentry-x2go`.
+
+        Die folgenden Pakete werden aktualisiert:
+          libxcomp3 nxproxy pinentry-x2go x2goclient
+        4 Pakete aktualisiert, 0 zus&#228;tzlich installiert, 0 werden entfernt und 40 nicht aktualisiert.
+        1.632 kB an Archiven m&#252;ssen heruntergeladen werden. Nach dem Entpacken werden 2.523 kB zus&#228;tzlich belegt sein.
+        M&#246;chten Sie fortsetzen? [Y/n/?]
+        Holen: 1 <A HREF="http://packages.x2go.org/debian/">http://packages.x2go.org/debian/</A> squeeze/main libxcomp3 i386 2:3.5.0.14-0+squeeze~main~312~build1 [391 kB]
+        Holen: 2 <A HREF="http://packages.x2go.org/debian/">http://packages.x2go.org/debian/</A> squeeze/main nxproxy i386 2:3.5.0.14-0+squeeze~main~312~build1 [14,8 kB]
+        Holen: 3 <A HREF="http://packages.x2go.org/debian/">http://packages.x2go.org/debian/</A> squeeze/main pinentry-x2go i386 0.7.5.4-0~x2go1+squeeze~main~28~build1 [59,3 kB]
+        Holen: 4 <A HREF="http://packages.x2go.org/debian/">http://packages.x2go.org/debian/</A> squeeze/main x2goclient i386 3.99.2.2-0~x2go1+squeeze~main~240~build1 [1.167 kB]
+        1.632 kB wurden in 2 s heruntergeladen (647 kB/s)
+        Laden der Fehlerberichte ... Erledigt
+        &#187;Found/Fixed&#171;-Informationen werden ausgewertet ... Erledigt
+        Lese Changelogs... Fertig
+        (Lese Datenbank ... 451594 Dateien und Verzeichnisse sind derzeit installiert.)
+        Vorbereitung zum Ersetzen von libxcomp3 3.5.0.12-1+b1 (durch .../libxcomp3_2%3a3.5.0.14-0+squeeze~main~312~build1_i386.deb) ...
+        Ersatz f&#252;r libxcomp3 wird entpackt ...
+        Vorbereitung zum Ersetzen von nxproxy 3.5.0.12-1+b1 (durch .../nxproxy_2%3a3.5.0.14-0+squeeze~main~312~build1_i386.deb) ...
+        Ersatz f&#252;r nxproxy wird entpackt ...
+        Vorbereitung zum Ersetzen von pinentry-x2go 0.7.5-2 (durch .../pinentry-x2go_0.7.5.4-0~x2go1+squeeze~main~28~build1_i386.deb) ...
+        Ersatz f&#252;r pinentry-x2go wird entpackt ...
+        dpkg: Fehler beim Bearbeiten von /var/cache/apt/archives/pinentry-x2go_0.7.5.4-0~x2go1+squeeze~main~28~build1_i386.deb (--unpack):
+         Versuch, &#187;/usr/share/info/pinentry.info.gz&#171; zu &#252;berschreiben, welches auch in Paket pinentry-x2go-gtk 0.7.5-1 ist
+        Vorbereitung zum Ersetzen von x2goclient 3.99.2.1-1 (durch .../x2goclient_3.99.2.2-0~x2go1+squeeze~main~240~build1_i386.deb) ...
+        Ersatz f&#252;r x2goclient wird entpackt ...
+        Trigger f&#252;r man-db werden verarbeitet ...
+        Trigger f&#252;r install-info werden verarbeitet ...
+        install-info: Warnung: Kein Info-Verzeichnis-Eintrag in &#8222;/usr/share/info/lilypond-usage.info.gz&#8220;
+        install-info: Warnung: Kein Info-Verzeichnis-Eintrag in &#8222;/usr/share/info/lilypond-extending.info.gz&#8220;
+        install-info: Warnung: Kein Info-Verzeichnis-Eintrag in &#8222;/usr/share/info/lilypond-changes.info.gz&#8220;
+        install-info: Warnung: Kein Info-Verzeichnis-Eintrag in &#8222;/usr/share/info/lilypond-learning.info.gz&#8220;
+        install-info: Warnung: Kein Info-Verzeichnis-Eintrag in &#8222;/usr/share/info/lilypond-notation.info.gz&#8220;
+        install-info: Warnung: Kein Info-Verzeichnis-Eintrag in &#8222;/usr/share/info/lilypond-essay.info.gz&#8220;
+        install-info: Warnung: Kein Info-Verzeichnis-Eintrag in &#8222;/usr/share/info/lilypond-snippets.info.gz&#8220;
+        install-info: Warnung: Kein Info-Verzeichnis-Eintrag in &#8222;/usr/share/info/lilypond-contributor.info.gz&#8220;
+        install-info: Warnung: Kein Info-Verzeichnis-Eintrag in &#8222;/usr/share/info/music-glossary.info.gz&#8220;
+        Trigger f&#252;r hicolor-icon-theme werden verarbeitet ...
+        Trigger f&#252;r desktop-file-utils werden verarbeitet ...
+        Trigger f&#252;r gnome-menus werden verarbeitet ...
+        Trigger f&#252;r menu werden verarbeitet ...
+        Fehler traten auf beim Bearbeiten von:
+         /var/cache/apt/archives/pinentry-x2go_0.7.5.4-0~x2go1+squeeze~main~28~build1_i386.deb
+        E: Sub-process /usr/bin/dpkg returned an error code (1)
+
+I guess `pinentry-x2go` misses some replaces and/or conflicts for a
+proper upgrade path.
+
+Additionally, it might be a good idea to also let x2goclient replace or
+conflict with x2goclient-gtk, since that is not supported anymore.
+
+
+Thanks,
+
+Paul
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120819/8c4ebdb0/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120819/8c4ebdb0/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004163.html">[X2Go-Dev] @Alex: Fallback to PulseAudio 0.9.6 required	(Windows)
+</A></li>
+	<LI>Next message: <A HREF="004165.html">[X2Go-Dev] pinentry-x2go: Missing replaces/conflicts with pinentry-x2go-gtk
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4164">[ date ]</a>
+              <a href="thread.html#4164">[ thread ]</a>
+              <a href="subject.html#4164">[ subject ]</a>
+              <a href="author.html#4164">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

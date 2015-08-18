@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Debian-ITP nx-libs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Debian-ITP%20nx-libs&In-Reply-To=%3CCAJJ3AMjc0xOhuAJjJ9VFonQOLeYkEuewLGVmbi3yFJX0HPGhPg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003182.html">
+   <LINK REL="Next"  HREF="003195.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Debian-ITP nx-libs</H1>
+    <B>Marcelo Boveto Shima</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Debian-ITP%20nx-libs&In-Reply-To=%3CCAJJ3AMjc0xOhuAJjJ9VFonQOLeYkEuewLGVmbi3yFJX0HPGhPg%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] Debian-ITP nx-libs">marceloshima at gmail.com
+       </A><BR>
+    <I>Sat Jan 14 14:23:57 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003182.html">[X2go-Dev] Debian-ITP nx-libs
+</A></li>
+        <LI>Next message: <A HREF="003195.html">[X2go-Dev] Debian-ITP nx-libs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3193">[ date ]</a>
+              <a href="thread.html#3193">[ thread ]</a>
+              <a href="subject.html#3193">[ subject ]</a>
+              <a href="author.html#3193">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi mike.
+
+Em quinta-feira, 12 de janeiro de 2012, Mike Gabriel&lt;
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; escreveu:
+&gt;<i> Hi Marcelo,
+</I>&gt;<i>
+</I>&gt;<i> On Do 12 Jan 2012 23:21:06 CET Marcelo Boveto Shima wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hi Mike.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Glad to know.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I am really interested.
+</I>&gt;&gt;<i> I must say that the nx packages available from freenx-ppa are ready for
+</I>&gt;&gt;<i> inclusion.
+</I>&gt;&gt;<i> It tried the Ubuntu motu process but after months I gave up.
+</I>&gt;&gt;<i> Have you took a look at the packages? The only package I don't like is
+</I>the
+&gt;&gt;<i> freenx-server itself.
+</I>&gt;&gt;<i> The packages are very clean and upstream friendly, if you help me with
+</I>the
+&gt;&gt;<i> sponsoring, I will fix the problems.
+</I>&gt;<i>
+</I>&gt;<i> I am not a developer myself, but we (Debian X2Go Packaging Team) have a
+</I>developer on board that will sponsor the upload once the discussion returns
+a positive feedback.
+
+Ok.
+
+&gt;<i>
+</I>&gt;<i> People on debian-devel think the freenx project to be dead. It would be a
+</I>real contribution if you could send a mail to:
+&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">655618 at bugs.debian.org</A>
+</I>
+FreeNX is not dead.
+Its user base is huge, the freenx-knx list is active, but mostly to fix
+installation problems.
+The most important is to get nx into the repository, then it's only 1 deb
+alway from a working freenx server.
+Many users still compile nx by source. And once in a while I receive some
+mail from Debian users asking for debs, sadly, I just ask them to use lucid
+ppa.
+
+&gt;<i>
+</I>&gt;<i> ... and say: Hi! Here is FreeNX calling! We are very interested in this
+</I>ITP, we are alive and we have been waiting for such a thing to happen.
+
+We are waiting a long time. :)
+
+&gt;<i>
+</I>&gt;<i> Once nxagent &amp; co are in Debian, finding a sponsor for FreeNX should be
+</I>surely possible. The problem is NX itself (the large Xorg 6.9 fork within
+it), not the packages around NX libraries and binaries.
+
+3 years ago I spent a lot of time trying to build nxagent with stock xorg
+7.0 libraries. It compiled but didn't work.
+
+&gt;<i>
+</I>&gt;&gt;<i> X2Go packaging, is mostly about removing nomachine brand and adding x2go
+</I>&gt;&gt;<i> brand, so I think it can be done in the build process with nx-x11
+</I>package.
+&gt;&gt;<i> The nx-x11 package is a dpkg source v3 with multiples tarballs.
+</I>&gt;&gt;<i> Once nx-x11 is accepted is only modify the build script to build the
+</I>&gt;&gt;<i> branded x2goagent.
+</I>&gt;<i>
+</I>&gt;<i> This has changed since yesterday. Oleksandr Shneyder and I have merged
+</I>x2goagent completely into NX with the following feature:
+&gt;<i>
+</I>&gt;<i>  o execute nxagent under the binary name ,,nxagent''
+</I>&gt;<i>    -&gt; launch nxagent with all patches from FreeNX-Team on LP, no branding
+</I>&gt;<i>  o execute nxagent under the binary name ,,x2goagent''
+</I>&gt;<i>    -&gt; launch nxagent with X2Go flavor (branding)
+</I>&gt;<i>
+</I>&gt;<i> With today's and yesterday's work we are able to drop 20mb of forked
+</I>x2goagent code and simple use NX for X2Go directly.
+&gt;<i>
+</I>&gt;<i> If you find some time, please take a look at ,,NX (redistributed)''
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=summary">http://code.x2go.org/gitweb?p=nx-libs.git;a=summary</A>
+</I>
+Is NX redistributed a bundle with every lib?
+
+&gt;<i>
+</I>&gt;<i> We/I would be really really glad if you are interested in joining the
+</I>,,NX (redistributed)'' maintenance team. We (Mike, Alex, Reinhard) invented
+,,NX (redistributed)'' to provide active usptream support and high reponse
+levels to security issues and bug fixes being sent in by the distro
+packaging teams. For Debian we are acting in a dual role as we are upstream
+and packages at the same time. For others like Fedora &amp; co, we may be
+upstream with this redistribution project.
+&gt;<i>
+</I>&gt;<i> We also should think about communication.
+</I>&gt;<i>
+</I>&gt;<i> Currently, we use the x2go-dev mailing list for communication about ,,NX
+</I>(redistributed)''. However, there is quite some X2Go'ish-only noise on that
+list, as well. If you can live with that, it might be a good idea to
+subscribe to that list?
+&gt;<i> <A HREF="http://lists.berlios.de/mailman/listinfo/x2go-dev">http://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i> The ML language is English, of course.
+</I>
+No problem.
+
+&gt;<i>
+</I>&gt;<i> So, these were three requests...
+</I>&gt;<i>
+</I>&gt;<i>  1. Send a short notice to the Debian bug I gave you above
+</I>&gt;<i>  2. Join the NX (redistributed) team ;-)
+</I>&gt;<i>  3. Subscribe to x2go-dev, we may later think about other forms of
+</I>&gt;<i>     communication, i.e. a separate ML.
+</I>&gt;<i>
+</I>&gt;<i> BTW: I posted the ITP mail to <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">freenx-team at lists.launchpad.net</A>, but it got
+</I>bounced. Is the list dead?
+
+Yes, I shut down a long time ago, because there was only spams at the time.
+The freenx list is <A HREF="https://mail.kde.org/mailman/listinfo/freenx-knx">https://mail.kde.org/mailman/listinfo/freenx-knx</A>
+
+&gt;<i>
+</I>&gt;<i> Last question: are you FreeNX upstream? Or FreeNX packager or Ubuntu?
+</I>
+There is no official FreeNX upstream, for some time I did some work in
+launchpad, then another guy forked my branch and is still working on it.
+Now I use his branch as upstream.
+
+Regards.
+Marcelo
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120114/56bc5e3d/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120114/56bc5e3d/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003182.html">[X2go-Dev] Debian-ITP nx-libs
+</A></li>
+	<LI>Next message: <A HREF="003195.html">[X2go-Dev] Debian-ITP nx-libs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3193">[ date ]</a>
+              <a href="thread.html#3193">[ thread ]</a>
+              <a href="subject.html#3193">[ subject ]</a>
+              <a href="author.html#3193">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

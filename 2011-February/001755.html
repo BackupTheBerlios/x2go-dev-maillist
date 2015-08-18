@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go with ubuntu/natty
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20ubuntu/natty&In-Reply-To=%3C4D5CD4C8.90801%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001752.html">
+   <LINK REL="Next"  HREF="001760.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go with ubuntu/natty</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20ubuntu/natty&In-Reply-To=%3C4D5CD4C8.90801%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] x2go with ubuntu/natty">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Thu Feb 17 08:56:56 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001752.html">[X2go-dev] x2go with ubuntu/natty
+</A></li>
+        <LI>Next message: <A HREF="001760.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1755">[ date ]</a>
+              <a href="thread.html#1755">[ thread ]</a>
+              <a href="subject.html#1755">[ subject ]</a>
+              <a href="author.html#1755">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+to me this sounds like an gnome or an x2goagnet-bug. Either one is not
+probing the X-server correctly or the other is not giving the right
+answer. Solving this in the client would be a workaround. What about
+xVNC and others? Do they have the same problem?
+
+Cheers
+Morty
+
+
+On 2011-02-16 21:49, Reinhard Tartler wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> I've experimented with running x2goserver on ubuntu/natty. I can report
+</I>&gt;<i> success, but the 'default' GNOME session just makes the x2goagent
+</I>&gt;<i> segfault. As a workaround, I can get a proper gnome session by using a
+</I>&gt;<i> 'custom desktop' with the following command line:
+</I>&gt;<i>
+</I>&gt;<i> /usr/bin/gnome-session --session 2d-gnome
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I find this pretty unobvious, but I can only conclude that ubuntu tries
+</I>&gt;<i> to enable unity and/or graphic effects by default, which in turn causes
+</I>&gt;<i> the mentioned segmentation fault in the x2goagent.
+</I>&gt;<i>
+</I>&gt;<i> How can this be improved in x2go? On a brief code inspection, it seems
+</I>&gt;<i> that the &quot;session command&quot; is determined in x2goclient. However as I
+</I>&gt;<i> suspect that not all distributions and/or gnome installations support
+</I>&gt;<i> the '2d-gnome' session type, this should only happen where necessary.
+</I>&gt;<i>
+</I>&gt;<i> What are your thoughts on this issue?
+</I>&gt;<i>
+</I>
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 5867 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110217/ff0c8a4c/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110217/ff0c8a4c/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001752.html">[X2go-dev] x2go with ubuntu/natty
+</A></li>
+	<LI>Next message: <A HREF="001760.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1755">[ date ]</a>
+              <a href="thread.html#1755">[ thread ]</a>
+              <a href="subject.html#1755">[ subject ]</a>
+              <a href="author.html#1755">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

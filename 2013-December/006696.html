@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#372: Bug#372: Bug#372: x2goadmin writes to users	homes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23372%3A%20Bug%23372%3A%20Bug%23372%3A%20x2goadmin%20writes%20to%20users%0A%09homes&In-Reply-To=%3CCAJ0ccebpO%2B3_0oJYq2m9oomhFMi4KW-MsafT7mBpMKdi5qYRMA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006694.html">
+   <LINK REL="Next"  HREF="006698.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#372: Bug#372: Bug#372: x2goadmin writes to users	homes</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23372%3A%20Bug%23372%3A%20Bug%23372%3A%20x2goadmin%20writes%20to%20users%0A%09homes&In-Reply-To=%3CCAJ0ccebpO%2B3_0oJYq2m9oomhFMi4KW-MsafT7mBpMKdi5qYRMA%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#372: Bug#372: Bug#372: x2goadmin writes to users	homes">siretart at gmail.com
+       </A><BR>
+    <I>Mon Dec 16 15:31:48 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006694.html">[X2Go-Dev] Bug#372: Bug#372: Bug#372: x2goadmin writes to users	homes
+</A></li>
+        <LI>Next message: <A HREF="006698.html">[X2Go-Dev] Bug#372: Bug#372: Bug#372: x2goadmin writes to users	homes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6696">[ date ]</a>
+              <a href="thread.html#6696">[ thread ]</a>
+              <a href="subject.html#6696">[ subject ]</a>
+              <a href="author.html#6696">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Dec 16, 2013 8:59 AM, &quot;Alexander Wuerstlein&quot; &lt;
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">snalwuer at cip.informatik.uni-erlangen.de</A>&gt; wrote:
+&gt;<i>
+</I>&gt;<i> On 13-12-16 08:49, Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+</I>&gt;<i> &gt; Hi Reinhard,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; On  So 15 Dez 2013 01:13:35 CET, Reinhard Tartler wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; &gt;Package: x2goserver
+</I>&gt;<i> &gt; &gt;Severity: serious
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt;Hi,
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt;my understanding of the x2goadmin code [code], end of sub add_user, is
+</I>&gt;<i> &gt; &gt;that the code tries to write the sql password in users homes. This
+</I>&gt;<i> &gt; &gt;will fail for installations that have the user homes on NFS with the
+</I>&gt;<i> &gt; &gt;option &quot;rootsquash&quot; mounted.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt;I set the severity to &quot;serious&quot; because I imagine that this is a
+</I>&gt;<i> &gt; &gt;rather common scenario.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt;Also, this approach has another problem: Imagine you want to give
+</I>&gt;<i> &gt; &gt;access to the unix group &quot;staff&quot;? According to the documentation, you
+</I>&gt;<i> &gt; &gt;can use the options &quot;--addgroup&quot; and &quot;--rmgroup&quot; for this. What if a
+</I>&gt;<i> &gt; &gt;new employee joins the company later and wants to use x2go? In this
+</I>&gt;<i> &gt; &gt;case you need to call x2godbadmin for this new user again, which is
+</I>&gt;<i> &gt; &gt;suboptimal.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt;Is there really no way to get around generated user passwords?
+</I>&gt;<i>
+</I>&gt;<i> There is a way that could work: If configured correctly, postgresql can
+</I>&gt;<i> use GSSAPI (Kerberos) Authentication. That way, the user is
+</I>&gt;<i> authenticated using his login ticket cache which is created anyways.
+</I>&gt;<i> If necessary, one could also provide a keyfile for the cleanup-cronjob
+</I>&gt;<i> so that it can at least access the database with sufficient permissions.
+</I>
+That would be an option if you are OK to break passwordless ssh key
+authentication logins.
+
+If you really wanted to go the kerberos route, you would have to create
+special db principals that can only access the db, and stash a passwordless
+keyfile in the users home.
+
+&gt;<i>
+</I>&gt;<i> But I have never tried this with x2go and don't know if it would work.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Ciao,
+</I>&gt;<i>
+</I>&gt;<i> Alexander Wuerstlein.
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131216/3e8ba001/attachment-0001.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131216/3e8ba001/attachment-0001.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006694.html">[X2Go-Dev] Bug#372: Bug#372: Bug#372: x2goadmin writes to users	homes
+</A></li>
+	<LI>Next message: <A HREF="006698.html">[X2Go-Dev] Bug#372: Bug#372: Bug#372: x2goadmin writes to users	homes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6696">[ date ]</a>
+              <a href="thread.html#6696">[ thread ]</a>
+              <a href="subject.html#6696">[ subject ]</a>
+              <a href="author.html#6696">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

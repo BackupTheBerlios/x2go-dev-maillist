@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#211: X2Go issue (in src:x2gobroker) has been marked	as closed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23211%3A%20X2Go%20issue%20%28in%20src%3Ax2gobroker%29%20has%20been%20marked%0A%09as%20closed&In-Reply-To=%3C20130519104345.9D59E5DB28%40ymir%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005650.html">
+   <LINK REL="Next"  HREF="005652.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#211: X2Go issue (in src:x2gobroker) has been marked	as closed</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23211%3A%20X2Go%20issue%20%28in%20src%3Ax2gobroker%29%20has%20been%20marked%0A%09as%20closed&In-Reply-To=%3C20130519104345.9D59E5DB28%40ymir%3E"
+       TITLE="[X2Go-Dev] Bug#211: X2Go issue (in src:x2gobroker) has been marked	as closed">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sun May 19 12:43:45 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005650.html">[X2Go-Dev] Processed: X2Go issue (in src:x2gobroker) has been	marked as closed
+</A></li>
+        <LI>Next message: <A HREF="005652.html">[X2Go-Dev] Processed: X2Go issue (in src:x2gobroker) has been	marked as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5654">[ date ]</a>
+              <a href="thread.html#5654">[ thread ]</a>
+              <a href="subject.html#5654">[ subject ]</a>
+              <a href="author.html#5654">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>close #211
+thanks
+
+Hello,
+
+we are very hopeful that X2Go issue #211 reported by you
+has been resolved in the new release (0.0.2.1) of the
+X2Go source project &#187;src:x2gobroker&#171;.
+
+You can view the complete changelog entry of src:x2gobroker (0.0.2.1)
+below, and you can use the following link to view all the code changes
+between this and the last release of src:x2gobroker.
+
+    <A HREF="http://code.x2go.org/gitweb?p=x2gobroker.git;a=commitdiff;h=e7ba5f8e1a81d814f4d3e9f82ad6e9bc2855e7cd;hp=363a8fb21e215d403ef81c9bfc0d079d431bacce">http://code.x2go.org/gitweb?p=x2gobroker.git;a=commitdiff;h=e7ba5f8e1a81d814f4d3e9f82ad6e9bc2855e7cd;hp=363a8fb21e215d403ef81c9bfc0d079d431bacce</A>
+
+If you feel that the issue has not been resolved satisfyingly, feel
+free to reopen this bug report or submit a follow-up report with
+further observations described based on the new released version
+of src:x2gobroker.
+
+Thanks a lot for contributing to X2Go!!!
+
+light+love
+X2Go Git Admin (on behalf of the sender of this mail)
+
+---
+X2Go Component: src:x2gobroker
+Version: 0.0.2.1
+Status: RELEASE
+Date: Sun, 19 May 2013 12:41:06 +0200
+Fixes: 201 210 211
+Changes: 
+ x2gobroker (0.0.2.1) RELEASED; urgency=low
+ .
+   [ Mike Gabriel ]
+   * New upstream version (0.0.2.1):
+     - Remove trailing slashes from ManagementServer URLs.
+     - In Apache2 vhost configuration example, move WSGI environment
+       variable settings into VirtualHost setup.
+     - Remove unused, not-yet-developed broker backends and frontends.
+     - Remove old cruft from x2gobroker.conf.
+     - Security fix for setuid wrapper x2gobroker-agent.c. Hard-code path to
+       x2gobroker-agent.pl during build via defining a macro in the Makefile.
+       Thanks to Richard Weinberger for spotting this!!!
+     - Handle URLs in plain WebUI that have slashes (and subpaths) in the
+       backend name.
+     - In WSGI mode: only populate os.environ with variables matching
+       &#187;X2GOBROKER_*&#171;.
+     - Make X2GOBROKER_SESSIONPROFILES configurable via a SetEnv WSGI parameter
+       in the httpd configuration possible. (Fixes: #210).
+   * Provide init scripts and *.default files outside of /debian folder (as
+     they are also relevant for non-Debian packaging).
+ .
+   [ Jan Engelhardt ]
+   * New upstream version (0.0.2.1):
+     - Populate install target of Makefile. (Fixes: #201).
+     - Install man pages and default files through Makefile, as well. (Fixes:
+       #211).
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005650.html">[X2Go-Dev] Processed: X2Go issue (in src:x2gobroker) has been	marked as closed
+</A></li>
+	<LI>Next message: <A HREF="005652.html">[X2Go-Dev] Processed: X2Go issue (in src:x2gobroker) has been	marked as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5654">[ date ]</a>
+              <a href="thread.html#5654">[ thread ]</a>
+              <a href="subject.html#5654">[ subject ]</a>
+              <a href="author.html#5654">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] install problems solved
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20install%20problems%20solved&In-Reply-To=%3C4A8E85EC.8050608%40immerda.ch%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000086.html">
+   <LINK REL="Next"  HREF="000088.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] install problems solved</H1>
+    <B>kamerun at immerda.ch</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20install%20problems%20solved&In-Reply-To=%3C4A8E85EC.8050608%40immerda.ch%3E"
+       TITLE="[X2go-dev] install problems solved">kamerun at immerda.ch
+       </A><BR>
+    <I>Fri Aug 21 13:33:00 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000086.html">[X2go-dev] error starting x2goagent
+</A></li>
+        <LI>Next message: <A HREF="000088.html">[X2go-dev] install problems solved
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#87">[ date ]</a>
+              <a href="thread.html#87">[ thread ]</a>
+              <a href="subject.html#87">[ subject ]</a>
+              <a href="author.html#87">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hello,
+
+we had problems to install x2go:
+
+we made a big mistake
+
+    * we comment the lo interface, it was so silly that we don't see
+      this mistake long time: the result was that the machine work, but
+      the next boot,  it was no nfs ...
+
+now it is going well.
+as i told you before i think, it will be better to make a install 
+script, because you can control if it's really work. the documentation 
+has mistakes and for the installer they can be sure, they don't make a 
+tipping / copy mistake. we have done such a script and we can give to 
+the community, if desired.
+
+
+now we have tried to make x2go as a xen virtual machine. it is at the 
+moment not working, we get following mistake
+
+something like:
+in login (without ldap):
+cannot connecting to host &quot;localhost:30001&quot; proxy
+
+with
+nmap  192.168.0.250
+we dont have port 30001 open
+tcpdump on eth1 where is the dhcpserver try from the client to reach the 
+x2go server
+/
+13:27:03.666347 IP 192.168.0.106.3088888606 &gt; 
+x2goserver.planetexpress.de.nfs: 116 getattr [|nfs]
+13:27:03.679034 IP x2goserver.planetexpress.de.nfs &gt; 
+192.168.0.106.3088888606: reply ok 116 getattr [|nfs]
+13:27:03.666594 IP 192.168.0.106.930 &gt; x2goserver.planetexpress.de.nfs: 
+. ack 1669475119 win 41915 &lt;nop,nop,timestamp 274543 293666&gt;
+13:27:03.668053 IP 192.168.0.106.3105665822 &gt; 
+x2goserver.planetexpress.de.nfs: 116 getattr [|nfs]
+13:27:03.668130 IP 192.168.0.106.3122443038 &gt; 
+x2goserver.planetexpress.de.nfs: 116 getattr [|nfs]
+13:27:03.668161 IP x2goserver.planetexpress.de.nfs &gt; 
+192.168.0.106.3105665822: reply ok 116 getattr [|nfs]
+13:27:03.668218 IP x2goserver.planetexpress.de.nfs &gt; 
+192.168.0.106.3122443038: reply ok 116 getattr [|nfs]
+13:27:03.668424 IP 192.168.0.106.3139220254 &gt; 
+x2goserver.planetexpress.de.nfs: 116 getattr [|nfs]
+13:27:03.668471 IP x2goserver.planetexpress.de.nfs &gt; 
+192.168.0.106.3139220254: reply ok 116 getattr [|nfs]/
+
+
+some idea, where is the mistake?
+
+
+
+michel
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090821/03570ef2/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090821/03570ef2/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000086.html">[X2go-dev] error starting x2goagent
+</A></li>
+	<LI>Next message: <A HREF="000088.html">[X2go-dev] install problems solved
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#87">[ date ]</a>
+              <a href="thread.html#87">[ thread ]</a>
+              <a href="subject.html#87">[ subject ]</a>
+              <a href="author.html#87">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

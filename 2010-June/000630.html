@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] INSTALLATION IN CLEAN UBUNTU 10.04/DEBIAN WORKS BUT	CLIENTS CAN'T CONNECT
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20INSTALLATION%20IN%20CLEAN%20UBUNTU%2010.04/DEBIAN%20WORKS%20BUT%0A%09CLIENTS%20CAN%27T%20CONNECT&In-Reply-To=%3CAANLkTimqVgfpJUPh_5AKqsm77TyROEVS3zfx0k0MSsFd%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000628.html">
+   <LINK REL="Next"  HREF="000627.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] INSTALLATION IN CLEAN UBUNTU 10.04/DEBIAN WORKS BUT	CLIENTS CAN'T CONNECT</H1>
+    <B>Ricardo D&#237;az Mart&#237;n</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20INSTALLATION%20IN%20CLEAN%20UBUNTU%2010.04/DEBIAN%20WORKS%20BUT%0A%09CLIENTS%20CAN%27T%20CONNECT&In-Reply-To=%3CAANLkTimqVgfpJUPh_5AKqsm77TyROEVS3zfx0k0MSsFd%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] INSTALLATION IN CLEAN UBUNTU 10.04/DEBIAN WORKS BUT	CLIENTS CAN'T CONNECT">oceanosoftlapalma at gmail.com
+       </A><BR>
+    <I>Thu Jun 24 19:32:18 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000628.html">[X2go-dev] INSTALLATION IN CLEAN UBUNTU 10.04/DEBIAN WORKS BUT	CLIENTS CAN'T CONNECT
+</A></li>
+        <LI>Next message: <A HREF="000627.html">[X2go-dev] trouble getting printing to work
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#630">[ date ]</a>
+              <a href="thread.html#630">[ thread ]</a>
+              <a href="subject.html#630">[ subject ]</a>
+              <a href="author.html#630">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi guys,
+
+I discover the mystery.... I was trying to connect from the same machine.
+&gt;<i>From other works fine.
+</I>
+I was trying because freenx allow this.
+
+Now I can test the system to show performance, sharing, printing, etc...
+
+Thanks
+Ricardo
+
+2010/6/24 Ricardo D&#237;az Mart&#237;n &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oceanosoftlapalma at gmail.com</A>&gt;
+
+&gt;<i> Thanks John for your reply.
+</I>&gt;<i>
+</I>&gt;<i> Permissions are ubuntu installation defaults. I haven't changed umask for
+</I>&gt;<i> users.
+</I>&gt;<i>
+</I>&gt;<i> At .x2go folder they are 700 and folders inside are 700 and other one 766
+</I>&gt;<i>
+</I>&gt;<i> Something else to try?
+</I>&gt;<i>
+</I>&gt;<i> The most amazing is there are lots of users of Ubuntu and Debian says x2go
+</I>&gt;<i> works fine at the first. I have used freenx for the last 2 years from freenx
+</I>&gt;<i> ubuntu ppa and works fine. But now, I'd like to try other project because
+</I>&gt;<i> x2go looks like alive and freenx doesn't.
+</I>&gt;<i>
+</I>&gt;<i> I'm really getting crazy for this behavior
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> 2010/6/24 John A. Sullivan III &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> On Thu, 2010-06-24 at 12:03 +0200, Ricardo D&#237;az Mart&#237;n wrote:
+</I>&gt;&gt;<i> &gt; Hi,
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; I'm getting crazy with x2go home server when I read all users
+</I>&gt;&gt;<i> &gt; installation works at the first. I have done step by step installation
+</I>&gt;&gt;<i> &gt; in ubuntu and looks like all works fine (no errors at installation
+</I>&gt;&gt;<i> &gt; time).
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; After when I'm try to connect from client side I get always the same
+</I>&gt;&gt;<i> &gt; error:
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Connection failed.
+</I>&gt;&gt;<i> &gt; cat:
+</I>&gt;&gt;<i> /home/&lt;user_that_is_trying_connect&gt;/.x2go/C-&lt;user_that_is_trying_connect&gt;-&lt;some_numbers&gt;_stDGNOME_DP&lt;some_numers&gt;/
+</I>&gt;&gt;<i> &gt; cmdoutput: No such file or directory
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; All users are in groups x2gousers and fuse. ssh is enabled and I
+</I>&gt;&gt;<i> &gt; connect with no problems.
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; I'm using a ubuntu 10.04 clean box.
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Somebody knows what's wrong?
+</I>&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;<i> Those client directories under .x2go are created dynamically.  Is there
+</I>&gt;&gt;<i> anything unusual about the permissions that would prevent that creation?
+</I>&gt;&gt;<i> - John
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2go-dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100624/59ac467b/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100624/59ac467b/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000628.html">[X2go-dev] INSTALLATION IN CLEAN UBUNTU 10.04/DEBIAN WORKS BUT	CLIENTS CAN'T CONNECT
+</A></li>
+	<LI>Next message: <A HREF="000627.html">[X2go-dev] trouble getting printing to work
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#630">[ date ]</a>
+              <a href="thread.html#630">[ thread ]</a>
+              <a href="subject.html#630">[ subject ]</a>
+              <a href="author.html#630">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

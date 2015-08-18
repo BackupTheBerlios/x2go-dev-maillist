@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] X2go Server and syslogging
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20X2go%20Server%20and%20syslogging&In-Reply-To=%3C1315587678.26377.171.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002749.html">
+   <LINK REL="Next"  HREF="002751.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] X2go Server and syslogging</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20X2go%20Server%20and%20syslogging&In-Reply-To=%3C1315587678.26377.171.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] X2go Server and syslogging">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Sep  9 19:01:18 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002749.html">[X2go-Dev] X2go Server and syslogging
+</A></li>
+        <LI>Next message: <A HREF="002751.html">[X2go-Dev] X2go Server and syslogging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2750">[ date ]</a>
+              <a href="thread.html#2750">[ thread ]</a>
+              <a href="subject.html#2750">[ subject ]</a>
+              <a href="author.html#2750">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2011-09-09 at 18:54 +0200, Mike Gabriel wrote:
+&gt;<i> Hi John,
+</I>&gt;<i> 
+</I>&gt;<i> On Fr 09 Sep 2011 18:52:22 CEST &quot;John A. Sullivan III&quot; wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; On Fri, 2011-09-09 at 18:31 +0200, Mike Gabriel wrote:
+</I>&gt;<i> &gt;&gt; hi all,
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; today I have added syslog support to all X2go Server scripts.
+</I>&gt;<i> &gt;&gt; Currently, two log levels are used:
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;    debug -&gt; mostly for db debugging
+</I>&gt;<i> &gt;&gt;    info -&gt; write to syslog whenever one of the X2go Server commands  
+</I>&gt;<i> &gt;&gt; is called
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; The default loglevel is ,,notice''. For this level, I plan to log if a
+</I>&gt;<i> &gt;&gt; session has been started/suspended/resumed/terminated.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; More to come later,
+</I>&gt;<i> &gt;&gt; Mike
+</I>&gt;<i> &gt; &lt;snip&gt;
+</I>&gt;<i> &gt; Not that it's critically important but, if you insert the word ERROR
+</I>&gt;<i> &gt; when logging an error condition, I believe it can be picked up by OSSEC
+</I>&gt;<i> &gt; for log reporting - John
+</I>&gt;<i> 
+</I>&gt;<i> Not sure what your request is: shall I avoid that or include that as a  
+</I>&gt;<i> feature?
+</I>&gt;<i> 
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>Hi, Mike.  It was just information.  As you craft the message for error
+conditions, if you use the string ERROR, OSSEC users will be able to
+pick up those error automatically and alert on them.  It would be nice
+feature for OSSEC users (like us!).  Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002749.html">[X2go-Dev] X2go Server and syslogging
+</A></li>
+	<LI>Next message: <A HREF="002751.html">[X2go-Dev] X2go Server and syslogging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2750">[ date ]</a>
+              <a href="thread.html#2750">[ thread ]</a>
+              <a href="subject.html#2750">[ subject ]</a>
+              <a href="author.html#2750">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Git repos at git.x2go.org (Was: Packaging)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Git%20repos%20at%20git.x2go.org%20%28Was%3A%20Packaging%29&In-Reply-To=%3C20110221230211.81411a3xby8yqi8z%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001786.html">
+   <LINK REL="Next"  HREF="001788.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Git repos at git.x2go.org (Was: Packaging)</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Git%20repos%20at%20git.x2go.org%20%28Was%3A%20Packaging%29&In-Reply-To=%3C20110221230211.81411a3xby8yqi8z%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] Git repos at git.x2go.org (Was: Packaging)">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Feb 21 23:02:11 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001786.html">[X2go-dev] Git repos at git.x2go.org (Was: Packaging)
+</A></li>
+        <LI>Next message: <A HREF="001788.html">[X2go-dev] Git repos at git.x2go.org (Was: Packaging)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1787">[ date ]</a>
+              <a href="thread.html#1787">[ thread ]</a>
+              <a href="subject.html#1787">[ subject ]</a>
+              <a href="author.html#1787">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Morty, dear Heinz, dear Alex,
+
+On Mo 21 Feb 2011 21:52:51 CET Moritz Str&#252;be wrote:
+
+&gt;<i> Hi there,
+</I>&gt;<i>
+</I>&gt;<i> I've noticed that all the repos at <A HREF="http://code.x2go.org/gitweb">http://code.x2go.org/gitweb</A> were
+</I>&gt;<i> renamed with a prefix _old_. What is the reason for this? Renaming repos
+</I>&gt;<i> really is not a nice thing to do, as all clones must be adjusted. And if
+</I>&gt;<i> you set up new repos the checksums will not match anymore, breaking the
+</I>&gt;<i> part of the cool features of git. What is the reason for doing so?
+</I>&gt;<i> I'm also still missing a road map. This would really help to avoid doing
+</I>&gt;<i> duplicate work. And if there is talk in the back ground: Please(!) make
+</I>&gt;<i> it public.
+</I>&gt;<i>
+</I>&gt;<i> Cheers
+</I>&gt;<i> Morty
+</I>
+First: the Git at code.x2go.org has so far not been officially  
+announced on any channel. The main reason for this is (from my  
+perspective) that I have had no definite confirmation from Heinz and  
+Alex, yet, that they will really change over X2go development to a  
+publically available Git based release model. From my point of view,  
+there has been good will so far, but no definite: YES. That means:
+
+   o upstream code is comitted into upstream Git and reflects the upstream
+     development process (i.e. there are more commits than releases)
+   o at some stages the upstream developers ask a release manager to tag a
+     release
+   o the release tagging informs distro packagers that there is a new upstream
+     version of one of the X2go projects
+
+The Git on code.x2go.org was already ,,nice'', but it's main flaw was  
+the lack of history. Also: the lack of being able to extract the  
+original tarball releases from the git directly. However, that shall  
+be possible in the future.
+
+In the run of meeting Heinz and Jonas in Zweibr&#252;cken and talking to  
+Heinz on the phone later, a slightly different Git model has come up  
+that I am preparing now for proposal.
+
+I have asked Heinz and Alex internally for an opinion on the new  
+model, but have not received a reply within the last week. I must  
+confess that I explained the gains of the new structure only shorly
+
+Thus my basic idea with the latest work on code.x2go.org was to show  
+the new structure to the world and discuss the following advantages of  
+upstream Git projects that:
+
+  o contain a pristine-tar branch
+  o contain a nearly complete history
+    (that is as many of the older releases as possible) on the x2go-dev ML.
+  o release numbers do not contain hyphens (''-'') anymore
+  o all X2go projects have a a.b.c.d version number (major.minor.micro.nano(?))
+
+Everything I do currently is reversible and in upstream we (Heinz,  
+Alex, Mike) are still in the middle of a discussion process. There is  
+not yet a consensus on how the Git will be used and there is no  
+roadmap yet either. However, I urge everyone involved (and this not  
+for the first time, but maybe the first time in public) to focus on  
+that in the oncoming days and weeks before diving into new absorbing  
+coding work. That is: I recommend to sharpen the tools first.
+
+@Heinz+Alex: we have to get this to a definite state now. I feel  
+myself getting gradually impatient about the sluggyness of this  
+process. Please, contribute to this thread. My personal goal is that  
+we have a definite result on X2go upstream git usage at the end of  
+this discussion thread.
+
+@Morty: thanks for re-addressing this topic!!!
+
+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 489 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110221/0be20a33/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110221/0be20a33/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001786.html">[X2go-dev] Git repos at git.x2go.org (Was: Packaging)
+</A></li>
+	<LI>Next message: <A HREF="001788.html">[X2go-dev] Git repos at git.x2go.org (Was: Packaging)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1787">[ date ]</a>
+              <a href="thread.html#1787">[ thread ]</a>
+              <a href="subject.html#1787">[ subject ]</a>
+              <a href="author.html#1787">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

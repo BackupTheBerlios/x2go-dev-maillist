@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Python-x2go &quot;Bringing up NX3 proxy failed&quot; on Windows
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Python-x2go%20%22Bringing%20up%20NX3%20proxy%20failed%22%20on%20Windows&In-Reply-To=%3C20130523220747.21181t92psekrmkz%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005686.html">
+   <LINK REL="Next"  HREF="005687.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Python-x2go &quot;Bringing up NX3 proxy failed&quot; on Windows</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Python-x2go%20%22Bringing%20up%20NX3%20proxy%20failed%22%20on%20Windows&In-Reply-To=%3C20130523220747.21181t92psekrmkz%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Python-x2go &quot;Bringing up NX3 proxy failed&quot; on Windows">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu May 23 22:07:47 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005686.html">[X2Go-Dev] Python-x2go &quot;Bringing up NX3 proxy failed&quot; on Windows
+</A></li>
+        <LI>Next message: <A HREF="005687.html">[X2Go-Dev] Bug#216: x2gobroker-agent: assumes wrong path for	x2gobroker-agent.pl
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5704">[ date ]</a>
+              <a href="thread.html#5704">[ thread ]</a>
+              <a href="subject.html#5704">[ subject ]</a>
+              <a href="author.html#5704">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Adrien,
+
+On Mi 22 Mai 2013 10:44:33 CEST Adrien Basso wrote:
+
+&gt;<i> Hi X2go-devs,
+</I>&gt;<i> I try to use python-x2go api for an application on linux and windows.
+</I>&gt;<i> I have no problem with linux but on windows, I can do  session.connect()
+</I>&gt;<i> but I still get the same error at start of sessions.
+</I>&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> session.start (cmd='LXDE&quot;)
+</I>&gt;<i>
+</I>&gt;<i> (x2goproxy-pyib) ERROR: Bringing up NX3 proxy failed.
+</I>&gt;<i> (x2goclient-pylib) WARN: HOOK_session_startup_failed: session startup for
+</I>&gt;<i> session profile ,,test failed.
+</I>
+My guess is that on Windows you do not have an X-Server running.
+
+There is some X-Server launching-magic in Python X2Go. If you use  
+class X2GoClient instead of X2GoSession and manage sessions via the  
+X2GoClient class then you can add start_xserver=True when  
+instantiating the class.
+
+&gt;<i> The same script run perfectly on linux.
+</I>&gt;<i> I installed python-x2go in this way :
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://wiki.x2go.org/doku.php/wiki:development:build-howto-mswin:pyhoca-gui">http://wiki.x2go.org/doku.php/wiki:development:build-howto-mswin:pyhoca-gui</A>
+</I>&gt;<i>
+</I>&gt;<i> I checked that I had nxproxy.exe in several paths, it's ok.
+</I>&gt;<i>
+</I>&gt;<i> Do you have any idea of where it might come?
+</I>&gt;<i> PS: The x2go-Client works perfectly well on my machine.
+</I>&gt;<i> And the remote server is a Debian server.
+</I>
+Make sure that you run an X-Server on the Windows machine and I guess  
+your issue will be solved.
+
+&gt;<i> Thanks for your time ,
+</I>&gt;<i> Adrien
+</I>
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130523/01bc56e3/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130523/01bc56e3/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005686.html">[X2Go-Dev] Python-x2go &quot;Bringing up NX3 proxy failed&quot; on Windows
+</A></li>
+	<LI>Next message: <A HREF="005687.html">[X2Go-Dev] Bug#216: x2gobroker-agent: assumes wrong path for	x2gobroker-agent.pl
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5704">[ date ]</a>
+              <a href="thread.html#5704">[ thread ]</a>
+              <a href="subject.html#5704">[ subject ]</a>
+              <a href="author.html#5704">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

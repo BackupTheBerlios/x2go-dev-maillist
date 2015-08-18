@@ -1,0 +1,158 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [X2go-Dev] Fwd: Performance with KDE 4.8 + Qt 4.8
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2go-Dev%5D%20Fwd%3A%20Performance%20with%20KDE%204.8%20%2B%20Qt%204.8&In-Reply-To=%3C20120129005201.452415h9kd7gnfhd%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003259.html">
+   <LINK REL="Next"  HREF="003260.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [X2go-Dev] Fwd: Performance with KDE 4.8 + Qt 4.8</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2go-Dev%5D%20Fwd%3A%20Performance%20with%20KDE%204.8%20%2B%20Qt%204.8&In-Reply-To=%3C20120129005201.452415h9kd7gnfhd%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [X2go-Dev] Fwd: Performance with KDE 4.8 + Qt 4.8">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sun Jan 29 00:52:01 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003259.html">[X2go-Dev] Fwd: Performance with KDE 4.8 + Qt 4.8
+</A></li>
+        <LI>Next message: <A HREF="003260.html">[X2go-Dev] [PATCH] Make sure the [...] - The right patch!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3291">[ date ]</a>
+              <a href="thread.html#3291">[ thread ]</a>
+              <a href="subject.html#3291">[ subject ]</a>
+              <a href="author.html#3291">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Committed!
+<A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=a591dd31b532c0fdc98cd051931ac4132ad7b40c">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=a591dd31b532c0fdc98cd051931ac4132ad7b40c</A>
+
+Mike
+
+On Fr 27 Jan 2012 13:18:42 CET Mike Gabriel wrote:
+
+&gt;<i> Hi Alex,
+</I>&gt;<i>
+</I>&gt;<i> I guess, we have to take care of this in X2Go, too. What do you think?
+</I>&gt;<i>
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i> ----- Weitergeleitete Nachricht von <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">fcoiffie at gmail.com</A> -----
+</I>&gt;<i>      Datum: Mon, 16 Jan 2012 15:41:05 +0100
+</I>&gt;<i>        Von: Fr&#233;d&#233;ric COIFFIER &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">fcoiffie at gmail.com</A>&gt;
+</I>&gt;<i> Antwort an: User Support for FreeNX Server and kNX Client  
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">freenx-knx at kde.org</A>&gt;
+</I>&gt;<i>    Betreff: [FreeNX-kNX] Performance with KDE 4.8 + Qt 4.8
+</I>&gt;<i>         An: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">freenx-knx at kde.org</A>
+</I>&gt;<i>
+</I>&gt;<i> Since first versions of Qt 4, the performance of this toolkit through
+</I>&gt;<i> NX/FreeNX has decreased (compared to Qt3) : it slows to refresh and there are
+</I>&gt;<i> many glitches.
+</I>&gt;<i> Moreover, Qt 4 can supports different graphic backend :
+</I>&gt;<i>  - native which uses X11
+</I>&gt;<i>  - raster which makes many operations on an internal graphic buffer without
+</I>&gt;<i> using X11.
+</I>&gt;<i>
+</I>&gt;<i> On a local machine, raster performs well but it is really slow with a remote
+</I>&gt;<i> X11 or NX/FreeNX.
+</I>&gt;<i>
+</I>&gt;<i> It seems that the next version of KDE 4.8 (associated with Qt 4.8)  
+</I>&gt;<i> will select
+</I>&gt;<i> raster by default.
+</I>&gt;<i> I have found a workaround to keep raster on a local connection and to select
+</I>&gt;<i> native with FreeNX (ugly hack) :
+</I>&gt;<i>
+</I>&gt;<i> /usr/bin/nxnode :
+</I>&gt;<i>           sess_id=&quot;$SERVER_NAME-$display-$uniqueid&quot;
+</I>&gt;<i>           [ &quot;$EXPORT_SESSIONID&quot; = &quot;1&quot; ] &amp;&amp; export NXSESSIONID=&quot;$sess_id&quot;
+</I>&gt;<i>
+</I>&gt;<i> +         export QT_GRAPHICSSYSTEM=native
+</I>&gt;<i>
+</I>&gt;<i>           OLD_UMASK=$(umask)
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Frederic
+</I>&gt;<i> ________________________________________________________________
+</I>&gt;<i>      Were you helped on this list with your FreeNX problem?
+</I>&gt;<i>     Then please write up the solution in the FreeNX Wiki/FAQ:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://openfacts2.berlios.de/wikien/index.php/BerliosProject:FreeNX_-_FAQ">http://openfacts2.berlios.de/wikien/index.php/BerliosProject:FreeNX_-_FAQ</A>
+</I>&gt;<i>
+</I>&gt;<i>          Don't forget to check the NX Knowledge Base:
+</I>&gt;<i>                  <A HREF="http://www.nomachine.com/kb/">http://www.nomachine.com/kb/</A>
+</I>&gt;<i>
+</I>&gt;<i> ________________________________________________________________
+</I>&gt;<i>        FreeNX-kNX mailing list --- <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">FreeNX-kNX at kde.org</A>
+</I>&gt;<i>       <A HREF="https://mail.kde.org/mailman/listinfo/freenx-knx">https://mail.kde.org/mailman/listinfo/freenx-knx</A>
+</I>&gt;<i> ________________________________________________________________
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> ----- Ende der weitergeleiteten Nachricht -----
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> -- 
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;<i> fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0xB588399B
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I>
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120129/b72aaba2/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120129/b72aaba2/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003259.html">[X2go-Dev] Fwd: Performance with KDE 4.8 + Qt 4.8
+</A></li>
+	<LI>Next message: <A HREF="003260.html">[X2go-Dev] [PATCH] Make sure the [...] - The right patch!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3291">[ date ]</a>
+              <a href="thread.html#3291">[ thread ]</a>
+              <a href="subject.html#3291">[ subject ]</a>
+              <a href="author.html#3291">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

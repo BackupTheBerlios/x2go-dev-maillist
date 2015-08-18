@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#34: Support for proxy server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2334%3A%20Support%20for%20proxy%20server&In-Reply-To=%3C20120921122019.159810%40gmx.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004275.html">
+   <LINK REL="Next"  HREF="004288.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#34: Support for proxy server</H1>
+    <B>glpk xypron</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2334%3A%20Support%20for%20proxy%20server&In-Reply-To=%3C20120921122019.159810%40gmx.net%3E"
+       TITLE="[X2Go-Dev] Bug#34: Support for proxy server">xypron.glpk at gmx.de
+       </A><BR>
+    <I>Fri Sep 21 14:20:19 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004275.html">[X2Go-Dev] Bug#34: Support for proxy server
+</A></li>
+        <LI>Next message: <A HREF="004288.html">[X2Go-Dev] Bug#34: Support for proxy server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4286">[ date ]</a>
+              <a href="thread.html#4286">[ thread ]</a>
+              <a href="subject.html#4286">[ subject ]</a>
+              <a href="author.html#4286">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear Mike,
+
+what I would like to have is that like in putty I can enter the proxy server, the port, my proxy user, and my proxy password. The x2goclient will create a SSH connection.
+
+As long as x2go does not support this scenario. I have to log onto my server using putty. With putty I log onto port 443 of my server and create a tunnel between port 443 on my laptop to port 443 of my server. The I use the x2goclient to connect to my laptop port 443.
+
+Best regards
+
+Heinrich
+
+
+-------- Original-Nachricht --------
+&gt;<i> Datum: Fri, 21 Sep 2012 09:37:51 +0200
+</I>&gt;<i> Von: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i> An: glpk xypron &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">xypron.glpk at gmx.de</A>&gt;, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">34 at bugs.x2go.org</A>
+</I>&gt;<i> Betreff: Re: [X2Go-Dev] Bug#34: Support for proxy server
+</I>
+&gt;<i> Hi Heinrich,
+</I>&gt;<i> 
+</I>&gt;<i> On Fr 21 Sep 2012 08:03:30 CEST glpk xypron wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Package: x2goclient
+</I>&gt;<i> &gt; Version: V.3.99.2.2 (Qt - 4.8.1)
+</I>&gt;<i> &gt; Severity: wishlist
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I would like to use x2goclient from behind a firewall without having  
+</I>&gt;<i> &gt; to setup a tunnel with an external tool.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; My ssh server is running on port 443. The http method CONNECT can be  
+</I>&gt;<i> &gt; used to create the connection over the firewall.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Please, add proxy support to the x2goclient.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Best regards
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Heinrich Schuchardt
+</I>&gt;<i> 
+</I>&gt;<i> You may want to test PyHoca-GUI. It has SSH tunneling support  
+</I>&gt;<i> built-in. You can SSH through an SSH tunnel to a server behind a  
+</I>&gt;<i> firewall. Only thing needed is a machine (on the gate) that allows SSH  
+</I>&gt;<i> hopping.
+</I>&gt;<i> 
+</I>&gt;<i> I suspect, though, you mean something differen.
+</I>&gt;<i> 
+</I>&gt;<i> What external tool do you use for setting up your tunnel. Please  
+</I>&gt;<i> specify on that. Do you go over a squid proxy? Including such a  
+</I>&gt;<i> feature into x2goclient (esp. for the X2Go plugin) will be a wanted  
+</I>&gt;<i> feature.
+</I>&gt;<i> 
+</I>&gt;<i> If you have, please provide you concept in detail and post it to
+</I>&gt;<i> 
+</I>&gt;<i>    <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">34 at bugs.x2go.org</A>
+</I>&gt;<i> 
+</I>&gt;<i> Thanks,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> 
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+</I>&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;<i> 
+</I>&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I></PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004275.html">[X2Go-Dev] Bug#34: Support for proxy server
+</A></li>
+	<LI>Next message: <A HREF="004288.html">[X2Go-Dev] Bug#34: Support for proxy server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4286">[ date ]</a>
+              <a href="thread.html#4286">[ thread ]</a>
+              <a href="subject.html#4286">[ subject ]</a>
+              <a href="author.html#4286">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

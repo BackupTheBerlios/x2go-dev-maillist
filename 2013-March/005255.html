@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] nxagent dependency problem on CentOS and SL
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nxagent%20dependency%20problem%20on%20CentOS%20and%20SL&In-Reply-To=%3Cloom.20130312T185043-71%40post.gmane.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005252.html">
+   <LINK REL="Next"  HREF="005271.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] nxagent dependency problem on CentOS and SL</H1>
+    <B>Daniel Gibbs</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nxagent%20dependency%20problem%20on%20CentOS%20and%20SL&In-Reply-To=%3Cloom.20130312T185043-71%40post.gmane.org%3E"
+       TITLE="[X2Go-Dev] nxagent dependency problem on CentOS and SL">me at danielgibbs.co.uk
+       </A><BR>
+    <I>Tue Mar 12 19:31:59 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005252.html">[X2Go-Dev] nxagent dependency problem on CentOS and SL
+</A></li>
+        <LI>Next message: <A HREF="005271.html">[X2Go-Dev] nxagent dependency problem on CentOS and SL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5255">[ date ]</a>
+              <a href="thread.html#5255">[ thread ]</a>
+              <a href="subject.html#5255">[ subject ]</a>
+              <a href="author.html#5255">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Mike Gabriel &lt;mike.gabriel &lt;at&gt; das-netzwerkteam.de&gt; writes:
+
+&gt;<i> 
+</I>&gt;<i> Hi Daniel,
+</I>&gt;<i> 
+</I>&gt;<i> On So 10 M&#228;r 2013 21:28:46 CET Daniel Gibbs wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&gt;&gt; [...]
+</I>&gt;<i> &gt;&gt; [...]
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&gt; Looks like the build failed there, and the culprit is a known offender:
+</I>&gt;<i> &gt;&gt; broken debuginfo scripts part of ancient rpm releases.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; <A HREF="https://build.opensuse.org/package/live_build_log?arch=x86_64&amp;package=nx-">https://build.opensuse.org/package/live_build_log?arch=x86_64&amp;package=nx-</A>
+</I>&gt;<i> &gt; libs&amp;project=X11%3ARemoteDesktop%3Ax2go&amp;repository=RHEL_6
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I cannot believe this has still not been fixed! Do the developers of x2go
+</I>&gt;<i> &gt; realise
+</I>&gt;<i> &gt; that no one can install x2goserver on RHEL x64 and it variants currently? 
+</I>Its
+&gt;<i> &gt; completely broken. I would of thought with an issue as serious as  
+</I>&gt;<i> &gt; this that it
+</I>&gt;<i> &gt; would be a number one priority. Almost 2 weeks and it has yet to be  
+</I>&gt;<i> &gt; fixed. This
+</I>&gt;<i> &gt; bug
+</I>&gt;<i> &gt; makes this really good project look bad. Does anyone know if this is  
+</I>&gt;<i> &gt; even being
+</I>&gt;<i> &gt; dealt with? If its going to take time to fix then maybe a post on your front
+</I>&gt;<i> &gt; page
+</I>&gt;<i> &gt; making people aware the developers are sorting it out.
+</I>&gt;<i> &gt; Thanks
+</I>&gt;<i> 
+</I>&gt;<i> May I suggest something?
+</I>&gt;<i> 
+</I>&gt;<i>  From what I have read in this thread, the problem is:
+</I>&gt;<i> 
+</I>&gt;<i>    o you want X2Go installable on RHEL
+</I>&gt;<i>    o the only person doing the RPMs does not have a machine with RHEL to test
+</I>&gt;<i>      his packages on
+</I>&gt;<i> 
+</I>&gt;<i> @Jan: would it make sense that Daniel provided you with a login on a  
+</I>&gt;<i> RHEL machine? Whould that help?
+</I>&gt;<i> 
+</I>&gt;<i> If so, can the two of you please get together?
+</I>&gt;<i> 
+</I>&gt;<i> @Daniel: some background info.
+</I>&gt;<i> 
+</I>&gt;<i> Unfortunately, the people coding X2Go (Alex, me, Heinz, Morty,  
+</I>&gt;<i> Reinhard, Arw, ...) tend to run on Debian (or Ubuntu) monoculture  
+</I>&gt;<i> sites, only. I personally changed over to .deb packaged distros more  
+</I>&gt;<i> than 10 years ago. On the other hand I have just become Debian  
+</I>&gt;<i> Developer, so that is the packaging style I focus on.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks to Jan and his employer (who pays for it) we have RPM packages  
+</I>&gt;<i> for concurrent RPM-based distros. Note that Jan at the time of writing  
+</I>&gt;<i> rather is on the periphery of the project, simply providing the RPMs  
+</I>&gt;<i> and (very good) patches. The packaging is not so much an upstream  
+</I>&gt;<i> issue, as you might guess.
+</I>&gt;<i> 
+</I>&gt;<i> So, actually you are absolutely free (as an alternative) to package  
+</I>&gt;<i> for RHEL yourself and provide a download URL on our website. That is  
+</I>&gt;<i> one realm of possibilities. Another surely is to arrange with Jan to  
+</I>&gt;<i> cooperate on the RPM pacakges.
+</I>&gt;<i> 
+</I>&gt;<i> I understand that you want X2Go to be spread around the global and  
+</I>&gt;<i> also make it available on business Linux distros (like RHEL). Thanks  
+</I>&gt;<i> for that disposition and maybe there is a niche for you to help out in  
+</I>&gt;<i> our project.
+</I>&gt;<i> 
+</I>&gt;<i> light+love,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>
+Thank you for the info Mike it is much appreciated. It has given me a good 
+understanding on 
+to how you guys work with the different distros. Also sorry if I caused upset. I 
+am happy to 
+help Jan out if he requires my help. I do not have RHEL but do have a CentOS 
+server which is 
+binary compatible so testing on that would work well.
+
+My current understanding of the issue is as follows. 
+
+nxagent-3.5.0.17-3.1.x86_64 is asking for a dependency that is only available on 
+OpenSuse 
+which is xorg-x11-fonts-core. I believe this issue was resolved however when the 
+rpm's 
+attempted to be built it failed for some reason. Because of this the rpm's in 
+the repo for 
+RHEL_6 have not updated.
+
+I believe this is the current error:
+
+[  669s] RPM build errors:
+[  669s]     Bad exit status from /var/tmp/rpm-tmp.tWnA7V (%install)
+
+I have tried to install other version of nxagent from fedora 17 and 18 just in 
+case this 
+would work with no success.
+
+I am not sure if me giving Jan access to a server would help in this case. But I 
+am happy to 
+do this if it would help. A recommendation for Jan if he doesn't have any access 
+to an RHEL 
+system might be to use something like Virtualbox and create a CentOS Virtual 
+Machine. This 
+will make it very easy to test x2go on RHEL based systems.
+
+@Jan Please feel free to email me if I can be of any assistance. Thank you
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005252.html">[X2Go-Dev] nxagent dependency problem on CentOS and SL
+</A></li>
+	<LI>Next message: <A HREF="005271.html">[X2Go-Dev] nxagent dependency problem on CentOS and SL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5255">[ date ]</a>
+              <a href="thread.html#5255">[ thread ]</a>
+              <a href="subject.html#5255">[ subject ]</a>
+              <a href="author.html#5255">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

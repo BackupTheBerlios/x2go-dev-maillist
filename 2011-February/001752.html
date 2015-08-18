@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go with ubuntu/natty
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20ubuntu/natty&In-Reply-To=%3C87aahvpuvp.fsf%40faui44a.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001754.html">
+   <LINK REL="Next"  HREF="001755.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go with ubuntu/natty</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20ubuntu/natty&In-Reply-To=%3C87aahvpuvp.fsf%40faui44a.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] x2go with ubuntu/natty">siretart at tauware.de
+       </A><BR>
+    <I>Wed Feb 16 21:49:46 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001754.html">[X2go-dev] x2go plugin and proxy?
+</A></li>
+        <LI>Next message: <A HREF="001755.html">[X2go-dev] x2go with ubuntu/natty
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1752">[ date ]</a>
+              <a href="thread.html#1752">[ thread ]</a>
+              <a href="subject.html#1752">[ subject ]</a>
+              <a href="author.html#1752">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I've experimented with running x2goserver on ubuntu/natty. I can report
+success, but the 'default' GNOME session just makes the x2goagent
+segfault. As a workaround, I can get a proper gnome session by using a
+'custom desktop' with the following command line:
+
+/usr/bin/gnome-session --session 2d-gnome
+
+
+I find this pretty unobvious, but I can only conclude that ubuntu tries
+to enable unity and/or graphic effects by default, which in turn causes
+the mentioned segmentation fault in the x2goagent.
+
+How can this be improved in x2go? On a brief code inspection, it seems
+that the &quot;session command&quot; is determined in x2goclient. However as I
+suspect that not all distributions and/or gnome installations support
+the '2d-gnome' session type, this should only happen where necessary.
+
+What are your thoughts on this issue?
+
+-- 
+Gruesse/greetings,
+Reinhard Tartler, KeyID 945348A4
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001754.html">[X2go-dev] x2go plugin and proxy?
+</A></li>
+	<LI>Next message: <A HREF="001755.html">[X2go-dev] x2go with ubuntu/natty
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1752">[ date ]</a>
+              <a href="thread.html#1752">[ thread ]</a>
+              <a href="subject.html#1752">[ subject ]</a>
+              <a href="author.html#1752">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

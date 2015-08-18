@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#287: Bug#287: x2goserver allows to connect to ALL X	server sessions by default
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23287%3A%20Bug%23287%3A%20x2goserver%20allows%20to%20connect%20to%20ALL%20X%0A%09server%20sessions%20by%20default&In-Reply-To=%3CE539B638-2553-426F-9092-54BFB09662EF%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006087.html">
+   <LINK REL="Next"  HREF="006089.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#287: Bug#287: x2goserver allows to connect to ALL X	server sessions by default</H1>
+    <B>David Fuhrmann</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23287%3A%20Bug%23287%3A%20x2goserver%20allows%20to%20connect%20to%20ALL%20X%0A%09server%20sessions%20by%20default&In-Reply-To=%3CE539B638-2553-426F-9092-54BFB09662EF%40web.de%3E"
+       TITLE="[X2Go-Dev] Bug#287: Bug#287: x2goserver allows to connect to ALL X	server sessions by default">fuhrmann_mail at web.de
+       </A><BR>
+    <I>Wed Aug  7 20:10:44 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006087.html">[X2Go-Dev] Bug#287: Bug#287: x2goserver allows to connect to ALL X	server sessions by default
+</A></li>
+        <LI>Next message: <A HREF="006089.html">[X2Go-Dev] Bug#287: Bug#287: x2goserver allows to connect to ALL X	server sessions by default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6088">[ date ]</a>
+              <a href="thread.html#6088">[ thread ]</a>
+              <a href="subject.html#6088">[ subject ]</a>
+              <a href="author.html#6088">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+To rule out some specific configuration issue in our current system, I installed a fresh linux mint inside a virtual machine and was able to confirm the issues.
+
+You should be able to reproduce it easily by doing the same. Choose Linux Mint debian edition, 64 Bit, Mate package and install x2goserver following your instructions for debian 7.
+
+With best regards,
+David
+
+
+Am 07.08.2013 um 17:56 schrieb David Fuhrmann &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">fuhrmann_mail at web.de</A>&gt;:
+
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> We are using a debian-based linux mint, and installed the server from the debian 7 repository IIRC.
+</I>&gt;<i> 
+</I>&gt;<i> I just tested at home on Ubuntu 10.04, and here it works fine. I think this might be some configuration issue.
+</I>&gt;<i> 
+</I>&gt;<i> Best,
+</I>&gt;<i> David
+</I>&gt;<i> 
+</I>&gt;<i> Am 07.08.2013 um 16:02 schrieb Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> control: tag -1 - wontfix
+</I>&gt;&gt;<i> control: tag -1 - not-a-bug
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Hi David,
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> On Mi 07 Aug 2013 13:54:14 CEST David Fuhrmann wrote:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> thanks
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> ... for the answer. We just retested it today in our environment, and the
+</I>&gt;&gt;&gt;<i> issue is still as described. Especially we did:
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> 1) user_A starts a xfce x2go session on hostA, without starting
+</I>&gt;&gt;&gt;<i> x2godesktopsharing.
+</I>&gt;&gt;&gt;<i> 2) user_B logs in at hostA, using &quot;connect to local desktop. It sees a X
+</I>&gt;&gt;&gt;<i> session under its own user name, and a port. user_B can click on &quot;full
+</I>&gt;&gt;&gt;<i> access&quot; and gets access to the session.
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> Second test:
+</I>&gt;&gt;&gt;<i> - user_A starts x2godesktopsharing, but leave the default setting (do not
+</I>&gt;&gt;&gt;<i> allow access, with cross).
+</I>&gt;&gt;&gt;<i> - user_B sees same behaviour as described above
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> Third test:
+</I>&gt;&gt;&gt;<i> - user_A starts x2godesktopsharing, but and enables access (green icon in
+</I>&gt;&gt;&gt;<i> menu bar)
+</I>&gt;&gt;&gt;<i> - user_B now sees two sessions in the session list: one with his own user
+</I>&gt;&gt;&gt;<i> name, one with user_As user name. Both have the same port. If user_B
+</I>&gt;&gt;&gt;<i> selects the one which has user_A as its name, he can only connect to view,
+</I>&gt;&gt;&gt;<i> and eventually, this connection gets refused. (In the mean time, user_A
+</I>&gt;&gt;&gt;<i> sees a question dialog asking user_B for access in the session.)
+</I>&gt;&gt;&gt;<i> But still, user_B sees a session with his own name, and can connect to it
+</I>&gt;&gt;&gt;<i> and gets full access to the xfce session started by user_A.
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> So in summary: The x2godesktopsharing has no effect at all when it should
+</I>&gt;&gt;&gt;<i> block all accesses, and only works partly when it should allow individual
+</I>&gt;&gt;&gt;<i> access.
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> In our environment, every machine has the same logins provided by an LDAP
+</I>&gt;&gt;&gt;<i> server. I will retest at home to see how it behaves with normal local users.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Ok, thanks for re-testing. I undo the taggings earlier made on this issue. This is indeed a big issue that needs immediate fixing!!!
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Next question: what distro are you on. I tested on Debian and it worked flawlessly. Do you have any chance to test on Debian or Ubuntu (if you are on some RPM based distro)?
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Greets,
+</I>&gt;&gt;<i> Mike
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> -- 
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;&gt;<i> mike gabriel, herweg 7, 24357 fleckeby
+</I>&gt;&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> freeBusy:
+</I>&gt;&gt;<i> <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I>&gt;<i> 
+</I></PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006087.html">[X2Go-Dev] Bug#287: Bug#287: x2goserver allows to connect to ALL X	server sessions by default
+</A></li>
+	<LI>Next message: <A HREF="006089.html">[X2Go-Dev] Bug#287: Bug#287: x2goserver allows to connect to ALL X	server sessions by default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6088">[ date ]</a>
+              <a href="thread.html#6088">[ thread ]</a>
+              <a href="subject.html#6088">[ subject ]</a>
+              <a href="author.html#6088">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

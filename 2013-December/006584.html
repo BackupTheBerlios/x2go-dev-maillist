@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#349: Bug#349: Make shadow sessions work with --hide	option
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23349%3A%20Bug%23349%3A%20Make%20shadow%20sessions%20work%20with%20--hide%0A%09option&In-Reply-To=%3CCAJxG8soAwOMnj0bVx7VWMuxcH0ZoaDX%2B7f2-Fim77kADeNe%2B%3Dg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006633.html">
+   <LINK REL="Next"  HREF="006586.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#349: Bug#349: Make shadow sessions work with --hide	option</H1>
+    <B>Marco Andr&#233; Dinis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23349%3A%20Bug%23349%3A%20Make%20shadow%20sessions%20work%20with%20--hide%0A%09option&In-Reply-To=%3CCAJxG8soAwOMnj0bVx7VWMuxcH0ZoaDX%2B7f2-Fim77kADeNe%2B%3Dg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#349: Bug#349: Make shadow sessions work with --hide	option">marcoandredinis at gmail.com
+       </A><BR>
+    <I>Mon Dec  9 12:03:34 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006633.html">[X2Go-Dev] Bug#263: Windows x2go-client versions after 3.99.2	frequently hang while trying to resume sessions
+</A></li>
+        <LI>Next message: <A HREF="006586.html">[X2Go-Dev] Bug#349: Bug#349: Make shadow sessions work with --hide	option
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6584">[ date ]</a>
+              <a href="thread.html#6584">[ thread ]</a>
+              <a href="subject.html#6584">[ subject ]</a>
+              <a href="author.html#6584">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Any news on implementing this?
+
+
+On Thu, Nov 28, 2013 at 10:16 AM, Marco Andr&#233; Dinis &lt;
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">marcoandredinis at gmail.com</A>&gt; wrote:
+
+&gt;<i> Hi
+</I>&gt;<i>
+</I>&gt;<i> I'm sending the patch.
+</I>&gt;<i>
+</I>&gt;<i> However this is not the final fix. There are 2 modes: full access and
+</I>&gt;<i> only view. Right now it starts full access.
+</I>&gt;<i> That decision could be made using the session info. For example,
+</I>&gt;<i> create the command SHADOWFULL
+</I>&gt;<i>
+</I>&gt;<i> On Wed, Nov 27, 2013 at 10:46 AM, Mike Gabriel
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+</I>&gt;<i> &gt; Control: retitle -1 Make shadow sessions work with --hide option
+</I>&gt;<i> &gt; Control: tag -1 moreinfo
+</I>&gt;<i> &gt; Control: clone -1 -2
+</I>&gt;<i> &gt; Control: reassign -2 x2godesktopsharing
+</I>&gt;<i> &gt; Control: retitle -2 Add --no-icon cmdline option to x2godesktopsharing
+</I>&gt;<i> &gt; Control: severity -2 wishlist
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Hi Marco,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; with this mail I split up your report into to separate bug reports. One
+</I>&gt;<i> for
+</I>&gt;<i> &gt; x2goclient, one for x2godesktopsharing...
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; On  Di 26 Nov 2013 17:01:41 CET, marcoandredinis wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; I'm developing a program that will use X2Go software. I dont want
+</I>&gt;<i> &gt;&gt; users to notice they are using any other program besides my own.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; I have two problems right now:
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; A) X2GoClient
+</I>&gt;<i> &gt;&gt; Using SHADOW mode with &quot;--hide&quot; does not work. The interface waits for
+</I>&gt;<i> &gt;&gt; selection of Display (usually &quot;:0&quot;) and, since there's no input from
+</I>&gt;<i> &gt;&gt; user (there's no window) the program does not show anything.
+</I>&gt;<i> &gt;&gt; There are possible ways of fixing/improving this situation:
+</I>&gt;<i> &gt;&gt; -allow user to set the default display on sessions' file
+</I>&gt;<i> &gt;&gt; -create one flag and run program like these: &quot;x2goclient --hide
+</I>&gt;<i> &gt;&gt; --sessionid=xxx --select-first-display&quot;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Anyway, i modified the code of x2goclient/onmainwindow.cpp and added
+</I>&gt;<i> &gt;&gt; these lines:
+</I>&gt;<i> &gt;&gt; l4348:..if( shadowSession )
+</I>&gt;<i> &gt;&gt; l4349:....slotShadowSess();
+</I>&gt;<i> &gt;&gt; Compiled the program, and now i can run &quot;./x2goclient --hide
+</I>&gt;<i> &gt;&gt; --sessionid=xxx&quot; and the window will show up.
+</I>&gt;<i> &gt;&gt; This is NOT a fix, this is a nasty workaround. It wontn show the list
+</I>&gt;<i> &gt;&gt; even when the &quot;hide&quot; flag is not present.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Please provide a patch for what you did.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Please improve your patch so it is not a workaround anymore. I guess, I
+</I>&gt;<i> &gt; agree with you, that the X2Go Client window should pop up, if there are
+</I>&gt;<i> more
+</I>&gt;<i> &gt; than one sharable desktops to select from. If there is only one sharable
+</I>&gt;<i> &gt; desktop, this should be auto-selected. Can you code that into X2Go
+</I>&gt;<i> Client,
+</I>&gt;<i> &gt; please?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; B) X2GoDesktopSharing
+</I>&gt;<i> &gt;&gt; Just the icon on SystemTray. If we could pass a flag like &quot;--no-icon&quot;
+</I>&gt;<i> &gt;&gt; would be great
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; This part will be handled in a separate bug. I will reply to this once
+</I>&gt;<i> the
+</I>&gt;<i> &gt; separate bug is created in X2Go BTS.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; I could do these simple changes on my own, but i rather see this
+</I>&gt;<i> &gt;&gt; changes on the official code.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Let's try to get your needs into upstream code...
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Mike
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; --
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; DAS-NETZWERKTEAM
+</I>&gt;<i> &gt; mike gabriel, herweg 7, 24357 fleckeby
+</I>&gt;<i> &gt; fon: +49 (1520) 1976 148
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; GnuPG Key ID 0x25771B31
+</I>&gt;<i> &gt; mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; freeBusy:
+</I>&gt;<i> &gt;
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131209/38d0544e/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131209/38d0544e/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006633.html">[X2Go-Dev] Bug#263: Windows x2go-client versions after 3.99.2	frequently hang while trying to resume sessions
+</A></li>
+	<LI>Next message: <A HREF="006586.html">[X2Go-Dev] Bug#349: Bug#349: Make shadow sessions work with --hide	option
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6584">[ date ]</a>
+              <a href="thread.html#6584">[ thread ]</a>
+              <a href="subject.html#6584">[ subject ]</a>
+              <a href="author.html#6584">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

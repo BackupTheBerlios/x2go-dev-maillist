@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#92: ZeroDivisionError: float division by zero error	on startup
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2392%3A%20ZeroDivisionError%3A%20float%20division%20by%20zero%20error%0A%09on%20startup&In-Reply-To=%3C20121218215720.175754sjwryg4qsw%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004783.html">
+   <LINK REL="Next"  HREF="004785.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#92: ZeroDivisionError: float division by zero error	on startup</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2392%3A%20ZeroDivisionError%3A%20float%20division%20by%20zero%20error%0A%09on%20startup&In-Reply-To=%3C20121218215720.175754sjwryg4qsw%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#92: ZeroDivisionError: float division by zero error	on startup">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Dec 18 21:57:20 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004783.html">[X2Go-Dev] Bug#92: ZeroDivisionError: float division by zero error	on startup
+</A></li>
+        <LI>Next message: <A HREF="004785.html">[X2Go-Dev] Bug#92: ZeroDivisionError: float division by zero error	on startup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4784">[ date ]</a>
+              <a href="thread.html#4784">[ thread ]</a>
+              <a href="subject.html#4784">[ subject ]</a>
+              <a href="author.html#4784">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>tag #92 moreinfo
+thanks
+
+On Di 18 Dez 2012 18:03:17 CET Orion Poplawski wrote:
+
+Hi Orion
+
+&gt;<i> $ pyhoca-gui
+</I>&gt;<i> Traceback (most recent call last):
+</I>&gt;<i>   File &quot;/usr/bin/pyhoca-gui&quot;, line 375, in &lt;module&gt;
+</I>&gt;<i>     main()
+</I>&gt;<i>   File &quot;/usr/bin/pyhoca-gui&quot;, line 363, in main
+</I>&gt;<i>     thisPyHocaGUI = PyHocaGUI(args, logger, liblogger,  
+</I>&gt;<i> appname=PROG_NAME, version=VERSION)
+</I>&gt;<i>   File &quot;/usr/lib/python2.7/site-packages/pyhoca/wxgui/frontend.py&quot;,  
+</I>&gt;<i> line 222, in __init__
+</I>&gt;<i>     wx.App.__init__(self, redirect=False, clearSigInt=False)
+</I>&gt;<i>   File
+</I>&quot;/usr/lib64/python2.7/site-packages/wx-2.8-gtk2-unicode/wx/_core.py&quot;,
+&gt;<i> line 7981, in __init__
+</I>&gt;<i>     self._BootstrapApp()
+</I>&gt;<i>   File
+</I>&quot;/usr/lib64/python2.7/site-packages/wx-2.8-gtk2-unicode/wx/_core.py&quot;,
+&gt;<i> line 7555, in _BootstrapApp
+</I>&gt;<i>     return _core_.PyApp__BootstrapApp(*args, **kwargs)
+</I>&gt;<i>   File &quot;/usr/lib/python2.7/site-packages/pyhoca/wxgui/frontend.py&quot;,  
+</I>&gt;<i> line 243, in OnInit
+</I>&gt;<i>     self.startGUI()
+</I>&gt;<i>   File &quot;/usr/lib/python2.7/site-packages/pyhoca/wxgui/frontend.py&quot;,  
+</I>&gt;<i> line 299, in startGUI
+</I>&gt;<i>     self.about = about.PyHocaGUI_AboutFrame(self,  
+</I>&gt;<i> about_image=self.args.about_image)
+</I>&gt;<i>   File &quot;/usr/lib/python2.7/site-packages/pyhoca/wxgui/about.py&quot;,
+</I>line
+&gt;<i> 88, in __init__
+</I>&gt;<i>     about_wximage.Rescale(400,  
+</I>&gt;<i> int(float(400)/about_wximage.Width*about_wximage.Height))
+</I>&gt;<i> ZeroDivisionError: float division by zero
+</I>
+It seems very likely that your pyhoca-gui instance does not find the  
+image folder shipped with it.
+
+Can you check that?
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121218/7f974d2c/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121218/7f974d2c/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004783.html">[X2Go-Dev] Bug#92: ZeroDivisionError: float division by zero error	on startup
+</A></li>
+	<LI>Next message: <A HREF="004785.html">[X2Go-Dev] Bug#92: ZeroDivisionError: float division by zero error	on startup
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4784">[ date ]</a>
+              <a href="thread.html#4784">[ thread ]</a>
+              <a href="subject.html#4784">[ subject ]</a>
+              <a href="author.html#4784">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Account on wiki
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Account%20on%20wiki&In-Reply-To=%3C4C2D719B.9060608%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000736.html">
+   <LINK REL="Next"  HREF="000734.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Account on wiki</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Account%20on%20wiki&In-Reply-To=%3C4C2D719B.9060608%40verizon.net%3E"
+       TITLE="[X2go-dev] Account on wiki">greno at verizon.net
+       </A><BR>
+    <I>Fri Jul  2 06:56:59 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000736.html">[X2go-dev] Account on wiki
+</A></li>
+        <LI>Next message: <A HREF="000734.html">[X2go-dev] Account on wiki
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#738">[ date ]</a>
+              <a href="thread.html#738">[ thread ]</a>
+              <a href="subject.html#738">[ subject ]</a>
+              <a href="author.html#738">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Heinz,
+   Another way to do this would be on the page unload to make an ajax 
+call in js to a dynamic language file that would take care of deleting 
+the onetime properties file.
+
+Gerry
+
+
+On 07/01/2010 06:08 PM, Gerry Reno wrote:
+&gt;<i> Heinz,
+</I>&gt;<i>     What I had in mind was letting users use whatever dynamic language 
+</I>&gt;<i> they prefer to create a dynamic properties file.  This would provide 
+</I>&gt;<i> the greatest flexibility.  But the cleanup of the onetime properties 
+</I>&gt;<i> file I think should be done by the plugin itself.
+</I>&gt;<i>
+</I>&gt;<i> Gerry
+</I>&gt;<i>
+</I>&gt;<i> Using a new mail client now.  Let's see how this one works.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On 07/01/2010 12:57 PM, Gerry Reno wrote:
+</I>&gt;&gt;<i> Heinz,
+</I>&gt;&gt;<i>   This is great.  The plugin is really getting very configurable now.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   I was looking at what was necessary to setup some kind of testing 
+</I>&gt;&gt;<i> site and in order to support any large number of visitors one way 
+</I>&gt;&gt;<i> would be to dynamically create the properties file for each session 
+</I>&gt;&gt;<i> and dispose of it when finished.  Of course the plugin would have to 
+</I>&gt;&gt;<i> manage this.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   Is there any mechanism within the plugin to support the idea of a 
+</I>&gt;&gt;<i> 'onetime' usage?
+</I>&gt;&gt;<i>   So for example, setting 'onetime' to true would mean that the 
+</I>&gt;&gt;<i> properties file would be deleted at event 'onpageunload'.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Gerry
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Jul 1, 2010 01:53:37 AM, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     Hello Paul,
+</I>&gt;&gt;<i>     Hello wiki users,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     I've set permissen to all registered users (they are all part of the
+</I>&gt;&gt;<i>     list too) of the wiki so they can work on the sites now. I to have
+</I>&gt;&gt;<i>     added
+</I>&gt;&gt;<i>     the whole list of properties of the x2goplgin. The number has again
+</I>&gt;&gt;<i>     changed since yesterday as there is now again a new version of the
+</I>&gt;&gt;<i>     plugin.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     <A HREF="http://wiki.x2go.org/x2goplugin">http://wiki.x2go.org/x2goplugin</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     The new properties:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     sound=true/false
+</I>&gt;&gt;<i>     exportfs=true/false
+</I>&gt;&gt;<i>     speed=adsl
+</I>&gt;&gt;<i>     compression=16m-jpeg
+</I>&gt;&gt;<i>     quality=9
+</I>&gt;&gt;<i>     dpi=120
+</I>&gt;&gt;<i>     kbdlayout=de
+</I>&gt;&gt;<i>     kbdtype=pc105/de
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     best regards,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     Heinz
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     Am 29.06.2010 20:55, schrieb Paul van der Vlis:
+</I>&gt;&gt;<i> &gt; Hello,
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Is it possible to get an account on the wiki?
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Would be nice to change the FAQ to there, so that people with an
+</I>&gt;&gt;<i>     account
+</I>&gt;&gt;<i> &gt; can add FAQ's, or even work on some parts of the documentation.
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; With regards,
+</I>&gt;&gt;<i> &gt; Paul van der Vlis.
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i>     _______________________________________________
+</I>&gt;&gt;<i>     X2go-dev mailing list
+</I>&gt;&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2go-dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000736.html">[X2go-dev] Account on wiki
+</A></li>
+	<LI>Next message: <A HREF="000734.html">[X2go-dev] Account on wiki
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#738">[ date ]</a>
+              <a href="thread.html#738">[ thread ]</a>
+              <a href="subject.html#738">[ subject ]</a>
+              <a href="author.html#738">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

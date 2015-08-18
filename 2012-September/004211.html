@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] bug#20: Keyboard focus without window manager
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20bug%2320%3A%20Keyboard%20focus%20without%20window%20manager&In-Reply-To=%3C20120911121350.204498ew7wbqvnj2%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004213.html">
+   <LINK REL="Next"  HREF="004210.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] bug#20: Keyboard focus without window manager</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20bug%2320%3A%20Keyboard%20focus%20without%20window%20manager&In-Reply-To=%3C20120911121350.204498ew7wbqvnj2%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] bug#20: Keyboard focus without window manager">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Sep 11 12:13:50 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004213.html">[X2Go-Dev] bug#21:  bug#21: DirectRDP: button for , ,	terminate session'' actually just suspends the DirectRDP session
+</A></li>
+        <LI>Next message: <A HREF="004210.html">[X2Go-Dev] bug#22: Keyboard focus lost when connecting to Win2008r2	RDP-Server (proxied through NX) in fullscreen mode
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4211">[ date ]</a>
+              <a href="thread.html#4211">[ thread ]</a>
+              <a href="subject.html#4211">[ subject ]</a>
+              <a href="author.html#4211">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+I played a little more with x2goclient, window focus, keyboard focus.
+
+x2goclient is not able to gain keyboard focus in the main or in  
+subwindows if no window manager is running.
+
+Reproduce:
+
+   o start a desktop shell (e.g. GNOME or KDE)
+   o kill the window manager (killall metacity, killall compiz, killall kwin,
+     etc.)
+   o launch x2goclient via the application menu
+   o in x2gclient try to add a new session profile
+   o try to get focus for the session name textfield widget by clicking into it
+     with the mouse
+   o neither TAB nor Shift-TAB are working in the session profile  
+manager window
+
+Expected:
+
+   o although that there is no window manager running, it should be  
+able to gain
+     keyboard control within the x2goclient GUI
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120911/1a829a2a/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120911/1a829a2a/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004213.html">[X2Go-Dev] bug#21:  bug#21: DirectRDP: button for , ,	terminate session'' actually just suspends the DirectRDP session
+</A></li>
+	<LI>Next message: <A HREF="004210.html">[X2Go-Dev] bug#22: Keyboard focus lost when connecting to Win2008r2	RDP-Server (proxied through NX) in fullscreen mode
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4211">[ date ]</a>
+              <a href="thread.html#4211">[ thread ]</a>
+              <a href="subject.html#4211">[ subject ]</a>
+              <a href="author.html#4211">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

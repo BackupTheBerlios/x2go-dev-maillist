@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2goserver goes pluggable
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20goes%20pluggable&In-Reply-To=%3C20110930112034.11685j3urjmxdm1u%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002880.html">
+   <LINK REL="Next"  HREF="002878.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2goserver goes pluggable</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20goes%20pluggable&In-Reply-To=%3C20110930112034.11685j3urjmxdm1u%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] x2goserver goes pluggable">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Sep 30 11:20:34 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002880.html">[X2go-Dev] x2goserver goes pluggable
+</A></li>
+        <LI>Next message: <A HREF="002878.html">[X2go-Dev] x2goserver goes pluggable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2881">[ date ]</a>
+              <a href="thread.html#2881">[ thread ]</a>
+              <a href="subject.html#2881">[ subject ]</a>
+              <a href="author.html#2881">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Morty,
+
+On Fr 30 Sep 2011 10:37:03 CEST Moritz Struebe wrote:
+
+&gt;<i> On 2011-09-30 09:08, Mike Gabriel wrote:
+</I>&gt;&gt;&gt;<i> * what happens to stdout and stderr? What is propagated to the  
+</I>&gt;&gt;&gt;<i> client/logfile/&lt;/dev/null&gt;?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The x2goserver-run-extensions script silence the sub-scripts  
+</I>&gt;&gt;<i> complete. Just committed to Git. Thanks.
+</I>&gt;<i>
+</I>&gt;<i> IS this a good idea? That is no fun debugging - and maybe those  
+</I>&gt;<i> scripts want to output to the session log.
+</I>
+We have a new command: x2gosyslog and a loglevel option in  
+x2goserver.conf. This one should be used.
+
+&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> * Why always return 0? At least for pre-* it might be nice if  
+</I>&gt;&gt;&gt;<i> something can fail.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hmmmm... Really depends on the use case. On the one hand you are  
+</I>&gt;&gt;<i> right on the other hand failing extensions scare me. Hmmm...
+</I>&gt;<i>
+</I>&gt;<i> Well, actually I was mainly thinking of pre-start. It can be abused  
+</I>&gt;<i> to implement access-control. Or you might not want to allow a new  
+</I>&gt;<i> session if some service fails to start. We have fail-* to clean up  
+</I>&gt;<i> already started services
+</I>
+Ok, put on my internal wishlist. Sounds tempting.
+
+&gt;&gt;&gt;<i> * What about the environment? What information do I get  
+</I>&gt;&gt;&gt;<i> (client-string/version/username/remote ip)?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> You have the SESSION_NAME (as $1). With that the subscripts can  
+</I>&gt;&gt;<i> obtain the rest (from x2golistsessions etc.).
+</I>&gt;<i>
+</I>&gt;<i> Ah ok. Maybe a pointer to that wouldn't be too bad.
+</I>
+In the man page? Could you?
+
+&gt;<i> Another thing came to mind: What about turning around the naming-sceme:
+</I>&gt;<i> start-pre
+</I>&gt;<i> start-post
+</I>&gt;<i> start-fail
+</I>&gt;<i> That way things that belong together are listed together (also  
+</I>&gt;<i> thinking of tab-compleation). I am happy with the current solution,  
+</I>&gt;<i> too, though.
+</I>
+Hmmm... too cosmetic for me right now to make an effort.
+
+&gt;<i> And yet another idea: What about passing &quot;pre-start&quot; etc as first  
+</I>&gt;<i> parameter.  (similar to intit.d) That way every service only needs  
+</I>&gt;<i> one script and can use symlinks.
+</I>
+currently pre-start is second parameter, first is SESSION_NAME. Will  
+that already do?
+
+&gt;<i> Cheers
+</I>&gt;<i> Morty
+</I>
+Cheerio,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110930/462f5e8d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110930/462f5e8d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002880.html">[X2go-Dev] x2goserver goes pluggable
+</A></li>
+	<LI>Next message: <A HREF="002878.html">[X2go-Dev] x2goserver goes pluggable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2881">[ date ]</a>
+              <a href="thread.html#2881">[ thread ]</a>
+              <a href="subject.html#2881">[ subject ]</a>
+              <a href="author.html#2881">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

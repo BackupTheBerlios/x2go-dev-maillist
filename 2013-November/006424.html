@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#323: 323 bug
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23323%3A%20323%20bug&In-Reply-To=%3C5273A0F4.3010606%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="006425.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#323: 323 bug</H1>
+    <B>Eric Forgeot</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23323%3A%20323%20bug&In-Reply-To=%3C5273A0F4.3010606%40gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#323: 323 bug">eforgeot at gmail.com
+       </A><BR>
+    <I>Fri Nov  1 13:39:16 CET 2013</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="006425.html">[X2Go-Dev] Bug#337: nxcomp doesn't compile against libc++ STL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6424">[ date ]</a>
+              <a href="thread.html#6424">[ thread ]</a>
+              <a href="subject.html#6424">[ subject ]</a>
+              <a href="author.html#6424">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I have this problem as well.
+
+version 4.0.1.1 for the client
+version 4.0.1.6 for the server
+
+on linuxmint 15. All packages coming from the ppa:x2go/stable
+
+I tried this:
+
+1/
+sudo rm -f /var/lib/x2go/x2go_sessions
+sudo x2godbadmin --createdb
+
+2/
+creating a new ssh user on the server, and trying to connect with this new one. x2go detected the /home/my_new_user folder was missing,
+and when I created it, x2go refused to connect any longer.
+
+3/
+editing / renaming ~/.ssh/known_hosts from the client side
+(according to <A HREF="http://john.wesorick.com/2011/11/issues-installing-x2go.html">http://john.wesorick.com/2011/11/issues-installing-x2go.html</A> I also commented the &quot;HostKey /etc/ssh/ssh_host_ecdsa_key&quot; in my sshd_config on the server)
+
+none of them worked.
+
+
+I also renamed the ~/.x2go/ ~/.x2goclient/ folders in my home
+
+I can barely copy the output from the error window ( it hides itself too quickly and can't find a way to get it from elsewhere) :
+
+Starting session at 'Fri Nov 1 13:28:55 2013'.
+
+Info: Connecting to remote host 'localhost:31004'.
+
+Info: Connection to remote proxy 'localhost:31004' established.
+
+Error: The remote NX proxy closed the connection.
+
+Error: Failure negotiating the session in stage '7'.
+
+Error: Wrong version or invalid session authentication cookie.
+
+Session: Terminating session at 'Fri Nov 1 13:28:56 2013'.
+
+Session: Session terminated at 'Fri Nov 1 13:28:56 2013'.
+
+
+(I don't understand why it tries to connect to localhost)
+
+My log in ~/.x2go/S-mylogin-50-1383308923_stDLXDE_dp24/sessions says:
+
+Loop: PANIC! The remote NX proxy closed the connection.
+Loop: PANIC! Failure negotiating the session in stage '7'.
+Loop: PANIC! Wrong version or invalid session authentication cookie.
+
+
+x2go worked perfectly before, I can't trace when it stopped working but it's probably after some package updates.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="006425.html">[X2Go-Dev] Bug#337: nxcomp doesn't compile against libc++ STL
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6424">[ date ]</a>
+              <a href="thread.html#6424">[ thread ]</a>
+              <a href="subject.html#6424">[ subject ]</a>
+              <a href="author.html#6424">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

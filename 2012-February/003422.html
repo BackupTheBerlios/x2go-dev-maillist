@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] New major distribution builds available for X2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3C20120215102718.123436996i38m5py%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003398.html">
+   <LINK REL="Next"  HREF="003436.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] New major distribution builds available for X2go</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3C20120215102718.123436996i38m5py%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] New major distribution builds available for X2go">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Feb 15 10:27:18 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003398.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+        <LI>Next message: <A HREF="003436.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3422">[ date ]</a>
+              <a href="thread.html#3422">[ thread ]</a>
+              <a href="subject.html#3422">[ subject ]</a>
+              <a href="author.html#3422">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Michael, hi Jan, hi all,
+
+most of Jan's patches have been included (accepted) by NX  
+(redistributed). For details see below.
+
+On So 12 Feb 2012 21:55:27 CET Michael Kromer wrote:
+
+&gt;<i> 2382 ./nx-libs/unique-libnames.diff
+</I>
+Mike loves this one!!! Especially thanks for this piece of awesome  
+work. If I take a look at the file list of the Debian package  
+libnx-x11, I can still see some lib files that are not renamed to the  
+new scheme (libNX_&lt;name&gt;.so). Does this need some more fine-tuning?
+
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=07f9dfa05ab83e094e823b4af8478b25addd0fa5">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=07f9dfa05ab83e094e823b4af8478b25addd0fa5</A>
+
+&gt;<i> 380 ./nx-libs/parallel-make.diff
+</I>
+Accepted...
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=ba589d1fd264f3ad3fbe8767bf215c0399a162cf">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=ba589d1fd264f3ad3fbe8767bf215c0399a162cf</A>
+
+&gt;<i> 180 ./nx-libs/honor-ac-dirs.diff
+</I>
+Accepted...
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=c621c22f820ec22fe7daabf37b7b577a41a3298f">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=c621c22f820ec22fe7daabf37b7b577a41a3298f</A>
+
+&gt;<i> 122 ./nx-libs/standard-dirs.diff
+</I>
+REJECTED!
+libXcomp* are unusable outside of the /usr/${libdir}/nx context. So it  
+is misleading to place them into /usr/${libdir}. Thus -&gt; patch denied.
+
+&gt;<i> 102 ./nx-libs/so-version.diff
+</I>
+Partially accepted:
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=c26e4bd825826462fc73242f94369555ae0f44fe">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=c26e4bd825826462fc73242f94369555ae0f44fe</A>
+
+&gt;<i> 98 ./nx-libs/use-shared-libs.diff
+</I>
+Accepted:
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=8d6d0a921889498601cef9176202a456af881a9e">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=8d6d0a921889498601cef9176202a456af881a9e</A>
+
+&gt;<i> 92 ./x2goserver/man2html.diff
+</I>
+Accepted:
+<A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=53ce826d7ea804ca27c03e382571bdf5f54ed974">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=53ce826d7ea804ca27c03e382571bdf5f54ed974</A>
+
+&gt;<i> 74 ./nx-libs/configure-args.diff
+</I>
+Accepted (and slightly modified):
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=280d8751c36b6585c068a25cc180e7baa6df2019">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=280d8751c36b6585c068a25cc180e7baa6df2019</A>
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=9282c00e2aaa02404809fe317308ccbb4da3b0e8">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=9282c00e2aaa02404809fe317308ccbb4da3b0e8</A>
+
+&gt;<i> 64 ./fdupes/fdupes-sort-output.diff
+</I>
+non-X2Go patch
+
+&gt;<i> 51 ./vh-man2html/man2html-automake.diff
+</I>
+non-X2Go patch
+
+&gt;<i> 45 ./fdupes/fdupes.diff
+</I>
+non-X2Go patch
+
+&gt;<i> 34 ./libssh/remove-pedantic-errors.diff
+</I>
+non-X2Go patch
+
+&gt;<i> 26 ./x2goclient/protos.diff
+</I>
+Accepted:
+<A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=559ea316782420e2ffa9e7bd1585b06c5867fe50">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=559ea316782420e2ffa9e7bd1585b06c5867fe50</A>
+
+&gt;<i> 24 ./nx-libs/no-x11r6.diff
+</I>
+Accepted:
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=3deee8f94983ea6c072663c1197d311fc1ddaf6c">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=3deee8f94983ea6c072663c1197d311fc1ddaf6c</A>
+
+&gt;<i> 22 ./x2goserver/parallel-make.diff
+</I>
+Accepted:
+<A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=745b2b21be2df3a91bf8c0870054cbc2138b37e1">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=745b2b21be2df3a91bf8c0870054cbc2138b37e1</A>
+
+&gt;<i> 22 ./x2goclient/parallel-make.diff
+</I>
+Accepted:
+<A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=8e2e6e98aa3fb772a4a2543b033ea40c98bea2f6">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=8e2e6e98aa3fb772a4a2543b033ea40c98bea2f6</A>
+
+&gt;<i> 22 ./x2goclient/man2html.diff
+</I>
+Accepted:
+<A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=215a52f446e11be2014f004e0e2eba64bb05e458">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=215a52f446e11be2014f004e0e2eba64bb05e458</A>
+
+&gt;<i> 22 ./x2goclient/fd729eb-fix-segfault.diff
+</I>
+Already in latest version / X2Go Git.
+
+&gt;<i> 16 ./x2gognomebindings/implicit.diff
+</I>
+<A HREF="http://code.x2go.org/gitweb?p=x2gognomebindings.git;a=commitdiff;h=4e859b25cb7149368f855a4d53ab614c7809cd4e">http://code.x2go.org/gitweb?p=x2gognomebindings.git;a=commitdiff;h=4e859b25cb7149368f855a4d53ab614c7809cd4e</A>
+
+&gt;<i> 13 ./cmake/cmake-disable-builtin-chrpath.diff
+</I>
+non-X2Go patch
+
+
+Keep up the great(!!!) work. Thanks!
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120215/1f524f30/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120215/1f524f30/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003398.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+	<LI>Next message: <A HREF="003436.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3422">[ date ]</a>
+              <a href="thread.html#3422">[ thread ]</a>
+              <a href="subject.html#3422">[ subject ]</a>
+              <a href="author.html#3422">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

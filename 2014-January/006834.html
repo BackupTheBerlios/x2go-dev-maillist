@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#404: Bug#404: Parts of the username are sanitized	away in the session name.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23404%3A%20Bug%23404%3A%20Parts%20of%20the%20username%20are%20sanitized%0A%09away%20in%20the%20session%20name.&In-Reply-To=%3C20140120114751.Horde.bGb7eKMa5onNIleJg73bPA8%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006833.html">
+   <LINK REL="Next"  HREF="006835.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#404: Bug#404: Parts of the username are sanitized	away in the session name.</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23404%3A%20Bug%23404%3A%20Parts%20of%20the%20username%20are%20sanitized%0A%09away%20in%20the%20session%20name.&In-Reply-To=%3C20140120114751.Horde.bGb7eKMa5onNIleJg73bPA8%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#404: Bug#404: Parts of the username are sanitized	away in the session name.">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Jan 20 12:47:51 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006833.html">[X2Go-Dev] Bug#404: Parts of the username are sanitized away in the	session name.
+</A></li>
+        <LI>Next message: <A HREF="006835.html">[X2Go-Dev] Processed: Re: Bug#404: Parts of the username are sanitized away in the session name.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6834">[ date ]</a>
+              <a href="thread.html#6834">[ thread ]</a>
+              <a href="subject.html#6834">[ subject ]</a>
+              <a href="author.html#6834">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Control: tag -1 moreinfo
+
+Hi Klaus Ade,
+
+On  So 19 Jan 2014 12:52:35 CET, Klaus Ade Johnstad wrote:
+
+&gt;<i> Package: x2goserver
+</I>&gt;<i> Version: 4.0.1.12
+</I>&gt;<i> I have a user that is unable to login to a Debian Wheezy server using
+</I>&gt;<i> xfce4. She is able to login with ssh and with nx, but not with x2go.
+</I>&gt;<i> Her username is &#171;eaan&#187;, and this is what happens when she tries to run
+</I>&gt;<i> x2gostartagent:
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">eaan at server</A>:~$ x2gostartagent
+</I>&gt;<i> eaan is not authorized at /usr/lib/x2go/x2gosqlitewrapper.pl line 526.
+</I>&gt;<i> : /usr/lib/x2go/x2gosqlitewrapper insertsession 51 server
+</I>&gt;<i> en-51-1390073858 at /usr/lib/x2go/x2godbwrapper.pm line 320.
+</I>&gt;<i>
+</I>&gt;<i> Notize how her username &#171;eaan&#187; somehow is sanitized into &#171;en&#187; in the
+</I>&gt;<i> session name, the aa's are gone.
+</I>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">eaan at minobo</A>:~$ x2gostartagent
+57
+296e1b399b0720fb0569aeed6678772c
+31221
+eaan-57-1390218373
+30004
+30005
+30006
+
+OK, we need to dig deeper...
+
+X2Go Server has trouble with non-posix home directory names... Does  
+her home directory have a non-7bit-ascii dir name?
+
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20140120/ecc5f1ce/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20140120/ecc5f1ce/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006833.html">[X2Go-Dev] Bug#404: Parts of the username are sanitized away in the	session name.
+</A></li>
+	<LI>Next message: <A HREF="006835.html">[X2Go-Dev] Processed: Re: Bug#404: Parts of the username are sanitized away in the session name.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6834">[ date ]</a>
+              <a href="thread.html#6834">[ thread ]</a>
+              <a href="subject.html#6834">[ subject ]</a>
+              <a href="author.html#6834">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

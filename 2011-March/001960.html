@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2go is insecure
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20is%20insecure&In-Reply-To=%3C20110329145550.GC27445%40cip.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001963.html">
+   <LINK REL="Next"  HREF="001962.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2go is insecure</H1>
+    <B>Alexander Wuerstlein</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20is%20insecure&In-Reply-To=%3C20110329145550.GC27445%40cip.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] X2go is insecure">snalwuer at cip.informatik.uni-erlangen.de
+       </A><BR>
+    <I>Tue Mar 29 16:55:50 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001963.html">[X2go-dev] X2go is insecure
+</A></li>
+        <LI>Next message: <A HREF="001962.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1960">[ date ]</a>
+              <a href="thread.html#1960">[ thread ]</a>
+              <a href="subject.html#1960">[ subject ]</a>
+              <a href="author.html#1960">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 11-03-29 15:36, Dick Kniep &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">dick.kniep at lindix.nl</A>&gt; wrote:
+&gt;<i> 
+</I>&gt;<i> Hi list,
+</I>&gt;<i> 
+</I>&gt;<i> The problem is caused by the fact that the x2go server does not
+</I>&gt;<i> restrict the commands that can be entered thru ssh. This is bad, but
+</I>&gt;<i> what is worse, is that the X2go clients actually use this security
+</I>&gt;<i> hole to start any command it needs.
+</I>
+An authorized user running commands over ssh is not a security problem
+at all. It works as intended. ssh provides shells.
+
+&gt;<i> To make it secure, ssh should be configured to allow only a single
+</I>&gt;<i> command. This wrapper-command effectively checks server side whether a
+</I>&gt;<i> requested command is allowed and started by the proper user. Only if
+</I>&gt;<i> both criteria are met, the command can be executed.
+</I>&gt;<i> 
+</I>&gt;<i> So in the configuration of the x2gossh daemon, the following line is
+</I>&gt;<i> added:
+</I>&gt;<i> 
+</I>&gt;<i> ForceCommand=&quot;x2gowrapper.sh $SSH_ORIGINAL_COMMAND&quot; ssh-rsa 
+</I>&gt;<i>
+</I>&gt;<i> The $SSH_ORIGINAL_COMMAND contains the original command that the
+</I>&gt;<i> client wants to execute on the server. This command is checked against
+</I>&gt;<i> the allowed commands for the user within the wrapper.
+</I>
+&gt;<i>From the invocation I infer, that the intended language for the
+</I>wrapper is shellskript. This is extremely dangerous if intended as a
+security measure like you claim. Also please note that it is very hard
+to write such wrappers in a secure way, such that stuff like e.g.
+'allowed_command foo bar ; evil_command' is not possible.
+
+&gt;<i> Currently we are developing this wrapper that checks whether a command
+</I>&gt;<i> is allowed. When this is ready, we will make this available to the
+</I>&gt;<i> X2go project. However, acceptance of this solution will only happen if
+</I>&gt;<i> the principle problem is recognized.
+</I>&gt;<i> 
+</I>&gt;<i> In pyhoca-gui a distinction can be made between an x2go system user
+</I>&gt;<i> and the end-user that is running the application. This is a good
+</I>&gt;<i> start, but does not solve the problem mentioned above. However if
+</I>&gt;<i> combined with the wrapper it is a real secure solution, as in the
+</I>&gt;<i> wrapper, the system user can only execute a number of x2go commands,
+</I>&gt;<i> while the end-user can only execute another set of commands.
+</I>
+Providing some 'nx' user which can 'su' to any user on the system is one
+of the worst design mistakes NX made and has extremely worrying security
+implications. But it is possible that I misunderstood your intentions.
+
+&gt;<i> Therefore the following changes are requested:
+</I>&gt;<i> 
+</I>&gt;<i> 1. A 	seperate instance of the ssh daemon for x2go.	
+</I>
+What problem should this solve? What would this sshd instance do that the
+'normal' one doesn't?
+
+&gt;<i> 2. A 	wrapper that is ALWAYS called when connecting to the server by the 	ssh configuration	
+</I>&gt;<i> 
+</I>&gt;<i> 3. Separate 	users for the x2go system calls and the end-user	
+</I>
+Again, why? What do you mean by system calls? What would be the
+connection sequence in your scenario?
+
+&gt;<i> 4. A 	change to the x2go clients to accomodate this change	
+</I>&gt;<i> 
+</I>&gt;<i> 5.An 	api on the server to request the allowed commands 	
+</I>&gt;<i> 
+</I>&gt;<i> 6. Automatic 	generation of the configuration on the cli&#235;nt side.
+</I>
+These points are valid, should however be discussed in a larger context:
+Various possible future extensions require interaction between server
+and client at session startup. E.g. when (hypothetically) doing
+loadbalancing, the server would send load data or redirects to the
+connecting client. Therefore a general API for such communications would
+be useful as well as versioning within that API to provide meaningful
+feedback when connecting with an 'old' client, or even to support
+interaction between different client and server versions.
+
+
+
+
+Ciao,
+
+Alexander Wuerstlein.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001963.html">[X2go-dev] X2go is insecure
+</A></li>
+	<LI>Next message: <A HREF="001962.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1960">[ date ]</a>
+              <a href="thread.html#1960">[ thread ]</a>
+              <a href="subject.html#1960">[ subject ]</a>
+              <a href="author.html#1960">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

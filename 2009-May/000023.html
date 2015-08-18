@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Unable to mount root fs on unknown-block(0,255)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Unable%20to%20mount%20root%20fs%20on%20unknown-block%280%2C255%29&In-Reply-To=%3C4A182395.40508%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000022.html">
+   <LINK REL="Next"  HREF="000024.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Unable to mount root fs on unknown-block(0,255)</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Unable%20to%20mount%20root%20fs%20on%20unknown-block%280%2C255%29&In-Reply-To=%3C4A182395.40508%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] Unable to mount root fs on unknown-block(0,255)">paul at vandervlis.nl
+       </A><BR>
+    <I>Sat May 23 18:25:57 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000022.html">[X2go-dev] Testing X2go3
+</A></li>
+        <LI>Next message: <A HREF="000024.html">[X2go-dev] Testing X2go3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#23">[ date ]</a>
+              <a href="thread.html#23">[ thread ]</a>
+              <a href="subject.html#23">[ subject ]</a>
+              <a href="author.html#23">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I did a PXEboot install using this document:
+<A HREF="http://www.x2go.org/fileadmin/doc/de.installation.x2go.pdf">http://www.x2go.org/fileadmin/doc/de.installation.x2go.pdf</A>
+
+After installation the thinclient does not start correct, I get an
+kernel panic: &quot;Unable to mount root fs on unknown-block(0,255)&quot;.
+Can somebody help me with this problem?
+
+No problem to mount /opt/x2gothinclient/ from the client over NFS. So
+the NFS server works fine I think.
+
+I followed the manual and did not see problems. I will add some little
+points on the manual at the end of this mail, but this have nothing to
+do with my question.
+
+With regards,
+Paul van der Vlis.
+
+
+
+-----------------------
+In the document I see:
+# vi /opt/x2gothinclient/etc/network/interfaces:
+This is wrong, the &quot;:&quot; is the problem.
+
+In my /opt/x2gothinclient/etc/apt/sources.list there ia s link to the
+x2go repository and the normal Debian repository, maybe good to add the
+security repository?
+
+I got an error about the public key of <A HREF="http://x2go.obviously-nice.de">http://x2go.obviously-nice.de</A> in
+the chroot. Maybe good to add the key.
+
+While installing the kernel I got a question about initrd:
+------------
+ You are attempting to install an initrd kernel image (version
+2.6.26-2-486). This will not work unless the boot loader is configured
+to use an initrd. An initrd image is a kernel image that expects to use
+an INITial Ram Disk to mount a minimal root file system into RAM and use
+that for booting. The boot loader must be configured to use such images
+and the system will not boot until this is done.
+                          This message will appear for any new kernel
+installation unless the following is added to /etc/kernel-img.conf:
+
+&quot;do_initrd = Yes&quot;
+
+        Abort initrd kernel image installation?   Yes/No
+---------------
+&quot;Yes&quot; was the default, I choosed &quot;no&quot;, and did later:
+echo &quot;do_initrd = Yes&quot; &gt;&gt; /etc/kernel-img.conf
+To test this behavour purge linux-image-2.6.26-2-486 in the chroot and
+install it again.
+
+While configuering atftp I became this error:
+ unrecognized option `--mcastport'
+Seems that the &quot;-&quot; of &quot;--mcast-port&quot; was removed while copying from PDF.
+
+It is not /etc/dhcpd/dhcpd.conf but /etc/dhcp3/dhcpd.conf
+
+Sometimes you use 192.168.0 and sometimes 192.168.1, but you use a
+netmask of 255.255.255.0. Better te be consequent.
+
+Starting NFS gives errors about &quot;subtree_check&quot;,
+
+/opt/x2gothinclient/etc/default/x2gothinclient gives many options, I
+don't use LDAP or PGP-cards. I've removed --pgp-card and --ldap=
+I changed &quot;de&quot; to &quot;nl&quot; and remove one of the two --add-to-known-hosts.
+I would like a link to a manual of x2goclient, or &quot;x2goclient --help&quot;,
+or a man-page.
+
+X2goclient gives errors;
+-------
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">paul at server</A>:~$ x2goclient --help
+Can't load translator (:/x2goclient_nl_nl) !
+Can't load translator (:/qt_nl_NL) !
+Usage: x2goclient [Options]
+	        Options:
+	        --help&#194;  &#194;  &#194;  &#194;  &#194;  &#194;  &#194;  &#194;  &#194;  &#194;  &#194;  &#194;  &#194;   show this message
+	        --help-pack&#194;  &#194; &#194;  &#194;  &#194;  &#194;  &#194;  &#194;  &#194;  &#194;  &#194;   show available pack
+methods
+(..)
+---------
+
+With regards,
+Paul van der Vlis.
+
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000022.html">[X2go-dev] Testing X2go3
+</A></li>
+	<LI>Next message: <A HREF="000024.html">[X2go-dev] Testing X2go3
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#23">[ date ]</a>
+              <a href="thread.html#23">[ thread ]</a>
+              <a href="subject.html#23">[ subject ]</a>
+              <a href="author.html#23">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] pending/x2godropbox patch
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20pending/x2godropbox%20patch&In-Reply-To=%3C20110419115420.18822tjd8qssyl70%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002058.html">
+   <LINK REL="Next"  HREF="002028.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] pending/x2godropbox patch</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20pending/x2godropbox%20patch&In-Reply-To=%3C20110419115420.18822tjd8qssyl70%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] pending/x2godropbox patch">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Apr 19 11:54:20 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002058.html">[X2go-dev] pending/x2godropbox patch
+</A></li>
+        <LI>Next message: <A HREF="002028.html">[X2go-dev] x2go client 3.01.18 crashing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2059">[ date ]</a>
+              <a href="thread.html#2059">[ thread ]</a>
+              <a href="subject.html#2059">[ subject ]</a>
+              <a href="author.html#2059">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Heinz,
+
+while you wrote this mail I have parallely posted a mail that  
+partially covers your questions. I will cross-reference wherever  
+suitable.
+
+On Di 19 Apr 2011 11:12:16 CEST &quot;Heinz-M. Graesing&quot; wrote:
+
+&gt;<i> Hello Mike,
+</I>&gt;<i>
+</I>&gt;<i> Am 18.04.2011 10:25, schrieb Mike Gabriel:
+</I>&gt;&gt;<i> Hi all,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Di 12 Apr 2011 18:08:26 CEST Mike Gabriel wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Another hi-devs,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I would also like to see my dropbox patch (needed for the X2goDropbox
+</I>&gt;&gt;&gt;<i> in Pyhoca-GUI) in the x2gomountdirs script of x2goserver/master. If I
+</I>&gt;&gt;&gt;<i> do not here a veto within the next four days, I will push the patch
+</I>&gt;&gt;&gt;<i> to  code.x2go.org...
+</I>&gt;<i>
+</I>&gt;<i> I don't want to comment on how this patch got into our git, I'm really
+</I>&gt;<i> interested that it is introduced the right way. As we really do have a
+</I>&gt;<i> lack of work flow how to WISH new features and what needs to be done to
+</I>&gt;<i> apply such wished features to the core components, this is one of the
+</I>&gt;<i> ways it can be done. Nevertheless it would be nice to introduce every
+</I>&gt;<i> step on our mailing list with a regarding topic.
+</I>
+I have done some googling right now and indeed the WISH for this patch  
+has not yet been posted to this list. I though I had done so. Sorry  
+for that. What happened is that Heinz and I have corresponded  
+privately (mail, phone) on this, but that does not count in the  
+community context of the project. So, this is indeed my fault and lack  
+of presence. I apologize for this.
+
+&gt;<i> As this is a feature which doesn&#8217;t cooperate with our main components at
+</I>&gt;<i> the moment and it is not an announced feature of the upcoming release, I
+</I>&gt;<i> do have some questions to ask:
+</I>
+It is correct that it does not cooperate, but it neither does  
+interfere with x2goclient.
+
+&gt;<i> Can you please describe for everybody what this patch is doing and how
+</I>&gt;<i> it can be used with x2goclient and x2goserver?
+</I>
+I have partially done this in the mail I already sent some minutes  
+ago, but I will do it in more detail here...
+<A HREF="http://permalink.gmane.org/gmane.linux.terminal-server.x2go.devel/1853">http://permalink.gmane.org/gmane.linux.terminal-server.x2go.devel/1853</A>
+
+The server-side patch only adds some code to x2gomountdirs that  
+provides a mimebox (formerly: dropbox) in the .x2go session directory:
+
+   $SERVER_HOME/.x2go/C-&lt;session_id&gt;/mimebox
+
+[[[
+Compare:
+
+   $SERVER_HOME/.x2go/C-&lt;session_id&gt;/spool
+]]]
+
+This ,,folder'', similar to the spool ,,folder'', is actually a  
+symlink that points to /tmp/mimebox_&lt;user&gt;/&lt;session_id&gt;. However, at  
+this latter location an SSHFS share is mounted that connects this  
+server-side location to a corresponding folder on the X2go client  
+(PyHoca-GUI in this case):
+
+   $CLIENT_HOME/.x2go/S-&lt;session_id&gt;/mimebox
+
+Very similar to the spool SSHFS share you can place any file you like  
+into this folder (from the server perspective). This might be a  
+security problem for both mechanisms (spool, mimebox) and we should  
+see if we have to and how to address both.
+
+However, the Python-X2go module (that processes incoming MIME box  
+files) already has a hard-coded blacklist for file extensions (.exe,  
+.bat, .com, ...) so that the client will deny the processing of a  
+couple of file types by default. This blacklist is currently only  
+extension-based and this indeed can be improved, but this concerns the  
+Python-X2go code not the x2goserver code and should be discussed in a  
+separate thread once the MIME box feature has been accepted by all.
+
+Additionally, you can configure a white-list of file extensions in the  
+session profile manager of PyHoca-GUI. This white-list will be stored  
+in the ~/.x2goclient/sessions file:
+
+   usemimebox = 1
+   mimeboxextensions = ODT,ODS,PDF
+   mimeboxaction = OPEN
+
+Note: currently, both clients x2goclient and PyHoca-GUI can co-exist  
+using the same ~/.x2goclient/sessions file. Either client does simply  
+ignore the other client's options (I discovered this by coincidence  
+and was very happy about that). If I edit a session profile with  
+PyHoca-GUI it does not overwrite options only available in x2goclient  
+and vice versa. Only if you run both clients at a time then you might  
+get in trouble.
+
+For the Windows client: the PyHoca-GUI windows client does not (yet)  
+have WinREG support. Thus, it stores is configs as files, very similar  
+to the Linux client. But my objective is to add WinREG support for  
+PyHoca-GUI soon. You will be able to choose the session profile  
+backend (FILE, WINREG, ...) on the command-line.
+
+&gt;<i> I really would be glad to see this feature discussed first, whether
+</I>&gt;<i> applied without a discussion about its main purpose and its security
+</I>&gt;<i> concerns (check of executable files,...).
+</I>
+Heinz, I love to dicuss features. My recent problem has been that I  
+experienced a lack of responsiveness from yours and Alex side.
+
+On the X2go roadmap (wiki.x2go.org/roadmap) there has been a feedback  
+on the X2goDropbox patch pending for weeks without any resonance.  
+Additionally, I have also asked you personally to comment on that  
+which has neither happened in public till today. However, as stated  
+above, I have not discussed it on the ML in detail so far. I should  
+have done that.
+
+&gt;<i> I also would really like to discuss the name used for this feature. As
+</I>&gt;<i> we already have trademark issues with our project name, I'm not
+</I>&gt;<i> satisfied to see this name inside our projects namespace.
+</I>
+I have changed this from X2go Dropbox to X2go MIME box.
+
+&gt;<i> If this feature is interesting for x2gousers we should make sure it can
+</I>&gt;<i> be used and applied as well to our main components as to the alternative
+</I>&gt;<i> pyhoca client.
+</I>
+As I am not a C coder I can only provide conceptual ideas but it would  
+take me a tremendous amount of time to code it in C(++). Any help I  
+can give I will provide.
+
+&gt;<i> Furthermore it would be nice if you (Mike) can point out, if you want
+</I>&gt;<i> this patch implemented as a patch - so every interested user can apply
+</I>&gt;<i> it to his target -
+</I>
+No!
+
+&gt;<i> or if you want to have it as part of the main
+</I>&gt;<i> distribution as it can be understand by using the &quot;main&quot; tag.
+</I>
+Yes!
+
+
+Thanks for addressing your concerns in public!!!!
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110419/d5e951e1/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110419/d5e951e1/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002058.html">[X2go-dev] pending/x2godropbox patch
+</A></li>
+	<LI>Next message: <A HREF="002028.html">[X2go-dev] x2go client 3.01.18 crashing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2059">[ date ]</a>
+              <a href="thread.html#2059">[ thread ]</a>
+              <a href="subject.html#2059">[ subject ]</a>
+              <a href="author.html#2059">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

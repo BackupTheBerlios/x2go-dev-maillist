@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Compiling x2go Windows client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Compiling%20x2go%20Windows%20client&In-Reply-To=%3C970327672.408.1289382728137.JavaMail.root%40office.splatnix.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001248.html">
+   <LINK REL="Next"  HREF="001250.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Compiling x2go Windows client</H1>
+    <B>--[ UxBoD ]--</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Compiling%20x2go%20Windows%20client&In-Reply-To=%3C970327672.408.1289382728137.JavaMail.root%40office.splatnix.net%3E"
+       TITLE="[X2go-dev] Compiling x2go Windows client">uxbod at splatnix.net
+       </A><BR>
+    <I>Wed Nov 10 10:52:08 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001248.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+        <LI>Next message: <A HREF="001250.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1249">[ date ]</a>
+              <a href="thread.html#1249">[ thread ]</a>
+              <a href="subject.html#1249">[ subject ]</a>
+              <a href="author.html#1249">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Original Message -----
+&gt;<i> ----- Original Message -----
+</I>&gt;<i> &gt; --[ UxBoD ]-- schrieb:
+</I>&gt;<i> &gt; &gt; ----- Original Message -----
+</I>&gt;<i> &gt; &gt;&gt; Hello,
+</I>&gt;<i> &gt; &gt;&gt;
+</I>&gt;<i> &gt; &gt;&gt; Am 09.11.2010 16:45, schrieb --[ UxBoD ]--:
+</I>&gt;<i> &gt; &gt;&gt;&gt; ----- Original Message -----
+</I>&gt;<i> &gt; &gt;&gt;&gt; What I have noticed though it that the binary I compile is huge
+</I>&gt;<i> &gt; &gt;&gt;&gt; compared to the one that is shipped. Is that due to it being in
+</I>&gt;<i> &gt; &gt;&gt;&gt; some
+</I>&gt;<i> &gt; &gt;&gt;&gt; sort of debug mode or has the binary been stripped ?
+</I>&gt;<i> &gt; &gt;&gt; please configure Qt for building &quot;release&quot; binaries (it looks
+</I>&gt;<i> &gt; &gt;&gt; like
+</I>&gt;<i> &gt; &gt;&gt; you're building the client in debug mode).
+</I>&gt;<i> &gt; &gt;&gt;
+</I>&gt;<i> &gt; &gt;&gt; best regards,
+</I>&gt;<i> &gt; &gt;&gt;
+</I>&gt;<i> &gt; &gt;&gt; Heinz
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; Thanks Heinz.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; I have now compiled it as a release binary and it is a lot smaller
+</I>&gt;<i> &gt; &gt; now :) Still having the same problem though that when I launch
+</I>&gt;<i> &gt; &gt; x2goclient it starts up vcxsrv, sshd and pulse okay; the x2go
+</I>&gt;<i> &gt; &gt; status
+</I>&gt;<i> &gt; &gt; screen changes to say Connecting and then it hangs :( What I think
+</I>&gt;<i> &gt; &gt; is happening is that vcxsrv is ignoring the display parameter that
+</I>&gt;<i> &gt; &gt; is passed to it. If I run xcalc -display localhost:0 that works;
+</I>&gt;<i> &gt; &gt; though if I try xcalc -display:6000 it fails. I am guessing the
+</I>&gt;<i> &gt; &gt; next
+</I>&gt;<i> &gt; &gt; step should be the NX libraries etc starting. Any ideas ?
+</I>&gt;<i> &gt; Hello,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 0 - Display number
+</I>&gt;<i> &gt; 6000 - TCP port
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; TCP port = Display number + 6000
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; regards
+</I>&gt;<i> 
+</I>&gt;<i> Yep, but still not dice. It gets to the point of connecting and then
+</I>&gt;<i> just hangs. I can see all the necessary processes running and
+</I>&gt;<i> obviously X is working okay. Will check from the server side and see
+</I>&gt;<i> if it is even attempting to start the session.
+</I>
+After watching the remote server the SSH session is not even being attempted to be established :( I have even tried setting the working directory back to being xming once vcxsrv has been started incase I was corrupting a path further down the chain; though still no joy. Any ideas please ?
+-- 
+Thanks, Phil
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001248.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+	<LI>Next message: <A HREF="001250.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1249">[ date ]</a>
+              <a href="thread.html#1249">[ thread ]</a>
+              <a href="subject.html#1249">[ subject ]</a>
+              <a href="author.html#1249">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

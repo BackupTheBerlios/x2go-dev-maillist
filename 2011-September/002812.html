@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] libssh, nagle, and performance issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20libssh%2C%20nagle%2C%20and%20performance%20issues&In-Reply-To=%3C1316515038.1082.106.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002802.html">
+   <LINK REL="Next"  HREF="002814.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] libssh, nagle, and performance issues</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20libssh%2C%20nagle%2C%20and%20performance%20issues&In-Reply-To=%3C1316515038.1082.106.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] libssh, nagle, and performance issues">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Sep 20 12:37:18 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002802.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+        <LI>Next message: <A HREF="002814.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2812">[ date ]</a>
+              <a href="thread.html#2812">[ thread ]</a>
+              <a href="subject.html#2812">[ subject ]</a>
+              <a href="author.html#2812">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2011-09-19 at 14:54 +0200, Mike Gabriel wrote:
+&gt;<i> Hi Alex,
+</I>&gt;<i> 
+</I>&gt;<i> On Mo 19 Sep 2011 13:44:15 CEST Oleksandr Shneyder wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; hmmm, ok, seems you are right :) Can you apply this patch to source tree
+</I>&gt;<i> &gt; and I'll try to build a windows binary tomorrow.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; regards,
+</I>&gt;<i> &gt; Alex
+</I>&gt;<i> 
+</I>&gt;<i> patch has been committed. I'll build new packages for Debian tonight  
+</I>&gt;<i> (I am at a customer location right now).
+</I>&gt;<i> 
+</I>&gt;<i> Thanks,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&lt;snip&gt;
+I can confirm the significant improvement in performance.  For example,
+and what really made me think Nagle, my ping results display much
+better.  When doing ping tests previously, the results would stutter
+even though the response times were nearly even.  In fact, sometimes I
+would seem to miss a packet only to have two display the next second.
+They are now perfectly smooth.
+
+However, we still have a BIG problem.  X2Go client printing still
+segfaults the entire client every single time we try to print.  Phil has
+confirmed this independently from me.  Any ETA on that fix? Thanks -
+John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002802.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+	<LI>Next message: <A HREF="002814.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2812">[ date ]</a>
+              <a href="thread.html#2812">[ thread ]</a>
+              <a href="subject.html#2812">[ subject ]</a>
+              <a href="author.html#2812">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

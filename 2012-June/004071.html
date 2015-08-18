@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Experiences with x2goserver on Wheezy
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Experiences%20with%20x2goserver%20on%20Wheezy&In-Reply-To=%3C4FD88308.5070507%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004070.html">
+   <LINK REL="Next"  HREF="004072.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Experiences with x2goserver on Wheezy</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Experiences%20with%20x2goserver%20on%20Wheezy&In-Reply-To=%3C4FD88308.5070507%40vandervlis.nl%3E"
+       TITLE="[X2Go-Dev] Experiences with x2goserver on Wheezy">paul at vandervlis.nl
+       </A><BR>
+    <I>Wed Jun 13 14:09:44 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004070.html">[X2Go-Dev] New X2Go releases: x2goclient, pyhoca-gui, pyhoca-cli,	python-x2go
+</A></li>
+        <LI>Next message: <A HREF="004072.html">[X2Go-Dev] Experiences with x2goserver on Wheezy
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4071">[ date ]</a>
+              <a href="thread.html#4071">[ thread ]</a>
+              <a href="subject.html#4071">[ subject ]</a>
+              <a href="author.html#4071">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+Installing X2goserver on Wheezy works fine.
+
+But when I start a session from a client with Squeeze to a server with
+Wheezy and Gnome, I see short a black &quot;X2go&quot; window, but after that the
+session is gone.
+
+I will add the /var/log/auth.log and /var/log/syslog (debug mode) at the
+end of this mail.
+
+With regards,
+Paul.
+
+---------
+Jun 13 13:51:40 ssd sshd[12553]: Accepted password for user from
+192.168.0.41 port 38116 ssh2
+Jun 13 13:51:40 ssd sshd[12553]: pam_unix(sshd:session): session opened
+for user user by (uid=0)
+Jun 13 13:51:43 ssd sshd[12767]: Accepted password for user from
+192.168.0.41 port 38120 ssh2
+Jun 13 13:51:43 ssd sshd[12767]: pam_unix(sshd:session): session opened
+for user user by (uid=0)
+Jun 13 13:51:43 ssd sshd[12773]: Accepted password for user from
+192.168.0.41 port 38121 ssh2
+Jun 13 13:51:43 ssd sshd[12773]: pam_unix(sshd:session): session opened
+for user user by (uid=0)
+Jun 13 13:51:44 ssd sshd[12772]: Received disconnect from 192.168.0.41:
+11: Bye Bye
+Jun 13 13:51:44 ssd sshd[12767]: pam_unix(sshd:session): session closed
+for user user
+Jun 13 13:51:44 ssd sshd[12802]: Received disconnect from 192.168.0.41:
+11: Bye Bye
+Jun 13 13:51:44 ssd sshd[12773]: pam_unix(sshd:session): session closed
+for user user
+Jun 13 13:51:44 ssd sshd[12558]: Received disconnect from 192.168.0.41:
+11: Bye Bye
+Jun 13 13:51:44 ssd sshd[12553]: pam_unix(sshd:session): session closed
+for user user
+Jun 13 13:51:48 ssd su[13045]: Successful su for user by root
+Jun 13 13:51:48 ssd su[13045]: + ??? root:user
+Jun 13 13:51:48 ssd su[13045]: pam_unix(su:session): session opened for
+user user by (uid=0)
+Jun 13 13:51:49 ssd su[13045]: pam_unix(su:session): session closed for
+user user
+----------
+
+-----------
+Jun 13 13:51:40 ssd /usr/bin/x2golistsessions[12560]: x2golistsessions
+has been called with no option
+Jun 13 13:51:41 ssd /usr/bin/x2gostartagent: x2gostartagent called with
+options: 800x600 adsl 16m-jpeg-9 unix-kde-depth_24 us pc105/us 1 D GNOME
+Jun 13 13:51:41 ssd /usr/bin/x2gostartagent: client announced itself as
+,,192.168.0.41''
+Jun 13 13:51:41 ssd /usr/bin/x2gosessionlimit[12582]: x2gosessionlimit
+has been called
+Jun 13 13:51:41 ssd /usr/bin/x2golistsessions[12585]: x2golistsessions
+has been called with options: --all-servers
+Jun 13 13:51:41 ssd /usr/lib/x2go/x2gogetdisplays[12599]: db_getdisplays
+called, server: ssd; return value:
+Jun 13 13:51:41 ssd /usr/lib/x2go/x2gogetports[12608]: db_getports
+called, server: ssd; return value:
+Jun 13 13:51:41 ssd /usr/lib/x2go/x2goinsertsession[12626]:
+db_insertsession called, session ID: user-50-1339588301_stDGNOME_dp24,
+server: ssd, session ID: user-50-1339588301_stDGNOME_dp24
+Jun 13 13:51:41 ssd /usr/lib/x2go/x2goinsertport[12638]: db_insertport
+called, session ID: user-50-1339588301_stDGNOME_dp24, server: ssd, SSH
+port: 30001
+Jun 13 13:51:42 ssd /usr/lib/x2go/x2goinsertport[12650]: db_insertport
+called, session ID: user-50-1339588301_stDGNOME_dp24, server: ssd, SSH
+port: 30002
+Jun 13 13:51:42 ssd /usr/lib/x2go/x2goinsertport[12662]: db_insertport
+called, session ID: user-50-1339588301_stDGNOME_dp24, server: ssd, SSH
+port: 30003
+Jun 13 13:51:42 ssd /usr/bin/x2gofeature: x2gofeature called with
+options: X2GO_RUN_EXTENSIONS
+Jun 13 13:51:42 ssd
+/usr/share/x2go/x2gofeature.d/x2godesktopsharing.features:
+x2godesktopsharing.features called with options: X2GO_RUN_EXTENSIONS
+Jun 13 13:51:42 ssd
+/usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+x2goserver-extensions.features called with options: X2GO_RUN_EXTENSIONS
+Jun 13 13:51:42 ssd /usr/bin/x2goserver-run-extensions:
+x2goserver-run-extensions called with options:
+user-50-1339588301_stDGNOME_dp24 pre-start
+Jun 13 13:51:42 ssd /usr/bin/x2gostartagent: successfully started X2Go
+agent session with ID user-50-1339588301_stDGNOME_dp24
+Jun 13 13:51:42 ssd /usr/bin/x2gofeature: x2gofeature called with
+options: X2GO_RUN_EXTENSIONS
+Jun 13 13:51:42 ssd
+/usr/share/x2go/x2gofeature.d/x2godesktopsharing.features:
+x2godesktopsharing.features called with options: X2GO_RUN_EXTENSIONS
+Jun 13 13:51:42 ssd
+/usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+x2goserver-extensions.features called with options: X2GO_RUN_EXTENSIONS
+Jun 13 13:51:42 ssd /usr/bin/x2goserver-run-extensions:
+x2goserver-run-extensions called with options:
+user-50-1339588301_stDGNOME_dp24 post-start
+Jun 13 13:51:42 ssd /usr/lib/x2go/x2gocreatesession[12757]:
+db_createsession called, session ID: user-50-1339588301_stDGNOME_dp24,
+cookie: c016377f1cd7412331182a4376bcc110, client: 192.168.0.41, pid:
+12713, graphics port: 30001, sound port: 30002, file sharing port: 30003
+Jun 13 13:51:43 ssd /usr/bin/x2goruncommand: x2goruncommand called with
+options: 50 12713 user-50-1339588301_stDGNOME_dp24 30002 gnome-session
+nosnd D
+Jun 13 13:51:43 ssd /usr/bin/x2gofeature: x2gofeature called with
+options: X2GO_RUN_EXTENSIONS
+Jun 13 13:51:43 ssd
+/usr/share/x2go/x2gofeature.d/x2godesktopsharing.features:
+x2godesktopsharing.features called with options: X2GO_RUN_EXTENSIONS
+Jun 13 13:51:43 ssd /usr/bin/x2gomountdirs[12812]: x2gomountdirs has
+been called with options: dir user-50-1339588301_stDGNOME_dp24 paul
+/home/user/.x2go/ssh/key.h13669
+/home/paul/.x2go/S-user-50-1339588301_stDGNOME_dp24/spool__PRINT_SPOOL___REVERSESSH_PORT__30003
+Jun 13 13:51:43 ssd /usr/bin/x2gomountdirs[12812]: mounting
+/tmp/spool_user/user-50-1339588301_stDGNOME_dp24, mount point type is
+print spool directory
+Jun 13 13:51:43 ssd
+/usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+x2goserver-extensions.features called with options: X2GO_RUN_EXTENSIONS
+Jun 13 13:51:43 ssd /usr/bin/x2goserver-run-extensions:
+x2goserver-run-extensions called with options:
+user-50-1339588301_stDGNOME_dp24 pre-runcommand
+Jun 13 13:51:43 ssd /usr/bin/x2gomountdirs[12812]: db_insertmount
+called, session ID: user-50-1339588301_stDGNOME_dp24, path:
+/tmp/spool_user/user-50-1339588301_stDGNOME_dp24, client: 127.0.0.1;
+return value: 1
+Jun 13 13:51:43 ssd /usr/bin/x2gomountdirs[12812]: executing: sshfs  -o
+idmap=user,uid=`id -u`,gid=`id
+-g`,ServerAliveInterval=300,Cipher=blowfish,IdentityFile=/home/user/.x2go/ssh/key.h13669,UserKnownHostsFile=/home/user/.x2go/ssh/key.h13669.ident
+&quot;paul&quot;@127.0.0.1:&quot;/home/paul/.x2go/S-user-50-1339588301_stDGNOME_dp24/spool&quot;
+&quot;/tmp/spool_user/user-50-1339588301_stDGNOME_dp24&quot; -p 30003
+Jun 13 13:51:43 ssd /usr/bin/x2gomountdirs[12812]: WARNING: mounting of
+/home/paul/.x2go/S-user-50-1339588301_stDGNOME_dp24/spool failed
+Jun 13 13:51:43 ssd /usr/bin/x2goruncommand: running command
+/usr/bin/gnome-session
+Jun 13 13:51:43 ssd /usr/bin/x2gofeature: x2gofeature called with
+options: X2GO_XSESSION
+Jun 13 13:51:43 ssd /usr/bin/x2gomountdirs[12812]: db_deletemount
+called, session ID: user-50-1339588301_stDGNOME_dp24, path:
+/tmp/spool_user/user-50-1339588301_stDGNOME_dp24
+Jun 13 13:51:43 ssd
+/usr/share/x2go/x2gofeature.d/x2godesktopsharing.features:
+x2godesktopsharing.features called with options: X2GO_XSESSION
+Jun 13 13:51:43 ssd
+/usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+x2goserver-extensions.features called with options: X2GO_XSESSION
+Jun 13 13:51:43 ssd /usr/share/x2go/x2gofeature.d/x2goserver.features:
+x2goserver.features called with options: X2GO_XSESSION
+Jun 13 13:51:43 ssd /usr/bin/x2gofeature: x2gofeature called with
+options: X2GO_RUN_EXTENSIONS
+Jun 13 13:51:43 ssd
+/usr/share/x2go/x2gofeature.d/x2godesktopsharing.features:
+x2godesktopsharing.features called with options: X2GO_RUN_EXTENSIONS
+Jun 13 13:51:43 ssd
+/usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+x2goserver-extensions.features called with options: X2GO_RUN_EXTENSIONS
+Jun 13 13:51:43 ssd /usr/bin/x2goserver-run-extensions:
+x2goserver-run-extensions called with options:
+user-50-1339588301_stDGNOME_dp24 post-runcommand
+Jun 13 13:51:44 ssd /usr/bin/x2gofeature: x2gofeature called with
+options: X2GO_DESKTOPSHARING
+Jun 13 13:51:44 ssd
+/usr/share/x2go/x2gofeature.d/x2godesktopsharing.features:
+x2godesktopsharing.features called with options: X2GO_DESKTOPSHARING
+Jun 13 13:51:44 ssd /usr/bin/x2goterminate-desktopsharing:
+x2goterminate-desktopsharing called with options:
+user-50-1339588301_stDGNOME_dp24
+Jun 13 13:51:44 ssd /usr/lib/x2go/x2gochangestatus[12975]:
+db_changestatus called, session ID: user-50-1339588301_stDGNOME_dp24,
+new status: F
+Jun 13 13:51:44 ssd /usr/bin/x2goumount-session[12984]:
+x2goumount-session has been called with options:
+user-50-1339588301_stDGNOME_dp24
+Jun 13 13:51:44 ssd /usr/bin/x2goumount-session[12984]: db_getdisplay
+called, session ID: user-50-1339588301_stDGNOME_dp24; return value: 50
+Jun 13 13:51:44 ssd /usr/bin/x2goumount-session[12984]: db_getmounts
+called, session ID: user-50-1339588301_stDGNOME_dp24; return value:
+Jun 13 13:51:44 ssd /usr/bin/x2gocmdexitmessage: x2gocmdexitmessage
+called with options: user-50-1339588301_stDGNOME_dp24
+Jun 13 13:51:44 ssd /usr/bin/x2gocmdexitmessage: command output starts
+with:
+Jun 13 13:51:48 ssd /usr/lib/x2go/x2golistsessions_sql[13035]: Purging
+finished session from X2Go db, session ID: user-50-1339588301_stDGNOME_dp24
+Jun 13 13:51:48 ssd /usr/sbin/x2gocleansessions[12522]:
+user-50-1339588301_stDGNOME_dp24 is blocked
+Jun 13 13:51:48 ssd /usr/sbin/x2gocleansessions[12522]:
+user-50-1339588301_stDGNOME_dp24: unmounting all shares
+Jun 13 13:51:48 ssd /usr/bin/x2goumount-session[13053]:
+x2goumount-session has been called with options:
+user-50-1339588301_stDGNOME_dp24
+Jun 13 13:51:48 ssd /usr/bin/x2goumount-session[13053]: db_getdisplay
+called, session ID: user-50-1339588301_stDGNOME_dp24; return value:
+Jun 13 13:51:49 ssd /usr/bin/x2goumount-session[13053]: db_getmounts
+called, session ID: user-50-1339588301_stDGNOME_dp24; return value:
+-----------
+
+
+-- 
+Paul van der Vlis Linux systeembeheer, Groningen
+<A HREF="http://www.vandervlis.nl">http://www.vandervlis.nl</A>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004070.html">[X2Go-Dev] New X2Go releases: x2goclient, pyhoca-gui, pyhoca-cli,	python-x2go
+</A></li>
+	<LI>Next message: <A HREF="004072.html">[X2Go-Dev] Experiences with x2goserver on Wheezy
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4071">[ date ]</a>
+              <a href="thread.html#4071">[ thread ]</a>
+              <a href="subject.html#4071">[ subject ]</a>
+              <a href="author.html#4071">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

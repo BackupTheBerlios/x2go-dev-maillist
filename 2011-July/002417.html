@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] X2go real life usage
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20X2go%20real%20life%20usage&In-Reply-To=%3C20110707103455.GA23816%40vore1.evilfreak.qq%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002429.html">
+   <LINK REL="Next"  HREF="002418.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] X2go real life usage</H1>
+    <B>Martin Oehler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20X2go%20real%20life%20usage&In-Reply-To=%3C20110707103455.GA23816%40vore1.evilfreak.qq%3E"
+       TITLE="[X2go-Dev] X2go real life usage">martin.oehler at gmx.net
+       </A><BR>
+    <I>Thu Jul  7 12:34:55 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002429.html">[X2go-Dev] Strange noise on logging screen
+</A></li>
+        <LI>Next message: <A HREF="002418.html">[X2go-Dev] X2go real life usage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2417">[ date ]</a>
+              <a href="thread.html#2417">[ thread ]</a>
+              <a href="subject.html#2417">[ subject ]</a>
+              <a href="author.html#2417">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello list,
+
+after an update to the current set of packages there are some
+points that should be (at least in my opinion) discussed.
+
+
+1) Session Administration
+
+At the moment, I can't see a user-friendly replacement of x2go-
+sessionadministration. This tool is crucial for network usage
+of x2go since your local administrator needs to be able to reset
+sessions, connect to an users session and all that stuff.
+
+Would the old code compiled against the qt3-libs in Debian Squeeze 
+lead to a working solution?
+
+Is there another tool that I wasn't able to find? x2godesktop-
+sharing is of course not useable if the user session did freeze.
+
+Was is the recommended way of stopping an users session (please 
+read topic two before answering, it's not that easy)?
+
+
+2) Database handling
+
+How is the database cleanup of the sqlite3 database 
+
+  /var/lib/x2go/x2go_sessions 
+
+supposed to work? From my point of view this database is constantly
+growing. I can't see that old sessions are cleaned up.
+
+If a user connects to a LXDE of Debian Squeeze and performs a logout
+via the menu, his session is still listed inside the database. So
+this database is constantly growing what is definitely not what one
+wants.
+
+Another problem with this are hanging or crashed sessions. The database
+gets very quickly inconsistent with the real system state. The user
+sees a lot of session that are marked active at login but the processes
+belonging to these sessions do not exist anymore. I found manually
+cleaning up the database worked but this isn't comfortable at all
+(i.e. not possible to do for everyone).
+
+x2gocleansession is running but doesn't seem to be able to clean up
+the database (permissions are correct, new sessions are inserted).
+
+
+3) Smartcard usage 
+
+This might be a separate topic which leads to a bug, but somehow the
+timing between x2go und the scdaemon messed up. If a user does a 
+session suspend via smartcard and puts his card in again after the 
+card is available he gets an &quot;invalid card&quot; error message. If one
+is a bit more patient and waits for 5-6 seconds it works again.
+
+Did someone else experience this?
+
+I can live with this at the moment.
+
+
+How do others handle these problems in big networks? 
+
+At the moment I'm really struggling to get to the point where x2go 
+was in terms of usability at &quot;qt3-times&quot; (I know they are gone). 
+
+Kind regards,
+Martin &#214;hler
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002429.html">[X2go-Dev] Strange noise on logging screen
+</A></li>
+	<LI>Next message: <A HREF="002418.html">[X2go-Dev] X2go real life usage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2417">[ date ]</a>
+              <a href="thread.html#2417">[ thread ]</a>
+              <a href="subject.html#2417">[ subject ]</a>
+              <a href="author.html#2417">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

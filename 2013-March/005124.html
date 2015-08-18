@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#127: x2gobroker-daemon deb package reinstall/upgrade	fails
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23127%3A%20x2gobroker-daemon%20deb%20package%20reinstall/upgrade%0A%09fails&In-Reply-To=%3C20130301105946.19603zleqo1jknpu%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005125.html">
+   <LINK REL="Next"  HREF="005120.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#127: x2gobroker-daemon deb package reinstall/upgrade	fails</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23127%3A%20x2gobroker-daemon%20deb%20package%20reinstall/upgrade%0A%09fails&In-Reply-To=%3C20130301105946.19603zleqo1jknpu%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#127: x2gobroker-daemon deb package reinstall/upgrade	fails">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Mar  1 10:59:46 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005125.html">[X2Go-Dev] Processed: Re: Bug#127: x2gobroker-daemon deb package reinstall/upgrade fails
+</A></li>
+        <LI>Next message: <A HREF="005120.html">[X2Go-Dev] Bug#126: x2gobroker only works in debug-mode
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5124">[ date ]</a>
+              <a href="thread.html#5124">[ thread ]</a>
+              <a href="subject.html#5124">[ subject ]</a>
+              <a href="author.html#5124">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fr 01 M&#228;r 2013 10:17:37 CET Anders Bruun Olsen wrote:
+
+&gt;<i> Problem found:
+</I>&gt;<i> debian/x2gobroker-daemon.postinst line 38 sets home of user x2gobroker to
+</I>&gt;<i> be /var/lib/x2go but all other references to the homedir are for
+</I>&gt;<i> /var/lib/x2gobroker.
+</I>
+Argghh... the last commit had an error still... This now fixes it...
+<A HREF="http://code.x2go.org/gitweb?p=x2gobroker.git;a=commitdiff;h=a62fb92ed282ca25ded2e7782ee79386f9e68e7d">http://code.x2go.org/gitweb?p=x2gobroker.git;a=commitdiff;h=a62fb92ed282ca25ded2e7782ee79386f9e68e7d</A>
+
+Mike
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130301/fd855193/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130301/fd855193/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005125.html">[X2Go-Dev] Processed: Re: Bug#127: x2gobroker-daemon deb package reinstall/upgrade fails
+</A></li>
+	<LI>Next message: <A HREF="005120.html">[X2Go-Dev] Bug#126: x2gobroker only works in debug-mode
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5124">[ date ]</a>
+              <a href="thread.html#5124">[ thread ]</a>
+              <a href="subject.html#5124">[ subject ]</a>
+              <a href="author.html#5124">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,153 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2godesktopsharing: Full Access not available for other	users?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2godesktopsharing%3A%20Full%20Access%20not%20available%20for%0A%20other%09users%3F&In-Reply-To=%3C20120220100745.81972okhxlmcyzq9%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003539.html">
+   <LINK REL="Next"  HREF="003547.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2godesktopsharing: Full Access not available for other	users?</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2godesktopsharing%3A%20Full%20Access%20not%20available%20for%0A%20other%09users%3F&In-Reply-To=%3C20120220100745.81972okhxlmcyzq9%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] x2godesktopsharing: Full Access not available for other	users?">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Feb 20 10:07:45 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003539.html">[X2Go-Dev] x2godesktopsharing: Full Access not available for other	users?
+</A></li>
+        <LI>Next message: <A HREF="003547.html">[X2Go-Dev] x2godesktopsharing: Full Access not available for other	users?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3544">[ date ]</a>
+              <a href="thread.html#3544">[ thread ]</a>
+              <a href="subject.html#3544">[ subject ]</a>
+              <a href="author.html#3544">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alex,
+
+On Mo 20 Feb 2012 09:32:31 CET Oleksandr Shneyder wrote:
+
+&gt;<i> Am 19.02.2012 21:14, schrieb Milan Kn&#237;&#382;ek:
+</I>&gt;&gt;<i> Hello list!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I am a bit confused re. the discrepancy between wiki and actual
+</I>&gt;&gt;<i> behaviour of x2godesktop sharing:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> x the wiki [1] reads that
+</I>&gt;&gt;<i>     With the desktopsharing function of X2go you can have full-access
+</I>&gt;&gt;<i>     the desktop from somebody else...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> x when I (USER_B) connect from a remote machine with x2goclient to
+</I>&gt;&gt;<i> &quot;local desktop&quot; (USER_A logged in on tty7 of x2goserver), the
+</I>&gt;&gt;<i> USER_A's session is shown in the lists of sessions available for
+</I>&gt;&gt;<i> sharing, however the button &quot;Full Access&quot; is greyed-out and cannot be
+</I>&gt;&gt;<i> clicked. So USER_B is only allowed to view the USER_A's deskto.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> x having looked at x2godesktopsharing.git/sharetray.cpp, I can see that
+</I>&gt;&gt;<i> this is due to &quot;bShadow-&gt;SetEnabled ( user==getCurrentUname() );&quot; and
+</I>&gt;&gt;<i> have verified that the following patch removes the limitation:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> ===
+</I>&gt;&gt;<i> --- onmainwindow_part2.cpp&lt;----&gt;2011-11-25 13:08:10.000000000 +0100
+</I>&gt;&gt;<i> +++ onmainwindow_part2.cpp_mod&lt;&gt;2012-02-19 19:50:36.200838546 +0100
+</I>&gt;&gt;<i> @@ -1132,7 +1132,7 @@
+</I>&gt;&gt;<i>                           index.row(),
+</I>&gt;&gt;<i>                           D_USER ).data().toString();
+</I>&gt;&gt;<i>          bShadowView-&gt;setEnabled ( true );
+</I>&gt;&gt;<i> -        bShadow-&gt;setEnabled ( user==getCurrentUname() );
+</I>&gt;&gt;<i> +        bShadow-&gt;setEnabled ( true );
+</I>&gt;&gt;<i>      }
+</I>&gt;&gt;<i>  }
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> ===
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Is this intentional behaviour due to the potential security issues
+</I>&gt;&gt;<i> mentioned here [2] (anyway, the remote user _can_ recompile the
+</I>&gt;&gt;<i> x2goagent to get rid of the limitation)?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> [1] <A HREF="http://www.x2go.org/wiki:components:desktop-sharing#usage">http://www.x2go.org/wiki:components:desktop-sharing#usage</A>
+</I>&gt;&gt;<i> [2]
+</I>&gt;&gt;<i> <A HREF="http://comments.gmane.org/gmane.linux.terminal-server.x2go.devel/2437">http://comments.gmane.org/gmane.linux.terminal-server.x2go.devel/2437</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Regards,
+</I>&gt;&gt;<i> Milan
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I have disabled it, because in my opinion, security risk was just to
+</I>&gt;<i> high. At the moment, user can get full access only if connecting to his
+</I>&gt;<i> own desktop. Actually, removing such check in x2goclient should not do
+</I>&gt;<i> anything.
+</I>
+Ok...
+
+&gt;<i> This check is also included in x2gostartagent.
+</I>
+No, it is not. I can connect to other users' sessions with full-access  
+via python-x2go (pyhoca-cli).
+
+&gt;<i> Anyway, if in
+</I>&gt;<i> future we want to enable such feature, we should also modify
+</I>&gt;<i> x2godesktopsharing and ask user if he give to other people a full or
+</I>&gt;<i> &quot;only view&quot; access. With big, fat, red warning.
+</I>
+That is a great idea. Let the user decide via x2godesktopsharing.  
+Milan, are you willing to work on that (with our help)?
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120220/bfb8acde/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120220/bfb8acde/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003539.html">[X2Go-Dev] x2godesktopsharing: Full Access not available for other	users?
+</A></li>
+	<LI>Next message: <A HREF="003547.html">[X2Go-Dev] x2godesktopsharing: Full Access not available for other	users?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3544">[ date ]</a>
+              <a href="thread.html#3544">[ thread ]</a>
+              <a href="subject.html#3544">[ subject ]</a>
+              <a href="author.html#3544">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

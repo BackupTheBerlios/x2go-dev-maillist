@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] The vanishing mouse - xming source code
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20The%20vanishing%20mouse%20-%20xming%20source%20code&In-Reply-To=%3C4CAF8669.5030909%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001154.html">
+   <LINK REL="Next"  HREF="001156.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] The vanishing mouse - xming source code</H1>
+    <B>Heinz-M. Graesing</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20The%20vanishing%20mouse%20-%20xming%20source%20code&In-Reply-To=%3C4CAF8669.5030909%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] The vanishing mouse - xming source code">x2go-dev at obviously-nice.de
+       </A><BR>
+    <I>Fri Oct  8 23:00:25 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001154.html">[X2go-dev] The vanishing mouse - xming source code
+</A></li>
+        <LI>Next message: <A HREF="001156.html">[X2go-dev] The vanishing mouse - xming source code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1155">[ date ]</a>
+              <a href="thread.html#1155">[ thread ]</a>
+              <a href="subject.html#1155">[ subject ]</a>
+              <a href="author.html#1155">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Brian,
+hello List,
+
+since version 3.0-14 which was released on october 14th 2009, we don't 
+use xming &quot;as product&quot; any more. The reason was, that we were not happy 
+with it (as it was not &quot;free enough&quot;).
+So we found the following HowTo on freedesktop.org which describes how 
+you can build Xorg for windows on your own:
+
+<A HREF="http://www.freedesktop.org/wiki/Xming/Building">http://www.freedesktop.org/wiki/Xming/Building</A>
+
+The source can also be found inside the upcomming berlios git and in our 
+&quot;preparation git&quot;:
+
+<A HREF="http://git.x2go.org/?a=tree&amp;p=x2go&amp;h=7ec005a61b74754785840be6626451617b6b6ec5&amp;hb=38b730a075cc77f747acf6fe585e0aeb728dda55&amp;f=windows">http://git.x2go.org/?a=tree&amp;p=x2go&amp;h=7ec005a61b74754785840be6626451617b6b6ec5&amp;hb=38b730a075cc77f747acf6fe585e0aeb728dda55&amp;f=windows</A>
+
+The only change we made is to get it running with our plugin.
+We can't reproduce the described bug on our systems - so we can't fix it 
+at the moment, but we are willing to do so.
+
+best regards,
+
+Alex &amp; Heinz
+
+
+
+Am 08.10.2010 18:20, schrieb brian mullan:
+&gt;<i> xming v 6.9 source is on SourceForge here
+</I>&gt;<i> &lt;<A HREF="http://sourceforge.net/projects/xming/files/Xming-source/6.9.0.31/Xming_69031_source.tar.bz2/download">http://sourceforge.net/projects/xming/files/Xming-source/6.9.0.31/Xming_69031_source.tar.bz2/download</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i>     ------------------------------
+</I>&gt;<i>
+</I>&gt;<i>     Message: 3
+</I>&gt;<i>     Date: Thu, 07 Oct 2010 09:37:10 -0400
+</I>&gt;<i>     From: Gerry Reno &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">greno at verizon.net</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">greno at verizon.net</A>&gt;&gt;
+</I>&gt;<i>     To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>&gt;
+</I>&gt;<i>     Subject: Re: [X2go-dev] The Vanishing Mouse
+</I>&gt;<i>     Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">4CADCD06.8040206 at verizon.net</A>
+</I>&gt;<i>     &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">4CADCD06.8040206 at verizon.net</A>&gt;&gt;
+</I>&gt;<i>     Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+</I>&gt;<i>
+</I>&gt;<i>     On 10/07/2010 07:25 AM, --[ UxBoD ]-- wrote:
+</I>&gt;<i>      &gt; Hello all,
+</I>&gt;<i>      &gt;
+</I>&gt;<i>      &gt; it was reported on the list a while ago that somebody was having
+</I>&gt;<i>     an issue where the mouse pointer within the X2GO session would
+</I>&gt;<i>     disappear.  Well, I finally managed to get the same thing to happen
+</I>&gt;<i>     to me this morning while running X2GO under Windows XP Pro.  Even
+</I>&gt;<i>     suspending the session and re-connecting does not resolve the
+</I>&gt;<i>     problem.  The issue appears to be the version of Xming that is being
+</I>&gt;<i>     distributed with X2GO.
+</I>&gt;<i>      &gt;
+</I>&gt;<i>      &gt; Why do I think this ? I suspended my session again and then
+</I>&gt;<i>     killed of Xming via task manager.  This caused the X2GO plugin to
+</I>&gt;<i>     fail for which I created a new FF tab and reconnected. I connected
+</I>&gt;<i>     straight back to the same session and X instance as before and my
+</I>&gt;<i>     mouse pointer was back in the land of the living.
+</I>&gt;<i>      &gt;
+</I>&gt;<i>      &gt; The question is though how can we resolve this problem ? The 6.9
+</I>&gt;<i>     version of Xming that is shipped with X2GO is ~3 years out of date
+</I>&gt;<i>     now, and to get the new 7.5 branch one has to subscribe.  Hmmm, this
+</I>&gt;<i>     would be fine for a couple of users but when we may be handling
+</I>&gt;<i>     100,000 of them it would get a bit pricey :(
+</I>&gt;<i>      &gt;
+</I>&gt;<i>      &gt; Any thoughts on what can be done ?
+</I>&gt;<i>      &gt;
+</I>&gt;<i>
+</I>&gt;<i>     Xming has a site license for v7.5 available for ? 250 (125 academic).
+</I>&gt;<i>     Unlimited users.  So that would not be all that expensive.  The other
+</I>&gt;<i>     option is to find the source code for v6.9 and then we debug the
+</I>&gt;<i>     vanishing mouse problem and create a patch.
+</I>&gt;<i>
+</I>&gt;<i>     Regards,
+</I>&gt;<i>     Gerry
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001154.html">[X2go-dev] The vanishing mouse - xming source code
+</A></li>
+	<LI>Next message: <A HREF="001156.html">[X2go-dev] The vanishing mouse - xming source code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1155">[ date ]</a>
+              <a href="thread.html#1155">[ thread ]</a>
+              <a href="subject.html#1155">[ subject ]</a>
+              <a href="author.html#1155">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

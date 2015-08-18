@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#379: Provide support for systemd
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23379%3A%20Provide%20support%20for%20systemd&In-Reply-To=%3C20131221211909.Horde.BuLL470-k55ILjD3xtFRrw6%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006745.html">
+   <LINK REL="Next"  HREF="006749.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#379: Provide support for systemd</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23379%3A%20Provide%20support%20for%20systemd&In-Reply-To=%3C20131221211909.Horde.BuLL470-k55ILjD3xtFRrw6%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#379: Provide support for systemd">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Dec 21 22:19:09 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006745.html">[X2Go-Dev] Bug#378: Point to XQuartz as extra,	non-bundled dependency during installation process on Mac OS X
+</A></li>
+        <LI>Next message: <A HREF="006749.html">[X2Go-Dev] Bug#380: Provide support for systemd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6748">[ date ]</a>
+              <a href="thread.html#6748">[ thread ]</a>
+              <a href="subject.html#6748">[ subject ]</a>
+              <a href="author.html#6748">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2gobroker-daemon
+Severity: important
+
+For easy use of x2gobroker-daemon with systemd, we need:
+
+   o a service file (easy!)
+   o a way to configure x2gobroker without  
+/etc/default/{python-x2gobroker,x2gobroker-daemon}
+
+The latter aspect is a little complex. Recommended approaches are  
+drawn at [1].
+
+For x2gobroker-daemon my suggestions is: provide a config file  
+/etc/x2go/x2gobroker-daemon.conf in inifile format that gets parsed by  
+&lt;python-module&gt;/x2gobroker/defaults.py. Environment variables have  
+precedence over inifile options have precedence over the system  
+defaults.
+
+Mike
+
+[1] <A HREF="http://0pointer.de/blog/projects/on-etc-sysinit.html">http://0pointer.de/blog/projects/on-etc-sysinit.html</A>
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131221/df2451ed/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131221/df2451ed/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006745.html">[X2Go-Dev] Bug#378: Point to XQuartz as extra,	non-bundled dependency during installation process on Mac OS X
+</A></li>
+	<LI>Next message: <A HREF="006749.html">[X2Go-Dev] Bug#380: Provide support for systemd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6748">[ date ]</a>
+              <a href="thread.html#6748">[ thread ]</a>
+              <a href="subject.html#6748">[ subject ]</a>
+              <a href="author.html#6748">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

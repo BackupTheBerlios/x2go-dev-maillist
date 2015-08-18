@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] DMG build problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20DMG%20build%20problem&In-Reply-To=%3C20130305104402.GD21300%40towel.neverpanic.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005156.html">
+   <LINK REL="Next"  HREF="005159.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] DMG build problem</H1>
+    <B>Clemens Lang</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20DMG%20build%20problem&In-Reply-To=%3C20130305104402.GD21300%40towel.neverpanic.de%3E"
+       TITLE="[X2Go-Dev] DMG build problem">neverpanic at gmail.com
+       </A><BR>
+    <I>Tue Mar  5 11:44:02 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005156.html">[X2Go-Dev] DMG build problem
+</A></li>
+        <LI>Next message: <A HREF="005159.html">[X2Go-Dev] DMG build problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5157">[ date ]</a>
+              <a href="thread.html#5157">[ thread ]</a>
+              <a href="subject.html#5157">[ subject ]</a>
+              <a href="author.html#5157">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Mar 05, 2013 at 11:16:01AM +0100, Anders Bruun Olsen wrote:
+&gt;<i> Specifically it tries to load /opt/local/lib/libcrypto-1.0.0.dylib
+</I>&gt;<i> which doesn't exist on this other system. It is
+</I>&gt;<i> x2goclient.app/Contents/Frameworks/libssl-1.0.0.dylib which references
+</I>&gt;<i> it.
+</I>
+Please provide the output of
+ $&gt; otool -L x2goclient.app/Contents/MacOS/x2goclient
+ $&gt; otool -L x2goclient.app/Contents/Resources/exe/nxproxy
+ $&gt; otool -L x2goclient.app/Contents/Frameworks/libssl-1.0.0.dylib
+
+Also pay attention to any dylibbundler error messages printed during
+packaging -- openssl has the habit to install their libraries ugo-w,
+which causes dylibbundler to choke when it tries to modify the library
+paths using install_name_tool(1). My fix for this currently is changing
+the modes manually.
+
+-- 
+Clemens Lang
+MacPorts Developer
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005156.html">[X2Go-Dev] DMG build problem
+</A></li>
+	<LI>Next message: <A HREF="005159.html">[X2Go-Dev] DMG build problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5157">[ date ]</a>
+              <a href="thread.html#5157">[ thread ]</a>
+              <a href="subject.html#5157">[ subject ]</a>
+              <a href="author.html#5157">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

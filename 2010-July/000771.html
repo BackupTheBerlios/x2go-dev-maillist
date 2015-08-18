@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] test version of baikal and some further informations
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20test%20version%20of%20baikal%20and%20some%20further%20informations&In-Reply-To=%3C4C378812.2030003%40x2go.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000770.html">
+   <LINK REL="Next"  HREF="000772.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] test version of baikal and some further informations</H1>
+    <B>Heinz-M. Graesing</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20test%20version%20of%20baikal%20and%20some%20further%20informations&In-Reply-To=%3C4C378812.2030003%40x2go.org%3E"
+       TITLE="[X2go-dev] test version of baikal and some further informations">x2go-dev at x2go.org
+       </A><BR>
+    <I>Fri Jul  9 22:35:30 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000770.html">[X2go-dev] BUG?: plugin stuck in auth rejection
+</A></li>
+        <LI>Next message: <A HREF="000772.html">[X2go-dev] test version of baikal and some further informations
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#771">[ date ]</a>
+              <a href="thread.html#771">[ thread ]</a>
+              <a href="subject.html#771">[ subject ]</a>
+              <a href="author.html#771">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello x2gousers,
+
+let's start this mail with the good news. After reading the next lines,
+you'll be able to test the new features of our new release. You'll just
+have to add the following line to your /etc/apt/sources.list:
+
+deb <A HREF="http://x2go.obviously-nice.de/deb/">http://x2go.obviously-nice.de/deb/</A> heuler main
+
+Please don't remove the main x2go repository. After doing an apt-get
+update you'll be able to access new versions of x2goclient, x2goserver
+and the new packages x2godesktopsharing and x2goplasmoid. The new
+packages are not yet named 3.1 (planned version number of baikal).
+Little baby seals a called &quot;Heuler&quot; in german, so this is a preview and
+not the new release. Please keep in mind, that there are still some
+things need to be done before we can do the &quot;real&quot; release.
+
+The new features/changelog:
+
+x2goclient
+old 3.01-5 new 3.01-11
+New features:
+  * plugin config options sound, exportfs, adsl, compression, quality,
+dpi, kbdlayout, kbdtype
+  * embeded mode for firefox plugin
+  * updated interface
+  * support for fs encodings
+  * shadow sessions
+  * xdmcp sessions
+  * commandline option for printing in LDAP mode
+
+x2goserver
+old 3.01-5 new 3.01-9
+New features:
+  * support for kde4 plasmoid
+  * support for fs encodings
+  * support for session sharing
+
+new packages:
+x2godesktopsharing
+x2goplasmoid
+
+not updated:
+x2goclient-gtk
+
+Following issues are known:
+Connections to localhost are known to be problematic. We'll work on this
+issue.
+On some distros (with a different zip application to debian) the plugin
+content is unzipped without the applied user rights. In this case
+firefox crashes during the visit of a site containing the plugin. You
+can avoid this by running following command inside the users home directory:
+
+chmod +x
+.mozilla/firefox/[profile]/extensions/<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2goplugin at obviously-nice.de</A>/x2goclient/x2goclient
+
+Don't use the x2goldaptools for generating a LDAP config on top of
+debian squeeze (debian made a change to gnutls).
+
+We'll work on those and on the reported bugs.
+
+Please keep in mind, that those packages are meant for testing. In the
+next days we'll add documentation of the new features to the wiki:
+
+<A HREF="http://wiki.x2go.org">http://wiki.x2go.org</A>
+
+best regards,
+
+Alex &amp; Heinz
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000770.html">[X2go-dev] BUG?: plugin stuck in auth rejection
+</A></li>
+	<LI>Next message: <A HREF="000772.html">[X2go-dev] test version of baikal and some further informations
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#771">[ date ]</a>
+              <a href="thread.html#771">[ thread ]</a>
+              <a href="subject.html#771">[ subject ]</a>
+              <a href="author.html#771">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

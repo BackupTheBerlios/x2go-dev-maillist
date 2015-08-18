@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] X2Go release day: x2goserver, x2goclient, x2gothinclient, nx-libs (incl. x2goagent)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20X2Go%20release%20day%3A%20x2goserver%2C%20x2goclient%2C%0A%20x2gothinclient%2C%20nx-libs%20%28incl.%20x2goagent%29&In-Reply-To=%3CCAJBj3veOa01%3DPjChrB9dtpH57v3J%2B_rRrNgKaL9-AdGVUH4%3DZg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003204.html">
+   <LINK REL="Next"  HREF="003209.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] X2Go release day: x2goserver, x2goclient, x2gothinclient, nx-libs (incl. x2goagent)</H1>
+    <B>John Williams</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20X2Go%20release%20day%3A%20x2goserver%2C%20x2goclient%2C%0A%20x2gothinclient%2C%20nx-libs%20%28incl.%20x2goagent%29&In-Reply-To=%3CCAJBj3veOa01%3DPjChrB9dtpH57v3J%2B_rRrNgKaL9-AdGVUH4%3DZg%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] X2Go release day: x2goserver, x2goclient, x2gothinclient, nx-libs (incl. x2goagent)">jwilliams4200 at gmail.com
+       </A><BR>
+    <I>Wed Jan 18 17:22:45 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003204.html">[X2go-Dev] X2Go release day: x2goserver, x2goclient, x2gothinclient, nx-libs (incl. x2goagent)
+</A></li>
+        <LI>Next message: <A HREF="003209.html">[X2go-Dev] X2Go release day: x2goserver, x2goclient, x2gothinclient, nx-libs (incl. x2goagent)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3205">[ date ]</a>
+              <a href="thread.html#3205">[ thread ]</a>
+              <a href="subject.html#3205">[ subject ]</a>
+              <a href="author.html#3205">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>One of the sub-Makefiles in x2goserver is missing $(DESTDIR) in three places:
+
+x2goserver-xession/Makefile
+
+
+
+
+install_config:
+&#160; &#160; &#160; &#160; $(INSTALL_DIR) $(DESTDIR)$(ETCDIR)
+# &#160; &#160; &#160; provide target dirs for X11 related symlinks
+&#160; &#160; &#160; &#160; mkdir -p /etc/X11/Xresources
+&#160; &#160; &#160; &#160; mkdir -p /etc/X11/Xsession.d
+&#160; &#160; &#160; &#160; touch /etc/X11/Xsession.options
+&#160; &#160; &#160; &#160; $(INSTALL_FILE) etc/Xsession &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;$(DESTDIR)$(ETCDIR)/
+&#160; &#160; &#160; &#160; $(INSTALL_SYMLINK) /etc/X11/Xresources &#160; &#160; &#160; &#160; &#160;$(DESTDIR)$(ETCDIR)/
+&#160; &#160; &#160; &#160; $(INSTALL_SYMLINK) /etc/X11/Xsession.d &#160; &#160; &#160; &#160; &#160;$(DESTDIR)$(ETCDIR)/
+&#160; &#160; &#160; &#160; $(INSTALL_SYMLINK) /etc/X11/Xsession.options &#160; &#160;$(DESTDIR)$(ETCDIR)/
+
+
+should be:
+
+
+install_config:
+&#160; &#160; &#160; &#160; $(INSTALL_DIR) $(DESTDIR)$(ETCDIR)
+# &#160; &#160; &#160; provide target dirs for X11 related symlinks
+&#160; &#160; &#160; &#160; mkdir -p $(DESTDIR)/etc/X11/Xresources
+&#160; &#160; &#160; &#160; mkdir -p $(DESTDIR)/etc/X11/Xsession.d
+&#160; &#160; &#160; &#160; touch $(DESTDIR)/etc/X11/Xsession.options
+&#160; &#160; &#160; &#160; $(INSTALL_FILE) etc/Xsession &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160;$(DESTDIR)$(ETCDIR)/
+&#160; &#160; &#160; &#160; $(INSTALL_SYMLINK) /etc/X11/Xresources &#160; &#160; &#160; &#160; &#160;$(DESTDIR)$(ETCDIR)/
+&#160; &#160; &#160; &#160; $(INSTALL_SYMLINK) /etc/X11/Xsession.d &#160; &#160; &#160; &#160; &#160;$(DESTDIR)$(ETCDIR)/
+&#160; &#160; &#160; &#160; $(INSTALL_SYMLINK) /etc/X11/Xsession.options &#160; &#160;$(DESTDIR)$(ETCDIR)/
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003204.html">[X2go-Dev] X2Go release day: x2goserver, x2goclient, x2gothinclient, nx-libs (incl. x2goagent)
+</A></li>
+	<LI>Next message: <A HREF="003209.html">[X2go-Dev] X2Go release day: x2goserver, x2goclient, x2gothinclient, nx-libs (incl. x2goagent)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3205">[ date ]</a>
+              <a href="thread.html#3205">[ thread ]</a>
+              <a href="subject.html#3205">[ subject ]</a>
+              <a href="author.html#3205">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

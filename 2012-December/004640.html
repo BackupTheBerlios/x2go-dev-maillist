@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20allow%20user%20to%20set%20his%20preferred%20applications%0A%20in%20%7E/.x2go/applications&In-Reply-To=%3C20121204135852.22464oi165xhramk%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004634.html">
+   <LINK REL="Next"  HREF="004642.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20allow%20user%20to%20set%20his%20preferred%20applications%0A%20in%20%7E/.x2go/applications&In-Reply-To=%3C20121204135852.22464oi165xhramk%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Dec  4 13:58:52 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004634.html">[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+</A></li>
+        <LI>Next message: <A HREF="004642.html">[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4640">[ date ]</a>
+              <a href="thread.html#4640">[ thread ]</a>
+              <a href="subject.html#4640">[ subject ]</a>
+              <a href="author.html#4640">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Reinhard,
+
+On Mo 03 Dez 2012 09:30:05 CET Reinhard Tartler wrote:
+
+&gt;<i> Mike,
+</I>&gt;<i>
+</I>&gt;<i> the patch does not update the manpage. can you handle that? Thanks
+</I>&gt;<i>
+</I>&gt;<i> Reinhard.
+</I>&gt;<i>
+</I>&gt;<i> On Mon, Dec 3, 2012 at 4:43 AM, Mike Gabriel
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+</I>&gt;&gt;<i> Hi Reinhard,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> NICE!!!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Please commit to master and cherry-pick to release/3.1.1.x branch.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Please also add a /debian/changelog entry for 3.1.1.10 in both branches.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thanks+Greets,
+</I>&gt;&gt;<i> Mike
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Sa 01 Dez 2012 15:31:45 CET Reinhard Tartler wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> This file is sourced by the shell. Applications can be specified e.g. like
+</I>&gt;&gt;&gt;<i> this:
+</I>&gt;&gt;&gt;<i> WWWBROWSER=/usr/bin/google-chrome
+</I>&gt;&gt;&gt;<i> MAILCLIENT=/local/thunderbird/bin/thunderbird
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> If the application does not exist, or is not specified, the hard coded
+</I>&gt;&gt;&gt;<i> list will be consulted
+</I>&gt;&gt;&gt;<i> ---
+</I>&gt;&gt;&gt;<i>  x2goserver/bin/x2goruncommand |   20 ++++++++++++++++----
+</I>&gt;&gt;&gt;<i>  1 file changed, 16 insertions(+), 4 deletions(-)
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> diff --git a/x2goserver/bin/x2goruncommand b/x2goserver/bin/x2goruncommand
+</I>&gt;&gt;&gt;<i> index b88c3b9..7d826b5 100755
+</I>&gt;&gt;&gt;<i> --- a/x2goserver/bin/x2goruncommand
+</I>&gt;&gt;&gt;<i> +++ b/x2goserver/bin/x2goruncommand
+</I>&gt;&gt;&gt;<i> @@ -31,6 +31,10 @@ X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>  $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with
+</I>&gt;&gt;&gt;<i> options: $@&quot;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> +if [ $HOME/.x2go/applications ]; then
+</I>&gt;&gt;&gt;<i> +    . $HOME/.x2go/applications
+</I>&gt;&gt;&gt;<i> +fi
+</I>&gt;&gt;&gt;<i> +
+</I>&gt;&gt;&gt;<i>  export DISPLAY
+</I>&gt;&gt;&gt;<i>  export X2GO_AGENT_PID
+</I>&gt;&gt;&gt;<i>  export X2GO_SESSION
+</I>&gt;&gt;&gt;<i> @@ -131,7 +135,9 @@ elif [ &quot;$cmd&quot; == &quot;TRINITY&quot; ]; then
+</I>&gt;&gt;&gt;<i>  fi
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>  if [ &quot;$cmd&quot; == &quot;WWWBROWSER&quot; ]; then
+</I>&gt;&gt;&gt;<i> -       if [ -e &quot;/usr/bin/firefox&quot; ]; then
+</I>&gt;&gt;&gt;<i> +       if [ -n &quot;$WWWBROWSER&quot; ] &amp;&amp; [ -e &quot;$WWWBROWSER&quot; ]; then
+</I>&gt;&gt;&gt;<i> +               cmd=&quot;$WWWBROWSER&quot;
+</I>&gt;&gt;&gt;<i> +       elif [ -e &quot;/usr/bin/firefox&quot; ]; then
+</I>&gt;&gt;&gt;<i>                 cmd=&quot;/usr/bin/firefox&quot;
+</I>&gt;&gt;&gt;<i>         elif  [ -e &quot;/usr/bin/iceweasel&quot; ]; then
+</I>&gt;&gt;&gt;<i>                 cmd=&quot;/usr/bin/iceweasel&quot;
+</I>&gt;&gt;&gt;<i> @@ -147,7 +153,9 @@ if [ &quot;$cmd&quot; == &quot;WWWBROWSER&quot; ]; then
+</I>&gt;&gt;&gt;<i>  fi
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>  if [ &quot;$cmd&quot; == &quot;MAILCLIENT&quot; ]; then
+</I>&gt;&gt;&gt;<i> -       if [ -e &quot;/usr/bin/thunderbird&quot; ]; then
+</I>&gt;&gt;&gt;<i> +       if [ -n &quot;$MAILCLIENT&quot; ] &amp;&amp; [ -e &quot;$MAILCLIENT&quot; ]; then
+</I>&gt;&gt;&gt;<i> +               cmd=&quot;$MAILCLIENT&quot;
+</I>&gt;&gt;&gt;<i> +       elif [ -e &quot;/usr/bin/thunderbird&quot; ]; then
+</I>&gt;&gt;&gt;<i>                 cmd=&quot;/usr/bin/thunderbird&quot;
+</I>&gt;&gt;&gt;<i>         elif  [ -e &quot;/usr/bin/icedove&quot; ]; then
+</I>&gt;&gt;&gt;<i>                 cmd=&quot;/usr/bin/icedove&quot;
+</I>&gt;&gt;&gt;<i> @@ -159,7 +167,9 @@ if [ &quot;$cmd&quot; == &quot;MAILCLIENT&quot; ]; then
+</I>&gt;&gt;&gt;<i>  fi
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>  if [ &quot;$cmd&quot; == &quot;OFFICE&quot; ]; then
+</I>&gt;&gt;&gt;<i> -       if [ -e &quot;/usr/bin/loffice&quot; ]; then
+</I>&gt;&gt;&gt;<i> +       if [ -n &quot;$OFFICE&quot; ] &amp;&amp; [ -e &quot;$OFFICE&quot; ]; then
+</I>&gt;&gt;&gt;<i> +               cmd=&quot;$OFFICE&quot;
+</I>&gt;&gt;&gt;<i> +       elif [ -e &quot;/usr/bin/loffice&quot; ]; then
+</I>&gt;&gt;&gt;<i>                 cmd=&quot;/usr/bin/loffice&quot;
+</I>&gt;&gt;&gt;<i>         elif [ -e &quot;/usr/bin/ooffice&quot; ]; then
+</I>&gt;&gt;&gt;<i>                 cmd=&quot;/usr/bin/ooffice&quot;
+</I>&gt;&gt;&gt;<i> @@ -168,7 +178,9 @@ fi
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>  if [ &quot;$cmd&quot; == &quot;TERMINAL&quot; ]; then
+</I>&gt;&gt;&gt;<i>         IMEXIT=&quot;true&quot;
+</I>&gt;&gt;&gt;<i> -       if [ -e &quot;/usr/bin/konsole&quot; ]; then
+</I>&gt;&gt;&gt;<i> +       if [ -n &quot;$TERMINAL&quot; ] &amp;&amp; [ -e &quot;$TERMINAL&quot; ]; then
+</I>&gt;&gt;&gt;<i> +               cmd=&quot;$TERMINAL&quot;
+</I>&gt;&gt;&gt;<i> +       elif [ -e &quot;/usr/bin/konsole&quot; ]; then
+</I>&gt;&gt;&gt;<i>                 cmd=&quot;/usr/bin/konsole&quot;
+</I>&gt;&gt;&gt;<i>                 # KDE4 konsole behaves differently from other terminals
+</I>&gt;&gt;&gt;<i>                 IMEXIT=&quot;false&quot;
+</I>&gt;&gt;&gt;<i> --
+</I>&gt;&gt;&gt;<i> 1.7.9.5
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;&gt;<i> X2Go-Dev mailing list
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;&gt;<i> mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+</I>&gt;&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> freeBusy:
+</I>&gt;&gt;<i> <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2Go-Dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> regards,
+</I>&gt;<i>     Reinhard
+</I>
+I see a push for this patch is still pending. I have two comments on  
+the patch (belated, sorry):
+
+It would be fine to have the default/preferred applications  
+configurable system-wide and on a per-user basis. Can you add that?
+
+Then: the name applications in ~/.x2go and /etc/x2go is already  
+reserved. Expected is a directory or dir-symlink that contains /  
+points to a folder with .desktop files. This is used in the  
+x2gogetapps script and is part of the X2Go Published Applications  
+feature.
+
+Please consider using another name instead of ,,applications'' for the  
+proposed environment file.
+
+Thanks+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121204/c8c784a1/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121204/c8c784a1/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004634.html">[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+</A></li>
+	<LI>Next message: <A HREF="004642.html">[X2Go-Dev] [PATCH] allow user to set his preferred applications in ~/.x2go/applications
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4640">[ date ]</a>
+              <a href="thread.html#4640">[ thread ]</a>
+              <a href="subject.html#4640">[ subject ]</a>
+              <a href="author.html#4640">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

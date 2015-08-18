@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] CAPS / NUM lock problems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20CAPS%20/%20NUM%20lock%20problems&In-Reply-To=%3C209337137.175896.1277755455368.JavaMail.root%40vms182.mailsrvcs.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000689.html">
+   <LINK REL="Next"  HREF="000699.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] CAPS / NUM lock problems</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20CAPS%20/%20NUM%20lock%20problems&In-Reply-To=%3C209337137.175896.1277755455368.JavaMail.root%40vms182.mailsrvcs.net%3E"
+       TITLE="[X2go-dev] CAPS / NUM lock problems">greno at verizon.net
+       </A><BR>
+    <I>Mon Jun 28 22:04:15 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000689.html">[X2go-dev] CAPS / NUM lock problems
+</A></li>
+        <LI>Next message: <A HREF="000699.html">[X2go-dev] about the mailing list...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#691">[ date ]</a>
+              <a href="thread.html#691">[ thread ]</a>
+              <a href="subject.html#691">[ subject ]</a>
+              <a href="author.html#691">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>We get this problem quite a lot in our server racks using KVM switches where the keyboard will get out of sync with the desktop.  Some of the KVM's have you depress both Shift keys at the same time to toggle things back in sync.  Num Lock is a different story.  Sometimes you just have to quickly press it until it gets back in sync.  I mention this because this same type of problem appears to affect x2go as well from what you were saying.
+
+Gerry
+
+
+Jun 28, 2010 03:55:56 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> wrote:
+
+Hello, all.  We have had numerous complaints about CAPS lock and NUM
+lock getting out of sync between the physical and virtual desktops.  We
+at first attributed it to accessing the same virtual desktop from
+potentially different physical desktops.  Upon further investigation we
+see the following:
+
+When the lock is toggled from the virtual desktop, the change is
+reflected on both virtual and physical desktops
+
+When the lock is toggled from the physical desktop, the change is
+reflected only in the physical desktop; it has no effect on the X2Go
+session.  This puts the locks out of sync.  If the user then realizes
+their lock is not on in the virtual desktop and then toggles it in their
+virtual desktop, it also toggles in their physical desktop which now
+keeps them out of sync.
+
+I would imagine this is a challenging problem to solve but is it
+possible for the X2Go client to detect a CAPS/NUM lock toggle even when
+the X2Go desktop does not have focus and reflect that through to the
+X2Go desktop session?
+
+_______________________________________________
+X2go-dev mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000689.html">[X2go-dev] CAPS / NUM lock problems
+</A></li>
+	<LI>Next message: <A HREF="000699.html">[X2go-dev] about the mailing list...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#691">[ date ]</a>
+              <a href="thread.html#691">[ thread ]</a>
+              <a href="subject.html#691">[ subject ]</a>
+              <a href="author.html#691">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

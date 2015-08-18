@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20concept%20for%20X2go%20session%20lock-down%20to%20kiosk-mode%0A%20%28was%20Re%3A%20X2go%20is%20insecure%29&In-Reply-To=%3Cvmime.4d935e79.804.4d6db80b5e4dda2d%40mail.pl20%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001964.html">
+   <LINK REL="Next"  HREF="001968.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)</H1>
+    <B>Dick Kniep</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20concept%20for%20X2go%20session%20lock-down%20to%20kiosk-mode%0A%20%28was%20Re%3A%20X2go%20is%20insecure%29&In-Reply-To=%3Cvmime.4d935e79.804.4d6db80b5e4dda2d%40mail.pl20%3E"
+       TITLE="[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)">dick.kniep at lindix.nl
+       </A><BR>
+    <I>Wed Mar 30 18:46:49 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001964.html">[X2go-dev] X2go is insecure
+</A></li>
+        <LI>Next message: <A HREF="001968.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1967">[ date ]</a>
+              <a href="thread.html#1967">[ thread ]</a>
+              <a href="subject.html#1967">[ subject ]</a>
+              <a href="author.html#1967">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi list,
+
+&#160;
+
+First of all sorry for the somewhat provocative way I entered this discussion.
+
+&#160;
+
+Now about the use case we have:
+
+&#160;
+
+We are providing an application over the internet to users. This application should run seamlessly on the desktop of the user. So we do NOT export a complete desktop but only a single application. The users should be able to start this application, but nothing else......
+
+&#160;
+
+Our users are on the Internet at random places. Some might logon with the nice python client of Mike, some might use an X2go plugin in a browser etc.
+
+&#160;
+
+As the users should only be able to execute our application and nothing more, security should be done at the server and NOT at the client. The way X2go works is that commands defined in the client are sent to the server and executed there. So if&#160; a user starts a desktop, the client sends the command to start the desktop to the server and it is executed there. The screen shows throught nx and he can work. From the moment the desktop is running, only the screens, the mouseclicks and keyboard is sent thru the tunnel.&#160; Because the user can change the profiles stored in the X2goclient, he could enter any command there and send it to the server.
+
+&#160;
+
+So, what I suggest is that on the server there is a file where the allowed user commands are stored per usergroup (Off-course Unix usergroups can be used here). This is not very complicated, because if the user is allowed to start the shell, this is only checked when the connection is made and not afterwards. This should be sufficient.
+
+&#160;
+
+Example
+
+---------//-----------
+
+The group x2gousers on the server is allowed to execute the terminal and kde and a special application (say CVix, our application). So, when the user connects to the server, the server reports to the user, OK, you can start kde, the terminal or CVix.
+
+If the user chooses the terminal, then the terminal is started and the user can execute any command allowed for him in the terminal.
+
+&#160;
+
+Now this is a trivial example, because the user is allowed to execute the terminal and can do anything he likes. However if the user is only allowed to execute CVix, there is no way whatsover for him to circumvent this authorization, because the wrapper simply prohibits any command that is not defined in the db.
+
+&#160;
+
+----------//----------
+
+&#160;
+
+In the X2go client, commands must be executed on the server to build the session. The number of commands that must be issued by the client is not very high and can be delivered preconfigured with the X2go server in the allowed commands db.
+
+&#160;
+
+We have developed the wrapper that does exactly what I describe here. Currently it is lacking a screen where an authorized user can change the authorization db, but that will come on short notice.
+
+&#160;
+
+I hope it is a little clearer now what the problem is and how it can be solved. 
+&#160;
+
+Dick Kniep
+
+&#160;
+-----Oorspronkelijk bericht-----
+Van: John A. Sullivan III &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt;
+Verzonden: wo 30-03-11 11:44:06
+Aan: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>; 
+Onderwerp: Re: [X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+
+On Wed, 2011-03-30 at 10:58 +0200, Erik Auerswald wrote:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> On Tue, Mar 29, 2011 at 06:31:07PM +0200, Mike Gabriel wrote:
+</I>&gt;<i> &gt; On Di 29 M&#228;r 2011 16:55:50 CEST Alexander Wuerstlein wrote:
+</I>&gt;<i> &gt;&gt; On 11-03-29 15:36, Dick Kniep &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">dick.kniep at lindix.nl</A>&gt; wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; An authorized user running commands over ssh is not a security problem
+</I>&gt;<i> &gt;&gt; at all. It works as intended. ssh provides shells.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; As Reinhard has mentioned in another post: Dicks setup requires a &#160;
+</I>&gt;<i> &gt; complete lock-down-kiosk-mode-kind-of-thing. He wants a user to be able 
+</I>&gt;<i> &gt; to run a small set of commands only (i.e. the rootless applications he 
+</I>&gt;<i> &gt; wants to provide to his customers). From his perspective AFAIK a user 
+</I>&gt;<i> &gt; logged in via SSH is a security issue. May it be so.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt;&gt; The $SSH_ORIGINAL_COMMAND contains the original command that the
+</I>&gt;<i> &gt;&gt;&gt; client wants to execute on the server. This command is checked against
+</I>&gt;<i> &gt;&gt;&gt; the allowed commands for the user within the wrapper.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; From the invocation I infer, that the intended language for the
+</I>&gt;<i> &gt;&gt; wrapper is shellskript. This is extremely dangerous if intended as a
+</I>&gt;<i> &gt;&gt; security measure like you claim. Also please note that it is very hard
+</I>&gt;<i> &gt;&gt; to write such wrappers in a secure way, such that stuff like e.g.
+</I>&gt;<i> &gt;&gt; 'allowed_command foo bar ; evil_command' is not possible.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; This is a very worthy remark!!! I also think that it needs quite an &#160;
+</I>&gt;<i> &gt; effort to script such a wrapper (and have it accepted in X2go &#160;
+</I>&gt;<i> &gt; upstream!!!)
+</I>&gt;<i> 
+</I>&gt;<i> An example for rsync via SSH can be found at:
+</I>&gt;<i> <A HREF="http://troy.jdmz.net/rsync/index.html">http://troy.jdmz.net/rsync/index.html</A>
+</I>&gt;<i> 
+</I>&gt;<i> The validate-rsync script there can be used as a starting point.
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Erik
+</I>I admit I have not thought this issue through thoroughly as I'm under a
+brutal deadline right now but I would think the problem is that one can
+use X2Go for application publishing and not just complete desktops. &#160;Do
+we know in advance every possible application one might want to publish
+via X2Go? If we did (and I can't imagine we would), would we want to
+identify those via X2Go or some other mechanism built more for the task?
+My guess is, since we are an application publishing application, we
+should leave restriction of applications to the sysadmin using the tools
+already at their disposal. &#160;Again, that is only a half baked thought but
+I think it has some merit - John
+
+_______________________________________________
+X2go-dev mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+
+!DSPAM:4d92fb66203787818312239!
+&#160;
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110330/e55ec879/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110330/e55ec879/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001964.html">[X2go-dev] X2go is insecure
+</A></li>
+	<LI>Next message: <A HREF="001968.html">[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1967">[ date ]</a>
+              <a href="thread.html#1967">[ thread ]</a>
+              <a href="subject.html#1967">[ subject ]</a>
+              <a href="author.html#1967">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

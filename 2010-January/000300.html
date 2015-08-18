@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go en homedirs on samba share
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20en%20homedirs%20on%20samba%20share&In-Reply-To=%3C1264621120.2264.2.camel%40jaseee.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000299.html">
+   <LINK REL="Next"  HREF="000298.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go en homedirs on samba share</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20en%20homedirs%20on%20samba%20share&In-Reply-To=%3C1264621120.2264.2.camel%40jaseee.pacifera.com%3E"
+       TITLE="[X2go-dev] x2go en homedirs on samba share">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Jan 27 20:38:40 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000299.html">[X2go-dev] x2go en homedirs on samba share
+</A></li>
+        <LI>Next message: <A HREF="000298.html">[X2go-dev] Opening a session to user with encrypted home directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#300">[ date ]</a>
+              <a href="thread.html#300">[ thread ]</a>
+              <a href="subject.html#300">[ subject ]</a>
+              <a href="author.html#300">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2010-01-27 at 09:29 +0100, jasper van der marel wrote:
+&gt;<i> Hello Heinz,
+</I>&gt;<i> 
+</I>&gt;<i> I think I have found a part of the problem. I have read
+</I>&gt;<i> (<A HREF="http://osdir.com/ml/fedora-directory-users/2009-06/msg00026.html">http://osdir.com/ml/fedora-directory-users/2009-06/msg00026.html</A>)
+</I>&gt;<i> x2go logs in 3 times when  setting of the connection between server
+</I>&gt;<i> and client. In the current setup we are mounting the samba/cifs home
+</I>&gt;<i> share during login. When looking at the mountpoints after making the
+</I>&gt;<i> connection (which fails) I can see the samba/cifs home dir mounted
+</I>&gt;<i> three times. Is there a way to force x2go to login just one time ? Or
+</I>&gt;<i> can you explain the loginprocess to me so I can solve the problem ?
+</I>&gt;<i> 
+</I>&gt;<i> With kind regards,
+</I>&gt;<i> 
+</I>&gt;<i> Jasper van der Marel
+</I>&lt;snip&gt;
+We encountered the three login problem when we had set our accounts to
+lockout after three failed attempts and found our X2Go users locked at
+only one failed login attempt.  We recorded Alex's explanation in our
+internal documentation,  Here it is:
+
+This is more than three because of X2Go.  It appears to make three
+logins during the session setup process.  Thus, a single mistyped
+password locks an account limited to only three failed attempts.  Here
+is the email explanation from Alex:
+Let me explain how x2goclient works. It using ssh authentication to
+login on remote server. The password typed from user before session
+start will be used for whole session. During one session x2goclient make
+several ssh connections to x2goserver:
+
+1. Connect to server and ask for list of running or suspended session
+2. Create ssh tunnel for graphical (and audio) data
+3. Resume suspended session or start a new one.
+4. In case of a new session, run session command on server (for example
+startkde)
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000299.html">[X2go-dev] x2go en homedirs on samba share
+</A></li>
+	<LI>Next message: <A HREF="000298.html">[X2go-dev] Opening a session to user with encrypted home directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#300">[ date ]</a>
+              <a href="thread.html#300">[ thread ]</a>
+              <a href="subject.html#300">[ subject ]</a>
+              <a href="author.html#300">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

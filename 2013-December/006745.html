@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#378: Point to XQuartz as extra,	non-bundled dependency during installation process on Mac OS X
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23378%3A%20Point%20to%20XQuartz%20as%20extra%2C%0A%09non-bundled%20dependency%20during%20installation%20process%20on%20Mac%20OS%20X&In-Reply-To=%3C20131221205932.Horde.G9xpdz1Ic7XvuSNDr-RTcA1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006747.html">
+   <LINK REL="Next"  HREF="006748.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#378: Point to XQuartz as extra,	non-bundled dependency during installation process on Mac OS X</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23378%3A%20Point%20to%20XQuartz%20as%20extra%2C%0A%09non-bundled%20dependency%20during%20installation%20process%20on%20Mac%20OS%20X&In-Reply-To=%3C20131221205932.Horde.G9xpdz1Ic7XvuSNDr-RTcA1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#378: Point to XQuartz as extra,	non-bundled dependency during installation process on Mac OS X">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Dec 21 21:59:32 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006747.html">[X2Go-Dev] Processed: Re:  Bug#377: init scripts
+</A></li>
+        <LI>Next message: <A HREF="006748.html">[X2Go-Dev] Bug#379: Provide support for systemd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6745">[ date ]</a>
+              <a href="thread.html#6745">[ thread ]</a>
+              <a href="subject.html#6745">[ subject ]</a>
+              <a href="author.html#6745">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Severity: wishlist
+
+This is a suggestion from Dick Kniep on how we can improve the Mac OS  
+X installer.
+
+   o During installation: test if XQuartz is already installed
+   o If not: let a window pop up that informs about the necessity of XQuartz
+   o If possible: present an URL to the download page of XQuartz
+
+@Clemens: do you think such an improvement can easily be implemented  
+in the Mac OS X installer of X2Go Client? Request for comment...
+
+Greets,
+Mike
+
+
+----- Weitergeleitete Nachricht von Dick Kniep &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">dick at lindix.nl</A>&gt; -----
+   Datum: Sat, 21 Dec 2013 10:59:30 +0100
+     Von: Dick Kniep &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">dick at lindix.nl</A>&gt;
+Betreff: RE: XQuartz for Mac installer
+      An: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+
+Hi Mike,
+
+&gt;<i> Hi Dick
+</I>&gt;<i>
+</I>&gt;<i> On  Di 17 Dez 2013 11:07:39 CET, Dick Kniep wrote:
+</I>&gt;<i>
+</I>&gt;<i> &gt; Hi Mike,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I tried to install the regular X2goclient on a Mac and there was an
+</I>&gt;<i> &gt; additional step required to get it working.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; In the newer Mac's XQuartz (the Mac X-server) is not installed. The
+</I>&gt;<i> &gt; installer should make sure that XQuartz is installed also! This
+</I>&gt;<i> &gt; should also be included in the regular Mac installer of the
+</I>&gt;<i> &gt; X2goclient.
+</I>&gt;<i>
+</I>&gt;<i> I talked to the Mac OS X maintainer of X2Go Client and we both agreed
+</I>&gt;<i> that XQuartz won't be bundled in X2Go Client. The installation
+</I>&gt;<i> procedure is:
+</I>&gt;<i>
+</I>&gt;<i> Install XQuartz
+</I>&gt;<i> Log-off, log-on
+</I>&gt;<i> Install X2Go Client
+</I>&gt;<i> Use X2Go
+</I>&gt;<i>
+</I>&gt;<i> Reasons for not bundling XQuartz:
+</I>&gt;<i>
+</I>&gt;<i>    o it is not easy to bundle it (Clemens said, he does not know how
+</I>&gt;<i> to do it, and he is better than me)
+</I>&gt;<i>    o XQuartz has a shorter release cycle than X2Go -&gt; X2Go Client will
+</I>&gt;<i> ship old XQuartz versions
+</I>&gt;<i>    o many people have XQuartz already installed
+</I>&gt;<i>
+</I>&gt;<i> Possibly, we will have to compensate the non-bundling with
+</I>&gt;<i> documentation. I have improved the quick install howto [1] a bit, but
+</I>&gt;<i> there maybe other places where we can improve the docs (of course!!!).
+</I>&gt;<i>
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i> [1] <A HREF="http://wiki.x2go.org/doku.php/doc:installation:x2goclient#macos_x">http://wiki.x2go.org/doku.php/doc:installation:x2goclient#macos_x</A>
+</I>
+
+Yes I understand. However, is it possible to test for the existence of  
+Xquartz on the system and if it does not exist start the webbrowser  
+and show the XQuartz download page? They should be aware that  
+something else is required, because most users simply click on the  
+install button and think that everything is taken care of.....
+
+Met vriendelijke groet,
+Dick Kniep
+Lindix BV
+tel. 036-5215580
+mob. 06-50991858
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131221/fec704fd/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131221/fec704fd/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006747.html">[X2Go-Dev] Processed: Re:  Bug#377: init scripts
+</A></li>
+	<LI>Next message: <A HREF="006748.html">[X2Go-Dev] Bug#379: Provide support for systemd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6745">[ date ]</a>
+              <a href="thread.html#6745">[ thread ]</a>
+              <a href="subject.html#6745">[ subject ]</a>
+              <a href="author.html#6745">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

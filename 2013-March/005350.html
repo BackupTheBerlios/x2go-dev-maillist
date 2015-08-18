@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] nx-libs 3.5.0.18 failing to build in launchpad PPA
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nx-libs%203.5.0.18%20failing%20to%20build%20in%20launchpad%20PPA&In-Reply-To=%3C20130328091447.18764csl4ml2i48n%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005347.html">
+   <LINK REL="Next"  HREF="005362.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] nx-libs 3.5.0.18 failing to build in launchpad PPA</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nx-libs%203.5.0.18%20failing%20to%20build%20in%20launchpad%20PPA&In-Reply-To=%3C20130328091447.18764csl4ml2i48n%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] nx-libs 3.5.0.18 failing to build in launchpad PPA">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Mar 28 09:14:47 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005347.html">[X2Go-Dev] nx-libs 3.5.0.18 failing to build in launchpad PPA
+</A></li>
+        <LI>Next message: <A HREF="005362.html">[X2Go-Dev] nx-libs 3.5.0.18 failing to build in launchpad PPA
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5350">[ date ]</a>
+              <a href="thread.html#5350">[ thread ]</a>
+              <a href="subject.html#5350">[ subject ]</a>
+              <a href="author.html#5350">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Matthew,
+
+On Mi 27 M&#228;r 2013 16:20:42 CET &quot;Matthew L. Dailey&quot; wrote:
+
+&gt;<i> Greetings. I'm not sure I can e-mail the dev list, but I figured I'd  
+</I>&gt;<i> give it a try, since this seems more appropriate than the users  
+</I>&gt;<i> list. :-)
+</I>&gt;<i>
+</I>&gt;<i> I was looking at the Launchpad PPA for X2Go today and noticed that  
+</I>&gt;<i> the nx-libs packages for 3.5.0.18 are not successfully building:  
+</I>&gt;<i> &lt;<A HREF="https://launchpad.net/~x2go/+archive/baikal/+builds?build_text=nx-libs&amp;build_state=failed">https://launchpad.net/~x2go/+archive/baikal/+builds?build_text=nx-libs&amp;build_state=failed</A>&gt;. Looking at the build log, it seems related to the fix for bug #145. It looks like debian/Makefile.nx-libs is trying to source replace.sh, but the file is actually Makefile.replace.sh so it fails when trying to call string_rep(). The roll-tarball.sh script copies this file to replace.sh, but my guess is that this isn't invoked in the launchpad build  
+</I>&gt;<i> process.
+</I>&gt;<i>
+</I>&gt;<i> Hopefully someone with a better understanding of the patch and build  
+</I>&gt;<i> process can find a quick fix.
+</I>&gt;<i>
+</I>&gt;<i> Thanks for your hard work and let me know if you have any questions.
+</I>
+Thanks for reporting this. It had become into my awareness, yesterday,  
+as well.
+
+Issue has been solved, see:
+<A HREF="http://permalink.gmane.org/gmane.linux.terminal-server.x2go.announce/35">http://permalink.gmane.org/gmane.linux.terminal-server.x2go.announce/35</A>
+
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130328/f7074f75/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130328/f7074f75/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005347.html">[X2Go-Dev] nx-libs 3.5.0.18 failing to build in launchpad PPA
+</A></li>
+	<LI>Next message: <A HREF="005362.html">[X2Go-Dev] nx-libs 3.5.0.18 failing to build in launchpad PPA
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5350">[ date ]</a>
+              <a href="thread.html#5350">[ thread ]</a>
+              <a href="subject.html#5350">[ subject ]</a>
+              <a href="author.html#5350">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

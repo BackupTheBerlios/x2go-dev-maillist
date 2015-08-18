@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] PulseAudio 4.0 in X2Go Client win32 4.0.2.x
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20PulseAudio%204.0%20in%20X2Go%20Client%20win32%204.0.2.x&In-Reply-To=%3CCAMKht8gSKNA22FOEuYxADNAudfaaMrE%3DL2L_4AOMB1kBCZgf6A%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006848.html">
+   <LINK REL="Next"  HREF="006850.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] PulseAudio 4.0 in X2Go Client win32 4.0.2.x</H1>
+    <B>Michael DePaulo</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20PulseAudio%204.0%20in%20X2Go%20Client%20win32%204.0.2.x&In-Reply-To=%3CCAMKht8gSKNA22FOEuYxADNAudfaaMrE%3DL2L_4AOMB1kBCZgf6A%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] PulseAudio 4.0 in X2Go Client win32 4.0.2.x">mikedep333 at gmail.com
+       </A><BR>
+    <I>Tue Jan 21 15:11:22 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006848.html">[X2Go-Dev] X2Go Client 4.0.2.x will require a patch in libssh 0.5.x
+</A></li>
+        <LI>Next message: <A HREF="006850.html">[X2Go-Dev] Bug#407: Sometimes mounts will remain,	even after a close of the session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6849">[ date ]</a>
+              <a href="thread.html#6849">[ thread ]</a>
+              <a href="subject.html#6849">[ subject ]</a>
+              <a href="author.html#6849">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>TLDR: I want to know if I should include PulseAudio 4.0 in the win32 builds
+of X2Go Client 4.0.2.x. For testing, should I post a 4.0.1.2 build with
+PulseAudio 4.0, or post a HEAD build with it?
+
+Mike#1 recently announced that &quot;we are close to bumping X2Go Client to a
+new release series (4.0.2.x)&quot;
+<A HREF="https://lists.berlios.de/pipermail/x2go-dev/2014-January/006847.html">https://lists.berlios.de/pipermail/x2go-dev/2014-January/006847.html</A>
+
+I have managed to compile PulseAudio 4.0 (the latest) for win32. I also
+managed to compile 3.0. The builds are here:
+<A HREF="https://build.opensuse.org/project/show/home:mikedep333:branches:home:mkbosmans:mingw32:pulseaudio">https://build.opensuse.org/project/show/home:mikedep333:branches:home:mkbosmans:mingw32:pulseaudio</A>
+
+Unfortunately, neither 3.0 nor 4.0 fixed the issue in bug 363 and described
+on this wiki page:
+<A HREF="http://wiki.x2go.org/doku.php/wiki:bugs:pulsetestmatrix">http://wiki.x2go.org/doku.php/wiki:bugs:pulsetestmatrix</A>
+In other words, we will still need to ship &quot;interims&quot; builds with
+PulseAudio 0.9.6 to fix that bug.
+I am hoping that this bug might be fixed in PulseAudio HEAD/master, but I
+am still trying to compile it. Even if it is fixed, that doesn't mean we
+will necessarily ship HEAD/master.
+
+I also am not aware of any x2goclient-relevant win32 improvements to
+PulseAudio since 1.1.
+
+So I want feedback if we should include PulseAudio 4.0 in X2Go Client
+4.0.2.x. My gut feeling is &quot;yes, because we should stay current with
+upstream.&quot;
+
+I also want to know if for the sake of testing, I should post a 4.0.1.2
+build with PulseAudio 4.0, or post a HEAD build with it. I can do the
+former within 2 days, and the latter within 5 days or so.
+
+I have done a small amount of testing of 4.0; I haven't seen any
+regressions.
+
+-Mike#2
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20140121/6cc63a3f/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20140121/6cc63a3f/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006848.html">[X2Go-Dev] X2Go Client 4.0.2.x will require a patch in libssh 0.5.x
+</A></li>
+	<LI>Next message: <A HREF="006850.html">[X2Go-Dev] Bug#407: Sometimes mounts will remain,	even after a close of the session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6849">[ date ]</a>
+              <a href="thread.html#6849">[ thread ]</a>
+              <a href="subject.html#6849">[ subject ]</a>
+              <a href="author.html#6849">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Wheezy problems with gtk
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Wheezy%20problems%20with%20gtk&In-Reply-To=%3C50ADE4D9.3080008%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004588.html">
+   <LINK REL="Next"  HREF="004590.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Wheezy problems with gtk</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Wheezy%20problems%20with%20gtk&In-Reply-To=%3C50ADE4D9.3080008%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] Wheezy problems with gtk">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Thu Nov 22 09:39:53 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004588.html">[X2Go-Dev] Wheezy problems with gtk
+</A></li>
+        <LI>Next message: <A HREF="004590.html">[X2Go-Dev] Bug#61: Proxy configuration appears when changing the	session command
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4589">[ date ]</a>
+              <a href="thread.html#4589">[ thread ]</a>
+              <a href="subject.html#4589">[ subject ]</a>
+              <a href="author.html#4589">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hey,
+
+I use the latest stable.
+The Eclipse issue seems to be known:
+<A HREF="https://bugs.eclipse.org/bugs/show_bug.cgi?id=386955">https://bugs.eclipse.org/bugs/show_bug.cgi?id=386955</A>
+<A HREF="https://wiki.archlinux.org/index.php/FreeNX#eclipse_crashes_when_editing_a_file">https://wiki.archlinux.org/index.php/FreeNX#eclipse_crashes_when_editing_a_file</A>
+
+For the Gnome Control Center I found:
+<A HREF="https://bugzilla.redhat.com/show_bug.cgi?id=827916">https://bugzilla.redhat.com/show_bug.cgi?id=827916</A>
+
+The error is
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>(gnome-control-center:4426): Gdk-WARNING **: The program
+'gnome-control-center' received an X Window System error.
+This probably reflects a bug in the program.
+The error was 'BadLength (poly request too large or internal Xlib length
+erro'.
+  (Details: serial 157 error_code 16 request_code 147 minor_code 1)
+  (Note to programmers: normally, X errors are reported asynchronously;
+   that is, you will receive the error a while after causing it.
+   To debug your program, run it with the GDK_SYNCHRONIZE environment
+   variable to change this behavior. You can then get a meaningful
+   backtrace from your debugger if you break on the gdk_x_error() function.)
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>
+I failed to debug it though, as I didn't manage to break on gdk_x_error.
+
+If someone can hint me at how to start debugging this, I'll try to look
+into it.
+
+Cheers
+Morty
+
+
+
+On 2012-11-21 22:19, Nable 80 wrote:
+&gt;<i> Could you tell what versions of x2goserver do you use? It may be a
+</I>&gt;<i> well known issue with libcairo-1.12.x, there are some solutions for
+</I>&gt;<i> that case.
+</I>&gt;<i>
+</I>&gt;<i> 2012/11/22, Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;:
+</I>&gt;&gt;<i> Hi Morty,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Mi 21 Nov 2012 17:06:11 CET Moritz Struebe wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hi (Again Alex and ),
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I'm not sure how close you are following the state of wheezy. I
+</I>&gt;&gt;&gt;<i> currently testing it using it 64 and up to now found:
+</I>&gt;&gt;&gt;<i> eclipse must be started with  -vmargs
+</I>&gt;&gt;&gt;<i> -Dorg.eclipse.swt.internal.gtk.cairoGraphics=false
+</I>&gt;&gt;&gt;<i> gnome-control-center does not start at all
+</I>&gt;&gt;&gt;<i> As far as I can see both seems rather cairo then GTK-related.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Should I file tracking bugs?
+</I>&gt;&gt;<i> If issues are reproducible on more than one installation: please do so.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Mike
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;&gt;<i> mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+</I>&gt;&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> freeBusy:
+</I>&gt;&gt;<i> <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 5005 bytes
+Desc: S/MIME Kryptografische Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121122/68e0cde6/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121122/68e0cde6/attachment.bin</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004588.html">[X2Go-Dev] Wheezy problems with gtk
+</A></li>
+	<LI>Next message: <A HREF="004590.html">[X2Go-Dev] Bug#61: Proxy configuration appears when changing the	session command
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4589">[ date ]</a>
+              <a href="thread.html#4589">[ thread ]</a>
+              <a href="subject.html#4589">[ subject ]</a>
+              <a href="author.html#4589">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

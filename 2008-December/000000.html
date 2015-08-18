@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] regression: nxproxy 3.3.0-2-1 does not work
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2008-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20regression%3A%20nxproxy%203.3.0-2-1%20does%20not%20work&In-Reply-To=%3C1229290144.11662.80.camel%40mattotaupa.wohnung.familie-menzel.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000001.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] regression: nxproxy 3.3.0-2-1 does not work</H1>
+    <B>Paul Menzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20regression%3A%20nxproxy%203.3.0-2-1%20does%20not%20work&In-Reply-To=%3C1229290144.11662.80.camel%40mattotaupa.wohnung.familie-menzel.net%3E"
+       TITLE="[X2go-dev] regression: nxproxy 3.3.0-2-1 does not work">paulepanter at users.sourceforge.net
+       </A><BR>
+    <I>Sun Dec 14 22:29:04 CET 2008</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000001.html">[X2go-dev] regression: nxproxy 3.3.0-2-1 does not work
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear developers of x2go,
+
+
+thank you for the great product.
+
+I hope this is the correct list to contact. If not please tell me.
+
+Upgrading to the new NX libraries with version 3.3 my clients (gtk)
+cannot connect anymore.
+
+Is that a known problem? It works with 3.2.0-1-1. Some information is in
+the end.
+
+Please tell me, if I can provide more information.
+
+
+Thanks a lot,
+
+Paul
+
+
+
+$ cat .x2go/C-x-50-1229289525_stDGNOME_dp32/session.log
+
+NXAGENT - Version 3.3.0
+
+Copyright (C) 2001, 2007 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Agent running with pid '14701'.
+Session: Starting session at 'Sun Dec 14 22:18:46 2008'.
+Info: Proxy running in server mode with pid '14701'.
+Info: Waiting for connection from 'localhost' on port '30001'.
+Info: Aborting the procedure due to signal '15'.
+Error: Aborting session with 'X2goagent: Unable to open display 'nx/nx,options=/home/x/.x2go/C-x-50-1229289525_stDGNOME_dp32/options:50''.
+Session: Aborting session at 'Sun Dec 14 22:18:51 2008'.
+Session: Session aborted at 'Sun Dec 14 22:18:51 2008'.
+
+
+$ LANG=C dpkg -l x2go* # server and test machine for new client not working
+Desired=Unknown/Install/Remove/Purge/Hold
+|<i> Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+</I>|<i>/ Err?=(none)/Hold/Reinst-required/X=both-problems (Status,Err: uppercase=bad)
+</I>||<i>/ Name           Version        Description
+</I>+++-==============-==============-============================================
+ii  x2goagent      3.3.0-3-1      Special NX-ized client, was developed by NoM
+un  x2goclient     &lt;none&gt;         (no description available)
+ii  x2goclient-cli 2.0.1-1        x2goclient-cli command line client for x2go
+ii  x2goclient-gtk 0.0.1-7        x2goclient gtk client
+ii  x2goserver     2.0.1-16       x2goserver (daemon and tools)
+
+$ LANG=C dpkg -l nx* # server and non-working client
+Desired=Unknown/Install/Remove/Purge/Hold
+|<i> Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+</I>|<i>/ Err?=(none)/Hold/Reinst-required/X=both-problems (Status,Err: uppercase=bad)
+</I>||<i>/ Name           Version        Description
+</I>+++-==============-==============-============================================
+ii  nxclient       3.2.0-14       NX Client
+ii  nxcomp         3.3.0-3-1      NX compression library
+ii  nxcompext      3.3.0-2-1      Xcompext Library for nxagent
+ii  nxcompshad     3.3.0-2-1      nx based library needed by the x2go system
+un  nxnode         &lt;none&gt;         (no description available)
+ii  nxproxy        3.3.0-2-1      NX compression proxy
+
+
+$ LANG=C dpkg -l x2go* # working client
+Desired=Unknown/Install/Remove/Purge/Hold
+|<i> Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+</I>|<i>/ Err?=(none)/Hold/Reinst-required/X=both-problems (Status,Err: uppercase=bad)
+</I>||<i>/ Name           Version        Description
+</I>+++-==============-==============-============================================
+ii  x2goclient     2.0.1-24       x2goclient qt4 client
+ii  x2goclient-gtk 0.0.1-6        x2goclient gtk client
+
+$ LANG=C dpkg -l nx* # working client
+Desired=Unknown/Install/Remove/Purge/Hold
+|<i> Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+</I>|<i>/ Err?=(none)/Hold/Reinst-required/X=both-problems (Status,Err: uppercase=bad)
+</I>||<i>/ Name           Version        Description
+</I>+++-==============-==============-============================================
+ii  nxclient       3.2.0-14       NX Client
+ii  nxproxy        3.2.0-1-1      NX X compression library
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: Dies ist ein digital signierter Nachrichtenteil
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20081214/ad88575f/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20081214/ad88575f/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000001.html">[X2go-dev] regression: nxproxy 3.3.0-2-1 does not work
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#0">[ date ]</a>
+              <a href="thread.html#0">[ thread ]</a>
+              <a href="subject.html#0">[ subject ]</a>
+              <a href="author.html#0">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

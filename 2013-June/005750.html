@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Please test x2gobroker 0.0.2.3 from nightly builds
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Please%20test%20x2gobroker%200.0.2.3%20from%20nightly%20builds&In-Reply-To=%3C20130607124050.26092e6ifrpzhh9u%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005749.html">
+   <LINK REL="Next"  HREF="005751.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Please test x2gobroker 0.0.2.3 from nightly builds</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Please%20test%20x2gobroker%200.0.2.3%20from%20nightly%20builds&In-Reply-To=%3C20130607124050.26092e6ifrpzhh9u%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Please test x2gobroker 0.0.2.3 from nightly builds">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jun  7 12:40:50 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005749.html">[X2Go-Dev] Please test x2gobroker 0.0.2.3 from nightly builds
+</A></li>
+        <LI>Next message: <A HREF="005751.html">[X2Go-Dev] Please test x2gobroker 0.0.2.3 from nightly builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5750">[ date ]</a>
+              <a href="thread.html#5750">[ thread ]</a>
+              <a href="subject.html#5750">[ subject ]</a>
+              <a href="author.html#5750">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Anders,
+
+On Fr 07 Jun 2013 11:04:43 CEST Anders Bruun Olsen wrote:
+
+&gt;<i> Hi Mike,
+</I>&gt;<i>
+</I>&gt;<i> Sorry for not being able to test until now. You have x2gobroker-agent set
+</I>&gt;<i> to depend on x2goserver &gt;= 4.0.1.0, so we can't install it with the 4.0.0.3
+</I>&gt;<i> prerelease.
+</I>
+in the meantime (between my initial mail in this thread and now) I  
+have decided to create a release/4.0.1.x branch for X2Go Server in  
+X2Go Git [1]. (Sorry!)
+
+Please checkout the x2goserver code from this new branch and build it  
+from source:
+
+   git clone <A HREF="git://code.x2go.org/x2goserver.git">git://code.x2go.org/x2goserver.git</A>
+   cd x2goserver
+   git fetch origin release/4.0.1.x:release/4.0.1.x
+   git checkout release/4.0.1.x
+   debuild -uc -us
+   cd ..
+   sudo dpkg -i x2goserver*.deb
+
+Greets,
+Mike
+
+[1]  
+<A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=shortlog;h=refs/heads/release/4.0.1.x">http://code.x2go.org/gitweb?p=x2goserver.git;a=shortlog;h=refs/heads/release/4.0.1.x</A>
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130607/9478346e/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130607/9478346e/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005749.html">[X2Go-Dev] Please test x2gobroker 0.0.2.3 from nightly builds
+</A></li>
+	<LI>Next message: <A HREF="005751.html">[X2Go-Dev] Please test x2gobroker 0.0.2.3 from nightly builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5750">[ date ]</a>
+              <a href="thread.html#5750">[ thread ]</a>
+              <a href="subject.html#5750">[ subject ]</a>
+              <a href="author.html#5750">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

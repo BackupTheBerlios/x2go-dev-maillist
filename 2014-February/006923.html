@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2goDebug
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goDebug&In-Reply-To=%3C52EF740E.6080408%40phoca-gmbh.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006922.html">
+   <LINK REL="Next"  HREF="006926.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2goDebug</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goDebug&In-Reply-To=%3C52EF740E.6080408%40phoca-gmbh.de%3E"
+       TITLE="[X2Go-Dev] x2goDebug">o.shneyder at phoca-gmbh.de
+       </A><BR>
+    <I>Mon Feb  3 11:48:46 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006922.html">[X2Go-Dev] Bug#427:
+</A></li>
+        <LI>Next message: <A HREF="006926.html">[X2Go-Dev] Bug#426: X2Go issue (in src:x2godesktopsharing) has been	marked as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6923">[ date ]</a>
+              <a href="thread.html#6923">[ thread ]</a>
+              <a href="subject.html#6923">[ subject ]</a>
+              <a href="author.html#6923">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+You should start x2goclient with option &quot;--debug&quot;
+
+
+regards,
+Alex
+
+Am 31.01.2014 15:44, schrieb Michael DePaulo:
+&gt;<i> On Fri, Jan 31, 2014 at 4:01 AM, Oleksandr Shneyder
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">o.shneyder at phoca-gmbh.de</A>&gt; wrote:
+</I>&gt;&gt;<i> Hello Mike,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> you should enable option &quot;console&quot; in x2goclient.pro. X2Go Client write
+</I>&gt;&gt;<i> debug info in stderr.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> regards,
+</I>&gt;&gt;<i> Alex
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Am 31.01.2014 04:20, schrieb Michael DePaulo:
+</I>&gt;&gt;&gt;<i> Is there a way to view the &quot;x2goDebug&quot; statements on win32?
+</I>&gt;<i> 
+</I>&gt;<i> Hi Alex &amp; others,
+</I>&gt;<i> 
+</I>&gt;<i> Setting that variable made progress.
+</I>&gt;<i> 
+</I>&gt;<i> However, onmainwindow.cpp:9474 contains this line:
+</I>&gt;<i> x2goDebug&lt;&lt;&quot;Starting win servers...&quot;;
+</I>&gt;<i> That line should be executed during startup, but I never see that line
+</I>&gt;<i> outputted during start nor during connection.
+</I>&gt;<i> 
+</I>&gt;<i> Specifically what I am trying to do is debug why PulseAudio 3.0, 4.0,
+</I>&gt;<i> &amp; 4.99.3 fail to start when launched by x2goclient.exe unless the
+</I>&gt;<i> pulseaudio cookie is already present. (Actually, they appear to be
+</I>&gt;<i> frequently started and stopped.) (Pulseaudio 1.1 does startup and
+</I>&gt;<i> create the cookie that 3.0 and later can use.) When I run those new
+</I>&gt;<i> versions of pulseaudio.exe from cmd.exe, they successfully startup and
+</I>&gt;<i> create a cookie, even when I seem to set all the env vars that
+</I>&gt;<i> startWinServers() sets.
+</I>&gt;<i> 
+</I>&gt;<i> Anyway, this is the output I get.
+</I>&gt;<i> 
+</I>&gt;<i> C:\Program Files (x86)\x2goclient&gt;x2goclient.exe
+</I>&gt;<i> x2go-INFO-1&gt; &quot;Starting x2goclient...&quot;
+</I>&gt;<i> x2go-WARNING-1&gt; &quot;Can't load translator: :/x2goclient_en_us&quot;
+</I>&gt;<i> x2go-WARNING-2&gt; &quot;Can't load translator: :/qt_en_US&quot;
+</I>&gt;<i> x2go-INFO-3&gt; &quot;Started  x2goclient.&quot;
+</I>&gt;<i> QPixmap::scaled: Pixmap is a null pixmap
+</I>&gt;<i> QPixmap::scaled: Pixmap is a null pixmap
+</I>&gt;<i> x2go-INFO-8&gt; &quot;Starting connection to server: japsand.x2go.org:64064&quot;
+</I>&gt;<i> Object::connect: No such slot ONMainWindow::slotSndTunOk(int)
+</I>&gt;<i> cygwin warning:
+</I>&gt;<i>   MS-DOS style path detected: C:/Users/MIKE~1.DEP/X2GO~1/ssh/gen/key.gq5264
+</I>&gt;<i>   Preferred POSIX equivalent is:
+</I>&gt;<i> /cygdrive/c/Users/MIKE~1.DEP/X2GO~1/ssh/gen/key.gq5264
+</I>&gt;<i>   CYGWIN environment variable option &quot;nodosfilewarning&quot; turns off this warning.
+</I>&gt;<i>   Consult the user's guide for more details about POSIX paths:
+</I>&gt;<i>     <A HREF="http://cygwin.com/cygwin-ug-net/using.html#using-pathnames">http://cygwin.com/cygwin-ug-net/using.html#using-pathnames</A>
+</I>&gt;<i> QProcess: Destroyed while process is still running.
+</I>&gt;<i> x2go-INFO-6&gt; &quot;Closing x2goclient...&quot;
+</I>&gt;<i> QProcess: Destroyed while process is still running.
+</I>&gt;<i> x2go-INFO-7&gt; &quot;Closed  x2goclient.&quot;
+</I>&gt;<i> 
+</I>&gt;<i> -Mike
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> 
+</I>
+
+-- 
+----------------------------------------------------
+Oleksandr Shneyder  | Email: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">o.shneyder at phoca-gmbh.de</A>
+phoca GmbH          | Tel. : 0911 - 14870374 0
+Br&#228;uhausgasse 9     | Fax. : 0911 - 14870374 9
+D-82205 Gilching    | Mobil: 0163 - 49 64 461
+
+Gesch&#228;ftsf&#252;hrung:
+Dipl.-Inf. Oleksandr Shneyder
+
+Amtsgericht M&#252;nchen | <A HREF="http://www.phoca-gmbh.de">http://www.phoca-gmbh.de</A>
+HRB 196 658         | <A HREF="http://www.x2go.org">http://www.x2go.org</A>
+USt-IdNr.: DE281977973
+----------------------------------------------------
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 259 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20140203/3dcda352/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20140203/3dcda352/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006922.html">[X2Go-Dev] Bug#427:
+</A></li>
+	<LI>Next message: <A HREF="006926.html">[X2Go-Dev] Bug#426: X2Go issue (in src:x2godesktopsharing) has been	marked as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6923">[ date ]</a>
+              <a href="thread.html#6923">[ thread ]</a>
+              <a href="subject.html#6923">[ subject ]</a>
+              <a href="author.html#6923">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

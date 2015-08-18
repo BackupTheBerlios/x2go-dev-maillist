@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Broken glyphs and icons after suspending a session
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Broken%20glyphs%20and%20icons%20after%20suspending%20a%20session&In-Reply-To=%3CCAA%2B0xP3%2BQgEGwWrzzBWvOBGMUYxDB1suvASggxL04Qh2wZokLA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003963.html">
+   <LINK REL="Next"  HREF="003967.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Broken glyphs and icons after suspending a session</H1>
+    <B>Jim Burnes</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Broken%20glyphs%20and%20icons%20after%20suspending%20a%20session&In-Reply-To=%3CCAA%2B0xP3%2BQgEGwWrzzBWvOBGMUYxDB1suvASggxL04Qh2wZokLA%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Broken glyphs and icons after suspending a session">jvburnes at gmail.com
+       </A><BR>
+    <I>Sat May 12 03:22:24 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003963.html">[X2Go-Dev] Broken glyphs and icons after suspending a session
+</A></li>
+        <LI>Next message: <A HREF="003967.html">[X2Go-Dev] Broken glyphs and icons after suspending a session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3965">[ date ]</a>
+              <a href="thread.html#3965">[ thread ]</a>
+              <a href="subject.html#3965">[ subject ]</a>
+              <a href="author.html#3965">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>If the glyph breakage is because of my patch it's probably because the
+patch is rather non-selective.  If nxagent's render code tries to reference
+a null pointer I prevent it from doing that.
+
+I'm not specifically aware how that might break your glyphs, but if it does
+I suspect it's because my code is preventing remote synchronization of the
+rendered object.  Look at all of the conditionals in the patch that perform
+a sync operation if true.
+
+I wonder if someone like Keith Packard could help.  Perhaps if we point the
+nomachine guys at our patch they might suggest a cleaner fix.
+
+...or it might be completely unrelated to your problem.  :-)
+On May 11, 2012 4:51 PM, &quot;Holger Hahn&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at computerfreak.de</A>&gt; wrote:
+
+&gt;<i> Hello x2go dev team,
+</I>&gt;<i>
+</I>&gt;<i> as I was looking for an alternative on NX nomachine, because it was
+</I>&gt;<i> broken with the last Cairo 1.12 update, I found your x2go solution,
+</I>&gt;<i> which is great.
+</I>&gt;<i>
+</I>&gt;<i> So as it bases on the same libraries than the original nomachine, you
+</I>&gt;<i> had the same issues - with rendering to undrawable objects, the whole
+</I>&gt;<i> nxagent crashes because of SEGV.
+</I>&gt;<i>
+</I>&gt;<i> With the patch of Jan (thanks to) you committed to the master branch
+</I>&gt;<i> today, I compiled another nxagent. Actually it worked fine, but after
+</I>&gt;<i> suspending and reconnecting to a session, some graphical objects get
+</I>&gt;<i> broken...
+</I>&gt;<i>
+</I>&gt;<i> All characters/fonts that has been rendered on the screen prior the
+</I>&gt;<i> suspension, are gone. (See Screenshots the link below).
+</I>&gt;<i> Creating new text by starting applications is ok, as long as the
+</I>&gt;<i> characters has not been rendered in the session before.
+</I>&gt;<i>
+</I>&gt;<i> I thought it might be problem with a kind of glyph cache of the X
+</I>&gt;<i> session (ubuntu/x86 x2goclient). But I found one case, where
+</I>&gt;<i> additionally to the text, all icons are gone also, which was with an
+</I>&gt;<i> debian/x64 x2goclient... (Difference can be seen on screenshots)
+</I>&gt;<i>
+</I>&gt;<i> Might it have to do something with the patch from today, that could
+</I>&gt;<i> filter out to much rendering? Or is this issue known from somewhere else?
+</I>&gt;<i>
+</I>&gt;<i> Here are some screenshots: <A HREF="http://www.computerfreak.de/sonic/x2shots/">http://www.computerfreak.de/sonic/x2shots/</A>
+</I>&gt;<i>
+</I>&gt;<i> Thanks for your help,
+</I>&gt;<i> Holger
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120511/120af4ac/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120511/120af4ac/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003963.html">[X2Go-Dev] Broken glyphs and icons after suspending a session
+</A></li>
+	<LI>Next message: <A HREF="003967.html">[X2Go-Dev] Broken glyphs and icons after suspending a session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3965">[ date ]</a>
+              <a href="thread.html#3965">[ thread ]</a>
+              <a href="subject.html#3965">[ subject ]</a>
+              <a href="author.html#3965">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

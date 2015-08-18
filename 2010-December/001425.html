@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Need a preseed option in deb files for sudoers entries
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Need%20a%20preseed%20option%20in%20deb%20files%20for%20sudoers%20entries&In-Reply-To=%3CAANLkTi%3DNok-QQXDu4h1X9MCDRktAMMSSP1oqi8x9yqU9%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001417.html">
+   <LINK REL="Next"  HREF="001426.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Need a preseed option in deb files for sudoers entries</H1>
+    <B>Jeff Hanson</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Need%20a%20preseed%20option%20in%20deb%20files%20for%20sudoers%20entries&In-Reply-To=%3CAANLkTi%3DNok-QQXDu4h1X9MCDRktAMMSSP1oqi8x9yqU9%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] Need a preseed option in deb files for sudoers entries">jhansonxi at gmail.com
+       </A><BR>
+    <I>Wed Dec 22 22:21:16 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001417.html">[X2go-dev] x2goclient authentication error!
+</A></li>
+        <LI>Next message: <A HREF="001426.html">[X2go-dev] x2gothinclient boot error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1425">[ date ]</a>
+              <a href="thread.html#1425">[ thread ]</a>
+              <a href="subject.html#1425">[ subject ]</a>
+              <a href="author.html#1425">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The preinst scripts in both the x2goserver and x2goprint debs add
+sudoers entries.  When adding the packages to an existing installation
+this is adequate (although it may violate a Debian packaging policy
+somewhere).
+
+If the packages are installed during a Debian/Ubuntu installation
+using kickstart and/or preseeding it causes a conflict.  The problem
+is that the entry &quot;%admin ALL=(ALL) ALL&quot; is added after the
+installation/post-script stage.  If x2goserver or x2goprint is
+installed, their NOPASSWD entries are already in sudoers and the
+%admin entry overrides them since the file is processed from top to
+bottom.  This causes x2go connections to fail with &quot;sudo:
+pam_unix(sudo:auth): conversation failed&quot; and &quot;sudo:
+pam_unix(sudo:auth): auth could not identify password for [user]&quot;
+errors in auth.log (an infinite number as it really doesn't want to
+give up until I kill x2gostartagent).
+
+Preseed options/templates need to be added to these debs so that the
+sudoers entries can be skipped via preseed/debconf and added later by
+a late_command script or manually after installation.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001417.html">[X2go-dev] x2goclient authentication error!
+</A></li>
+	<LI>Next message: <A HREF="001426.html">[X2go-dev] x2gothinclient boot error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1425">[ date ]</a>
+              <a href="thread.html#1425">[ thread ]</a>
+              <a href="subject.html#1425">[ subject ]</a>
+              <a href="author.html#1425">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

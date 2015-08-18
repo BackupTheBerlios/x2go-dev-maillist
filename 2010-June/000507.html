@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Fwd: x2go with ldap, but no login
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Fwd%3A%20x2go%20with%20ldap%2C%20but%20no%20login&In-Reply-To=%3C4C048F05.9080001%40immerda.ch%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000506.html">
+   <LINK REL="Next"  HREF="000508.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Fwd: x2go with ldap, but no login</H1>
+    <B>michel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Fwd%3A%20x2go%20with%20ldap%2C%20but%20no%20login&In-Reply-To=%3C4C048F05.9080001%40immerda.ch%3E"
+       TITLE="[X2go-dev] Fwd: x2go with ldap, but no login">kamerun at immerda.ch
+       </A><BR>
+    <I>Tue Jun  1 06:39:33 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000506.html">[X2go-dev] Problems on Debian Squeeze
+</A></li>
+        <LI>Next message: <A HREF="000508.html">[X2go-dev] Fwd: x2go with ldap, but no login
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#507">[ date ]</a>
+              <a href="thread.html#507">[ thread ]</a>
+              <a href="subject.html#507">[ subject ]</a>
+              <a href="author.html#507">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+-------- Original Message --------
+Subject: 	x2go with ldap, but no login
+Date: 	Tue, 1 Jun 2010 06:37:46 +0200
+From: 	lug limbe &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">lug.limbe at gmail.com</A>&gt;
+To: 	<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kamerun at immerda.ch</A>, &quot;lug.limbe&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">lug.limbe at gmail.com</A>&gt;
+
+
+
+hello,
+first a question: i will come in europe in july august, september, last 
+year i participate to a x2go meeting in germany, it was very nice and 
+helpfull for me. if it exist something similar (workshop, seminar, ...) 
+please tell me, i woud like to participate.
+as we quasi promise, we install x2go with ldap. we install x2go with 
+x2go-home on ubuntu and x2go-one with debian without ldap without 
+problems. we want to have 2 x2goserver with load balance, it would be 
+very nice, because if a server is not working, we can still work with 
+the other server, if both are working, with load balance it should help 
+for better performance.
+so we tryto install x2go with ldap. it has taken more than 2 days: we 
+have a 128 kbs connection, but the worse ist the current, which stop 
+every 20-30 minutes when the rain is heavyl falling down (we are in the 
+raining season. it seems to work fine, but when i want to start a client 
+(PXE) i come until the login, but it appears only the icon to shutdown 
+and nothing else.
+
+as you can see in syslog and better understand as i, slapd is working,
+every 5 seconds happens something
+
+it seems to close the connection
+*/
+/*
+/*May 31 22:52:21 x2goserver slapd[2295]: conn=8928 fd=22 closed*/
+
+and this address* 0.0.0.0*:636 seems me not correct
+
+/May 31 22:52:21 x2goserver slapd[2295]: conn=8929 fd=22 ACCEPT from 
+IP=//127.0.1.1:60306/ &lt;<A HREF="http://127.0.1.1:60306">http://127.0.1.1:60306</A>&gt;/ *(IP=*//*0.0.0.0:636*/ 
+&lt;<A HREF="http://0.0.0.0:636">http://0.0.0.0:636</A>&gt;/*)*/
+
+below we put the the tcpdump on eth1
+
+/May 31 22:52:16 x2goserver slapd[2295]: conn=8927 op=1 SRCH 
+base=&quot;ou=People,o=planetexpress,c=de&quot; scope=1 deref=0 
+filter=&quot;(&amp;(objectClass=shadowAccount)(uid=postgres))&quot;
+May 31 22:52:16 x2goserver slapd[2295]: conn=8927 op=1 SRCH attr=uid 
+userPassword shadowLastChange shadowMax shadowMin shadowWarning 
+shadowInactive shadowExpire shadowFlag
+May 31 22:52:16 x2goserver slapd[2295]: &lt;= bdb_equality_candidates: 
+(uid) not indexed
+May 31 22:52:16 x2goserver slapd[2295]: conn=8927 op=1 SEARCH RESULT 
+tag=101 err=0 nentries=1 text=
+May 31 22:52:16 x2goserver slapd[2295]: conn=8927 fd=22 closed 
+(connection lost)
+May 31 22:52:21 x2goserver slapd[2295]: conn=8928 fd=22 ACCEPT from 
+IP=//127.0.1.1:60305/ &lt;<A HREF="http://127.0.1.1:60305">http://127.0.1.1:60305</A>&gt;/ (IP=//0.0.0.0:636/ 
+&lt;<A HREF="http://0.0.0.0:636">http://0.0.0.0:636</A>&gt;/)
+May 31 22:52:21 x2goserver slapd[2295]: conn=8928 fd=22 TLS established 
+tls_ssf=128 ssf=128
+May 31 22:52:21 x2goserver slapd[2295]: conn=8928 op=0 BIND 
+dn=&quot;cn=ldapadmin,o=planetexpress,c=de&quot; method=128
+May 31 22:52:21 x2goserver slapd[2295]: conn=8928 op=0 BIND 
+dn=&quot;cn=ldapadmin,o=planetexpress,c=de&quot; mech=SIMPLE ssf=0
+May 31 22:52:21 x2goserver slapd[2295]: conn=8928 op=0 RESULT tag=97 
+err=0 text=
+May 31 22:52:21 x2goserver slapd[2295]: conn=8928 op=1 SRCH 
+base=&quot;ou=People,o=planetexpress,c=de&quot; scope=2 deref=0 
+filter=&quot;(&amp;(objectClass=posixAccount)(uid=postgres))&quot;
+May 31 22:52:21 x2goserver slapd[2295]: &lt;= bdb_equality_candidates: 
+(uid) not indexed
+May 31 22:52:21 x2goserver slapd[2295]: conn=8928 op=1 SEARCH RESULT 
+tag=101 err=0 nentries=1 text=
+May 31 22:52:21 x2goserver slapd[2295]: conn=8928 op=2 UNBIND
+May 31 22:52:21 x2goserver slapd[2295]: conn=8928 fd=22 closed
+May 31 22:52:21 x2goserver slapd[2295]: conn=8929 fd=22 ACCEPT from 
+IP=//127.0.1.1:60306/ &lt;<A HREF="http://127.0.1.1:60306">http://127.0.1.1:60306</A>&gt;/ (IP=//0.0.0.0:636/ 
+&lt;<A HREF="http://0.0.0.0:636">http://0.0.0.0:636</A>&gt;/)
+May 31 22:52:21 x2goserver slapd[2295]: conn=8929 fd=22 TLS established 
+tls_ssf=128 ssf=128
+May 31 22:52:21 x2goserver slapd[2295]: conn=8929 op=0 BIND dn=&quot;&quot; method=128
+May 31 22:52:21 x2goserver slapd[2295]: conn=8929 op=0 RESULT tag=97 
+err=0 text=
+May 31 22:52:21 x2goserver slapd[2295]: conn=8929 op=1 SRCH 
+base=&quot;ou=People,o=planetexpress,c=de&quot; scope=1 deref=0 
+filter=&quot;(&amp;(objectClass=shadowAccount)(uid=postgres))&quot;
+May 31 22:52:21 x2goserver slapd[2295]: conn=8929 op=1 SRCH attr=uid 
+userPassword shadowLastChange shadowMax shadowMin shadowWarning 
+shadowInactive shadowExpire shadowFlag
+May 31 22:52:21 x2goserver slapd[2295]: &lt;= bdb_equality_candidates: 
+(uid) not indexed
+May 31 22:52:21 x2goserver slapd[2295]: conn=8929 op=1 SEARCH RESULT 
+tag=101 err=0 nentries=1 text=
+May 31 22:52:21 x2goserver slapd[2295]: conn=8929 fd=22 closed 
+(connection lost)
+May 31 22:52:26 x2goserver slapd[2295]: conn=8930 fd=22 ACCEPT from 
+IP=//127.0.1.1:60307/ &lt;<A HREF="http://127.0.1.1:60307">http://127.0.1.1:60307</A>&gt;/ (IP=//0.0.0.0:636/ 
+&lt;<A HREF="http://0.0.0.0:636">http://0.0.0.0:636</A>&gt;/)
+May 31 22:52:26 x2goserver slapd[2295]: conn=8930 fd=22 TLS established 
+tls_ssf=128 ssf=128
+May 31 22:52:26 x2goserver slapd[2295]: conn=8930 op=0 BIND 
+dn=&quot;cn=ldapadmin,o=planetexpress,c=de&quot; method=128
+May 31 22:52:26 x2goserver slapd[2295]: conn=8930 op=0 BIND 
+dn=&quot;cn=ldapadmin,o=planetexpress,c=de&quot; mech=SIMPLE ssf=0
+May 31 22:52:26 x2goserver slapd[2295]: conn=8930 op=0 RESULT tag=97 
+err=0 text=
+May 31 22:52:26 x2goserver slapd[2295]: conn=8930 op=1 SRCH 
+base=&quot;ou=People,o=planetexpress,c=de&quot; scope=2 deref=0 
+filter=&quot;(&amp;(objectClass=posixAccount)(uid=postgres))&quot;
+May 31 22:52:26 x2goserver slapd[2295]: &lt;= bdb_equality_candidates: 
+(uid) not indexed
+May 31 22:52:26 x2goserver slapd[2295]: conn=8930 op=1 SEARCH RESULT 
+tag=101 err=0 nentries=1 text=
+May 31 22:52:26 x2goserver slapd[2295]: conn=8930 op=2 UNBIND
+May 31 22:52:26 x2goserver slapd[2295]: conn=8930 fd=22 closed
+May 31 22:52:27 x2goserver slapd[2295]: conn=8931 fd=22 ACCEPT from 
+IP=//127.0.1.1:60308/ &lt;<A HREF="http://127.0.1.1:60308">http://127.0.1.1:60308</A>&gt;/ (IP=//0.0.0.0:636/ 
+&lt;<A HREF="http://0.0.0.0:636">http://0.0.0.0:636</A>&gt;/)
+May 31 22:52:27 x2goserver slapd[2295]: conn=8931 fd=22 TLS established 
+tls_ssf=128 ssf=128
+May 31 22:52:27 x2goserver slapd[2295]: conn=8931 op=0 BIND dn=&quot;&quot; method=128
+May 31 22:52:27 x2goserver slapd[2295]: conn=8931 op=0 RESULT tag=97 
+err=0 text=
+May 31 22:52:27 x2goserver slapd[2295]: conn=8931 op=1 SRCH 
+base=&quot;ou=People,o=planetexpress,c=de&quot; scope=1 deref=0 
+filter=&quot;(&amp;(objectClass=shadowAccount)(uid=postgres))&quot;
+May 31 22:52:27 x2goserver slapd[2295]: conn=8931 op=1 SRCH attr=uid 
+userPassword shadowLastChange shadowMax shadowMin shadowWarning 
+shadowInactive shadowExpire shadowFlag
+May 31 22:52:27 x2goserver slapd[2295]: &lt;= bdb_equality_candidates: 
+(uid) not indexed
+May 31 22:52:27 x2goserver slapd[2295]: conn=8931 op=1 SEARCH RESULT 
+tag=101 err=0 nentries=1 text=
+May 31 22:52:27 x2goserver slapd[2295]: conn=8931 fd=22 closed 
+(connection lost)
+/
+
+and tcpdump on eth1
+
+
+
+/22:37:10.670815 IP x2goserver.local.nfs &gt; 192.168.0.100.147730080: 
+reply ok 116 getattr [|nfs]
+22:37:10.674699 IP 192.168.0.100.164507296 &gt; x2goserver.local.nfs: 112 
+getattr [|nfs]
+22:37:10.674896 IP x2goserver.local.nfs &gt; 192.168.0.100.164507296: reply 
+ok 116 getattr [|nfs]
+22:37:10.679737 IP 192.168.0.100.181284512 &gt; x2goserver.local.nfs: 112 
+getattr [|nfs]
+22:37:10.679912 IP x2goserver.local.nfs &gt; 192.168.0.100.181284512: reply 
+ok 116 getattr [|nfs]
+22:37:10.683758 IP 192.168.0.100.198061728 &gt; x2goserver.local.nfs: 112 
+getattr [|nfs]
+22:37:10.683912 IP x2goserver.local.nfs &gt; 192.168.0.100.198061728: reply 
+ok 116 getattr [|nfs]
+22:37:10.687996 IP 192.168.0.100.214838944 &gt; x2goserver.local.nfs: 112 
+getattr [|nfs]
+22:37:10.688051 IP x2goserver.local.nfs &gt; 192.168.0.100.214838944: reply 
+ok 116 getattr [|nfs]
+22:37:10.688916 IP 192.168.0.100.231616160 &gt; x2goserver.local.nfs: 112 
+getattr [|nfs]
+22:37:10.688957 IP x2goserver.local.nfs &gt; 192.168.0.100.231616160: reply 
+ok 116 getattr [|nfs]
+22:37:10.728423 IP 192.168.0.100.939 &gt; x2goserver.local.nfs: . ack 87897 
+win 41418 &lt;nop,nop,timestamp 4294900216 5304737&gt;
+^C
+712 packets captured
+712 packets received by filter
+0 packets dropped by kernel
+x2goserver:/home/michel#
+/
+
+i don't understand what is
+*x2goserver.local.nfs*
+
+i can ping
+x2gonserver and x2goserver.local but not x2goserver.local.nfs
+
+i hope somebody can help us
+
+in name of the &quot;Association of Linux Friends&quot; in limbe cameroon michel
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100601/9169ba58/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100601/9169ba58/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000506.html">[X2go-dev] Problems on Debian Squeeze
+</A></li>
+	<LI>Next message: <A HREF="000508.html">[X2go-dev] Fwd: x2go with ldap, but no login
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#507">[ date ]</a>
+              <a href="thread.html#507">[ thread ]</a>
+              <a href="subject.html#507">[ subject ]</a>
+              <a href="author.html#507">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

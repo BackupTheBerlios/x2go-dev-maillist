@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Use case for an x2go user-group
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C87wrkx1fkq.fsf%40faui44a.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001762.html">
+   <LINK REL="Next"  HREF="001764.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Use case for an x2go user-group</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C87wrkx1fkq.fsf%40faui44a.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] Use case for an x2go user-group">siretart at tauware.de
+       </A><BR>
+    <I>Fri Feb 18 17:18:45 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001762.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+        <LI>Next message: <A HREF="001764.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1763">[ date ]</a>
+              <a href="thread.html#1763">[ thread ]</a>
+              <a href="subject.html#1763">[ subject ]</a>
+              <a href="author.html#1763">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Feb 18, 2011 at 16:55:56 (CET), John A. Sullivan III wrote:
+
+&gt;<i> On Fri, 2011-02-18 at 12:32 +0100, Moritz Struebe wrote:
+</I>&gt;&gt;<i> Hi there,
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> we already talked to Alex, but maybe it's a good idea to ask a broader
+</I>&gt;&gt;<i> audience: Has anybody got an use case where someone who has ssh access
+</I>&gt;&gt;<i> is not allowed to start x2go? In short: We want to get rid of the
+</I>&gt;&gt;<i> sudo-entry and use suidperl instead.
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> Thanks for asking.  I'm not sure what the issues are.  Our environment
+</I>&gt;<i> is probably one of the most unusual because there is no root access from
+</I>&gt;<i> within the virtual machine - only from the host entering the VM.  Users
+</I>&gt;<i> cannot su.  That does not sound like what you are asking, though.
+</I>
+No. The question is if there was a legitimate use-case for having users
+that can login via ssh, but are not in the x2gousers group, i.e., cannot
+login via x2go.
+
+&gt;<i> They also have significantly restricted access to kernel functions which
+</I>&gt;<i> is why the call to fusemount (I forget the exact command) fails in our
+</I>&gt;<i> environment and we have to move much of the functionality to the VServer
+</I>&gt;<i> host (which is much more efficient than running 400 instances of
+</I>&gt;<i> x2gocleansessions) - John
+</I>
+What you describe seems like a reasonably restricted Linux vserver
+system to me, but doesn't really relate to the original question.
+
+-- 
+Gruesse/greetings,
+Reinhard Tartler, KeyID 945348A4
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001762.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+	<LI>Next message: <A HREF="001764.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1763">[ date ]</a>
+              <a href="thread.html#1763">[ thread ]</a>
+              <a href="subject.html#1763">[ subject ]</a>
+              <a href="author.html#1763">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

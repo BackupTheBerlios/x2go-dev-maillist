@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go with likewise-open (ldap) questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CAANLkTin1hJ-8FzbExMK0faa6%3DQsE7kcobduWUpCcT3jE%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001363.html">
+   <LINK REL="Next"  HREF="001365.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go with likewise-open (ldap) questions</H1>
+    <B>Ivan Boyadzhiev</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CAANLkTin1hJ-8FzbExMK0faa6%3DQsE7kcobduWUpCcT3jE%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] x2go with likewise-open (ldap) questions">ivancho.b at gmail.com
+       </A><BR>
+    <I>Tue Dec 14 07:32:55 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001363.html">[X2go-dev] X2go-dev Digest, Vol 24, Issue 11
+</A></li>
+        <LI>Next message: <A HREF="001365.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1364">[ date ]</a>
+              <a href="thread.html#1364">[ thread ]</a>
+              <a href="subject.html#1364">[ subject ]</a>
+              <a href="author.html#1364">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+I've implemented x2go with likewise-open, still I do have 2 issues, which
+are present only when I use LDAP account, and not present with regular
+account on the linux. More details: OS Ubuntu 10.10; x2go 3.0.1-5;
+likewise-open 5.4.0.42111. Ubuntu is joined to Windows Active Directory
+through LDAP. I don't have any issues there, and everything work fine with
+this configuration (one issue that I've overcome: when joining LDAP, the
+users have other group IDs, which came from LDAP. In order to connect to
+x2go server, your username must have the x2gousers group assignment. In my
+case in LDAP I do have special group which contains users who have to have
+access. I've logged to LDAP locally on the ubuntu, and using command id I've
+checked the unique identification of that LDAP group. Then I've set this
+number to the x2gousers in the file /etx/groups. This way I overwrite the
+group that came from LDAP with the local group, and only these users can
+connect to x2go).
+
+Note: I've read all the documentation and I still didn't find solutions for
+my issues. They are:
+
+1. Connecting remotely with x2go client with LDAP credentials doesn't
+forward sound - thus no sound can be heard. This problem doesn't occur when
+I login locally on the Ubuntu with same LDAP credentials. When I'm logged in
+locally, the next remote login (using the client), has sound. However, I
+thought that it is something with groups for audio, but seems it is not, as
+I'm using very same credentials and the only difference is local and remote,
+this way all user permissions are same (confirmed)...
+2. Connecting remotely with x2go client with LDAP credentials doesn't stop
+the session, when disconnected in every way. The session remain open
+(visible with x2golistsessions_sql HOSTNAME). I've made around 20 client
+sessions from one host, and on the next ones it refused to connect me,
+because the number of authentications were too much. Again, when doing this
+locally on the Ubuntu, the sessions really terminate. I've even replaced
+x2gosuspend with x2goterminate, without any success. The only way is to
+delete file /var/db/x2go/x2go_sessions and to create empty one with
+/usr/lib/x2go/script/x2gosqlite.sh. The live sessions still remain active,
+but this doesn't seem good solution. It is not possible to terminate or to
+resume open sessions with the client as well. So they stay like zombies
+there.
+
+Do you have an idea what can be the root causes for these issues? My logic
+lead me to some un-escaped symbols used when joining the Domain - like @ and
+\. Because when logging to the LDAP I am using <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">USERNAME at DOMAIN.</A> Another
+possibility is to be from Likewise-open, still, there should not happen this
+as locally everything works fine.
+
+Best Regards
+Ivan
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101214/94e343d1/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101214/94e343d1/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001363.html">[X2go-dev] X2go-dev Digest, Vol 24, Issue 11
+</A></li>
+	<LI>Next message: <A HREF="001365.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1364">[ date ]</a>
+              <a href="thread.html#1364">[ thread ]</a>
+              <a href="subject.html#1364">[ subject ]</a>
+              <a href="author.html#1364">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

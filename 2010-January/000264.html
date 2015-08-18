@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] FUSE reFUSEs to install
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20FUSE%20reFUSEs%20to%20install&In-Reply-To=%3C1262998744.3685.10.camel%40jaseee.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000262.html">
+   <LINK REL="Next"  HREF="000269.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] FUSE reFUSEs to install</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20FUSE%20reFUSEs%20to%20install&In-Reply-To=%3C1262998744.3685.10.camel%40jaseee.pacifera.com%3E"
+       TITLE="[X2go-dev] FUSE reFUSEs to install">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat Jan  9 01:59:04 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000262.html">[X2go-dev] Windows client hangs after screen saver starts
+</A></li>
+        <LI>Next message: <A HREF="000269.html">[X2go-dev] FUSE reFUSEs to install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#264">[ date ]</a>
+              <a href="thread.html#264">[ thread ]</a>
+              <a href="subject.html#264">[ subject ]</a>
+              <a href="author.html#264">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, all.  We are trying to install a Debian Lenny vserver on a CentOS
+5.4 host running a custom kernel - 2.6.28.7-vs2.3.0.36.7.  We are trying
+to install fuse-utils and sshfs for use wit X2Go (a great project for
+those unfamiliar with it - www.x2go.org).  We keep getting:
+
+Setting up fuse-utils (2.7.4-1.1) ...
+creating fuse group...
+udev active, skipping device node creation.
+udev requires a mounted sysfs, not started. failed!
+ failed!
+invoke-rc.d: initscript udev, action &quot;reload&quot; failed.
+dpkg: error processing fuse-utils (--configure):
+ subprocess post-installation script returned error exit status 1
+dpkg: dependency problems prevent configuration of sshfs:
+ sshfs depends on fuse-utils (&gt;= 2.7); however:
+  Package fuse-utils is not configured yet.
+dpkg: error processing sshfs (--configure):
+ dependency problems - leaving unconfigured
+Errors were encountered while processing:
+ fuse-utils
+ sshfs
+
+In the past, we simply created the fuse device manually and added
+SECURE_MOUNT
+SECURE_REMOUNT
+BINARY_MOUNT
+to ccapabilities
+
+Short of giving SYS_ADMIN and running udev, how do we get this to work?
+Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000262.html">[X2go-dev] Windows client hangs after screen saver starts
+</A></li>
+	<LI>Next message: <A HREF="000269.html">[X2go-dev] FUSE reFUSEs to install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#264">[ date ]</a>
+              <a href="thread.html#264">[ thread ]</a>
+              <a href="subject.html#264">[ subject ]</a>
+              <a href="author.html#264">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

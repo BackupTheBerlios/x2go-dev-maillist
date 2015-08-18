@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Issue with libXcompext
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Issue%20with%20libXcompext&In-Reply-To=%3CCAJ0cceY0TR5XKCxPeMgquUxrB%2BYbCd2Yg%2BYnDqs%3D6ardGkN5vg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004740.html">
+   <LINK REL="Next"  HREF="004746.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Issue with libXcompext</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Issue%20with%20libXcompext&In-Reply-To=%3CCAJ0cceY0TR5XKCxPeMgquUxrB%2BYbCd2Yg%2BYnDqs%3D6ardGkN5vg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Issue with libXcompext">siretart at gmail.com
+       </A><BR>
+    <I>Thu Dec 13 12:37:43 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004740.html">[X2Go-Dev] Issue with libXcompext
+</A></li>
+        <LI>Next message: <A HREF="004746.html">[X2Go-Dev] Issue with libXcompext
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4745">[ date ]</a>
+              <a href="thread.html#4745">[ thread ]</a>
+              <a href="subject.html#4745">[ subject ]</a>
+              <a href="author.html#4745">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Dec 13, 2012 at 12:08 AM, Orion Poplawski &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at cora.nwra.com</A>&gt; wrote:
+&gt;<i> I'm not quite sure how to properly fix this &quot;upstream&quot;.  It looks like
+</I>&gt;<i> nxcompext/configure.in (or Makefile.in) is &quot;older&quot; the others, and in
+</I>&gt;<i> particular does not appear to properly handle installing the library with
+</I>&gt;<i> libXcompext.so.3 remaining a symbolic link to libXcompext.so.3.5.0.
+</I>&gt;<i>
+</I>&gt;<i> It's okay in the build dir:
+</I>&gt;<i>
+</I>&gt;<i> -rwxr-xr-x. 1 orion nwra 270208 Dec 12 15:22 libXcompext.so.3.5.0
+</I>&gt;<i> lrwxrwxrwx. 1 orion nwra     20 Dec 12 15:22 libXcompext.so.3 -&gt;
+</I>&gt;<i> libXcompext.so.3.5.0
+</I>&gt;<i> lrwxrwxrwx. 1 orion nwra     20 Dec 12 15:22 libXcompext.so -&gt;
+</I>&gt;<i> libXcompext.so.3.5.0
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> But then it gets installed with INSTALL_DATA instead of INSTALL_LINK:
+</I>&gt;<i>
+</I>&gt;<i>         $(INSTALL_DATA) $(LIBFULL)              $(DESTDIR)${libdir}/nx
+</I>&gt;<i>         $(INSTALL_DATA) libXcompext.so.3        $(DESTDIR)${libdir}/nx
+</I>&gt;<i>         $(INSTALL_LINK) libXcompext.so          $(DESTDIR)${libdir}/nx
+</I>&gt;<i>
+</I>&gt;<i> compare with:
+</I>&gt;<i>
+</I>&gt;<i>         $(INSTALL_DATA) $(LIBFULL)              $(DESTDIR)${libdir}/nx
+</I>&gt;<i>         $(INSTALL_LINK) libXcompshad.so.3       $(DESTDIR)${libdir}/nx
+</I>&gt;<i>         $(INSTALL_LINK) libXcompshad.so         $(DESTDIR)${libdir}/nx
+</I>&gt;<i>
+</I>&gt;<i>
+</I>well spotted. I've fixed that in git
+
+
+
+-- 
+regards,
+    Reinhard
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004740.html">[X2Go-Dev] Issue with libXcompext
+</A></li>
+	<LI>Next message: <A HREF="004746.html">[X2Go-Dev] Issue with libXcompext
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4745">[ date ]</a>
+              <a href="thread.html#4745">[ thread ]</a>
+              <a href="subject.html#4745">[ subject ]</a>
+              <a href="author.html#4745">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

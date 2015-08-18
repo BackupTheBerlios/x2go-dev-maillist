@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Shared DB patches
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Shared%20DB%20patches&In-Reply-To=%3C1266726306.4489.24.camel%40Family.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000352.html">
+   <LINK REL="Next"  HREF="000355.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Shared DB patches</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Shared%20DB%20patches&In-Reply-To=%3C1266726306.4489.24.camel%40Family.pacifera.com%3E"
+       TITLE="[X2go-dev] Shared DB patches">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sun Feb 21 05:25:06 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000352.html">[X2go-dev] upcoming release
+</A></li>
+        <LI>Next message: <A HREF="000355.html">[X2go-dev] RDP Connections on x2go Client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#348">[ date ]</a>
+              <a href="thread.html#348">[ thread ]</a>
+              <a href="subject.html#348">[ subject ]</a>
+              <a href="author.html#348">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, all.  It looks like the line numbers in x2gopgwrapper_net have
+changed since I last submitted these patches.  These patches have
+successfully applied to the latest repository files.
+
+To review what they are for, we felt uncomfortable both with giving our
+client desktops ssh access to the single database server and having them
+use the postgres super user to access the database.  In our multi-tenant
+environment with many vserver based X2Go Servers (one X2Go Server per
+virtual machine), this was a dangerous security exposure especially
+since the PostgreSQL server holds databases besides the X2Go databases.
+
+There is an OpenOffice document included which explains the logic and
+the procedures for implementing this secure shared database setup.  It
+eliminates both the need for ssh and to use the postgres user.  Hope
+they help someone else - John
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: MultiDBSupportNotes.odt
+Type: application/vnd.oasis.opendocument.text
+Size: 29604 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100220/21b78bb1/attachment.odt">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100220/21b78bb1/attachment.odt</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: x2gocreatebase.sh.diff
+Type: text/x-patch
+Size: 5825 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100220/21b78bb1/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100220/21b78bb1/attachment.bin</A>&gt;
+-------------- next part --------------
+# x2godb.conf
+# Copyright 2009 John A. Sullivan III - SSI Services, LP
+# Version 0: March 24, 2009 - John Sullivan
+# This file is used to set the X2Go database parameters.
+
+# DBNAME defaults to x2go_sessions (optional)
+DBNAME=
+# SCHEMA defaults to &quot;&quot; (required if using a shared database)
+#SCHEMA=&quot;$(hostname)&quot;
+SCHEMA=
+
+# DBUSER defaults to postgres (optional)
+#DBUSER=&quot;$(hostname)&quot;
+DBUSER=
+
+# If the database server is remote and uses a non-standard SSH port,
+# set the port number here
+SSHPORT=22
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: x2gopgwrapper_local.diff
+Type: text/x-patch
+Size: 8026 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100220/21b78bb1/attachment-0001.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100220/21b78bb1/attachment-0001.bin</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: x2gopgwrapper_net.diff
+Type: text/x-patch
+Size: 9973 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100220/21b78bb1/attachment-0002.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100220/21b78bb1/attachment-0002.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000352.html">[X2go-dev] upcoming release
+</A></li>
+	<LI>Next message: <A HREF="000355.html">[X2go-dev] RDP Connections on x2go Client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#348">[ date ]</a>
+              <a href="thread.html#348">[ thread ]</a>
+              <a href="subject.html#348">[ subject ]</a>
+              <a href="author.html#348">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

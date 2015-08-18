@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#105: Logic errors in x2goruncommand
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23105%3A%20Logic%20errors%20in%20x2goruncommand&In-Reply-To=%3C20130211224632.600264ay805gf7aw%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004988.html">
+   <LINK REL="Next"  HREF="004991.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#105: Logic errors in x2goruncommand</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23105%3A%20Logic%20errors%20in%20x2goruncommand&In-Reply-To=%3C20130211224632.600264ay805gf7aw%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#105: Logic errors in x2goruncommand">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Feb 11 22:46:32 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004988.html">[X2Go-Dev] Processed: Problem fixed in Git, thanks!
+</A></li>
+        <LI>Next message: <A HREF="004991.html">[X2Go-Dev] Processed: Re: Bug#105: Logic errors in x2goruncommand
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4990">[ date ]</a>
+              <a href="thread.html#4990">[ thread ]</a>
+              <a href="subject.html#4990">[ subject ]</a>
+              <a href="author.html#4990">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>tag #105 pending
+thanks
+
+Hi Matthew,
+
+On Fr 18 Jan 2013 18:15:56 CET &quot;Matthew L. Dailey&quot; wrote:
+
+&gt;<i> Package: x2goserver
+</I>&gt;<i> Version: 4.1.0.0
+</I>&gt;<i>
+</I>&gt;<i> Greetings.
+</I>&gt;<i>
+</I>&gt;<i> In working on a deployment of X2Go on some Ubuntu machines, I found  
+</I>&gt;<i> some logic errors in the x2goruncommand script that cased it not to  
+</I>&gt;<i> determine the proper session to run for Gnome or Unity on Ubuntu  
+</I>&gt;<i> 12.04 (and probably others). In essence, the script was testing the  
+</I>&gt;<i> return code of bc, rather than the actual answer (1 or 0) to the  
+</I>&gt;<i> boolean question being passed to it.
+</I>&gt;<i>
+</I>&gt;<i> Here is a patch (also attached) that fixes this problem and I can  
+</I>&gt;<i> verify that this works on at least Ubuntu 12.04 systems. I don't  
+</I>&gt;<i> have any others I can easily test on. I'm not crazy about the quotes  
+</I>&gt;<i> both outside and inside $(), but I think it should be okay. Perhaps  
+</I>&gt;<i> a more adept bash programmer might have a better suggestion. :-)
+</I>&gt;<i>
+</I>&gt;<i> Thanks for your attention and please let me know if you have any  
+</I>&gt;<i> questions or need any other information. And, thanks for your hard  
+</I>&gt;<i> work on this terrific project!
+</I>
+Thanks for spotting this issue!!!
+
+Fixed in Git Vcs:
+<A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=cd23b80ca2f1056500e8b78cedebf60089086bda">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=cd23b80ca2f1056500e8b78cedebf60089086bda</A>
+
+The fix will be available in X2Go Server 4.0.0.1 (next release).
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130211/cb15232b/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130211/cb15232b/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004988.html">[X2Go-Dev] Processed: Problem fixed in Git, thanks!
+</A></li>
+	<LI>Next message: <A HREF="004991.html">[X2Go-Dev] Processed: Re: Bug#105: Logic errors in x2goruncommand
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4990">[ date ]</a>
+              <a href="thread.html#4990">[ thread ]</a>
+              <a href="subject.html#4990">[ subject ]</a>
+              <a href="author.html#4990">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

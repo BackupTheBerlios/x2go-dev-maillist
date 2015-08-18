@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] [PATCH] Traditional Chinese(zh_TW) translation for x2goclient
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BPATCH%5D%20Traditional%20Chinese%28zh_TW%29%20translation%20for%0A%20x2goclient&In-Reply-To=%3C20120127132832.587177fltn13ls34%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003312.html">
+   <LINK REL="Next"  HREF="003300.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] [PATCH] Traditional Chinese(zh_TW) translation for x2goclient</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BPATCH%5D%20Traditional%20Chinese%28zh_TW%29%20translation%20for%0A%20x2goclient&In-Reply-To=%3C20120127132832.587177fltn13ls34%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] [PATCH] Traditional Chinese(zh_TW) translation for x2goclient">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jan 27 13:28:32 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003312.html">[X2Go-Dev] [X2go-Dev] [PATCH] Make sure the [...] - The right	patch!
+</A></li>
+        <LI>Next message: <A HREF="003300.html">[X2Go-Dev] [X2go-Dev] [PATCH] Traditional Chinese(zh_TW) translation for x2goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3261">[ date ]</a>
+              <a href="thread.html#3261">[ thread ]</a>
+              <a href="subject.html#3261">[ subject ]</a>
+              <a href="author.html#3261">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alex,
+
+On Fr 30 Dez 2011 21:21:01 CET Reinhard Tartler wrote:
+
+&gt;<i> On Fr, Dez 30, 2011 at 13:56:31 (CET), Mike Gabriel wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hi Morty,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Fr 30 Dez 2011 12:38:30 CET Moritz Str&#252;be wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Am 30.12.2011 12:05, Mike Gabriel schrieb:
+</I>&gt;&gt;&gt;&gt;<i> The patch tarball has arrived in a broken state here. Could you resend
+</I>&gt;&gt;&gt;&gt;<i> your file and check the tarball integrity before sending?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Looks ok to me (I could open the .patch).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> weird... Could you evaluate the patch then?
+</I>&gt;<i>
+</I>&gt;<i> This is the patch.
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/onmainwindow.cpp b/onmainwindow.cpp
+</I>&gt;<i> index 81dce94..0295cae 100644
+</I>&gt;<i> --- a/onmainwindow.cpp
+</I>&gt;<i> +++ b/onmainwindow.cpp
+</I>&gt;<i> @@ -438,7 +438,7 @@ void ONMainWindow::installTranslator()
+</I>&gt;<i>      QTranslator* x2goclientTranslator=new QTranslator();
+</I>&gt;<i>      QString filename=QString ( &quot;:/x2goclient_%1&quot; ).arg (
+</I>&gt;<i>                           QLocale::system().name() );
+</I>&gt;<i> -    filename=filename.toLower();
+</I>&gt;<i> +    //filename=filename.toLower();
+</I>&gt;<i>      if ( !x2goclientTranslator-&gt;load ( filename ) )
+</I>&gt;<i>      {
+</I>&gt;<i>          qDebug ( &quot;Can't load translator (%s) !\n&quot;,
+</I>&gt;<i>
+</I>&gt;<i> I think Alex needs to comment on that.
+</I>
+Alex, I would like to make x2goclient available to zh_TW. Can you pick  
+out the patch referred to in this mail (it was on the x2go-dev list)  
+and commit if approved?
+
+Thanks,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120127/94f44d6d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120127/94f44d6d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003312.html">[X2Go-Dev] [X2go-Dev] [PATCH] Make sure the [...] - The right	patch!
+</A></li>
+	<LI>Next message: <A HREF="003300.html">[X2Go-Dev] [X2go-Dev] [PATCH] Traditional Chinese(zh_TW) translation for x2goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3261">[ date ]</a>
+              <a href="thread.html#3261">[ thread ]</a>
+              <a href="subject.html#3261">[ subject ]</a>
+              <a href="author.html#3261">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

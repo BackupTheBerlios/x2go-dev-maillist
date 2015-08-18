@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Compiling x2go Windows client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Compiling%20x2go%20Windows%20client&In-Reply-To=%3C4CDD45EB.2040504%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001263.html">
+   <LINK REL="Next"  HREF="001265.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Compiling x2go Windows client</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Compiling%20x2go%20Windows%20client&In-Reply-To=%3C4CDD45EB.2040504%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] Compiling x2go Windows client">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Fri Nov 12 14:49:31 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001263.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+        <LI>Next message: <A HREF="001265.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1264">[ date ]</a>
+              <a href="thread.html#1264">[ thread ]</a>
+              <a href="subject.html#1264">[ subject ]</a>
+              <a href="author.html#1264">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>--[ UxBoD ]-- schrieb:
+
+Hello Phil,
+
+&gt;<i> Hello Alex, really appreciate your response :) I have taken the Windows X2GO 3.01-11 and installed that on Windows XP 32 bit.  I backed up x2goclient.exe and the proceeded to compile the same version of x2goclient using MinGW and Qt 4.7.1 (this could be where the problem is arising!) using the steps; qmake followed by mingw32-make release and that created the binary.  I copied that to c:\program files\x2goclient and ran it. It started fine and I connected to my existing session, once I entered my username and password it then crashed. This happens the same with both build under Linux and Windows. Using QtCreator I did manage to get some kind of debug information which said:
+</I>&gt;<i> 
+</I>&gt;<i> Creating desktop:  x2go_Administrator 
+</I>&gt;<i> 
+</I>&gt;<i> ASSERT failure in QWidget: &quot;Widgets must be created in the GUI thread.&quot;, file kernel\qwidget.cpp, line 1231
+</I>&gt;<i> QObject::killTimers: timers cannot be stopped from another thread
+</I>&gt;<i> C:\x2goclient-3.01\debug\x2goclient.exe exited with code 3
+</I>&gt;<i> 
+</I>
+I think, a newest version of qt that I tried was a 4.6.x.
+
+&gt;<i> I will try downloading the same release of Qt that you are using.
+</I>Just to be clear I am assuming that you export your Windows Qt install
+to your Linux box and then compile using those libraries ?
+
+Yes, I have compiled Qt libs on windows and then exported libraries as
+SMB share. But building in windows environment is no problem although. I
+make cross platform build only because it is simple and comfortable.
+
+regards
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 260 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101112/308eb9e2/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101112/308eb9e2/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001263.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+	<LI>Next message: <A HREF="001265.html">[X2go-dev] Compiling x2go Windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1264">[ date ]</a>
+              <a href="thread.html#1264">[ thread ]</a>
+              <a href="subject.html#1264">[ subject ]</a>
+              <a href="author.html#1264">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

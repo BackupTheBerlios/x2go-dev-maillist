@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] [X2go-user] 10x printing speed increase for	x2go	printing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%5BX2go-user%5D%2010x%20printing%20speed%20increase%20for%0A%09x2go%09printing&In-Reply-To=%3C4fc37180-38c7-4c8e-82b8-b613e0a5f192%40office.splatnix.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002101.html">
+   <LINK REL="Next"  HREF="002003.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] [X2go-user] 10x printing speed increase for	x2go	printing</H1>
+    <B>--[ UxBoD ]--</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%5BX2go-user%5D%2010x%20printing%20speed%20increase%20for%0A%09x2go%09printing&In-Reply-To=%3C4fc37180-38c7-4c8e-82b8-b613e0a5f192%40office.splatnix.net%3E"
+       TITLE="[X2go-dev] [X2go-user] 10x printing speed increase for	x2go	printing">uxbod at splatnix.net
+       </A><BR>
+    <I>Mon Apr 11 10:34:58 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002101.html">[X2go-dev] x2goclient and ssh-agent
+</A></li>
+        <LI>Next message: <A HREF="002003.html">[X2go-dev] [X2go-user] 10x printing speed increase for x2go	printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2002">[ date ]</a>
+              <a href="thread.html#2002">[ thread ]</a>
+              <a href="subject.html#2002">[ subject ]</a>
+              <a href="author.html#2002">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Original Message -----
+&gt;<i> Hi Phil,
+</I>&gt;<i> 
+</I>&gt;<i> On Sa 09 Apr 2011 09:29:49 CEST &quot;--[ UxBoD ]--&quot; wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; if( $mounts=~m/$spooldir/)
+</I>&gt;<i> &gt; {
+</I>&gt;<i> &gt;      move (&quot;$printdir/$file&quot;, &quot;$spooldir&quot;) or die &quot;$!: Can't rename
+</I>&gt;<i> &gt; $file to $homedir/.x2go/C-$session/$file&quot;;
+</I>&gt;<i> &gt;      $file $spooldir&quot;&quot;);
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;      my $counter = 0;
+</I>&gt;<i> &gt;      while ( ! -f &quot;$spooldir/$file.ready&quot; &amp;&amp; $counter &lt; 10 )
+</I>&gt;<i> &gt;      {
+</I>&gt;<i> &gt;         open (RFILE,&quot;&gt;$spooldir/$file.ready&quot;);
+</I>&gt;<i> &gt;         print RFILE &quot;$filen$title&quot;;
+</I>&gt;<i> &gt;         close (RFILE);
+</I>&gt;<i> &gt;         $counter = $counter + 1;
+</I>&gt;<i> &gt;      }
+</I>&gt;<i> &gt;      if ( $counter &gt; 1 ) { syslog(&quot;info&quot;, &quot;Failed to write ready
+</I>&gt;<i> &gt; file - Count $counter - C-$session/$file&quot;); }
+</I>&gt;<i> &gt; }
+</I>&gt;<i> &gt; else
+</I>&gt;<i> &gt; {
+</I>&gt;<i> &gt;      unlink(&quot;$printdir/$file&quot;);
+</I>&gt;<i> &gt; }
+</I>&gt;<i> 
+</I>&gt;<i> I am not sure if this really is a solution to what you observe. This
+</I>&gt;<i> only seems like a workaround. The syslog entry however is valuable.
+</I>&gt;<i> 
+</I>&gt;<i> Do you think you can find some time to debug what is really going on?
+</I>&gt;<i> We actually need documentation of what happens during
+</I>&gt;<i> cups-x2go/x2goprint'ing...
+</I>&gt;<i> 
+</I>&gt;<i> Maybe we will find a solution that really tracks the issue down
+</I>&gt;<i> instead of looping around it (wouldn't it need some sort of a sleep
+</I>&gt;<i> statement in the loop?).
+</I>&gt;<i> 
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>
+Agreed Mike; though I have the feeling it may be less worth than the effort involved unless somebody knows the internal working of Perl and SSHFS ? A sleep could be added though I have tried to avoid slowing down the process to much. Since adding that loop code we have not experiencing any further failures; though time will tell.
+
+Thanks, Phil
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002101.html">[X2go-dev] x2goclient and ssh-agent
+</A></li>
+	<LI>Next message: <A HREF="002003.html">[X2go-dev] [X2go-user] 10x printing speed increase for x2go	printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2002">[ date ]</a>
+              <a href="thread.html#2002">[ thread ]</a>
+              <a href="subject.html#2002">[ subject ]</a>
+              <a href="author.html#2002">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

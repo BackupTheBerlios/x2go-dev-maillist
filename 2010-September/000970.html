@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go-ldap
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go-ldap&In-Reply-To=%3C4C7FBFE2.2050608%40immerda.ch%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000971.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go-ldap</H1>
+    <B>kamerun at immerda.ch</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go-ldap&In-Reply-To=%3C4C7FBFE2.2050608%40immerda.ch%3E"
+       TITLE="[X2go-dev] x2go-ldap">kamerun at immerda.ch
+       </A><BR>
+    <I>Thu Sep  2 17:16:50 CEST 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000971.html">[X2go-dev] White screen in Windows when returning from screen saver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#970">[ date ]</a>
+              <a href="thread.html#970">[ thread ]</a>
+              <a href="subject.html#970">[ subject ]</a>
+              <a href="author.html#970">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hallo,
+
+there are 2 mistakes in the documentation (we loose many hours and may 
+be it helps other)
+
+original from the x2go
+<A HREF="http://www.x2go.org/fileadmin/doc/installation_x2go_debian_en.html#8.5.Configuration%20of%20x2goclient%20%28display%20manager%20mode%29|outline">http://www.x2go.org/fileadmin/doc/installation_x2go_debian_en.html#8.5.Configuration%20of%20x2goclient%20%28display%20manager%20mode%29|outline</A>
+
+
+    Configuration of x2goclient (display manager mode)
+
+
+
+x2goclient --pgp-card --ldap=&quot;192.168.1.1:389:o=planetexpress,c=de&quot; 
+--external-login=/ramdrive/logins --no-menu --maximize --link=lan 
+--kbd-layout=de --kbd-type=pc105/de --set-kbd=1 --geometry=fullscreen 
+--add-to-known-hosts --read-exports-from=/ramdrive/export 
+--add-to-known-hosts
+
+in the ldap parameter and add-to-known-hosts it fails on -
+
+here the one which work on our network
+
+x2goclient --pgp-card --ldap=&quot;192.168.1.1:389:o=planetexpress,c=de&quot; 
+--external-login=/ramdrive/logins --no-menu --maximize --link=lan 
+--kbd-layout=de --kbd-type=pc105/de --set-kbd=1 --geometry=fullscreen 
+--add-to-known-hosts --read-exports-from=/ramdrive/export 
+--add-to-known-hosts
+
+many trouble because of these 2 -
+
+with remote the clients are coming with and without ldap with 
+x2goclient_gtk , but x2goclient is not working with ldap
+with pxe thin clients, gibt es probleme, we have the login but when we 
+try to login it is coming back again to login
+
+on client terminal
+dmesg gives us
+
+x2goclient[pid]: segfault at 1c ip 080bc8a6 sp bff.... error 4 in 
+x2goclient[8048000+118000]
+
+error 4 mean 100 and the bit0==0 means no page found
+                                            bit1==0 means means read
+                                            bit2==1 means user mode
+
+so what now? a similar mistake has already reported in the mailinglist 
+and other pages see below
+
+<A HREF="http://permalink.gmane.org/gmane.linux.terminal-server.x2go.devel/345">http://permalink.gmane.org/gmane.linux.terminal-server.x2go.devel/345</A>
+
+thanks in advance for your help
+
+michel
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100902/c4eda2fd/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100902/c4eda2fd/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000971.html">[X2go-dev] White screen in Windows when returning from screen saver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#970">[ date ]</a>
+              <a href="thread.html#970">[ thread ]</a>
+              <a href="subject.html#970">[ subject ]</a>
+              <a href="author.html#970">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

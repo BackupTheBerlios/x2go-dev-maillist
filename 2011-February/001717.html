@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] remote proxy closed the connection
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20remote%20proxy%20closed%20the%20connection&In-Reply-To=%3C1296874825.30871.59.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001716.html">
+   <LINK REL="Next"  HREF="001718.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] remote proxy closed the connection</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20remote%20proxy%20closed%20the%20connection&In-Reply-To=%3C1296874825.30871.59.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] remote proxy closed the connection">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat Feb  5 04:00:25 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001716.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+        <LI>Next message: <A HREF="001718.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1717">[ date ]</a>
+              <a href="thread.html#1717">[ thread ]</a>
+              <a href="subject.html#1717">[ subject ]</a>
+              <a href="author.html#1717">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2011-02-04 at 20:31 -0500, Gerry Reno wrote:
+&gt;<i> On 02/04/2011 06:09 PM, Gerry Reno wrote:
+</I>&gt;<i> &gt; On 02/04/2011 06:01 PM, Gerry Reno wrote:
+</I>&gt;<i> &gt;   
+</I>&gt;<i> &gt;&gt; On 02/04/2011 04:43 PM, Mike Gabriel wrote:
+</I>&gt;<i> &gt;&gt;   
+</I>&gt;<i> &gt;&gt;     
+</I>&gt;<i> &gt;&gt;&gt; Hi Gerry,
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; On Fr 04 Feb 2011 22:14:28 CET Gerry Reno wrote:
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;     
+</I>&gt;<i> &gt;&gt;&gt;       
+</I>&gt;<i> &gt;&gt;&gt;&gt; Has anyone found out how to prevent this &quot;remote proxy closed the
+</I>&gt;<i> &gt;&gt;&gt;&gt; connection&quot; error from happening when a session becomes detached and a
+</I>&gt;<i> &gt;&gt;&gt;&gt; user tries to resume the session?
+</I>&gt;<i> &gt;&gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;&gt; We are seeing this problem quite often and every once in a while you can
+</I>&gt;<i> &gt;&gt;&gt;&gt; get it to resume but mostly this session is unrecoverable and must be
+</I>&gt;<i> &gt;&gt;&gt;&gt; manually terminated - which is creating much sysadmin work.
+</I>&gt;<i> &gt;&gt;&gt;&gt;       
+</I>&gt;<i> &gt;&gt;&gt;&gt;         
+</I>&gt;<i> &gt;&gt;&gt; Test the following:
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; Whenever this error occurs, restart your X2go server's SSH daemon. My
+</I>&gt;<i> &gt;&gt;&gt; guess is that you can resume the session once SSH is restarted.
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; I have read about weird port forwarding habits of the SSH daemon... I
+</I>&gt;<i> &gt;&gt;&gt; also meet these problems with PyHoca-GUI.
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; Greets,
+</I>&gt;<i> &gt;&gt;&gt; Mike
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt;     
+</I>&gt;<i> &gt;&gt;&gt;       
+</I>&gt;<i> &gt;&gt; Ok, the plot thickens.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; I took a look at netstat both prior-to and after we get this error:
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; # normal state
+</I>&gt;<i> &gt;&gt; # we can successfully resume a session
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;     # netstat -a | grep 300
+</I>&gt;<i> &gt;&gt;     tcp        0      0 localhost:30008         *:*                    
+</I>&gt;<i> &gt;&gt;     LISTEN    
+</I>&gt;<i> &gt;&gt;     tcp        0      0 localhost:30009         *:*                    
+</I>&gt;<i> &gt;&gt;     LISTEN    
+</I>&gt;<i> &gt;&gt;     tcp6       0      0 ip6-localhost:30008     [::]:*                 
+</I>&gt;<i> &gt;&gt;     LISTEN    
+</I>&gt;<i> &gt;&gt;     tcp6       0      0 ip6-localhost:30009     [::]:*                 
+</I>&gt;<i> &gt;&gt;     LISTEN    
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; # # after I forced a session to detach
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;     # netstat -a | grep 300
+</I>&gt;<i> &gt;&gt;     tcp        0      0 localhost:30008         *:*                    
+</I>&gt;<i> &gt;&gt;     LISTEN    
+</I>&gt;<i> &gt;&gt;     tcp        0      0 localhost:30009         *:*                    
+</I>&gt;<i> &gt;&gt;     LISTEN    
+</I>&gt;<i> &gt;&gt;     tcp        0      0 localhost:33552         localhost:30037        
+</I>&gt;<i> &gt;&gt;     TIME_WAIT 
+</I>&gt;<i> &gt;&gt;     tcp6       0      0 ip6-localhost:30008     [::]:*                 
+</I>&gt;<i> &gt;&gt;     LISTEN    
+</I>&gt;<i> &gt;&gt;     tcp6       0      0 ip6-localhost:30009     [::]:*                 
+</I>&gt;<i> &gt;&gt;     LISTEN    
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; # # if we just wait for a while then reattempt to resume the session it
+</I>&gt;<i> &gt;&gt; succeeds
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;     # netstat -a | grep 300
+</I>&gt;<i> &gt;&gt;     tcp        0      0 localhost:30008         *:*                    
+</I>&gt;<i> &gt;&gt;     LISTEN    
+</I>&gt;<i> &gt;&gt;     tcp        0      0 localhost:30009         *:*                    
+</I>&gt;<i> &gt;&gt;     LISTEN    
+</I>&gt;<i> &gt;&gt;     tcp6       0      0 ip6-localhost:30008     [::]:*                 
+</I>&gt;<i> &gt;&gt;     LISTEN    
+</I>&gt;<i> &gt;&gt;     tcp6       0      0 ip6-localhost:30009     [::]:*                 
+</I>&gt;<i> &gt;&gt;     LISTEN    
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; So whatever is causing this TIME_WAIT is what appears to have a role in
+</I>&gt;<i> &gt;&gt; the error.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Regards,
+</I>&gt;<i> &gt;&gt; Gerry
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;   
+</I>&gt;<i> &gt;&gt;     
+</I>&gt;<i> &gt; What's interesting is that it presents the menu and the process is shown
+</I>&gt;<i> &gt; as &quot;running&quot; so then your &quot;suspend&quot; it and &quot;resume&quot; it and you still get
+</I>&gt;<i> &gt; the &quot;remote proxy closed the connection&quot; error and NX proxy shows
+</I>&gt;<i> &gt; &quot;aborting&quot; but it does resume the session.  Very confusing to users but
+</I>&gt;<i> &gt; at least they get their session back.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Regards,
+</I>&gt;<i> &gt; Gerry
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;   
+</I>&gt;<i> 
+</I>&gt;<i> The TIME_WAIT occurs on the server because apparently there is no
+</I>&gt;<i> keep_alive which would make the client responsible for closing the
+</I>&gt;<i> connection.  I didn't see any TCPKeepAlive=yes in the ssh options which
+</I>&gt;<i> may be accounting for TIME_WAIT showing up on the server.
+</I>&lt;snip&gt;
+Hmm . . . not sure but it rings a bell that 300 seconds is hard coded in
+the client - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001716.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+	<LI>Next message: <A HREF="001718.html">[X2go-dev] remote proxy closed the connection
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1717">[ date ]</a>
+              <a href="thread.html#1717">[ thread ]</a>
+              <a href="subject.html#1717">[ subject ]</a>
+              <a href="author.html#1717">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

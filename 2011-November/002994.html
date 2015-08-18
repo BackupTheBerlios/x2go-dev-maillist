@@ -1,0 +1,328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] RES:  RES: Lubuntu as default session of x2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20RES%3A%20%20RES%3A%20Lubuntu%20as%20default%20session%20of%20x2go&In-Reply-To=%3C4EB8D6BF.3020509%40online.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002993.html">
+   <LINK REL="Next"  HREF="002995.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] RES:  RES: Lubuntu as default session of x2go</H1>
+    <B>Stefan Lambert</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20RES%3A%20%20RES%3A%20Lubuntu%20as%20default%20session%20of%20x2go&In-Reply-To=%3C4EB8D6BF.3020509%40online.de%3E"
+       TITLE="[X2go-Dev] RES:  RES: Lubuntu as default session of x2go">swlambert-hg at online.de
+       </A><BR>
+    <I>Tue Nov  8 08:14:07 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002993.html">[X2go-Dev] RES:  RES: Lubuntu as default session of x2go
+</A></li>
+        <LI>Next message: <A HREF="002995.html">[X2go-Dev] RES:  RES: Lubuntu as default session of x2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2994">[ date ]</a>
+              <a href="thread.html#2994">[ thread ]</a>
+              <a href="subject.html#2994">[ subject ]</a>
+              <a href="author.html#2994">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>As you can read in the (small)documentionfile of x2go.xsession 
+(/usr/share/doc/x2goserver-xsession/doc/README),  the x-setup must be 
+adapted. X2go.Xsession doesn't run &quot;out of the box&quot;. First you should 
+know how lxde (login- and displaymanager) and X11/Xsession working 
+together. Then you will be able to configure x2go.xsession.
+
+I have tested x2go.xsession with lubuntu 11.10 . It's working fine with 
+every xsession (Lubuntu, Openbox, ...)
+
+Sorry, but in this case,  it's no x2go problem.
+
+
+
+
+Am 07.11.2011 20:55, schrieb Lucas Brugneing roto:
+&gt;<i>
+</I>&gt;<i> Really,this could be the problem. But I did not install the ubuntu 
+</I>&gt;<i> desktop (gnome), but the ubuntu server edition (does not come with any 
+</I>&gt;<i> graphical mode).
+</I>&gt;<i>
+</I>&gt;<i> Thanks.
+</I>&gt;<i>
+</I>&gt;<i> PS: in the local station, I can choose to start in &quot;default&quot;, 
+</I>&gt;<i> &quot;lubuntu&quot; and &quot;lxde&quot; and &quot;openbox&quot; sessions.
+</I>&gt;<i>
+</I>&gt;<i> Ps2: I will install now the xubuntu too and see if work whit this.
+</I>&gt;<i>
+</I>&gt;<i> *De:*<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-bounces at lists.berlios.de</A> 
+</I>&gt;<i> [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-bounces at lists.berlios.de</A>] *Em nome de *Benjamin Shadwick
+</I>&gt;<i> *Enviada em:* segunda-feira, 7 de novembro de 2011 17:30
+</I>&gt;<i> *Para:* <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i> *Assunto:* Re: [X2go-Dev] RES: Lubuntu as default session of x2go
+</I>&gt;<i>
+</I>&gt;<i> He's saying that he's got Lubuntu installed over the top of Ubuntu and 
+</I>&gt;<i> is trying to log in using x2goserver-xession, but is getting the 
+</I>&gt;<i> default LXDE desktop instead of the Lubuntu-branded version of the 
+</I>&gt;<i> LXDE desktop.
+</I>&gt;<i>
+</I>&gt;<i> This is similar to what I was hoping x2goserver-xsession would fix, 
+</I>&gt;<i> except I'm using pure Xubuntu (which uses XFCE). I currently (without 
+</I>&gt;<i> using x2goserver-xsession) have to use a custom script to set a 
+</I>&gt;<i> missing environment variable in order to get the Xubuntu desktop in 
+</I>&gt;<i> x2goclient instead of the default XFCE desktop.
+</I>&gt;<i>
+</I>&gt;<i> I have not yet tested to see if x2goserver-xsession fixes this issue 
+</I>&gt;<i> for me.
+</I>&gt;<i>
+</I>&gt;<i> It's possible that Lucas is experiencing the problem because he 
+</I>&gt;<i> installed Lubuntu-desktop over the top of Ubuntu. It's also possible 
+</I>&gt;<i> that x2goserver-xsession doesn't provide access to the Lubuntu-themed 
+</I>&gt;<i> LXDE session when x2goclient is told to start an LXDE session; I'm not 
+</I>&gt;<i> sure what session type you're supposed to request x2goclient to use 
+</I>&gt;<i> when also using x2goserver-xession.
+</I>&gt;<i>
+</I>&gt;<i> On Sun, Nov 6, 2011 at 9:44 PM, Jean Milot &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">milot.jean at gmail.com</A> 
+</I>&gt;<i> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">milot.jean at gmail.com</A>&gt;&gt; wrote:
+</I>&gt;<i>
+</I>&gt;<i> Hello Lucas,
+</I>&gt;<i>
+</I>&gt;<i> First i dont understant :
+</I>&gt;<i>      &quot;classic LXDE non lubuntu&quot;
+</I>&gt;<i>
+</I>&gt;<i> Then i think that you must use the user list and not the dev list.
+</I>&gt;<i>
+</I>&gt;<i> Sincerely,
+</I>&gt;<i> Jean
+</I>&gt;<i>
+</I>&gt;<i> Le 7 nov. 2011 01:27, &quot;Lucas Brugneroto&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">lucas.bru at terra.com.br</A> 
+</I>&gt;<i> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">lucas.bru at terra.com.br</A>&gt;&gt; a &#233;crit :
+</I>&gt;<i>
+</I>&gt;<i>     Hello!
+</I>&gt;<i>
+</I>&gt;<i>     1)Formatted, full clean installation of Ubuntu Srv 11.10, amd64
+</I>&gt;<i>
+</I>&gt;<i>     2)Apt-get install lubuntu-desktop
+</I>&gt;<i>
+</I>&gt;<i>     3)add-apt-repository ppa:x2go/ppa
+</I>&gt;<i>
+</I>&gt;<i>     4)apt-get install x2goserver-xsession
+</I>&gt;<i>
+</I>&gt;<i>     5)apt-get install x2golxdebindings
+</I>&gt;<i>
+</I>&gt;<i>     6)reboot
+</I>&gt;<i>
+</I>&gt;<i>     But im still connecting with the &quot;classic LXDE non-lubuntu&quot;, based
+</I>&gt;<i>     in the desktop, color style, fonts size...  Its LXDE session, and
+</I>&gt;<i>     not Lubuntu.what I did wrong?
+</I>&gt;<i>
+</I>&gt;<i>     Thanks.
+</I>&gt;<i>
+</I>&gt;<i>     *De:*<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-bounces at lists.berlios.de</A>
+</I>&gt;<i>     &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-bounces at lists.berlios.de</A>&gt;
+</I>&gt;<i>     [mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-bounces at lists.berlios.de</A>]
+</I>&gt;<i>     &lt;mailto:[mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-bounces at lists.berlios.de</A>]&gt; *Em nome de
+</I>&gt;<i>     *Stefan Lambert
+</I>&gt;<i>     *Enviada em:* s&#225;bado, 5 de novembro de 2011 18:05
+</I>&gt;<i>     *Para:* <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>&gt;
+</I>&gt;<i>     *Assunto:* Re: [X2go-Dev] RES: Lubuntu as default session of x2go
+</I>&gt;<i>
+</I>&gt;<i>     Hello,
+</I>&gt;<i>
+</I>&gt;<i>     hmm, I've had no problem installing x2go under 64-Bit
+</I>&gt;<i>     Ubuntu/Lubuntu/Xubuntu/Ubuntu Studio from the nightly build ppa as
+</I>&gt;<i>     described in the old wiki page.
+</I>&gt;<i>
+</I>&gt;<i>     1, add-apt-repository ppa:x2go/ppa
+</I>&gt;<i>     2. aptitude update
+</I>&gt;<i>     3. aptitude search x2go
+</I>&gt;<i>     4. Installing the necessary x2go components with aptitude install
+</I>&gt;<i>     or apt-get install
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     ------------------------------- schnipp
+</I>&gt;<i>     -----------------------------------------------
+</I>&gt;<i>
+</I>&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at vm-nb07-ubstudio1110-64</A>:/# uname -a
+</I>&gt;<i>     Linux vm-nb07-ubstudio1110-64 3.0.0-12-generic #20-Ubuntu SMP Fri
+</I>&gt;<i>     Oct 7 14:56:25 UTC 2011 x86_64 x86_64 x86_64 GNU/Linux
+</I>&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at vm-nb07-ubstudio1110-64</A>:/# dpkg -l | grep x2go
+</I>&gt;<i>     ii  cups-x2go                             
+</I>&gt;<i>     3.0.0.4-0~55~oneiric1                   X2GO printer for CUPS
+</I>&gt;<i>     ii  x2goagent                             
+</I>&gt;<i>     3.5.0.5-0~61~oneiric1                   Special X2go-ized X agent,
+</I>&gt;<i>     forked from NX-X11 (NoMachine)
+</I>&gt;<i>     ii  x2godesktopsharing                    
+</I>&gt;<i>     3.0.1.4-0~65~oneiric1                   share X2go desktops with
+</I>&gt;<i>     other users (via shadow sessions)
+</I>&gt;<i>     ii  x2goserver                            
+</I>&gt;<i>     3.0.99.8-0~364~oneiric1                 X2go server daemon scripts
+</I>&gt;<i>     ii  x2goserver-extensions                 
+</I>&gt;<i>     3.0.99.8-0~364~oneiric1                 X2go server daemon scripts
+</I>&gt;<i>     (extensions)
+</I>&gt;<i>     ii  x2goserver-printing                   
+</I>&gt;<i>     3.0.99.8-0~364~oneiric1                 X2go server daemon scripts
+</I>&gt;<i>     (extensions)
+</I>&gt;<i>     ii  x2goserver-xsession                   
+</I>&gt;<i>     3.0.99.8-0~364~oneiric1                 X2go server daemon scripts
+</I>&gt;<i>     (Xsession runner)
+</I>&gt;<i>
+</I>&gt;<i>     ------------------------------- schnapp
+</I>&gt;<i>     -----------------------------------------------
+</I>&gt;<i>
+</I>&gt;<i>     greets
+</I>&gt;<i>     stefan
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     Am 05.11.2011 17:15, schrieb Lucas Brugneroto:
+</I>&gt;<i>
+</I>&gt;<i>     I cant install x-sesession, this need newer version of xgoserver
+</I>&gt;<i>     but this is not available in amd64 (or i cant fround).
+</I>&gt;<i>
+</I>&gt;<i>     Thank you.
+</I>&gt;<i>
+</I>&gt;<i>     *De:*<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-bounces at lists.berlios.de</A>
+</I>&gt;<i>     &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-bounces at lists.berlios.de</A>&gt;[mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-bounces at lists.berlios.de</A>]
+</I>&gt;<i>     *Em nome de *Stefan LAmbert
+</I>&gt;<i>     *Enviada em:* sexta-feira, 4 de novembro de 2011 14:34
+</I>&gt;<i>     *Para:* <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>&gt;
+</I>&gt;<i>     *Assunto:* Re: [X2go-Dev] Lubuntu as default session of x2go
+</I>&gt;<i>
+</I>&gt;<i>     Hi,
+</I>&gt;<i>
+</I>&gt;<i>     I've tested the new add-on &quot;x2goserver-xsession&quot; with Lubuntu
+</I>&gt;<i>     11.10( as you described (only choosing LXDE, no Custom desktop)).
+</I>&gt;<i>     It works fine.
+</I>&gt;<i>
+</I>&gt;<i>     Great job !!
+</I>&gt;<i>
+</I>&gt;<i>     greets
+</I>&gt;<i>     stefan
+</I>&gt;<i>
+</I>&gt;<i>     P.S.
+</I>&gt;<i>     If you choose &quot;Custom Desktop&quot;, use &quot;/usr/bin/startlubuntu&quot;
+</I>&gt;<i>     instead of &quot;lxsession -s Lubuntu&quot;
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     Am 02.11.2011 06:29, schrieb Mike Gabriel:
+</I>&gt;<i>
+</I>&gt;<i>     Hi Lucas,
+</I>&gt;<i>
+</I>&gt;<i>     On Mi 02 Nov 2011 02:26:16 CET Lucas Brugneroto wrote:
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     Hi, myself and all other members:
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     I can run the lubuntu using in the client, custom desktop as
+</I>&gt;<i>     'lxsession -s
+</I>&gt;<i>     Lubuntu'.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     Im not sure if its the best way to do...
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     I have very recently added a new x2goserver add-on package to the
+</I>&gt;<i>     latest code. The current x2goserver code does not run scripts in
+</I>&gt;<i>     /etc/X11/Xsession.d. However, these scripts are often used for
+</I>&gt;<i>     ,,desktop branding/profiling''.
+</I>&gt;<i>
+</I>&gt;<i>     Please try an installation of this new add-on package:
+</I>&gt;<i>     ,,x2goserver-xsession'' from the nightly build repositories of X2Go:
+</I>&gt;<i>     <A HREF="http://wiki.x2go.org/wiki:nightly-built_packages_debian_ubuntu">http://wiki.x2go.org/wiki:nightly-built_packages_debian_ubuntu</A>
+</I>&gt;<i>
+</I>&gt;<i>     ... and let us know if the installation of that add-on package
+</I>&gt;<i>     will result in LXDE starting as Lubuntu desktop (that is: without
+</I>&gt;<i>     the way you have described above, just by choosing LXDE as a
+</I>&gt;<i>     desktop session).
+</I>&gt;<i>
+</I>&gt;<i>     Greets,
+</I>&gt;<i>     Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>       
+</I>&gt;<i>
+</I>&gt;<i>       
+</I>&gt;<i>
+</I>&gt;<i>     _______________________________________________
+</I>&gt;<i>
+</I>&gt;<i>     X2go-Dev mailing list
+</I>&gt;<i>
+</I>&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>  &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>       
+</I>&gt;<i>
+</I>&gt;<i>       
+</I>&gt;<i>
+</I>&gt;<i>     _______________________________________________
+</I>&gt;<i>
+</I>&gt;<i>     X2go-Dev mailing list
+</I>&gt;<i>
+</I>&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>  &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     _______________________________________________
+</I>&gt;<i>     X2go-Dev mailing list
+</I>&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>&gt;
+</I>&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>&gt;
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> -- 
+</I>&gt;<i> - Ben S.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20111108/b8360c9d/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20111108/b8360c9d/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002993.html">[X2go-Dev] RES:  RES: Lubuntu as default session of x2go
+</A></li>
+	<LI>Next message: <A HREF="002995.html">[X2go-Dev] RES:  RES: Lubuntu as default session of x2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2994">[ date ]</a>
+              <a href="thread.html#2994">[ thread ]</a>
+              <a href="subject.html#2994">[ subject ]</a>
+              <a href="author.html#2994">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Debian-ITP nx-libs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Debian-ITP%20nx-libs&In-Reply-To=%3C20120113012046.348044hb00bzhvj2%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003181.html">
+   <LINK REL="Next"  HREF="003193.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Debian-ITP nx-libs</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Debian-ITP%20nx-libs&In-Reply-To=%3C20120113012046.348044hb00bzhvj2%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] Debian-ITP nx-libs">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jan 13 01:20:46 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003181.html">[X2go-Dev] nightly built x2goagent / nx-libs on packages.debian.org under construction
+</A></li>
+        <LI>Next message: <A HREF="003193.html">[X2go-Dev] Debian-ITP nx-libs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3182">[ date ]</a>
+              <a href="thread.html#3182">[ thread ]</a>
+              <a href="subject.html#3182">[ subject ]</a>
+              <a href="author.html#3182">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Marcelo,
+
+On Do 12 Jan 2012 23:21:06 CET Marcelo Boveto Shima wrote:
+
+&gt;<i> Hi Mike.
+</I>&gt;<i>
+</I>&gt;<i> Glad to know.
+</I>&gt;<i>
+</I>&gt;<i> I am really interested.
+</I>&gt;<i> I must say that the nx packages available from freenx-ppa are ready for
+</I>&gt;<i> inclusion.
+</I>&gt;<i> It tried the Ubuntu motu process but after months I gave up.
+</I>&gt;<i> Have you took a look at the packages? The only package I don't like is the
+</I>&gt;<i> freenx-server itself.
+</I>&gt;<i> The packages are very clean and upstream friendly, if you help me with the
+</I>&gt;<i> sponsoring, I will fix the problems.
+</I>
+I am not a developer myself, but we (Debian X2Go Packaging Team) have  
+a developer on board that will sponsor the upload once the discussion  
+returns a positive feedback.
+
+People on debian-devel think the freenx project to be dead. It would  
+be a real contribution if you could send a mail to:
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">655618 at bugs.debian.org</A>
+
+... and say: Hi! Here is FreeNX calling! We are very interested in  
+this ITP, we are alive and we have been waiting for such a thing to  
+happen.
+
+Once nxagent &amp; co are in Debian, finding a sponsor for FreeNX should  
+be surely possible. The problem is NX itself (the large Xorg 6.9 fork  
+within it), not the packages around NX libraries and binaries.
+
+&gt;<i> X2Go packaging, is mostly about removing nomachine brand and adding x2go
+</I>&gt;<i> brand, so I think it can be done in the build process with nx-x11 package.
+</I>&gt;<i> The nx-x11 package is a dpkg source v3 with multiples tarballs.
+</I>&gt;<i> Once nx-x11 is accepted is only modify the build script to build the
+</I>&gt;<i> branded x2goagent.
+</I>
+This has changed since yesterday. Oleksandr Shneyder and I have merged  
+x2goagent completely into NX with the following feature:
+
+   o execute nxagent under the binary name ,,nxagent''
+     -&gt; launch nxagent with all patches from FreeNX-Team on LP, no branding
+   o execute nxagent under the binary name ,,x2goagent''
+     -&gt; launch nxagent with X2Go flavor (branding)
+
+With today's and yesterday's work we are able to drop 20mb of forked  
+x2goagent code and simple use NX for X2Go directly.
+
+If you find some time, please take a look at ,,NX (redistributed)''
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=summary">http://code.x2go.org/gitweb?p=nx-libs.git;a=summary</A>
+
+We/I would be really really glad if you are interested in joining the  
+,,NX (redistributed)'' maintenance team. We (Mike, Alex, Reinhard)  
+invented ,,NX (redistributed)'' to provide active usptream support and  
+high reponse levels to security issues and bug fixes being sent in by  
+the distro packaging teams. For Debian we are acting in a dual role as  
+we are upstream and packages at the same time. For others like Fedora  
+&amp; co, we may be upstream with this redistribution project.
+
+We also should think about communication.
+
+Currently, we use the x2go-dev mailing list for communication about  
+,,NX (redistributed)''. However, there is quite some X2Go'ish-only  
+noise on that list, as well. If you can live with that, it might be a  
+good idea to subscribe to that list?
+<A HREF="http://lists.berlios.de/mailman/listinfo/x2go-dev">http://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+
+The ML language is English, of course.
+
+So, these were three requests...
+
+   1. Send a short notice to the Debian bug I gave you above
+   2. Join the NX (redistributed) team ;-)
+   3. Subscribe to x2go-dev, we may later think about other forms of
+      communication, i.e. a separate ML.
+
+BTW: I posted the ITP mail to <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">freenx-team at lists.launchpad.net</A>, but it  
+got bounced. Is the list dead?
+
+Last question: are you FreeNX upstream? Or FreeNX packager or Ubuntu?
+
+Thanks for your prompt reply!!!
+Mike
+
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120113/339f67e1/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120113/339f67e1/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003181.html">[X2go-Dev] nightly built x2goagent / nx-libs on packages.debian.org under construction
+</A></li>
+	<LI>Next message: <A HREF="003193.html">[X2go-Dev] Debian-ITP nx-libs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3182">[ date ]</a>
+              <a href="thread.html#3182">[ thread ]</a>
+              <a href="subject.html#3182">[ subject ]</a>
+              <a href="author.html#3182">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

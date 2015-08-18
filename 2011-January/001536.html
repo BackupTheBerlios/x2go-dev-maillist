@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Fwd: X2go-dev Digest, Vol 25, Issue 20
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Fwd%3A%20X2go-dev%20Digest%2C%20Vol%2025%2C%20Issue%2020&In-Reply-To=%3CAANLkTin%2BS8%3DM%3Dej6MMWMXkAWom7VDBLAeM%3D3ikBvMubs%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001535.html">
+   <LINK REL="Next"  HREF="001537.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Fwd: X2go-dev Digest, Vol 25, Issue 20</H1>
+    <B>brian mullan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Fwd%3A%20X2go-dev%20Digest%2C%20Vol%2025%2C%20Issue%2020&In-Reply-To=%3CAANLkTin%2BS8%3DM%3Dej6MMWMXkAWom7VDBLAeM%3D3ikBvMubs%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] Fwd: X2go-dev Digest, Vol 25, Issue 20">bmullan.mail at gmail.com
+       </A><BR>
+    <I>Fri Jan 21 16:03:49 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001535.html">[X2go-dev] x2go not working on ubuntu 10.10?
+</A></li>
+        <LI>Next message: <A HREF="001537.html">[X2go-dev] x2go not working on ubuntu 10.10?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1536">[ date ]</a>
+              <a href="thread.html#1536">[ thread ]</a>
+              <a href="subject.html#1536">[ subject ]</a>
+              <a href="author.html#1536">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Ok VNC's working so you know there is a desktop capability on the server.
+
+But VNC's not using either the FreeNX, NoMachine NX or x2go &quot;server&quot;.
+And I don't think you can use the x2go client to try to connect to either a
+FreeNX or NoMachine NX server so if you were trying to connect to them.
+
+What client are you using linux, windows, mac?
+
+And on the x2go client did you pick Gnome desktop or KDE to match whichever
+your server desktop is?
+Ubuntu would be Gnome by default but x2go defaults to KDE.
+
+Since its not working anyway...  maybe you should uninstall the x2go server
+on your ec2 instance
+then reinstall the x2go server using the instructions found
+here&lt;<A HREF="http://wiki.x2go.org/installing_x2goserver-one_debian">http://wiki.x2go.org/installing_x2goserver-one_debian</A>&gt;
+.
+
+Brian
+
+
+------------------------------
+
+Message: 4
+Date: Fri, 21 Jan 2011 09:27:33 +0100
+From: jmm &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jagermeistermeister at gmail.com</A>&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+Subject: [X2go-dev] x2go not working on ubuntu 10.10?
+Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">4D394375.7090300 at gmail.com</A>&gt;
+Content-Type: text/plain; charset=&quot;iso-8859-1&quot;; Format=&quot;flowed&quot;
+
+Hi,
+
+I tried to get this working all night, but it seems there is no way to
+connect to an ubuntu 10.10 installation using x2go (package
+x2goserver-home). When trying to connect, x2goagent is complaining about
+not being able to open a display (in the session log). The machine is an
+Amazon EC2 instance, which has no video card. I suspect this is causing
+the trouble. I have read it was working on ubuntu 10.04 by the way, as
+in <A HREF="http://blog.restbackup.com/how-to-use-amazon-ec2-as-your-desktop">http://blog.restbackup.com/how-to-use-amazon-ec2-as-your-desktop</A>
+
+I also tried freenx, neatx and nxserver (from nomachine), and they all
+give similar errors. Tightvncserver on the other hand does work, maybe
+that's not so useful information, but just in case.
+
+The server log says:
+
+$ cat session.log
+/usr/bin/x2goagent: line 1: -e: command not found
+
+NXAGENT - Version 3.4.0
+
+Copyright (C) 2001, 2007 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Agent running with pid '3065'.
+Session: Starting session at 'Fri Jan 21 00:42:15 2011'.
+Info: Proxy running in server mode with pid '3065'.
+Info: Waiting for connection from 'localhost' on port '30001'.
+Info: Accepted connection from '127.0.0.1'.
+Warning: Connected to remote version 3.2.0 with local version 3.4.0.
+Info: Connection with remote proxy completed.
+Info: Using ADSL link parameters 512/24/1/0.
+Info: Using agent parameters 5000/10/50/0/0.
+Info: Using cache parameters 4/4096KB/8192KB/8192KB.
+Info: Using pack method '16m-jpeg-9' with session 'unix-kde-depth_24'.
+Info: Using ZLIB data compression 1/1/32.
+Info: Using ZLIB stream compression 4/4.
+Info: No suitable cache file found.
+Info: Listening to X11 connections on display ':50'.
+Warning: The channel for FD#5 channel ID#1 was not marked as finishing.
+Error: Aborting session with 'X2goagent: Unable to open display
+'nx/nx,options=/home/ubuntu/.x2go/C-ubuntu-50-1295570534_stDGNOME_dp24/options:50''.
+Session: Aborting session at 'Fri Jan 21 00:42:24 2011'.
+Session: Session aborted at 'Fri Jan 21 00:42:24 2011'.
+Warning: Signals were not blocked in process with pid '3065'.
+Info: Your session has died before reaching an usable state.
+Info: This can be due to the remote X server refusing access to the client.
+Info: Please check the authorization provided by your X application.
+Info: Waiting the cleanup timeout to complete.
+
+
+Client (x2goclient) log says:
+
+
+NXPROXY - Version 3.2.0
+
+Copyright (C) 2001, 2007 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Proxy running in client mode with pid '7391'.
+Session: Starting session at 'Fri Jan 21 02:29:02 2011'.
+Info: Connecting to remote host 'localhost:30001'.
+Info: Connection to remote proxy 'localhost:30001' established.
+Warning: Connected to remote version 3.4.0 with local version 3.2.0.
+Warning: Consider checking <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for updates.
+Info: Connection with remote proxy completed.
+Warning: Unrecognized session type 'unix-kde-depth_24'. Assuming agent
+session.
+Info: Using ADSL link parameters 512/24/1/0.
+Info: Using cache parameters 4/4096KB/8192KB/8192KB.
+Info: Using pack method '16m-jpeg-9' with session 'unix-kde-depth_24'.
+Info: Using ZLIB data compression 1/1/32.
+Info: Using ZLIB stream compression 4/4.
+Info: No suitable cache file found.
+Info: Forwarding X11 connections to display ':0.0'.
+Session: Session started at 'Fri Jan 21 02:29:06 2011'.
+Error: Connection to ':0.0' failed. Error is 111 'Connection
+refused'.Session: Terminating session at 'Fri Jan 21 02:29:15 2011'.
+Info: Your session was closed before reaching a usable state.
+Info: This can be due to the local X server refusing access to the client.
+Info: Please check authorization provided by the remote X application.
+Session: Session terminated at 'Fri Jan 21 02:29:15 2011'.
+
+
+
+I'd really like to try NX, since it appearantly works faster than VNC.
+Please advice.
+
+Kind regards,
+
+jmm
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;
+<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/3e2bdecb/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/3e2bdecb/attachment.html</A>
+&gt;<i>
+</I>
+------------------------------
+
+_______________________________________________
+X2go-dev mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+
+
+End of X2go-dev Digest, Vol 25, Issue 19
+****************************************
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;
+<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/08cea204/attachment-0001.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/08cea204/attachment-0001.html</A>
+&gt;<i>
+</I>
+------------------------------
+
+Message: 4
+Date: Fri, 21 Jan 2011 11:13:15 +0100
+From: Florian Effenberger &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">floeff at gmail.com</A>&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+Subject: Re: [X2go-dev] VirtualBox or KVM and x2go from Mac
+Message-ID:
+       &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">AANLkTinfhtrC8Pd_rHBEDwrjGeLzPN+CdFkX5LgqL99i at mail.gmail.com</A>&lt;AANLkTinfhtrC8Pd_rHBEDwrjGeLzPN%<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">2BCdFkX5LgqL99i at mail.gmail.com</A>&gt;
+&gt;<i>
+</I>Content-Type: text/plain; charset=ISO-8859-1
+
+Hi Neil,
+
+2011/1/14 Neil W. Hunt &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">nwhunt at vsticorp.com</A>&gt;:
+&gt;<i> I don't, but I use VirtualBox quite a bit and when I get some time, I will
+</I>try to reproduce the issue there. Wish I could help more :(
+
+no problem, thanks a lot for your feedback, much appreciated! :)
+
+Florian
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/3824adc2/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/3824adc2/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001535.html">[X2go-dev] x2go not working on ubuntu 10.10?
+</A></li>
+	<LI>Next message: <A HREF="001537.html">[X2go-dev] x2go not working on ubuntu 10.10?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1536">[ date ]</a>
+              <a href="thread.html#1536">[ thread ]</a>
+              <a href="subject.html#1536">[ subject ]</a>
+              <a href="author.html#1536">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

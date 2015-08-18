@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] plugin is crashing firefox on Ubuntu 10.04
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20plugin%20is%20crashing%20firefox%20on%20Ubuntu%2010.04&In-Reply-To=%3C4C37900B.3010401%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000775.html">
+   <LINK REL="Next"  HREF="000777.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] plugin is crashing firefox on Ubuntu 10.04</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20plugin%20is%20crashing%20firefox%20on%20Ubuntu%2010.04&In-Reply-To=%3C4C37900B.3010401%40verizon.net%3E"
+       TITLE="[X2go-dev] plugin is crashing firefox on Ubuntu 10.04">greno at verizon.net
+       </A><BR>
+    <I>Fri Jul  9 23:09:31 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000775.html">[X2go-dev] plugin is crashing firefox on Ubuntu 10.04
+</A></li>
+        <LI>Next message: <A HREF="000777.html">[X2go-dev] plugin is crashing firefox on Ubuntu 10.04
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#776">[ date ]</a>
+              <a href="thread.html#776">[ thread ]</a>
+              <a href="subject.html#776">[ subject ]</a>
+              <a href="author.html#776">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Soeren,
+   I found a Debian bug that looks very similar:
+
+   <A HREF="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=569036">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=569036</A>
+
+   This looks like it might be an upstream bug perhaps in libX11-6 and 
+got triggered in that Firefox version.
+
+Gerry
+
+
+On 07/09/2010 04:55 PM, S&#246;ren Pl&#246;nnigs wrote:
+&gt;<i> Hi Gerry,
+</I>&gt;<i> i also tried it on my private laptop (also ubuntu 10.04 and firefox 
+</I>&gt;<i> 3.6.6, but amd64) and on my pc at work (fedora 13, amd64). i got this 
+</I>&gt;<i> problem on all pcs... so it don't seem to be a problem with my 
+</I>&gt;<i> machine. on fedora I have firefox 3.6.4, as far as I remember. is 
+</I>&gt;<i> there a possibility to generate more debugging output from firefox 
+</I>&gt;<i> without rebuilding the whole browser? there are no additional plugins 
+</I>&gt;<i> installed on the machines.
+</I>&gt;<i>
+</I>&gt;<i> Soeren
+</I>&gt;<i>
+</I>&gt;<i> Am 08.07.2010 18:49, schrieb Gerry Reno:
+</I>&gt;&gt;<i> Hi Soeren,
+</I>&gt;&gt;<i>   Have you tried connecting from a different version of Firefox to 
+</I>&gt;&gt;<i> try to narrow down the problem?  If you have another machine you 
+</I>&gt;&gt;<i> could also install the same version of Firefox to see if it is 
+</I>&gt;&gt;<i> Firefox or something with your installation.  As far as versions, 
+</I>&gt;&gt;<i> I've been using Firefox 3.6.3 without any problems.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> HTH,
+</I>&gt;&gt;<i> Gerry
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On 07/08/2010 06:12 AM, S&#246;ren Pl&#246;nnigs wrote:
+</I>&gt;&gt;&gt;<i> Installation went fine. When trying to connect to the test server 
+</I>&gt;&gt;&gt;<i> the browser (firefox 3.6.6) is crashing with the following error:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> firefox-bin: Fatal IO error 11 (Resource temporarily unavailable) on 
+</I>&gt;&gt;&gt;<i> X server :0.0.
+</I>&gt;&gt;&gt;<i> firefox-bin: ../../src/xcb_io.c:249: process_responses: Assertion 
+</I>&gt;&gt;&gt;<i> `(((long) (dpy-&gt;last_request_read) - (long) (dpy-&gt;request)) &lt;= 0)' 
+</I>&gt;&gt;&gt;<i> failed.
+</I>&gt;&gt;&gt;<i> Aborted
+</I>&gt;&gt;&gt;<i> firefox-bin: Fatal IO error 11 (Resource temporarily unavailable) on 
+</I>&gt;&gt;&gt;<i> X server :0.0.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> creating a new firefox profile did not work.
+</I>&gt;&gt;&gt;<i> any other ideas?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Soeren
+</I>&gt;&gt;&gt;<i>
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000775.html">[X2go-dev] plugin is crashing firefox on Ubuntu 10.04
+</A></li>
+	<LI>Next message: <A HREF="000777.html">[X2go-dev] plugin is crashing firefox on Ubuntu 10.04
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#776">[ date ]</a>
+              <a href="thread.html#776">[ thread ]</a>
+              <a href="subject.html#776">[ subject ]</a>
+              <a href="author.html#776">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

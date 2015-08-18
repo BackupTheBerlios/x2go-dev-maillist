@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] [PATCH] README.Multi-CUPS-Servers: remove trailing white	space
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%5BPATCH%5D%20README.Multi-CUPS-Servers%3A%20remove%20trailing%20white%0A%09space&In-Reply-To=%3C1302855352.4203.10.camel%40mattotaupa%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002039.html">
+   <LINK REL="Next"  HREF="002040.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] [PATCH] README.Multi-CUPS-Servers: remove trailing white	space</H1>
+    <B>Paul Menzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%5BPATCH%5D%20README.Multi-CUPS-Servers%3A%20remove%20trailing%20white%0A%09space&In-Reply-To=%3C1302855352.4203.10.camel%40mattotaupa%3E"
+       TITLE="[X2go-dev] [PATCH] README.Multi-CUPS-Servers: remove trailing white	space">paulepanter at users.sourceforge.net
+       </A><BR>
+    <I>Fri Apr 15 10:15:52 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002039.html">[X2go-dev] [PATCH 2/4] cups-x2go.conf: explain an option before setting the option
+</A></li>
+        <LI>Next message: <A HREF="002040.html">[X2go-dev] [PATCH 3/4] README.Multi-CUPS-Servers: remove trailing white space
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2035">[ date ]</a>
+              <a href="thread.html#2035">[ thread ]</a>
+              <a href="subject.html#2035">[ subject ]</a>
+              <a href="author.html#2035">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Date: Fri, 15 Apr 2011 10:13:16 +0200
+
+
+Signed-off-by: Paul Menzel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">paulepanter at users.sourceforge.net</A>&gt;
+---
+Normally Git outputs a warning when applying such patches. This can also be checked using `git diff --check` before a commit or using `git log -p` and the trailing white space is marked by red color.
+---
+ README.Multi-CUPS-Servers |   10 +++++-----
+ 1 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/README.Multi-CUPS-Servers b/README.Multi-CUPS-Servers
+index 885d8bf..69b4907 100644
+--- a/README.Multi-CUPS-Servers
++++ b/README.Multi-CUPS-Servers
+@@ -17,7 +17,7 @@ The cups-x2go virtual printer can be used on a CUPS server running on the X2Go
+ Server or can be used on a separate CUPS server.  However, the current
+ implementation associates a CUPS server with only a single X2Go server. It is
+ not possible to have many X2Go Servers share a single, central CUPS print server.
+-This can be especially problematic in highly virtualized environments where there 
++This can be especially problematic in highly virtualized environments where there
+ may be hundreds of X2Go Server instances on a single host. It would seem enormously
+ wasteful to have a CUPS instance running on each rather than a single, shared CUPS
+ server. We need to patch the current cups-x2go files to make this possible.
+@@ -38,18 +38,18 @@ it dynamically?
+ Thankfully, the username is passed as one of the arguments to the cups-x2go backend and
+ the username is also stored in the x2go_sessions database. The username is the connection
+ which makes it all possible. However, there is normally only a single database for a single
+-X2Go Server. Thus, the shared CUPS server solution is predicated upon using a shared database 
++X2Go Server. Thus, the shared CUPS server solution is predicated upon using a shared database
+ and the shared database patches we previously created. In fact, this specific patch also
+ requires the database patches we provided for using X2Go in a VServer environment. It is
+ probably possible to adapt the proposed shared CUPS server patches to work with a shared
+ X2Go database server without our shared database patches but we have grave security
+ concerns with that configuration because all X2Go servers connect to the same database
+ using the postgres super user account. That would give any user access to all other user's
+-session information and, on a poorly configured database, access to any other database 
++session information and, on a poorly configured database, access to any other database
+ running on the database server.
+ 
+-Discussing those patches is outside the scope of this document but let me give at least a 
+-basic understanding so that the cups-x2go patches make sense. The shared database patch allows 
++Discussing those patches is outside the scope of this document but let me give at least a
++basic understanding so that the cups-x2go patches make sense. The shared database patch allows
+ all X2Go Servers to store their data in a central PostgreSQL database without using the postres
+ super user. Each X2Go Server stores its information in a separate schema. Among the various
+ patches for running X2Go in a VServer environment is another change to the database where a
+-- 
+1.7.4.1
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110415/20832d60/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110415/20832d60/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002039.html">[X2go-dev] [PATCH 2/4] cups-x2go.conf: explain an option before setting the option
+</A></li>
+	<LI>Next message: <A HREF="002040.html">[X2go-dev] [PATCH 3/4] README.Multi-CUPS-Servers: remove trailing white space
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2035">[ date ]</a>
+              <a href="thread.html#2035">[ thread ]</a>
+              <a href="subject.html#2035">[ subject ]</a>
+              <a href="author.html#2035">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

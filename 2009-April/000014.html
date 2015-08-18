@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] GNOME does not initialize correctly: dbus-launch failed to autolaunch D-Bus session
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20GNOME%20does%20not%20initialize%20correctly%3A%20dbus-launch%0A%20failed%20to%20autolaunch%20D-Bus%20session&In-Reply-To=%3C49E42CE1.4040402%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000013.html">
+   <LINK REL="Next"  HREF="000015.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] GNOME does not initialize correctly: dbus-launch failed to autolaunch D-Bus session</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20GNOME%20does%20not%20initialize%20correctly%3A%20dbus-launch%0A%20failed%20to%20autolaunch%20D-Bus%20session&In-Reply-To=%3C49E42CE1.4040402%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] GNOME does not initialize correctly: dbus-launch failed to autolaunch D-Bus session">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Tue Apr 14 08:27:45 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000013.html">[X2go-dev] GNOME does not initialize correctly: dbus-launch failed to autolaunch D-Bus session
+</A></li>
+        <LI>Next message: <A HREF="000015.html">[X2go-dev] Small error in x2goclient-gtk (3.00-1) if gnome-screensaver not installed (?)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#14">[ date ]</a>
+              <a href="thread.html#14">[ thread ]</a>
+              <a href="subject.html#14">[ subject ]</a>
+              <a href="author.html#14">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Paul Menzel schrieb:
+&gt;<i> Dear list,
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I am running Debian Sid on the server and the x2goclient_gtk. Since some
+</I>&gt;<i> time (I think January 2009) the GNOME session does not start anymore and
+</I>&gt;<i> I can just see the background picture. Unfortunately I do not know what
+</I>&gt;<i> has changed on the system.
+</I>&gt;<i> 
+</I>&gt;<i> Starting only a terminal or another program works.
+</I>&gt;<i> 
+</I>&gt;<i> I get this in /var/log/user.log.
+</I>&gt;<i> 
+</I>&gt;<i> Apr 13 17:02:18 hostname bonobo-activation-server (name-8129): could not
+</I>&gt;<i> associate with desktop session: dbus-launch failed to autolaunch D-Bus
+</I>&gt;<i> session: Autolaunch error: X11 initialization failed.
+</I>&gt;<i> 
+</I>&gt;<i> The GNOME option seems to just run gnome-session. I did not find where
+</I>&gt;<i> this is specified. I tried to use an own command (Eigener Befehl)
+</I>&gt;<i> 
+</I>&gt;<i> /usr/bin/dbus-launch /usr/bin/gnome-session
+</I>&gt;<i> 
+</I>&gt;<i> (also with quotes) but got an error message. Starting a terminal and
+</I>&gt;<i> running this command worked though.
+</I>&gt;<i> 
+</I>&gt;<i> You can find the version of the programs installed on the server at the
+</I>&gt;<i> end of this message.
+</I>&gt;<i> 
+</I>&gt;<i> Do you have a solution for this problem?
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Thanks a lot,
+</I>&gt;<i> 
+</I>&gt;<i> Paul
+</I>&gt;<i> 
+</I>Hello Paul,
+
+I don't know which command start Sid to launch gnome. I had the same
+problem on opensuse. Solution was to launch /etc/X11/xdm/Xsession
+instead of gnome-session.
+
+If you say, that /usr/bin/dbus-launch /usr/bin/gnome-session work, you
+can create start script /usr/bin/start-gnome:
+
+#!/bin/bash
+/usr/bin/dbus-launch /usr/bin/gnome-session
+
+and start it instead of gnome-session.
+
+IMPORTANT: do not launch it with &quot;Single application&quot; (Anwendung) in
+x2goclient, but with &quot;Custom&quot; (Eigener)
+
+
+&gt;<i> 
+</I>&gt;<i> $ LANG=C dpkg -l x2g*
+</I>&gt;<i> Desired=Unknown/Install/Remove/Purge/Hold
+</I>&gt;<i> | Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+</I>&gt;<i> |/ Err?=(none)/Hold/Reinst-required/X=both-problems (Status,Err: uppercase=bad)
+</I>&gt;<i> ||/ Name           Version        Description
+</I>&gt;<i> +++-==============-==============-============================================
+</I>&gt;<i> ii  x2goagent      3.3.0-3-1      Special NX-ized client, was developed by NoM
+</I>&gt;<i> un  x2goclient     &lt;none&gt;         (no description available)
+</I>&gt;<i> ii  x2goclient-cli 2.0.1-1        x2goclient-cli command line client for x2go
+</I>&gt;<i> ii  x2goclient-gtk 2.99-3         x2goclient gtk client
+</I>&gt;<i> ii  x2goserver     2.0.1-19       x2goserver (daemon and tools)
+</I>&gt;<i> 
+</I>&gt;<i> $ LANG=C dpkg -l gnome-session
+</I>&gt;<i> Desired=Unknown/Install/Remove/Purge/Hold
+</I>&gt;<i> | Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+</I>&gt;<i> |/ Err?=(none)/Hold/Reinst-required/X=both-problems (Status,Err: uppercase=bad)
+</I>&gt;<i> ||/ Name           Version        Description
+</I>&gt;<i> +++-==============-==============-============================================
+</I>&gt;<i> ii  gnome-session  2.22.3-3       The GNOME 2 Session Manager
+</I>&gt;<i> 
+</I>&gt;<i> $ LANG=C dpkg -l dbus*
+</I>&gt;<i> Desired=Unknown/Install/Remove/Purge/Hold
+</I>&gt;<i> | Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+</I>&gt;<i> |/ Err?=(none)/Hold/Reinst-required/X=both-problems (Status,Err: uppercase=bad)
+</I>&gt;<i> ||/ Name           Version        Description
+</I>&gt;<i> +++-==============-==============-============================================
+</I>&gt;<i> ii  dbus           1.2.12-1       simple interprocess messaging system
+</I>&gt;<i> un  dbus-1-utils   &lt;none&gt;         (no description available)
+</I>&gt;<i> un  dbus-qt-1      &lt;none&gt;         (no description available)
+</I>&gt;<i> un  dbus-qt-1c2    &lt;none&gt;         (no description available)
+</I>&gt;<i> ii  dbus-x11       1.2.12-1       simple interprocess messaging system (X11 de
+</I>
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 260 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090414/c3a7353f/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090414/c3a7353f/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000013.html">[X2go-dev] GNOME does not initialize correctly: dbus-launch failed to autolaunch D-Bus session
+</A></li>
+	<LI>Next message: <A HREF="000015.html">[X2go-dev] Small error in x2goclient-gtk (3.00-1) if gnome-screensaver not installed (?)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#14">[ date ]</a>
+              <a href="thread.html#14">[ thread ]</a>
+              <a href="subject.html#14">[ subject ]</a>
+              <a href="author.html#14">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

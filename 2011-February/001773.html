@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Use case for an x2go user-group
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C20110218201818.GG15516%40cip.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001771.html">
+   <LINK REL="Next"  HREF="001778.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Use case for an x2go user-group</H1>
+    <B>Alexander Wuerstlein</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C20110218201818.GG15516%40cip.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] Use case for an x2go user-group">snalwuer at cip.informatik.uni-erlangen.de
+       </A><BR>
+    <I>Fri Feb 18 21:18:18 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001771.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+        <LI>Next message: <A HREF="001778.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1773">[ date ]</a>
+              <a href="thread.html#1773">[ thread ]</a>
+              <a href="subject.html#1773">[ subject ]</a>
+              <a href="author.html#1773">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 11-02-18 20:55, John A. Sullivan III &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt; wrote:
+&gt;<i> On Fri, 2011-02-18 at 20:14 +0100, Alexander Wuerstlein wrote:
+</I>&gt;<i> We use a local x2gousers group on the VM.  We create it
+</I>&gt;<i> and add the user to it (in fact, the VM hostname is the same as the
+</I>&gt;<i> globally unique user uid) as part of the VM creation.
+</I>
+So I assume e.g. on host 'mike' the user named 'mike' is a local (only on
+that host) member of group 'x2gousers'? If thats the case, just install
+all x2gowrappers executable to the 'x2gousers' group only and you are
+done. So its just a minimal change to your standard VM image that would
+be needed. But for non-repudiation you will also need to prevent any other
+user than 'mike' from logging in to the host 'mike' by ssh, so if your
+setup works as intended, the permisions on the wrapper will be your
+second line of defense, not your first.
+
+&gt;<i> &gt; Yes, it does on small scales. And our approach wouldn't make the
+</I>&gt;<i> &gt; 'x2gousers' group go away if you still want to use it: You can simply
+</I>&gt;<i> &gt; make the x2gowrapper executable only for that group and not for others.
+</I>&gt;<i> &gt; Then you have exactly the same functionality as with 'sudo', but without
+</I>&gt;<i> &gt; the hassle of setting up the sudo configuration (wich does never seem to
+</I>&gt;<i> &gt; work automatically on installation). That would also be the suggested
+</I>&gt;<i> &gt; migration path i guess. Additionally you can of course use database
+</I>&gt;<i> &gt; black/whitelists, or you can set x2gowrapper o+rx and only use database
+</I>&gt;<i> &gt; black/whitelists. In that sense our approach would also be far more
+</I>&gt;<i> &gt; flexible than the current sudo approach.
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> 
+</I>&gt;<i> I suppose this is true and appreciate the flexibility.  Just as we
+</I>&gt;<i> automate the creation of the group, we could simply change the group
+</I>&gt;<i> ownership of x2gowrapper to the user's personal group and remove world
+</I>&gt;<i> access.  Is that a correct understanding of how we could use what you
+</I>&gt;<i> are proposing? I do hope those ownership and permissions changes wold be
+</I>&gt;<i> preserved across an update.  Otherwise, I could see a security
+</I>&gt;<i> nightmare.
+</I>
+You could also change the group to the user's private group, but I guess
+that would be much more complicated than the approach described above.
+And I agree that perhaps the postinstall script should take care not to
+mess up the permissions of the wrapper if they have been changed (Or
+perhaps a debconf question would be useful?).
+
+&gt;<i> Again, our use shouldn't drive this decision but I wonder how many
+</I>&gt;<i> others have variations on our theme for issues like billing, security,
+</I>&gt;<i> and non-repudiation.  Thanks again for opening the discussion; I hope it
+</I>&gt;<i> is proving helpful rather than burdensome! - John
+</I>
+Yes, its very helpful, exploring all the things people would like to do
+really carves out the corner cases we need to think about. In that
+sense, I'm very grateful for the active discussion since it prevents
+nasty surprises that would happen if those corner cases were discovered
+too late.
+
+
+
+Ciao,
+
+Alexander Wuerstlein.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001771.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+	<LI>Next message: <A HREF="001778.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1773">[ date ]</a>
+              <a href="thread.html#1773">[ thread ]</a>
+              <a href="subject.html#1773">[ subject ]</a>
+              <a href="author.html#1773">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

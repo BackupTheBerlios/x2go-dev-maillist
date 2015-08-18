@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Opening a session to user with encrypted home directory
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Opening%20a%20session%20to%20user%20with%20encrypted%20home%20directory&In-Reply-To=%3C1264573528.4826.4.camel%40athlon%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000300.html">
+   <LINK REL="Next"  HREF="000301.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Opening a session to user with encrypted home directory</H1>
+    <B>Milan Kn&#237;&#382;ek</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Opening%20a%20session%20to%20user%20with%20encrypted%20home%20directory&In-Reply-To=%3C1264573528.4826.4.camel%40athlon%3E"
+       TITLE="[X2go-dev] Opening a session to user with encrypted home directory">knizek.confy at volny.cz
+       </A><BR>
+    <I>Wed Jan 27 07:25:28 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000300.html">[X2go-dev] x2go en homedirs on samba share
+</A></li>
+        <LI>Next message: <A HREF="000301.html">[X2go-dev] Fwd: X2GO Black screen
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#298">[ date ]</a>
+              <a href="thread.html#298">[ thread ]</a>
+              <a href="subject.html#298">[ subject ]</a>
+              <a href="author.html#298">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+there appears to be a problem with connecting to x2goserver-home (Ubuntu
+9.10), when the user has encrypted home directory (using ecryptfs).
+
+The cause seems to be that some files need to be open in the home
+directory before the ecryptfs is mounted. Trying to connect again
+usually works. Also, the unsuccessful first session remains hanging as
+&quot;running&quot; in the server's database. I checked that after the first
+unsuccessful trial, the ecryptfs home directory was not mounted.
+
+Could it be caused by not enough time for ecryptfs mounting scripts to
+mount home directory before x2go wants to write to it?
+
+Log of the first session: 
+
+/usr/bin/x2goagent: &#345;&#225;dek 1: -e: command not found
+
+NXAGENT - Version 3.4.0
+
+Copyright (C) 2001, 2007 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Agent running with pid '16895'.
+Session: Starting session at 'Tue Jan 26 22:02:19 2010'.
+Loop: PANIC! Can't open options file
+'/home/modeluser/.x2go/C-modeluser-90-1264539738_stDGNOME_dp32/options'.
+Error is 2 'No such file or directory'.
+Error: Can't open options file
+'/home/modeluser/.x2go/C-modeluser-90-1264539738_stDGNOME_dp32/options'.
+Error is 2 'No such file or directory'.
+Error: Parsing of NX transport options failed.
+_X11TransSocketConnectConnInfo: Cannot create the NX transport.
+Loop: WARNING! Signal 'SIGINT not installed in process with pid '16895'.
+Warning: Signal 'SIGINT not installed in process with pid '16895'.
+Loop: WARNING! Signal 'SIGTERM not installed in process with pid
+'16895'.
+Warning: Signal 'SIGTERM not installed in process with pid '16895'.
+Loop: WARNING! Signal 'SIGHUP not installed in process with pid '16895'.
+Warning: Signal 'SIGHUP not installed in process with pid '16895'.
+Loop: WARNING! Signal 'SIGCHLD not installed in process with pid
+'16895'.
+Warning: Signal 'SIGCHLD not installed in process with pid '16895'.
+Error: Aborting session with 'X2goagent: Unable to open display
+'nx/nx,options=/home/modeluser/.x2go/C-modeluser-90-1264539738_stDGNOME_dp32/options:90''.
+Session: Aborting session at 'Tue Jan 26 22:02:19 2010'.
+Session: Session aborted at 'Tue Jan 26 22:02:19 2010'.
+Loop: WARNING! Signals were not blocked in process with pid '16895'.
+Warning: Signals were not blocked in process with pid '16895'.
+
+NXPROXY - Version 3.4.0
+
+Copyright (C) 2001, 2007 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Proxy running in server mode with pid '16895'.
+Session: Starting session at 'Tue Jan 26 22:02:19 2010'.
+Loop: PANIC! Call to bind failed for UNIX domain socket
+(null)/.X11-unix/X90. Error is 2 'No such file or directory'.
+Error:  Call to bind failed for UNIX domain socket (null)/.X11-unix/X90.
+Error is 2 'No such file or directory'.
+Session: Session terminated at 'Tue Jan 26 22:02:19 2010'.
+
+
+
+
+
+Milan Knizek
+knizek (dot) confy (at) volny (dot) cz
+<A HREF="http://www.milan-knizek.net">http://www.milan-knizek.net</A> - About linux and photography (Czech
+language only)
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100127/cb243e41/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100127/cb243e41/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000300.html">[X2go-dev] x2go en homedirs on samba share
+</A></li>
+	<LI>Next message: <A HREF="000301.html">[X2go-dev] Fwd: X2GO Black screen
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#298">[ date ]</a>
+              <a href="thread.html#298">[ thread ]</a>
+              <a href="subject.html#298">[ subject ]</a>
+              <a href="author.html#298">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

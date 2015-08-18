@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#101: x2goclient: resuming &quot;running&quot; session fails
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23101%3A%20x2goclient%3A%20resuming%20%22running%22%20session%20fails&In-Reply-To=%3C20130117004037.12441fo4s1ivzkol%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004909.html">
+   <LINK REL="Next"  HREF="004910.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#101: x2goclient: resuming &quot;running&quot; session fails</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23101%3A%20x2goclient%3A%20resuming%20%22running%22%20session%20fails&In-Reply-To=%3C20130117004037.12441fo4s1ivzkol%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#101: x2goclient: resuming &quot;running&quot; session fails">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Jan 17 00:40:37 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004909.html">[X2Go-Dev] Bug#101: x2goclient: resuming &quot;running&quot; session fails
+</A></li>
+        <LI>Next message: <A HREF="004910.html">[X2Go-Dev] Bug#102: README.md files for each of the server folders
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4911">[ date ]</a>
+              <a href="thread.html#4911">[ thread ]</a>
+              <a href="subject.html#4911">[ subject ]</a>
+              <a href="author.html#4911">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Ezra,
+
+On Mi 16 Jan 2013 14:46:27 CET Ezra B&#252;hler wrote:
+
+&gt;<i> Since commit 3335fca16afaa0792207228115e31630894dee71
+</I>
+there was a follow-up commit to the one you quote:
+
+<A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=a2d95c0c106923162bb510c88806b7384786b97d">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=a2d95c0c106923162bb510c88806b7384786b97d</A>
+
+&gt;<i> (X2Go resume session slot: double click on a selected session is  
+</I>&gt;<i> supposed to resume that session. To make this feature functional for  
+</I>&gt;<i> running sessions the session has to be suspended first.)
+</I>&gt;<i>
+</I>&gt;<i> resuming a &quot;running&quot; session (by double clicking it) is no longer  
+</I>&gt;<i> possible unless you press suspend first. On Linux I get following  
+</I>&gt;<i> error:
+</I>&gt;<i>
+</I>&gt;<i> &quot;channel_open_session failed&quot; :  &quot;Received SSH_MSG_DISCONNECT:  
+</I>&gt;<i> 33554432:Received ieof for nonexistent channel 0.&quot;
+</I>&gt;<i>
+</I>&gt;<i> I am used to closing the client without explicitly suspending the  
+</I>&gt;<i> session. This leaves the session marked as &quot;running&quot;. When I start  
+</I>&gt;<i> up the client again I want to be able to resume the session with the  
+</I>&gt;<i> least effort as possible. In my opinion the right way to achieve  
+</I>&gt;<i> this behavior would be to suspend the session when the client quits.
+</I>
+Unless you shoot the client with kill -9 it should indeed run  
+x2gosuspend-session on the server before quitting. I would consider  
+that as a minor bug, as well.
+
+&gt;<i> In my opinion simply restoring the behavior we had prior to  
+</I>&gt;<i> 3335fc... would be wrong. Because when trying to resume a &quot;running&quot;  
+</I>&gt;<i> session the &quot;resume&quot; button in the session dialog dialog would not  
+</I>&gt;<i> be active, but resuming by double clicking still possible, which I  
+</I>&gt;<i> find misleading.
+</I>
+Double clicking the session should work. So should the resume button.  
+Resuming of a running session should be a sequence of  
+x2gosuspend-session call on the server and then a x2goresume-session  
+call for that same session. Between the two calls you need some time  
+for the session to change its state (couple of secs).
+
+&gt;<i> Here the complete transcript of an attempt to resume a running session:
+</I>&gt;<i>
+</I>&gt;<i> [...]
+</I>
+If you could come up with a patch, that would be really helpful. The  
+last patch you sent was accepted. So will be a follow-up patch (at  
+least it's very likely!!!).
+
+&gt;<i> Cheers,
+</I>&gt;<i> Ezra.
+</I>&gt;<i>
+</I>
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130117/6c8cc945/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130117/6c8cc945/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004909.html">[X2Go-Dev] Bug#101: x2goclient: resuming &quot;running&quot; session fails
+</A></li>
+	<LI>Next message: <A HREF="004910.html">[X2Go-Dev] Bug#102: README.md files for each of the server folders
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4911">[ date ]</a>
+              <a href="thread.html#4911">[ thread ]</a>
+              <a href="subject.html#4911">[ subject ]</a>
+              <a href="author.html#4911">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

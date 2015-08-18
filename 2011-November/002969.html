@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Problem with kde trinity
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Problem%20with%20kde%20trinity&In-Reply-To=%3Ce9b4674f-dbfc-4a0e-b61a-170aec74f86b%40jasiiieee%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002967.html">
+   <LINK REL="Next"  HREF="002973.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Problem with kde trinity</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Problem%20with%20kde%20trinity&In-Reply-To=%3Ce9b4674f-dbfc-4a0e-b61a-170aec74f86b%40jasiiieee%3E"
+       TITLE="[X2go-Dev] Problem with kde trinity">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu Nov  3 12:17:35 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002967.html">[X2go-Dev] Problem with kde trinity
+</A></li>
+        <LI>Next message: <A HREF="002973.html">[X2go-Dev] Problem with kde trinity
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2969">[ date ]</a>
+              <a href="thread.html#2969">[ thread ]</a>
+              <a href="subject.html#2969">[ subject ]</a>
+              <a href="author.html#2969">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+----- Original Message -----
+From: &quot;Mike Gabriel&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+Sent: Thursday, November 3, 2011 4:31:52 AM
+Subject: Re: [X2go-Dev] Problem with kde trinity
+
+Hi Jean,
+
+On Do 03 Nov 2011 09:27:05 CET Jean Milot wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i> I would like use x2go with kde trinity.
+</I>&gt;<i> But it seems that x2gotrinitybindings call an old package.
+</I>&gt;<i> Or maybe i yave a problem with my source list.
+</I>&gt;<i> Thanks for your help.
+</I>&gt;<i> Jean
+</I>
+Trinity support is only implement in the pyhoca-gui client, not in the  
+native x2goclient. The Trinity implementation into x2goclient should  
+be not problem at all.
+
+But: the x2gotrinitybindings package is not at all usable... It simply  
+has been adopted from the old KDE3 x2gokdebindings package.
+
+x2gotrinitybindings (same as its predecessor x2gokdebindings) actually  
+contains a bad hack that is not Debian policy conform: it moves a file  
+installed by another package out of the way. Maybe this is where your  
+development efforts could start? I know that John Sullivan (also on  
+this list) deploys Trinity in cloud desktop computing, as well. So  
+maybe you can bundle efforts.
+
+&lt;snip&gt;
+Yes, that is what we did - we renamed the /usr/bin/startkde and replaced it with a link to /opt/trinity/bin/startkde - John
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002967.html">[X2go-Dev] Problem with kde trinity
+</A></li>
+	<LI>Next message: <A HREF="002973.html">[X2go-Dev] Problem with kde trinity
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2969">[ date ]</a>
+              <a href="thread.html#2969">[ thread ]</a>
+              <a href="subject.html#2969">[ subject ]</a>
+              <a href="author.html#2969">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] 3.99 Testing - Very serious issues with image packing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Very%20serious%20issues%20with%20image%20packing&In-Reply-To=%3C20110721233653.17349eiq4j495wc5%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002516.html">
+   <LINK REL="Next"  HREF="002519.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] 3.99 Testing - Very serious issues with image packing</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Very%20serious%20issues%20with%20image%20packing&In-Reply-To=%3C20110721233653.17349eiq4j495wc5%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] 3.99 Testing - Very serious issues with image packing">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Jul 21 23:36:53 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002516.html">[X2go-Dev] 3.99 Testing - Very serious issues with image packing
+</A></li>
+        <LI>Next message: <A HREF="002519.html">[X2go-Dev] 3.99 Testing - Very serious issues with image packing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2517">[ date ]</a>
+              <a href="thread.html#2517">[ thread ]</a>
+              <a href="subject.html#2517">[ subject ]</a>
+              <a href="author.html#2517">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi John,
+
+On Do 21 Jul 2011 22:14:33 CEST &quot;John A. Sullivan III&quot; wrote:
+
+&gt;<i> Something is seriously wrong with image packing.  I'm guessing this has
+</I>&gt;<i> something to do with NXAgent 3.5 but I'm really not sure.  It first
+</I>&gt;<i> appeared when I install Pyhoca which I am assume pulled in the new
+</I>&gt;<i> agent.
+</I>
+x2goagent/nxagent runs on the X2go server, not at all on the client!!!  
+What comes with x2goclient/PyHoca-GUI are:
+
+   nxproxy.exe + libxcomp3 + some cygwin stuff
+   pulseaudio.exe
+   vcxsrv.exe (a complete vcxsrv installation in case of PyHoca-GUI, a minimal
+       set of files in case of x2goclient)
+
+&gt;<i> On the other hand, reverting to 3.0.1-4 did not fix the problem
+</I>&gt;<i> which has me very suspicious.  I am writing from Linux right now but I
+</I>&gt;<i> will test that again later.  If it is not the nxagent or the 3.99
+</I>&gt;<i> client, then we'll need to find whatever it was that Pyhoca pulled in.
+</I>
+Everything that PyHoca-GUI installs ends up in  
+%ProgramFiles%\PyHoca-GUI. Erase that dir and you should be clean again.
+
+&gt;<i> I did uninstall ghostscript and vcxsrv after uninstalling Pyhoca.
+</I>
+Ok...
+
+&gt;<i> I can confirm that the problem persists even after backleveling to
+</I>&gt;<i> 3.0.1-4 so I'm not sure that this is specifically 3.99 but it is a
+</I>&gt;<i> crippling problem.
+</I>
+:<i>-(
+</I>
+&gt;<i> On to the actual problem.  We normally use 16m-png-jpeg packing which
+</I>&gt;<i> seems to give us the fastest performance and crispest looking screen on
+</I>&gt;<i> our WAN only environment.
+</I>
+I can confirm the performance improvement when running pyhoca-gui and  
+x2goclient on Linux.
+
+&gt;<i> I'm honestly not sure what this setting
+</I>&gt;<i> controls.  I assume it means we are compressing png and jpeg images as
+</I>&gt;<i> opposed to the default 16m-jpeg which then only compresses jpegs? I
+</I>&gt;<i> don't know what the 16m is - is that the size of the cache?
+</I>
+No clue, actually. That is NX stuff...
+
+&gt;<i> When we use that from a Windows client now, all the images are
+</I>&gt;<i> thoroughly corrupted and unusable.  This was noticeable in the desktop
+</I>&gt;<i> icons and in the KDE splash screen.  We changed the packing to 16m-jpeg
+</I>&gt;<i> and thought the problem went away because the splash screen and desktop
+</I>&gt;<i> icons appeared properly.  Our enthusiasm was short-lived.  All jpegs
+</I>&gt;<i> seems to be corrupt.  The only way we could get a non-corrupt screen was
+</I>&gt;<i> to use nopack but that made for lousy performance especially when
+</I>&gt;<i> scrolling a graphics intensive page such as www.wsj.com or www.cnn.com.
+</I>
+YUK!!!
+
+&gt;<i> Interestingly, even after upgrading, the client details screen says we
+</I>&gt;<i> are running NXPROXY - version 3.4.0.
+</I>
+Ok... it maybe that the new x2goclient 3.99.0.0 for Win32 still uses  
+old NX code on the client side. PyHoca-GUI still comes with nx 3.4.x.
+
+BTW: the diff between the last libxcomp3 (3.4.x) and libxcomp3 (3.5.x)  
+is very small!!!
+
+&gt;<i> I don't know what in the Pyhoca installation caused this but completely
+</I>&gt;<i> removing Pyhoca and previous x2goclient installations from both file
+</I>&gt;<i> system and registry and installing 3.99 has not fixed the problem.
+</I>&gt;<i> Thanks - John
+</I>
+I have tested PyHoca-GUI and x2goclient on Win2008r2 64bit right now  
+(via rdesktop). Both actually fail, the nxproxy/x2goagent is most of  
+the time not even opened, sometimes it pops up, but then it is gone.
+
+Grml...
+
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110721/968532c1/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110721/968532c1/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002516.html">[X2go-Dev] 3.99 Testing - Very serious issues with image packing
+</A></li>
+	<LI>Next message: <A HREF="002519.html">[X2go-Dev] 3.99 Testing - Very serious issues with image packing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2517">[ date ]</a>
+              <a href="thread.html#2517">[ thread ]</a>
+              <a href="subject.html#2517">[ subject ]</a>
+              <a href="author.html#2517">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

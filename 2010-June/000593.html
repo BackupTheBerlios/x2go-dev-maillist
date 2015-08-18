@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] trouble getting printing to work
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20trouble%20getting%20printing%20to%20work&In-Reply-To=%3C1277207566.3467.13.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000590.html">
+   <LINK REL="Next"  HREF="000591.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] trouble getting printing to work</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20trouble%20getting%20printing%20to%20work&In-Reply-To=%3C1277207566.3467.13.camel%40localhost%3E"
+       TITLE="[X2go-dev] trouble getting printing to work">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Jun 22 13:52:46 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000590.html">[X2go-dev] trouble getting printing to work
+</A></li>
+        <LI>Next message: <A HREF="000591.html">[X2go-dev] Single application gets suspended with mouse move and	click on window decoration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#593">[ date ]</a>
+              <a href="thread.html#593">[ thread ]</a>
+              <a href="subject.html#593">[ subject ]</a>
+              <a href="author.html#593">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2010-06-21 at 20:41 -0500, Gerry Reno wrote:
+&gt;<i> I have a lucid client and a lucid server.  I followed the guides for
+</I>&gt;<i> Linux and I can access the server from the client using x2go and the
+</I>&gt;<i> session works fine.  I cannot seem to get folder sharing or printing
+</I>&gt;<i> to work however.  I have cups-x2go and x2goprint installed on the
+</I>&gt;<i> server.  I've selected the proper options in the x2go client interface
+</I>&gt;<i> (I shared one directory automounted) and for printing I checked to
+</I>&gt;<i> print to xpdf.  I verified that 'xpdf' is installed on the client.  I
+</I>&gt;<i> have gone to Administration, Printing and set up the printer
+</I>&gt;<i> Generic-CUPS-X2GO-printer.  I'm using ssh port 22 for connections.
+</I>&gt;<i> When I print something from the remote desktop it acts likes
+</I>&gt;<i> everything worked.  When I check the /var/log/cups/access_log I can
+</I>&gt;<i> see everything seemed to work.  But, no output ever appears anywhere.
+</I>&gt;<i> Also, with the shared folder, no folder is ever mounted anywhere.  Can
+</I>&gt;<i> someone shed some light on what is needed to get these functions
+</I>&gt;<i> working?
+</I>&lt;snip&gt;
+The fact that both are broken helps narrow it down.  Both use fuse and
+an sshfs mount to pass data.  Do you have fuse and sshfs installed? Is
+sshd running on BOTH client and server? Are the users members of the
+fuse group to have access to the fuse device? Those are the areas I'd
+suggest checking.  Good luck - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000590.html">[X2go-dev] trouble getting printing to work
+</A></li>
+	<LI>Next message: <A HREF="000591.html">[X2go-dev] Single application gets suspended with mouse move and	click on window decoration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#593">[ date ]</a>
+              <a href="thread.html#593">[ thread ]</a>
+              <a href="subject.html#593">[ subject ]</a>
+              <a href="author.html#593">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

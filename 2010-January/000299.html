@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go en homedirs on samba share
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20en%20homedirs%20on%20samba%20share&In-Reply-To=%3Cdfff13871001270029p2e46824h10ec28600b7f347%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000296.html">
+   <LINK REL="Next"  HREF="000300.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go en homedirs on samba share</H1>
+    <B>jasper van der marel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20en%20homedirs%20on%20samba%20share&In-Reply-To=%3Cdfff13871001270029p2e46824h10ec28600b7f347%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] x2go en homedirs on samba share">jaspervandermarel at gmail.com
+       </A><BR>
+    <I>Wed Jan 27 09:29:52 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000296.html">[X2go-dev] x2go en homedirs on samba share
+</A></li>
+        <LI>Next message: <A HREF="000300.html">[X2go-dev] x2go en homedirs on samba share
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#299">[ date ]</a>
+              <a href="thread.html#299">[ thread ]</a>
+              <a href="subject.html#299">[ subject ]</a>
+              <a href="author.html#299">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Heinz,
+
+I think I have found a part of the problem. I have read
+(<A HREF="http://osdir.com/ml/fedora-directory-users/2009-06/msg00026.html">http://osdir.com/ml/fedora-directory-users/2009-06/msg00026.html</A>)
+x2go logs in 3 times when  setting of the connection between server
+and client. In the current setup we are mounting the samba/cifs home
+share during login. When looking at the mountpoints after making the
+connection (which fails) I can see the samba/cifs home dir mounted
+three times. Is there a way to force x2go to login just one time ? Or
+can you explain the loginprocess to me so I can solve the problem ?
+
+With kind regards,
+
+Jasper van der Marel
+
+2010/1/26 Heinz-M. Graesing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heinz-m at web.de</A>&gt;:
+&gt;&gt;<i> -----Urspr&#252;ngliche Nachricht-----
+</I>&gt;&gt;<i> Von: &quot;jasper van der marel&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jaspervandermarel at gmail.com</A>&gt;
+</I>&gt;&gt;<i> Gesendet: 26.01.10 16:08:40
+</I>&gt;&gt;<i> An: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> Betreff: [X2go-dev] x2go en homedirs on samba share
+</I>&gt;<i>
+</I>&gt;<i> Hello Jasper,
+</I>&gt;<i>
+</I>&gt;&gt;<i> We want to integrate a x2go server with homedirs on a samba server.
+</I>&gt;&gt;<i> We have a working pam-script which mounts the homedir on login.
+</I>&gt;&gt;<i> X2GO starts and a .x2go is being created. However only a black screen appears
+</I>&gt;&gt;<i> and nothing happens. When looking in the logging file sometimes an
+</I>&gt;&gt;<i> error appears saying
+</I>&gt;&gt;<i> &quot;no screens found&quot;.
+</I>&gt;<i>
+</I>&gt;<i> Please try to start something other than a whole desktop environment - for example xclock. This may help to find the problem.
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Has someone in this forum experiences with homedirs on samba shares and x2go ?
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I never have had a smb/cifs share as linux /home tree.
+</I>&gt;<i>
+</I>&gt;<i> best regards,
+</I>&gt;<i>
+</I>&gt;<i> Heinz
+</I>&gt;<i> ______________________________________________________
+</I>&gt;<i> GRATIS f&#252;r alle WEB.DE-Nutzer: Die maxdome Movie-FLAT!
+</I>&gt;<i> Jetzt freischalten unter <A HREF="http://movieflat.web.de">http://movieflat.web.de</A>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000296.html">[X2go-dev] x2go en homedirs on samba share
+</A></li>
+	<LI>Next message: <A HREF="000300.html">[X2go-dev] x2go en homedirs on samba share
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#299">[ date ]</a>
+              <a href="thread.html#299">[ thread ]</a>
+              <a href="subject.html#299">[ subject ]</a>
+              <a href="author.html#299">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

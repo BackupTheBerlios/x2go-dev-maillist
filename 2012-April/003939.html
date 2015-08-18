@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] GNOME vs. Unity on Ubuntu precise
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20GNOME%20vs.%20Unity%20on%20Ubuntu%20precise&In-Reply-To=%3C20120429163146.47577e14po8uznpu%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003938.html">
+   <LINK REL="Next"  HREF="003940.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] GNOME vs. Unity on Ubuntu precise</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20GNOME%20vs.%20Unity%20on%20Ubuntu%20precise&In-Reply-To=%3C20120429163146.47577e14po8uznpu%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] GNOME vs. Unity on Ubuntu precise">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sun Apr 29 16:31:46 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003938.html">[X2Go-Dev] GNOME vs. Unity on Ubuntu precise
+</A></li>
+        <LI>Next message: <A HREF="003940.html">[X2Go-Dev] GNOME vs. Unity on Ubuntu precise
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3939">[ date ]</a>
+              <a href="thread.html#3939">[ thread ]</a>
+              <a href="subject.html#3939">[ subject ]</a>
+              <a href="author.html#3939">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi St&#233;phane,
+
+thanks for clarifying all this!!!
+
+On So 29 Apr 2012 15:52:32 CEST St&#233;phane Graber wrote:
+
+&gt;<i> To solve the problem properly, you'd need something that understands
+</I>&gt;<i> gnome-session and uses it as it's expected.
+</I>&gt;<i>
+</I>&gt;<i> Here are some example calls of gnome-session:
+</I>&gt;<i>  - gnome-session =&gt; starts the default session, on Ubuntu, unity-3d
+</I>&gt;<i>  - gnome-session --session=ubuntu =&gt; starts unity-3d
+</I>&gt;<i>  - gnome-session --session=ubuntu-2d =&gt; starts unity-2d
+</I>&gt;<i>  - gnome-session --session=gnome =&gt; starts Gnome3 (shell)
+</I>&gt;<i>  - gnome-session --session=gnome-fallback =&gt; starts the gnome 3.x
+</I>&gt;<i> fallback session
+</I>
+I have just committed a set of patches for x2goruncommand that does  
+the following:
+
+   - cmd in ('unity', 'UNITY') and Ubuntu is precise or later
+     -&gt; rewrite cmd to ,,gnome-session''
+
+   - cmd in ('gnome-session, 'GNOME') and Ubuntu is precise or later
+     -&gt; rewrite cmd to ,,gnome-session-fallback''
+
+This seems to work.
+
+However, I have troubles with X2Go window resizing, esp. when running  
+a Unity session (I use pyhoca-gui as client).
+
+Maybe my approach given above is not as clean as your ruleset, but we  
+can ignore GNOME3 (compiz shell) and Unity (compiz shell) for X2Go  
+anyway (IMHO). We rely on the fallback sessions to be supported in  
+future and to become more and more stable.
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120429/d7fd8c54/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120429/d7fd8c54/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003938.html">[X2Go-Dev] GNOME vs. Unity on Ubuntu precise
+</A></li>
+	<LI>Next message: <A HREF="003940.html">[X2Go-Dev] GNOME vs. Unity on Ubuntu precise
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3939">[ date ]</a>
+              <a href="thread.html#3939">[ thread ]</a>
+              <a href="subject.html#3939">[ subject ]</a>
+              <a href="author.html#3939">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

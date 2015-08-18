@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#29: LD_LIBRARY_PATH gets purged when	x2goserver-xsession is in use
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2329%3A%20LD_LIBRARY_PATH%20gets%20purged%20when%0A%09x2goserver-xsession%20is%20in%20use&In-Reply-To=%3C20120914163805.66713aview0hr1hp%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004238.html">
+   <LINK REL="Next"  HREF="004240.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#29: LD_LIBRARY_PATH gets purged when	x2goserver-xsession is in use</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2329%3A%20LD_LIBRARY_PATH%20gets%20purged%20when%0A%09x2goserver-xsession%20is%20in%20use&In-Reply-To=%3C20120914163805.66713aview0hr1hp%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#29: LD_LIBRARY_PATH gets purged when	x2goserver-xsession is in use">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Sep 14 16:38:05 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004238.html">[X2Go-Dev] Bug#28: x2go kubuntu 12.4
+</A></li>
+        <LI>Next message: <A HREF="004240.html">[X2Go-Dev] Bug#29: LD_LIBRARY_PATH gets purged when x2goserver-xsession is in use
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4239">[ date ]</a>
+              <a href="thread.html#4239">[ thread ]</a>
+              <a href="subject.html#4239">[ subject ]</a>
+              <a href="author.html#4239">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goserver-xsession
+Version: 3.1.1.3
+Severity: normal
+
+The X2Go script x2goruncommand sets a X2Go-customized LD_LIBRARY_PATH  
+to enable X2Go's Xinerama feature.
+
+If the package x2goserver-xsession is not installed, then the  
+LD_LIBRARY_PATH gets set for applications inside the X2Go session.
+
+However, if the package x2goserver-xsession is in use, the  
+LD_LIBRARY_PATH env variable is not set for applications inside the  
+X2Go session.
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120914/2ebaba27/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120914/2ebaba27/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004238.html">[X2Go-Dev] Bug#28: x2go kubuntu 12.4
+</A></li>
+	<LI>Next message: <A HREF="004240.html">[X2Go-Dev] Bug#29: LD_LIBRARY_PATH gets purged when x2goserver-xsession is in use
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4239">[ date ]</a>
+              <a href="thread.html#4239">[ thread ]</a>
+              <a href="subject.html#4239">[ subject ]</a>
+              <a href="author.html#4239">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

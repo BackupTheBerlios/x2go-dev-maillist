@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] SABAYON-Userprofiles and X2GO
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20SABAYON-Userprofiles%20and%20X2GO&In-Reply-To=%3C1279906698.11385.1.camel%40WS-XX-UBUNTU%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000875.html">
+   <LINK REL="Next"  HREF="000869.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] SABAYON-Userprofiles and X2GO</H1>
+    <B>Stefan W. Lambert</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20SABAYON-Userprofiles%20and%20X2GO&In-Reply-To=%3C1279906698.11385.1.camel%40WS-XX-UBUNTU%3E"
+       TITLE="[X2go-dev] SABAYON-Userprofiles and X2GO">swlambert-hg at online.de
+       </A><BR>
+    <I>Fri Jul 23 19:38:18 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000875.html">[X2go-dev] SABAYON-Userprofiles and X2GO
+</A></li>
+        <LI>Next message: <A HREF="000869.html">[X2go-dev] x2go windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#894">[ date ]</a>
+              <a href="thread.html#894">[ thread ]</a>
+              <a href="subject.html#894">[ subject ]</a>
+              <a href="author.html#894">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am Donnerstag, den 22.07.2010, 10:02 -0400 schrieb John A. Sullivan III:
+&gt;<i> On Thu, 2010-07-22 at 12:18 +0200, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">swlambert-hg at online.de</A> wrote:
+</I>&gt;<i> &gt; Hello at all,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I 'm not sure whether this is the correct place to post my question. But I can't find a forum or wiki for x2go-User and Admin questions. So, I use this mailing-list.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Since a few weeks I'm testing x2go. Everything works fine, but now, I have a problem.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; To create Gnome-Userprofiles, I use the Profileditor &quot;Sabayon&quot; ( <A HREF="http://live.gnome.org/Sabayon">http://live.gnome.org/Sabayon</A> <A HREF="http://live.gnome.org/Sabayon">http://live.gnome.org/Sabayon</A> ). The generation of the profiles and the assignment to the users work without any issue. But together with x2go, there is a (for me a big) problem. 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; When a new user run a X2GO Session, he receive the Standard-Gnome Desktop instead of the &#8222;Sabayon&#8220;-Desktop. But when he first logged in localy on the Server, the assignment of the &#8222;Sabayon&#8220;-Desktop works on X2GO Sessions too.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; In my opinion , Sabayon is a good and easy tool for Administrators to handle the useraccess on the applications at the TS-Server. But it isn't feasible in a production environment with a lot of users, that every user first logged in localy on the server. 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; NOMACHINE has published an article ( <A HREF="http://www.nomachine.com/ar/view.php?ar_id=AR10F00516">http://www.nomachine.com/ar/view.php?ar_id=AR10F00516</A> <A HREF="http://www.nomachine.com/ar/view.php?ar_id=AR10F00516">http://www.nomachine.com/ar/view.php?ar_id=AR10F00516</A> ) with the solution for this issue with NOMACHINE NX-Server. After I have adjusted the Sabayon Configuration on Ubuntu 10.04 (there are a few differences between Sabayon on Fedora and Sabayon on Ubuntu), i have make a test with the &#8222;Nomachine NX-Free Edition&#8220; (not FreeNX) and it works indeed. Now I'm searching for the solution with X2GO. 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; So, my two question are
+</I>&gt;<i> &gt; 1.
+</I>&gt;<i> &gt; Is there a possibilty in the X2GO-Configuration to configure a &#8222;UserScriptAfterSessionStart&#8220; like in the Nomachine NX-Node configuration ? If yes, how ?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 2.
+</I>&gt;<i> &gt; Is it possible to publish only Applications (not the whole Desktop) for users/usergroups ? If yes, how work it ?
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Thanks a lot for your help.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Best regards
+</I>&gt;<i> &gt; Stefan
+</I>&gt;<i> &gt; ----------------------------------------
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> Hello, Stefan.  I'm not familiar with Sabayon (perhaps I should be!).
+</I>&gt;<i> We've been setting XDG_DATA_DIRS and using a centrally managed settings
+</I>&gt;<i> approach.
+</I>&gt;<i> 
+</I>&gt;<i> However, it is possible to launch specific applications and this can
+</I>&gt;<i> include, I believe, a wrapper application to something like startkde or
+</I>&gt;<i> gnome-session.  A while ago, I had published on this list our work of
+</I>&gt;<i> summarizing the X2Go process of setting up and tearing down a session.
+</I>&gt;<i> You might find that helpful.
+</I>&gt;<i> 
+</I>&gt;<i> It seems to all be driven from the client via SSH.  Eventually, the
+</I>&gt;<i> client runs (via ssh on the server) /usr/bin/x2goruncommand.  This
+</I>&gt;<i> command can be just about anything and is configured in the client
+</I>&gt;<i> interface under the session type on the Session (first) tab.  Hope this
+</I>&gt;<i> helps - John
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+Hello John,
+
+thanks a lot for your quickly and helpful reply. 
+
+The solution for the problem is realy simple. As you write, I change the
+settings in the first tab of the GTK-Client.
+
+Here is the solution for the described issue.
+- replace &quot;Gnome&quot; with &quot;Other Desktop-Environment&quot;
+- write into the commandline &quot;/etc/X11/Xsession&quot; 
+
+and it works fantastic :)))
+
+Thanks for your help !!!!
+
+Best regards
+Stefan
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000875.html">[X2go-dev] SABAYON-Userprofiles and X2GO
+</A></li>
+	<LI>Next message: <A HREF="000869.html">[X2go-dev] x2go windows client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#894">[ date ]</a>
+              <a href="thread.html#894">[ thread ]</a>
+              <a href="subject.html#894">[ subject ]</a>
+              <a href="author.html#894">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

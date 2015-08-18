@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2go, printing, Vserver, PostgreSQL &#160;- PS
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%0A%20%3D%3Fiso-8859-1%3Fq%3FX2go%3D2C_printing%3D2C_Vserver%3D2C_PostgreS%3F%3D%0A%20%3D%3Fiso-8859-1%3Fq%3FQL_%3DA0-_PS%3F%3D&In-Reply-To=%3C1348446133.21992.111.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004306.html">
+   <LINK REL="Next"  HREF="004317.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2go, printing, Vserver, PostgreSQL &#160;- PS</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%0A%20%3D%3Fiso-8859-1%3Fq%3FX2go%3D2C_printing%3D2C_Vserver%3D2C_PostgreS%3F%3D%0A%20%3D%3Fiso-8859-1%3Fq%3FQL_%3DA0-_PS%3F%3D&In-Reply-To=%3C1348446133.21992.111.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2Go-Dev] X2go, printing, Vserver, PostgreSQL &#160;- PS">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Mon Sep 24 02:22:13 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004306.html">[X2Go-Dev]  X2go, printing, Vserver, PostgreSQL &#160;- PS
+</A></li>
+        <LI>Next message: <A HREF="004317.html">[X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4312">[ date ]</a>
+              <a href="thread.html#4312">[ thread ]</a>
+              <a href="subject.html#4312">[ subject ]</a>
+              <a href="author.html#4312">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, 2012-09-23 at 09:54 -0400, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">senrabdet at aol.com</A> wrote:
+&gt;<i> Hi All: 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> This morning, per yesterday's email re: our trouble printing using a
+</I>&gt;<i> Vserver guest with postgreSQL and a Vserver host doubling as a cups
+</I>&gt;<i> server, we tried an experiment that didn't work but thought we'd add
+</I>&gt;<i> it in.  
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> -We increased the Vserver config fstab (not the fstab in the
+</I>&gt;<i> Vserver's /etc but the one in the Vserver config folder) to 1024M.
+</I>&gt;<i> -We started x2go and noted the session name
+</I>&gt;<i> -By hand, we created a folder with the session name in /tmp (i.e.,
+</I>&gt;<i> tmp/.x2go-user1/spool/C-user1-50-1348405390_stDGNOME_dp24) on the
+</I>&gt;<i> Vserver guest/x2go server.
+</I>&gt;<i> -We erased the broken spool link, and created a new one that points to
+</I>&gt;<i> the new folder in /tmp again on the Vserver guest/x2go server.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> At that point, the link was active (not broken) but nothing changed in
+</I>&gt;<i> our inablity to print.  I.e., we start a print job on the virtual x2go
+</I>&gt;<i> printer, all seems to go fine, but no joy in terms of evince starting
+</I>&gt;<i> on the client or getting a page to print.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Still though, the print jobs are showing up in /var/spool/cups on the
+</I>&gt;<i> cups server, in the cups interface (<A HREF="http://localhost:631">http://localhost:631</A>), the
+</I>&gt;<i> page_log in /var/log/cups on the cups server, and we don't get any
+</I>&gt;<i> errors in error_log in /var/log/cups on the cups server.  That has
+</I>&gt;<i> been the case before.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> We think that fact that we can connect via x2go shows that the
+</I>&gt;<i> postgreSQL setup is working, that the print jobs are showing up on the
+</I>&gt;<i> cups server suggests that the printing ssh connection works (though
+</I>&gt;<i> we're less sure about this).
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i>  Not sure what to make of this....but hope it was worth adding.
+</I>&gt;<i> 
+</I>&lt;snip&gt;
+How is the CUPS server establishing its SSH connection to the
+x2goserver? - John
+
+
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004306.html">[X2Go-Dev]  X2go, printing, Vserver, PostgreSQL &#160;- PS
+</A></li>
+	<LI>Next message: <A HREF="004317.html">[X2Go-Dev] Bug#34: SSH_OPTIONS_FD
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4312">[ date ]</a>
+              <a href="thread.html#4312">[ thread ]</a>
+              <a href="subject.html#4312">[ subject ]</a>
+              <a href="author.html#4312">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

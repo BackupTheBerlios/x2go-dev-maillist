@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Nothing to do with X2go - Question about X11 terminal
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Nothing%20to%20do%20with%20X2go%20-%20Question%20about%20X11%20terminal&In-Reply-To=%3CCOL109-W27EB8812865043459257299BFF0%40phx.gbl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000468.html">
+   <LINK REL="Next"  HREF="000467.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Nothing to do with X2go - Question about X11 terminal</H1>
+    <B>Johnson Lukose</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Nothing%20to%20do%20with%20X2go%20-%20Question%20about%20X11%20terminal&In-Reply-To=%3CCOL109-W27EB8812865043459257299BFF0%40phx.gbl%3E"
+       TITLE="[X2go-dev] Nothing to do with X2go - Question about X11 terminal">johnson.lukose at hotmail.com
+       </A><BR>
+    <I>Sun May 16 17:48:07 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000468.html">[X2go-dev] screen saver extension
+</A></li>
+        <LI>Next message: <A HREF="000467.html">[X2go-dev] Nothing to do with X2go - Question about X11 terminal
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#465">[ date ]</a>
+              <a href="thread.html#465">[ thread ]</a>
+              <a href="subject.html#465">[ subject ]</a>
+              <a href="author.html#465">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Dear Sirs, may I post a question regarding a non-x2go issue?
+
+If it is ok, here is my query;
+I have Linux Mint 8 (Helena / Ubuntu 9.10) installed on my desktop at home.  A friend of mine was clearing his office and gave me a piece of Wyse Winterm WT5420XL.  I grabbed it with the view of connecting this thin client to my desktop so that my family can access the desktop.
+
+I thought it was plug and play but it is not so.  I don't know where to begin / how to get started.  
+
+I looked at <A HREF="http://www.wyse.com">http://www.wyse.com</A> but WT5420XL was not even listed in the product range!  The firmware is Winterm 5000 series / V1.0.6 (Build 407).  The closest is WT5440XL.  Anyway, the website has only references of hooking up to Citrix or similar high priced thin client server environments.  There is no reference of hooking up to a standard Linux Mint / Ubuntu desktop, for any of their products in their product range.
+
+I am connected to the internet via an Aztech ADSL (4-port + Wifi) router-modem.  This Aztech router-modem is the DHCP server.  I connected the WT5420XL to this router-modem.  My desktop is 192.168.1.100, the WT5420XL is 192.168.1.101
+
+In the WT5420XL Terminal Properties / Network I selected &quot;Obtain an IP address from a DHCP server&quot;.  When I click to Terminal Properties / SysInfo I can see that in the TCP/IP Settings the IP Address is 192.168.1.101, Gateway 192.168.1.1 (Aztech router-modem).
+
+In /etc/gdm/custom.conf the setting is as follows;
+************************************************************
+# GDM configuration storage
+
+[xdmcp]
+Enable=true
+DisplaysPerHost=2
+
+[chooser]
+
+[security]
+
+[debug]
+
+[daemon]
+TimedLoginEnable=false
+AutomaticLoginEnable=false
+TimedLogin=johnson
+AutomaticLogin=johnson
+TimedLoginDelay=30
+************************************************************
+In the Winterm Connection Manager / Configure I click on Add / New Connection and select X Connection.  In Winterm Connection Manager / Configure / XSetup / Start I select &quot;Remote Desktop Mode&quot;.  In Winterm Connection Manager / Configure / XSetup / Connect I select XDMCP-Query and for XDMCP Server I enter 192.168.1.100.  And I give this the Title &quot;Linux1&quot;.
+
+In In the Winterm Connection Manager / Connections I click on &quot;Linux1&quot;, the screen goes into black&amp;white mode than a few seconds later the error box &quot;Xconnection error / No respond from XDMCP server.&quot; appears.  Clicking OK will bring me back to the Winterm Connection Manager screen.
+
+I have been searching the web and stumbled across x2go's website.
+
+If this is not an appropriate question here, please point me to a relevant forum.
+
+thanks.
+
+ 		 	   		  
+_________________________________________________________________
+Hotmail: Trusted email with powerful SPAM protection.
+<A HREF="https://signup.live.com/signup.aspx?id=60969">https://signup.live.com/signup.aspx?id=60969</A>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100516/ae8d5782/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100516/ae8d5782/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000468.html">[X2go-dev] screen saver extension
+</A></li>
+	<LI>Next message: <A HREF="000467.html">[X2go-dev] Nothing to do with X2go - Question about X11 terminal
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#465">[ date ]</a>
+              <a href="thread.html#465">[ thread ]</a>
+              <a href="subject.html#465">[ subject ]</a>
+              <a href="author.html#465">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

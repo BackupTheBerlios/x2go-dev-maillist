@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Use case for an x2go user-group
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C1298058910.4497.25.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001785.html">
+   <LINK REL="Next"  HREF="001773.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Use case for an x2go user-group</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C1298058910.4497.25.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] Use case for an x2go user-group">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Feb 18 20:55:10 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001785.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+        <LI>Next message: <A HREF="001773.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1771">[ date ]</a>
+              <a href="thread.html#1771">[ thread ]</a>
+              <a href="subject.html#1771">[ subject ]</a>
+              <a href="author.html#1771">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2011-02-18 at 20:14 +0100, Alexander Wuerstlein wrote:
+&gt;<i> &lt;snip&gt;&gt; 
+</I>&gt;<i> &gt; Are you implying that every user on any x2go server would be able to
+</I>&gt;<i> &gt; launch a remote x2go desktop by default?
+</I>&gt;<i> 
+</I>&gt;<i> Yes.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; We don't have any problems with the current mechanism of 'x2gousers'
+</I>&gt;<i> &gt; providing the control.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; And in fact in most OS you see 'groups' are specifically there for the
+</I>&gt;<i> &gt; express purpose of controlling access to functionality.
+</I>&gt;<i> 
+</I>&gt;<i> Yes, but in large setups, groups become very hard to manage. Large
+</I>&gt;<i> groups with thousands of users tend to be an administration burden, also
+</I>&gt;<i> a large number of additional groups for each user tends to be
+</I>&gt;<i> problematic with many operating systems or setups (NIS, SQL, older
+</I>&gt;<i> unices, etc).
+</I>Hmm . . . I can see that backfiring in our scenario.  Of course, our
+scenario shouldn't drive the overall development but I'll share my
+concerns in case others have them, too.
+
+Because we envision a very large environment, we are an LDAP shop
+(CentOS Directory Server).  There are very, very few local accounts.  We
+are not using N-to-1 X2GoServer but rather 1-to-1 - each X2Go user has
+their own VM.  We use a local x2gousers group on the VM.  We create it
+and add the user to it (in fact, the VM hostname is the same as the
+globally unique user uid) as part of the VM creation.  This locks each
+user to a VM which is handy for both billing and non-repudiation.
+Because we fix each IP, all activity is known to come from that user and
+only that user (handy for schools or any other organization sensitive to
+IT abuse).  In the proposed scenario, any valid LDAP user from any
+client in our multi-tenant environment could conceivably start an X2Go
+session on any VM thus destroying the control and accountability we
+implemented exactly because we anticipate a large environment.
+
+However, we do appreciate that you have given us options which I'll
+address below.
+&gt;<i> 
+</I>&gt;<i> &gt; In many companies only certain employees such as field personnel or
+</I>&gt;<i> &gt; sales are permitted remote desktop access.  And the 'x2gousers' group
+</I>&gt;<i> &gt; suits this purpose well.
+</I>&gt;<i> 
+</I>&gt;<i> Yes, it does on small scales. And our approach wouldn't make the
+</I>&gt;<i> 'x2gousers' group go away if you still want to use it: You can simply
+</I>&gt;<i> make the x2gowrapper executable only for that group and not for others.
+</I>&gt;<i> Then you have exactly the same functionality as with 'sudo', but without
+</I>&gt;<i> the hassle of setting up the sudo configuration (wich does never seem to
+</I>&gt;<i> work automatically on installation). That would also be the suggested
+</I>&gt;<i> migration path i guess. Additionally you can of course use database
+</I>&gt;<i> black/whitelists, or you can set x2gowrapper o+rx and only use database
+</I>&gt;<i> black/whitelists. In that sense our approach would also be far more
+</I>&gt;<i> flexible than the current sudo approach.
+</I>&lt;snip&gt;
+
+I suppose this is true and appreciate the flexibility.  Just as we
+automate the creation of the group, we could simply change the group
+ownership of x2gowrapper to the user's personal group and remove world
+access.  Is that a correct understanding of how we could use what you
+are proposing? I do hope those ownership and permissions changes wold be
+preserved across an update.  Otherwise, I could see a security
+nightmare.
+
+Again, our use shouldn't drive this decision but I wonder how many
+others have variations on our theme for issues like billing, security,
+and non-repudiation.  Thanks again for opening the discussion; I hope it
+is proving helpful rather than burdensome! - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001785.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+	<LI>Next message: <A HREF="001773.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1771">[ date ]</a>
+              <a href="thread.html#1771">[ thread ]</a>
+              <a href="subject.html#1771">[ subject ]</a>
+              <a href="author.html#1771">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

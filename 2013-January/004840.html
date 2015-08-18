@@ -1,0 +1,490 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [X2Go-User] [X2Go-Announcement] New X2Go	releases:	x2goserver, x2goclient, nx-libs, x2godesktopsharing,	x2golxdebindings, x2goplasmabindings, pinentry-x2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2Go-User%5D%20%5BX2Go-Announcement%5D%20New%20X2Go%0A%09releases%3A%09x2goserver%2C%20x2goclient%2C%20nx-libs%2C%20x2godesktopsharing%2C%0A%09x2golxdebindings%2C%20x2goplasmabindings%2C%20pinentry-x2go&In-Reply-To=%3C1357719484.3663.2.camel%40Nokia-N900%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004835.html">
+   <LINK REL="Next"  HREF="004841.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [X2Go-User] [X2Go-Announcement] New X2Go	releases:	x2goserver, x2goclient, nx-libs, x2godesktopsharing,	x2golxdebindings, x2goplasmabindings, pinentry-x2go</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2Go-User%5D%20%5BX2Go-Announcement%5D%20New%20X2Go%0A%09releases%3A%09x2goserver%2C%20x2goclient%2C%20nx-libs%2C%20x2godesktopsharing%2C%0A%09x2golxdebindings%2C%20x2goplasmabindings%2C%20pinentry-x2go&In-Reply-To=%3C1357719484.3663.2.camel%40Nokia-N900%3E"
+       TITLE="[X2Go-Dev] [X2Go-User] [X2Go-Announcement] New X2Go	releases:	x2goserver, x2goclient, nx-libs, x2godesktopsharing,	x2golxdebindings, x2goplasmabindings, pinentry-x2go">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Jan  9 09:18:04 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004835.html">[X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS
+</A></li>
+        <LI>Next message: <A HREF="004841.html">[X2Go-Dev] [X2Go-User] [X2Go-Announcement] New X2Go releases:	x2goserver, x2goclient, nx-libs, x2godesktopsharing, x2golxdebindings, x2goplasmabindings, pinentry-x2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4840">[ date ]</a>
+              <a href="thread.html#4840">[ thread ]</a>
+              <a href="subject.html#4840">[ subject ]</a>
+              <a href="author.html#4840">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Reinhard, hi Alex, hi Rui,
+@Rui: I include your post to the x2go-dev ML, please do not mail to me privately about X2Go issues. Quoting X2Go relevant content from mails that reached my off-list I always find problematic... I do it here nonetheless...
+
+@all: we receive many reports like the one from Rui below atm...
+
+@Reinhard: could it be possible that this is related to disabling the xfixes extension in x2goagent.options?
+
+Any other ideas? I'd be happy if one of the devs could test and confirm the issue and file a bug to X2Go BTS, Thanks!
+
+Greets,
+Mike (who unfortunately does not have much time for testing X2Go atm)
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976148
+
+GnuPG Key ID 0x25771B13
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+
+----- Original message -----
+&gt;<i> Hi Mike and folks,
+</I>&gt;<i> 
+</I>&gt;<i> Let me present to you a bug in 4.x version of x2goserver:
+</I>&gt;<i> 
+</I>&gt;<i> I'm using a Windows client to connect (3.99.31-pre1) and I just switch
+</I>&gt;<i> back to the 4.x on my Ubuntu 12.4.
+</I>&gt;<i> 
+</I>&gt;<i> When I was connecting to my laptop with another screen (phisical display)
+</I>&gt;<i> the laptop on windows switches the screen resolution when I use a
+</I>&gt;<i> diferent screen.
+</I>&gt;<i> 
+</I>&gt;<i> So I've 1024x* in some times and 800x600 other times.
+</I>&gt;<i> 
+</I>&gt;<i> When updating the x2goclient the screen on the Ubuntu was NOT updated
+</I>&gt;<i> automaticaly, so I had to switch it back to 800x600 and every time I want
+</I>&gt;<i> to switch to another monitor I have to manualy switch the screen
+</I>&gt;<i> resolution on Ubuntu.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Is there:
+</I>&gt;<i> - a way to fix this?
+</I>&gt;<i> - a workaround to undy the 4.x changes and go back to the 3.x of
+</I>&gt;<i> x2goclient?
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Thanks in advance,
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> Rui Cruz | Webmaster | 968271502
+</I>&gt;<i> www.ruicruz.pt
+</I>&gt;<i> 
+</I>&gt;<i> On Tue, January 8, 2013 12:03 am, Mike Gabriel wrote:
+</I>&gt;<i> Dear all,
+</I>&gt;<i> 
+</I>&gt;<i> The X2Go Project is proud to announce a couple of new X2Go component
+</I>&gt;<i> releases:
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160; &#160;  - X2Go Server (4.0.0.0)
+</I>&gt;<i>&#160; &#160; &#160; &#160;  - X2Go Client (4.0.0.1)
+</I>&gt;<i>&#160; &#160; &#160; &#160;  - NX (redistributed), Version 3.5.0.17
+</I>&gt;<i>&#160; &#160; &#160; &#160;  - X2Go Desktop Sharing (3.1.0.6)
+</I>&gt;<i>&#160; &#160; &#160; &#160;  - X2Go LXDE Bindings (1.0.1.3)
+</I>&gt;<i>&#160; &#160; &#160; &#160;  - Plasma Widget for X2Go (3.0.1.5)
+</I>&gt;<i>&#160; &#160; &#160; &#160;  - Pinentry for X2Go (0.7.5.6)
+</I>&gt;<i> 
+</I>&gt;<i> All new packages are already available in our stable repositories
+</I>&gt;<i> (Debian,&#160; &#160; &#160;  Ubuntu). The Windows version of X2Go Client will be built
+</I>&gt;<i> and provided on&#160; &#160;  <A HREF="http://code.x2go.org/releases/">http://code.x2go.org/releases/</A> within the next
+</I>&gt;<i> couple of days. With a little fortune we will also be able to provide
+</I>&gt;<i> an X2Go Client .dmg Image for Mac OS X.
+</I>&gt;<i> 
+</I>&gt;<i> As you might have noticed we have bumped the version numbers of X2Go
+</I>&gt;<i> Server and X2Go Client to 4.0.0.x. These versions will be the basis
+</I>&gt;<i> for an upcoming bundle release (with long term support) of compatible
+</I>&gt;<i> X2Go components.
+</I>&gt;<i> 
+</I>&gt;<i> As you can also see from the changelog entry of NX (redistributed),
+</I>&gt;<i> there has been quite some packaging work been done on that project.
+</I>&gt;<i> However, there also is a new upstream patch from Alexander Wuerstlein
+</I>&gt;<i> among the commits: it is now possible to flexibly configure nxagent's
+</I>&gt;<i> / x2goagent's key strokes. Visit
+</I>&gt;<i> <A HREF="http://wiki.x2go.org/doku.php/wiki:components:nxagent_keyboard_shortcuts">http://wiki.x2go.org/doku.php/wiki:components:nxagent_keyboard_shortcuts</A>
+</I>&gt;<i> for
+</I>&gt;<i> further details. Thanks to Alexander for this great contribution.
+</I>&gt;<i> 
+</I>&gt;<i> I also would like to thank X2Go's great i18n team. We have translated
+</I>&gt;<i> x2goclient, plasma-widget-x2go, x2godesktopsharing and pyhoca-gui now
+</I>&gt;<i> into 7-9 languages. Great work folks!!! Languages available are:
+</I>&gt;<i> English, German, Russian, Dutch, Swedish, Bokmal (Norway), Spanish and
+</I>&gt;<i> Danish. Translators for other languages are absolutely welcome, please
+</I>&gt;<i> join up on our x2go-i18n mailing list
+</I>&gt;<i> (<A HREF="http://lists.berlios.de/mailman/listinfo/x2go-i18n">http://lists.berlios.de/mailman/listinfo/x2go-i18n</A>).
+</I>&gt;<i> 
+</I>&gt;<i> light+love,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> X2Go Server
+</I>&gt;<i> ===========
+</I>&gt;<i> 
+</I>&gt;<i> x2goserver (4.0.0.0-0~x2go1) RELEASE; urgency=low
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Jan Engelhardt ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (4.0.0.0):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Replace script x2gobasepath by script x2gopath that makes it much
+</I>&gt;<i> easier
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  for distro packagers to tweak the installation paths of X2Go
+</I>&gt;<i> Server&#160; &#160; &#160; &#160; &#160; &#160;  components.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Mike Gabriel ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (4.0.0.0):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Adapt Xinerama path in x2gopath: use $base for detecting the path
+</I>&gt;<i> to the
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  Xinerama libs, as well, as is done with all the other paths.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Fix mounting of multiple paths, thanks to Pascal Vibet. (Fixes:
+</I>&gt;<i> #67).
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Orion Poplawski ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (4.0.0.0):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Honour CFLAGS when compiling the server's sgid wrapper script
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  (Fixes: #83).
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Oleksandr Shneyder ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (4.0.0.0):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Fix SSHFS mounting from Ubuntu clients.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Create /tmp/.X11-unix if not exists. (Fixes: #93).
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Reinhard Tartler ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (4.0.0.0):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Introduce /etc/x2go/x2goagent.options to allow overriding
+</I>&gt;<i> x2goagent&#160; &#160; &#160; &#160; &#160; &#160;  options. This new configuration file specifies default
+</I>&gt;<i> options that&#160; &#160; &#160; &#160; &#160; &#160;  clients can override.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Disable XFIXES and GLX. Both are known to cause certain
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  problems. Hopefully we find better solutions so that we can
+</I>&gt;<i> reenable
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  them soon.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160;  -- Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  Sun, 30 Dec 2012 17:39:44 +0100
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> X2Go Client
+</I>&gt;<i> ===========
+</I>&gt;<i> 
+</I>&gt;<i> x2goclient (4.0.0.1-0~x2go1) RELEASE; urgency=low
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  * Bugfix release (4.0.0.1):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Replace symlink at svg/x2gologo.svg with copied file. Fixes
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  tarball release esp. for MS Windows builds.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160;  -- Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  Wed, 02 Jan 2013 12:19:01 +0100
+</I>&gt;<i> 
+</I>&gt;<i> x2goclient (4.0.0.0-0~x2go1) RELEASE; urgency=low
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Christoffer Krakou ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (4.0.0.0):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Update Danish translation.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Update Danish translation (SSH proxy feature).
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Daniel Lindgren ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (4.0.0.0):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Update Swedish translation.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Ezra B&#195;&#188;hler ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (4.0.0.0):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Make it possible to resume a session using the keyboard only.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  Also fix the tab order in the resume session dialog by
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  changing the focus policy of the main window. (Fixes: #80).
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Heinz-M. Graesing ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (4.0.0.0):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Update refurbished X2Go Logo set. License for the X2Go Logos is
+</I>&gt;<i> GPL-2.0+.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  The inner X2Go logo background is now white (non-transparent)
+</I>&gt;<i> which should
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  fix poor display results for X2Go icons in application menus
+</I>&gt;<i> using a dark
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  theme. (Fixes: #59).
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Jan Engelhardt ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (4.0.0.0):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Fix Debian-like Qt path (qmake will handle it internally).
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Oleksandr Shneyder ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (4.0.0.0):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Translation files updated.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Russian translation updated.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Add support for pgp cards in broker mode.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Fix displaying ssh proxy box in session settings if sessions type
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  changed. (Fixes: #61).
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Init config.brokerAutologin with false. (Fixes: #72).
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Make sure x2goclient closes if broker has no sessions. Fixes
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  appearing session profile dialog if client is configured to
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  minimize to systray. (Fixes: #73).
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Update license headers.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Add &quot;author&quot; entry in UI files.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Add OpenSSL license exception.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Ricardo Diaz ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (4.0.0.0):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Update Spanish translation file.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Mike Gabriel ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (4.0.0.0):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Update German translation file.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Get rid of br html tags in client&lt;-&gt;broker communication (Fixes:
+</I>&gt;<i> #81).
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Bump version to 4.0.0.0 (for Baikal bundle release).
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Terje Andersen ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (4.0.0.0):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Update Bokmal (Norway) translation file.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160;  -- Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  Sun, 30 Dec 2012 15:34:02 +0100
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> NX (redistributed)
+</I>&gt;<i> ==================
+</I>&gt;<i> 
+</I>&gt;<i> nx-libs (2:3.5.0.17-0) RELEASE; urgency=low
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Jan Engelhardt ]
+</I>&gt;<i>&#160; &#160; &#160;  * Fix /bin/Makefile. Add $(DESTDIR) to every install path.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Alexander Wuerstlein ]
+</I>&gt;<i>&#160; &#160; &#160;  * Add patch: 302_nxagent_configurable-keystrokes.full.patch, replaces
+</I>&gt;<i> the
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  hardcoded nxagent keybindings by a configurable table of
+</I>&gt;<i> keybindings.&#160; &#160; &#160; &#160;  (Fixes: #74).
+</I>&gt;<i>&#160; &#160; &#160;  * Follow-up commit for 302_nxagent_configurable-keystrokes.full.patch,
+</I>&gt;<i> fixes
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  FTBFS problem with the first version of that patch.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Mike Gabriel ]
+</I>&gt;<i>&#160; &#160; &#160;  * Add README.keystrokes to doc section of bin:package nxagent.
+</I>&gt;<i>&#160; &#160; &#160;  * Add libxml2-dev to build dependencies.
+</I>&gt;<i>&#160; &#160; &#160;  * Add pkg-config to build dependencies.
+</I>&gt;<i>&#160; &#160; &#160;  * Continue Reinhard's work on top-level install/uninstall. Esp.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  integrate debian/post-nx-build.sh into main Makefile. Make
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  value of CONFIGURE variable traversable through the Makefile tree.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Orion Poplawski ]
+</I>&gt;<i>&#160; &#160; &#160;  * Add patches: 026_nxcomp*_honour-optflags.full*.patch. (Fixes: #84).
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Reinhard Tartler ]
+</I>&gt;<i>&#160; &#160; &#160;  * Install debug symbols for all packages in a new binary package
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  'nx-x11-dbg'.
+</I>&gt;<i>&#160; &#160; &#160;  * Drop patch: 025_nxproxy_no-configure-file.full+lite.patch, instead
+</I>&gt;<i> remove
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  file nxproxy/configure from the source tree.
+</I>&gt;<i>&#160; &#160; &#160;  * Add roll-tarball.sh: replaces nx-tarballrelease script that could be
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  found in nx-buildscripts branch of nx-libs.git. Use this script to
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  create tarballs of nx-libs and nx-libs-lite.
+</I>&gt;<i>&#160; &#160; &#160;  * Fix installation of libxcompext, thanks to Orion Paplowski for
+</I>&gt;<i> spotting
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  this.
+</I>&gt;<i>&#160; &#160; &#160;  * /debian/rules:
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  + Integrate code from /debian/pre-build-nx.sh and drop the named
+</I>&gt;<i> file.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  + Disable parallel build of .deb packages.
+</I>&gt;<i>&#160; &#160; &#160;  * /debian/control:
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  + Rely on shlibs instead of hardcoded dependencies.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  + Drop xbitmaps from Build-Depends.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  + Move xfonts-base over to Recommends.
+</I>&gt;<i>&#160; &#160; &#160;  * Update 031_nx-X11_parallel-make.full.patch. Add an explicit
+</I>&gt;<i> dependency
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  from the NX libX11.so to the nxcomp libraries. Unbreaks parallel
+</I>&gt;<i> builds.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  (Fixes: #87).
+</I>&gt;<i>&#160; &#160; &#160;  * Fix and greatly enhance the top-level install and uninstall target
+</I>&gt;<i> for
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  plain makefile installs.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160;  -- Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  Fri, 04 Jan 2013 13:23:57 +0100
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> X2Go Desktop Sharing
+</I>&gt;<i> ====================
+</I>&gt;<i> 
+</I>&gt;<i> x2godesktopsharing (3.1.0.6-0~x2go1) RELEASE; urgency=low
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Christoffer Krakou ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (3.1.0.6):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Add Danish translation file.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Dick Kniep ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (3.1.0.6):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Add Dutch translation file.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Mike Gabriel ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (3.1.0.6):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Prepare for translating into the current project
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  languages (da, de, es, fr, nb_no, ru, sv, zh_tw).
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Update German translation file (not much to do).
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Fix TEMP path for finding the x2godesktopsharing socket.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  Solves issues on setups where pam_tmpdir.so is in use.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  (Fixes: #69).
+</I>&gt;<i>&#160; &#160; &#160;  * /debian/control:
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  + Add build dependency: qt4-dev-tools.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Daniel Lindgren ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (3.1.0.6):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Add Swedish translation file.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Ricardo D&#195;&#173;az Mart&#195;&#173;n ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (3.1.0.6):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Add Spanish translation file.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Terje Andersen ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (3.1.0.6):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Add Bokmal (Norway) translation file.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160;  -- Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  Sun, 30 Dec 2012 20:27:32 +0100
+</I>&gt;<i> 
+</I>&gt;<i> X2Go LXDE Bindings
+</I>&gt;<i> ==================
+</I>&gt;<i> 
+</I>&gt;<i> x2golxdebindings (1.0.1.3-0~x2go1) RELEASE; urgency=low
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (1.0.1.3):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - No upstream changes, only changes in packaging.
+</I>&gt;<i>&#160; &#160; &#160;  * /debian/control:
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  + Maintainer change in package: X2Go Developers
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>&gt;.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  + Allow lxde-common as alternative to lxde-icon-theme, fixes
+</I>&gt;<i> installation
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160; &#160; &#160;  on Debian lenny.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  + Priority: optional.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160;  -- Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  Mon, 31 Dec 2012 16:36:32 +0100
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Plasma Widget for X2Go
+</I>&gt;<i> ======================
+</I>&gt;<i> 
+</I>&gt;<i> x2goplasmabindings (3.0.1.5-0~x2go1) RELEASE; urgency=low
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Christoffer Krakou ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (3.0.1.5):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Add Danish translation file.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Daniel Lindgren ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (3.0.1.5):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Add Swedish translation file.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Mike Gabriel ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (3.0.1.5):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Provide empty translation files to the i18n team.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Ricardo D&#195;&#173;az Mart&#195;&#173;n ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (3.0.1.5):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Add Spanish translation file.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Terje Andersen ]
+</I>&gt;<i>&#160; &#160; &#160;  * New upstream version (3.0.1.5):
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  - Add Bokmal (Norway) translation file.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160;  -- Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  Mon, 31 Dec 2012 16:41:55 +0100
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Pinentry for X2Go Client
+</I>&gt;<i> ========================
+</I>&gt;<i> 
+</I>&gt;<i> pinentry-x2go (0.7.5.6-0~x2go1) RELEASE; urgency=low
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Mike Gabriel ]
+</I>&gt;<i>&#160; &#160; &#160;  * /debian/control:
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  + Maintainer change in package: X2Go Developers
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>&gt;.
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  + Priority: optional.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160; &#160;  [ Reinhard Tartler ]
+</I>&gt;<i>&#160; &#160; &#160;  * /debian/rules:
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  + Disable dh_auto_test.
+</I>&gt;<i> 
+</I>&gt;<i>&#160; &#160;  -- Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i>&#160; &#160; &#160; &#160; &#160;  Mon, 31 Dec 2012 17:07:04 +0100
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> --
+</I>&gt;<i> 
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;<i> fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;<i> 
+</I>&gt;<i> GnuPG Key ID 0xB588399B
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i> 
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-User mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-User at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-user">https://lists.berlios.de/mailman/listinfo/x2go-user</A>
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004835.html">[X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS
+</A></li>
+	<LI>Next message: <A HREF="004841.html">[X2Go-Dev] [X2Go-User] [X2Go-Announcement] New X2Go releases:	x2goserver, x2goclient, nx-libs, x2godesktopsharing, x2golxdebindings, x2goplasmabindings, pinentry-x2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4840">[ date ]</a>
+              <a href="thread.html#4840">[ thread ]</a>
+              <a href="subject.html#4840">[ subject ]</a>
+              <a href="author.html#4840">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

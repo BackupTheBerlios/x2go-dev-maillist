@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Weird error message (was: Re: New X2Go releases: x2goserver, cups-x2go, x2goplasmabindings, python-x2go)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Weird%20error%20message%20%28was%3A%20Re%3A%20New%20X2Go%20releases%3A%0A%20x2goserver%2C%20cups-x2go%2C%20x2goplasmabindings%2C%20python-x2go%29&In-Reply-To=%3C5062AB8B.7030209%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004355.html">
+   <LINK REL="Next"  HREF="004356.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Weird error message (was: Re: New X2Go releases: x2goserver, cups-x2go, x2goplasmabindings, python-x2go)</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Weird%20error%20message%20%28was%3A%20Re%3A%20New%20X2Go%20releases%3A%0A%20x2goserver%2C%20cups-x2go%2C%20x2goplasmabindings%2C%20python-x2go%29&In-Reply-To=%3C5062AB8B.7030209%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Weird error message (was: Re: New X2Go releases: x2goserver, cups-x2go, x2goplasmabindings, python-x2go)">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Wed Sep 26 09:15:23 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004355.html">[X2Go-Dev] New X2Go releases: x2goserver, cups-x2go, x2goplasmabindings, python-x2go
+</A></li>
+        <LI>Next message: <A HREF="004356.html">[X2Go-Dev] Weird error message (was: Re: New X2Go releases: x2goserver, cups-x2go, x2goplasmabindings, python-x2go)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4353">[ date ]</a>
+              <a href="thread.html#4353">[ thread ]</a>
+              <a href="subject.html#4353">[ subject ]</a>
+              <a href="author.html#4353">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 25.09.2012 20:35, schrieb Mike Gabriel:
+&gt;<i> Dear all,
+</I>&gt;<i>
+</I>&gt;<i> The X2Go Project is proud to announce a couple of new X2Go component
+</I>&gt;<i> releases:
+</I>&gt;<i>
+</I>&gt;<i>    - x2goserver (3.1.1.4)
+</I>&gt;<i>    - cups-x2go (3.0.0.4)
+</I>&lt;snip&gt;
+
+Roughly 75%, if not more, of my servers required manual intervention 
+during that upgrade, prompting me to confirm this:
+
+Setting up cups-x2go (3.0.0.4-0~x2go1+squeeze~main~62~build1) ...
+
+Configuration file `/etc/cups/cups-x2go.conf'
+  ==&gt; Deleted (by you or by a script) since installation.
+  ==&gt; Package distributor has shipped an updated version.
+    What would you like to do about it ?  Your options are:
+     Y or I  : install the package maintainer's version
+     N or O  : keep your currently-installed version
+       D     : show the differences between the versions
+       Z     : start a shell to examine the situation
+  The default action is to keep your current version.
+*** cups-x2go.conf (Y/I/N/O/D/Z) [default=N] ?
+
+What's strange about this is that the machines were are built using the 
+same automated installation script, so these kind of failures should 
+show up either on all or none.
+
+Also, I don't remember deleting that file on any of these machines.
+So, if it has always been part of the package, it should always have 
+been there.
+
+On the other hand, if it was introduced at a later date (which would 
+explain why not all of my machines are complaining; the newer ones might 
+already have it), the upgrade script shouldn't complain that it expected 
+a previous version to be there.
+
+Does anyone know what might have caused this?
+
+-Stefan
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004355.html">[X2Go-Dev] New X2Go releases: x2goserver, cups-x2go, x2goplasmabindings, python-x2go
+</A></li>
+	<LI>Next message: <A HREF="004356.html">[X2Go-Dev] Weird error message (was: Re: New X2Go releases: x2goserver, cups-x2go, x2goplasmabindings, python-x2go)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4353">[ date ]</a>
+              <a href="thread.html#4353">[ thread ]</a>
+              <a href="subject.html#4353">[ subject ]</a>
+              <a href="author.html#4353">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

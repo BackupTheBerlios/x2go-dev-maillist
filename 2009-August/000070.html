@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] [x2goserver] After upgrade to 3.0.1-1 no connection	possible
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%5Bx2goserver%5D%20After%20upgrade%20to%203.0.1-1%20no%20connection%0A%09possible&In-Reply-To=%3C1249135473.5681.21.camel%40mattotaupa.wohnung.familie-menzel.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000071.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] [x2goserver] After upgrade to 3.0.1-1 no connection	possible</H1>
+    <B>Paul Menzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%5Bx2goserver%5D%20After%20upgrade%20to%203.0.1-1%20no%20connection%0A%09possible&In-Reply-To=%3C1249135473.5681.21.camel%40mattotaupa.wohnung.familie-menzel.net%3E"
+       TITLE="[X2go-dev] [x2goserver] After upgrade to 3.0.1-1 no connection	possible">paulepanter at users.sourceforge.net
+       </A><BR>
+    <I>Sat Aug  1 16:04:32 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000071.html">[X2go-dev] [x2goserver] After upgrade to 3.0.1-1 no connection possible
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#70">[ date ]</a>
+              <a href="thread.html#70">[ thread ]</a>
+              <a href="subject.html#70">[ subject ]</a>
+              <a href="author.html#70">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Subject: x2goserver: After upgrade to 3.0.1-1 no connection possible
+Package: x2goserver
+Version: 3.0.1-1
+Severity: normal
+
+*** Please type your report below this line ***
+
+Dear X2go hackers,
+
+
+I use Debian Sid/unstable and I upgraded all packages to 3.0.1-1 today
+and I am not able to get a connection anymore.
+
+I tried the GTK client, but hitting Ok just leaves the blue backround
+and nothing happens.
+
+$ x2goclient_gtk &amp;
+[1] 328
+(x2goclient_gtk:328): Gdk-CRITICAL **: gdk_drawable_copy_to_image: assertion `src_x &gt;= 0' failed
+ssh command: export HOSTNAME &amp;&amp; x2golistsessions
+x2gostartagent 1024x768 lan 16m-jpeg-9 unix-kde-depth_32 de pc105/de 0 R TERMINAL
+ssh command: x2gostartagent 1024x768 lan 16m-jpeg-9 unix-kde-depth_32 de pc105/de 0 R TERMINAL
+
+I tried TERMINAL, GNOME and /usr/bin/xclock to no avail. I did not find
+anything useful ~/.x2go either.
+
+NXPROXY seems to be working.
+
+$ nxproxy -S
+
+NXPROXY - Version 3.3.0
+
+Copyright (C) 2001, 2007 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Proxy running in client mode with pid '29935'.
+Session: Starting session at 'Sat Aug  1 16:03:13 2009'.
+Info: Waiting for connection from any host on port '4008'.
+
+
+Any help is appreciated.
+
+
+Bests,
+
+Paul
+
+-- System Information:
+Debian Release: squeeze/sid
+  APT prefers unstable
+  APT policy: (500, 'unstable'), (1, 'experimental')
+Architecture: i386 (x86_64)
+
+Kernel: Linux 2.6.30-1-amd64 (SMP w/2 CPU cores)
+Locale: LANG=de_DE.UTF-8, LC_CTYPE=de_DE.UTF-8 (charmap=UTF-8)
+Shell: /bin/sh linked to /bin/bash
+
+Versions of packages x2goserver depends on:
+ii  lsof                       4.81.dfsg.1-1 List open files
+ii  ssh                        1:5.1p1-7     secure shell client and server (me
+ii  sudo                       1.7.2-2       Provide limited super user privile
+ii  x2goagent                  3.3.0-6-1     Special NX-ized client, was develo
+
+Versions of packages x2goserver recommends:
+pn  sshfs                         &lt;none&gt;     (no description available)
+
+x2goserver suggests no packages.
+
+-- no debconf information
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: Dies ist ein digital signierter Nachrichtenteil
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090801/3473e16f/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090801/3473e16f/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000071.html">[X2go-dev] [x2goserver] After upgrade to 3.0.1-1 no connection possible
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#70">[ date ]</a>
+              <a href="thread.html#70">[ thread ]</a>
+              <a href="subject.html#70">[ subject ]</a>
+              <a href="author.html#70">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Printing-related question for Windows X2go client users
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Printing-related%20question%20for%20Windows%20X2go%20client%0A%20users&In-Reply-To=%3C1323535199.3159.121.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003099.html">
+   <LINK REL="Next"  HREF="003101.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Printing-related question for Windows X2go client users</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Printing-related%20question%20for%20Windows%20X2go%20client%0A%20users&In-Reply-To=%3C1323535199.3159.121.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] Printing-related question for Windows X2go client users">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat Dec 10 17:39:59 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003099.html">[X2go-Dev] Printing-related question for Windows X2go client users
+</A></li>
+        <LI>Next message: <A HREF="003101.html">[X2go-Dev] Printing-related question for Windows X2go client users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3100">[ date ]</a>
+              <a href="thread.html#3100">[ thread ]</a>
+              <a href="subject.html#3100">[ subject ]</a>
+              <a href="author.html#3100">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, 2011-12-10 at 17:28 +0100, Stefan Baur (newsgroups-Kontakt)
+wrote:
+&gt;<i> John A. Sullivan III wrote:
+</I>&gt;<i> &gt; On Sat, 2011-12-10 at 14:36 +0100, Stefan Baur (newsgroups-Kontakt)
+</I>&gt;<i> &gt; wrote:
+</I>&gt;<i> &gt;&gt; Hi list,
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; this question goes out to all the Windows users of the X2go-Client:
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Has anybody ever tried to use &quot;Sumatra PDF&quot; as a PDF endpoint on the
+</I>&gt;<i> &gt;&gt; Windows client, instead of Adobe Reader?
+</I>&gt;<i> &gt; &lt;snip&gt;
+</I>&gt;<i> &gt; It looks very interesting and we'd be interested in trying it.  However,
+</I>&gt;<i> &gt; PDFs have been a real sore spot in our VDI work and our offering both
+</I>&gt;<i> &gt; Linux and Windows desktops for those who would like to leave the Windows
+</I>&gt;<i> &gt; world for any of several reasons.  Not only is there nothing even close
+</I>&gt;<i> &gt; to Acrobat for editing PDFs in the open source world, the readers also
+</I>&gt;<i> &gt; have serious shortcomings.
+</I>&gt;<i> 
+</I>&gt;<i> &lt;further &quot;PDF/Adobe sucks but we'll just have to deal with it&quot; rant, 
+</I>&gt;<i> *that I can fully relate to*, snipped&gt;
+</I>&gt;<i> 
+</I>&gt;<i> I can see why one would not want to use a non-Adobe PDF viewer as 
+</I>&gt;<i> regular PDF viewer, given the numerous extensions to the original PDF 
+</I>&gt;<i> spec that may or may not be supported by such a third-party client, but 
+</I>&gt;<i> my intent here was to (ab)use Sumatra PDF for printing via the Windows 
+</I>&gt;<i> X2go client *only*.
+</I>&gt;<i> 
+</I>&gt;<i> I am *not* suggesting replacing the default PDF viewer on the client 
+</I>&gt;<i> computers, nor on the host (which wouldn't work with Sumatra PDF anyway, 
+</I>&gt;<i> as it is a Windows-only application).
+</I>&gt;<i> 
+</I>&gt;<i> The reasoning why I'd prefer printing via a PDF transferred to the 
+</I>&gt;<i> client is the following:
+</I>&gt;<i> - Linux and Mac OS are Postscript-centered when it comes to printing, 
+</I>&gt;<i> and whoever is running a Linux client usually also knows what printer to 
+</I>&gt;<i> buy (i.e. one with Postscript or PCL support). So there is no need for a 
+</I>&gt;<i> third-party solution here.
+</I>&gt;<i> - In the world of Microsoft Windows, however, such nasties as &quot;GDI-only 
+</I>&gt;<i> printers&quot; exist. These are usually low-priced printers that cannot be 
+</I>&gt;<i> made to work with Linux or Mac OS.
+</I>&gt;<i> 
+</I>&gt;<i> Converting a Postscript printjob into a PDF is easy, though (that's what 
+</I>&gt;<i> CUPS does when you install the virtual PDF printer) - and passing the 
+</I>&gt;<i> resulting PDF file to a viewer like Sumatra PDF that automatically 
+</I>&gt;<i> starts to dump it into the proper printer queue on the client means:
+</I>&gt;<i> We have a printing solution that does *not* require some sort of Linux 
+</I>&gt;<i> driver for the printer, letting us use all the fancy features the 
+</I>&gt;<i> printer may have that are supported by its Windows driver (think 
+</I>&gt;<i> duplexing or different paper trays/outbins - these are usually a pain in 
+</I>&gt;<i> the behind to get to work when all you have is a generic PCL-something 
+</I>&gt;<i> PPD, or color profiles).
+</I>&gt;<i> 
+</I>&gt;<i> My general assumption behind this is that if you try to print a PDF from 
+</I>&gt;<i> Adobe Reader for Linux on the host, it will be converted into Postscript 
+</I>&gt;<i> first, then into whatever printer-specific language that may be 
+</I>&gt;<i> required: usually PCL 3, PCL5, PCL 6 - or back into PDF.
+</I>&gt;<i> 
+</I>&gt;<i> This conversion from PDF to PS and again into PDF with CUPS is, from my 
+</I>&gt;<i> experience, *not* a 1:1 mapping/translation, so the resulting PDF should 
+</I>&gt;<i> be a &quot;basic&quot; PDF type with all the trouble-causing fanciness removed 
+</I>&gt;<i> (and usually resulting in a significantly larger spool file).
+</I>&gt;<i> 
+</I>&gt;<i> Of course, it's been at least three years, if not more, since I last had 
+</I>&gt;<i> to deal with conversion of printing formats, so, If I'm wrong here and 
+</I>&gt;<i> my knowledge is outdated, or your experience proves me wrong, please 
+</I>&gt;<i> feel free to correct me.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Also, to quote from Sumatra PDF's Wikipedia entry:
+</I>&gt;<i> &gt; It has a 4.4 MB setup file, compared to Adobe Reader's 40.5 MB, for 
+</I>&gt;<i> &gt; Windows 7. Installed size is 8.4 MB, whereas Adobe Reader requires 335 
+</I>&gt;<i> &gt; MB of available disk space.
+</I>&gt;<i> ==&gt;so I wouldn't see disk space/size/bloat issues.
+</I>&gt;<i> 
+</I>&gt;<i> Plus, since it is open source, it might even be possible to integrate 
+</I>&gt;<i> the relevant parts of its code into the X2go client itself - any of the 
+</I>&gt;<i> coders willing to comment on the feasibility of that? If that works, the 
+</I>&gt;<i> end user wouldn't even get to see a second PDF viewer program, as it 
+</I>&gt;<i> would become part of the X2go client's code.
+</I>&lt;snip&gt;
+I admit I just scanned through your response (deadlines :( ) but I think
+that is the way X2Go printing is working.  The x2go cups driver is
+converting to pdf and sending the pdf to the client.  In the Linux and
+Mac clients, we can print directly to the printer but, in the Windows
+client, it always opens the default PDF reader no matter which printer
+one chooses.  That's why I assumed you were talking about replacing
+Acrobat as the default PDF reader, i.e., because as far as I know,
+that's what the x2go client prints to - the default PDF reader - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003099.html">[X2go-Dev] Printing-related question for Windows X2go client users
+</A></li>
+	<LI>Next message: <A HREF="003101.html">[X2go-Dev] Printing-related question for Windows X2go client users
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3100">[ date ]</a>
+              <a href="thread.html#3100">[ thread ]</a>
+              <a href="subject.html#3100">[ subject ]</a>
+              <a href="author.html#3100">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#55: x2goplugin: Failed to resolve hostname
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2355%3A%20x2goplugin%3A%20Failed%20to%20resolve%20hostname&In-Reply-To=%3C509A3074.7060206%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004489.html">
+   <LINK REL="Next"  HREF="004490.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#55: x2goplugin: Failed to resolve hostname</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2355%3A%20x2goplugin%3A%20Failed%20to%20resolve%20hostname&In-Reply-To=%3C509A3074.7060206%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] Bug#55: x2goplugin: Failed to resolve hostname">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Wed Nov  7 10:57:08 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004489.html">[X2Go-Dev] Bug#55: x2goplugin: Failed to resolve hostname
+</A></li>
+        <LI>Next message: <A HREF="004490.html">[X2Go-Dev] Bug#56: x2goplugin: disable DirectRDP for X2Go Plugin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4500">[ date ]</a>
+              <a href="thread.html#4500">[ thread ]</a>
+              <a href="subject.html#4500">[ subject ]</a>
+              <a href="author.html#4500">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE><A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commit;h=f1fb104bc7ce1a3d93792b3594566a8870d139a3">http://code.x2go.org/gitweb?p=x2goclient.git;a=commit;h=f1fb104bc7ce1a3d93792b3594566a8870d139a3</A>
+
+regards,
+Alex
+
+Am 03.11.2012 23:42, schrieb Mike Gabriel:
+&gt;<i> Package: x2goplugin
+</I>&gt;<i> Severity: normal
+</I>&gt;<i> Version: 3.99.3.0-prerelease
+</I>&gt;<i> 
+</I>&gt;<i> Hi Alex,
+</I>&gt;<i> 
+</I>&gt;<i> I have added a package to x2goclient: x2goplugin-provider. If you
+</I>&gt;<i> install this package (with apache2), you can open a demo plugin site
+</I>&gt;<i> with this URL:
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="http://localhost/x2goplugin.html">http://localhost/x2goplugin.html</A>
+</I>&gt;<i> 
+</I>&gt;<i> The x2goplugin gets openend and an XFCE session (Debian wheezy default
+</I>&gt;<i> desktop) should get started on host localhost (which should basically
+</I>&gt;<i> work, if x2goserver is installed locally).
+</I>&gt;<i> 
+</I>&gt;<i> However, when starting a session, I receive an error message:
+</I>&gt;<i> 
+</I>&gt;<i> &quot;&quot;&quot;
+</I>&gt;<i> Failed to resolve hostname (Der Name oder der Dienst ist nicht bekannt)
+</I>&gt;<i> &quot;&quot;&quot;
+</I>&gt;<i> 
+</I>&gt;<i> Either the error is in the x2goplugin code or in my x2goplugin.html:
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=blob;f=provider/share/x2goplugin.html">http://code.x2go.org/gitweb?p=x2goclient.git;a=blob;f=provider/share/x2goplugin.html</A>
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Can you reproduce the reported issue with the latest
+</I>&gt;<i> x2goplugin/x2goplugin-provider package? If yes, do you have a clue what
+</I>&gt;<i> the reason for it is?
+</I>&gt;<i> 
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121107/984ed77a/attachment-0001.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121107/984ed77a/attachment-0001.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004489.html">[X2Go-Dev] Bug#55: x2goplugin: Failed to resolve hostname
+</A></li>
+	<LI>Next message: <A HREF="004490.html">[X2Go-Dev] Bug#56: x2goplugin: disable DirectRDP for X2Go Plugin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4500">[ date ]</a>
+              <a href="thread.html#4500">[ thread ]</a>
+              <a href="subject.html#4500">[ subject ]</a>
+              <a href="author.html#4500">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2goclient crashing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goclient%20crashing&In-Reply-To=%3C4F7D559A.3060209%40mageia.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003831.html">
+   <LINK REL="Next"  HREF="003806.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2goclient crashing</H1>
+    <B>Oliver Burger</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goclient%20crashing&In-Reply-To=%3C4F7D559A.3060209%40mageia.org%3E"
+       TITLE="[X2Go-Dev] x2goclient crashing">obgr_seneca at mageia.org
+       </A><BR>
+    <I>Thu Apr  5 10:19:38 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003831.html">[X2Go-Dev] @Alex: x2goclient feature request
+</A></li>
+        <LI>Next message: <A HREF="003806.html">[X2Go-Dev] [X2go-Dev] X2Go printing crash [was: libssh, nagle, and performance issues]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3805">[ date ]</a>
+              <a href="thread.html#3805">[ thread ]</a>
+              <a href="subject.html#3805">[ subject ]</a>
+              <a href="author.html#3805">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I did not have all that much time lately.
+But my problem still exists. x2goclient crashes sometimes (not all of 
+the time though), when trying to connect to the server.
+This does still happen with the new versions of x2goclient and server 
+released yesterday.
+
+In Chemnitz Heinz suggested to try using an older libssh to see if the 
+problem was located there, but that didn't help as well.
+
+I have created a backtrace (still missing some debug symbols, I will 
+see, what debug packages are still missing).
+
+Can anyone help me with it?
+
+Oliver
+-------------- next part --------------
+(gdb) bt full
+#0  0x00007ffff46a2108 in ?? () from /usr/lib64/libgcrypt.so.11
+No symbol table info available.
+#1  0x00007ffff46a2758 in ?? () from /usr/lib64/libgcrypt.so.11
+No symbol table info available.
+#2  0x00007ffff469e725 in ?? () from /usr/lib64/libgcrypt.so.11
+No symbol table info available.
+#3  0x00007ffff46b206a in ?? () from /usr/lib64/libgcrypt.so.11
+No symbol table info available.
+#4  0x00007ffff7bad9ed in packet_hmac_verify (session=&lt;optimized out&gt;, buffer=0x7fffe4003c50, mac=
+    0x7fffec376000 &quot;\207D\305?\332\343\065\004E\n\227?\020\234VFQ#&quot;) at /usr/src/debug/libssh-0.5.2/src/crypt.c:202
+        hmacbuf = &quot;\024a\272\263\364\244]\006\365\274\356\v\242\227\362t\317g\361h&quot;, '\000' &lt;repeats 15 times&gt;
+        ctx = 0x7fffe4004150
+        len = &lt;optimized out&gt;
+        seq = 1375731712
+#5  0x00007ffff7bbde59 in ssh_packet_socket_callback (data=0x7fffe4012f18, receivedlen=36, user=0x7fffe4003390) at /usr/src/debug/libssh-0.5.2/src/packet.c:221
+        session = 0x7fffe4003390
+        blocksize = &lt;optimized out&gt;
+        current_macsize = 20
+        mac = &quot;\207D\305?\332\343\065\004E\n\227?\020\234VFQ#\000\000\000\000\000\000\000\000\000&quot;
+        buffer = &quot;\000\000\000\f\006a\000\000\000\060RGk\254&quot;, &lt;incomplete sequence \330&gt;
+        packet = 0x7fffe4012f28
+        to_be_read = &lt;optimized out&gt;
+        rc = &lt;optimized out&gt;
+        len = &lt;optimized out&gt;
+        padding = &lt;optimized out&gt;
+        processed = 16
+        __FUNCTION__ = &quot;ssh_packet_socket_callback&quot;
+#6  0x00007ffff7bbe1db in ssh_packet_socket_callback (data=0x7fffe4012ed4, receivedlen=&lt;optimized out&gt;, user=0x7fffe4003390)
+    at /usr/src/debug/libssh-0.5.2/src/packet.c:278
+        session = 0x7fffe4003390
+        blocksize = &lt;optimized out&gt;
+        current_macsize = &lt;optimized out&gt;
+        mac = &quot;0.\375\035\274\312\363\001\265(w\224\201\345\263\362\310r\247\317\000\000\000\000\000\000\000\000\000&quot;
+        buffer = &quot;\000\000\000,\022b\000\000\000\060\000\000\000\vex&quot;
+        packet = 0x7fffe4012ee4
+        to_be_read = &lt;optimized out&gt;
+        rc = &lt;optimized out&gt;
+        len = &lt;optimized out&gt;
+        padding = &lt;optimized out&gt;
+        processed = 68
+        __FUNCTION__ = &quot;ssh_packet_socket_callback&quot;
+#7  0x00007ffff7bbe1db in ssh_packet_socket_callback (data=0x7fffe4012eb0, receivedlen=&lt;optimized out&gt;, user=0x7fffe4003390)
+    at /usr/src/debug/libssh-0.5.2/src/packet.c:278
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+        session = 0x7fffe4003390
+        blocksize = &lt;optimized out&gt;
+        current_macsize = &lt;optimized out&gt;
+        mac = &quot;\350\225\v\327\257l\317Id\371\060\067q\016\247\267\265\361g\334\000\000\000\000\000\000\000\000\000&quot;
+        buffer = &quot;\000\000\000\f\006`\000\000\000\060zv\033\271\016=&quot;
+        packet = 0x7fffe4012ec0
+        to_be_read = &lt;optimized out&gt;
+        rc = &lt;optimized out&gt;
+        len = &lt;optimized out&gt;
+        padding = &lt;optimized out&gt;
+        processed = 36
+        __FUNCTION__ = &quot;ssh_packet_socket_callback&quot;
+#8  0x00007ffff7bc29fd in ssh_socket_pollcallback (p=&lt;optimized out&gt;, fd=&lt;optimized out&gt;, revents=1, v_s=0x7fffe4003b90)
+    at /usr/src/debug/libssh-0.5.2/src/socket.c:283
+        s = 0x7fffe4003b90
+        buffer = 
+    &quot;\017\a\271tS\326\336?\004\020\206\017Pt+\350\225\v\327\257l\317Id\371\060\067q\016\247\267\265\361g\334\062o2\351E\337Xl\365\274\214\351\060U\207D\f|\372$\230\375:\222\327\032I\214\035\273\370?9[\314t\001\362\062\220\341\071\214##|90.\375\035\274\312\363\001\265(w\224\201\345\263\362\310r\247\317\026; h\004\004\377\244G2\302q\201&gt;*\017\207D\305?\332\343\065\004E\n\227?\020\234VFQ#3\201n4'h\355\345C2n\316\001\206\223\031\351\300p\r\202\245?\315h\355l\237X]\335?\371\306\345\225\314\360\277\002\034+\321\345_?i\020\205n\347\273\335\025\236'?\177\303\033\262\316C\036cA&gt;\244M\260\364\254\236*\242\270q\327mXV\306\016\277\224%\263\274E2\377\n\025m\337\274G\232\032\221\214\n\v\000\205F6\004\216\203+Ia\343\021%\275\340m\v\336\374R\253\224\037\272\071\067\205\204t\f\032e\017\000L^\315\356jf\244\264\026\277\062\264\301\277\065\263v1ah\360\061\243\037\\\022\035\277\213\031\230\067\210\375z\261&amp;\233\355m\364qO\365r\354\366\363`e:\032\253{qi\177\266N\000\371\377\277ms\350^\302K\205Z\353\236:\n\035\266.\273\005rG\340&quot;...
+        r = &lt;optimized out&gt;
+        err = 0
+        errlen = 4
+#9  0x00007ffff7bbf40c in ssh_poll_ctx_dopoll (ctx=0x7fffe4004040, timeout=&lt;optimized out&gt;) at /usr/src/debug/libssh-0.5.2/src/poll.c:602
+        ret = &lt;optimized out&gt;
+        rc = 1
+        i = 0
+        used = 1
+        p = &lt;optimized out&gt;
+        fd = &lt;optimized out&gt;
+        revents = &lt;optimized out&gt;
+#10 0x00007ffff7bbff37 in ssh_handle_packets (session=0x7fffe4003390, timeout=-2) at /usr/src/debug/libssh-0.5.2/src/session.c:469
+        spoll_in = 0x7fffe4004010
+        spoll_out = 0x7fffe4004010
+        ctx = 0x7fffe4004040
+        tm = &lt;optimized out&gt;
+        rc = &lt;optimized out&gt;
+        __FUNCTION__ = &quot;ssh_handle_packets&quot;
+#11 0x00007ffff7ba7fbf in ssh_channel_read (channel=0x7fffe40061a0, dest=0x7fffec3772f0, count=128, is_stderr=&lt;optimized out&gt;)
+    at /usr/src/debug/libssh-0.5.2/src/channels.c:2404
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---
+        session = 0x7fffe4003390
+        stdbuf = 0x7fffe4005e20
+        len = &lt;optimized out&gt;
+        rc = &lt;optimized out&gt;
+        __FUNCTION__ = &quot;ssh_channel_read&quot;
+#12 0x00007ffff7bc0820 in ssh_scp_close (scp=0x7fffe4006140) at /usr/src/debug/libssh-0.5.2/src/scp.c:150
+        buffer = 
+    &quot;\000\000\000\000\000\000\000\000\067\377\273\367\000\000\000\000\260\250\227\000\000\000\000\000\376\377\377\377\001\000\000\000\000^\000\344\377\177\000\000\000\000\000\000\000\000\000\000`]\000\344\377\177\000\000\005\000\000\000\v&quot;, '\000' &lt;repeats 11 times&gt;&quot;\320, M\221&quot;, '\000' &lt;repeats 13 times&gt;, &quot;@a\000\344\377\177\000\000\023\005&quot;, '\000' &lt;repeats 14 times&gt;&quot;\360, M\221\000\000\000\000\000\320M\221\000\000\000\000&quot;
+        err = &lt;optimized out&gt;
+#13 0x00000000004904b6 in SshMasterConnection::copy() ()
+No symbol table info available.
+#14 0x0000000000491310 in SshMasterConnection::channelLoop() ()
+No symbol table info available.
+#15 0x000000000049547d in SshMasterConnection::run() ()
+No symbol table info available.
+#16 0x00007ffff5aeeb8b in QThreadPrivate::start (arg=0x914dd0) at thread/qthread_unix.cpp:298
+        __clframe = {__cancel_routine = 0x7ffff5aed8e0 &lt;QThreadPrivate::finish(void*)&gt;, __cancel_arg = 0x914dd0, __do_it = 1, __cancel_type = &lt;optimized out&gt;}
+        thr = 0x914dd0
+        data = 0x914c90
+#17 0x00007ffff585eb99 in start_thread (arg=0x7fffec3f8700) at pthread_create.c:301
+        __res = &lt;optimized out&gt;
+        pd = 0x7fffec3f8700
+        now = &lt;optimized out&gt;
+        unwind_buf = {cancel_jmp_buf = {{jmp_buf = {1, -1406206671429654969, 140737488337392, 140737156975040, 140737354125376, 3, 1406246807872644679, 
+    1406193390698669639}, mask_was_saved = 0}}, priv = {pad = {0x0, 0x0, 0x0, 0x0}, data = {prev = 0x0, cleanup = 0x0, canceltype = 0}}}
+        not_first_call = 0
+        pagesize_m1 = &lt;optimized out&gt;
+        sp = &lt;optimized out&gt;
+        freesize = &lt;optimized out&gt;
+#18 0x00007ffff4e0e0cd in clone () at ../sysdeps/unix/sysv/linux/x86_64/clone.S:112
+No locals.
+#19 0x0000000000000000 in ?? ()
+No symbol table info available.
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003831.html">[X2Go-Dev] @Alex: x2goclient feature request
+</A></li>
+	<LI>Next message: <A HREF="003806.html">[X2Go-Dev] [X2go-Dev] X2Go printing crash [was: libssh, nagle, and performance issues]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3805">[ date ]</a>
+              <a href="thread.html#3805">[ thread ]</a>
+              <a href="subject.html#3805">[ subject ]</a>
+              <a href="author.html#3805">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

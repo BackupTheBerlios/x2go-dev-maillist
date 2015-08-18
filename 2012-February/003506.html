@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] Fix threading on OS X.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Fix%20threading%20on%20OS%20X.&In-Reply-To=%3C20120218220430.16144dgxqf32s47y%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003489.html">
+   <LINK REL="Next"  HREF="003534.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] Fix threading on OS X.</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Fix%20threading%20on%20OS%20X.&In-Reply-To=%3C20120218220430.16144dgxqf32s47y%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] Fix threading on OS X.">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Feb 18 22:04:30 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003489.html">[X2Go-Dev] MAC developers wanted (was: Re: [PATCH] Fix threading on OS X.)
+</A></li>
+        <LI>Next message: <A HREF="003534.html">[X2Go-Dev] [PATCH] Fix threading on OS X.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3506">[ date ]</a>
+              <a href="thread.html#3506">[ thread ]</a>
+              <a href="subject.html#3506">[ subject ]</a>
+              <a href="author.html#3506">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Comitted:
+<A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=523d81c193cb7b7b666f65237caa58f6260785b7">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=523d81c193cb7b7b666f65237caa58f6260785b7</A>
+
+Mike
+
+On Sa 18 Feb 2012 04:57:52 CET Mihai Moldovan wrote:
+
+&gt;<i> Raise the stack space to 2MB for secondary threads. It previously used
+</I>&gt;<i> the 512KB system default.
+</I>&gt;<i>
+</I>&gt;<i> Signed-off-by: Mihai Moldovan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">ionic at ionic.de</A>&gt;
+</I>&gt;<i> ---
+</I>&gt;<i>  sshmasterconnection.cpp |   11 +++++++++--
+</I>&gt;<i>  1 files changed, 9 insertions(+), 2 deletions(-)
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/sshmasterconnection.cpp b/sshmasterconnection.cpp
+</I>&gt;<i> index c922af2..2626346 100644
+</I>&gt;<i> --- a/sshmasterconnection.cpp
+</I>&gt;<i> +++ b/sshmasterconnection.cpp
+</I>&gt;<i> @@ -46,6 +46,11 @@ static bool isLibSshInited=false;
+</I>&gt;<i>  SshMasterConnection::SshMasterConnection ( QString host, int port, bool
+</I>&gt;<i> acceptUnknownServers, QString user,
+</I>&gt;<i>          QString pass, QString key,bool autologin, bool krblogin,
+</I>&gt;<i> QObject* parent ) : QThread ( parent )
+</I>&gt;<i>  {
+</I>&gt;<i> +#if defined ( Q_OS_DARWIN )
+</I>&gt;<i> +    // Mac OS X provides only 512KB stack space for secondary threads.
+</I>&gt;<i> +    // As we put a 512KB buffer on the stack later on, we need a bigger
+</I>&gt;<i> stack space.
+</I>&gt;<i> +    setStackSize (sizeof (char) * 1024 * 1024 * 2);
+</I>&gt;<i> +#endif
+</I>&gt;<i>      this-&gt;host=host;
+</I>&gt;<i>      this-&gt;port=port;
+</I>&gt;<i>      this-&gt;user=user;
+</I>&gt;<i> @@ -62,7 +67,7 @@ SshMasterConnection::SshMasterConnection ( QString
+</I>&gt;<i> host, int port, bool acceptUn
+</I>&gt;<i>      else
+</I>&gt;<i>          x2goDebug&lt;&lt;&quot;starting ssh connection without kerberos
+</I>&gt;<i> authentication&quot;&lt;&lt;endl;
+</I>&gt;<i>  #endif
+</I>&gt;<i> -kerberos=false;
+</I>&gt;<i> +    kerberos=false;
+</I>&gt;<i>  }
+</I>&gt;<i>
+</I>&gt;<i>  SshMasterConnection::SshMasterConnection ( QString host, int port, bool
+</I>&gt;<i> acceptUnknownServers, QString user,
+</I>&gt;<i> @@ -70,7 +75,9 @@ SshMasterConnection::SshMasterConnection ( QString
+</I>&gt;<i> host, int port, bool acceptUn
+</I>&gt;<i>          int remotePort, QString localHost, int localPort, SshProcess*
+</I>&gt;<i> creator,
+</I>&gt;<i>          QObject* parent, ONMainWindow* mwd ) : QThread ( parent )
+</I>&gt;<i>  {
+</I>&gt;<i> -
+</I>&gt;<i> +#if defined ( Q_OS_DARWIN )
+</I>&gt;<i> +    setStackSize (sizeof (char) * 1024 * 1024 * 2);
+</I>&gt;<i> +#endif
+</I>&gt;<i>      this-&gt;host=host;
+</I>&gt;<i>      this-&gt;port=port;
+</I>&gt;<i>      this-&gt;user=user;
+</I>&gt;<i> --
+</I>&gt;<i> 1.7.9
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120218/2c9f4185/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120218/2c9f4185/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003489.html">[X2Go-Dev] MAC developers wanted (was: Re: [PATCH] Fix threading on OS X.)
+</A></li>
+	<LI>Next message: <A HREF="003534.html">[X2Go-Dev] [PATCH] Fix threading on OS X.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3506">[ date ]</a>
+              <a href="thread.html#3506">[ thread ]</a>
+              <a href="subject.html#3506">[ subject ]</a>
+              <a href="author.html#3506">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

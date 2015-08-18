@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] setuid/setgid in libXcomp
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20setuid/setgid%20in%20libXcomp&In-Reply-To=%3C20130829094419.16684059ph23hdxv%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006126.html">
+   <LINK REL="Next"  HREF="006131.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] setuid/setgid in libXcomp</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20setuid/setgid%20in%20libXcomp&In-Reply-To=%3C20130829094419.16684059ph23hdxv%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] setuid/setgid in libXcomp">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Aug 29 09:44:19 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006126.html">[X2Go-Dev] setuid/setgid in libXcomp
+</A></li>
+        <LI>Next message: <A HREF="006131.html">[X2Go-Dev] setuid/setgid in libXcomp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6128">[ date ]</a>
+              <a href="thread.html#6128">[ thread ]</a>
+              <a href="subject.html#6128">[ subject ]</a>
+              <a href="author.html#6128">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Orion,
+
+On Do 29 Aug 2013 01:14:39 CEST Orion Poplawski wrote:
+
+&gt;<i> On 07/25/2013 02:54 PM, Mike Gabriel wrote:
+</I>&gt;&gt;<i> Hi Orion,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Do 25 Jul 2013 22:30:52 CEST Orion Poplawski wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> On 07/14/2013 03:33 AM, Moritz Str&#252;be wrote:
+</I>&gt;&gt;&gt;&gt;<i> Hey,
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> this is a bit of guesswork, but,
+</I>&gt;&gt;&gt;&gt;<i> * getgit get the _real_ real gid
+</I>&gt;&gt;&gt;&gt;<i> * setgit sets the _effective_ gid
+</I>&gt;&gt;&gt;&gt;<i> Thus you reset the effective s/gid.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Morty
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> But why does it need to call this?  Isn't everything running as the user
+</I>&gt;&gt;&gt;<i> already?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Everything in NX runs under the user who launches the X2Go session. IMHO
+</I>&gt;&gt;<i> resetting the effective GID prevents us from setgid file permission
+</I>&gt;&gt;<i> manipulations, so that the effective group ID always is the  
+</I>&gt;&gt;<i> primary/real group
+</I>&gt;&gt;<i> ID of the current user that is executing the NX binary.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Greets,
+</I>&gt;&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i> Some more info:
+</I>&gt;<i>
+</I>&gt;<i> This executable is calling setuid and setgid without setgroups or initgroups.
+</I>&gt;<i> There is a high probability this mean it didn't relinquish all  
+</I>&gt;<i> groups, and this
+</I>&gt;<i> would be a potential security issue to be fixed. Seek POS36-C on the web for
+</I>&gt;<i> details about the problem.
+</I>&gt;<i>
+</I>&gt;<i> Ref POS36-C:
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="https://www.securecoding.cert.org/confluence/display/seccode/POS36-C.+Observe+correct+revocation+order+while+relinquishing+privileges">https://www.securecoding.cert.org/confluence/display/seccode/POS36-C.+Observe+correct+revocation+order+while+relinquishing+privileges</A>
+</I>
+
+I just looked at the code again. The order (setgid, then setuid) is ok  
+in the NX code. Will you work on the setgroups/initgroups thing?
+
+We at least need a bug report against nx-libs. Can you please file  
+that against X2Go BTS?
+
+Thanks,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130829/18e21fd4/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130829/18e21fd4/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006126.html">[X2Go-Dev] setuid/setgid in libXcomp
+</A></li>
+	<LI>Next message: <A HREF="006131.html">[X2Go-Dev] setuid/setgid in libXcomp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6128">[ date ]</a>
+              <a href="thread.html#6128">[ thread ]</a>
+              <a href="subject.html#6128">[ subject ]</a>
+              <a href="author.html#6128">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

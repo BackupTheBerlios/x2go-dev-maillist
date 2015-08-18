@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] ENHANCEMENT-REQUEST: x2goclient -- option for reverse	SSH port
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20ENHANCEMENT-REQUEST%3A%20x2goclient%20--%20option%20for%20reverse%0A%09SSH%20port&In-Reply-To=%3C20100625221130.11263xzmcqmi9unm%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000656.html">
+   <LINK REL="Next"  HREF="000638.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] ENHANCEMENT-REQUEST: x2goclient -- option for reverse	SSH port</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20ENHANCEMENT-REQUEST%3A%20x2goclient%20--%20option%20for%20reverse%0A%09SSH%20port&In-Reply-To=%3C20100625221130.11263xzmcqmi9unm%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] ENHANCEMENT-REQUEST: x2goclient -- option for reverse	SSH port">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jun 25 22:11:30 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000656.html">[X2go-dev] new to the list, offering support
+</A></li>
+        <LI>Next message: <A HREF="000638.html">[X2go-dev] ENHANCEMENT-REQUEST: x2goclient -- option for reverse SSH port
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#634">[ date ]</a>
+              <a href="thread.html#634">[ thread ]</a>
+              <a href="subject.html#634">[ subject ]</a>
+              <a href="author.html#634">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi there,
+
+in the current x2goclient package (3.01-5, Debian, Qt version) there  
+is need for an option to configure the reverse SSH port number (i.e.  
+the SSH daemon's port on the client side). This option should be a  
+client wide config option (not a per-session option).
+
+Printing and file sharing (sshfs/fuse) build up a reverse port  
+forwarding tunnel from the x2goserver back to the client. This feature  
+is used for x2goprint and x2gomountdirs (if I understand the perl code  
+correctly) and could also be used for any other feature that could be  
+evoked by a reverse SSH connection...
+
+The linux x2goclient, however, pre-requisites a running ssh daemon on  
+the client system. Its standard port is 22. The x2goclient will only  
+work if the client's SSH daemon runs on the default port 22. It will  
+fail if the port has been set to a custom (high) port.
+
+Consider a client, whose system administrator has set the SSH port to  
+a high --- to potential intruders unknown --- port number (e.g.  
+20222). With such an SSH setup, sshfs/fuse will fail...
+
+Reproduce:
+
+   o modify /etc/ssh/sshd_config
+   o set ,,Port 20222'' (or something else)
+   o /etc/init.d/ssh restart
+   o start x2goclient as some user and login to a remote x2goserver
+   o start a shell within the x2go session on the server
+   o type ,,mount | grep sshfs''
+
+Suggestions:
+
+(a)
+add a global SSH port number option to the x2goclient (linux-only).
+
+(b)
+Another way for the x2goclient could be some autodetect code:
+lsof -ni  | egrep &quot;^sshd.*root.*IPv4&quot; | awk '{ print $8 }'
+
+(c)
+Another way, similar to the windows client, could be to run a separate  
+ssh instance that binds to a random port on the localhost lo-device  
+only. That's where the reverse SSH tunnel (server -&gt; client) has its  
+endpoint.
+
+sshd -o ListenAddress 127.0.0.1:&lt;someport&gt; -o &lt;someOtherOption&gt;
+
+
+Hope to be of help,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+eMail-LeseSchreibStunde: wochentags 8h-10h
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000656.html">[X2go-dev] new to the list, offering support
+</A></li>
+	<LI>Next message: <A HREF="000638.html">[X2go-dev] ENHANCEMENT-REQUEST: x2goclient -- option for reverse SSH port
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#634">[ date ]</a>
+              <a href="thread.html#634">[ thread ]</a>
+              <a href="subject.html#634">[ subject ]</a>
+              <a href="author.html#634">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

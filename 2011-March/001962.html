@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20concept%20for%20X2go%20session%20lock-down%20to%20kiosk-mode%20%28was%0A%20Re%3A%20X2go%20is%20insecure%29&In-Reply-To=%3C20110329183107.108536ifjoyshl57%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001960.html">
+   <LINK REL="Next"  HREF="001965.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20concept%20for%20X2go%20session%20lock-down%20to%20kiosk-mode%20%28was%0A%20Re%3A%20X2go%20is%20insecure%29&In-Reply-To=%3C20110329183107.108536ifjoyshl57%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] concept for X2go session lock-down to kiosk-mode (was Re: X2go is insecure)">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Mar 29 18:31:07 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001960.html">[X2go-dev] X2go is insecure
+</A></li>
+        <LI>Next message: <A HREF="001965.html">[X2go-dev] concept for X2go session lock-down to	kiosk-mode	(was Re: X2go is insecure)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1962">[ date ]</a>
+              <a href="thread.html#1962">[ thread ]</a>
+              <a href="subject.html#1962">[ subject ]</a>
+              <a href="author.html#1962">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+On Di 29 M&#228;r 2011 16:55:50 CEST Alexander Wuerstlein wrote:
+
+&gt;<i> On 11-03-29 15:36, Dick Kniep &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">dick.kniep at lindix.nl</A>&gt; wrote:
+</I>&gt;&gt;<i>
+</I>
+&gt;<i> An authorized user running commands over ssh is not a security problem
+</I>&gt;<i> at all. It works as intended. ssh provides shells.
+</I>
+As Reinhard has mentioned in another post: Dicks setup requires a  
+complete lock-down-kiosk-mode-kind-of-thing. He wants a user to be  
+able to run a small set of commands only (i.e. the rootless  
+applications he wants to provide to his customers). From his  
+perspective AFAIK a user logged in via SSH is a security issue. May it  
+be so.
+
+&gt;&gt;<i> The $SSH_ORIGINAL_COMMAND contains the original command that the
+</I>&gt;&gt;<i> client wants to execute on the server. This command is checked against
+</I>&gt;&gt;<i> the allowed commands for the user within the wrapper.
+</I>&gt;<i>
+</I>&gt;<i> From the invocation I infer, that the intended language for the
+</I>&gt;<i> wrapper is shellskript. This is extremely dangerous if intended as a
+</I>&gt;<i> security measure like you claim. Also please note that it is very hard
+</I>&gt;<i> to write such wrappers in a secure way, such that stuff like e.g.
+</I>&gt;<i> 'allowed_command foo bar ; evil_command' is not possible.
+</I>
+This is a very worthy remark!!! I also think that it needs quite an  
+effort to script such a wrapper (and have it accepted in X2go  
+upstream!!!)
+
+&gt;&gt;<i> In pyhoca-gui a distinction can be made between an x2go system user
+</I>&gt;&gt;<i> and the end-user that is running the application. This is a good
+</I>&gt;&gt;<i> start, but does not solve the problem mentioned above. However if
+</I>&gt;&gt;<i> combined with the wrapper it is a real secure solution, as in the
+</I>&gt;&gt;<i> wrapper, the system user can only execute a number of x2go commands,
+</I>&gt;&gt;<i> while the end-user can only execute another set of commands.
+</I>&gt;<i>
+</I>&gt;<i> Providing some 'nx' user which can 'su' to any user on the system is one
+</I>&gt;<i> of the worst design mistakes NX made and has extremely worrying security
+</I>&gt;<i> implications. But it is possible that I misunderstood your intentions.
+</I>
+What I have provided in PyHoca-GUI is a simple SSH proxy:
+
+   o the first SSH/Paramiko client connects to a ,,firewall'' and sets up a
+     forwarding tunnel to a system behind that firewall
+   o the second SSH client connects to the forwarded port on the client's
+     localhost
+   o it's a cascade of
+       - ssh -p &lt;fw-port&gt; &lt;fw-host&gt; -L &lt;lport&gt;:&lt;host-behind-fw-host&gt;:&lt;rport&gt;
+       - x2goclient -&gt; localhost:&lt;lport&gt;
+   o I use this SSH proxy option for several intranet servers I administer and
+     it is a very handy-to-have feature
+
+What Dick's company plans to do with this generic feature is:
+
+   o provide servers with two SSH daemons running
+   o one daemon IP-binds to *, the other (x2gosshd) to localhost
+   o pyhoca-gui logs in to the first daemon (in the role of SSH proxy) and sets
+     up a tunnel to the x2gosshd's port on localhost
+   o the first daemon allows port forwarding, but no real session (via
+     pam_access.so)
+   o the second x2gossh daemon allows login and only grants the execution of a
+     single command: the wrapper script, which Dick has been explaining about
+
+&gt;&gt;<i> 3. Separate 	users for the x2go system calls and the end-user
+</I>&gt;<i>
+</I>&gt;<i> Again, why? What do you mean by system calls? What would be the
+</I>&gt;<i> connection sequence in your scenario?
+</I>
+The ,,system call'' must be the first SSH login to the SSH daemon in  
+proxy role...
+
+&gt;&gt;<i> 4. A 	change to the x2go clients to accomodate this change
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> 5.An 	api on the server to request the allowed commands
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> 6. Automatic 	generation of the configuration on the cli&#235;nt side.
+</I>&gt;<i>
+</I>&gt;<i> These points are valid, should however be discussed in a larger context:
+</I>&gt;<i> Various possible future extensions require interaction between server
+</I>&gt;<i> and client at session startup. E.g. when (hypothetically) doing
+</I>&gt;<i> loadbalancing, the server would send load data or redirects to the
+</I>&gt;<i> connecting client. Therefore a general API for such communications would
+</I>&gt;<i> be useful as well as versioning within that API to provide meaningful
+</I>&gt;<i> feedback when connecting with an 'old' client, or even to support
+</I>&gt;<i> interaction between different client and server versions.
+</I>
+Something very similar I had in mind when talking about the  
+x2gofeatures script, recently. I think that there will be a time when  
+X2go will need such a proper handshake protocol...
+
+However, I hope my mail gives some more information on what Dick is  
+talking about...
+Mike
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">PS at Dick</A>: I personally think that the subject of the original post is  
+misleading and also a little discrediting. Thus, I felt so free and  
+changed the subject a little...
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110329/2c6da6c1/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110329/2c6da6c1/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001960.html">[X2go-dev] X2go is insecure
+</A></li>
+	<LI>Next message: <A HREF="001965.html">[X2go-dev] concept for X2go session lock-down to	kiosk-mode	(was Re: X2go is insecure)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1962">[ date ]</a>
+              <a href="thread.html#1962">[ thread ]</a>
+              <a href="subject.html#1962">[ subject ]</a>
+              <a href="author.html#1962">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

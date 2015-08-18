@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] local apps on a thin client anyhow?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20local%20apps%20on%20a%20thin%20client%20anyhow%3F&In-Reply-To=%3C4DB03ADB.3010301%40x2go.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002072.html">
+   <LINK REL="Next"  HREF="002074.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] local apps on a thin client anyhow?</H1>
+    <B>Heinz-M. Graesing</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20local%20apps%20on%20a%20thin%20client%20anyhow%3F&In-Reply-To=%3C4DB03ADB.3010301%40x2go.org%3E"
+       TITLE="[X2go-dev] local apps on a thin client anyhow?">x2go-dev at x2go.org
+       </A><BR>
+    <I>Thu Apr 21 16:10:35 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002072.html">[X2go-dev] local apps on a thin client anyhow?
+</A></li>
+        <LI>Next message: <A HREF="002074.html">[X2go-dev] X2go-dev Digest, Vol 28, Issue 24
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2073">[ date ]</a>
+              <a href="thread.html#2073">[ thread ]</a>
+              <a href="subject.html#2073">[ subject ]</a>
+              <a href="author.html#2073">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Meik,
+
+Am 20.04.2011 21:04, schrieb Meik Hellmund:
+&gt;<i> 
+</I>&gt;<i> Hi,
+</I>&gt;<i> I am just playing around with the older 
+</I>&gt;<i> x2go thinclient debian packages and I wonder if it is possible
+</I>&gt;<i> to add local apps (as in LTSP). I have not yet a clear understanding of
+</I>&gt;<i> the x2go infrastructure, so please be patient.  
+</I>
+The Window containing your remote session is called x2goagent. The
+Problem of localapps would be, that they would not displayed inside this
+Window even if it is maximized, because it's got a complete different
+$DISPLAY Number and the $DISPLAY is connected to the remote system - not
+the local one.
+As a result, it would not be possible to handle the window placing
+correctly. A local app would be managed by the local window manager, all
+x2go session application by x2goagent.
+If you can live with those limitation, you can try to use NFS/SSHFS or
+whatever as remote Filesystem for applications.
+
+Regards,
+
+Heinz
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002072.html">[X2go-dev] local apps on a thin client anyhow?
+</A></li>
+	<LI>Next message: <A HREF="002074.html">[X2go-dev] X2go-dev Digest, Vol 28, Issue 24
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2073">[ date ]</a>
+              <a href="thread.html#2073">[ thread ]</a>
+              <a href="subject.html#2073">[ subject ]</a>
+              <a href="author.html#2073">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

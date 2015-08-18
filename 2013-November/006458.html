@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#276: X2Go issue (in src:x2goserver) has been marked	as closed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23276%3A%20X2Go%20issue%20%28in%20src%3Ax2goserver%29%20has%20been%20marked%0A%09as%20closed&In-Reply-To=%3C20131122205927.4D20D5DB18%40ymir%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006457.html">
+   <LINK REL="Next"  HREF="006464.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#276: X2Go issue (in src:x2goserver) has been marked	as closed</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23276%3A%20X2Go%20issue%20%28in%20src%3Ax2goserver%29%20has%20been%20marked%0A%09as%20closed&In-Reply-To=%3C20131122205927.4D20D5DB18%40ymir%3E"
+       TITLE="[X2Go-Dev] Bug#276: X2Go issue (in src:x2goserver) has been marked	as closed">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Nov 22 21:59:27 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006457.html">[X2Go-Dev] shameless plug: &quot;deployment-stories:electronic-glovebox&quot; wiki page has been updated and expanded
+</A></li>
+        <LI>Next message: <A HREF="006464.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goserver) has been	marked as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6458">[ date ]</a>
+              <a href="thread.html#6458">[ thread ]</a>
+              <a href="subject.html#6458">[ subject ]</a>
+              <a href="author.html#6458">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>close #276
+thanks
+
+Hello,
+
+we are very hopeful that X2Go issue #276 reported by you
+has been resolved in the new release (4.0.1.7) of the
+X2Go source project &#187;src:x2goserver&#171;.
+
+You can view the complete changelog entry of src:x2goserver (4.0.1.7)
+below, and you can use the following link to view all the code changes
+between this and the last release of src:x2goserver.
+
+    <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=447e68e8b82ea4b14e5072e57a0fbc82ef32d687;hp=2d19587c215d49048b6295d87c06c452939a1b8b">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=447e68e8b82ea4b14e5072e57a0fbc82ef32d687;hp=2d19587c215d49048b6295d87c06c452939a1b8b</A>
+
+If you feel that the issue has not been resolved satisfyingly, feel
+free to reopen this bug report or submit a follow-up report with
+further observations described based on the new released version
+of src:x2goserver.
+
+Thanks a lot for contributing to X2Go!!!
+
+light+love
+X2Go Git Admin (on behalf of the sender of this mail)
+
+---
+X2Go Component: src:x2goserver
+Version: 4.0.1.7
+Status: RELEASE
+Date: Fri, 22 Nov 2013 21:58:27 +0100
+Fixes: 276 278 285 305 310 331
+Changes: 
+ x2goserver (4.0.1.7) RELEASED; urgency=low
+ .
+   [ Orion Poplawski ]
+   * New upstream version (4.0.1.7):
+     - Install Xsession file as executable, make Xsession.d directory location
+       configurable during build process, do not create unused Xsession.options.
+       (Fixes: #278).
+ .
+   [ Mike Gabriel ]
+   * New upstream version (4.0.1.7):
+     - Fine-tune x2goserver-xsession/Makefile: if /etc/X11 has Xsession.d and/or
+       Xsession.options they get symlinked into /etc/x2go. Otherwise Xsession.d
+       and Xsession.options are created under /etc/x2go as empty dir/file.
+       (Fixes: #278).
+     - Fix automatic keyboard setup (via x2gosetkeyboard) while resuming a
+       session. (Fixes: #285).
+     - Provide sudoers.d/x2goserver file that allows sudoed commands under
+       KDE (by pertaining the env var QT_GRAPHICSSYSTEM. (Fixes: #276).
+     - With PostgreSQL as session db backend, prevent the root user from
+       launching sessions. Also, prevent x2gouser_root from being added as a
+       PostgreSQL user. (Fixes: #310).
+     - Execute DB status changes as late as possible during suspend / terminate.
+     - Start/resume rootless sessions without geometry parameter. Esp. using
+       X2GO_GEOMETRY=fullscreen for rootless sessions lead to an extra 1x1 px
+       session window (nxagentCreateIconWindow in nxagent's Window.c).
+     - Typo fix in x2goruncommand (for MATE session startup).
+   * debian/control:
+     + Update LONG_DESCRIPTIONS.
+     + Raise Standards: to 3.9.4 (no changes needed).
+     + Move xfonts-base to Recommends: field of bin:package x2goserver.
+   * debian/x2goserver.init:
+     + Make init script LSB compliant.
+ .
+   [ Helmer Teles ]
+   * New upstream version (4.0.1.7):
+     - Make umask that is used when mounting client-side folders via SSHFS
+       configurable in x2goserver.conf. (Fixes: #331).
+ .
+   [ J&#252;rgen H&#246;tzel ]
+   * New upstream version (4.0.1.7):
+     - Use bash-builtin 'type' instead of to be avoided 'which'. (Fixes: #305).
+ .
+   [ Oleksandr Shneyder ]
+   * New upstream version (4.0.0.6):
+     - Fix x2goruncommand: &quot;type -P $cmd&quot; can create new lines in EXEC
+       variable if command have the arguments wich have same names as existing
+       commands, for example &quot;rdesktop -k nl&quot; -&gt; &quot;/usr/bin/rdesktop\n/usr/bin/nl&quot;.
+       Now we splitting $cmd and taking only first part.
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006457.html">[X2Go-Dev] shameless plug: &quot;deployment-stories:electronic-glovebox&quot; wiki page has been updated and expanded
+</A></li>
+	<LI>Next message: <A HREF="006464.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goserver) has been	marked as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6458">[ date ]</a>
+              <a href="thread.html#6458">[ thread ]</a>
+              <a href="subject.html#6458">[ subject ]</a>
+              <a href="author.html#6458">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

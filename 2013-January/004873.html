@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2384%3A%20Hardcoded%20-O3%20in%20CFLAGS&In-Reply-To=%3C20130109161041.118432fsrumy2jch%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004869.html">
+   <LINK REL="Next"  HREF="004876.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2384%3A%20Hardcoded%20-O3%20in%20CFLAGS&In-Reply-To=%3C20130109161041.118432fsrumy2jch%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Jan  9 16:10:41 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004869.html">[X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS
+</A></li>
+        <LI>Next message: <A HREF="004876.html">[X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4873">[ date ]</a>
+              <a href="thread.html#4873">[ thread ]</a>
+              <a href="subject.html#4873">[ subject ]</a>
+              <a href="author.html#4873">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Jan,
+
+On Mi 09 Jan 2013 15:26:06 CET Jan Engelhardt wrote:
+
+&gt;<i>
+</I>&gt;<i> On Wednesday 2013-01-09 15:21, Reinhard Tartler wrote:
+</I>&gt;&gt;&gt;<i> +++ nx-libs-3.5.0.17/nxcomp/Makefile.in
+</I>&gt;&gt;&gt;<i> @@ -36,8 +36,7 @@ LIBVERSION=@LIBVERSION@
+</I>&gt;&gt;&gt;<i>  #
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>  CXX         = @CXX@
+</I>&gt;&gt;&gt;<i> -CXXFLAGS    = @CXXFLAGS@ @X_CFLAGS@ @DEFS@ \
+</I>&gt;&gt;&gt;<i> -              -Wall -Wpointer-arith
+</I>&gt;&gt;&gt;<i> +CXXFLAGS    = @X_CFLAGS@ @DEFS@ -Wall -Wpointer-arith @CXXFLAGS@
+</I>&gt;&gt;&gt;<i>  CXXINCLUDES =
+</I>&gt;&gt;&gt;<i>  CXXDEFINES  =
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i> AFAIUI, this is not a fix. Instead of replacing the hardcoded values,
+</I>&gt;&gt;<i> this patch ensures that all options end behind the hardcoded values.
+</I>&gt;&gt;<i> This makes it impossible to drop compiler flags that are specified
+</I>&gt;&gt;<i> within.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This may be fair when your goal is to only change the optimization
+</I>&gt;&gt;<i> level, but may be insufficient when the goal is a hardened build.
+</I>&gt;<i>
+</I>&gt;<i> I don't care about the &quot;hardened&quot; because that is just another case
+</I>&gt;<i> of &quot;user wants to specify his own CFLAGS&quot;.
+</I>&gt;<i> I had hoped that @CXXFLAGS@ would be those user-specific ones,
+</I>&gt;<i> but alas, no.
+</I>&gt;<i> *Total dismay at Makefile authors who still squat on CXXFLAGS*
+</I>
+All kind of flags are hard-coded in linux.cf in nx-X11/cf/ (I think).  
+You may know imake better then I do. If you could take another look at  
+it, that would be awesome.
+
+Note: LDFLAGS appear to be named LDOPTIONS in nx-X11.
+
+Note, that nxcomp, nxcompshad and nxcompext are configured and built  
+from within nx-X11/programs/Xserver/Makefile.in (IIRC, might be the  
+Makfile.in one level up). So the nx* builds are prepared by imake. I  
+guess the only way to address it is to teach imake to let through  
+*FLAGS.
+
+The nx-X11 build process is a bummer..., I agree with that. Any help  
+and improvement is really appreciated.
+
+Greets + HELP!!! + Arggghhh...,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130109/8010adec/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130109/8010adec/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004869.html">[X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS
+</A></li>
+	<LI>Next message: <A HREF="004876.html">[X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4873">[ date ]</a>
+              <a href="thread.html#4873">[ thread ]</a>
+              <a href="subject.html#4873">[ subject ]</a>
+              <a href="author.html#4873">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

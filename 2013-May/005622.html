@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#211: 211/x2go installation
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23211%3A%20211/x2go%20installation&In-Reply-To=%3C1368658649-13950-1-git-send-email-jengelh%40inai.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005621.html">
+   <LINK REL="Next"  HREF="005623.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#211: 211/x2go installation</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23211%3A%20211/x2go%20installation&In-Reply-To=%3C1368658649-13950-1-git-send-email-jengelh%40inai.de%3E"
+       TITLE="[X2Go-Dev] Bug#211: 211/x2go installation">jengelh at inai.de
+       </A><BR>
+    <I>Thu May 16 00:57:28 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005621.html">[X2Go-Dev] Overview on X2Go Session Broker Documentation
+</A></li>
+        <LI>Next message: <A HREF="005623.html">[X2Go-Dev] Bug#211: [PATCH] build: also install defaults and	manpages through `make install`
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5622">[ date ]</a>
+              <a href="thread.html#5622">[ thread ]</a>
+              <a href="subject.html#5622">[ subject ]</a>
+              <a href="author.html#5622">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+This is all I currently want, as of tonight. The init scripts I do not
+care so much where they live, provided they are in the tar somewhere.
+
+----
+The following changes since commit a62fa864d38a7bad4938905782049d5d6af8d9bc:
+
+  Populate install target of Makefile. (Fixes: #201). (2013-05-15 10:15:23 +0200)
+
+are available in the git repository at:
+
+  <A HREF="git://git.inai.de/x2gobroker">git://git.inai.de/x2gobroker</A> master
+
+for you to fetch changes up to 9a445ed1e0b9e1873079c2adb5c1d9865361969b:
+
+  build: also install defaults and manpages through `make install` (2013-05-15 22:49:36 +0200)
+
+----------------------------------------------------------------
+Jan Engelhardt (1):
+      build: also install defaults and manpages through `make install`
+
+ Makefile                                           | 26 +++++++++++++++++-----
+ ...x2gobroker.default =&gt; python-x2gobroker.default |  0
+ ...rvice.default =&gt; x2gobroker-authservice.default |  0
+ ...ker-daemon.default =&gt; x2gobroker-daemon.default |  0
+ 4 files changed, 21 insertions(+), 5 deletions(-)
+ rename debian/python-x2gobroker.default =&gt; python-x2gobroker.default (100%)
+ rename debian/x2gobroker-authservice.default =&gt; x2gobroker-authservice.default (100%)
+ rename debian/x2gobroker-daemon.default =&gt; x2gobroker-daemon.default (100%)
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005621.html">[X2Go-Dev] Overview on X2Go Session Broker Documentation
+</A></li>
+	<LI>Next message: <A HREF="005623.html">[X2Go-Dev] Bug#211: [PATCH] build: also install defaults and	manpages through `make install`
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5622">[ date ]</a>
+              <a href="thread.html#5622">[ thread ]</a>
+              <a href="subject.html#5622">[ subject ]</a>
+              <a href="author.html#5622">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

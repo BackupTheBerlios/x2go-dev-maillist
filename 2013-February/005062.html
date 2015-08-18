@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] fuse and X2Go printing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20fuse%20and%20X2Go%20printing&In-Reply-To=%3C51248E8F.6060409%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005061.html">
+   <LINK REL="Next"  HREF="005063.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] fuse and X2Go printing</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20fuse%20and%20X2Go%20printing&In-Reply-To=%3C51248E8F.6060409%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] fuse and X2Go printing">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Wed Feb 20 09:51:27 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005061.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+        <LI>Next message: <A HREF="005063.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5062">[ date ]</a>
+              <a href="thread.html#5062">[ thread ]</a>
+              <a href="subject.html#5062">[ subject ]</a>
+              <a href="author.html#5062">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 20.02.2013 09:22, schrieb Moritz Struebe:
+&gt;<i> On 2013-02-19 20:20, Stefan Baur wrote:
+</I>&gt;&gt;<i> I can see that sshfs makes sense when you want to exchange files
+</I>&gt;&gt;<i> between host and client, but for printing it sounds like overkill.
+</I>&gt;<i>
+</I>&gt;<i> Well, actually the best thing to do is probably letting the client &quot;ls&quot;
+</I>&gt;<i> every sec (it's prabably not worth the trouble to inotify) and then scp
+</I>&gt;<i> to temp. But it needs someone to code that. After all, a x2go started as
+</I>&gt;<i> a proof of concept rather then a product.
+</I>
+Uh, no.  You see, currently, I'm not using X2Go to connect via the 
+internet, it's all happening in my local network(s), so I don't have to 
+worry about encryption and compression for print data.  In this 
+scenario, I'm simply letting the CUPS servers talk to each other 
+directly, which works fine when the client is using Linux (or Mac OS, I 
+guess - after all, the Apple guys kinda bought CUPS).
+
+For Windows, I'm using the LPR Daemon that is an optional windows 
+component, so to the server-side CUPS the Windows computer looks like a 
+network printer.  For printers that aren't supported by CUPS (the 
+el-cheapo GDI-only ones) I'm using a combination of redmon (a printer 
+port redirection tool usually used with ghostscript for Windows to 
+create PDFs) and a free PDF viewer: CUPS sends the print job in PDF 
+format via port 515/lpr, redmon accepts it, passes it to the PDF viewer, 
+which in turn uses the windows printer driver to create the print 
+output. If properly set up, all this happens in the background, with no 
+user interaction required and no windows popping up.
+A bit of a hack for Windows, I admit, but it works just fine.
+
+Now, it would be nice if that would work over the internet, too, by 
+simply forwarding the proper ports through the already existing ssh 
+tunnel created by X2Go.  That way the print data would be encrypted and 
+compressed as well.
+
+That's why I don't see an advantage in mounting a remote filesystem via 
+SSH (which is a Pandora's Box of its own) simply to be able to print.
+
+And even if you don't want to use LPR and redmon on Windows, there'd 
+still be the option of setting up a netcat listener on the client that 
+only accepts connections from localhost (the tunneled port connecting to 
+it), have that one write its data to a file, and print upon completion.
+
+Something as simple as (pseudocode, not actual bash/batch)
+
+printfile=$(makesafetempfilename)
+# note that we're using port 9100 - &quot;raw&quot; network printer mode
+# rather than 515 with its LPR protocol overhead, so we don't
+# need to have the windows LPD and redmon installed
+while nc -l -s 127.0.0.1 -p 9100 -w 1 &gt;printfile; do
+    process_and_print printfile # this is where you call the PDF tool
+    delete printfile
+    printfile=$(makesafetempfilename)
+done
+
+would probably do the trick. Note that Windows netcat (at least the copy 
+I found) doesn't support &quot;-q&quot;, so you have to improvise with &quot;-w&quot;.
+
+The way netcat is called it terminates upon completely receiving the 
+file, and the following tasks are not started before netcat terminates, 
+so there is no need to check for completeness of the file.
+
+Also, should a user fire off another print job before the while loop 
+returns to its head and restarts netcat, CUPS will simply assume the 
+printer is busy/offline and retry after a few seconds, so no print job 
+is lost.
+
+I'm sure that even integrating such code (with a listener and the option 
+to pass a temporary file to a PDF tool) *directly* into the X2Go client, 
+rather than having it as an add-on component, would be a simple task for 
+a skilled programmer.
+
+-Stefan
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005061.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+	<LI>Next message: <A HREF="005063.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5062">[ date ]</a>
+              <a href="thread.html#5062">[ thread ]</a>
+              <a href="subject.html#5062">[ subject ]</a>
+              <a href="author.html#5062">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

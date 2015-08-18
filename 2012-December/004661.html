@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#75: fails to use RSA SSH keys
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2375%3A%20fails%20to%20use%20RSA%20SSH%20keys&In-Reply-To=%3C20121206100455.18217dm81m98o2pj%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004659.html">
+   <LINK REL="Next"  HREF="004649.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#75: fails to use RSA SSH keys</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2375%3A%20fails%20to%20use%20RSA%20SSH%20keys&In-Reply-To=%3C20121206100455.18217dm81m98o2pj%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#75: fails to use RSA SSH keys">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Dec  6 10:04:55 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004659.html">[X2Go-Dev] Bug#75: fails to use RSA SSH keys
+</A></li>
+        <LI>Next message: <A HREF="004649.html">[X2Go-Dev] Bug#76: Fails to use my local SSH agent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4661">[ date ]</a>
+              <a href="thread.html#4661">[ thread ]</a>
+              <a href="subject.html#4661">[ subject ]</a>
+              <a href="author.html#4661">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Reinhard,
+
+On Do 06 Dez 2012 09:53:32 CET Reinhard Tartler wrote:
+
+&gt;<i> On Thu, Dec 6, 2012 at 9:48 AM, Mike Gabriel
+</I>
+&gt;&gt;<i> I have also observed this behaviour. My main SSH key is an RSA key and it
+</I>&gt;&gt;<i> works fine.
+</I>&gt;<i>
+</I>&gt;<i> That sentence does not make sense to me. Can you confirm that RSA keys
+</I>&gt;<i> do not work or not?
+</I>
+My RSA key here works fine with PyHoca-GUI. So, I think I can confirm  
+that RSA keys generally work.
+
+&gt;&gt;<i>
+</I>&gt;&gt;<i> So problem 1 is the error message: it says DSA (hard-coded) but it can mean
+</I>&gt;&gt;<i> RSA/DSA.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The ,,not a valid DSA key'' refers to a local private SSH key that does not
+</I>&gt;&gt;<i> get accepted by the server (no matter if the key locally is RSA or DSA).
+</I>&gt;<i>
+</I>&gt;<i> Well, this means that the error message then is both wrong and not helpful.
+</I>
+Yes, ACK. Will address that later with a commit.
+
+&gt;&gt;<i> What is the exact SSH configuration in the sessions file? Do you use
+</I>&gt;&gt;<i> detction of default key names in the config?
+</I>&gt;<i>
+</I>&gt;<i> This is my the relevant part of my ~/.x2goclient/sessions file
+</I>&gt;<i>
+</I>&gt;<i> [20121202161237781818]
+</I>&gt;<i> iconvfrom = UTF-8
+</I>&gt;<i> height = 600
+</I>&gt;<i> speed = 2
+</I>&gt;<i> setsessiontitle = 0
+</I>&gt;<i> sessiontitle =
+</I>&gt;<i> layout = us
+</I>&gt;<i> width = 800
+</I>&gt;<i> krblogin = 0
+</I>&gt;<i> soundsystem = pulse
+</I>&gt;<i> autostart = 0
+</I>&gt;<i> type = pc105/us
+</I>&gt;<i> sndport = 4713
+</I>&gt;<i> sshproxyuser =
+</I>&gt;<i> usekbd = 1
+</I>&gt;<i> autologin = 0
+</I>&gt;<i> sound = 1
+</I>&gt;<i> rootless = 0
+</I>&gt;<i> sshproxyhost =
+</I>&gt;<i> name = &lt;REMOVED FOR PRIVACY&gt;
+</I>&gt;<i> iconvto = UTF-8
+</I>&gt;<i> directrdp = 0
+</I>&gt;<i> sshport = 22
+</I>&gt;<i> startsoundsystem = 0
+</I>&gt;<i> pack = 16m-jpeg
+</I>&gt;<i> defsndport = 1
+</I>&gt;<i> useiconv = 0
+</I>&gt;<i> multidisp = 0
+</I>&gt;<i> export = &quot;;&quot;
+</I>&gt;<i> fullscreen = 0
+</I>&gt;<i> useexports = 0
+</I>&gt;<i> quality = 9
+</I>&gt;<i> xdmcpserver = localhost
+</I>&gt;<i> xinerama = 0
+</I>&gt;<i> rdpoptions = -u X2GO_USER -p X2GO_PASSWORD
+</I>&gt;<i> print = 0
+</I>&gt;<i> usesshproxy = 0
+</I>&gt;<i> sshproxytunnel = :1::1
+</I>&gt;<i> variant = altgr-intl
+</I>&gt;<i> sshproxykeyfile =
+</I>&gt;<i> fstunnel = 1
+</I>&gt;<i> applications = TERMINAL, WWWBROWSER, MAILCLIENT, OFFICE
+</I>&gt;<i> host = &lt;REMOVED FOR PRIVACY&gt;
+</I>&gt;<i> mimeboxextensions =
+</I>&gt;<i> user = tartler
+</I>&gt;<i> key =
+</I>&gt;<i> directrdpsettings =
+</I>&gt;<i> icon = /usr/share/icons/PyHoca/128x128/pyhoca-session.png
+</I>&gt;<i> mimeboxaction = OPEN
+</I>&gt;<i> rdpport = 3389
+</I>&gt;<i> rdpserver =
+</I>&gt;<i> soundtunnel = 1
+</I>&gt;<i> rdpclient = rdesktop
+</I>&gt;<i> command = KDE
+</I>&gt;<i> dpi = 96
+</I>&gt;<i> published = 0
+</I>&gt;<i> setdpi = 0
+</I>&gt;<i> usemimebox = 0
+</I>
+Ah... your are still using 0.2.0.4 of pyhoca-gui (and probably  
+0.2.0.10 of python-x2go?).
+
+Can you please try 0.2.1.0 of pyhoca-gui + python-x2go and report back  
+if the problem persists (before I dig into old code...).
+
+Greets,
+Mike
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121206/39a0e83e/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121206/39a0e83e/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004659.html">[X2Go-Dev] Bug#75: fails to use RSA SSH keys
+</A></li>
+	<LI>Next message: <A HREF="004649.html">[X2Go-Dev] Bug#76: Fails to use my local SSH agent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4661">[ date ]</a>
+              <a href="thread.html#4661">[ thread ]</a>
+              <a href="subject.html#4661">[ subject ]</a>
+              <a href="author.html#4661">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

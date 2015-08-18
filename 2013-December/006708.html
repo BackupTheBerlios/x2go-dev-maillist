@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#375: x2gothinclient does not install 686 kernel
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23375%3A%20x2gothinclient%20does%20not%20install%20686%20kernel&In-Reply-To=%3CCAFJm-UPbmJ-SqUSaE%2BVTOzsXR38pwoVCjbFXsPfhepWNXM3uBg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006707.html">
+   <LINK REL="Next"  HREF="006712.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#375: x2gothinclient does not install 686 kernel</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23375%3A%20x2gothinclient%20does%20not%20install%20686%20kernel&In-Reply-To=%3CCAFJm-UPbmJ-SqUSaE%2BVTOzsXR38pwoVCjbFXsPfhepWNXM3uBg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#375: x2gothinclient does not install 686 kernel">abo at dsl.dk
+       </A><BR>
+    <I>Tue Dec 17 11:23:31 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006707.html">[X2Go-Dev] Bug#374: Setting keyboard layout in x2gothinclient
+</A></li>
+        <LI>Next message: <A HREF="006712.html">[X2Go-Dev] Bug#375: x2gothinclient does not install 686 kernel
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6708">[ date ]</a>
+              <a href="thread.html#6708">[ thread ]</a>
+              <a href="subject.html#6708">[ subject ]</a>
+              <a href="author.html#6708">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2gothinclientmanagement
+Version: 1.1.0.1
+
+I run my tftp/nfs server for my thin clients, on a 64-bit machine (a VM).
+When I create a thinclient chroot with x2gothinclient_create, only the 486
+kernel gets installed. I can use x2gothinclient_shell and use apt-get to
+install linux-image-686, to get the 686 kernel installed. But upon doing
+so, the reason for it not being auto installed is apparent: 64-bit machines
+don't support PAE (not needed), and the deb package for linux-image-686
+knows that this particular kernel is made for machines supporting PAE. I
+can just say yes to the warnings, and I even though I end up with an error,
+the kernel does get installed. This is not optimal.
+I realize this is a problem (in this niche case, it probably &quot;works as
+intended&quot;) with Debian Wheezy, and not really a job for the developers of
+x2go, but since I am running into this problem when using x2go, I am
+reporting the problem here, and hopefully it will be sent upstream, if that
+is desirable.
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131217/12298a3f/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131217/12298a3f/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006707.html">[X2Go-Dev] Bug#374: Setting keyboard layout in x2gothinclient
+</A></li>
+	<LI>Next message: <A HREF="006712.html">[X2Go-Dev] Bug#375: x2gothinclient does not install 686 kernel
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6708">[ date ]</a>
+              <a href="thread.html#6708">[ thread ]</a>
+              <a href="subject.html#6708">[ subject ]</a>
+              <a href="author.html#6708">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

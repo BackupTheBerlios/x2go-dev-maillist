@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go-Future
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go-Future&In-Reply-To=%3C3249100.nzFiBG6ZMV%40yukon%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004009.html">
+   <LINK REL="Next"  HREF="004008.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go-Future</H1>
+    <B>Arnold Krille</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go-Future&In-Reply-To=%3C3249100.nzFiBG6ZMV%40yukon%3E"
+       TITLE="[X2Go-Dev] X2Go-Future">arnold at arnoldarts.de
+       </A><BR>
+    <I>Mon May 21 20:52:22 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004009.html">[X2Go-Dev] X2Go-Future
+</A></li>
+        <LI>Next message: <A HREF="004008.html">[X2Go-Dev] Clipboard feature?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4013">[ date ]</a>
+              <a href="thread.html#4013">[ thread ]</a>
+              <a href="subject.html#4013">[ subject ]</a>
+              <a href="author.html#4013">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Monday 21 May 2012 07:53:53 John A. Sullivan III wrote:
+&gt;<i> On Sun, 2012-05-20 at 14:37 +0200, Mike Gabriel wrote:
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> 
+</I>&gt;<i> &gt; &gt; Sadly the expirience suffered when we updated the nx-
+</I>&gt;<i> &gt; &gt; libs from 3.4 to 3.5: On WAN-connections its still usable but on LAN
+</I>&gt;<i> &gt; &gt; X2Go
+</I>&gt;<i> &gt; &gt; looses in speed and latency and responsiveness against VNC. Which my co-
+</I>&gt;<i> &gt; &gt; workers really hate.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Then there must be something wrong with your setup. X2Go works on UMTS
+</I>&gt;<i> &gt; (even GPRS) networks as well as on local area network. Not sure what
+</I>&gt;<i> &gt; you are experiencing, but I cannot confirm what you report.
+</I>
+As I said, with my very poor internet-connection it is much better then VNC to 
+log into work. But on lan it feels slower. I did measure it with some X-tests 
+and the results where the same for local, xdmcp and x2go.
+
+&gt;<i> I cannot confirm that it is slower than VNC on a LAN but I can confirm
+</I>&gt;<i> that I have seen a dramatic increase in latency since the move to
+</I>&gt;<i> libssh.
+</I>
+When users &quot;feel&quot; that something is slow, its not always the throughput. Your 
+explaination actually makes much more sense. It probably is the latency. That 
+would also explain why it doesn't improve when I change compression levels.
+
+&gt;<i> It still really feels like Nagle is enabled.  I've not 100%
+</I>&gt;<i> ruled out that it is not something in my environment like packet loss on
+</I>&gt;<i> our connections but it doesn't feel like it.  It feels exactly like
+</I>&gt;<i> packet coalescing as it is just the last bit of input that is badly
+</I>&gt;<i> delay - badly as in a second or so so  very noticeable with serious
+</I>&gt;<i> production impact as it leads to dangerous mistakes while editing
+</I>&gt;<i> documents.  I wonder if libssh does not have the ability to disable it.
+</I>
+So what to do with that? Is there a way to disable ssh for local lan 
+connections?
+
+Have fun,
+
+Arnold
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120521/451adbeb/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120521/451adbeb/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004009.html">[X2Go-Dev] X2Go-Future
+</A></li>
+	<LI>Next message: <A HREF="004008.html">[X2Go-Dev] Clipboard feature?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4013">[ date ]</a>
+              <a href="thread.html#4013">[ thread ]</a>
+              <a href="subject.html#4013">[ subject ]</a>
+              <a href="author.html#4013">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#258: Bug#258: Bug#258: SECURITY: x2goclient allows	clipboard sniffing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23258%3A%20Bug%23258%3A%20Bug%23258%3A%20SECURITY%3A%20x2goclient%20allows%0A%09clipboard%20sniffing&In-Reply-To=%3C20130701140132.GQ2447%40cip.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005910.html">
+   <LINK REL="Next"  HREF="005914.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#258: Bug#258: Bug#258: SECURITY: x2goclient allows	clipboard sniffing</H1>
+    <B>Alexander Wuerstlein</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23258%3A%20Bug%23258%3A%20Bug%23258%3A%20SECURITY%3A%20x2goclient%20allows%0A%09clipboard%20sniffing&In-Reply-To=%3C20130701140132.GQ2447%40cip.informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] Bug#258: Bug#258: Bug#258: SECURITY: x2goclient allows	clipboard sniffing">snalwuer at cip.informatik.uni-erlangen.de
+       </A><BR>
+    <I>Mon Jul  1 16:01:32 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005910.html">[X2Go-Dev] Bug#258: Bug#258: SECURITY: x2goclient allows clipboard	sniffing
+</A></li>
+        <LI>Next message: <A HREF="005914.html">[X2Go-Dev] Bug#258: Bug#258: Bug#258: SECURITY: x2goclient allows	clipboard sniffing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5911">[ date ]</a>
+              <a href="thread.html#5911">[ thread ]</a>
+              <a href="subject.html#5911">[ subject ]</a>
+              <a href="author.html#5911">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 13-07-01 15:03, Christoph Anton Mitterer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">calestyo at scientia.net</A>&gt; wrote:
+&gt;<i> On Mon, 2013-07-01 at 13:43 +0200, Alexander Wuerstlein wrote: 
+</I>&gt;<i> &gt; Yes, other related tools like X11. x2go is basically just a faster
+</I>&gt;<i> &gt; version of the traditional xforwarding. In X11 every client can always
+</I>&gt;<i> &gt; access the clipboard/selection/etc., so you will also have the same
+</I>&gt;<i> &gt; security problems (by design). E.g. 'ssh -X <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user at evilhost</A> &quot;xclip -o&quot;'
+</I>&gt;<i> &gt; demonstrates this.
+</I>&gt;<i> Well but that &quot;argument&quot; doesn't really count:
+</I>&gt;<i> 1) Just because others do it plainly insecure, you cannot do it like
+</I>&gt;<i> this as well... like as if Gentoo would say &quot;if Debian breaks their
+</I>&gt;<i> OpenSSL entropy, we should do so, too&quot;... o.O
+</I>
+It isn't like that at all, X11 clients and servers have to comply with
+the respective parts of the protocol. If the protocol demands insecure
+behaviour, its a design bug, or maybe, like in this case, a compromise
+nobody likes: Since in X11 clients handle all the shortcuts and mouse
+button events, since clients or toolkits handle the widgets, the only
+option to implement C&amp;P is to have clients ask the server for the
+clipboard or selection contents. Its more a &quot;there is no other way to do
+it except to make it unusable&quot; kind of problem imho.
+
+&gt;<i> 2) Literally no one who has a decent mind of security, will allow other
+</I>&gt;<i> hosts do directly access their X server.. because then you're (security
+</I>&gt;<i> wise) anyway screwed...
+</I>
+I'm not only talking about 'xhost +' and the like, this would of course
+be a major problem for more reasons than only the clipboard. And if you
+wouldn't trust a host with 'ssh -X', then you also shouldn't trust it
+with x2go. Just think of x2go as a variant of 'ssh -X' with image
+compression and some extras. X11 protocol firewalling is not really one
+of those extras. And since the x2goclient will always run in your local
+X session, it will always be able to read your clipboard.
+
+&gt;<i> And I thought NX would secure what's sent from remote in order to not
+</I>&gt;<i> being able to overtake the input/output devices of the hosts (whole)
+</I>&gt;<i> Xserver).
+</I>
+In a way, yes. Afaik you can avoid certain attacks of the &quot;I'll attach
+to the root window and get all key events&quot; kind since windowed x2go
+sessions give you a separate root window. But I imagine there are more
+problems out there nobody thought of yet.
+
+
+
+Ciao,
+
+Alexander Wuerstlein.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005910.html">[X2Go-Dev] Bug#258: Bug#258: SECURITY: x2goclient allows clipboard	sniffing
+</A></li>
+	<LI>Next message: <A HREF="005914.html">[X2Go-Dev] Bug#258: Bug#258: Bug#258: SECURITY: x2goclient allows	clipboard sniffing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5911">[ date ]</a>
+              <a href="thread.html#5911">[ thread ]</a>
+              <a href="subject.html#5911">[ subject ]</a>
+              <a href="author.html#5911">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

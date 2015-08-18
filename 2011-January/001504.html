@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Go Client Code Changes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20Client%20Code%20Changes&In-Reply-To=%3C1295453019.9500.113.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001501.html">
+   <LINK REL="Next"  HREF="001506.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Go Client Code Changes</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20Client%20Code%20Changes&In-Reply-To=%3C1295453019.9500.113.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] X2Go Client Code Changes">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Jan 19 17:03:39 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001501.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+        <LI>Next message: <A HREF="001506.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1504">[ date ]</a>
+              <a href="thread.html#1504">[ thread ]</a>
+              <a href="subject.html#1504">[ subject ]</a>
+              <a href="author.html#1504">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 2011-01-19 at 16:40 +0100, Oleksandr Shneyder wrote:
+&gt;<i> Hello John, Phil, Moritz, list,
+</I>&gt;<i> 
+</I>&gt;<i> I'll tray in this short mail to give answers on all your questions.
+</I>&gt;<i> 
+</I>&gt;<i> 1) Xming working correct with nxproxy only in &quot;multiwindow&quot; mode.
+</I>&gt;<i> 2) Xming need some time to start and it started by parallel thread to
+</I>&gt;<i> reduce delay. It make not sense to start it by x2goconnections, this
+</I>&gt;<i> will only enlarge connection time on 3-5 sec and bring no effort
+</I>&gt;<i> 3) Xming just ignoring &quot;keyhook&quot; option (I think because of multiwindow
+</I>&gt;<i> mode)
+</I>&gt;<i> 4) &quot;right top click&quot; is a feature of x2goagent, not X11. It will be
+</I>&gt;<i> possible to make changes in x2goagent to disable it or make configurable,
+</I>&gt;<i> 
+</I>&gt;<i> We would be happy to say &quot;Good By&quot; to Xming and old xorg-6 sources. I'll
+</I>&gt;<i> take a look on VcXsrv this week. It looks good, seems to be gpl-3
+</I>&gt;<i> (<A HREF="http://sourceforge.net/projects/vcxsrv/develop">http://sourceforge.net/projects/vcxsrv/develop</A>) and based on the xorg
+</I>&gt;<i> git(<A HREF="http://vcxsrv.sourceforge.net/">http://vcxsrv.sourceforge.net/</A>) git = Xorg-7. I think, John and Phil
+</I>&gt;<i> made a good experience with VcXsrv. I'll make some tests and will try to
+</I>&gt;<i> use it with x2goplugin. Possible, I'll need to make some changes, as I
+</I>&gt;<i> have made it with Xming. If VcXsrv will work good with x2goclient, we
+</I>&gt;<i> will include it in windows installer.
+</I>
+Thanks, Oleksandr.  This is helpful.  Phil and I (mostly Phil) do have
+vcxsrv up and running with libssh and on everything from Windows XP to
+Windows 7.  It has eliminated all the crippling bugs and appears to
+perform better.  We can probably send you the simple code changes we
+made if it will save you some time.
+
+However, we still have some of our original issues.  I'll restate them
+using your numbers from above.
+
+1) Thankfully, vcxsrv is working perfectly fine in full screen and
+rootless as well as multi-windows so these possibilities are now open to
+us.
+
+2) That's an important point but it still leaves us with the original
+dilemma: if we start X before we know the session parameters, we cannot
+run fullscreen or rootless.  More accurately, we can but we must choose
+one of the three (fullscreen, rootless, or multi-window) before we know
+the session parameters.  If we default to full screen, then we get a
+full screen but the session may only paint into a part of it and leave
+the rest of the screen black.  My understanding from Phil is that it
+does not automatically resize the session to consume the entire windows
+like it does on Linux.  Even if it did, fullscreen is not what all users
+will want (or rootless or multi-window - exactly why we should give them
+a choice).  My guess would be the delayed start would be a worthwhile
+trade-off for giving users important options.  Thoughts? Vehement
+disagreements? Insults? (well . . . hopefully no insults :)  )
+
+3) Argh!! That's really unfortunate.  Our practical experience is that
+losing &lt;ALT&gt;&lt;TAB&gt; significantly impacts productivity and makes the users
+more likely to resist transitioning to X2Go desktops.
+
+4) I think I did not communicate this well in my original email.  I'm
+not referring to the &quot;magic pixel&quot; to minimize the X2Go session.  What
+we find happening VERY frequently is that a user has an application
+maximized in their X2Go desktop.  They then want to close the
+application and do so by clicking on the top right most &quot;x&quot; box on the
+title bar, i.e., the shortcut to close (alongside restore and minimize).
+They click the top right most one because that's the habit they have
+built for closing maximized applications and briefly forget that the top
+rightmost &quot;x&quot; is not the one for the application but the one for the
+X2Go session.  Thus, they accidentally close their X2Go session rather
+than the application.  If they were working in full screen mode, the
+X2Go desktop would be more like their physical desktop rather than a
+desktop within a desktop and thus their habitual actions are less like
+to be a problem.  It also gives &lt;ALT&gt;&lt;TAB&gt; and eliminates the confusion
+we frequently hear among end users as they say &quot;now where am I - my
+virtual world or my physical world&quot;.
+
+Thanks again - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001501.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+	<LI>Next message: <A HREF="001506.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1504">[ date ]</a>
+              <a href="thread.html#1504">[ thread ]</a>
+              <a href="subject.html#1504">[ subject ]</a>
+              <a href="author.html#1504">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

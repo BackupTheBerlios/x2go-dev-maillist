@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] trouble getting printing to work
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20trouble%20getting%20printing%20to%20work&In-Reply-To=%3C1277252867.3388.131.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000602.html">
+   <LINK REL="Next"  HREF="000605.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] trouble getting printing to work</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20trouble%20getting%20printing%20to%20work&In-Reply-To=%3C1277252867.3388.131.camel%40localhost%3E"
+       TITLE="[X2go-dev] trouble getting printing to work">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Jun 23 02:27:47 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000602.html">[X2go-dev] trouble getting printing to work
+</A></li>
+        <LI>Next message: <A HREF="000605.html">[X2go-dev] trouble getting printing to work
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#603">[ date ]</a>
+              <a href="thread.html#603">[ thread ]</a>
+              <a href="subject.html#603">[ subject ]</a>
+              <a href="author.html#603">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Yes.  If you issue a mount command on the X2Go Server, do you see the
+mounts for the sshfs shares, e.g.,
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jas at jas</A>:~$ mount
+/dev/hdv1 on / type ufs (defaults)
+none on /proc type proc (defaults)
+none on /tmp type tmpfs (size=128m,mode=1777,noexec,nosuid,nodev)
+none on /dev/pts type devpts (gid=5,mode=620)
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsull at 127.0.0.1</A>:/home/jsull/.x2go/S-jas-54-1277203660_stDKDE_dp24/spool on /tmp/spool_jas/jas-54-1277203660_stDKDE_dp24 type fuse.sshfs (rw,nosuid,nodev,max_read=65536,user=jas)
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsull at 127.0.0.1</A>:/home/jsull/ on /tmp/jas_media/_home_jsull_ type fuse.sshfs (rw,nosuid,nodev,max_read=65536,user=jas)
+
+If not, you might be able to add debugging information to
+the /usr/bin/x2gomount_sessions script.
+
+If the mounts are there and it is still not working, you may be able to
+add debugging information to the cups-x2go backend as it is simply a
+perl script.  I'm not sure where that is -
+perhaps /usr/lib/cups/backends.  Hope that helps - John
+
+On Tue, 2010-06-22 at 16:13 -0500, Gerry Reno wrote:
+&gt;<i> Ok, tried adding my local user account to the fuse group so it looks
+</I>&gt;<i> like this now:
+</I>&gt;<i> fuse:x:104:greno
+</I>&gt;<i> 
+</I>&gt;<i> But, still no printing and no errors that I can find.  Is there some
+</I>&gt;<i> type of manual tests that can be run to check things out?
+</I>&gt;<i> 
+</I>&gt;<i> -Gerry
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Jun 22, 2010 04:16:26 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> wrote:
+</I>&gt;<i>         I'm not sure if it is still a requirement that the users be
+</I>&gt;<i>         members of
+</I>&gt;<i>         the fuse group on the client. We are set up that way by force
+</I>&gt;<i>         of habit.
+</I>&gt;<i>         We also added the users to the various pulse groups - John
+</I>&gt;<i>         
+</I>&gt;<i>         On Tue, 2010-06-22 at 12:47 -0500, Gerry Reno wrote:
+</I>&gt;<i>         &gt; Hi John,
+</I>&gt;<i>         &gt; Thanks for the reply. I checked on sshfs, sshd and fuse.
+</I>&gt;<i>         Here's
+</I>&gt;<i>         &gt; what I found:
+</I>&gt;<i>         &gt; 
+</I>&gt;<i>         &gt; Server:
+</I>&gt;<i>         &gt; # apt-show-versions sshfs
+</I>&gt;<i>         &gt; sshfs/lucid uptodate 2.2-1build1
+</I>&gt;<i>         &gt; # service ssh status
+</I>&gt;<i>         &gt; ssh start/running, process 409
+</I>&gt;<i>         &gt; # modprobe -l | grep fuse
+</I>&gt;<i>         &gt; kernel/fs/fuse/fuse.ko
+</I>&gt;<i>         &gt; # cat /etc/group | grep -E 'fuse|x2go'
+</I>&gt;<i>         &gt; fuse:x:104:ubuntu
+</I>&gt;<i>         &gt; x2gousers:x:123:ubuntu
+</I>&gt;<i>         &gt; x2goprint:x:999:ubuntu
+</I>&gt;<i>         &gt; 
+</I>&gt;<i>         &gt; Client:
+</I>&gt;<i>         &gt; # apt-show-versions sshfs
+</I>&gt;<i>         &gt; sshfs/lucid uptodate 2.2-1build1
+</I>&gt;<i>         &gt; # service ssh status
+</I>&gt;<i>         &gt; ssh start/running, process 2191
+</I>&gt;<i>         &gt; # modprobe -l | grep fuse
+</I>&gt;<i>         &gt; kernel/fs/fuse/cuse.ko
+</I>&gt;<i>         &gt; # cat /etc/group | grep -E 'fuse|x2go'
+</I>&gt;<i>         &gt; fuse:x:104:
+</I>&gt;<i>         &gt; x2gousers:x:131:greno
+</I>&gt;<i>         &gt; 
+</I>&gt;<i>         &gt; 
+</I>&gt;<i>         &gt; I don't see anything out of order there. Anything else you
+</I>&gt;<i>         think I
+</I>&gt;<i>         &gt; can check?
+</I>&gt;<i>         &gt; 
+</I>&gt;<i>         &gt; -Gerry
+</I>&gt;<i>         &gt; 
+</I>&gt;<i>         &gt; Jun 22, 2010 07:53:06 AM, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> wrote:
+</I>&gt;<i>         &gt; On Mon, 2010-06-21 at 20:41 -0500, Gerry Reno wrote:
+</I>&gt;<i>         &gt; &gt; I have a lucid client and a lucid server. I followed the
+</I>&gt;<i>         &gt; guides for
+</I>&gt;<i>         &gt; &gt; Linux and I can access the server from the client using
+</I>&gt;<i>         x2go
+</I>&gt;<i>         &gt; and the
+</I>&gt;<i>         &gt; &gt; session works fine. I cannot seem to get folder sharing or
+</I>&gt;<i>         &gt; printing
+</I>&gt;<i>         &gt; &gt; to work however. I have cups-x2go and x2goprint installed
+</I>&gt;<i>         on
+</I>&gt;<i>         &gt; the
+</I>&gt;<i>         &gt; &gt; server. I've selected the proper options in the x2go
+</I>&gt;<i>         client
+</I>&gt;<i>         &gt; interface
+</I>&gt;<i>         &gt; &gt; (I shared one directory automounted) and for printing I
+</I>&gt;<i>         &gt; checked to
+</I>&gt;<i>         &gt; &gt; print to xpdf. I verified that 'xpdf' is installed on the
+</I>&gt;<i>         &gt; client. I
+</I>&gt;<i>         &gt; &gt; have gone to Administration, Printing and set up the
+</I>&gt;<i>         printer
+</I>&gt;<i>         &gt; &gt; Generic-CUPS-X2GO-printer. I'm using ssh port 22 for
+</I>&gt;<i>         &gt; connections.
+</I>&gt;<i>         &gt; &gt; When I print something from the remote desktop it acts
+</I>&gt;<i>         likes
+</I>&gt;<i>         &gt; &gt; everything worked. When I check
+</I>&gt;<i>         the /var/log/cups/access_log
+</I>&gt;<i>         &gt; I can
+</I>&gt;<i>         &gt; &gt; see everything seemed to work. But, no output ever appears
+</I>&gt;<i>         &gt; anywhere.
+</I>&gt;<i>         &gt; &gt; Also, with the shared folder, no folder is ever mounted
+</I>&gt;<i>         &gt; anywhere. Can
+</I>&gt;<i>         &gt; &gt; someone shed some light on what is needed to get these
+</I>&gt;<i>         &gt; functions
+</I>&gt;<i>         &gt; &gt; working?
+</I>&gt;<i>         &gt; 
+</I>&gt;<i>         &gt; The fact that both are broken helps narrow it down. Both use
+</I>&gt;<i>         &gt; fuse and
+</I>&gt;<i>         &gt; an sshfs mount to pass data. Do you have fuse and sshfs
+</I>&gt;<i>         &gt; installed? Is
+</I>&gt;<i>         &gt; sshd running on BOTH client and server? Are the users
+</I>&gt;<i>         members
+</I>&gt;<i>         &gt; of the
+</I>&gt;<i>         &gt; fuse group to have access to the fuse device? Those are the
+</I>&gt;<i>         &gt; areas I'd
+</I>&gt;<i>         &gt; suggest checking. Good luck - John
+</I>&gt;<i>         &gt; 
+</I>&gt;<i>         &gt; _______________________________________________
+</I>&gt;<i>         &gt; X2go-dev mailing list
+</I>&gt;<i>         &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i>         &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>         &gt; _______________________________________________
+</I>&gt;<i>         &gt; X2go-dev mailing list
+</I>&gt;<i>         &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i>         &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>         
+</I>&gt;<i>         
+</I>&gt;<i>         _______________________________________________
+</I>&gt;<i>         X2go-dev mailing list
+</I>&gt;<i>         <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i>         <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000602.html">[X2go-dev] trouble getting printing to work
+</A></li>
+	<LI>Next message: <A HREF="000605.html">[X2go-dev] trouble getting printing to work
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#603">[ date ]</a>
+              <a href="thread.html#603">[ thread ]</a>
+              <a href="subject.html#603">[ subject ]</a>
+              <a href="author.html#603">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

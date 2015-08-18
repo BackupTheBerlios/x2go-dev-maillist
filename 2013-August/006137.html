@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2goserver packaging questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goserver%20packaging%20questions&In-Reply-To=%3C20130830090331.15784apc9k992eo3%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006136.html">
+   <LINK REL="Next"  HREF="006138.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2goserver packaging questions</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goserver%20packaging%20questions&In-Reply-To=%3C20130830090331.15784apc9k992eo3%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] x2goserver packaging questions">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Aug 30 09:03:31 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006136.html">[X2Go-Dev] Processed: X2Go issue (in src:nx-libs) has been marked as pending for release
+</A></li>
+        <LI>Next message: <A HREF="006138.html">[X2Go-Dev] Bug#199: X2Go issue (in src:nx-libs) has been marked as	closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6137">[ date ]</a>
+              <a href="thread.html#6137">[ thread ]</a>
+              <a href="subject.html#6137">[ subject ]</a>
+              <a href="author.html#6137">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>HI Orion,
+
+I re-include x2go-dev, I hope that's ok.
+
+On Fr 30 Aug 2013 00:51:18 CEST Orion Poplawski wrote:
+
+&gt;<i> So:
+</I>&gt;<i>
+</I>&gt;<i> - Why split out -compat?  Doesn't seem to add any dependencies.
+</I>
+Not necessarily needed. /me thinks about removing the compat commands  
+completely, as they have been obsolete for more then 3 years now.
+
+&gt;<i> - Why split out -extensions?  Okay, does pull x11-xkb-utils which  
+</I>&gt;<i> isn't otherwise required, but it appears to be recommended that you  
+</I>&gt;<i> have it.  rpm doesn't have the concept of &quot;Recommends&quot; or  
+</I>&gt;<i> &quot;Suggests&quot;, just hard dependencies.
+</I>
+In some setups, the site admin may decide to leave it uninstalled. (Or  
+rather: to uninstall it after it got pulled in via Recommends: field  
+in /debian/control).
+
+Also, removing x2goserver-extensions may ease the X2Go Server  
+debugging in some occasions.
+
+&gt;<i> - Why split out -xsession?  Adds dep on x11-common which appears to  
+</I>&gt;<i> not be otherwise required.  Only suggested.
+</I>
+The -xsession package is only necessary for people providing a full  
+screen desktop shell. For people providing SaaS the -xsession package  
+is not needed.
+
+And x11-common is normally not needed for X2Go functionality. We hook  
+into the system's Xsession scripts (via symlinking), so that's why we  
+depend on x11-common here.
+
+&gt;<i> - Why split out -fmbindings?  Adds deps on xdg-utils,  
+</I>&gt;<i> desktop-file-utils (although for Fedora, this is not required, but  
+</I>&gt;<i> xdg-utils requires it). Although it seems nearly impossible to  
+</I>&gt;<i> install almost any desktop without xdg-utils (lxde and xfce seem to  
+</I>&gt;<i> require it), and it is tiny and has few dependencies.
+</I>
+Instead of x2goserver-fmbindings people can use x2go*bindings. Also  
+site admins may not want to add desktop icon support for locally  
+shared folders.
+
+&gt;<i> - Why split out -pyhoca?  Does not appear to add any dependencies.   
+</I>&gt;<i> Doesn't appear to do anything as far as I can see.
+</I>
+The -pyhoca package is deprecated. It stems from a time when I was to  
+shy to add functionalty to the x2goserver core package when I needed  
+it for pyhoca-gui. This shyness is obviously gone...
+
+I will remove the x2goserver-pyhoca package in some future release  
+completely. So ignore it.
+
+&gt;<i> I already split out -printing, although I'm not sure that added much  
+</I>&gt;<i> (perl(File::Basename), perl(File::Copy)), so that might have been  
+</I>&gt;<i> silly.  So, I guess I could see splitting out -xsession and possibly  
+</I>&gt;<i> -fmbindings, but that's about it.
+</I>
+Splitting out printing is a must IMHO as it creates a separate  
+user:group (x2goprint:x2goprint).
+
+&gt;<i> Looking at dependencies:
+</I>&gt;<i>
+</I>&gt;<i> - lsof - from x2goshowblocks:
+</I>&gt;<i>
+</I>&gt;<i> my @outp=dbsys_getmounts( $id);
+</I>&gt;<i> for (my $i=0;$i&lt;@outp;$i++)
+</I>&gt;<i> {
+</I>&gt;<i>         my $path=(split(&quot;\|&quot;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">, at outp</A>[$i]))[1];
+</I>&gt;<i>         print `su $uname -c &quot;lsof 2&gt;/dev/null | grep $path&quot;`;
+</I>&gt;<i> }
+</I>&gt;<i>
+</I>&gt;<i> Hmm, it's inefficient if there are more than one mount entries, but  
+</I>&gt;<i> otherwise I don't see a better way of doing it off hand.  But this I  
+</I>&gt;<i> could actually imagine going into a utils/debug package.  Unless it  
+</I>&gt;<i> is used for something else?
+</I>
+Yeah. This can surely be improved.
+
+&gt;<i> - bc - from x2goruncommand
+</I>&gt;<i>
+</I>&gt;<i> echo &quot;$DISTRIB_RELEASE &gt;= 11.10&quot; | bc
+</I>&gt;<i>
+</I>&gt;<i> Actually, not that much on my machine depends on bc.  Since  
+</I>&gt;<i> x2goserver already depends on perl, I'd be tempted to use that  
+</I>&gt;<i> instead:
+</I>&gt;<i>
+</I>&gt;<i> perl -e &quot;print $DISTRIB_RELEASE &gt;= 11.10&quot;
+</I>
+As the x2goruncommand should be turned into Perl at some time later, I  
+will be happy to accept a tested patch for this.
+
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130830/bd833eee/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130830/bd833eee/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006136.html">[X2Go-Dev] Processed: X2Go issue (in src:nx-libs) has been marked as pending for release
+</A></li>
+	<LI>Next message: <A HREF="006138.html">[X2Go-Dev] Bug#199: X2Go issue (in src:nx-libs) has been marked as	closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6137">[ date ]</a>
+              <a href="thread.html#6137">[ thread ]</a>
+              <a href="subject.html#6137">[ subject ]</a>
+              <a href="author.html#6137">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

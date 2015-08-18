@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Use case for an x2go user-group
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C4D621EB3.2010706%40x2go.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001783.html">
+   <LINK REL="Next"  HREF="001771.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Use case for an x2go user-group</H1>
+    <B>Heinz-M. Graesing</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C4D621EB3.2010706%40x2go.org%3E"
+       TITLE="[X2go-dev] Use case for an x2go user-group">x2go-dev at x2go.org
+       </A><BR>
+    <I>Mon Feb 21 09:13:39 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001783.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+        <LI>Next message: <A HREF="001771.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1785">[ date ]</a>
+              <a href="thread.html#1785">[ thread ]</a>
+              <a href="subject.html#1785">[ subject ]</a>
+              <a href="author.html#1785">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Mike,
+hello list,
+
+Am 20.02.2011 10:48, schrieb Mike Gabriel:
+&gt;<i> So, @Heinz and/or Alex: Could you please give your opinion on this
+</I>&gt;<i> discussion rather sooner than later?
+</I>
+The x2go usergroup was used to restrict the access to &quot;x2gopgwrapper&quot;.
+This main use case is no longer existant, because of the changes made to
+the postgres database handling.
+
+If you want to deny users access to a server, it is a better idea to
+think about a more complete solution, as users outside this group still
+can have access via ssh (-X).
+
+As the main purpose of this construction is no longer needed, we should
+not keep it alive. Allowing users to run applications as another user is
+always a great security issue.
+
+As Alex and I have discussed this topic, we've come to the conclusion to
+drop the need of the group and sudo at all.
+
+This leads to the following suggestions:
+
+You should use pgsql backend in all cases except home,
+(very) small office network or VM pools where each user has his own VM.
+
+So in future there will be:
+1. no need to have sudo entry.
+2. no need to have 'x2gousers' group
+3. no need to insert users in 'x2gousers' group
+
+This will also solve a Bug on debian edu:
+
+<A HREF="http://www.mail-archive.com/debian-edu@lists.debian.org/msg19665.html">http://www.mail-archive.com/debian-edu@lists.debian.org/msg19665.html</A>
+
+Best Regards,
+
+Alex &amp; Heinz
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001783.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+	<LI>Next message: <A HREF="001771.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1785">[ date ]</a>
+              <a href="thread.html#1785">[ thread ]</a>
+              <a href="subject.html#1785">[ subject ]</a>
+              <a href="author.html#1785">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

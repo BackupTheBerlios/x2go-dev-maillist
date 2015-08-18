@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#209: X2GO mac client 4.0.1.0 crash on start
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23209%3A%20X2GO%20mac%20client%204.0.1.0%20crash%20on%20start&In-Reply-To=%3C72490326-71F9-469A-8536-DC119B2CD721%40mclink.it%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005707.html">
+   <LINK REL="Next"  HREF="005723.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#209: X2GO mac client 4.0.1.0 crash on start</H1>
+    <B>Nero</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23209%3A%20X2GO%20mac%20client%204.0.1.0%20crash%20on%20start&In-Reply-To=%3C72490326-71F9-469A-8536-DC119B2CD721%40mclink.it%3E"
+       TITLE="[X2Go-Dev] Bug#209: X2GO mac client 4.0.1.0 crash on start">nero at mclink.it
+       </A><BR>
+    <I>Mon May 27 10:24:44 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005707.html">[X2Go-Dev] X2Go Debian Package Archive: provisioning of jessie	packages
+</A></li>
+        <LI>Next message: <A HREF="005723.html">[X2Go-Dev] Bug#209: Bug#209: X2GO mac client 4.0.1.0 crash on start
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5719">[ date ]</a>
+              <a href="thread.html#5719">[ thread ]</a>
+              <a href="subject.html#5719">[ subject ]</a>
+              <a href="author.html#5719">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Same problem, latest version (4.0.1.0) don't start on mac os X 10.6.8
+
+
+
+
+Date/Time:       2013-05-27 09:36:22.476 +0200
+OS Version:      Mac OS X 10.6.8 (10K549)
+Report Version:  6
+
+Exception Type:  EXC_BAD_ACCESS (SIGSEGV)
+Exception Codes: KERN_INVALID_ADDRESS at 0xfffffffffffffff8
+Crashed Thread:  Unknown
+
+Backtrace not available
+
+Unknown thread crashed with X86 Thread State (64-bit):
+ rax: 0x0000000000000055  rbx: 0x0000000000000000  rcx: 0x0000000000000000  rdx: 0x0000000000000000
+ rdi: 0x0000000000000000  rsi: 0x0000000000000000  rbp: 0x0000000000000000  rsp: 0x0000000000000000
+  r8: 0x0000000000000000   r9: 0x0000000000000000  r10: 0x0000000000000000  r11: 0x0000000000000000
+ r12: 0x0000000000000000  r13: 0x0000000000000000  r14: 0x0000000000000000  r15: 0x0000000000000000
+ rip: 0x00007fff5fc01028  rfl: 0x0000000000010203  cr2: 0xfffffffffffffff8
+
+Binary images description not available
+
+
+Model: MacPro3,1, BootROM MP31.006C.B05, 8 processors, Quad-Core Intel Xeon, 2.8 GHz, 18 GB, SMC 1.25f4
+Graphics: ATI Radeon HD 5870, ATI Radeon HD 5870, PCIe, 1024 MB
+Memory Module: global_name
+AirPort: spairport_wireless_card_type_airport_extreme (0x14E4, 0x88), Broadcom BCM43xx 1.0 (5.10.131.42.4)
+Modem: 
+Bluetooth: Version 2.4.5f3, 2 service, 19 devices, 1 incoming serial ports
+Network Service: Ethernet 1, Ethernet, en0
+PCI Card: ATI Radeon HD 5870, sppci_displaycontroller, Slot-1
+PCI Card: ATI Radeon HD 5870, ATY,LangurParent, Slot-1
+Serial ATA Device: SAMSUNG HD103UJ, 931,51 GB
+Serial ATA Device: SAMSUNG HD103SJ, 931,51 GB
+Serial ATA Device: SAMSUNG HD753LJ, 698,64 GB
+Serial ATA Device: WDC WD2002FAEX-007BA0, 1,82 TB
+Parallel ATA Device: TSSTcorp CDDVDW SH-S202J
+USB Device: Hub, 0x05ac  (Apple Inc.), 0x1008, 0xfd500000 / 3
+USB Device: Hub, 0x05ac  (Apple Inc.), 0x911c, 0xfd510000 / 5
+USB Device: Keyboard Hub, 0x05ac  (Apple Inc.), 0x1006, 0xfd513000 / 8
+USB Device: CTH-661, 0x056a  (WACOM Co., Ltd.), 0x00d3, 0xfd513100 / 13
+USB Device: Apple Keyboard, 0x05ac  (Apple Inc.), 0x0221, 0xfd513200 / 12
+USB Device: Hub, 0x2001  (D-Link Corporation), 0xf103, 0xfd511000 / 7
+USB Device: iPhone, 0x05ac  (Apple Inc.), 0x1297, 0xfd511300 / 14
+USB Device: USB Storage, 0x05e3  (Genesys Logic, Inc.), 0x070e, 0xfd511200 / 11
+USB Device: Free-1 USB Phone, 0x1778, 0x0403, 0xfd511600 / 10
+USB Device: Alienware TactX Mouse, 0x187c, 0x0515, 0xfd511400 / 9
+USB Device: Apple Cinema HD Display, 0x05ac  (Apple Inc.), 0x921c, 0xfd512000 / 6
+USB Device: Hub, 0x05ac  (Apple Inc.), 0x1008, 0xfd300000 / 2
+USB Device: Smart-UPS 2200 FW:COM 02.1 / UPS.05.I, 0x051d  (American Power Conversion), 0x0003, 0xfd310000 / 4
+USB Device: Apple USB Modem, 0x05ac  (Apple Inc.), 0x1401, 0x3d200000 / 2
+USB Device: Bluetooth USB Host Controller, 0x05ac  (Apple Inc.), 0x8206, 0x5d200000 / 2
+FireWire Device: built-in_hub, Up to 800 Mb/sec
+FireWire Device: unknown_device, Unknown
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005707.html">[X2Go-Dev] X2Go Debian Package Archive: provisioning of jessie	packages
+</A></li>
+	<LI>Next message: <A HREF="005723.html">[X2Go-Dev] Bug#209: Bug#209: X2GO mac client 4.0.1.0 crash on start
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5719">[ date ]</a>
+              <a href="thread.html#5719">[ thread ]</a>
+              <a href="subject.html#5719">[ subject ]</a>
+              <a href="author.html#5719">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

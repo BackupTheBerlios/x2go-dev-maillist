@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Patch needed for rpm building (unless someone proves me wrong)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Patch%20needed%20for%20rpm%20building%20%28unless%20someone%20proves%0A%20me%20wrong%29&In-Reply-To=%3CCAJ0cceZ7Yc7iOcfg7D2X325ioic-zs%3DA%2ByfMY83dY9K5ux-T2Q%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003365.html">
+   <LINK REL="Next"  HREF="003382.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Patch needed for rpm building (unless someone proves me wrong)</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Patch%20needed%20for%20rpm%20building%20%28unless%20someone%20proves%0A%20me%20wrong%29&In-Reply-To=%3CCAJ0cceZ7Yc7iOcfg7D2X325ioic-zs%3DA%2ByfMY83dY9K5ux-T2Q%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Patch needed for rpm building (unless someone proves me wrong)">siretart at gmail.com
+       </A><BR>
+    <I>Sat Feb 11 09:03:34 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003365.html">[X2Go-Dev] Patch needed for rpm building (unless someone proves me wrong)
+</A></li>
+        <LI>Next message: <A HREF="003382.html">[X2Go-Dev] Patch needed for rpm building (unless someone proves me wrong)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3381">[ date ]</a>
+              <a href="thread.html#3381">[ thread ]</a>
+              <a href="subject.html#3381">[ subject ]</a>
+              <a href="author.html#3381">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, Feb 7, 2012 at 3:32 PM, Oliver Burger &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oliver.bgr at googlemail.com</A>&gt; wrote:
+&gt;<i> Am 07.02.2012 14:52, schrieb Reinhard Tartler:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Tue, Feb 7, 2012 at 2:09 PM, Oliver Burger&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">obgr_seneca at mageia.org</A>&gt;
+</I>&gt;&gt;<i> &#160;wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I wonder why do you require these changes? Don't you use something
+</I>&gt;&gt;<i> like fakeroot for package building? that should the INSTALL_OWNER
+</I>&gt;&gt;<i> changes unnecessary.
+</I>&gt;<i>
+</I>&gt;<i> Well, I know, that fakeroot is used in deb packaging but not in rpm
+</I>&gt;<i> packaging, and since you don't build as root, it's quite impossible to use
+</I>&gt;<i> those -g and -o options.
+</I>
+Just curious, is fakeroot not available *at all* on fedora/mageia systems.
+
+&gt;<i> In addition, they are not needed at all, the package building process does
+</I>&gt;<i> fix the permission of these files on its own, at least rpmbuild does.
+</I>
+That maybe right, but if we go this route, your patch is also
+unnecessary, because you can also easily directly override the
+INSTALL_DIR and INSTALL_FILE macros during the makefile invocation/
+
+&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The SYSCONFDIR/ETCDIR might make sense if you want to install
+</I>&gt;&gt;<i> somewhere else than '$(DESTDIR)/etc/x2go'. However, I'm pretty sure
+</I>&gt;&gt;<i> that installing those files somewhere else will break x2go in more or
+</I>&gt;&gt;<i> less subtle ways as I think those paths are hardcoded at more other
+</I>&gt;&gt;<i> places. Therefore, I wonder again what this patch fixes for you.
+</I>&gt;<i>
+</I>&gt;<i> You are partly right there.
+</I>&gt;<i> While rediffing the patch from 3.0.99.9 I did overlook, the $(DESTDIR) was
+</I>&gt;<i> already added.
+</I>&gt;<i> The patch read
+</I>&gt;<i> - &#160; &#160; &#160; mkdir -p /etc/X11/Xresources
+</I>&gt;<i> - &#160; &#160; &#160; mkdir -p /etc/X11/Xsession.d
+</I>&gt;<i> - &#160; &#160; &#160; touch /etc/X11/Xsession.options
+</I>&gt;<i> + &#160; &#160; &#160; mkdir -p $(DESTDIR)$(SYSCONFDIR)/X11/Xresources
+</I>&gt;<i> + &#160; &#160; &#160; mkdir -p $(DESTDIR)$(SYSCONFDIR)/X11/Xsession.d
+</I>&gt;<i> in the previous version.
+</I>&gt;<i> So you are right, this one isn't really needed anymore.
+</I>&gt;<i> But I have to wonder, why a variable $(ETCDIR) is defined instead of
+</I>&gt;<i> hardcoding it, when it will break x2goserver, if the user should define it
+</I>&gt;<i> during build?
+</I>&gt;<i> Your argument there seems to fire backwards.
+</I>
+I never claimed the Makefile to be perfect.
+
+If we wanted the to make the location /etc/x2go/... really
+configurable (which I think would be great) then this is mechanism is
+a great start. Nevertheless, a lot of additional places needs to be
+fixed, and I see a lot of other way more important things that need
+fixing first. Therefore, I'd personally recommend to focus on things
+that really need fixing first.
+
+Your proposed patches in this thread seem rather cosmetic to me,
+because the functionality that you require can be achieved without any
+patching as well. I'm not saying they are bad or wrong, I'd rather
+prefer the makefile to be fixed properly instead of making it more
+complicated.
+
+-- 
+regards,
+&#160; &#160; Reinhard
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003365.html">[X2Go-Dev] Patch needed for rpm building (unless someone proves me wrong)
+</A></li>
+	<LI>Next message: <A HREF="003382.html">[X2Go-Dev] Patch needed for rpm building (unless someone proves me wrong)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3381">[ date ]</a>
+              <a href="thread.html#3381">[ thread ]</a>
+              <a href="subject.html#3381">[ subject ]</a>
+              <a href="author.html#3381">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

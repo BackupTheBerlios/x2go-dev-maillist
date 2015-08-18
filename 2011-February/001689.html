@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] wayland remote desktop comment by
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20wayland%20remote%20desktop%20comment%20by&In-Reply-To=%3C4D4ADED2.8060709%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001688.html">
+   <LINK REL="Next"  HREF="001687.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] wayland remote desktop comment by</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20wayland%20remote%20desktop%20comment%20by&In-Reply-To=%3C4D4ADED2.8060709%40verizon.net%3E"
+       TITLE="[X2go-dev] wayland remote desktop comment by">greno at verizon.net
+       </A><BR>
+    <I>Thu Feb  3 17:58:58 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001688.html">[X2go-dev] wayland remote desktop comment by
+</A></li>
+        <LI>Next message: <A HREF="001687.html">[X2go-dev] VcXsrv
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1689">[ date ]</a>
+              <a href="thread.html#1689">[ thread ]</a>
+              <a href="subject.html#1689">[ subject ]</a>
+              <a href="author.html#1689">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 02/03/2011 11:40 AM, John A. Sullivan III wrote:
+&gt;<i> On Thu, 2011-02-03 at 10:54 -0500, Gerry Reno wrote:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> On 02/03/2011 09:35 AM, John A. Sullivan III wrote:
+</I>&gt;&gt;<i>     
+</I>&gt;&gt;&gt;<i> On Thu, 2011-02-03 at 09:19 -0500, brian mullan wrote:
+</I>&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;&gt;&gt;<i> Per Wayland FAQ: Is Wayland network transparent / does it support
+</I>&gt;&gt;&gt;&gt;<i> remote rendering?
+</I>&gt;&gt;&gt;&gt;<i> No, that is outside the scope of Wayland. &lt;snip&gt;
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> It is also possible to put a remoting protocol into a wayland
+</I>&gt;&gt;&gt;&gt;<i> compositor, either a standalone remoting compositor or as a part of a
+</I>&gt;&gt;&gt;&gt;<i> full desktop compositor. This will let us forward native Wayland
+</I>&gt;&gt;&gt;&gt;<i> applications. The standalone compositor could let you log into a
+</I>&gt;&gt;&gt;&gt;<i> server and run an application back on your desktop. Building the
+</I>&gt;&gt;&gt;&gt;<i> fowarding into the desktop compositor, could let you export or share a
+</I>&gt;&gt;&gt;&gt;<i> window on the fly with a remote wayland compositor, for example a
+</I>&gt;&gt;&gt;&gt;<i> friends desktop.
+</I>&gt;&gt;&gt;&gt;<i>     
+</I>&gt;&gt;&gt;&gt;<i>         
+</I>&gt;&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;&gt;<i> I am WAY out of my depth here but that last paragraph is really
+</I>&gt;&gt;&gt;<i> interesting and I wonder if it provides an opportunity for X2Go to think
+</I>&gt;&gt;&gt;<i> outside the box.  Why do we need NX? To forward X traffic in a WAN
+</I>&gt;&gt;&gt;<i> friendly way to the remote X Server.  So, what if we bypass it
+</I>&gt;&gt;&gt;<i> completely - completely eliminate the need to transmit, cache, compress,
+</I>&gt;&gt;&gt;<i> optimize X traffic.  Does the above mean we can just us our SSH
+</I>&gt;&gt;&gt;<i> forwarding to send the Wayland traffic to a compositor on the remote
+</I>&gt;&gt;&gt;<i> side and not worry about X over a network? - John
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> Nope.  Wayland is not network transparent.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> For network transparency you would still have to layer X on top of Wayland.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> That part I get but what do they mean with they speak of communicating
+</I>&gt;<i> with a remote compositor and thus being able to forward native Wayland
+</I>&gt;<i> applications? - John
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+I saw that in Wayland discussions but I have yet to see any type of
+full-fledged demo.
+
+Many of these discussions are pie-in-the-sky type wishful thinking by
+Wayland proponents.
+
+And I think they will find this is somewhat more difficult than they
+have envisioned.  It's one thing to implement the Wayland concept on the
+local machine and quite another to run it remotely.
+
+Both the local and remote ends have to have the same idea of what is the
+display.  Does that mean they both need the same GPU?  Don't know.
+
+We'll need to wait until someone has a true network-transparent demo of
+these new concepts before we can get excited about them.  And since
+Wayland keeps stating to the &quot;network-transparency&quot; inquirers that it is
+not part of their requirement I don't think we'll see anything anytime soon.
+
+
+Regards,
+Gerry
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001688.html">[X2go-dev] wayland remote desktop comment by
+</A></li>
+	<LI>Next message: <A HREF="001687.html">[X2go-dev] VcXsrv
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1689">[ date ]</a>
+              <a href="thread.html#1689">[ thread ]</a>
+              <a href="subject.html#1689">[ subject ]</a>
+              <a href="author.html#1689">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

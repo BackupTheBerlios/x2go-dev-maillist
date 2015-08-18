@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] python-x2go questions when working on Ubuntu Sofware Center
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20python-x2go%20questions%20when%20working%20on%20Ubuntu%20Sofware%0A%20Center&In-Reply-To=%3C20110528130301.27023ezcfkdjbeqt%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002262.html">
+   <LINK REL="Next"  HREF="002264.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] python-x2go questions when working on Ubuntu Sofware Center</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20python-x2go%20questions%20when%20working%20on%20Ubuntu%20Sofware%0A%20Center&In-Reply-To=%3C20110528130301.27023ezcfkdjbeqt%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] python-x2go questions when working on Ubuntu Sofware Center">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat May 28 13:03:01 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002262.html">[X2go-dev] python-x2go questions when working on Ubuntu Sofware	Center
+</A></li>
+        <LI>Next message: <A HREF="002264.html">[X2go-dev] python-x2go questions when working on Ubuntu Sofware Center
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2263">[ date ]</a>
+              <a href="thread.html#2263">[ thread ]</a>
+              <a href="subject.html#2263">[ subject ]</a>
+              <a href="author.html#2263">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi devs,
+
+as you might have observed, Stephane and I are currently trying to get  
+xkbmap settings through to the server-side x2goagent (Python X2go on  
+the client-side).
+
+The work is partially python-x2go specific, but also worth a change of  
+concept, as many X2go users have problems with keyboard settings.
+
+Today I have set up a system with a patched x2gostartagent script. The  
+script abuses the not-used option $X2GO_KB_LAYOUT. If its value is set  
+to defkeymap. The x2goagent options file gets changed in this way  
+(patch for x2gostartagent at the end of this mail):
+
+   o keyboard=defkeymap is added as option
+   o kbtype=pc105/defkeymap is used
+   o a keyboard file is placed into ~/.x2go/C-&lt;session_id&gt; on the X2go server
+
+On Sa 28 Mai 2011 01:25:59 CEST Mike Gabriel wrote:
+
+&gt;&gt;<i> And I have a &quot;keyboard&quot; file in the NX session directory on the server
+</I>&gt;&gt;<i> containing:
+</I>&gt;&gt;<i> rules=evdev
+</I>&gt;&gt;<i> model=pc105
+</I>&gt;&gt;<i> layout=us
+</I>&gt;&gt;<i> variant=altgr-intl
+</I>&gt;&gt;<i> options=lv3:ralt_switch,grp:alts_toggle
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Which is identical to my laptop's settings at the time I started qtnx.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I tried with the Swiss French keyboard and got the following &quot;keyboard&quot;
+</I>&gt;&gt;<i> file:
+</I>&gt;&gt;<i> rules=evdev
+</I>&gt;&gt;<i> model=pc105
+</I>&gt;&gt;<i> layout=ch
+</I>&gt;&gt;<i> variant=fr
+</I>&gt;&gt;<i> options=lv3:ralt_switch,grp:alts_toggle
+</I>&gt;&gt;<i>
+</I>
+@Stephane: last night my x2goagent options line was still buggy, I  
+have fixed this now, but no success so far:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at x2goserver</A>:~/.x2go/C-mike-117-1306579861_stDGNOME_dp24$ cat keyboard
+rules=evdev
+model=pc105
+layout=de
+variant=nodeadkeys
+options=
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at x2goserver</A>:~/.x2go/C-mike-117-1306579861_stDGNOME_dp24$ cat options
+nx/nx,link=adsl,pack=16m-jpeg-9,limit=0,root=/home/mike/.x2go/C-mike-117-1306579861_stDGNOME_dp24,cache=8M,images=32M,type=unix-kde-depth_24,id=mike-117-1306579861_stDGNOME_dp24,cookie=17bdec4e439b3ba0bd8fd0b7cca3659c,errors=/home/mike/.x2go/C-mike-117-1306579861_stDGNOME_dp24/session.log,geometry=1024x768,resize=0,fullscreen=0,accept=localhost,listen=30202,client=linux,menu=0,keyboard=defkeymap,kbtype=pc105/defkeymap:117
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at x2goserver</A>:~/.x2go/C-mike-117-1306579861_stDGNOME_dp24$ xprop  
+-root _XKB_RULES_NAMES
+_XKB_RULES_NAMES(STRING) = &quot;xfree86&quot;, &quot;pc105&quot;, &quot;defkeymap&quot;, &quot;&quot;, &quot;&quot;
+
+Do you have a clue with which nxagent version the ,,keyboard'' file  
+has been introduced into NX?
+
+Best,
+Mike
+
+
+&lt;quote cmd=&quot;diff -u x2gostartagent.bak x2gostartagent&quot;&gt;
+--- x2gostartagent.bak  2011-05-28 12:18:13.000000000 +0200
++++ x2gostartagent      2011-05-28 12:57:32.000000000 +0200
+@@ -210,22 +210,21 @@
+  xauth add ${HOSTNAME}:${X2GO_PORT} MIT-MAGIC-COOKIE-1 ${X2GO_COOKIE}
+
+
+-
+-if [ &quot;$X2GO_SET_KBD&quot; == &quot;0&quot; ]
+-then
+   
+X2GO_HOST=nx/nx,link=${X2GO_LINK},pack=${X2GO_PACK},limit=0,root=${SESSION_DIR},cache=8M,images=32M,type=${X2GO_TYPE},\
+  id=${SESSION_NAME},\
+-cookie=$X2GO_COOKIE,errors=${SESSION_DIR}/session.log,kbtype=null/null,\
++cookie=$X2GO_COOKIE,errors=${SESSION_DIR}/session.log,\
+   
+geometry=${X2GO_GEOMETRY},resize=${X2GO_RESIZE},fullscreen=${X2GO_FULLSCREEN},accept=${REMOTE},listen=${GR_PORT},client=linux,menu=0
++
++if [ &quot;$X2GO_SET_KBD&quot; == &quot;0&quot; ]; then
++       X2GO_HOST=${X2GO_HOST},kbtype=null/null
+  else
+-X2GO_HOST=nx/nx,link=${X2GO_LINK},pack=${X2GO_PACK},limit=0,root=${SESSION_DIR},cache=8M,images=32M,type=${X2GO_TYPE},\
+-id=${SESSION_NAME},\
+-cookie=$X2GO_COOKIE,errors=${SESSION_DIR}/session.log,kbtype=${X2GO_KBD_TYPE},\
+-geometry=${X2GO_GEOMETRY},resize=${X2GO_RESIZE},fullscreen=${X2GO_FULLSCREEN},accept=${REMOTE},listen=${GR_PORT},client=linux,menu=0
++       if [ &quot;$X2GO_KBD_LAYOUT&quot; != &quot;defkeymap&quot; ]; then
++               X2GO_HOST=${X2GO_HOST},kbtype=${X2GO_KBD_TYPE}
++       else
++                
+X2GO_HOST=${X2GO_HOST},keyboard=defkeymap,kbtype=${X2GO_KBD_TYPE}
++       fi
+  fi
+
+-
+-
+  echo &quot;${X2GO_HOST}:${X2GO_PORT}&quot; &gt;${SESSION_DIR}/options
+
+  NX_AGENT=:${X2GO_PORT}
+&lt;/quote&gt;
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110528/aceff3bc/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110528/aceff3bc/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002262.html">[X2go-dev] python-x2go questions when working on Ubuntu Sofware	Center
+</A></li>
+	<LI>Next message: <A HREF="002264.html">[X2go-dev] python-x2go questions when working on Ubuntu Sofware Center
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2263">[ date ]</a>
+              <a href="thread.html#2263">[ thread ]</a>
+              <a href="subject.html#2263">[ subject ]</a>
+              <a href="author.html#2263">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

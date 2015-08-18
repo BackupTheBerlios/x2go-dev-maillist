@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] signtarballs: do sign .tar.xz archives
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20signtarballs%3A%20do%20sign%20.tar.xz%20archives&In-Reply-To=%3C1364507204-23344-2-git-send-email-jengelh%40inai.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005368.html">
+   <LINK REL="Next"  HREF="005349.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] signtarballs: do sign .tar.xz archives</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20signtarballs%3A%20do%20sign%20.tar.xz%20archives&In-Reply-To=%3C1364507204-23344-2-git-send-email-jengelh%40inai.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] signtarballs: do sign .tar.xz archives">jengelh at inai.de
+       </A><BR>
+    <I>Thu Mar 28 22:46:44 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005368.html">[X2Go-Dev] signing tarballs (was: Re: nx-libs 3.5.0.18 failing	to build in launchpad PPA)
+</A></li>
+        <LI>Next message: <A HREF="005349.html">[X2Go-Dev] very last call for feedback: GSOC2013 application form
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5369">[ date ]</a>
+              <a href="thread.html#5369">[ thread ]</a>
+              <a href="subject.html#5369">[ subject ]</a>
+              <a href="author.html#5369">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>...and properly quote variables.
+---
+ bin/signtarballs | 10 ++++++----
+ 1 file changed, 6 insertions(+), 4 deletions(-)
+
+diff --git a/bin/signtarballs b/bin/signtarballs
+index 5dc236f..ae6ae80 100755
+--- a/bin/signtarballs
++++ b/bin/signtarballs
+@@ -2,10 +2,12 @@
+ 
+ test -d _releases_  &amp;&amp; cd _releases_ || test -d ../_releases_ &amp;&amp; cd ../_releases_ || exit -1
+ 
+-find * -type f | egrep &quot;.*(\.tar\.gz|\.exe|\.dmg)$&quot; | while read tarball; do
+-	test -f $tarball.md5 || md5sum $tarball &gt; $tarball.md5
+-	test -f $tarball.sha1 || sha1sum $tarball &gt; $tarball.sha1
+-	test -f $tarball.asc || gpg -a -b --sign $tarball
++find * -type f &quot;(&quot; -name &quot;*.tar.gz&quot; -o -name &quot;*.tar.xz&quot; -o \
++  -name &quot;*.exe&quot; -o -name &quot;*.dmg&quot; &quot;)&quot; | \
++  while read tarball; do
++	test -f &quot;$tarball.md5&quot; || md5sum &quot;$tarball&quot; &gt;&quot;$tarball.md5&quot;
++	test -f &quot;$tarball.sha1&quot; || sha1sum &quot;$tarball&quot; &gt;&quot;$tarball.sha1&quot;
++	test -f &quot;$tarball.asc&quot; || gpg -a -b --sign &quot;$tarball&quot;
+ done
+ 
+ 
+-- 
+1.8.2
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005368.html">[X2Go-Dev] signing tarballs (was: Re: nx-libs 3.5.0.18 failing	to build in launchpad PPA)
+</A></li>
+	<LI>Next message: <A HREF="005349.html">[X2Go-Dev] very last call for feedback: GSOC2013 application form
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5369">[ date ]</a>
+              <a href="thread.html#5369">[ thread ]</a>
+              <a href="subject.html#5369">[ subject ]</a>
+              <a href="author.html#5369">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

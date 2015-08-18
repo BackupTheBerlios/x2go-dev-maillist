@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] The vanishing mouse - xming source code
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20The%20vanishing%20mouse%20-%20xming%20source%20code&In-Reply-To=%3CAANLkTikaN68sCwAbtEOtmzRnPzZtTJR%3D18%3DE%3DYBWv4Qj%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001152.html">
+   <LINK REL="Next"  HREF="001155.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] The vanishing mouse - xming source code</H1>
+    <B>brian mullan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20The%20vanishing%20mouse%20-%20xming%20source%20code&In-Reply-To=%3CAANLkTikaN68sCwAbtEOtmzRnPzZtTJR%3D18%3DE%3DYBWv4Qj%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] The vanishing mouse - xming source code">bmullan.mail at gmail.com
+       </A><BR>
+    <I>Fri Oct  8 18:20:58 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001152.html">[X2go-dev] Python X2go builds for Debian
+</A></li>
+        <LI>Next message: <A HREF="001155.html">[X2go-dev] The vanishing mouse - xming source code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1154">[ date ]</a>
+              <a href="thread.html#1154">[ thread ]</a>
+              <a href="subject.html#1154">[ subject ]</a>
+              <a href="author.html#1154">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>xming v 6.9 source is on SourceForge
+here&lt;<A HREF="http://sourceforge.net/projects/xming/files/Xming-source/6.9.0.31/Xming_69031_source.tar.bz2/download">http://sourceforge.net/projects/xming/files/Xming-source/6.9.0.31/Xming_69031_source.tar.bz2/download</A>&gt;
+
+ ------------------------------
+&gt;<i>
+</I>&gt;<i> Message: 3
+</I>&gt;<i> Date: Thu, 07 Oct 2010 09:37:10 -0400
+</I>&gt;<i> From: Gerry Reno &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">greno at verizon.net</A>&gt;
+</I>&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i> Subject: Re: [X2go-dev] The Vanishing Mouse
+</I>&gt;<i> Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">4CADCD06.8040206 at verizon.net</A>&gt;
+</I>&gt;<i> Content-Type: text/plain; charset=ISO-8859-1; format=flowed
+</I>&gt;<i>
+</I>&gt;<i> On 10/07/2010 07:25 AM, --[ UxBoD ]-- wrote:
+</I>&gt;<i> &gt; Hello all,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; it was reported on the list a while ago that somebody was having an issue
+</I>&gt;<i> where the mouse pointer within the X2GO session would disappear.  Well, I
+</I>&gt;<i> finally managed to get the same thing to happen to me this morning while
+</I>&gt;<i> running X2GO under Windows XP Pro.  Even suspending the session and
+</I>&gt;<i> re-connecting does not resolve the problem.  The issue appears to be the
+</I>&gt;<i> version of Xming that is being distributed with X2GO.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Why do I think this ? I suspended my session again and then killed of
+</I>&gt;<i> Xming via task manager.  This caused the X2GO plugin to fail for which I
+</I>&gt;<i> created a new FF tab and reconnected. I connected straight back to the same
+</I>&gt;<i> session and X instance as before and my mouse pointer was back in the land
+</I>&gt;<i> of the living.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; The question is though how can we resolve this problem ? The 6.9 version
+</I>&gt;<i> of Xming that is shipped with X2GO is ~3 years out of date now, and to get
+</I>&gt;<i> the new 7.5 branch one has to subscribe.  Hmmm, this would be fine for a
+</I>&gt;<i> couple of users but when we may be handling 100,000 of them it would get a
+</I>&gt;<i> bit pricey :(
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Any thoughts on what can be done ?
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> Xming has a site license for v7.5 available for ? 250 (125 academic).
+</I>&gt;<i> Unlimited users.  So that would not be all that expensive.  The other
+</I>&gt;<i> option is to find the source code for v6.9 and then we debug the
+</I>&gt;<i> vanishing mouse problem and create a patch.
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Gerry
+</I>&gt;<i>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101008/5bee336b/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101008/5bee336b/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001152.html">[X2go-dev] Python X2go builds for Debian
+</A></li>
+	<LI>Next message: <A HREF="001155.html">[X2go-dev] The vanishing mouse - xming source code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1154">[ date ]</a>
+              <a href="thread.html#1154">[ thread ]</a>
+              <a href="subject.html#1154">[ subject ]</a>
+              <a href="author.html#1154">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

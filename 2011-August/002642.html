@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] rename of x2godesktopsharing group
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20rename%20of%20x2godesktopsharing%20group&In-Reply-To=%3C4E37FB99.5050008%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002641.html">
+   <LINK REL="Next"  HREF="002643.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] rename of x2godesktopsharing group</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20rename%20of%20x2godesktopsharing%20group&In-Reply-To=%3C4E37FB99.5050008%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-Dev] rename of x2godesktopsharing group">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Tue Aug  2 15:28:57 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002641.html">[X2go-Dev] rename of x2godesktopsharing group
+</A></li>
+        <LI>Next message: <A HREF="002643.html">[X2go-Dev] rename of x2godesktopsharing group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2642">[ date ]</a>
+              <a href="thread.html#2642">[ thread ]</a>
+              <a href="subject.html#2642">[ subject ]</a>
+              <a href="author.html#2642">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>What is the rationale for the extra group? Is there a good reason for
+disallowing someone to share his/her desktop?
+
+Cheers
+Morty
+
+
+On 2011-08-02 15:24, Mike Gabriel wrote:
+&gt;<i> Hi all,
+</I>&gt;<i>
+</I>&gt;<i> I have had another look at x2godesktopsharing and I would propose a
+</I>&gt;<i> change of group membership for users who are allowed to use
+</I>&gt;<i> x2godesktopsharing. Formerly, this was group ,,x2gousers''. I would
+</I>&gt;<i> like to propose a rename to ,,x2godesktopsharing''.
+</I>&gt;<i>
+</I>&gt;<i> A patch for this is attached below.
+</I>&gt;<i>
+</I>&gt;<i> A possible question is if we want to migrate users in group x2gousers
+</I>&gt;<i> to this group during package upgrade.
+</I>&gt;<i>
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i> -------------------------
+</I>&gt;<i>
+</I>&gt;<i> commit 4cf4a0b2dad35e92ddaac712c9d2b6f513cd4a46
+</I>&gt;<i> Author: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i> Date:   Tue Aug 2 15:18:54 2011 +0200
+</I>&gt;<i>
+</I>&gt;<i>     System group for x2godesktopsharing change from x2gousers -&gt; 
+</I>&gt;<i> x2godesktopsharing.
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/debian/changelog b/debian/changelog
+</I>&gt;<i> index b8c5bf1..7d7a7eb 100644
+</I>&gt;<i> --- a/debian/changelog
+</I>&gt;<i> +++ b/debian/changelog
+</I>&gt;<i> @@ -1,6 +1,8 @@
+</I>&gt;<i>  x2godesktopsharing (3.0.1.3-0~x2go1) UNRELEASED; urgency=low
+</I>&gt;<i>
+</I>&gt;<i>    * Fix incomplete DENY statement in main.cpp.
+</I>&gt;<i> +  * System group for x2godesktopsharing change from x2gousers -&gt;
+</I>&gt;<i> +    x2godesktopsharing.
+</I>&gt;<i>
+</I>&gt;<i>   -- Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;  Mon, 13 Jun 2011
+</I>&gt;<i> 20:39:33 +0200
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/debian/x2godesktopsharing.postinst
+</I>&gt;<i> b/debian/x2godesktopsharing.postinst
+</I>&gt;<i> index 2f7b721..1d55fba 100755
+</I>&gt;<i> --- a/debian/x2godesktopsharing.postinst
+</I>&gt;<i> +++ b/debian/x2godesktopsharing.postinst
+</I>&gt;<i> @@ -22,10 +22,10 @@ set -e
+</I>&gt;<i>
+</I>&gt;<i>  case &quot;$1&quot; in
+</I>&gt;<i>      configure)
+</I>&gt;<i> -    X2GOGRP=`getent group | grep x2gousers`
+</I>&gt;<i> +    X2GOGRP=`getent group | grep x2godesktopsharing`
+</I>&gt;<i>      if [ &quot;x$X2GOGRP&quot;=&quot;x&quot; ]
+</I>&gt;<i>      then
+</I>&gt;<i> -         addgroup --system x2gousers
+</I>&gt;<i> +         addgroup --system x2godesktopsharing
+</I>&gt;<i>      fi
+</I>&gt;<i>      ;;
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/sharetray.cpp b/sharetray.cpp
+</I>&gt;<i> index 7fe23f0..9f42997 100644
+</I>&gt;<i> --- a/sharetray.cpp
+</I>&gt;<i> +++ b/sharetray.cpp
+</I>&gt;<i> @@ -215,7 +215,7 @@ void ShareTray::slotStartSharing()
+</I>&gt;<i>      if ( serverSocket-&gt;listen ( socketFname ) )
+</I>&gt;<i>      {
+</I>&gt;<i>
+</I>&gt;<i> -        chown ( socketFname.toAscii(),getuid(),getgrnam ( &quot;x2gousers&quot;
+</I>&gt;<i> )-&gt;gr_gid );
+</I>&gt;<i> +        chown ( socketFname.toAscii(),getuid(),getgrnam (
+</I>&gt;<i> &quot;x2godesktopsharing&quot; )-&gt;gr_gid );
+</I>&gt;<i>          QFile::setPermissions ( socketFname,
+</I>&gt;<i>                                 
+</I>&gt;<i> QFile::ReadOwner|QFile::WriteOwner|QFile::ReadGroup|QFile::WriteGroup );
+</I>&gt;<i>          connect ( serverSocket,SIGNAL ( newConnection() ),
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110802/3fdae686/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110802/3fdae686/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4482 bytes
+Desc: S/MIME Kryptografische Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110802/3fdae686/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110802/3fdae686/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002641.html">[X2go-Dev] rename of x2godesktopsharing group
+</A></li>
+	<LI>Next message: <A HREF="002643.html">[X2go-Dev] rename of x2godesktopsharing group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2642">[ date ]</a>
+              <a href="thread.html#2642">[ thread ]</a>
+              <a href="subject.html#2642">[ subject ]</a>
+              <a href="author.html#2642">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

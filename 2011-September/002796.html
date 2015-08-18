@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] libssh, nagle, and performance issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20libssh%2C%20nagle%2C%20and%20performance%20issues&In-Reply-To=%3C4E76F474.4050500%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002795.html">
+   <LINK REL="Next"  HREF="002798.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] libssh, nagle, and performance issues</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20libssh%2C%20nagle%2C%20and%20performance%20issues&In-Reply-To=%3C4E76F474.4050500%40obviously-nice.de%3E"
+       TITLE="[X2go-Dev] libssh, nagle, and performance issues">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Mon Sep 19 09:51:16 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002795.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+        <LI>Next message: <A HREF="002798.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2796">[ date ]</a>
+              <a href="thread.html#2796">[ thread ]</a>
+              <a href="subject.html#2796">[ subject ]</a>
+              <a href="author.html#2796">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 17.09.2011 03:39, schrieb John A. Sullivan III:
+&gt;<i> On Fri, 2011-09-16 at 23:17 +0200, Mike Gabriel wrote:
+</I>&gt;&gt;<i> Hi John, hi Alex,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Fr 16 Sep 2011 21:56:38 CEST &quot;John A. Sullivan III&quot; wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hello, all.  Since moving to the newer clients using libssh, I've
+</I>&gt;&gt;&gt;<i> noticed what appears to be a performance degradation.  It smells like
+</I>&gt;&gt;&gt;<i> Nagle coalescing packets, e.g., most of the screen will paint, then it
+</I>&gt;&gt;&gt;<i> will pause a moment, and then the rest will paint.  Is there any chance
+</I>&gt;&gt;&gt;<i> we have neglected to disable Nagle when invoking libssh?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> This appears to have affected the SNMP over SSH project:
+</I>&gt;&gt;&gt;<i> <A HREF="http://books.google.com/books?id=S62is2vVoVgC&amp;pg=PA29&amp;lpg=PA29&amp;dq=libssh">http://books.google.com/books?id=S62is2vVoVgC&amp;pg=PA29&amp;lpg=PA29&amp;dq=libssh</A>
+</I>&gt;&gt;&gt;<i> +nagle&amp;source=bl&amp;ots=F8Iw-pvQxd&amp;sig=f5dfy0K0ewzSZOhqzTJRSKsDKZ8&amp;hl=en&amp;ei=KppzTrCZD4LJgQeMxLzzDA&amp;sa=X&amp;oi=book_result&amp;ct=result&amp;resnum=1&amp;sqi=2&amp;ved=0CBwQ6AEwAA#v=onepage&amp;q=libssh%20nagle&amp;f=false
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> This is in section 4.1. The difference was a latency of over 800ms to
+</I>&gt;&gt;&gt;<i> one of under 60ms.  That seems to be about what I am seeing. There is a
+</I>&gt;&gt;&gt;<i> delay of roughly a second and then the rest of the screen comes through.
+</I>&gt;&gt;&gt;<i> Thanks - John
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Indeed the TCP_NODELAY (which means: turn Nagle off) is not set for  
+</I>&gt;&gt;<i> the ssh tunnel in X2goClient. It probably is for the SSH connection  
+</I>&gt;&gt;<i> itself, as the SNMP patch has been reported to libssh upstream and  
+</I>&gt;&gt;<i> their patch suggestion has been sensible. However, for the SSH tunnels  
+</I>&gt;&gt;<i> built up for X2go this TCP_NODELAY option does perhaps not get set.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> @Alex: would this patch fix that in x2goclient???
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> diff --git a/sshprocess.cpp b/sshprocess.cpp
+</I>&gt;&gt;<i> index 9e72e8f..03ee9b6 100644
+</I>&gt;&gt;<i> --- a/sshprocess.cpp
+</I>&gt;&gt;<i> +++ b/sshprocess.cpp
+</I>&gt;&gt;<i> @@ -88,6 +88,7 @@ void SshProcess::tunnelLoop()
+</I>&gt;&gt;<i>       const char y=1;
+</I>&gt;&gt;<i>   #endif
+</I>&gt;&gt;<i>       setsockopt(serverSocket, SOL_SOCKET, SO_REUSEADDR,&amp;y, sizeof(int));
+</I>&gt;&gt;<i> +    setsockopt(serverSocket, IPPROTO_TCP, TCP_NODELAY,&amp;y, sizeof(int));
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>       address.sin_family=AF_INET;
+</I>&gt;&gt;<i>       address.sin_addr.s_addr=INADDR_ANY;
+</I>
+I don't think that that can be helpful. This part of code is only for
+reverse tunnel which is used for FS forwarding and Pulse Audio.
+
+&gt;&gt;<i>
+</I>&gt;&gt;<i> @John: could you get the latest sources of x2goclient from our Git:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> git clone <A HREF="git://code.x2go.org/x2goclient.git">git://code.x2go.org/x2goclient.git</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> and run debuild -uc -us (plus fullfill build-deps before) on a Debian  
+</I>&gt;&gt;<i> squeeze or above system and check if the patch fixes your delays???
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Best+Thanks,
+</I>&gt;&gt;<i> Mike
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> Hmm . . . I wonder if this explains why the Windows client performance
+</I>&gt;<i> is so much worse than Linux.  I assumed it was an X to GDI translation
+</I>&gt;<i> issue but the symptoms I described in scrolling through Evolution mail
+</I>&gt;<i> are press several keystrokes and one actions, then a long pause, then
+</I>&gt;<i> the rest of the keystrokes follow as if they've been buffered - John
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+I can imagine, that it can be problem in libssh on Windows. Can you try
+to build a new libssh.dll on your system? However, I still cannot
+reproduce your issue on my windows client :(
+
+regards,
+Alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110919/e77918ac/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110919/e77918ac/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002795.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+	<LI>Next message: <A HREF="002798.html">[X2go-Dev] libssh, nagle, and performance issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2796">[ date ]</a>
+              <a href="thread.html#2796">[ thread ]</a>
+              <a href="subject.html#2796">[ subject ]</a>
+              <a href="author.html#2796">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] can't start ssh tunnel / integration with existing	ldap
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20can%27t%20start%20ssh%20tunnel%20/%20integration%20with%20existing%0A%09ldap&In-Reply-To=%3C201101261241.26654.ms%40teamix.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001582.html">
+   <LINK REL="Next"  HREF="001592.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] can't start ssh tunnel / integration with existing	ldap</H1>
+    <B>Martin Steigerwald</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20can%27t%20start%20ssh%20tunnel%20/%20integration%20with%20existing%0A%09ldap&In-Reply-To=%3C201101261241.26654.ms%40teamix.de%3E"
+       TITLE="[X2go-dev] can't start ssh tunnel / integration with existing	ldap">ms at teamix.de
+       </A><BR>
+    <I>Wed Jan 26 12:41:15 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001582.html">[X2go-dev] can't start ssh tunnel / integration with existing ldap
+</A></li>
+        <LI>Next message: <A HREF="001592.html">[X2go-dev] re Project Management
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1584">[ date ]</a>
+              <a href="thread.html#1584">[ thread ]</a>
+              <a href="subject.html#1584">[ subject ]</a>
+              <a href="author.html#1584">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+
+Am Mittwoch, 26. Januar 2011 schrieb Mike Gabriel:
+&gt;<i> On Mi 26 Jan 2011 10:55:08 CET Martin Steigerwald wrote:
+</I>&gt;<i> &gt; I think it would make the issue go away, but we do not want to run
+</I>&gt;<i> &gt; (insecure) NFS without rootsquash. Then chmod 777 to ~/.x2go/ssh and
+</I>&gt;<i> &gt; probably (is it needed?) ~/.x2go as well IMHO is the less invasive
+</I>&gt;<i> &gt; approach.
+</I>&gt;<i> 
+</I>&gt;<i> You are talking about the x2goserver side, aren't you.
+</I>&gt;<i> 
+</I>&gt;<i> The x2goserver package is currently undergoing a complete rewrite due
+</I>&gt;<i> to some security breaches reported a few days ago on this list.
+</I>&gt;<i> 
+</I>&gt;<i> As far as I know, Alex managed to get rid of all sudo calls in the
+</I>&gt;<i> x2goserver package. (which is also a blessing for the auth.log which
+</I>&gt;<i> got spammed with plenty of sudo log entries before).
+</I>&gt;<i> 
+</I>&gt;<i> The rewrite might solve your issues and it will be out for testing in
+</I>&gt;<i> a couple of days (AFAIK).
+</I>&gt;<i> 
+</I>&gt;<i> However, on the todo list still (i.e. my personal todo list as
+</I>&gt;<i> contributor) is taking a look at x2goprint which also uses sudo calls.
+</I>&gt;<i> These do also fail on NFS volumes (esp. when mounted with one of
+</I>&gt;<i> Kerberos's krb5&lt;x&gt; security mechanisms).
+</I>
+Good to read. Then I will just be looking forward to that new version and 
+retest then. We do not need client side printing as we have a central CUPS 
+server and network printers.
+
+Thanks,
+-- 
+Martin Steigerwald - team(ix) GmbH - <A HREF="http://www.teamix.de">http://www.teamix.de</A>
+gpg: 19E3 8D42 896F D004 08AC A0CA 1E10 C593 0399 AE90
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110126/04828c0b/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110126/04828c0b/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001582.html">[X2go-dev] can't start ssh tunnel / integration with existing ldap
+</A></li>
+	<LI>Next message: <A HREF="001592.html">[X2go-dev] re Project Management
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1584">[ date ]</a>
+              <a href="thread.html#1584">[ thread ]</a>
+              <a href="subject.html#1584">[ subject ]</a>
+              <a href="author.html#1584">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

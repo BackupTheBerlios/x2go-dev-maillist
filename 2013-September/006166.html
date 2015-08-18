@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#300: Allow x2gothinclientcreate to run	non-interactive
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23300%3A%20Allow%20x2gothinclientcreate%20to%20run%0A%09non-interactive&In-Reply-To=%3C1378371018-27749-1-git-send-email-a.krille%40b-c-s.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006164.html">
+   <LINK REL="Next"  HREF="006165.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#300: Allow x2gothinclientcreate to run	non-interactive</H1>
+    <B>Arnold Krille</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23300%3A%20Allow%20x2gothinclientcreate%20to%20run%0A%09non-interactive&In-Reply-To=%3C1378371018-27749-1-git-send-email-a.krille%40b-c-s.de%3E"
+       TITLE="[X2Go-Dev] Bug#300: Allow x2gothinclientcreate to run	non-interactive">a.krille at b-c-s.de
+       </A><BR>
+    <I>Thu Sep  5 10:50:18 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006164.html">[X2Go-Dev] Bug#291: libcairo2-dev
+</A></li>
+        <LI>Next message: <A HREF="006165.html">[X2Go-Dev] Bug#301: Execute commands given as arguments
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6166">[ date ]</a>
+              <a href="thread.html#6166">[ thread ]</a>
+              <a href="subject.html#6166">[ subject ]</a>
+              <a href="author.html#6166">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2gothinclient
+
+When you want to set up your X2Go-TCE via a script (like chef or puppet), the
+installer shouldn't ask questions on the command-line. So deactivate waiting
+for confirmation and make apt-get use the defaults for configuring instead of
+asking.
+---
+ .../sbin/x2gothinclient_create                     |   24 +++++++++++++++-----
+ 1 file changed, 18 insertions(+), 6 deletions(-)
+
+diff --git a/x2gothinclientmanagement/sbin/x2gothinclient_create b/x2gothinclientmanagement/sbin/x2gothinclient_create
+index 0e6037c..aae0124 100755
+--- a/x2gothinclientmanagement/sbin/x2gothinclient_create
++++ b/x2gothinclientmanagement/sbin/x2gothinclient_create
+@@ -43,6 +43,8 @@ TC_DEBMIRROR_URL=&quot;${TC_DEBMIRROR_URL:-'<A HREF="http://ftp.debian.org/debian">http://ftp.debian.org/debian</A>'}&quot;
+ TC_X2GO_DEBURL=&quot;${TC_X2GO_DEBURL:-'deb <A HREF="http://packages.x2go.org">http://packages.x2go.org</A> $TC_DISTRO_CODENAME main'}&quot;
+ TC_MODULE_BLACKLIST=&quot;${TC_MODULE_BLACKLIST:-'pcspkr'}&quot;
+ 
++TC_NONINTERACTIVE=&quot;${TC_NONINTERACTIVE:-}&quot;
++
+ test -e &quot;$TC_CHROOT&quot; &amp;&amp; { 
+ 	echo &quot;ERROR: X2Go Thin Client chroot already exists at $TC_CHROOT.&quot;
+ 	echo &quot;Clear $TC_BASE/ and then run $(basename $0) again...&quot;
+@@ -54,11 +56,15 @@ test -e &quot;$TC_CHROOT&quot; &amp;&amp; {
+ 	exit -2
+ }
+ 
+-echo &quot;Hit &lt;RETURN&gt; to continue with X2Go TCE chroot creation using&quot;
+-echo &quot;the above TCE parameters...&quot;
+-echo
+-echo &quot;Alternatively, hit STRG-C to cancel the operation now!!!&quot;
+-read
++if [ &quot;x${TC_NONINTERACTIVE}&quot; = &quot;x&quot; ]; then
++    echo &quot;Hit &lt;RETURN&gt; to continue with X2Go TCE chroot creation using&quot;
++    echo &quot;the above TCE parameters...&quot;
++    echo
++    echo &quot;Alternatively, hit STRG-C to cancel the operation now!!!&quot;
++    read
++else
++    echo &quot;Non-interactive mode selected, will continue with the above settings&quot;
++fi
+ 
+ export LANG=C
+ 
+@@ -124,6 +130,10 @@ export http_proxy=$TC_HTTP_PROXY
+ export https_proxy=$TC_HTTPS_PROXY
+ export ftp_proxy=$TC_FTP_PROXY
+ 
++if [ &quot;x${TC_NONINTERACTIVE}&quot; != &quot;x&quot; ]; then
++    export DEBIAN_FRONTEND=noninteractive
++fi
++
+ mkdir -p /tmp/user/0
+ mkdir -p /var/lib/xkb
+ mkdir -p /var/lib/nfs
+@@ -156,7 +166,9 @@ export X2GO_HANDLE_DAEMONS=false
+ [ \$? -eq 0 ] &amp;&amp; apt-get update
+ [ \$? -eq 0 ] &amp;&amp; apt-get install $TC_SHELL -y
+ [ \$? -eq 0 ] &amp;&amp; apt-get install syslinux locales -y
+-[ \$? -eq 0 ] &amp;&amp; dpkg-reconfigure locales
++if [ \$? -eq 0 -a &quot;x${TC_NONINTERACTIVE}&quot; != &quot;x&quot; ]; then
++    dpkg-reconfigure locales
++fi
+ [ \$? -eq 0 ] &amp;&amp; apt-get install linux-image-486 -y
+ [ \$? -eq 0 ] &amp;&amp; test -h /vmlinuz &amp;&amp; mv /vmlinuz /vmlinuz.486.tmp || true
+ [ \$? -eq 0 ] &amp;&amp; LINK_TARGET=\$(readlink /vmlinuz.486.tmp | sed 's@/<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">boot at boot</A>@') &amp;&amp; ln -sf \$LINK_TARGET /vmlinuz.486 &amp;&amp; rm -f /vmlinuz.486.tmp
+-- 
+1.7.9.5
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006164.html">[X2Go-Dev] Bug#291: libcairo2-dev
+</A></li>
+	<LI>Next message: <A HREF="006165.html">[X2Go-Dev] Bug#301: Execute commands given as arguments
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6166">[ date ]</a>
+              <a href="thread.html#6166">[ thread ]</a>
+              <a href="subject.html#6166">[ subject ]</a>
+              <a href="author.html#6166">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

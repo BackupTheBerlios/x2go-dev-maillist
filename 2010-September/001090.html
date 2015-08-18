@@ -1,0 +1,442 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] BKO and USB over IP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BKO%20and%20USB%20over%20IP&In-Reply-To=%3CAANLkTinDjugBBrDu2FP_nuoy4YgSsiYmF_Tz4a5U_hJB%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001097.html">
+   <LINK REL="Next"  HREF="001109.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] BKO and USB over IP</H1>
+    <B>brian mullan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BKO%20and%20USB%20over%20IP&In-Reply-To=%3CAANLkTinDjugBBrDu2FP_nuoy4YgSsiYmF_Tz4a5U_hJB%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] BKO and USB over IP">bmullan.mail at gmail.com
+       </A><BR>
+    <I>Thu Sep 23 19:10:51 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001097.html">[X2go-dev] headless client with pyx2go
+</A></li>
+        <LI>Next message: <A HREF="001109.html">[X2go-dev] Git Repo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1090">[ date ]</a>
+              <a href="thread.html#1090">[ thread ]</a>
+              <a href="subject.html#1090">[ subject ]</a>
+              <a href="author.html#1090">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Speaking of Thin Clients...
+
+Although this is not directly related to the Thin Client thread it is
+something I was impressed with.
+
+Boot Kernel Organization (BKO) &lt;<A HREF="http://boot.kernel.org/">http://boot.kernel.org/</A>&gt;
+
+BKO is based on a REALLY SMALL linux ... about 1 Megabyte.   It can be
+installed onto just 1 small partition of a USB, CD (or floppy if you have
+one).
+
+Its sole purpose is to boot and provide you with a simple GUI menu system
+(see pictures  on the site) where you can select which OS you want to boot
+and then *BKO uses HTTPFS to download and boot that OS* for you.
+
+NOTE:  on their website their list of supported OS and OS version is very
+outdated.   When you actually do this you will
+            see Ubuntu 10.04 desktop and server, you will also see newer
+versions of fedora as well as other linux distributions.
+
+I've started using this with virtual machines.
+
+I download the CD ISO and then use that to create a KVM virtual machine
+instance using that .ISO file.
+
+Why?
+
+Well I use that 1 KVM VM instance to launch any new VM instance I might
+need.     Since it is only 1 Megabyte in size
+it boots nearly immediately.   I select which Linux distribution I want,
+what version and the BKO then downloads the selected OS and boots it.
+
+It has worked great so far.
+
+Off of the BKO FAQ you should note:
+
+BKO is based on HTTPFS and it uses only valid HTTP requests. It means, if
+you have HTTP access, you can boot with BKO.
+Only problem that may occur is if you are behind HTTP proxy. We plan to add
+support for HTTP proxy in near future. Stay tuned till then.
+
+It is expected that you can use *Public DNS* system as BKO is configured to
+use Public dns servers instead of the servers provided by user or DHCP. We
+will be soon fixing this problem. Till then, you are expected to have public
+DNS access.
+That 2nd paragraph *I think may be outdated* as I believe you can now
+install the BKO &quot;server&quot; locally instead of using the BKO.org servers to
+download from.
+
+If you install your own BKO server locally then you &quot;could&quot; install all of
+the OS's you work with on it.    Then you could use your own BKO to select *and
+more importantly boot a pre-configured OS* !!!      I haven't checked but I
+am wondering if a Windows OS could be booted using BKO as well?
+
+I'm thinking you could have something like a preconfigured Ubuntu (or fedora
+etc) desktop with x2go client configurations and applications already
+installed and then just use the BKO and their GPXE to boot the clients.
+
+I haven't gotten as far as looking into installing it locally so my current
+workaround is to use BKO to boot then I use the python based Fabric library
+to automagically provision the OS with x2go, the apps I want etc.
+
+Fabric is really simple to use and lets you execute remote commands via
+scripts so you can for instance install x2go server or client very
+easily..
+
+After the Fabric script is done my virtual machine has the OS of my choice
+with all the apps and x2go installed.
+
+Another interesting technology I discovered lately and tried out is USB over
+IP.    Perhaps this could be incorporated into a future feature for x2go
+server &amp; client ???
+How To Set Up A USB-Over-IP Server And Client With Ubuntu 10.04
+
+Version 1.0
+Author: Falko Timme &lt;ft [at] falkotimme [dot] com&gt;
+ &lt;<A HREF="http://twitter.com/falko">http://twitter.com/falko</A>&gt; Follow me on Twitter &lt;<A HREF="http://twitter.com/falko">http://twitter.com/falko</A>&gt;
+Last edited 01/18/2010
+
+This tutorial shows how to set up a USB-over-IP server with Ubuntu 10.04 as
+well as a USB-over-IP client (also running Ubuntu 10.04). The USB/IP
+Project&lt;<A HREF="http://usbip.sourceforge.net/">http://usbip.sourceforge.net/</A>&gt;aims to develop a general USB
+device sharing system over IP network. To
+share USB devices between computers with their full functionality, USB/IP
+encapsulates &quot;USB I/O messages&quot; into TCP/IP payloads and transmits them
+between computers. USB-over-IP can be useful for virtual machines, for
+example, that don't have access to the host system's hardware - USB-over-IP
+allows virtual machines to use remote USB devices.
+
+I do not issue any guarantee that this will work for you!
+
+
+1 Preliminary Note
+
+This tutorial is based on AliRezaTaleghani's tutorial How To Modify Your
+Gnu/Linux Box To Serve As A USB Over IP
+Server&lt;<A HREF="http://www.howtoforge.com/how-to-modify-your-gnu-linux-box-to-serve-as-a-usb-over-ip-server">http://www.howtoforge.com/how-to-modify-your-gnu-linux-box-to-serve-as-a-usb-over-ip-server</A>&gt;,
+but I've adjusted it for Ubuntu 10.04 (server and client). If you want to
+use a Windows client, please take a look at AliRezaTaleghani's tutorial -
+that part is still the same.
+
+In this tutorial I use the server server1.example.com with the IP address
+192.168.0.100 and the client client1.example.com with the IP address
+192.168.0.101, both running Ubuntu 10.04. These settings might differ for
+you, so you have to replace them where appropriate.
+
+
+2 Installing And Using USB/IP On The Server
+
+server1:
+
+We can install usbip as follows:
+
+aptitude install usbip
+
+Afterwards we load the usbip kernel modules:
+
+modprobe usbip
+modprobe usbip_common_mod
+
+To check if they really got loaded, run:
+
+lsmod | grep usbip
+
+The output should be similar to this one:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at server1</A>:~# lsmod | grep usbip
+usbip                  15124  0
+usbip_common_mod       13605  1 usbip
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at server1</A>:~#
+
+To make sure that both modules get loaded automatically whenever you boot
+the system, you can add them to /etc/modules:
+
+vi /etc/modules
+
+[...]
+usbip
+usbip_common_mod
+
+  Now we can start the usbip daemon:
+
+usbipd -D
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at server1</A>:~# usbipd -D
+Bind usbip.ko to a usb device to be exportable!
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at server1</A>:~#
+
+Now attach a USB device that you want to export to the server - I'm using a
+SanDisk USB flash drive here.
+
+Execute the command
+
+lsusb
+
+to find the corresponding Vendor/Device ID which is in the form of:
+
+Bus XXX Device YYY: ID VendorID:DeviceID
+
+The output on my server is as follows:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at server1</A>:~# lsusb
+Bus 001 Device 002: ID 0781:5151 SanDisk Corp. Cruzer Micro Flash Drive
+Bus 001 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at server1</A>:~#
+
+The Vendor/Device ID of my SanDisk USB flash drive is 0781:5151.
+
+Now run
+
+usbip_bind_driver --list
+
+The output on my server is as follows:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at server1</A>:~# usbip_bind_driver --list
+List USB devices
+ - busid 1-1 (0781:5151)
+         1-1:1.0 -&gt; usb-storage
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at server1</A>:~#
+
+As you see, the Vendor/Device ID of my SanDisk USB flash drive (0781:5151)
+corresponds to the BUSID 1-1. We need this BUSID to attach the USB device to
+the server:
+
+usbip_bind_driver --usbip 1-1
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at server1</A>:~# usbip_bind_driver --usbip 1-1
+** (process:765): DEBUG:  1-1:1.0       -&gt; usb-storage
+** (process:765): DEBUG: unbinding interface
+** (process:765): DEBUG: write &quot;add 1-1&quot; to
+/sys/bus/usb/drivers/usbip/match_busid
+** Message: bind 1-1 to usbip, complete!
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at server1</A>:~#
+
+That's it, we can now use the SanDisk USB flash drive on a remote usbipclient.
+
+BTW, if you run...
+
+netstat -tap
+
+... you should see that the usbip daemon is listening on port 3240 so please
+make sure that this port isn't blocked by your firewall:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at server1</A>:~# netstat -tap
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address
+State       PID/Program name
+tcp        0      0 *:ssh                   *:*
+LISTEN      537/sshd
+tcp        0      0 *:3240                  *:*
+LISTEN      762/usbipd
+tcp        0     52 server1.example.com:ssh 192.168.0.199:4024
+      ESTABLISHED 667/0
+tcp6       0      0 [::]:ssh                [::]:*
+LISTEN      537/sshd
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at server1</A>:~#
+
+Copyright &#169; 2010 Falko Timme
+All Rights Reserved.
+How To Set Up A USB-Over-IP Server And Client With Ubuntu 10.04 - Part 2
+
+   3 Installing And Using USB/IP On The Client
+
+   client1:
+
+   We must install usbip on the client as well:
+
+   aptitude install usbip
+
+   Afterwards we load the vhci-hcd kernel module:
+
+   modprobe vhci-hcd
+
+   To check if it really got loaded, run:
+
+   lsmod | grep vhci_hcd
+
+   The output should be similar to this one:
+
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at client1</A>:~# lsmod | grep vhci_hcd
+   vhci_hcd               19800  0
+   usbip_common_mod       13605  1 vhci_hcd
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at client1</A>:~#
+
+   To make sure that the module gets loaded automatically whenever you boot
+   the system, you can add it to /etc/modules:
+
+   vi /etc/modules
+
+   [...]
+   vhci-hcd
+
+    Now connect to the usbip server and get a list of available USB devices:
+
+   usbip -l 192.168.0.100
+
+   (192.168.0.100 is the IP address of the usbip server.)
+
+   You should find the SanDisk USB flash drive in the output (BUSID 1-1):
+
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at client1</A>:~# usbip -l 192.168.0.100
+   - 192.168.0.100
+        1-1: SanDisk Corp. : Cruzer Micro Flash Drive (0781:5151)
+           : /sys/devices/pci0000:00/0000:00:07.2/usb1/1-1
+           : (Defined at Interface level) (00/00/00)
+           :  0 - Mass Storage / SCSI / Bulk (Zip) (08/06/50)
+
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at client1</A>:~#
+
+   To attach that device to the client, run:
+
+   usbip -a 192.168.0.100 1-1
+
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at client1</A>:~# usbip -a 192.168.0.100 1-1
+   8 ports available
+
+   port 0 attached
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at client1</A>:~#
+
+   Now run...
+
+   lsusb
+
+   ... and you should find the remote USB device in the output on the
+   client:
+
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at client1</A>:~# lsusb
+
+   Bus 001 Device 002: ID 0781:5151 SanDisk Corp. Cruzer Micro
+256/512MB Flash Drive
+   Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at client1</A>:~#
+
+   You can now use the remote USB device as if it was a local USB device
+   (e.g. mount it, format it, write to it, read form it, etc.).
+
+
+   4 Detaching A Remote USB Device
+
+   A remote USB device can be detached as follows:
+
+   client1:
+
+   Run...
+
+   usbip --port
+
+   ... to find out the port that the remote USB device uses on the client -
+   in this case it's port 00:
+
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at client1</A>:~# usbip --port
+   8 ports available
+
+   Port 00: &lt;Port in Use&gt; at High Speed(480Mbps)
+          SanDisk Corp. : Cruzer Micro 256/512MB Flash Drive (0781:5151)
+          1-1 -&gt; <A HREF="usbip://192.168.0.100:3240/1-1">usbip://192.168.0.100:3240/1-1</A>
+     (remote devid 00010002 (bus/dev 001/002))
+          1-1:1.0 used by usb-storage
+              /sys/class/bsg/1:0:0:0/device
+              /sys/class/scsi_device/1:0:0:0/device
+              /sys/class/scsi_disk/1:0:0:0/device
+              /sys/class/scsi_host/host1/device
+              /sys/class/usb_endpoint/usbdev1.4_ep02/device
+              /sys/class/usb_endpoint/usbdev1.4_ep81/device
+              /sys/block/sdb/device
+   Port 01: &lt;Port Available&gt;
+   Port 02: &lt;Port Available&gt;
+   Port 03: &lt;Port Available&gt;
+   Port 04: &lt;Port Available&gt;
+   Port 05: &lt;Port Available&gt;
+   Port 06: &lt;Port Available&gt;
+   Port 07: &lt;Port Available&gt;
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at client1</A>:~#
+
+   We need the port number to detach the device:
+
+   usbip -d 00
+
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at client1</A>:~# usbip -d 00
+   8 ports available
+
+   port 0 detached
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at client1</A>:~#
+
+   On the server, we use the BUSID (1-1) to bind the USB device to the local
+   system (the --other switch binds the device to the local system so that
+   it is not available over the network anymore):
+
+   server1:
+
+   usbip_bind_driver --other 1-1
+
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at server1</A>:~# usbip_bind_driver --other 1-1
+   ** (process:7333): DEBUG: write &quot;del 1-1&quot; to
+   /sys/bus/usb/drivers/usbip/match_busid
+   ** Message: bind 1-1 to other drivers than usbip, complete!
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at server1</A>:~#
+
+   Now go back to the client and check if the remote USB device is still
+   available:
+
+   client1:
+
+   lsusb
+
+   If all goes well, it shouldn't be listed anymore:
+
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at client1</A>:~# lsusb
+   Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at client1</A>:~#
+
+
+   5 Links
+      - USB/IP Project: <A HREF="http://usbip.sourceforge.net/">http://usbip.sourceforge.net/</A>
+      - Ubuntu: <A HREF="http://www.ubuntu.com/">http://www.ubuntu.com/</A>
+
+   Copyright &#169; 2010 Falko Timme
+   All Rights Reserved.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100923/59f3225f/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100923/59f3225f/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001097.html">[X2go-dev] headless client with pyx2go
+</A></li>
+	<LI>Next message: <A HREF="001109.html">[X2go-dev] Git Repo
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1090">[ date ]</a>
+              <a href="thread.html#1090">[ thread ]</a>
+              <a href="subject.html#1090">[ subject ]</a>
+              <a href="author.html#1090">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

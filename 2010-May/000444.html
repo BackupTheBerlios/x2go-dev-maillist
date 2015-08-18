@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Larger-scale X2GO installations - experience?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Larger-scale%20X2GO%20installations%20-%20experience%3F&In-Reply-To=%3C4BDD62CA.4070109%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000443.html">
+   <LINK REL="Next"  HREF="000445.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Larger-scale X2GO installations - experience?</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Larger-scale%20X2GO%20installations%20-%20experience%3F&In-Reply-To=%3C4BDD62CA.4070109%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] Larger-scale X2GO installations - experience?">paul at vandervlis.nl
+       </A><BR>
+    <I>Sun May  2 13:32:26 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000443.html">[X2go-dev] Larger-scale X2GO installations - experience?
+</A></li>
+        <LI>Next message: <A HREF="000445.html">[X2go-dev] Larger-scale X2GO installations - experience?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#444">[ date ]</a>
+              <a href="thread.html#444">[ thread ]</a>
+              <a href="subject.html#444">[ subject ]</a>
+              <a href="author.html#444">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE><A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">sm8ps-x2go1 at yahoo.com</A> schreef:
+&gt;<i> Dear all,
+</I>&gt;<i> 
+</I>&gt;<i> I have been looking for a suitable set-up for our high school (Swiss Gymnasium, grades 10 through 13, 400 students, 60 teachers) that would allow our students to use their own netbook/laptop in class as well as at home. Conditions are:
+</I>&gt;<i> 1. no technical support for users' computers (therefore no installing  individual applications, no passing out images etc.)
+</I>&gt;<i> 2. must work on computers in any state, even with broken OS, browser whatever (so must allow terminal server solution as fall-back)
+</I>&gt;<i> 3. plattform independent (win/mac/linux and independent of individual computer models)
+</I>&gt;<i> 4. must work over WLAN
+</I>&gt;<i> 5. should be available on- as well as off-site
+</I>&gt;<i> 
+</I>&gt;<i> A couple of years ago I started looking more closely into LTSP and I have set up a test lab that works just fine. Though, the local nature of that makes it less suitable to our needs. Clearly, I have studied NX and now I have followed the development of X2GO more or less closely. I feel that X2GO is the perfect candidate and I want to set up a larger-scale test network. Before doing so, however, I would like to hear other people's experience with such set-ups.
+</I>&gt;<i> 
+</I>&gt;<i> I have compiled a preliminary list of questions (s.b.). If you have any experience with larger scale X2GO set-ups, I would really appreciate your input and I think others might be interested as well. Thanks a lot for sharing your expertise! If you would like to communicate in German or French, I can cope with both.
+</I>
+I have only experience with small scale setups. I will answer only some
+questions.
+
+&gt;<i> Cheers!
+</I>&gt;<i> St. M&#252;ller, Switzerland
+</I>&gt;<i> 
+</I>&gt;<i> QUESTIONS (yes/no, experience?)
+</I>&gt;<i> 1) Local OS:
+</I>&gt;<i> a) Copy/Paste from/to local OS
+</I>
+Works fine.
+
+&gt;<i> b) Accessing local file systems
+</I>&gt;<i> c) Support of local USB devices
+</I>&gt;<i> d) Sound
+</I>&gt;<i> e) Printing on local printer
+</I>&gt;<i> f) Printing on local network printer / on remote network printer
+</I>&gt;<i> 2) Set-Up, Administration:
+</I>&gt;<i> a) number of server / user (50, 100, 150
+</I>&gt;<i> concurrent sessions)
+</I>&gt;<i> b) Load Balancing, Cluster
+</I>&gt;<i> c) Manageability of several parallel servers in administration
+</I>&gt;<i> d) Band with
+</I>&gt;<i> 
+</I>&gt;<i> e)  Multimedia (Flash)
+</I>
+Little flash animations are no problem, but bigger flash like films are
+too slow. Flash can make a user-session very slow, when people call me
+about a slow desktop I ask them to close all browser windows. In most
+cases it was flash and the problem is gone then.
+
+&gt;<i> f) Compatibility with Terminal Server
+</I>&gt;<i> (LTSP) on same server or is X2GO usable also as directly as terminal server?
+</I>
+I expect you can use LTSP and X2go on the same server, but X2go is
+really different. X2go is usuable directly without LTSP.
+
+X2go works trough SSH and don't uses a display manager (e.g. GDM).
+
+I will advise you to install and try it. You can make a one-node
+installation in about 10 minutes:
+<A HREF="http://www.x2go.org/fileadmin/doc/installation_x2go_debian_en.html">http://www.x2go.org/fileadmin/doc/installation_x2go_debian_en.html</A>
+A one-node installation is not what you want, but you will learn a lot
+about how X2go works and it's very easy to install.
+
+You could use a live-CD to test it, e.g.:
+<A HREF="http://cdimage.debian.org/debian-cd/current-live/i386/iso-cd/debian-live-504-i386-gnome-desktop.iso">http://cdimage.debian.org/debian-cd/current-live/i386/iso-cd/debian-live-504-i386-gnome-desktop.iso</A>
+
+&gt;<i> g) Mounting homes from data server
+</I>&gt;<i> h) Compatibility with administration servers (LDAP, ADS etc.)
+</I>&gt;<i> i) Acess protection, security
+</I>
+With regards,
+Paul van der Vlis.
+
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000443.html">[X2go-dev] Larger-scale X2GO installations - experience?
+</A></li>
+	<LI>Next message: <A HREF="000445.html">[X2go-dev] Larger-scale X2GO installations - experience?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#444">[ date ]</a>
+              <a href="thread.html#444">[ thread ]</a>
+              <a href="subject.html#444">[ subject ]</a>
+              <a href="author.html#444">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

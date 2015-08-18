@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#367: Bug#367: wine does not start within x2goclient: Application tried to create a window, but no driver could be loaded.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23367%3A%20Bug%23367%3A%20wine%20does%20not%20start%20within%0A%20x2goclient%3A%20Application%20tried%20to%20create%20a%20window%2C%0A%20but%20no%20driver%20could%20be%20loaded.&In-Reply-To=%3C52AB202D.5000001%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006646.html">
+   <LINK REL="Next"  HREF="006657.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#367: Bug#367: wine does not start within x2goclient: Application tried to create a window, but no driver could be loaded.</H1>
+    <B>Gianfilippo</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23367%3A%20Bug%23367%3A%20wine%20does%20not%20start%20within%0A%20x2goclient%3A%20Application%20tried%20to%20create%20a%20window%2C%0A%20but%20no%20driver%20could%20be%20loaded.&In-Reply-To=%3C52AB202D.5000001%40gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#367: Bug#367: wine does not start within x2goclient: Application tried to create a window, but no driver could be loaded.">gianfi at gmail.com
+       </A><BR>
+    <I>Fri Dec 13 15:56:45 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006646.html">[X2Go-Dev] Processed (with 1 errors): Re: Bug#367: wine does not start within x2goclient: Application tried to create a window, but no driver could be loaded.
+</A></li>
+        <LI>Next message: <A HREF="006657.html">[X2Go-Dev] Bug#367: Bug#367: wine does not start within x2goclient: Application tried to create a window, but no driver could be loaded.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6654">[ date ]</a>
+              <a href="thread.html#6654">[ thread ]</a>
+              <a href="subject.html#6654">[ subject ]</a>
+              <a href="author.html#6654">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+i can confirm this bug using the last version of x2goclient on linuxmint.
+Several applications ran under wine fail to load and freeze during 
+loading, i.e. ms office 2010 using crossover office.
+Using an older version of x2goclient the application is loaded 
+successfully. The notepad application is loaded successfully from any 
+x2goclient version.
+To get a confirmation of the bug, open winecfg and try to open the 
+&quot;drives&quot; mapping tab. Using the last version of x2go, winecfg freezes. 
+Trying to use any other older version, the drives tab is loaded 
+successfully.
+
+
+
+On 13/12/2013 10:27, Mike Gabriel wrote:
+&gt;<i> Control: tag -1 moreinfo
+</I>&gt;<i> Control: tag -1 not-confirmed
+</I>&gt;<i>
+</I>&gt;<i> Hi all,
+</I>&gt;<i>
+</I>&gt;<i> On  Do 12 Dez 2013 23:38:18 CET, Mike Gabriel wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Package: nxagent
+</I>&gt;&gt;<i> Severity: important
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> While scanning our bug tracker logs, I found this mail from Matthias
+</I>&gt;&gt;<i> Hellinghausen which got not processed into the tracker, because the
+</I>&gt;&gt;<i> Package: &lt;package&gt; line was missing at the beginning of the mail...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Mike
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &quot;&quot;&quot;
+</I>&gt;&gt;<i> Hello
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> After upgrading the x2goserver from the following Versions
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> x2goagent      2:3.5.0.14-0~247~oneiric1
+</I>&gt;&gt;<i> x2goserver     3.1.1.3-0~571~oneiric1
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> to
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> x2goagent     2:3.5.0.15-0~263~oneiric1
+</I>&gt;&gt;<i> x2goserver    3.1.1.4-0~592~oneiric1
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> wine (v. 1.2.3) programs do not start anymore within the x2goclient
+</I>&gt;&gt;<i> session.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The following is what wine tells us when starting notepad:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mh at ltsp3</A>:~$ notepad
+</I>&gt;&gt;<i> Application tried to create a window, but no driver could be loaded.
+</I>&gt;&gt;<i> Unknown error (998).
+</I>&gt;&gt;<i> err:systray:initialize_systray Could not create tray window
+</I>&gt;&gt;<i> Application tried to create a window, but no driver could be loaded.
+</I>&gt;&gt;<i> Unknown error (998).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> All other X-applications are working fine. The version of the x2goclient
+</I>&gt;&gt;<i> did not change.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> please let me know, If there is anything more you need to know...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> kind regards
+</I>&gt;&gt;<i> Matthais
+</I>&gt;<i>
+</I>&gt;<i> I have tested this on Debian wheezy systems (server and client) with
+</I>&gt;<i> latest X2Go Client and latest nx-libs and latest X2Go Server (from the
+</I>&gt;<i> nightly builds). Starting notepad from wine works smoothly.
+</I>&gt;<i>
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+-- 
+Gianfilippo Giannini
+System administration for the masses
+mail me: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">gianfilippo.giannini at kelyon.it</A> - call me: +39 081 19753290
+&quot;I love deadlines. I love the whooshing noise they make as they pass&quot; - 
+Douglas Adams
+
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006646.html">[X2Go-Dev] Processed (with 1 errors): Re: Bug#367: wine does not start within x2goclient: Application tried to create a window, but no driver could be loaded.
+</A></li>
+	<LI>Next message: <A HREF="006657.html">[X2Go-Dev] Bug#367: Bug#367: wine does not start within x2goclient: Application tried to create a window, but no driver could be loaded.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6654">[ date ]</a>
+              <a href="thread.html#6654">[ thread ]</a>
+              <a href="subject.html#6654">[ subject ]</a>
+              <a href="author.html#6654">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

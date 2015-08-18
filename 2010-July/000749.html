@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] use thin client CPU resources
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20use%20thin%20client%20CPU%20resources&In-Reply-To=%3C1278086671.3371.17.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000747.html">
+   <LINK REL="Next"  HREF="000750.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] use thin client CPU resources</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20use%20thin%20client%20CPU%20resources&In-Reply-To=%3C1278086671.3371.17.camel%40localhost%3E"
+       TITLE="[X2go-dev] use thin client CPU resources">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Jul  2 18:04:31 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000747.html">[X2go-dev] use thin client CPU resources
+</A></li>
+        <LI>Next message: <A HREF="000750.html">[X2go-dev] use thin client CPU resources
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#749">[ date ]</a>
+              <a href="thread.html#749">[ thread ]</a>
+              <a href="subject.html#749">[ subject ]</a>
+              <a href="author.html#749">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2010-07-02 at 15:20 +0200, Mike Gabriel wrote:
+&gt;<i> Hi x2go-folks,
+</I>&gt;<i> 
+</I>&gt;<i> here is another question to the developers...
+</I>&gt;<i> 
+</I>&gt;<i> When talking to school teachers here in Kiel, there was a very central  
+</I>&gt;<i> demand to thin client work stations: run application on the thin  
+</I>&gt;<i> client hardware.
+</I>&gt;<i> 
+</I>&gt;<i> in schools this is needed for:
+</I>&gt;<i> 
+</I>&gt;<i>    o accessing USB-devices like LEGO mind storm robots etc.
+</I>&gt;<i>    o starting development environments on the thin client CPU (e.g. eclipse) so
+</I>&gt;<i>      that programming of ROBOT devices can be tested locally
+</I>&gt;<i>    o play media (DVD, AVI on CD or USB-Stick) on the thin client
+</I>&gt;<i>    o start firefox locally (but with the user's profile), esp. because of flash
+</I>&gt;<i>      media, but also animations on websites
+</I>&gt;<i> 
+</I>&gt;<i> As I know, in LTSP there is a solution for that (a weird bash script  
+</I>&gt;<i> called ltsp-localapp or so).
+</I>&gt;<i> 
+</I>&gt;<i> My question: is there also an idea or an approach for x2go how local  
+</I>&gt;<i> CPU usage of thin clients could be implemented? I suppose, there is no  
+</I>&gt;<i> implementation yet, is it?
+</I>&gt;<i> 
+</I>&gt;<i> My basic idea of how it could be done:
+</I>&gt;<i> 
+</I>&gt;<i>    o mount $HOME of the x2goserver on the client via sshfs, this mount  
+</I>&gt;<i> should be
+</I>&gt;<i>      tunneled through the main SSH connection (I know this is the other way
+</I>&gt;<i>      round compared to x2goprint spool dir and shared folders... this  
+</I>&gt;<i> might need
+</I>&gt;<i>      some work and ideas before we go into deatails)
+</I>&gt;<i>    o issue a script call on the thin client
+</I>&gt;<i>    o set some environment variables on the thin client from within this script
+</I>&gt;<i>      ($HOME, $USER etc.)
+</I>&gt;<i>    o let the x2goclient start the local app (like firefox, vlc,  
+</I>&gt;<i> mplayer, eclipse)
+</I>&gt;<i> 
+</I>&gt;<i> As this is probably the most needed feature herearound I'd love to go  
+</I>&gt;<i> into detail with this issue sometime in August/September.
+</I>&gt;<i> 
+</I>&gt;<i> Plz let me know what you think,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>I could see a great use for this with multimedia/video files - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000747.html">[X2go-dev] use thin client CPU resources
+</A></li>
+	<LI>Next message: <A HREF="000750.html">[X2go-dev] use thin client CPU resources
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#749">[ date ]</a>
+              <a href="thread.html#749">[ thread ]</a>
+              <a href="subject.html#749">[ subject ]</a>
+              <a href="author.html#749">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

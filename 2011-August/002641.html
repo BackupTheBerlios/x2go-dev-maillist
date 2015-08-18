@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] rename of x2godesktopsharing group
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20rename%20of%20x2godesktopsharing%20group&In-Reply-To=%3C20110802152429.1403218eimpnpjm5%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002685.html">
+   <LINK REL="Next"  HREF="002642.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] rename of x2godesktopsharing group</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20rename%20of%20x2godesktopsharing%20group&In-Reply-To=%3C20110802152429.1403218eimpnpjm5%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] rename of x2godesktopsharing group">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Aug  2 15:24:29 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002685.html">[X2go-Dev] Installing x2go server on Red Hat 5
+</A></li>
+        <LI>Next message: <A HREF="002642.html">[X2go-Dev] rename of x2godesktopsharing group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2641">[ date ]</a>
+              <a href="thread.html#2641">[ thread ]</a>
+              <a href="subject.html#2641">[ subject ]</a>
+              <a href="author.html#2641">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+I have had another look at x2godesktopsharing and I would propose a  
+change of group membership for users who are allowed to use  
+x2godesktopsharing. Formerly, this was group ,,x2gousers''. I would  
+like to propose a rename to ,,x2godesktopsharing''.
+
+A patch for this is attached below.
+
+A possible question is if we want to migrate users in group x2gousers  
+to this group during package upgrade.
+
+Greets,
+Mike
+
+-------------------------
+
+commit 4cf4a0b2dad35e92ddaac712c9d2b6f513cd4a46
+Author: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+Date:   Tue Aug 2 15:18:54 2011 +0200
+
+     System group for x2godesktopsharing change from x2gousers -&gt;   
+x2godesktopsharing.
+
+diff --git a/debian/changelog b/debian/changelog
+index b8c5bf1..7d7a7eb 100644
+--- a/debian/changelog
++++ b/debian/changelog
+@@ -1,6 +1,8 @@
+  x2godesktopsharing (3.0.1.3-0~x2go1) UNRELEASED; urgency=low
+
+    * Fix incomplete DENY statement in main.cpp.
++  * System group for x2godesktopsharing change from x2gousers -&gt;
++    x2godesktopsharing.
+
+   -- Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;  Mon, 13 Jun  
+2011 20:39:33 +0200
+
+diff --git a/debian/x2godesktopsharing.postinst  
+b/debian/x2godesktopsharing.postinst
+index 2f7b721..1d55fba 100755
+--- a/debian/x2godesktopsharing.postinst
++++ b/debian/x2godesktopsharing.postinst
+@@ -22,10 +22,10 @@ set -e
+
+  case &quot;$1&quot; in
+      configure)
+-    X2GOGRP=`getent group | grep x2gousers`
++    X2GOGRP=`getent group | grep x2godesktopsharing`
+      if [ &quot;x$X2GOGRP&quot;=&quot;x&quot; ]
+      then
+-         addgroup --system x2gousers
++         addgroup --system x2godesktopsharing
+      fi
+      ;;
+
+diff --git a/sharetray.cpp b/sharetray.cpp
+index 7fe23f0..9f42997 100644
+--- a/sharetray.cpp
++++ b/sharetray.cpp
+@@ -215,7 +215,7 @@ void ShareTray::slotStartSharing()
+      if ( serverSocket-&gt;listen ( socketFname ) )
+      {
+
+-        chown ( socketFname.toAscii(),getuid(),getgrnam ( &quot;x2gousers&quot;  
+)-&gt;gr_gid );
++        chown ( socketFname.toAscii(),getuid(),getgrnam (  
+&quot;x2godesktopsharing&quot; )-&gt;gr_gid );
+          QFile::setPermissions ( socketFname,
+                                   
+QFile::ReadOwner|QFile::WriteOwner|QFile::ReadGroup|QFile::WriteGroup );
+          connect ( serverSocket,SIGNAL ( newConnection() ),
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110802/19c2bdc3/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110802/19c2bdc3/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002685.html">[X2go-Dev] Installing x2go server on Red Hat 5
+</A></li>
+	<LI>Next message: <A HREF="002642.html">[X2go-Dev] rename of x2godesktopsharing group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2641">[ date ]</a>
+              <a href="thread.html#2641">[ thread ]</a>
+              <a href="subject.html#2641">[ subject ]</a>
+              <a href="author.html#2641">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

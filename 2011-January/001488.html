@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Any pointers on using x2go with chroot?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Any%20pointers%20on%20using%20x2go%20with%20chroot%3F&In-Reply-To=%3C1294939916.10568.4.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001487.html">
+   <LINK REL="Next"  HREF="001489.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Any pointers on using x2go with chroot?</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Any%20pointers%20on%20using%20x2go%20with%20chroot%3F&In-Reply-To=%3C1294939916.10568.4.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] Any pointers on using x2go with chroot?">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu Jan 13 18:31:56 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001487.html">[X2go-dev] Any pointers on using x2go with chroot?
+</A></li>
+        <LI>Next message: <A HREF="001489.html">[X2go-dev] restored pc but x2go is broken
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1488">[ date ]</a>
+              <a href="thread.html#1488">[ thread ]</a>
+              <a href="subject.html#1488">[ subject ]</a>
+              <a href="author.html#1488">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2011-01-13 at 15:30 +0800, Paul Clark wrote:
+&gt;<i> Hi All,
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i>    I'm having trouble connecting to a chroot user.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Here's the error:
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Loop: PANIC! The remote NX proxy closed the connection.
+</I>&gt;<i> Loop: PANIC! Failure negotiating the session in stage '7'.
+</I>&gt;<i> Loop: PANIC! Wrong version or invalid session authentication cookie.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I'm not sure what I should do to attempt to fix this.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Hope someone can help.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Cheers,
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Paul.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> PS: If it is relevant, I initially set up a chroot environment with
+</I>&gt;<i> jailkit for NX as per here
+</I>&gt;<i> - <A HREF="http://www.nomachine.com/ar/view.php?ar_id=AR09D00419">http://www.nomachine.com/ar/view.php?ar_id=AR09D00419</A> - but it gave
+</I>&gt;<i> a wrong subscription error.
+</I>&lt;snip&gt;
+I don't have an answer for you.  I can tell you we are running X2Go with
+VServer which is sort of a glorified chroot so it does work.  We made
+many customizations but these were mostly for optimization and to
+account for restricted rights to kernel activities.
+
+I'm unfamiliar with jailkit.  Is there any chance this is an Xauthority
+issue? What happens if you SSH rather than X2Go and try to run a simple
+X application like xterm? Sorry I can't be of more help - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001487.html">[X2go-dev] Any pointers on using x2go with chroot?
+</A></li>
+	<LI>Next message: <A HREF="001489.html">[X2go-dev] restored pc but x2go is broken
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1488">[ date ]</a>
+              <a href="thread.html#1488">[ thread ]</a>
+              <a href="subject.html#1488">[ subject ]</a>
+              <a href="author.html#1488">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

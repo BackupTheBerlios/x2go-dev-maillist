@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] OT: exclude /usr/lib/x2go/libX11.so.6 from being	linked by other apps
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20OT%3A%20exclude%20/usr/lib/x2go/libX11.so.6%20from%20being%0A%09linked%20by%20other%20apps&In-Reply-To=%3C2173542.gbpc07cfn8%40tervel%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002905.html">
+   <LINK REL="Next"  HREF="002908.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] OT: exclude /usr/lib/x2go/libX11.so.6 from being	linked by other apps</H1>
+    <B>Ivan Kabaivanov</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20OT%3A%20exclude%20/usr/lib/x2go/libX11.so.6%20from%20being%0A%09linked%20by%20other%20apps&In-Reply-To=%3C2173542.gbpc07cfn8%40tervel%3E"
+       TITLE="[X2go-Dev] OT: exclude /usr/lib/x2go/libX11.so.6 from being	linked by other apps">chepati at yahoo.com
+       </A><BR>
+    <I>Sat Oct 15 19:32:38 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002905.html">[X2go-Dev] OT: exclude /usr/lib/x2go/libX11.so.6 from being linked	by other apps
+</A></li>
+        <LI>Next message: <A HREF="002908.html">[X2go-Dev] OT: exclude /usr/lib/x2go/libX11.so.6 from being linked by other apps
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2907">[ date ]</a>
+              <a href="thread.html#2907">[ thread ]</a>
+              <a href="subject.html#2907">[ subject ]</a>
+              <a href="author.html#2907">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Saturday 15 October 2011 16:43:39 Milan Kn&#237;&#382;ek wrote:
+&gt;<i> Hello list,
+</I>&gt;<i> 
+</I>&gt;<i> since x2goagent uses its own X window system, there are two libX11.so in the
+</I>&gt;<i> system.
+</I>&gt;<i> 
+</I>&gt;<i> Unfortunatelly, some programs (darktable) link against
+</I>&gt;<i> /usr/lib/x2go/libX11.so.6 instead /usr/lib/libX11.so.6 and the compilation
+</I>&gt;<i> fails.
+</I>&gt;<i> 
+</I>&gt;<i> Is there a way how to exclude the /usr/lib/x2go directory from the linker
+</I>&gt;<i> system-wide? (Arch linux.) Or is the only solution to install x2goagent to
+</I>&gt;<i> a non-standard directory (/opt/x2goagent)?
+</I>&gt;<i> 
+</I>&gt;<i> regards,
+</I>&gt;<i> Milan
+</I>
+
+Hi Milan,
+
+check if /usr/lib/x2go is listed in /etc/ld.so.conf (or whatever 
+file/directory your distribution is using).  If it is listed, remove it and 
+re-run /sbin/ldconfig.  Then create a wrapper to start x2goagent with the 
+correct LD_LIBRARY_PATH.
+
+What I did, Renamed the original /usr/bin/x2goagent to 
+/usr/bin/x2goagent.original and created /usr/bin/x2goagent, that is a wrapper 
+with the following content:
+
+
+#!/bin/bash
+X2GO_LIBS=/usr/lib/x2go LD_LIBRARY_PATH=/usr/lib/x2go exec 
+/usr/bin/x2goagent.original $@
+
+This is on one line (the bash invocation is a separate line though).  Then 
+chmod 755 /usr/bin/x2goagent.  That should do the trick.
+
+In my installation from source I discovered I need all of these libs from the 
+x2goagent build:
+
+libXext.so*
+libX11.so*
+libXpm.so*
+libXrender.so*
+libXfixes.so*
+libXtst.so*
+libXdamage.so*
+libXrandr.so*
+libXcomposite.so*
+
+I tried to narrow down to which one was really the deal breaker for x2goagent, 
+but if I'm not mistaken it turned out I needed *all* of the above.
+
+Devs, perhaps it would be a good idea to change the x2goagent code and rename 
+the above libs to ${lib}-x2go.so.* or some such?  Then they can safely be 
+installed in /usr/lib without fear of interfering with other programs.
+
+IvanK.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002905.html">[X2go-Dev] OT: exclude /usr/lib/x2go/libX11.so.6 from being linked	by other apps
+</A></li>
+	<LI>Next message: <A HREF="002908.html">[X2go-Dev] OT: exclude /usr/lib/x2go/libX11.so.6 from being linked by other apps
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2907">[ date ]</a>
+              <a href="thread.html#2907">[ thread ]</a>
+              <a href="subject.html#2907">[ subject ]</a>
+              <a href="author.html#2907">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

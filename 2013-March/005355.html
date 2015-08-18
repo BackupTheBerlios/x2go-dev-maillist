@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Can't connect after latest updates
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Can%27t%20connect%20after%20latest%20updates&In-Reply-To=%3CCAAWyt1pYZVWCaaqMM9MXhoGzKnrcFpYXy9c9gZtsTw5%2BdMG8og%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005354.html">
+   <LINK REL="Next"  HREF="005356.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Can't connect after latest updates</H1>
+    <B>Daniel Lindgren</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Can%27t%20connect%20after%20latest%20updates&In-Reply-To=%3CCAAWyt1pYZVWCaaqMM9MXhoGzKnrcFpYXy9c9gZtsTw5%2BdMG8og%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Can't connect after latest updates">bd.dali at gmail.com
+       </A><BR>
+    <I>Thu Mar 28 13:17:08 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005354.html">[X2Go-Dev] Can't connect after latest updates
+</A></li>
+        <LI>Next message: <A HREF="005356.html">[X2Go-Dev] Can't connect after latest updates
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5355">[ date ]</a>
+              <a href="thread.html#5355">[ thread ]</a>
+              <a href="subject.html#5355">[ subject ]</a>
+              <a href="author.html#5355">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Reinstalled x2goserver, still no luck. This is logged in the session file
+on the client:
+
+NXPROXY - Version 3.5.0
+
+Copyright (C) 2001, 2010 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Proxy running in client mode with pid '6152'.
+Session: Starting session at 'Thu Mar 28 13:12:52 2013'.
+Info: Connecting to remote host 'localhost:30201'.
+Info: Connection to remote proxy 'localhost:30201' established.
+Loop: PANIC! The remote NX proxy closed the connection.
+Error: The remote NX proxy closed the connection.
+Loop: PANIC! Failure negotiating the session in stage '7'.
+Error: Failure negotiating the session in stage '7'.
+Loop: PANIC! Wrong version or invalid session authentication cookie.
+Error: Wrong version or invalid session authentication cookie.
+Session: Terminating session at 'Thu Mar 28 13:12:52 2013'.
+Session: Session terminated at 'Thu Mar 28 13:12:52 2013'.
+NXTransDialog: WARNING! Couldn't start '/usr/NX/bin/nxclient'. Error is 2
+'No such file or directory'.
+Warning: Couldn't start '/usr/NX/bin/nxclient'. Error is 2 'No such file or
+directory'.
+NXTransDialog: WARNING! Trying with path
+'/usr/NX/bin:/opt/NX/bin:/usr/local/NX/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games'.
+Warning: Trying with path
+'/usr/NX/bin:/opt/NX/bin:/usr/local/NX/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games'.
+NXTransDialog: WARNING! Couldn't start 'nxclient'. Error is 2 'No such file
+or directory'.
+Warning: Couldn't start 'nxclient'. Error is 2 'No such file or directory'.
+NXTransDialog: WARNING! Trying with path
+'/usr/NX/bin:/opt/NX/bin:/usr/local/NX/bin:/usr/NX/bin:/opt/NX/bin:/usr/local/NX/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games'.
+Warning: Trying with path
+'/usr/NX/bin:/opt/NX/bin:/usr/local/NX/bin:/usr/NX/bin:/opt/NX/bin:/usr/local/NX/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games'.
+
+Cheers,
+Daniel
+
+
+2013/3/28 Daniel Lindgren &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">bd.dali at gmail.com</A>&gt;
+
+&gt;<i> Hi.
+</I>&gt;<i>
+</I>&gt;<i> I updated my Debian Wheezy servers today (packages.x2go.org in
+</I>&gt;<i> sources.list), after that I no longer can connect to the servers, I get
+</I>&gt;<i> this message when I try with x2goclient-cli:
+</I>&gt;<i>
+</I>&gt;<i> channel 1: open failed: connect failed: Connection refused
+</I>&gt;<i>
+</I>&gt;<i> If i try with x2goclient I get an error message stating something like
+</I>&gt;<i> &quot;The server didn't reply with an expected encryption key type. It could
+</I>&gt;<i> mean that the server has been compromised&quot;.
+</I>&gt;<i>
+</I>&gt;<i> I have no problem using SSH keys to start an SSH session to the same
+</I>&gt;<i> servers.
+</I>&gt;<i>
+</I>&gt;<i> apt history looks like this:
+</I>&gt;<i>
+</I>&gt;<i> Start-Date: 2013-03-28  11:57:38
+</I>&gt;<i> Commandline: /usr/bin/apt-get upgrade
+</I>&gt;<i> Upgrade: libdpkg-perl:amd64 (1.16.9, 1.16.10), libxcompext3:amd64
+</I>&gt;<i> (3.5.0.17-0+wheezy~main~385~build1, 3.5.0.19-0+wheezy~main~401~build1),
+</I>&gt;<i> nxagent:amd64 (3.5.0.17-0+wheezy~main~385~build1,
+</I>&gt;<i> 3.5.0.19-0+wheezy~main~401~build1), libxcomp3:amd64
+</I>&gt;<i> (3.5.0.17-0+wheezy~main~385~build1, 3.5.0.19-0+wheezy~main~401~build1),
+</I>&gt;<i> libspandsp2:amd64 (0.0.6~pre20-3, 0.0.6~pre20-3.1), libxcompshad3:amd64
+</I>&gt;<i> (3.5.0.17-0+wheezy~main~385~build1, 3.5.0.19-0+wheezy~main~401~build1),
+</I>&gt;<i> dpkg:amd64 (1.16.9, 1.16.10), x2goagent:amd64
+</I>&gt;<i> (3.5.0.17-0+wheezy~main~385~build1, 3.5.0.19-0+wheezy~main~401~build1),
+</I>&gt;<i> google-chrome-stable:amd64 (25.0.1364.172-r187217, 26.0.1410.43-r189671),
+</I>&gt;<i> keepassx:amd64 (0.4.3-2, 0.4.3+dfsg-0.1), dpkg-dev:amd64 (1.16.9, 1.16.10),
+</I>&gt;<i> nxproxy:amd64 (3.5.0.17-0+wheezy~main~385~build1,
+</I>&gt;<i> 3.5.0.19-0+wheezy~main~401~build1), libnx-x11:amd64
+</I>&gt;<i> (3.5.0.17-0+wheezy~main~385~build1, 3.5.0.19-0+wheezy~main~401~build1)
+</I>&gt;<i> End-Date: 2013-03-28  11:58:10
+</I>&gt;<i>
+</I>&gt;<i> Any ideas?
+</I>&gt;<i>
+</I>&gt;<i> Cheers,
+</I>&gt;<i> Daniel
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130328/cded0d81/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130328/cded0d81/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005354.html">[X2Go-Dev] Can't connect after latest updates
+</A></li>
+	<LI>Next message: <A HREF="005356.html">[X2Go-Dev] Can't connect after latest updates
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5355">[ date ]</a>
+              <a href="thread.html#5355">[ thread ]</a>
+              <a href="subject.html#5355">[ subject ]</a>
+              <a href="author.html#5355">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

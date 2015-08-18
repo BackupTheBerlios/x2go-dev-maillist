@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] PulseAudio (ATTN: @Jan Wagner &amp; @Stephan Diehl)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20PulseAudio%20%28ATTN%3A%20%40Jan%20Wagner%20%26%20%40Stephan%20Diehl%29&In-Reply-To=%3C4FC5C79B.2050003%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004044.html">
+   <LINK REL="Next"  HREF="004046.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] PulseAudio (ATTN: @Jan Wagner &amp; @Stephan Diehl)</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20PulseAudio%20%28ATTN%3A%20%40Jan%20Wagner%20%26%20%40Stephan%20Diehl%29&In-Reply-To=%3C4FC5C79B.2050003%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] PulseAudio (ATTN: @Jan Wagner &amp; @Stephan Diehl)">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Wed May 30 09:09:15 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004044.html">[X2Go-Dev] PulseAudio
+</A></li>
+        <LI>Next message: <A HREF="004046.html">[X2Go-Dev] PulseAudio (ATTN: @Jan Wagner &amp; @Stephan Diehl)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4045">[ date ]</a>
+              <a href="thread.html#4045">[ thread ]</a>
+              <a href="subject.html#4045">[ subject ]</a>
+              <a href="author.html#4045">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 30.05.2012 08:32, schrieb Mihai Moldovan:
+
+&gt;&gt;<i> A better test is: run the pavucontrol tool within the X2Go session and test if
+</I>&gt;&gt;<i> the PA process on the MAC survives all the PA-specific mixer and volume meter
+</I>&gt;&gt;<i> API calls.
+</I>&gt;<i>
+</I>&gt;<i> WORKSFORME... it seems to work fine on my Debian Unstable based remote server.
+</I>&gt;<i> I'll guess I'll have Stefan test on (older) Ubuntu boxes and stuff, if he's up to.
+</I>
+No can do. I can test against a Debian Squeeze server with X2Go's stable 
+packages, though.
+
+[...]
+
+&gt;<i> I do have some other issues, though. Especially when starting a flash video in
+</I>&gt;<i> Iceweasel, sound is choppy, distorted, (&lt;  buffer underruns?) the video will halt
+</I>&gt;<i> a few seconds in-play, sound will roll on for like 20 seconds, then stop, video
+</I>&gt;<i> catch up fast and once the video has reached the sound position, both video and
+</I>&gt;<i> sound playback will pick up again, but sound and picture will be desynchronized
+</I>&gt;<i> as the sound makes a 20 seconds jump into the &quot;future&quot;.
+</I>&gt;<i>
+</I>&gt;<i> This is a very odd behavior, but I'm not sure what to make of it.
+</I>
+Our old friend Nagle?
+
+&gt;<i> I have noticed problems when running pavucontrol and mplayer both at the same
+</I>&gt;<i> time, though.
+</I>
+What kind of problems?
+
+&gt;<i> But I figure both the pavucontrol+mplayer and flash video problems are due to
+</I>&gt;<i> the remote ADSL connection. I see a peak incoming traffic of about 250KB/s,
+</I>&gt;<i> hardly enough for both sound and video. Another circumstance that may well
+</I>&gt;<i> confirm this theory is that lowering the image quality (i.e., set to JPEG
+</I>&gt;<i> compression with 64 colors) has a positive effect on the sound output.
+</I>
+Do we have some sort of rough estimate how much bandwidth we need for 
+which color depth?
+
+And would it be possible to lower the sound quality to conserve some 
+bandwidth? I mean, it's rather unlikely somebody is going to expect 
+Dolby 5.1 sound quality via GSM... ;-)
+
+&gt;<i> I'd really be interested to see tests on LAN, but unfortunately my only other
+</I>&gt;<i> box has no PA installed and I don't want to pollute the system with it. However,
+</I>&gt;<i> I guess that Stefan could come in here handy.
+</I>
+I'll give it a try, but I'm not really a Mac user (I bought this Mac 
+solely to support X2Go development for Mac), so Jan and Stephan should 
+join in if you want reliable results.
+
+&gt;<i> The code is not yet ready and I still have to tackle the esound emulation stuff,
+</I>&gt;<i> but I'd be happy to dump a test build here. Is anyone interested? Let me know.
+</I>
+Jan, Stephan, your call!
+
+-Stefan
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004044.html">[X2Go-Dev] PulseAudio
+</A></li>
+	<LI>Next message: <A HREF="004046.html">[X2Go-Dev] PulseAudio (ATTN: @Jan Wagner &amp; @Stephan Diehl)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4045">[ date ]</a>
+              <a href="thread.html#4045">[ thread ]</a>
+              <a href="subject.html#4045">[ subject ]</a>
+              <a href="author.html#4045">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

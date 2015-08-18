@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] building X2Go Client for MS Windows
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20building%20X2Go%20Client%20for%20MS%20Windows&In-Reply-To=%3C51404702.7050705%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005264.html">
+   <LINK REL="Next"  HREF="005259.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] building X2Go Client for MS Windows</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20building%20X2Go%20Client%20for%20MS%20Windows&In-Reply-To=%3C51404702.7050705%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] building X2Go Client for MS Windows">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Wed Mar 13 10:29:38 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005264.html">[X2Go-Dev] building X2Go Client for MS Windows
+</A></li>
+        <LI>Next message: <A HREF="005259.html">[X2Go-Dev] X2Go Client Usage page on the wiki
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5266">[ date ]</a>
+              <a href="thread.html#5266">[ thread ]</a>
+              <a href="subject.html#5266">[ subject ]</a>
+              <a href="author.html#5266">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+you don't need to have cygwin to build x2goclient for windows. All you
+need for building x2goclient is Qt+MinGW and libssh. Building of
+Qt-Applications on Windows is just the same as for every OS -
+qmake&amp;&amp;make. For x2go client - config_win.bat &amp;&amp; make. It is as easy as
+piece of cake. It is enough if someone want to modify X2Go Client and
+build it for Windows. All other components - X, pulse, nxproxy, sshd can
+be easily copied from X2Go Client installer. I see no reason why some
+one should want to make any changes in this components and why it should
+be a part of X2Go documentation.
+Cygwin is used for compiling nxproxy and for sshd. Yes, I know, there is
+a newer version of Cygwin as legacy version used with x2goclient at that
+time. I have tried it, and there are many changes regarding registry and
+directory structure in it. It is not possible without spending a lot of
+work to use it with x2goclient. And I'm not ready to do this work for
+free. Every one who want to do that is welcome.
+
+regards
+Alex
+
+Am 13.03.2013 09:41, schrieb Mike Gabriel:
+&gt;<i> Hi Michael, hi Alex,
+</I>&gt;<i> 
+</I>&gt;<i> On Mi 13 M&#228;r 2013 07:59:42 CET Michael Kromer wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;&gt;<i> recently some of you have (successfully) attempted to build X2Go
+</I>&gt;&gt;&gt;<i> Client from source on MS Windows systems.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> As you probably know, the reserved page on the wiki is yawningly empty:
+</I>&gt;&gt;&gt;<i> <A HREF="http://wiki.x2go.org/doku.php/wiki:development:build-howto-mswin:x2goclient">http://wiki.x2go.org/doku.php/wiki:development:build-howto-mswin:x2goclient</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Can you win32-building-successfully guys take over that task of
+</I>&gt;&gt;&gt;<i> filling the above given wiki page?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I totally agree and ask for help here, and btw: I really think we need
+</I>&gt;&gt;<i> to rework/update things. I really don't think its a good idea to ship
+</I>&gt;&gt;<i> &lt;OpenSSH_4.6p1, OpenSSL 0.9.8e 23 Feb 2007&gt; with the most recent
+</I>&gt;&gt;<i> version. There are just way to outdated components involved
+</I>&gt;&gt;<i> (especially everything which relates to cygwin). This asks for
+</I>&gt;&gt;<i> trouble. Since cygwin provides newer packages
+</I>&gt;&gt;<i> <A HREF="http://cygwin.com/cgi-bin2/package-grep.cgi?grep=openssh">http://cygwin.com/cgi-bin2/package-grep.cgi?grep=openssh</A> I think there
+</I>&gt;&gt;<i> are options. We would even sponsor the open step-by-step documentation
+</I>&gt;&gt;<i> to some extent. Just contact me for details.
+</I>&gt;<i> 
+</I>&gt;<i> That is good news and would be a great contribution to the transparency
+</I>&gt;<i> of the project. I will allow people to easily build customized versions
+</I>&gt;<i> of X2Go Client suitable for company deployment.
+</I>&gt;<i> 
+</I>&gt;<i> @Alex: will you get in contact with Michael? Otherwise, I would take
+</I>&gt;<i> over and teach myself how to build x2goclient and write that down in our
+</I>&gt;<i> wiki.
+</I>&gt;<i> 
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130313/0c92fb9b/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130313/0c92fb9b/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005264.html">[X2Go-Dev] building X2Go Client for MS Windows
+</A></li>
+	<LI>Next message: <A HREF="005259.html">[X2Go-Dev] X2Go Client Usage page on the wiki
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5266">[ date ]</a>
+              <a href="thread.html#5266">[ thread ]</a>
+              <a href="subject.html#5266">[ subject ]</a>
+              <a href="author.html#5266">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

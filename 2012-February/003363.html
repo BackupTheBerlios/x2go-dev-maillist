@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [X2go-Dev] @Alex: X2Go bugfix release: x2goclient	3.99.0.5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2go-Dev%5D%20%40Alex%3A%20X2Go%20bugfix%20release%3A%20x2goclient%0A%093.99.0.5&In-Reply-To=%3CFF9C05C6-CCE8-4890-A55A-0A0CDDC9FF3D%40bogdant.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003335.html">
+   <LINK REL="Next"  HREF="003340.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [X2go-Dev] @Alex: X2Go bugfix release: x2goclient	3.99.0.5</H1>
+    <B>Bogdan-Andrei Taru</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2go-Dev%5D%20%40Alex%3A%20X2Go%20bugfix%20release%3A%20x2goclient%0A%093.99.0.5&In-Reply-To=%3CFF9C05C6-CCE8-4890-A55A-0A0CDDC9FF3D%40bogdant.net%3E"
+       TITLE="[X2Go-Dev] [X2go-Dev] @Alex: X2Go bugfix release: x2goclient	3.99.0.5">bgd at bogdant.net
+       </A><BR>
+    <I>Sun Feb  5 18:59:58 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003335.html">[X2Go-Dev] Shared dir not removed after session termination
+</A></li>
+        <LI>Next message: <A HREF="003340.html">[X2Go-Dev] Fwd: [X2go-Dev] @Alex: X2Go bugfix release: x2goclient	3.99.0.5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3363">[ date ]</a>
+              <a href="thread.html#3363">[ thread ]</a>
+              <a href="subject.html#3363">[ subject ]</a>
+              <a href="author.html#3363">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I still get client segmentation fault sometimes&#8230; for example, this time it looked like the X2GO Session will be established, but the Client crashed with segfault and logged the following on the console:
+
+Fontconfig warning: no &lt;cachedir&gt; elements found. Check configuration.
+Fontconfig warning: adding &lt;cachedir&gt;/var/cache/fontconfig&lt;/cachedir&gt;
+Fontconfig warning: adding &lt;cachedir&gt;~/.fontconfig&lt;/cachedir&gt;
+ONMainWindow constructor 
+
+ONMainWindows constructor finished, home Directory is: &quot;/home/bgd&quot; 
+
+read  2  sessions from config file 
+start new ssh connection to server: &quot;vpn.meinedomaene.de&quot; : &quot;22&quot; krb:  false 
+
+ssh connection ok 
+
+continue normal x2go session 
+
+&quot;x2gostartagent 800x600 adsl 16m-jpeg-9 unix-kde-depth_24 de pc105/us 1 D GNOME&quot; 
+
+Agent output: &quot;55
+fc674b1c9746497de6b65f0e5a932ef3
+30780
+btaru-55-1328464520_stDGNOME_dp24
+30004
+30005
+30006
+&quot; 
+starting nxproxy with:  &quot;nxproxy -S nx/nx,options=/home/bgd/.x2go/S-btaru-55-1328464520_stDGNOME_dp24/options:55&quot; 
+
+deleting proxy 
+
+nxproxy not running 
+
+proxy deleted 
+
+check command message 
+
+Segmentation fault (Core dumped)
+
+Regards,
+Bogdan
+
+
+On 27.01.2012, at 21:43, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A> wrote:
+
+&gt;<i> Well, but I can still get it to segfault in a similar situation:
+</I>&gt;<i> 
+</I>&gt;<i> Enter a non-existent IP for the server and try to connect.
+</I>&gt;<i> It freezes, gives you a pop-up &quot;Connect failed: No error&quot;, then freezes again and segfaults.
+</I>&gt;<i> 
+</I>&gt;<i> Kind Regards,
+</I>&gt;<i> Stefan
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Am 27.01.2012 13:53, schrieb Bogdan-Andrei Taru:
+</I>&gt;&gt;<i> Hi Alex,
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> thx a bunch, with the new version I couldn't get the client to segfault!
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Regards,
+</I>&gt;&gt;<i> Bogdan
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> On 27.01.2012, at 13:11, Oleksandr Shneyder wrote:
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> Am 27.01.2012 12:49, schrieb Mike Gabriel:
+</I>&gt;&gt;&gt;&gt;<i> Dear all,
+</I>&gt;&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;&gt;<i> The X2Go Project has found and fixed a bug in X2Go Client and is
+</I>&gt;&gt;&gt;&gt;<i> releasing a bugfix version:
+</I>&gt;&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;&gt;<i>  - x2goclient (3.99.0.5)
+</I>&gt;&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;&gt;<i> The release fixes a segmentation fault of X2Go Client after session
+</I>&gt;&gt;&gt;&gt;<i> login failure.
+</I>&gt;&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;&gt;<i> Packages for Debian/Ubuntu/Win32 will be available some time during today.
+</I>&gt;&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;&gt;<i> light+love,
+</I>&gt;&gt;&gt;&gt;<i> Mike
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> windows binary:
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> <A HREF="http://code.x2go.org/releases/binary-win32/x2goclient/x2goclient-3.99.0.5-setup.exe">http://code.x2go.org/releases/binary-win32/x2goclient/x2goclient-3.99.0.5-setup.exe</A>
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> regards
+</I>&gt;&gt;&gt;<i> Alex
+</I>&gt;&gt;&gt;<i> -- 
+</I>&gt;&gt;&gt;<i> Oleksandr Shneyder
+</I>&gt;&gt;&gt;<i> Dipl. Informatik
+</I>&gt;&gt;&gt;<i> X2go Core Developer Team
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+</I>&gt;&gt;&gt;<i> web: www.obviously-nice.de
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> --&gt;  X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+</I>&gt;&gt;&gt;<i> 
+</I>&gt;&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;&gt;<i> X2go-Dev mailing list
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2go-Dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003335.html">[X2Go-Dev] Shared dir not removed after session termination
+</A></li>
+	<LI>Next message: <A HREF="003340.html">[X2Go-Dev] Fwd: [X2go-Dev] @Alex: X2Go bugfix release: x2goclient	3.99.0.5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3363">[ date ]</a>
+              <a href="thread.html#3363">[ thread ]</a>
+              <a href="subject.html#3363">[ subject ]</a>
+              <a href="author.html#3363">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

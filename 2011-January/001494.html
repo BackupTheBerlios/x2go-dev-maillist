@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] VirtualBox or KVM and x2go from Mac
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20VirtualBox%20or%20KVM%20and%20x2go%20from%20Mac&In-Reply-To=%3CC505792E7472474DAC90E6C2844BBD96717F8E%40destroyer.VSTI.LOCAL%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001492.html">
+   <LINK REL="Next"  HREF="001529.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] VirtualBox or KVM and x2go from Mac</H1>
+    <B>Neil W. Hunt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20VirtualBox%20or%20KVM%20and%20x2go%20from%20Mac&In-Reply-To=%3CC505792E7472474DAC90E6C2844BBD96717F8E%40destroyer.VSTI.LOCAL%3E"
+       TITLE="[X2go-dev] VirtualBox or KVM and x2go from Mac">nwhunt at vsticorp.com
+       </A><BR>
+    <I>Fri Jan 14 13:07:21 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001492.html">[X2go-dev] VirtualBox or KVM and x2go from Mac
+</A></li>
+        <LI>Next message: <A HREF="001529.html">[X2go-dev] VirtualBox or KVM and x2go from Mac
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1494">[ date ]</a>
+              <a href="thread.html#1494">[ thread ]</a>
+              <a href="subject.html#1494">[ subject ]</a>
+              <a href="author.html#1494">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I don't, but I use VirtualBox quite a bit and when I get some time, I will try to reproduce the issue there. Wish I could help more :(
+
+-----Original Message-----
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-bounces at lists.berlios.de</A> on behalf of Florian Effenberger
+Sent: Fri 1/14/2011 2:33 AM
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+Subject: Re: [X2go-dev] VirtualBox or KVM and x2go from Mac
+ 
+Hi Neil,
+
+2011/1/7 Neil W. Hunt &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">nwhunt at vsticorp.com</A>&gt;:
+
+&gt;<i> sorry for the delay in response, or for the double-post if someone's already
+</I>&gt;<i> help you solved your issue, but I thought I'd chime in as I may have had
+</I>&gt;<i> something similar. I have KVM running on an Ubuntu host and connect to it
+</I>
+thanks a lot! No worries, I'm also a bit behind my inbox right now. :)
+
+&gt;<i> via virt-manager. At home on my Mac, I connect to it either directly via
+</I>&gt;<i> X11/SSH, or connect to my desktop via NX/x2go at work, and then to
+</I>&gt;<i> virt-manager on that desktop. In each case, the keyboard mapping is off by
+</I>&gt;<i> default when I type on a Mac - anything typed into the console view in
+</I>&gt;<i> virt-manager is mapped incorrectly. I have a workaround and that's to set
+</I>&gt;<i> each VM's keyboard mapping directly. If you run
+</I>&gt;<i> virsh edit YourVMName
+</I>&gt;<i>
+</I>&gt;<i> then set the node &lt;graphics&gt; with an additional element keymap to 'en-us'
+</I>&gt;<i> like so:
+</I>&gt;<i> &lt;graphics type='vnc' port='-1' autoport='yes' listen='127.0.0.1'
+</I>&gt;<i> keymap='en-us'/&gt;
+</I>&gt;<i>
+</I>&gt;<i> and then all my mac keys worked fine.
+</I>
+Do you have a similar solution for VirtualBox? We've switched to
+VirtualBox for the moment, but I have the same issues here :/
+
+Thanks,
+Florian
+_______________________________________________
+X2go-dev mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+
+
+This e-mail and any attachments are for the intended recipient(s) only and may contain proprietary, confidential material. If you are not the intended recipient, (even if the email address above is yours) do not use, retain, copy or disclose any part of this communication or any attachment as it is strictly prohibited and may be unlawful. If you believe that you have received this e-mail in error, please notify the sender immediately and permanently delete. This email may be a personal communication from the sender and as such does not represent the views of the company.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: winmail.dat
+Type: application/ms-tnef
+Size: 3659 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110114/02c50e9c/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110114/02c50e9c/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001492.html">[X2go-dev] VirtualBox or KVM and x2go from Mac
+</A></li>
+	<LI>Next message: <A HREF="001529.html">[X2go-dev] VirtualBox or KVM and x2go from Mac
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1494">[ date ]</a>
+              <a href="thread.html#1494">[ thread ]</a>
+              <a href="subject.html#1494">[ subject ]</a>
+              <a href="author.html#1494">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

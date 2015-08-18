@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] cups-x2go fails on Ubuntu
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20cups-x2go%20fails%20on%20Ubuntu&In-Reply-To=%3C1263657860.2271.8.camel%40jaseee.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000273.html">
+   <LINK REL="Next"  HREF="000274.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] cups-x2go fails on Ubuntu</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20cups-x2go%20fails%20on%20Ubuntu&In-Reply-To=%3C1263657860.2271.8.camel%40jaseee.pacifera.com%3E"
+       TITLE="[X2go-dev] cups-x2go fails on Ubuntu">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat Jan 16 17:04:20 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000273.html">[X2go-dev] cups-x2go fails on Ubuntu
+</A></li>
+        <LI>Next message: <A HREF="000274.html">[X2go-dev] Speed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#278">[ date ]</a>
+              <a href="thread.html#278">[ thread ]</a>
+              <a href="subject.html#278">[ subject ]</a>
+              <a href="author.html#278">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, 2010-01-16 at 07:28 +0100, Heinz-M. Graesing wrote:
+&gt;<i> &gt; -----Urspr&#252;ngliche Nachricht-----
+</I>&gt;<i> &gt; Von: &quot;John A. Sullivan III&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt;
+</I>&gt;<i> &gt; Gesendet: 16.01.10 06:24:25
+</I>&gt;<i> &gt; An: x2go-mailing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>&gt;
+</I>&gt;<i> &gt; Betreff: [X2go-dev] cups-x2go fails on Ubuntu
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> &gt; It complained of
+</I>&gt;<i> &gt; a missing dependency of cups-client.  I believe the problem may be that
+</I>&gt;<i> &gt; Ubuntu calls this package cupsys-client.
+</I>&gt;<i> 
+</I>&gt;<i> Hello John,
+</I>&gt;<i> 
+</I>&gt;<i> please tell me on which version of ubuntu you discovered this problem. On 9.10 I can install cups-x2go without any problems - I'll test it on 9.04 today too:
+</I>&lt;snip&gt;
+Hi, Heinz.  My apologies; I thought I had mentioned this is Hardy LTS -
+8.0.4:
+
+The following packages have unmet dependencies:
+  cups-x2go: Depends: cups-client but it is not installable
+E: Broken packages
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">root at jasiii</A>:/# apt-cache search cups | grep client
+cupsys-client - Common UNIX Printing System(tm) - client programs (SysV)
+
+Am I correct to assume this is trivial to manually install? I would
+assume I would:
+download the orig tarball and patch
+extract and apply patch
+copy cups-x2go.conf to /etc/cups/
+copy cups-x2go to /usr/lib/cups/backend/
+copy CUPS-X2GO.ppd to usr/share/ppd/cups-x2go/
+copy init.d.ex into /etc/init.d appropriately renamed with the links to
+the rc directories.
+
+However, I'm thrown off by the following line in the init script:
+DAEMON=/usr/sbin/cups-x2go
+Should cups-x2go be copied there, too, or does it go there instead
+of /usr/lib/cups/backend?
+
+This would be helpful to know as we may wind up using a CentOS cups
+server rather than Debian - not sure yet.  Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000273.html">[X2go-dev] cups-x2go fails on Ubuntu
+</A></li>
+	<LI>Next message: <A HREF="000274.html">[X2go-dev] Speed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#278">[ date ]</a>
+              <a href="thread.html#278">[ thread ]</a>
+              <a href="subject.html#278">[ subject ]</a>
+              <a href="author.html#278">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

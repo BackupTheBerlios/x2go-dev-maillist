@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] nxproxy and nxcomp uploaded to Ubuntu Oneiric
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20nxproxy%20and%20nxcomp%20uploaded%20to%20Ubuntu%20Oneiric&In-Reply-To=%3C20110521204318.253160n5mw0id41y%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002234.html">
+   <LINK REL="Next"  HREF="002241.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] nxproxy and nxcomp uploaded to Ubuntu Oneiric</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20nxproxy%20and%20nxcomp%20uploaded%20to%20Ubuntu%20Oneiric&In-Reply-To=%3C20110521204318.253160n5mw0id41y%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] nxproxy and nxcomp uploaded to Ubuntu Oneiric">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat May 21 20:43:18 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002234.html">[X2go-dev] nxproxy and nxcomp uploaded to Ubuntu Oneiric
+</A></li>
+        <LI>Next message: <A HREF="002241.html">[X2go-dev] nxproxy and nxcomp uploaded to Ubuntu Oneiric
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2237">[ date ]</a>
+              <a href="thread.html#2237">[ thread ]</a>
+              <a href="subject.html#2237">[ subject ]</a>
+              <a href="author.html#2237">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Reinhard,
+
+We have to distinguish current code bases properly:
+
+   code.x2go.org -&gt; X2go upstream (currently containing sort of upstream NX'ish
+                   code forks, which is a non-optimal redundancy now that
+                   NoMachine has brought up some recent work of NX again)
+
+   collab-maint on Alioth -&gt; package preparation for Debian  
+(pkg-x2go-devel team)
+
+   Launchpad.net/~x2go    -&gt; build engine for Ubuntu (provided by X2go  
+upstream)
+   packages.x2go.org      -&gt; build engine for Debian (provided by X2go  
+upstream)
+
+On Sa 21 Mai 2011 17:13:33 CEST Reinhard Tartler wrote:
+
+&gt;&gt;<i>   o drop nxcomp (and later nxcompext, nxcompshad) from code.x2go.org (X2go
+</I>&gt;&gt;<i>     upstream), same with nxproxy (the code is not a real fork...)
+</I>&gt;<i>
+</I>&gt;<i> What problem would that solve? AFAIUI this step would break the PPA and
+</I>&gt;<i> leave users of released versions of ubuntu in the cold
+</I>
+As discussed on pkg-x2go-devel, for Debian the Debian maintainers of  
+X2go will have to use NoMachine as upstream for nxlibs + nxproxy. So,  
+there is no point of hosting NX code on code.x2go.org.
+
+For the X2go Launchpad PPA (build engine) I would then draw in the  
+code from collab-maint Git (instead of drawing in the code base from  
+code.x2go.org / X2go Git).
+
+&gt;&gt;<i>   o provide X2go-specific patches for NX 3.5 upstream on X2go  upstream
+</I>&gt;&gt;<i> that are
+</I>&gt;&gt;<i>     recommended to be incorporated by package maintainers
+</I>&gt;<i>
+</I>&gt;<i> did you already look at those 'patches'?
+</I>
+This might be a misunderstanding. St&#233;phane's patches, those that he  
+sent to the x2go-dev list, are all packaging patches. I took a quick  
+look and they look fine. However, I would love to avoid using those to  
+re-patch our NX libs on code.x2go.org.
+
+What I meant with X2go patches for NX is: if the X2go project  
+encounters a problem with the NX libs or nxproxy, then we should have  
+a location where we provide patches to fix those issues, of course,  
+without breaking the NX API for qtnx and other clients.
+
+Normally, we would send these patches to NoMachine (and we will try  
+that), but we should also plead the Debian maintainers of NX libs to  
+incorporate those patches into the Debianized NX packages.
+
+&gt;&gt;<i>   o draw St&#233;phanes work to collab-maint on Alioth
+</I>&gt;<i>
+</I>&gt;<i> Why not on code.x2go.org?
+</I>
+Because code.x2go.or is intended for X2go upstream development. Not  
+for building Debian packages.
+
+On Alioth's collab-maint workspace all Debian developers have write  
+access by default. That's my main reason for hosting the packaging  
+code there.
+
+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110521/4ac7fef3/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110521/4ac7fef3/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002234.html">[X2go-dev] nxproxy and nxcomp uploaded to Ubuntu Oneiric
+</A></li>
+	<LI>Next message: <A HREF="002241.html">[X2go-dev] nxproxy and nxcomp uploaded to Ubuntu Oneiric
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2237">[ date ]</a>
+              <a href="thread.html#2237">[ thread ]</a>
+              <a href="subject.html#2237">[ subject ]</a>
+              <a href="author.html#2237">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

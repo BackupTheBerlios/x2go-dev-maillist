@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2go without root on server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20without%20root%20on%20server&In-Reply-To=%3C509C23ED.2040300%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004529.html">
+   <LINK REL="Next"  HREF="004535.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2go without root on server</H1>
+    <B>Ralf Hemmecke</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20without%20root%20on%20server&In-Reply-To=%3C509C23ED.2040300%40gmail.com%3E"
+       TITLE="[X2Go-Dev] x2go without root on server">hemmecke at gmail.com
+       </A><BR>
+    <I>Thu Nov  8 22:28:13 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004529.html">[X2Go-Dev] x2go with git submodules
+</A></li>
+        <LI>Next message: <A HREF="004535.html">[X2Go-Dev] x2go without root on server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4531">[ date ]</a>
+              <a href="thread.html#4531">[ thread ]</a>
+              <a href="subject.html#4531">[ subject ]</a>
+              <a href="author.html#4531">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thank you, Morty.
+
+&gt;<i> As x2go supports multi server installations, too, there is a central
+</I>&gt;<i>  database managing the sessions.
+</I>
+OK. But that's, of course, irrelevant for my use case.
+
+&gt;<i> For single-host installations this is done using a sqlite database 
+</I>&gt;<i> owned by x2gouser. It is accessed using the sbit-mechanism.
+</I>
+Thanks. In other words. Assume, I want to do a rootless installation as
+user foouser. Then I would probably have to rewrite the sources so that
+foouser is also responsible for this sqlite database (of course only for
+sessions of foouser, i.e. this DB then lives somewhere under $HOME/.x2go).
+
+&gt;&gt;<i> Are there any real needs for a root user in x2go's server setup or 
+</I>&gt;&gt;<i> does this just happen by convenience for the developers?
+</I>
+&gt;<i> No, there is none.
+</I>
+OK, there is hope. ;-)
+
+&gt;<i> This is only due to the convenience having the same interface for
+</I>&gt;<i> multi-server as well as local installations.
+</I>
+I don't understand what exactly you mean by multi-server and local
+installation. But maybe it's irrelevant for me anyway.
+
+Now could you even tell me approximatly in which files I would have to look?
+
+And another question. Does the x2goclient know that an x2gouser exists
+on the server. Hopefully I only have to deal with the server side.
+
+Ralf
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004529.html">[X2Go-Dev] x2go with git submodules
+</A></li>
+	<LI>Next message: <A HREF="004535.html">[X2Go-Dev] x2go without root on server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4531">[ date ]</a>
+              <a href="thread.html#4531">[ thread ]</a>
+              <a href="subject.html#4531">[ subject ]</a>
+              <a href="author.html#4531">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

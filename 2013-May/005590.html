@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#204: Error starting an aborted session
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23204%3A%20Error%20starting%20an%20aborted%20session&In-Reply-To=%3Czarafa.518a1dcc.4c2f.77d2dbd7163e8492%40mail.int.lindix.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005583.html">
+   <LINK REL="Next"  HREF="005593.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#204: Error starting an aborted session</H1>
+    <B>Dick Kniep</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23204%3A%20Error%20starting%20an%20aborted%20session&In-Reply-To=%3Czarafa.518a1dcc.4c2f.77d2dbd7163e8492%40mail.int.lindix.nl%3E"
+       TITLE="[X2Go-Dev] Bug#204: Error starting an aborted session">dick at lindix.nl
+       </A><BR>
+    <I>Wed May  8 11:41:32 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005583.html">[X2Go-Dev] Bug#203: Waiting for keyboard to appear
+</A></li>
+        <LI>Next message: <A HREF="005593.html">[X2Go-Dev] Bug#206: When a user ends pyhoca-gui,	the session cannot be resumed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5590">[ date ]</a>
+              <a href="thread.html#5590">[ thread ]</a>
+              <a href="subject.html#5590">[ subject ]</a>
+              <a href="author.html#5590">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>package: x2go-agent
+Severity: severe
+Version: 0.4.0.1
+
+If a session is aborted because of a network problem, x2goagent does not end properly. Sometimes it does, most of the time it doesn't We are working with a ssh-proxy, maybe there is a cause. 
+
+Included is the log on the server for the user. As you can see at a certain moment it says &quot;nxagentBlockHandler: No application running. Closing the session.&quot; I don't know what causes this, it might be a segmentation fault in the application. However, it gets worse, because after this, it is impossible for the user to login again. The only way to end the session is by kill -9. After that the user can login again.......
+
+NXAGENT - Version 3.5.0
+
+Copyright (C) 2001, 2011 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Agent running with pid '32154'.
+Session: Starting session at 'Wed May  8 08:29:51 2013'.
+Info: Proxy running in server mode with pid '32154'.
+Info: Waiting for connection from 'localhost' on port '30001'.
+Info: Accepted connection from '127.0.0.1'.
+Info: Connection with remote proxy completed.
+Info: Using ADSL link parameters 512/24/1/0.
+Info: Using agent parameters 5000/10/50/0/0.
+Info: Using cache parameters 4/4096KB/8192KB/8192KB.
+Info: Using pack method '16m-jpeg-9' with session 'unix-kde-depth_17'.
+Info: Using ZLIB data compression 1/1/32.
+Info: Using ZLIB stream compression 4/4.
+Info: No suitable cache file found.
+Info: Listening to X11 connections on display ':50'.
+Info: Established X client connection.
+Info: Using shared memory parameters 1/1/0/0K.
+Info: Using alpha channel in render extension.
+Info: Not using local device configuration changes.
+keyboard file created
+SessionPath not defined
+Session: Session started at 'Wed May  8 08:29:58 2013'.
+I/O warning : failed to load external entity &quot;/etc/nx/keystroke.cfg&quot;
+nxagentBlockHandler: No application running. Closing the session.
+Session: Terminating session at 'Wed May  8 08:32:57 2013'.
+Info: Waiting the cleanup timeout to complete.
+Session: Session terminated at 'Wed May  8 08:32:58 2013'.
+
+
+
+
+
+Met vriendelijke groet,
+Dick Kniep
+Lindix BV
+tel. 036-5215580
+mob. 06-50991858
+</PRE>
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005583.html">[X2Go-Dev] Bug#203: Waiting for keyboard to appear
+</A></li>
+	<LI>Next message: <A HREF="005593.html">[X2Go-Dev] Bug#206: When a user ends pyhoca-gui,	the session cannot be resumed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5590">[ date ]</a>
+              <a href="thread.html#5590">[ thread ]</a>
+              <a href="subject.html#5590">[ subject ]</a>
+              <a href="author.html#5590">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

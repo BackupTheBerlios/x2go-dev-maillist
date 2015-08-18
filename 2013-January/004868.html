@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2384%3A%20Hardcoded%20-O3%20in%20CFLAGS&In-Reply-To=%3CCAJ0cceZ8_Cssbx0dYZnFnjOf87ULFv9L7Oyzj8owKjQgY0s_4Q%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004866.html">
+   <LINK REL="Next"  HREF="004869.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2384%3A%20Hardcoded%20-O3%20in%20CFLAGS&In-Reply-To=%3CCAJ0cceZ8_Cssbx0dYZnFnjOf87ULFv9L7Oyzj8owKjQgY0s_4Q%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS">siretart at gmail.com
+       </A><BR>
+    <I>Wed Jan  9 15:21:01 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004866.html">[X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS
+</A></li>
+        <LI>Next message: <A HREF="004869.html">[X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4868">[ date ]</a>
+              <a href="thread.html#4868">[ thread ]</a>
+              <a href="subject.html#4868">[ subject ]</a>
+              <a href="author.html#4868">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Jan 9, 2013 at 3:16 PM, Jan Engelhardt &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jengelh at inai.de</A>&gt; wrote:
+&gt;<i> On Wednesday 2013-01-09 01:00, Bernard Cafarelli wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i>Le Tue, 8 Jan 2013 17:07:12 +0100 (CET)
+</I>&gt;&gt;<i>Jan Engelhardt &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jengelh at inai.de</A>&gt; a &#233;crit:
+</I>&gt;&gt;&gt;<i> Why would autoreconf be rerun if you use ./configure CFLAGS=-O2
+</I>&gt;&gt;&gt;<i> CXXFLAGS=-O2?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>I meant, without first removing the &quot;-O3&quot; from configure.in (before
+</I>&gt;&gt;<i>autoreconf)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>With current configure.in, setting CXXFLAGS to &quot;-O2&quot; will give this:
+</I>&gt;&gt;<i>nxcomp $ autoreconf &amp;&amp; ./configure &amp;&amp; make
+</I>&gt;&gt;<i>[...]
+</I>&gt;&gt;<i>g++ -c -O2 -O3 -fno-rtti -fno-exceptions -I../nx-X11/exports/include
+</I>&gt;&gt;<i>-Wmissing-declarations -fPIC -DIN_ADDR_T=in_addr_t -DVERSION=\&quot;3.5.0\&quot;
+</I>&gt;&gt;<i>-DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot;
+</I>&gt;&gt;<i>-DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -Wall
+</I>&gt;&gt;<i>-Wpointer-arith   EncodeBuffer.cpp
+</I>&gt;<i>
+</I>&gt;<i> I tried the following, but it's not taking any effect. Must be some
+</I>&gt;<i> !@#$%^&amp; going on.
+</I>&gt;<i>
+</I>&gt;<i> &lt;&lt;&lt;&lt;
+</I>&gt;<i>
+</I>&gt;<i> Give user-specified CXXFLAGS/CFLAGS/LDFLAGS/LIBS higher precedence.
+</I>&gt;<i>
+</I>&gt;<i> ---
+</I>&gt;<i>  nxcomp/Makefile.in     |    6 ++----
+</I>&gt;<i>  nxcompext/Makefile.in  |   14 +++++++-------
+</I>&gt;<i>  nxcompshad/Makefile.in |    5 ++---
+</I>&gt;<i>  nxproxy/Makefile.in    |    4 ++--
+</I>&gt;<i>  4 files changed, 13 insertions(+), 16 deletions(-)
+</I>&gt;<i>
+</I>&gt;<i> Index: nx-libs-3.5.0.17/nxcomp/Makefile.in
+</I>&gt;<i> ===================================================================
+</I>&gt;<i> --- nx-libs-3.5.0.17.orig/nxcomp/Makefile.in
+</I>&gt;<i> +++ nx-libs-3.5.0.17/nxcomp/Makefile.in
+</I>&gt;<i> @@ -36,8 +36,7 @@ LIBVERSION=@LIBVERSION@
+</I>&gt;<i>  #
+</I>&gt;<i>
+</I>&gt;<i>  CXX         = @CXX@
+</I>&gt;<i> -CXXFLAGS    = @CXXFLAGS@ @X_CFLAGS@ @DEFS@ \
+</I>&gt;<i> -              -Wall -Wpointer-arith
+</I>&gt;<i> +CXXFLAGS    = @X_CFLAGS@ @DEFS@ -Wall -Wpointer-arith @CXXFLAGS@
+</I>&gt;<i>  CXXINCLUDES =
+</I>&gt;<i>  CXXDEFINES  =
+</I>&gt;<i>
+</I>&gt;<i> @@ -46,8 +45,7 @@ CXXDEFINES  =
+</I>&gt;<i>  #
+</I>&gt;<i>
+</I>&gt;<i>  CC          = @CC@
+</I>&gt;<i> -CCFLAGS     = @CFLAGS@ @X_CFLAGS@ @DEFS@ \
+</I>&gt;<i> -              -Wall -Wpointer-arith
+</I>&gt;<i> +CCFLAGS     = @X_CFLAGS@ @DEFS@ -Wall -Wpointer-arith @CFLAGS@
+</I>&gt;<i>  CCINCLUDES  =
+</I>&gt;<i>  CCDEFINES   =
+</I>&gt;<i>
+</I>&gt;<i> Index: nx-libs-3.5.0.17/nxcompext/Makefile.in
+</I>&gt;<i> ===================================================================
+</I>&gt;<i> --- nx-libs-3.5.0.17.orig/nxcompext/Makefile.in
+</I>&gt;<i> +++ nx-libs-3.5.0.17/nxcompext/Makefile.in
+</I>&gt;<i> @@ -28,26 +28,26 @@ LIBVERSION=@LIBVERSION@
+</I>&gt;<i>  #
+</I>&gt;<i>
+</I>&gt;<i>  CXX         = @CXX@
+</I>&gt;<i> -CXXFLAGS    = @CXXFLAGS@ @X_CFLAGS@ @DEFS@ \
+</I>&gt;<i> +CXXFLAGS    = @X_CFLAGS@ @DEFS@ \
+</I>&gt;<i>                -Wall -Wpointer-arith -Wstrict-prototypes -Wmissing-prototypes \
+</I>&gt;<i> -              -Wmissing-declarations -Wnested-externs
+</I>&gt;<i> +              -Wmissing-declarations -Wnested-externs @CXXFLAGS@
+</I>&gt;<i>  CXXINCLUDES = -I. -I../nxcomp
+</I>&gt;<i>  CXXDEFINES  =
+</I>&gt;<i>
+</I>&gt;<i>  CC          = @CC@
+</I>&gt;<i> -CCFLAGS     = @CFLAGS@ @X_CFLAGS@ @DEFS@ \
+</I>&gt;<i> +CCFLAGS     = @X_CFLAGS@ @DEFS@ \
+</I>&gt;<i>                -Wall -Wpointer-arith -Wstrict-prototypes -Wmissing-prototypes \
+</I>&gt;<i> -              -Wmissing-declarations -Wnested-externs
+</I>&gt;<i> +              -Wmissing-declarations -Wnested-externs @CFLAGS@
+</I>&gt;<i>  CCINCLUDES  = -I. -I../nxcomp
+</I>&gt;<i>  CCDEFINES   =
+</I>&gt;<i>
+</I>&gt;<i> -LDFLAGS     = @LDFLAGS@ -L../nxcomp
+</I>&gt;<i> -LIBS        = @LIBS@ -lz -lNX_X11 -lXcomp
+</I>&gt;<i> +LDFLAGS     = -L../nxcomp @LDFLAGS@
+</I>&gt;<i> +LIBS        = -lz -lNX_X11 -lXcomp @LIBS@
+</I>&gt;<i>
+</I>&gt;<i>  #
+</I>&gt;<i>  # Only if THREADS is defined
+</I>&gt;<i>  #
+</I>&gt;<i> -# LIBS = @LIBS@ -lz -ljpeg -lpthread -lNX_X11 -lXcomp
+</I>&gt;<i> +# LIBS = -lz -ljpeg -lpthread -lNX_X11 -lXcomp @LIBS@
+</I>&gt;<i>  #
+</I>&gt;<i>
+</I>&gt;<i>  srcdir      = @srcdir@
+</I>&gt;<i> Index: nx-libs-3.5.0.17/nxcompshad/Makefile.in
+</I>&gt;<i> ===================================================================
+</I>&gt;<i> --- nx-libs-3.5.0.17.orig/nxcompshad/Makefile.in
+</I>&gt;<i> +++ nx-libs-3.5.0.17/nxcompshad/Makefile.in
+</I>&gt;<i> @@ -31,8 +31,7 @@ LIBVERSION=@LIBVERSION@
+</I>&gt;<i>  #
+</I>&gt;<i>
+</I>&gt;<i>  CXX         = @CXX@
+</I>&gt;<i> -CXXFLAGS    = @CXXFLAGS@ @X_CFLAGS@ @DEFS@ \
+</I>&gt;<i> -              -Wall -Wpointer-arith
+</I>&gt;<i> +CXXFLAGS    = @X_CFLAGS@ @DEFS@ -Wall -Wpointer-arith @CXXFLAGS@
+</I>&gt;<i>  CXXINCLUDES =
+</I>&gt;<i>  CXXDEFINES  =
+</I>&gt;<i>
+</I>&gt;<i> @@ -48,7 +47,7 @@ CCINCLUDES  =
+</I>&gt;<i>  CCDEFINES   =
+</I>&gt;<i>
+</I>&gt;<i>  LDFLAGS     = @LDFLAGS@
+</I>&gt;<i> -LIBS        = @LIBS@ -lNX_X11
+</I>&gt;<i> +LIBS        = -lNX_X11 @LIBS@
+</I>&gt;<i>
+</I>&gt;<i>  #
+</I>&gt;<i>  # Only if THREADS is defined.
+</I>&gt;<i> Index: nx-libs-3.5.0.17/nxproxy/Makefile.in
+</I>&gt;<i> ===================================================================
+</I>&gt;<i> --- nx-libs-3.5.0.17.orig/nxproxy/Makefile.in
+</I>&gt;<i> +++ nx-libs-3.5.0.17/nxproxy/Makefile.in
+</I>&gt;<i> @@ -11,9 +11,9 @@ LIBVERSION=@LIBVERSION@
+</I>&gt;<i>  # -Wredundant-decls
+</I>&gt;<i>  #
+</I>&gt;<i>  CXX      = @CXX@
+</I>&gt;<i> -CXXFLAGS = @CXXFLAGS@ @X_CFLAGS@ @DEFS@ \
+</I>&gt;<i> +CXXFLAGS = @X_CFLAGS@ @DEFS@ \
+</I>&gt;<i>             -Wall -Wpointer-arith -Wstrict-prototypes -Wmissing-prototypes \
+</I>&gt;<i> -           -Wmissing-declarations -Wnested-externs
+</I>&gt;<i> +           -Wmissing-declarations -Wnested-externs @CXXFLAGS@
+</I>&gt;<i>
+</I>&gt;<i>  CXXINCLUDES = -I. -I../nxcomp
+</I>
+
+AFAIUI, this is not a fix. Instead of replacing the hardcoded values,
+this patch ensures that all options end behind the hardcoded values.
+This makes it impossible to drop compiler flags that are specified
+within.
+
+This may be fair when your goal is to only change the optimization
+level, but may be insufficient when the goal is a hardened build.
+
+-- 
+regards,
+    Reinhard
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004866.html">[X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS
+</A></li>
+	<LI>Next message: <A HREF="004869.html">[X2Go-Dev] Bug#84: Hardcoded -O3 in CFLAGS
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4868">[ date ]</a>
+              <a href="thread.html#4868">[ thread ]</a>
+              <a href="subject.html#4868">[ subject ]</a>
+              <a href="author.html#4868">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Font colour in x2goclient in case of dark system theme
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Font%20colour%20in%20x2goclient%20in%20case%20of%20dark%20system%0A%20theme&In-Reply-To=%3C1329498781.6479.92.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003475.html">
+   <LINK REL="Next"  HREF="003505.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Font colour in x2goclient in case of dark system theme</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Font%20colour%20in%20x2goclient%20in%20case%20of%20dark%20system%0A%20theme&In-Reply-To=%3C1329498781.6479.92.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2Go-Dev] Font colour in x2goclient in case of dark system theme">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Feb 17 18:13:01 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003475.html">[X2Go-Dev] Font colour in x2goclient in case of dark system theme
+</A></li>
+        <LI>Next message: <A HREF="003505.html">[X2Go-Dev] Font colour in x2goclient in case of dark system theme
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3476">[ date ]</a>
+              <a href="thread.html#3476">[ thread ]</a>
+              <a href="subject.html#3476">[ subject ]</a>
+              <a href="author.html#3476">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2012-02-17 at 16:33 +0100, Milan Kn&#237;&#382;ek wrote:
+&gt;<i> Hello,
+</I>&gt;<i> 
+</I>&gt;<i> the x2goclient has hardcoded light appearance for the various widgets
+</I>&gt;<i> (main window, session list, login window, progress of logging in),
+</I>&gt;<i> which does not work well with dark system theme: the white font is not
+</I>&gt;<i> distinquishable from the background.
+</I>&gt;<i> 
+</I>&gt;<i> I have checked the Qt documentation and there seems to be more ways
+</I>&gt;<i> on how to accomplish that. So far, I have used three various methods:
+</I>&gt;<i> 
+</I>&gt;<i>   labelname-&gt;setStyleSheet(&quot;QLabel { color : black; }&quot;);
+</I>&gt;<i> 
+</I>&gt;<i> or
+</I>&gt;<i> 
+</I>&gt;<i>   cpal.setColor ( QPalette::Text, Qt::black);
+</I>&gt;<i> 
+</I>&gt;<i> or
+</I>&gt;<i> 
+</I>&gt;<i>   QString fonttemplate=(&quot;&lt;font color='black'&gt;%1&lt;/font&gt;&quot;);
+</I>&gt;<i>   nameLabel-&gt;setTextFormat ( Qt::RichText );
+</I>&gt;<i>   nameLabel-&gt;setText ( fonttemplate.arg( text ) );
+</I>&gt;<i> 
+</I>&gt;<i> which kind of works, though it requires to be written repeatedly
+</I>&gt;<i> throughout the code (sessionbutton.cpp, onmainwindow.cpp,
+</I>&gt;<i> onmainwindow_part4.cpp) for individual widgets and so far I am not able
+</I>&gt;<i> to use a single approach for all widget types (QLabel, QMenu,
+</I>&gt;<i> QPushButton, etc.). The first method seems to be the most general and
+</I>&gt;<i> simplest, however.
+</I>&gt;<i> 
+</I>&gt;<i> Is there a way to set application-wide font colour for anything
+</I>&gt;<i> that appears in the widgets, but not in app menu and other windows
+</I>&gt;<i> (Settings, Session Settings, etc.), because these are styled with the
+</I>&gt;<i> system-wide dark theme?
+</I>&gt;<i> 
+</I>&gt;<i> Where in the code?
+</I>&gt;<i> 
+</I>&gt;<i> P.S. Sorry for possibly stupid question, but since I am not a coder, it
+</I>&gt;<i> is rather a trial &amp; error approach and a lot of googling...
+</I>&lt;snip&gt;
+I don't think it is stupid at all.  I have found myself sometimes
+frustrated at white text boxes with no borders on white backgrounds
+making it almost impossible to see where to click to enter the field.
+Thanks for bringing it to the fore - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003475.html">[X2Go-Dev] Font colour in x2goclient in case of dark system theme
+</A></li>
+	<LI>Next message: <A HREF="003505.html">[X2Go-Dev] Font colour in x2goclient in case of dark system theme
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3476">[ date ]</a>
+              <a href="thread.html#3476">[ thread ]</a>
+              <a href="subject.html#3476">[ subject ]</a>
+              <a href="author.html#3476">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

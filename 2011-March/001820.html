@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Looking%20for%20information%20on%20the%20future%20of%20x2go%20%28and%20some%0A%20other%20x2go-related%20stuff%29&In-Reply-To=%3C4D6E3E27.8080406%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001841.html">
+   <LINK REL="Next"  HREF="001821.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Looking%20for%20information%20on%20the%20future%20of%20x2go%20%28and%20some%0A%20other%20x2go-related%20stuff%29&In-Reply-To=%3C4D6E3E27.8080406%40stefanbaur.de%3E"
+       TITLE="[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Wed Mar  2 13:55:03 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001841.html">[X2go-dev] PyHoca and the web
+</A></li>
+        <LI>Next message: <A HREF="001821.html">[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1820">[ date ]</a>
+              <a href="thread.html#1820">[ thread ]</a>
+              <a href="subject.html#1820">[ subject ]</a>
+              <a href="author.html#1820">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi list,
+
+I have been &quot;playing&quot; with x2go for a while and it looks very promising 
+- a worthy successor to Nomachine NX - though I am unsure about a few 
+things - maybe someone here on this list could provide some information?
+
+My questions are:
+
+1) With the recent announcement of Nomachine going closed source, what 
+does the future of x2go look like?
+1a) As far as I understand, x2go uses parts of the GPL'ed Nomachine 
+code, which will remain available in its current state due to the GPL, 
+but will not be maintained by Nomachine any more. Are the x2go 
+developers willing - and able - to maintain this part of the code, in 
+case it requires maintenance and / or security patches?
+1b) Or are you going to do a re-write of the Nomachine code currently in 
+use?
+1c) FreeNX seems to be a dying project (correct me if I'm wrong), since 
+their lead developer Fabian Franz has left the project (or at least 
+became inactive) quite a while ago - There are no Debian packages 
+available any more, the latest Ubuntu packages are, umm, &quot;flaky&quot;, and 
+there hasn't been a new upstream release from the FreeNX team in a few 
+years, unless I'm totally mistaken.
+ From what I found out about x2go, the guy in the lead is Heinz-M. 
+Graesing, who is working full-time as a system administrator and 
+maintaining x2go purely in his spare time (again, correct me if I'm 
+wrong). I would hate to see x2go going the FreeNX route once something 
+happens to Heinz that leaves him unable to maintain the project. So I 
+was wondering if there is a sufficient amount of other people backing 
+the project that the loss of the lead developer (be it due to increased 
+workload at his day job, health issues, or simply loss of interest) can 
+be dealt with, should the situation arise? If that isn't the case right 
+now, I would like to suggest making plans for it asap - the best time to 
+install a fire escape ladder is before the house has a chance to start 
+burning. ;-)
+
+2) I read that Univention is using x2go for their desktop virtualization 
+(see 
+&lt;<A HREF="http://wiki.univention.de/index.php?title=UCS_Desktop_Virtualization_Services">http://wiki.univention.de/index.php?title=UCS_Desktop_Virtualization_Services</A>&gt;). 
+Are they active supporters of x2go (i.e. donating money or manpower to 
+the project)?
+(I ask because I'm hoping that a company planning a large-scale 
+commerial deployment like Univention seems to be doing would have an 
+interest in the x2go project staying alive and expanding.)
+
+3) I heard of legal issues regarding the project name and some other 
+stuff. That was back in December. Since the project is still named x2go, 
+and Univention is openly using this name, I was wondering if these 
+issues have been resolved?
+
+4) Browsing the list archive, I saw that you are planning to provide 
+packages for sid and wheezy via the official Debian repositories - I 
+understand that it is too late to add packages for squeeze to the 
+official Debian repositories, now that squeeze has been released, but 
+will you provide packages for squeeze via your own repository? Currently 
+it only shows packages for lenny (regarding Debian; I'm aware that you 
+are providing packages for other Debian-based Distros as well).
+
+5) I understand that you need some sort of full-screen application 
+(similar to xdm/kdm/gdm) when running in thin client mode, and that this 
+is why the current x2go client looks the way it looks, but I would 
+really like to see a client that doesn't take up as much screen space, 
+especially on Windows.
+Would it be possible to add an option for a &quot;smaller&quot; login window, 
+similar to the one used by the current NX client:
+Provide text entry fields for username and password, and a drop-down 
+list for the session name; when a session name is given on the command 
+line, only show username and password fields; when the session file was 
+stored with a password, directly start the login process?
+
+(The reason why I'm asking for this is that I see a use case where x2go 
+is used in rootless mode to allow access to single applications, and the 
+big fullscreen thingie is kind of annoying to the users that are 
+currently used to the NX client.)
+
+Regarding question 5, I cannot provide patches myself, as I am not a 
+coder, but I would be willing to make a financial contribution either to 
+the x2go project, if it is possible for them to accept such 
+contributions, or to the coder providing the necessary patches (as long 
+as the price quote seems reasonable and affordable to me) - if that 
+helps motivate you to code. ;-)
+
+6) Is there any way to get sound working (especially in rootless mode, 
+say, for Flash-based websites displayed in a remote Firefox/Iceweasel 
+window) with Debian lenny or squeeze on the server side, and Windows on 
+the client side? I've seen a few messages concerning sound issues in the 
+list archives, but I'm not sure if I made a mistake during my test 
+installation or if there is a general problem and I can stop banging my 
+head against the wall until the developers declare that the issue is fixed.
+
+Kind Regards,
+Stefan Baur
+
+PS: I really like the idea of how you deal with printing, as opposed to 
+the Nomachine approach - I had planned to implement something similar 
+before, when I hadn't heard of x2go and was stuck with Nomachine, but 
+failed due to my lack of coding skills and time.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110302/e9224411/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110302/e9224411/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001841.html">[X2go-dev] PyHoca and the web
+</A></li>
+	<LI>Next message: <A HREF="001821.html">[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1820">[ date ]</a>
+              <a href="thread.html#1820">[ thread ]</a>
+              <a href="subject.html#1820">[ subject ]</a>
+              <a href="author.html#1820">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

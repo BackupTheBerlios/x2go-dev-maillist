@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Starting to get x2go into Ubuntu Oneiric
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Starting%20to%20get%20x2go%20into%20Ubuntu%20Oneiric&In-Reply-To=%3C1305813379.28285.17.camel%40castiana.lan.sherb.stgraber.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002216.html">
+   <LINK REL="Next"  HREF="002219.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Starting to get x2go into Ubuntu Oneiric</H1>
+    <B>St&#233;phane Graber</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Starting%20to%20get%20x2go%20into%20Ubuntu%20Oneiric&In-Reply-To=%3C1305813379.28285.17.camel%40castiana.lan.sherb.stgraber.net%3E"
+       TITLE="[X2go-dev] Starting to get x2go into Ubuntu Oneiric">stgraber at ubuntu.com
+       </A><BR>
+    <I>Thu May 19 15:56:19 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002216.html">[X2go-dev] x2goserver-one, x2goserver-home
+</A></li>
+        <LI>Next message: <A HREF="002219.html">[X2go-dev] Starting to get x2go into Ubuntu Oneiric
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2218">[ date ]</a>
+              <a href="thread.html#2218">[ thread ]</a>
+              <a href="subject.html#2218">[ subject ]</a>
+              <a href="author.html#2218">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+Last week in Budapest at the Ubuntu Developer Summit, we discussed the
+next steps for WebLive[1] in Ubuntu.
+
+One of the things we identified as really important is to move away from
+FreeNX and use X2go instead as it's a much more active project.
+
+Last week I already got our application servers running with both FreeNX
+and X2go and I have some experimental integration code for the Ubuntu
+Software Center that I'll continue working on over the next few weeks.
+
+One of the things we need to do before we can use x2go by default for
+WebLive is getting it into the Ubuntu archive and at least for the
+client part into the &quot;main&quot; component (supported set of packages).
+
+Today, I'm working on updating our nxproxy, libxcomp and libxcompshad
+packages to their latest upstream releases (3.5.0), merging the
+excellent packaging work the x2go team has been doing.
+
+Next on my list will be to get python-x2go into the Ubuntu archive as
+that's what we'll be using for our client integration (Ubuntu Software
+Center is in python) and finally I'll be working on getting the
+x2goserver itself in the repository (lower priority than the rest) so we
+don't need a PPA to build our servers.
+
+I hope to have most packages built for Oneiric in my test PPA
+(<A HREF="https://launchpad.net/~stgraber/+archive/experimental">https://launchpad.net/~stgraber/+archive/experimental</A>) so I can do some
+tests to make sure these don't break anything (including FreeNX/qtnx)
+and if everything looks good, I'll be pushing these into the archive
+later this week.
+
+Once I'm done and everything works for me, I'll be forwarding the list
+of packaging changes I had to do (if any) so we can ensure your
+dailybuilds and the &quot;official&quot; Ubuntu packages are in sync.
+
+Thanks for the great work and looking forward to working more with you.
+
+
+[1] <A HREF="https://launchpad.net/weblive">https://launchpad.net/weblive</A> <A HREF="http://www.edubuntu.org/weblive">http://www.edubuntu.org/weblive</A> and
+<A HREF="http://www.stgraber.org/category/weblive/">http://www.stgraber.org/category/weblive/</A>
+
+
+PS: Cced are Michael Vogt (Software Center), Scott Moser (AWSTrial) and
+Jonathan Carter (LTSP/MOTU)
+
+-- 
+St&#233;phane Graber
+Ubuntu developer
+<A HREF="http://www.ubuntu.com">http://www.ubuntu.com</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110519/d045725b/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110519/d045725b/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002216.html">[X2go-dev] x2goserver-one, x2goserver-home
+</A></li>
+	<LI>Next message: <A HREF="002219.html">[X2go-dev] Starting to get x2go into Ubuntu Oneiric
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2218">[ date ]</a>
+              <a href="thread.html#2218">[ thread ]</a>
+              <a href="subject.html#2218">[ subject ]</a>
+              <a href="author.html#2218">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

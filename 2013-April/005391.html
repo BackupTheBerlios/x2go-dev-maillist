@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#163: [packaging-Debian] x2goserver should depend on	X11 font utilities
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23163%3A%20%5Bpackaging-Debian%5D%20x2goserver%20should%20depend%20on%0A%09X11%20font%20utilities&In-Reply-To=%3CCADOzELp0t7spQGgjriffOCqv0LQVE9V_um-xWNnpAJPNm%3DReoQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005414.html">
+   <LINK REL="Next"  HREF="005392.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#163: [packaging-Debian] x2goserver should depend on	X11 font utilities</H1>
+    <B>D&#225;niel Kondor</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23163%3A%20%5Bpackaging-Debian%5D%20x2goserver%20should%20depend%20on%0A%09X11%20font%20utilities&In-Reply-To=%3CCADOzELp0t7spQGgjriffOCqv0LQVE9V_um-xWNnpAJPNm%3DReoQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#163: [packaging-Debian] x2goserver should depend on	X11 font utilities">kondor.dani at gmail.com
+       </A><BR>
+    <I>Mon Apr  8 17:39:38 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005414.html">[X2Go-Dev] Processed: Re: Bug#162: Shares are not shown correctly in pyhoca-gui
+</A></li>
+        <LI>Next message: <A HREF="005392.html">[X2Go-Dev] Bug#163: Bug#163: [packaging-Debian] x2goserver should	depend on X11 font utilities
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5391">[ date ]</a>
+              <a href="thread.html#5391">[ thread ]</a>
+              <a href="subject.html#5391">[ subject ]</a>
+              <a href="author.html#5391">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goserver
+Version: 4.0.0.1-0~x2go1+wheezy~main~648~build1
+
+Hi,
+
+we recently installed the X2Go server to a headless server machine, which
+does not have a normal X server installed. After installing the x2goserver
+package and required dependencies we could not log in to the machine, the
+relevant error in the logfile ('/tmp/.x2go-*/*.log) was:
+
+Error: Aborting session with 'Could not open default font 'fixed''.
+
+After manually installing the following (X server font handling related)
+Debian packages, the problem was fixed: fontconfig, libxfont1,
+xfonts-base, xfonts-encodings, xfonts-utils.
+
+I suppose these packages should be a dependency of x2goserver?
+
+The server has Debian Wheezy installed, the x2go server package was
+obtained from the X2Go Debian repository:
+'<A HREF="http://packages.x2go.org/debian/wheezy/main">http://packages.x2go.org/debian/wheezy/main</A> amd64 Packages'.
+
+Regards:
+
+D&#225;niel Kondor
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130408/66d4b67d/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130408/66d4b67d/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005414.html">[X2Go-Dev] Processed: Re: Bug#162: Shares are not shown correctly in pyhoca-gui
+</A></li>
+	<LI>Next message: <A HREF="005392.html">[X2Go-Dev] Bug#163: Bug#163: [packaging-Debian] x2goserver should	depend on X11 font utilities
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5391">[ date ]</a>
+              <a href="thread.html#5391">[ thread ]</a>
+              <a href="subject.html#5391">[ subject ]</a>
+              <a href="author.html#5391">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

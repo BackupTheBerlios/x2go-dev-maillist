@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#387: use dbus-launch to start recent gnome-terminal	applications
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23387%3A%20use%20dbus-launch%20to%20start%20recent%20gnome-terminal%0A%09applications&In-Reply-To=%3C20131230131941.Horde.xYo5w5Xnm7bsANt05J3sSg1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006762.html">
+   <LINK REL="Next"  HREF="006764.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#387: use dbus-launch to start recent gnome-terminal	applications</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23387%3A%20use%20dbus-launch%20to%20start%20recent%20gnome-terminal%0A%09applications&In-Reply-To=%3C20131230131941.Horde.xYo5w5Xnm7bsANt05J3sSg1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#387: use dbus-launch to start recent gnome-terminal	applications">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Dec 30 14:19:41 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006762.html">[X2Go-Dev] Bug#386: Make automatic DPI setting available for all	platforms X2Go Client builds for
+</A></li>
+        <LI>Next message: <A HREF="006764.html">[X2Go-Dev] Bug#389: Spelling/English language syntax patches to	x2goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6763">[ date ]</a>
+              <a href="thread.html#6763">[ thread ]</a>
+              <a href="subject.html#6763">[ subject ]</a>
+              <a href="author.html#6763">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goserver
+Severity: minor
+Version: 4.0.1.9
+
+TL;DR: when gnome-terminal exits, it takes a while until X2Go Client  
+returns back to the login screen. A fix could be to launch  
+gnome-terminal with dbus-launch.
+
+Mike
+
+Taken from a private / German e-Mail conversation on that issue...
+
+&quot;&quot;&quot;
+&gt;&gt;&gt;<i> * Wenn ich nur eine Terminalverbindung &#246;ffne, wie kann ich dann die
+</I>&gt;&gt;&gt;<i>   Sitzung beenden? Wenn ich das Terminal schlie&#223;e bleibt die Sitzung
+</I>&gt;&gt;&gt;<i>   weiter offen und ich kann in dieser Sitzung auch kein neues Terminal
+</I>&gt;&gt;&gt;<i>   &#246;ffnen.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Konsole und GNOME-Terminal ab GNOME v3.8 forken leider beim Start  
+</I>&gt;&gt;<i> direkt in den Hintergrund. Nach einiger Zeit erkennt der  
+</I>&gt;&gt;<i> unterliegende X-Server (x2goagent), dass kein X-Client mehr aktiv  
+</I>&gt;&gt;<i> ist und dann beendet er sich selbst. Diese Wartezeit liegt bei ca.  
+</I>&gt;&gt;<i> 30sec.
+</I>&gt;<i> In einem kurzen Test auf Ubuntu 13.10 hat &quot;gnome-terminal  
+</I>&gt;<i> --disable-factory&quot; gegen das forken geholfen. Oder der Aufruf mit  
+</I>&gt;<i> &quot;dbus-launch gnome-terminal&quot; :-)
+</I>&gt;<i>
+</I>&gt;<i> Etwas mehr Testen hat aber gezeigt, dass das Forken gar nicht das  
+</I>&gt;<i> eigentliche Problem ist sondern der dbus-launch der da noch im  
+</I>&gt;<i> Hintergrund passiert. Der H&#228;lt z.B. auch eine SSH Sitzung offen.  
+</I>&gt;<i> Einfacher Test: ssh &lt;remote-host&gt; und mit ~# die Connections  
+</I>&gt;<i> checken. Dann gnome-terminal aufrufen und beenden und nochmal mit ~#  
+</I>&gt;<i> die Connections checken. Bei mir waren dann noch 2 Connections da  
+</I>&gt;<i> die ein netstat -tpn auf dbus-launch zur&#252;ckf&#252;hrt.
+</I>&gt;<i>
+</I>&gt;<i> Vielleicht m&#252;sst Ihr einfach das Terminal mit Hilfe von dbus-launch  
+</I>&gt;<i> starten? Ist ja eh korrekter, weil dann die Remote Session einen  
+</I>&gt;<i> eigenen DBus hat. Und wenn das Terminal sich beendet, dann ist auch  
+</I>&gt;<i> der dbus weg.
+</I>&quot;&quot;&quot;
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131230/0e8bbfb2/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131230/0e8bbfb2/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006762.html">[X2Go-Dev] Bug#386: Make automatic DPI setting available for all	platforms X2Go Client builds for
+</A></li>
+	<LI>Next message: <A HREF="006764.html">[X2Go-Dev] Bug#389: Spelling/English language syntax patches to	x2goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6763">[ date ]</a>
+              <a href="thread.html#6763">[ thread ]</a>
+              <a href="subject.html#6763">[ subject ]</a>
+              <a href="author.html#6763">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

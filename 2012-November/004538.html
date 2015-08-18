@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2go without root on server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20without%20root%20on%20server&In-Reply-To=%3C509DB4F0.9080904%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004537.html">
+   <LINK REL="Next"  HREF="004540.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2go without root on server</H1>
+    <B>Ralf Hemmecke</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20without%20root%20on%20server&In-Reply-To=%3C509DB4F0.9080904%40gmail.com%3E"
+       TITLE="[X2Go-Dev] x2go without root on server">hemmecke at gmail.com
+       </A><BR>
+    <I>Sat Nov 10 02:59:12 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004537.html">[X2Go-Dev] x2go without root on server
+</A></li>
+        <LI>Next message: <A HREF="004540.html">[X2Go-Dev] x2go without root on server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4538">[ date ]</a>
+              <a href="thread.html#4538">[ thread ]</a>
+              <a href="subject.html#4538">[ subject ]</a>
+              <a href="author.html#4538">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> If you want to provide a patch, then you have to handle the Perl module
+</I>&gt;<i> based code in the master branch, I guess. However, this is in the middle
+</I>&gt;<i> of transition, currently.
+</I>
+Is master in a working state or temporarily broken? I'd rather like
+rebasing my code on top of master than building on soon-to-be-obsolete code.
+
+In what time scale do you expect to be finished with your refactoring?
+
+&gt;<i> No configure script, yet!!!
+</I>
+&gt;&gt;<i> ? The INSTALL file in that directory doesn't say something about
+</I>&gt;&gt;<i> &quot;configure&quot;, but that's probably because it refers to the enduser that
+</I>&gt;&gt;<i> extracts x2goserver from a tar.gz file and not from the git repository.
+</I>&gt;<i> 
+</I>&gt;<i> The enduser hopefully can install X2Go server from one of the available
+</I>&gt;<i> distro archives...
+</I>
+Installing via distro mechanisms requires root priviledges. Userspace
+installation must certainly be done via &quot;configure --prefix=... &amp;&amp; make
+&amp;&amp; make install&quot;.
+
+If ever I come that far than the behaviour for the current (root)
+installation shouldn't be in any way any different.
+
+&gt;<i> If the configure file works for system-wide installations, then yes.
+</I>
+Well, that goes without saying.
+
+&gt;<i> I guess, that you are aware that you have to test both cases (user space
+</I>&gt;<i> X2Go and system-wide X2Go).
+</I>
+What do you mean by &quot;test&quot;? I haven't yet found that 'make check' would
+be available inside the x2goserver directory.
+
+Ralf
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004537.html">[X2Go-Dev] x2go without root on server
+</A></li>
+	<LI>Next message: <A HREF="004540.html">[X2Go-Dev] x2go without root on server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4538">[ date ]</a>
+              <a href="thread.html#4538">[ thread ]</a>
+              <a href="subject.html#4538">[ subject ]</a>
+              <a href="author.html#4538">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

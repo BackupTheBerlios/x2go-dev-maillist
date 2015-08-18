@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Fonts to big or to small
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Fonts%20to%20big%20or%20to%20small&In-Reply-To=%3C4A890059.3080608%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000081.html">
+   <LINK REL="Next"  HREF="000083.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Fonts to big or to small</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Fonts%20to%20big%20or%20to%20small&In-Reply-To=%3C4A890059.3080608%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] Fonts to big or to small">paul at vandervlis.nl
+       </A><BR>
+    <I>Mon Aug 17 09:01:45 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000081.html">[X2go-dev] Fonts to big or to small
+</A></li>
+        <LI>Next message: <A HREF="000083.html">[X2go-dev] Bug-tracker
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#82">[ date ]</a>
+              <a href="thread.html#82">[ thread ]</a>
+              <a href="subject.html#82">[ subject ]</a>
+              <a href="author.html#82">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Oleksandr Shneyder schreef:
+&gt;<i> Paul van der Vlis schrieb:
+</I>&gt;&gt;<i> Hello,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I still have the problem that my fonts are sometimes to big or to small
+</I>&gt;&gt;<i> in the X2go session. Even with the newest client and server.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I found this article about this problem:
+</I>&gt;&gt;<i> <A HREF="http://www.nomachine.com/ar/view.php?ar_id=AR04C00198">http://www.nomachine.com/ar/view.php?ar_id=AR04C00198</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> And this seems to be true. In the x2go session I see 75x75 dots per
+</I>&gt;&gt;<i> inch, and in my normal session I see 96x96 dots per inch.
+</I>&gt;&gt;<i> I used &quot;xdpyinfo | grep resolution&quot; to get this info.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In the article they have a link to a solution, they say to use a
+</I>&gt;&gt;<i> variable:  DEFAULT_X_DPI = &quot;96&quot;, but this is for the Nomachine software,
+</I>&gt;&gt;<i> not for X2go.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I had the same problem in FreeNX. There I found a solution.
+</I>&gt;&gt;<i> In the configfile I found this:
+</I>&gt;&gt;<i> --------
+</I>&gt;&gt;<i> # Extra options sent to the different nx agents. See !M documentation
+</I>&gt;&gt;<i> # for examples of useful parameters.
+</I>&gt;&gt;<i> AGENT_EXTRA_OPTIONS_X=&quot;-nolisten tcp&quot;
+</I>&gt;&gt;<i> --------
+</I>&gt;&gt;<i> I've changed this to:
+</I>&gt;&gt;<i> AGENT_EXTRA_OPTIONS_X=&quot;-nolisten tcp -dpi 96&quot;
+</I>&gt;&gt;<i> And now my DPI-porblems are gone in FreeNX.
+</I>&gt;&gt;<i> But this does not help for X2go.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Is it possible to give agent-options for X2go?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Or do I need to hack /usr/bin/x2gostartagent?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> With regards,
+</I>&gt;&gt;<i> Paul van der Vlis.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i> 
+</I>&gt;<i> Hello,
+</I>&gt;<i> I'll see if I can integrate this feature in the next version of
+</I>&gt;<i> client/server. Right now you can try to specify this option in
+</I>&gt;<i> x2gostartagent line 171
+</I>
+Seems to work ;-)
+
+Direct after &quot;x2goagent&quot; I've added &quot;-dpi 96&quot;.
+-------
+171c171
+&lt; LD_LIBRARY_PATH=$X2GO_LIB x2goagent  -$SESSION_TYPE -geometry
+${X2GO_GEOMETRY} -name &quot;X2GO-${SESSION_NAME}&quot;  ${NX_AGENT}
+2&gt;${SESSION_DIR}/session.log &amp;
+---
+&gt;<i> LD_LIBRARY_PATH=$X2GO_LIB x2goagent -dpi 96 -$SESSION_TYPE -geometry
+</I>${X2GO_GEOMETRY}  -name &quot;X2GO-${SESSION_NAME}&quot;  ${NX_AGENT}
+2&gt;${SESSION_DIR}/session.log &amp;
+184c184
+--------
+
+Nice to see how good documented x2goagent is. I did:
+/usr/lib/x2go/x2goagent -h
+
+Maybe it's a good idea to use a default of 96 dpi like they tell here:
+<A HREF="http://www.scanline.ca/dpi/">http://www.scanline.ca/dpi/</A>
+Or are there devices what really use 75/75? (Maemo?)
+
+with regards,
+Paul van der Vlis.
+
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000081.html">[X2go-dev] Fonts to big or to small
+</A></li>
+	<LI>Next message: <A HREF="000083.html">[X2go-dev] Bug-tracker
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#82">[ date ]</a>
+              <a href="thread.html#82">[ thread ]</a>
+              <a href="subject.html#82">[ subject ]</a>
+              <a href="author.html#82">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

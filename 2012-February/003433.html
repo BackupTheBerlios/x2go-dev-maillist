@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20xauth%20file%20location%20mismatch%20in%20x2gostartagent&In-Reply-To=%3C20120215212356.2724735d%40athlon.garagome%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003457.html">
+   <LINK REL="Next"  HREF="003435.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent</H1>
+    <B>Milan Kn&#237;&#382;ek</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20xauth%20file%20location%20mismatch%20in%20x2gostartagent&In-Reply-To=%3C20120215212356.2724735d%40athlon.garagome%3E"
+       TITLE="[X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent">knizek.confy at gmail.com
+       </A><BR>
+    <I>Wed Feb 15 21:23:56 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003457.html">[X2Go-Dev] [x2go-i18n] Suggestions
+</A></li>
+        <LI>Next message: <A HREF="003435.html">[X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3433">[ date ]</a>
+              <a href="thread.html#3433">[ thread ]</a>
+              <a href="subject.html#3433">[ subject ]</a>
+              <a href="author.html#3433">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+the /usr/bin/x2gostartagent script does not sufficiently specify the
+location of $XAUTHORITY file for the xauth command, while the command
+line for starting x2goagent refers to a specific location
+$HOME/.Xauthority.
+
+Usually, this works, because if nothing is specified on the command
+line for xauth and the $XAUTHORITY variable is not defined, it falls
+back to $HOME/.Xauthority.
+
+Nonetheless, recent GDM versions set XAUTHORITY
+to /var/run/gdm/auth-for-$USER-blabla/database.
+
+As a result, when opening a shadow session as another
+user, /usr/bin/x2gostartagent adds the cookie to $XAUTHORITY
+(/var/run/gdm...) and then starts x2goagent -auth $HOME/.Xauthority,
+which fails obviously.
+
+
+The attached patch removes the -f $HOME/.Xauthority parameter from the
+x2goagent command line to resolve the problem. It also removes a
+redundant '-S' parameter (there is already $SESSION_TYPE there).
+
+Can users of other distributions or display managers test if it does not
+break something else? (It works on Arch Linux with GDM and Xfce.)
+
+Regards,
+
+Milan
+
+-- 
+<A HREF="http://www.milan-knizek.net/">http://www.milan-knizek.net/</A>
+About linux and photography (Czech only)
+O linuxu a fotografov&#225;n&#237;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 0001-Remove-auth-.Xauthority-and-redundant-S-parameters-f.patch
+Type: text/x-patch
+Size: 1513 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120215/1bcdccce/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120215/1bcdccce/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003457.html">[X2Go-Dev] [x2go-i18n] Suggestions
+</A></li>
+	<LI>Next message: <A HREF="003435.html">[X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3433">[ date ]</a>
+              <a href="thread.html#3433">[ thread ]</a>
+              <a href="subject.html#3433">[ subject ]</a>
+              <a href="author.html#3433">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

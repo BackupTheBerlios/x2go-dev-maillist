@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Plugin building
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Plugin%20building&In-Reply-To=%3C4C9A7CF2.9030400%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001032.html">
+   <LINK REL="Next"  HREF="001058.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Plugin building</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Plugin%20building&In-Reply-To=%3C4C9A7CF2.9030400%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] Plugin building">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Thu Sep 23 00:02:26 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001032.html">[X2go-dev] Plugin building
+</A></li>
+        <LI>Next message: <A HREF="001058.html">[X2go-dev] Plugin building
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1057">[ date ]</a>
+              <a href="thread.html#1057">[ thread ]</a>
+              <a href="subject.html#1057">[ subject ]</a>
+              <a href="author.html#1057">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>J&#246;rg Sawatzki schrieb:
+&gt;<i> Hi Heinz, Alex and list,
+</I>&gt;<i> 
+</I>
+Hello J&#246;rg, list
+
+Please excuse us, that we cannot answer on all of you e-mails, but we
+have a lot of stress with our jobs, vacations and developing new version
+of x2go. We will try to answer in this e-mail on some of your questions
+that you asked in the mailing list.
+
+&gt;<i> As you told me some days ago, the plugin source is here:
+</I>&gt;<i> <A HREF="http://x2go.obviously-nice.de/mozplug/">http://x2go.obviously-nice.de/mozplug/</A>
+</I>&gt;<i>
+</I>&gt;<i> That is indeed true - but where's the rest of it? As far as I can tell
+</I>&gt;<i> from the code, it starts an instance of x2goclient with some &quot;secret&quot;
+</I>&gt;<i> command line options. Where is that modified x2goclient's source? It's
+</I>&gt;<i> not the 3.01 x2goclient that is floating around around somewhere in
+</I>&gt;<i> x2go.obviously-nice.de/deb, is it?
+</I>
+There is no &quot;modified x2goclient's source&quot;. We have only plugin and
+x2goclient which embedding itself in Firefox. You can always download
+sources of all software  which we developing. All our solutions are open
+and we have no secrets from our community. The newest &quot;testing&quot; version
+of x2go client(including source code) is here:
+<A HREF="http://x2go.obviously-nice.de/deb/pool-heuler/x2goclient/">http://x2go.obviously-nice.de/deb/pool-heuler/x2goclient/</A>
+All of that stuff is testing. We working on x2go Plugin based on
+QtBrowserPlugin. If we will satisfied with it, there will be only one
+source tree for client and plugin.
+
+
+
+here is a small FAQ:
+
+Q: Where is a source code of X2goclient for Windows?
+A: There is a only one source tree of x2goclient for windows, linux and
+mac.
+
+Q: Why x2goclient don't use libssh or shared ssh connection instead of
+starting a lot of ssh connections?
+A: There are several reasons not to use shared connections. X2go client
+starting ssh to run some commands on server. But also x2goclient
+starting a couple of ssh-tunnels and reverse ssh-tunnels. All client
+ssh-connections have the same options as a master connection. This make
+impossible to use shared ssh connections to create reverse tunnels. We
+are testing now if libssh can do all this stuff in one connection and
+how stable it running on all platforms. If all tests with multiply ssh
+tunnels and reverse tunnels running at the same time will be successful,
+we will integrate libssh in x2goclient.
+
+Q: Why x2goclient-cli have not many features of x2goclient, not
+finishing all child processes, etc?
+A: We have wrote x2goclient-cli only for purposes to testing x2goserver.
+Last changes which we made on this package are dated with 15. Sep. 2009.
+We have no planes to develop other clients than Qt X2go Client. But I
+wish a lot of success to all of your who want to develop other clients
+for x2go (for example J&#246;rg with his pyx2go). I only hope that those
+clients will stay compatible to x2go. If we have more time, we will help
+you with a pleasure. But unfortunately, now we have not enough time even
+to comment all e-mails in our mailing list.
+
+Q: Where is a git ????!!!!!!
+A: Coming soon. I promise.
+
+Q: What is current status of project? What are you doing all this time?
+A: A lot of things. We are working hard to make x2go better.
+QtBrowserPlugin, windows full screen mode, solving problem with windows
+clipboard is our main occupation at this time.
+
+I hope with this E-mail we have answered on some of your questions.
+
+Yours sincerely,
+Alex and Heinz
+
+PS:
+Ugly English is only from Alex, not from Heinz. I hope you can still
+understand all what I have wrote :)
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 260 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100923/fac519bf/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100923/fac519bf/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001032.html">[X2go-dev] Plugin building
+</A></li>
+	<LI>Next message: <A HREF="001058.html">[X2go-dev] Plugin building
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1057">[ date ]</a>
+              <a href="thread.html#1057">[ thread ]</a>
+              <a href="subject.html#1057">[ subject ]</a>
+              <a href="author.html#1057">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

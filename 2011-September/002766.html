@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] misleading stderr output when resuming, suspending, terminating a already dead session
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20misleading%20stderr%20output%20when%20resuming%2C%20suspending%2C%0A%20terminating%20a%20already%20dead%20session&In-Reply-To=%3C20110914080518.17572npofvgqzp5q%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002765.html">
+   <LINK REL="Next"  HREF="002769.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] misleading stderr output when resuming, suspending, terminating a already dead session</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20misleading%20stderr%20output%20when%20resuming%2C%20suspending%2C%0A%20terminating%20a%20already%20dead%20session&In-Reply-To=%3C20110914080518.17572npofvgqzp5q%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] misleading stderr output when resuming, suspending, terminating a already dead session">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Sep 14 08:05:18 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002765.html">[X2go-Dev] misleading stderr output when resuming, suspending,	terminating a already dead session
+</A></li>
+        <LI>Next message: <A HREF="002769.html">[X2go-Dev] use English dates in x2golistsessions output
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2766">[ date ]</a>
+              <a href="thread.html#2766">[ thread ]</a>
+              <a href="subject.html#2766">[ subject ]</a>
+              <a href="author.html#2766">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Reinhard, hi devs,
+
+On Mi 14 Sep 2011 06:36:41 CEST Reinhard Tartler wrote:
+
+&gt;<i> On Di, Sep 13, 2011 at 05:31:19 (PDT), Mike Gabriel wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> hi devs,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I have a patch pending here that fixes misleading output to stderr...
+</I>&gt;<i>
+</I>&gt;<i> That patch doesn't fix anything, it rather silences a real error, which
+</I>&gt;<i> is always wrong. I'd advice against it and recommend fixing the actual
+</I>&gt;<i> problem instead.
+</I>
+Yes, you are right. The origin of this probably is the  
+x2gocleansessions script... But I have no time to look at that more  
+closely, currently.
+
+&gt;&gt;<i> However, I am not sure about the scope in x2goclient (apart from
+</I>&gt;&gt;<i> avoiding a confusing GUI message).
+</I>&gt;<i>
+</I>&gt;<i> the patch doesn't contain anything in x2goclient?
+</I>
+Sorry, that was maybe awkwardly expressed. The latest x2goclient (I  
+have not observed this before) pops up a GUI notification window that  
+shows the result of stderr after x2goresume/terminate/suspend-session  
+has been called. The output, of course is very confusing for the  
+normal user...
+
+&gt;&gt;<i> Maybe we should write a proper error message to stderr here instead???
+</I>&gt;<i>
+</I>&gt;<i> yes, I agree.
+</I>
+So how about this one, for now...
+
+
+Greets,
+Mike
+
+diff --git a/x2goserver/bin/x2goresume-session  
+b/x2goserver/bin/x2goresume-session
+index 4c01828..49880e0 100755
+diff --git a/x2goserver/bin/x2goresume-session  
+b/x2goserver/bin/x2goresume-session
+index 4c01828..49880e0 100755
+--- a/x2goserver/bin/x2goresume-session
++++ b/x2goserver/bin/x2goresume-session
+@@ -83,6 +83,10 @@ echo &quot;$NEWOPTIONS&quot; &gt;${SESSION_DIR}/options
+
+  $X2GO_LIB_PATH/x2goresume  $X2GO_CLIENT $SESSION_NAME  &gt; /dev/null
+
+-kill -HUP $X2GO_AGENT_PID &amp;&amp;
+-       $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;notice&quot; &quot;client $X2GO_CLIENT  
+successfully resumed session with ID $SESSION_NAME&quot; ||
+-       $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;err&quot; &quot;ERROR: client  
+$X2GO_CLIENT failed to resume session with ID $SESSION_NAME&quot;
++kill -HUP $X2GO_AGENT_PID &amp;&gt;/dev/null &amp;&amp;
++       $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;notice&quot; &quot;client $X2GO_CLIENT  
+successfully resumed session with ID $SESSION_NAME&quot; || {
++} || {
++       err_msg=&quot;ERROR: failed to resume session with ID $SESSION_NAME&quot;
++       echo err_$msg 1&gt;&amp;2
++       $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;err&quot; &quot;$err_msg&quot;
++}
+diff --git a/x2goserver/bin/x2gosuspend-session  
+b/x2goserver/bin/x2gosuspend-session
+index ca342e4..139d0df 100755
+--- a/x2goserver/bin/x2gosuspend-session
++++ b/x2goserver/bin/x2gosuspend-session
+@@ -39,9 +39,13 @@ killall -HUP knotify
+
+  $X2GO_LIB_PATH/x2gochangestatus 'S' $SESSION_NAME  &gt; /dev/null
+
+-kill -HUP $X2GO_AGENT_PID &amp;&amp;
+-       $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;notice&quot; &quot;session with ID  
+$SESSION_NAME has successfully been suspended&quot; ||
+-       $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;err&quot; &quot;ERROR: failed to suspend  
+session with ID $SESSION_NAME&quot;
++kill -HUP $X2GO_AGENT_PID &amp;&gt;/dev/null &amp;&amp; {
++       $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;notice&quot; &quot;session with ID  
+$SESSION_NAME has successfully been suspended&quot; || {
++} || {
++       err_msg=&quot;ERROR: failed to suspend session with ID $SESSION_NAME&quot;
++       echo err_$msg 1&gt;&amp;2
++       $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;err&quot; &quot;$err_msg&quot;B
++}
+
+  export HOSTNAME
+  x2goumount-session $SESSION_NAME
+diff --git a/x2goserver/bin/x2goterminate-session  
+b/x2goserver/bin/x2goterminate-session
+index 3d8872e..75bf277 100755
+--- a/x2goserver/bin/x2goterminate-session
++++ b/x2goserver/bin/x2goterminate-session
+@@ -35,9 +35,13 @@ X2GO_AGENT_PID=`echo &quot;$X2GO_AGENT_PID&quot;| awk {'print $1'}`
+
+  $X2GO_LIB_PATH/x2gochangestatus 'F' $SESSION_NAME  &gt; /dev/null
+
+-kill -TERM $X2GO_AGENT_PID &amp;&amp;
+-       $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;notice&quot; &quot;session with ID  
+$SESSION_NAME has successfully been terminated&quot; ||
+-       $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;err&quot; &quot;ERROR: failed to  
+terminate session with ID $SESSION_NAME&quot;
++kill -TERM $X2GO_AGENT_PID &amp;&gt;/dev/null &amp;&amp;
++       $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;notice&quot; &quot;session with ID  
+$SESSION_NAME has successfully been terminated&quot; || {
++} || {
++       err_msg=&quot;ERROR: failed to terminate session with ID $SESSION_NAME&quot;
++       echo &quot;err_$msg&quot; 1&gt;&amp;2
++       $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;err&quot; &quot;$err_msg&quot;
++}
+
+  export HOSTNAME
+  x2goumount-session $SESSION_NAME
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110914/a1de551d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110914/a1de551d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002765.html">[X2go-Dev] misleading stderr output when resuming, suspending,	terminating a already dead session
+</A></li>
+	<LI>Next message: <A HREF="002769.html">[X2go-Dev] use English dates in x2golistsessions output
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2766">[ date ]</a>
+              <a href="thread.html#2766">[ thread ]</a>
+              <a href="subject.html#2766">[ subject ]</a>
+              <a href="author.html#2766">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] cat:	/home/x/.x2go/C-x-50-1229460545_stRTERMINAL_dp32/cmdoutput:	Datei	oder Verzeichnis nicht gefunden
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2008-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20cat%3A%0A%09/home/x/.x2go/C-x-50-1229460545_stRTERMINAL_dp32/cmdoutput%3A%09Datei%0A%09oder%20Verzeichnis%20nicht%20gefunden&In-Reply-To=%3C1229463117.3956.39.camel%40mattotaupa.wohnung.familie-menzel.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000001.html">
+   <LINK REL="Next"  HREF="000003.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] cat:	/home/x/.x2go/C-x-50-1229460545_stRTERMINAL_dp32/cmdoutput:	Datei	oder Verzeichnis nicht gefunden</H1>
+    <B>Paul Menzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20cat%3A%0A%09/home/x/.x2go/C-x-50-1229460545_stRTERMINAL_dp32/cmdoutput%3A%09Datei%0A%09oder%20Verzeichnis%20nicht%20gefunden&In-Reply-To=%3C1229463117.3956.39.camel%40mattotaupa.wohnung.familie-menzel.net%3E"
+       TITLE="[X2go-dev] cat:	/home/x/.x2go/C-x-50-1229460545_stRTERMINAL_dp32/cmdoutput:	Datei	oder Verzeichnis nicht gefunden">paulepanter at users.sourceforge.net
+       </A><BR>
+    <I>Tue Dec 16 22:31:57 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000001.html">[X2go-dev] regression: nxproxy 3.3.0-2-1 does not work
+</A></li>
+        <LI>Next message: <A HREF="000003.html">[X2go-dev]	cat:	/home/x/.x2go/C-x-50-1229460545_stRTERMINAL_dp32/cmdoutput:	Datei oder	Verzeichnis nicht gefunden
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2">[ date ]</a>
+              <a href="thread.html#2">[ thread ]</a>
+              <a href="subject.html#2">[ subject ]</a>
+              <a href="author.html#2">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear list and dear Oleksandr,
+
+
+actually I wanted to report a different problem yesterday.
+
+On the one portable computer I get the following error messages. But
+this is since installation time on the weekend.
+
+Do you have any ideas? Can I provide other information?
+
+I am using the GTK-Client and get the following pop-ups.
+
+1. Details-Window.
+
+[&#8230;] NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Proxy running in client mode with pid '5044'.
+Session: Starting session at 'Tue Dec 16 21:54:05 2008'.
+Info: Connecting to remote host 'localhost:30001'.
+
+I do not know if or what is displayed afterwards. It shows the pop-ups
+and show the login screen again.
+
+2. Pop-up.
+
+Verbindung fehlgeschlagen
+192.168.x.x:
+cat: /home/x/.x2go/C-x-50-1229460545_stRTERMINAL_dp32/cmdoutput: Datei
+oder Verzeichnis nicht gefunden
+
+3. Pop-up.
+
+Could not yet establish the connection to the remote proxy. Do you
+want to terminate the current session?
+
+I did not change anything in the setup. So it should not be a firewall
+problem [1].
+
+It does not matter if I select Ja or Nein it pops up every half minute
+or so. Killing x2goagent(?) helps.
+
+4. Pop-up (or third one)
+
+Verbindung fehlgeschlagen
+192.168.x.x:
+kill: usage: kill [-s sigspec | -n signum | -sigspec] pid | jobspec ...
+or kill -l [sigspec]
+
+
+$ LANG=C dpkg -l nxproxy
+Desired=Unknown/Install/Remove/Purge/Hold
+|<i>
+</I>Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+|<i>/ Err?=(none)/Hold/Reinst-required/X=both-problems (Status,Err:
+</I>uppercase=bad)
+||<i>/ Name               Version            Description
+</I>+++-==================-==================-====================================================
+ii  nxproxy            3.3.0-2-2          NX compression proxy
+
+
+Thanks,
+
+Paul
+
+
+[1] <A HREF="http://www.mpipks-dresden.mpg.de/~mueller/docs/suse10.1/suselinux-manual_de/manual/sec.freenx.trouble.html">http://www.mpipks-dresden.mpg.de/~mueller/docs/suse10.1/suselinux-manual_de/manual/sec.freenx.trouble.html</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: Dies ist ein digital signierter Nachrichtenteil
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20081216/5c92a3b2/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20081216/5c92a3b2/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000001.html">[X2go-dev] regression: nxproxy 3.3.0-2-1 does not work
+</A></li>
+	<LI>Next message: <A HREF="000003.html">[X2go-dev]	cat:	/home/x/.x2go/C-x-50-1229460545_stRTERMINAL_dp32/cmdoutput:	Datei oder	Verzeichnis nicht gefunden
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2">[ date ]</a>
+              <a href="thread.html#2">[ thread ]</a>
+              <a href="subject.html#2">[ subject ]</a>
+              <a href="author.html#2">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

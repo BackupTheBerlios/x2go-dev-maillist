@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2goclient/win32, nxproxy window resolution (outer vs. inner border)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goclient/win32%2C%0A%20nxproxy%20window%20resolution%20%28outer%20vs.%20inner%20border%29&In-Reply-To=%3CCAJBj3vc2hNjJFnTajqKqx9sbpt3oOcZZFFoVuOwMjzU-CzQjqw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003214.html">
+   <LINK REL="Next"  HREF="003272.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2goclient/win32, nxproxy window resolution (outer vs. inner border)</H1>
+    <B>John Williams</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goclient/win32%2C%0A%20nxproxy%20window%20resolution%20%28outer%20vs.%20inner%20border%29&In-Reply-To=%3CCAJBj3vc2hNjJFnTajqKqx9sbpt3oOcZZFFoVuOwMjzU-CzQjqw%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] x2goclient/win32, nxproxy window resolution (outer vs. inner border)">jwilliams4200 at gmail.com
+       </A><BR>
+    <I>Sun Jan 22 00:42:06 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003214.html">[X2go-Dev] x2goclient/win32, nxproxy window resolution (outer vs. inner border)
+</A></li>
+        <LI>Next message: <A HREF="003272.html">[X2go-Dev] x2go Plugin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3215">[ date ]</a>
+              <a href="thread.html#3215">[ thread ]</a>
+              <a href="subject.html#3215">[ subject ]</a>
+              <a href="author.html#3215">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, Jan 21, 2012 at 3:27 PM, Mike Gabriel
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+&gt;<i> John Williams wrote:
+</I>&gt;<i>  (except all the clients have a bug where it sets the Windows window
+</I>&gt;<i> size too small when you choose a custom resolution, say 800x600, the windows
+</I>&gt;<i> client sets the outer dimensions of the window to 800x600 but of course the
+</I>&gt;<i> windows title bar takes up 25-30 pixels, so the window ends up being too
+</I>&gt;<i> small to display an 800x600 desktop).
+</I>
+By the way, there is a workaround for this problem. In my case, I have
+a 1920x1200 monitor connected to my Windows computer, but I do not
+want to use x2go client in fullscreen mode. I want the x2go window to
+be as big as it can be without covering up the Windows taskbar.
+
+So what I do is set a custom resolution of 1910x1140. Then when x2go
+client opens the window, it is too small to display a 1910x1140
+desktop (which is what x2go client starts up). The easy way to see the
+problem is to open a terminal window, then hit the fullscreen icon at
+the top right of the terminal window that you just opened. Then hold
+down return until the terminal window fills up. Then hit return a
+couple more times, and type something. You will find that you command
+line prompt is below the bottom of the x2go client window, and you
+cannot see what you are typing.
+
+Anyway, the workaround is to immediately resize the x2go window larger
+after you first log on. In my case, it is easy -- I just click the
+fullscreen icon in the top-right of the windows x2go client window.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003214.html">[X2go-Dev] x2goclient/win32, nxproxy window resolution (outer vs. inner border)
+</A></li>
+	<LI>Next message: <A HREF="003272.html">[X2go-Dev] x2go Plugin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3215">[ date ]</a>
+              <a href="thread.html#3215">[ thread ]</a>
+              <a href="subject.html#3215">[ subject ]</a>
+              <a href="author.html#3215">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

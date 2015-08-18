@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#263: X2Go Client fails to resume
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23263%3A%20X2Go%20Client%20fails%20to%20resume&In-Reply-To=%3C98a681b9536911f4775f1c8e280f18b9%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005970.html">
+   <LINK REL="Next"  HREF="005944.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#263: X2Go Client fails to resume</H1>
+    <B>Edouard Villeneuve</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23263%3A%20X2Go%20Client%20fails%20to%20resume&In-Reply-To=%3C98a681b9536911f4775f1c8e280f18b9%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#263: X2Go Client fails to resume">evilleneuve at pldagroup.com
+       </A><BR>
+    <I>Fri Jul 12 08:22:26 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005970.html">[X2Go-Dev] Bug#262: Bug#262: Color issue with some programs GUI	when used with X2GO (ok with NX)
+</A></li>
+        <LI>Next message: <A HREF="005944.html">[X2Go-Dev] Bug#263: X2Go Client fails to resume
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5934">[ date ]</a>
+              <a href="thread.html#5934">[ thread ]</a>
+              <a href="subject.html#5934">[ subject ]</a>
+              <a href="author.html#5934">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: not_applicable
+
+
+
+Hello,
+
+
+
+About half of the time, when I run X2Go Client on Windows (4.0.0.3) in a
+high-speed LAN environment, the session fails to resume:
+
+&#183;         Displaying details shows that it gets stuck after a few lines of
+output (first screenshot)
+
+&#183;         I then typically exit and restart X2Go client and it often works
+(but not always)
+
+&#183;         If it still doesn&#8217;t, I exit again and restart again&#8230; Eventually,
+it ends up working (second screenshot)
+
+
+
+[image: cid:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">image001.jpg at 01CE7ED4.FD404FE0</A>]
+
+
+
+[image: cid:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">image006.jpg at 01CE7ED4.FD404FE0</A>]
+
+
+
+Full logs on 2nd screen:
+
+
+
+NXPROXY - Version 3.5.0
+
+
+
+Copyright (C) 2001, 2010 NoMachine.
+
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+
+
+Info: Proxy running in client mode with pid '28296'.
+
+Session: Starting session at 'Fri Jul 12 07:50:20 2013'.
+
+Info: Connecting to remote host 'localhost:31051'.
+
+Info: Connection to remote proxy 'localhost:31051' established.
+
+Info: Connection with remote proxy completed.
+
+Warning: Unrecognized session type 'unix-kde-depth_32'. Assuming agent
+session.
+
+Warning: Failed to read data from the X auth command.
+
+Warning: Generated a fake cookie for X authentication.
+
+Info: Using ADSL link parameters 512/24/1/0.
+
+Info: Using cache parameters 4/4096KB/8192KB/8192KB.
+
+Info: Using pack method '64k-jpeg-7' with session 'unix-kde-depth_32'.
+
+Info: Using ZLIB data compression 1/1/32.
+
+Info: Using ZLIB stream compression 4/4.
+
+Info: Using cache file
+'/cygdrive/C/Users/EVILLE~1.PLD/X2GO~1/cache-unix-kde-depth_32/S-3C19BBB98D4E5CCCADDDDF384B70B5E6'.
+
+Info: Forwarding X11 connections to display 'localhost:0'.
+
+Session: Session started at 'Fri Jul 12 07:50:21 2013'.
+
+Info: Established X server connection.
+
+Info: Using shared memory parameters 0/0K.
+
+
+
+Thanks,
+
+- Edouard
+
+
+
+Edouard Villeneuve | IS Manager | PLDA Group | Cell : +33 (0) 670 409 549 |
+<A HREF="http://www.plda.com/">http://www.plda.com/</A>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130712/fe51d0f1/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130712/fe51d0f1/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: image001.jpg
+Type: image/jpeg
+Size: 57878 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130712/fe51d0f1/attachment.jpg">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130712/fe51d0f1/attachment.jpg</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: image006.jpg
+Type: image/jpeg
+Size: 65443 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130712/fe51d0f1/attachment-0001.jpg">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130712/fe51d0f1/attachment-0001.jpg</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005970.html">[X2Go-Dev] Bug#262: Bug#262: Color issue with some programs GUI	when used with X2GO (ok with NX)
+</A></li>
+	<LI>Next message: <A HREF="005944.html">[X2Go-Dev] Bug#263: X2Go Client fails to resume
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5934">[ date ]</a>
+              <a href="thread.html#5934">[ thread ]</a>
+              <a href="subject.html#5934">[ subject ]</a>
+              <a href="author.html#5934">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

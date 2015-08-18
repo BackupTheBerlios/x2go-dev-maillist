@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Problems with AltGr
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Problems%20with%20AltGr&In-Reply-To=%3C20120714112603.20114p8ddnyjxvzf%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004139.html">
+   <LINK REL="Next"  HREF="004145.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Problems with AltGr</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Problems%20with%20AltGr&In-Reply-To=%3C20120714112603.20114p8ddnyjxvzf%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Problems with AltGr">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Jul 14 11:26:03 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004139.html">[X2Go-Dev] Problems with AltGr
+</A></li>
+        <LI>Next message: <A HREF="004145.html">[X2Go-Dev] Problems with AltGr
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4140">[ date ]</a>
+              <a href="thread.html#4140">[ thread ]</a>
+              <a href="subject.html#4140">[ subject ]</a>
+              <a href="author.html#4140">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Fr 13 Jul 2012 23:50:51 CEST Moritz Str&#252;be wrote:
+
+&gt;<i> Am 13.07.2012 23:45, Sven K&#246;hler schrieb:
+</I>&gt;&gt;<i> After executing &quot;setxkbmap de&quot; inside the session, the issues goes away
+</I>&gt;&gt;<i> and the output is:
+</I>&gt;<i>
+</I>&gt;<i> This is a commen problem, that should probably be fixed. We solved it by
+</I>&gt;<i> adding setykbmap to our .x2gosession, which we have as default desktop
+</I>&gt;<i> environment on our thin clients (As well as a &quot;(sleep 10 &amp;&amp; metacity
+</I>&gt;<i> --replace &amp;)&quot; to fix the metacity's keyboard bug).
+</I>
+the problem is already solved. Make sure you have
+
+   x2goserver &gt;= 3.1.1.3
+   x2goagent &gt;= 3.5.0.12
+
+Make sure the session profile in x2goclient does not set a custom  
+keyboard profile.
+
+Then for testing purposes you can call ,,x2gosetkeyboard'' on the  
+server side after the session has started. After that check  
+,,setxkbmap -print''. You should see a keyboard configuration that  
+matches your client-side keyboard configuration (call setxkbmap -print  
+on the client, as well).
+
+If that works, put ,,auto'' into the session profile field kbtype  
+(Keyboard field in the session profile GUI). And try to start another  
+session with the server. The keyboard should now be set. For X2Go  
+Client a change of the session profile GUI template is still pending.
+
+Greets,
+Mike
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120714/dd81849b/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120714/dd81849b/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004139.html">[X2Go-Dev] Problems with AltGr
+</A></li>
+	<LI>Next message: <A HREF="004145.html">[X2Go-Dev] Problems with AltGr
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4140">[ date ]</a>
+              <a href="thread.html#4140">[ thread ]</a>
+              <a href="subject.html#4140">[ subject ]</a>
+              <a href="author.html#4140">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

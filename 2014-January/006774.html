@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] CVE-2013-7261: (fwd:) root exploit in X2Go Server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20CVE-2013-7261%3A%20%28fwd%3A%29%20root%20exploit%20in%20X2Go%20Server&In-Reply-To=%3C20140104165617.Horde.7sRunEgOqGP77dKGYkOIBg1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006772.html">
+   <LINK REL="Next"  HREF="006775.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] CVE-2013-7261: (fwd:) root exploit in X2Go Server</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20CVE-2013-7261%3A%20%28fwd%3A%29%20root%20exploit%20in%20X2Go%20Server&In-Reply-To=%3C20140104165617.Horde.7sRunEgOqGP77dKGYkOIBg1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] CVE-2013-7261: (fwd:) root exploit in X2Go Server">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Jan  4 17:56:17 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006772.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goserver) has been marked as pending for release
+</A></li>
+        <LI>Next message: <A HREF="006775.html">[X2Go-Dev] Bug#314: X2Go issue (in src:nx-libs) has been marked as	closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6774">[ date ]</a>
+              <a href="thread.html#6774">[ thread ]</a>
+              <a href="subject.html#6774">[ subject ]</a>
+              <a href="author.html#6774">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+I have been noticed about a root exploit in X2Go Server code. This  
+vulnerability has been (hopefully) fixed in X2Go Server 4.0.1.10 (and  
+in the LTS release branch 4.0.0.8).
+
+This issue has now been a CVE ID to. Please see below.
+
+All distributors of X2Go Server, please provide package upgrades to  
+your distribution.
+
+Thanks+Greets,
+Mike
+
+----- Weitergeleitete Nachricht von <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">cve-assign at mitre.org</A> -----
+   Datum: Sat, 4 Jan 2014 11:23:29 -0500 (EST)
+     Von: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">cve-assign at mitre.org</A>
+Betreff: Re: root exploit in X2Go Server
+      An: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>
+      Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">cve-assign at mitre.org</A>
+
+&gt;<i> this is to request or a CVE-ID. We have been reported and we have
+</I>&gt;<i> fixed a root exploit in X2Go Server.
+</I>&gt;<i>
+</I>&gt;<i> In versions of X2Go Server previous to 4.0.0.8 (LTS release branch)
+</I>&gt;<i> and previous to 4.0.1.10 (main release branch) a normal user could
+</I>&gt;<i> gain root access to X2Go Server machines.
+</I>&gt;<i>
+</I>&gt;<i> The vulnerability has been fixed by these commits
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=c2036a1152a7e57286ffeb8e8859177f8de64a33">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=c2036a1152a7e57286ffeb8e8859177f8de64a33</A>
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=80ff6997550749a64dd5db5684acbd47a4127ab3">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=80ff6997550749a64dd5db5684acbd47a4127ab3</A>
+</I>
+Use CVE-2013-7261 for this issue involving root access through the use
+of shell metacharacters.
+
+- --
+CVE assignment team, MITRE CVE Numbering Authority
+M/S M300
+202 Burlington Road, Bedford, MA 01730 USA
+[ PGP key available through <A HREF="http://cve.mitre.org/cve/request_id.html">http://cve.mitre.org/cve/request_id.html</A> ]
+
+----- Ende der weitergeleiteten Nachricht -----
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20140104/5c004cbb/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20140104/5c004cbb/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006772.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goserver) has been marked as pending for release
+</A></li>
+	<LI>Next message: <A HREF="006775.html">[X2Go-Dev] Bug#314: X2Go issue (in src:nx-libs) has been marked as	closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6774">[ date ]</a>
+              <a href="thread.html#6774">[ thread ]</a>
+              <a href="subject.html#6774">[ subject ]</a>
+              <a href="author.html#6774">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

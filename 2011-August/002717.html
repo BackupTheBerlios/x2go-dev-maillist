@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] X2go disconnects - segfault?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20X2go%20disconnects%20-%20segfault%3F&In-Reply-To=%3C4E4BB37E.7010404%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002716.html">
+   <LINK REL="Next"  HREF="002709.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] X2go disconnects - segfault?</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20X2go%20disconnects%20-%20segfault%3F&In-Reply-To=%3C4E4BB37E.7010404%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-Dev] X2go disconnects - segfault?">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Wed Aug 17 14:26:38 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002716.html">[X2go-Dev] X2go disconnects - segfault?
+</A></li>
+        <LI>Next message: <A HREF="002709.html">[X2go-Dev] @John S., Alexander C.: wiki access
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2717">[ date ]</a>
+              <a href="thread.html#2717">[ thread ]</a>
+              <a href="subject.html#2717">[ subject ]</a>
+              <a href="author.html#2717">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Yep, that's what I could witness using Gimp, too. Though it sometimes
+crashed &quot;long&quot; (~1h) after closing gimp. The next step is to find out,
+whether it is a x2go-bug or if it can be reproduced using freeNX, too.
+Unfortunately tracking this down is probably quite time-consuming.
+I thought I was also able to reproduce this playing xts [1], but I'm not
+sure whether xts was the cause. I just started a second session to see
+if this a simple way of narrowing it down.
+
+Cheers
+Morty
+
+[1] <A HREF="http://cgit.freedesktop.org/xorg/test/xts/">http://cgit.freedesktop.org/xorg/test/xts/</A>
+
+
+
+On 2011-08-17 13:50, Christoffer Krakou wrote:
+&gt;<i> Hello there mike. Thanks for the speedy reply
+</I>&gt;<i>
+</I>&gt;<i> after upgrading to the nightly build, the error persists. now the log
+</I>&gt;<i> reports:
+</I>&gt;<i>
+</I>&gt;<i> Aug 17 13:46:33 Fleten-01 gnome-session[6237]: WARNING: GSIdleMonitor:
+</I>&gt;<i> IDLETIME counter not found
+</I>&gt;<i> Aug 17 13:46:34 Fleten-01 pulseaudio[6350]: pid.c: Daemon already
+</I>&gt;<i> running.
+</I>&gt;<i> Aug 17 13:46:35 Fleten-01 pulseaudio[6392]: pid.c: Daemon already
+</I>&gt;<i> running.
+</I>&gt;<i> Aug 17 13:46:44 Fleten-01 kernel: [ 2823.606366] __ratelimit: 9
+</I>&gt;<i> callbacks suppressed
+</I>&gt;<i> Aug 17 13:46:44 Fleten-01 kernel: [ 2823.606372] x2goagent[6214]:
+</I>&gt;<i> segfault at 68 ip 00000000004a85e1 sp 00007ffff5485e30 error 4 in
+</I>&gt;<i> x2goagent[400000+4e3000]
+</I>&gt;<i>
+</I>&gt;<i> So far i've only seen crash with Kolourpaint, though i will test some
+</I>&gt;<i> other packages from the edubuntu-desktop within a few days, to see if
+</I>&gt;<i> any other programs trigger this.
+</I>&gt;<i>
+</I>&gt;<i> On 08/17/2011 11:59 AM, Mike Gabriel wrote:
+</I>&gt;&gt;<i> Hi Christoffer,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Mi 17 Aug 2011 11:49:22 CEST Christoffer Krakou wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Just a quikc followup on this one.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> [...] i'm using the stable ppa, and the syslog file says:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Could you try this with the Ubuntu nightly builds (from ppa:x2go/ppa).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> How can i go about solving this problem? and is a special
+</I>&gt;&gt;&gt;<i> application or framework causing this? any help in this matter is
+</I>&gt;&gt;&gt;<i> greatly appreciated
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This I do not know... Sorry!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Mike
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2go-Dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4482 bytes
+Desc: S/MIME Kryptografische Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110817/744f0b8b/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110817/744f0b8b/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002716.html">[X2go-Dev] X2go disconnects - segfault?
+</A></li>
+	<LI>Next message: <A HREF="002709.html">[X2go-Dev] @John S., Alexander C.: wiki access
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2717">[ date ]</a>
+              <a href="thread.html#2717">[ thread ]</a>
+              <a href="subject.html#2717">[ subject ]</a>
+              <a href="author.html#2717">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

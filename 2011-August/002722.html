@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] [X2go-User] [SOLVED] Re: Instructions for manual install from source tarballs on a less well-known distribution
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BX2go-User%5D%20%5BSOLVED%5D%20Re%3A%20Instructions%20for%20manual%0A%20install%20from%20source%20tarballs%20on%20a%20less%20well-known%20distribution&In-Reply-To=%3C20110818081724.1367167pbh67kz90%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002733.html">
+   <LINK REL="Next"  HREF="002723.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] [X2go-User] [SOLVED] Re: Instructions for manual install from source tarballs on a less well-known distribution</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BX2go-User%5D%20%5BSOLVED%5D%20Re%3A%20Instructions%20for%20manual%0A%20install%20from%20source%20tarballs%20on%20a%20less%20well-known%20distribution&In-Reply-To=%3C20110818081724.1367167pbh67kz90%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] [X2go-User] [SOLVED] Re: Instructions for manual install from source tarballs on a less well-known distribution">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Aug 18 08:17:24 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002733.html">[X2go-Dev] x2goclient patch and x2goruncommand patch
+</A></li>
+        <LI>Next message: <A HREF="002723.html">[X2go-Dev] x2goagent 3.5 -&gt; main area of packages.x2go.org?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2722">[ date ]</a>
+              <a href="thread.html#2722">[ thread ]</a>
+              <a href="subject.html#2722">[ subject ]</a>
+              <a href="author.html#2722">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Ivan,
+
+On Do 18 Aug 2011 01:01:55 CEST Ivan Kabaivanov wrote:
+
+&gt;<i> ok, resending this after having subscribed to the x2go-dev list.
+</I>
+fine.
+
+&gt;&gt;<i> &gt; [...]
+</I>&gt;&gt;<i> &gt; make World
+</I>&gt;&gt;<i> &gt; cp -a lib/Xext/libXext.so* /usr/lib/x2go/
+</I>&gt;&gt;<i> &gt; cp -a lib/X11/libX11.so* /usr/lib/x2go/
+</I>&gt;&gt;<i> &gt; cp -a lib/Xpm/libXpm.so* /usr/lib/x2go/
+</I>&gt;&gt;<i> &gt; cp -a lib/Xrender/libXrender.so* /usr/lib/x2go/
+</I>&gt;&gt;<i> &gt; cp -a lib/Xfixes/libXfixes.so* /usr/lib/x2go/
+</I>&gt;&gt;<i> &gt; cp -a lib/Xtst/libXtst.so* /usr/lib/x2go/
+</I>&gt;&gt;<i> &gt; cp -a lib/Xdamage/libXdamage.so* /usr/lib/x2go/
+</I>&gt;&gt;<i> &gt; cp -a lib/Xrandr/libXrandr.so* /usr/lib/x2go/
+</I>&gt;&gt;<i> &gt; cp -a lib/Xcomposite/libXcomposite.so* /usr/lib/x2go/
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; install -m755 programs/Xserver/x2goagent /usr/bin/x2goagent.original
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Please check that again. That should not be necessary. It could be
+</I>&gt;&gt;<i> misleading if you put it like that in the X2go wiki. I bet there is
+</I>&gt;&gt;<i> another way with using default library paths.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Mike,  please check the LFS server install wiki page.
+</I>
+What I have seen looks good so far.
+
+&gt;<i> I wrote up the
+</I>&gt;<i> instructions for nxcomp, nxcompext, nxcompshad, nxproxy and x2goagentand will
+</I>&gt;<i> finish the rest tomorrow.  As you'll see I'm installing libXcomp* in the
+</I>&gt;<i> standard /usr/lib path.  However, looks like x2goagent is built from a
+</I>&gt;<i> modified x.org (6.9?) source tree and when linked at runtime with the system
+</I>&gt;<i> libX11 and other standard x.org libs it fails with an obscure message:
+</I>
+I am actually not the right person to go into depth here. Maybe  
+Reinhard, Morty and Alex can contribute infos/ideas here.
+
+&gt;<i> what I'll do is try to narrow down to the exact library that breaks x2goagent
+</I>&gt;<i> and just copy it.  Not sure if there's a better approach.  Don't wanna do a
+</I>&gt;<i> static build either...
+</I>
+Ok, that would be helpful.
+
+[ ... the reply to the patches has gone out in a separate mail ...]
+
+THANKS!
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110818/6f17e993/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110818/6f17e993/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002733.html">[X2go-Dev] x2goclient patch and x2goruncommand patch
+</A></li>
+	<LI>Next message: <A HREF="002723.html">[X2go-Dev] x2goagent 3.5 -&gt; main area of packages.x2go.org?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2722">[ date ]</a>
+              <a href="thread.html#2722">[ thread ]</a>
+              <a href="subject.html#2722">[ subject ]</a>
+              <a href="author.html#2722">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Please test x2gobroker 0.0.2.3 from nightly builds
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Please%20test%20x2gobroker%200.0.2.3%20from%20nightly%20builds&In-Reply-To=%3CCAFJm-UONoOAV8ctJX%2Baxc7_24%2BA%3D9VR_3Wb73iRPDKz%2BvrYpKQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005750.html">
+   <LINK REL="Next"  HREF="005760.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Please test x2gobroker 0.0.2.3 from nightly builds</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Please%20test%20x2gobroker%200.0.2.3%20from%20nightly%20builds&In-Reply-To=%3CCAFJm-UONoOAV8ctJX%2Baxc7_24%2BA%3D9VR_3Wb73iRPDKz%2BvrYpKQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Please test x2gobroker 0.0.2.3 from nightly builds">abo at dsl.dk
+       </A><BR>
+    <I>Fri Jun  7 13:24:58 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005750.html">[X2Go-Dev] Please test x2gobroker 0.0.2.3 from nightly builds
+</A></li>
+        <LI>Next message: <A HREF="005760.html">[X2Go-Dev] Please test x2gobroker 0.0.2.3 from nightly builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5751">[ date ]</a>
+              <a href="thread.html#5751">[ thread ]</a>
+              <a href="subject.html#5751">[ subject ]</a>
+              <a href="author.html#5751">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Done.
+So far no problems encountered.
+Your recent addition of the option to specify hostname and address
+seperately works nicely. My users can now connect externally :)
+
+
+2013/6/7 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+
+&gt;<i> Hi Anders,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Fr 07 Jun 2013 11:04:43 CEST Anders Bruun Olsen wrote:
+</I>&gt;<i>
+</I>&gt;<i>  Hi Mike,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Sorry for not being able to test until now. You have x2gobroker-agent set
+</I>&gt;&gt;<i> to depend on x2goserver &gt;= 4.0.1.0, so we can't install it with the
+</I>&gt;&gt;<i> 4.0.0.3
+</I>&gt;&gt;<i> prerelease.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> in the meantime (between my initial mail in this thread and now) I have
+</I>&gt;<i> decided to create a release/4.0.1.x branch for X2Go Server in X2Go Git [1].
+</I>&gt;<i> (Sorry!)
+</I>&gt;<i>
+</I>&gt;<i> Please checkout the x2goserver code from this new branch and build it from
+</I>&gt;<i> source:
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>   git clone <A HREF="git://code.x2go.org/**x2goserver.git&lt;http://code.x2go.org/x2goserver.git">git://code.x2go.org/**x2goserver.git&lt;http://code.x2go.org/x2goserver.git</A>&gt;
+</I>&gt;<i>   cd x2goserver
+</I>&gt;<i>   git fetch origin release/4.0.1.x:release/4.0.1.**x
+</I>&gt;<i>   git checkout release/4.0.1.x
+</I>&gt;<i>
+</I>&gt;<i>   debuild -uc -us
+</I>&gt;<i>   cd ..
+</I>&gt;<i>   sudo dpkg -i x2goserver*.deb
+</I>&gt;<i>
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i> [1] <A HREF="http://code.x2go.org/gitweb?p=**x2goserver.git;a=shortlog;h=**">http://code.x2go.org/gitweb?p=**x2goserver.git;a=shortlog;h=**</A>
+</I>&gt;<i> refs/heads/release/4.0.1.x&lt;<A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=shortlog;h=refs/heads/release/4.0.1.x">http://code.x2go.org/gitweb?p=x2goserver.git;a=shortlog;h=refs/heads/release/4.0.1.x</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, herweg 7, 24357 fleckeby
+</I>&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;<i>
+</I>
+
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130607/a3948cd0/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130607/a3948cd0/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005750.html">[X2Go-Dev] Please test x2gobroker 0.0.2.3 from nightly builds
+</A></li>
+	<LI>Next message: <A HREF="005760.html">[X2Go-Dev] Please test x2gobroker 0.0.2.3 from nightly builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5751">[ date ]</a>
+              <a href="thread.html#5751">[ thread ]</a>
+              <a href="subject.html#5751">[ subject ]</a>
+              <a href="author.html#5751">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Recommendation for mass conncections
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Recommendation%20for%20mass%20conncections&In-Reply-To=%3C20100731113249.59953jlb14gwmjsx%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000914.html">
+   <LINK REL="Next"  HREF="000915.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Recommendation for mass conncections</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Recommendation%20for%20mass%20conncections&In-Reply-To=%3C20100731113249.59953jlb14gwmjsx%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] Recommendation for mass conncections">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Jul 31 11:32:49 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000914.html">[X2go-dev] Recommendation for mass conncections
+</A></li>
+        <LI>Next message: <A HREF="000915.html">[X2go-dev] Windows client crashing on WinXP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#921">[ date ]</a>
+              <a href="thread.html#921">[ thread ]</a>
+              <a href="subject.html#921">[ subject ]</a>
+              <a href="author.html#921">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Yitzak,
+
+On Di 27 Jul 2010 17:01:13 CEST Yitzhak Bar Geva wrote:
+
+&gt;<i> Since there are so many examinees, we need an automated procedure to generate
+</I>&gt;<i> authorization for them. I had thought that granting each her own Linux login
+</I>&gt;<i> would be unnecessary, since all she has to do is access the one  
+</I>&gt;<i> application with
+</I>&gt;<i> a browser front end.
+</I>
+May be I missed something, but if it is just a browser app that  
+examinees need to access, why do you want to provide a complete  
+x-login environment? This means much more hassle to you than just  
+setting up a secure website.
+
+Wouldn't it be an option just to setup a secure webserver, buy an  
+official CA-certificate and run your application on you https-webserver?
+
+For automatic LDAP-account generation an algorithm could look like  
+this and should be very simple:
+
+   o people register for an exam
+   o registration creates a unique registration ID (LDAP-attribute ,,userid'')
+   o on the registration for people need to enter further personal data (email,
+     fullname, etc.)
+   o with all this data you create an LDAP account on your server
+   o this could be done by creating an LDIF file from the reg form
+   o or by using python-easyldap (one of my not yet published projects, still
+     under heavy development):
+     deb <A HREF="http://packages.das-netzwerkteam.de/debian">http://packages.das-netzwerkteam.de/debian</A> &lt;codename&gt; main
+     deb <A HREF="http://packages.das-netzwerkteam.de/ubuntu">http://packages.das-netzwerkteam.de/ubuntu</A> &lt;codename&gt; main
+   o problematic is posting the credentials to the user, this is only really
+     really safe by e-Mail if you use GnuPG encryption etc.
+   o probably easiest would be to send a password
+   o once a user has the information to login the examination could start
+   o with pam_mkhomedir the user's homedir can be created on the server
+   o use the option skel=... to specify a custom skeleton directory  
+for the home
+   o on logout you have to place a hook that disables the LDAP account
+     (shadowAccount attribute)
+   o at night there could be a cron script that erases every home that is older
+     than 24h
+
+Best,
+Mike
+
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+eMail-LeseSchreibStunde: wochentags 8h-10h
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000914.html">[X2go-dev] Recommendation for mass conncections
+</A></li>
+	<LI>Next message: <A HREF="000915.html">[X2go-dev] Windows client crashing on WinXP
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#921">[ date ]</a>
+              <a href="thread.html#921">[ thread ]</a>
+              <a href="subject.html#921">[ subject ]</a>
+              <a href="author.html#921">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

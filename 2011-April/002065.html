@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2godropbox renamed to x2gomimebox
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2godropbox%20renamed%20to%20x2gomimebox&In-Reply-To=%3C1303231068.32272.26.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002057.html">
+   <LINK REL="Next"  HREF="002066.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2godropbox renamed to x2gomimebox</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2godropbox%20renamed%20to%20x2gomimebox&In-Reply-To=%3C1303231068.32272.26.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] x2godropbox renamed to x2gomimebox">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Apr 19 18:37:48 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002057.html">[X2go-dev] x2godropbox renamed to x2gomimebox
+</A></li>
+        <LI>Next message: <A HREF="002066.html">[X2go-dev] x2godropbox renamed to x2gomimebox
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2065">[ date ]</a>
+              <a href="thread.html#2065">[ thread ]</a>
+              <a href="subject.html#2065">[ subject ]</a>
+              <a href="author.html#2065">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2011-04-19 at 11:11 +0200, Mike Gabriel wrote:
+&gt;<i> Hi there,
+</I>&gt;<i> 
+</I>&gt;<i> on request from Heinz I have ,,dropped'' the name ,,X2goDropbox'' and  
+</I>&gt;<i> thought about a new name that does not confuse with any web service  
+</I>&gt;<i> currently offered on the internet.
+</I>&gt;<i> 
+</I>&gt;<i> What came to my mind is ,,X2go MIME box''.
+</I>&gt;<i> 
+</I>&gt;<i> Again: the MIME box is a feature in PyHoca-GUI that was originally  
+</I>&gt;<i> requested by Dick Kniep. It allows to export files from the X2go  
+</I>&gt;<i> server session to the client (uni-directional). One use case might be:  
+</I>&gt;<i> you have a server application that generates an ODS spread sheet. The  
+</I>&gt;<i> application has an export button that will copy this ODS file to the  
+</I>&gt;<i> $X2GO_MIMEBOX directory. On the client a thread watches this MIME box  
+</I>&gt;<i> and on incoming files and will open the default application for the  
+</I>&gt;<i> file's MIME type.
+</I>&lt;snip&gt;
+Full speed ahead with this as part of the main x2goserver!!!!! Now that
+I had a chance to sit and think about this (literally ;)  ), it struck
+me how to make this work (as I've frequently said, I'm not a developer,
+but I am an integrator).  This is EXACTLY what we've been waiting for to
+solve the video problem short of an adaptive video algorithm.  Here's
+how I see it working and what our company, Pacifera, can contribute.
+
+It's magically simple, almost, and we have already done similar work for
+other features in our SimplicITy X2Go service.  We create a simple
+server side script named LocalPlayer which merely copies a given file
+into the MIMEBox.  The installation process copies and sets permissions
+for LocalPlayer and registers it as a mime-type for whatever collection
+of MIME types we decide we need.  In fact, we can even have a related
+server side script named addLocalPlayerMimeType so the user can add or
+remove mime types.
+
+In KDE, we assure this appears in the Open With options or we could
+create a separate action for it.  We are comfortable doing that.  We
+would have a harder time setting that up for Gnome or Windows (using
+rdesktop connections - I should explain that, in our configurations, the
+Windows desktops have access to the shared media directories so we could
+certainly do the same for the MIMEBox) but I'm sure someone could help
+us there.  The installation script would edit the appropriate
+KDE/Trinity files.
+
+Editing the Firefox / Iceweasel RDF files is a real pain and we don't
+fully understand them but we can take a shot at it.  This would add the
+LocalPlayer as an option for the appropriate MIMETypes.
+
+Whether the user is downloading from the Internet or selecting from the
+file manager, they can send to the LocalPlayer.  If someone wanted to,
+they could even create a simple Qt interface to the LocalPlayer script
+which is little more than a file browser.
+
+We could even make the LocalPlayer the default but that would be
+presumptuous but it could be offered as a configuration option.
+
+Pacifera can do most of this work if the back end is in place.
+
+In fact, in keeping with X2Go printing, should we call this X2Go Media
+Player like we have X2Go printers?  Or similar to local shares, we could
+call it Local Media Player.
+
+I think we can do this and it would be a huge leap forward.  We already
+equal or exceed Citrix for performance, we are certainly less expensive
+(!!).   This would put us close to on par with them for media handling
+and be a real solution until we are able to find an adaptive video
+algorithm solution.  FULL SPEED AHEAD!! - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002057.html">[X2go-dev] x2godropbox renamed to x2gomimebox
+</A></li>
+	<LI>Next message: <A HREF="002066.html">[X2go-dev] x2godropbox renamed to x2gomimebox
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2065">[ date ]</a>
+              <a href="thread.html#2065">[ thread ]</a>
+              <a href="subject.html#2065">[ subject ]</a>
+              <a href="author.html#2065">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

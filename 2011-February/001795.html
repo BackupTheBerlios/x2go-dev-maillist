@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Windows client 3.01-18, VcXsrv 1.9.4.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Windows%20client%203.01-18%2C%20VcXsrv%201.9.4.1&In-Reply-To=%3CAANLkTi%3DYno%2BBJFFDzUSYEWEpH4em%3Dsvr3sp8ftQ4zryv%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001807.html">
+   <LINK REL="Next"  HREF="001798.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Windows client 3.01-18, VcXsrv 1.9.4.1</H1>
+    <B>John Williams</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Windows%20client%203.01-18%2C%20VcXsrv%201.9.4.1&In-Reply-To=%3CAANLkTi%3DYno%2BBJFFDzUSYEWEpH4em%3Dsvr3sp8ftQ4zryv%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] Windows client 3.01-18, VcXsrv 1.9.4.1">jwilliams4200 at gmail.com
+       </A><BR>
+    <I>Wed Feb 23 00:33:48 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001807.html">[X2go-dev] X2Go media player for redirected video [was Re: EyeOS]
+</A></li>
+        <LI>Next message: <A HREF="001798.html">[X2go-dev] Windows client 3.01-18, VcXsrv 1.9.4.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1795">[ date ]</a>
+              <a href="thread.html#1795">[ thread ]</a>
+              <a href="subject.html#1795">[ subject ]</a>
+              <a href="author.html#1795">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I've been using windows client 3.01-13 for a couple months, and it
+works reasonably well, but I have experienced two consistent problems
+-- apparently random disappearance of the mouse pointer (fixed by
+quitting x2go and starting again), and some problems with windows
+updates, especially with gnome-terminal windows when there is a long
+scroll job, sometimes the windows do not update (waving the mouse
+cursor in front of the window usually causes it to update).
+
+I decided to test the recent 3.01-18 client and VcXsrv 1.9.4.1. First
+I just tried 3.01-18 with the built-in xserver. I only tested that for
+a short time, but one problem I found was that sound was broken. Sound
+works fine when I go back to 3.01-13, but sound does not work at all
+with 3.01-18. VLC complains about the ALSA driver and locks-up, adobe
+flashplayer 64-bit prerelease &quot;square&quot; hangs. Both apparently related
+to the broken sound.
+
+Moving on, I tried 3.01-18 with VcXsrv 1.9.4.1 for a few hours, mostly
+web browsing. I did not have the cursor disappear, but I did have a
+couple serious issues. One was when the screen was not redrawn
+properly when I dragged a Firefox window around. It seemed random -- I
+was working fine for about an hour, but suddenly when I tried dragging
+a firefox window, it left trails everywhere, totally munging the
+screen. I tried dragging other windows around, and even quitting and
+restarting x2go, but nothing seemed to be able to redraw the screen
+properly after that. So I started a new session, and that worked for a
+while, but then it locked up completely, and I had to kill the
+session.
+
+Is any of this behavior known? If not, what can I do to aid in
+debugging? With the exception of broken sound (which was repeatable),
+the other problems seemed random.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001807.html">[X2go-dev] X2Go media player for redirected video [was Re: EyeOS]
+</A></li>
+	<LI>Next message: <A HREF="001798.html">[X2go-dev] Windows client 3.01-18, VcXsrv 1.9.4.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1795">[ date ]</a>
+              <a href="thread.html#1795">[ thread ]</a>
+              <a href="subject.html#1795">[ subject ]</a>
+              <a href="author.html#1795">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

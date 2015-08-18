@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] libjpeg-turbo and NX/X2Go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20libjpeg-turbo%20and%20NX/X2Go&In-Reply-To=%3C20120130214855.10354ufh0y8qbpyv%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003313.html">
+   <LINK REL="Next"  HREF="003305.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] libjpeg-turbo and NX/X2Go</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20libjpeg-turbo%20and%20NX/X2Go&In-Reply-To=%3C20120130214855.10354ufh0y8qbpyv%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] libjpeg-turbo and NX/X2Go">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Jan 30 21:48:55 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003313.html">[X2Go-Dev] libjpeg-turbo and NX/X2Go
+</A></li>
+        <LI>Next message: <A HREF="003305.html">[X2Go-Dev] Help needed in debugging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3316">[ date ]</a>
+              <a href="thread.html#3316">[ thread ]</a>
+              <a href="subject.html#3316">[ subject ]</a>
+              <a href="author.html#3316">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Stefan,
+
+On Mo 30 Jan 2012 18:37:40 CET &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>&quot; wrote:
+
+&gt;<i> Am 29.01.2012 00:46, schrieb Mike Gabriel:
+</I>&gt;&gt;<i> From my point of view it is indeed not necessary to recompile NX to  
+</I>&gt;&gt;<i> be used with libjpeg-turbo. People may correct me if that is not  
+</I>&gt;&gt;<i> true.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> So for a running X2Go server and client you can drop in
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   on squeeze: apt-get install libjpeg-turbo62
+</I>&gt;&gt;<i>   on wheezy, sid: apt-get install libjpeg-turbo8
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> And your host should then run with libjpeg-turbo instead of  
+</I>&gt;&gt;<i> libjpeg. Please note, that this change affects every application on  
+</I>&gt;&gt;<i> that system. So... no warranty given from our side. Also, if  
+</I>&gt;&gt;<i> testing libjpeg-turbo, please read the documentation of  
+</I>&gt;&gt;<i> libjpeg-turbo:
+</I>&gt;<i>
+</I>&gt;<i> Guys,
+</I>&gt;<i>
+</I>&gt;<i> it would be really helpful if someone could type up a step-by-step  
+</I>&gt;<i> guide for testing.
+</I>
+1. Install X2Go Server and Client
+2. install libjpeg-turbo62 (squeeze) or libjpeg-turbo8 (wheezy + sid)  
+from the heuler repos on packages.x2go.org on server and/or client
+3. test the experience...
+
+&gt;<i> I'd love to try this out, but either I *did* something wrong or  
+</I>&gt;<i> something *goes* wrong, as the following had no positive effect  
+</I>&gt;<i> whatsoever:
+</I>&gt;<i> * add heuler repository, apt-get update
+</I>&gt;<i> * apt-get install libjpeg-turbo62 on my squeeze-based server
+</I>&gt;<i> * connect from latest Microsoft Windows client to said server
+</I>&gt;<i> * use Iceweasel in rootless mode, access YouTube and watch a movie
+</I>
+What compression do you use? 16m-jpeg-9?
+
+&gt;<i> The only effect I saw was a &quot;screen hang&quot; when leaving YouTube for  
+</I>&gt;<i> another web site, and no speed increase whatsoever. :-(
+</I>
+hmmm...
+
+&gt;<i> 1) Will this currently only work between Linux Clients and Linux Servers?
+</I>
+jpeg compression is performed on both sides: client _and_ server, I  
+guess. It can have an effect on both sides (I guess).
+
+&gt;<i> 2) Will it work with rootless sessions? (I remember NoMachine/FreeNX  
+</I>&gt;<i> once stated that rootless sessions in general - i.e. not related to  
+</I>&gt;<i> libjpeg-turbo - gain less speed than a fullscreen session - but that  
+</I>&gt;<i> was years ago and may have changed and may not apply to X2Go at all,  
+</I>&gt;<i> I don't know.)
+</I>
+It should...
+
+&gt;<i> 3) Is the library required on both the server *and* on the client?
+</I>
+Best performance is achieved if it is installed on both: server and  
+client. But it can be installed on either, only.
+
+&gt;<i> 4) Should it work &quot;out of the box&quot; after installing the package, or  
+</I>&gt;<i> do I have to change some file somewhere to add the library path?
+</I>
+out-of-the-box, by theory... However, we should compare a drop-in of  
+the package into an already running server with an NX (redistributed)  
+compiled on a system where libjpeg-turbo is installed during package  
+build. Not sure if that changes performance gain...
+
+&gt;<i> 5) Do I have to restart a daemon after changing this file?
+</I>
+No daemons involved here, at all.
+
+&gt;<i> 6) Why was I able to install the package without apt-get telling me  
+</I>&gt;<i> it would remove the &quot;non-turbo&quot; library package? To make this clear,  
+</I>&gt;<i> I don't complain about a lack of a warning (Mike did provide such a  
+</I>&gt;<i> warning in his posting), but I'm surprised about the lack of  
+</I>&gt;<i> *action* i.e. no library package has been removed when I installed  
+</I>&gt;<i> the libjpeg-turbo62 package.
+</I>
+Please read more about dpkg-divert:
+<A HREF="http://www.debian-administration.org/articles/118">http://www.debian-administration.org/articles/118</A>
+
+And refer to the postrm and preinst scripts of libjpeg-turbo:
+<A HREF="http://code.x2go.org/gitweb?p=libjpeg-turbo.git;a=tree;f=debian">http://code.x2go.org/gitweb?p=libjpeg-turbo.git;a=tree;f=debian</A>
+
+&gt;<i> Kind Regards,
+</I>&gt;<i> Stefan
+</I>
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120130/ddeff712/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120130/ddeff712/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003313.html">[X2Go-Dev] libjpeg-turbo and NX/X2Go
+</A></li>
+	<LI>Next message: <A HREF="003305.html">[X2Go-Dev] Help needed in debugging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3316">[ date ]</a>
+              <a href="thread.html#3316">[ thread ]</a>
+              <a href="subject.html#3316">[ subject ]</a>
+              <a href="author.html#3316">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

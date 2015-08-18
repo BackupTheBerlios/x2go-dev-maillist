@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2goserver package with setuidwrapper
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20package%20with%20setuidwrapper&In-Reply-To=%3C20110718175920.16693zi7w4h2kdp4%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002476.html">
+   <LINK REL="Next"  HREF="002481.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2goserver package with setuidwrapper</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20package%20with%20setuidwrapper&In-Reply-To=%3C20110718175920.16693zi7w4h2kdp4%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] x2goserver package with setuidwrapper">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Jul 18 17:59:20 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002476.html">[X2go-Dev] x2goserver package with setuidwrapper
+</A></li>
+        <LI>Next message: <A HREF="002481.html">[X2go-Dev] x2goserver package with setuidwrapper
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2480">[ date ]</a>
+              <a href="thread.html#2480">[ thread ]</a>
+              <a href="subject.html#2480">[ subject ]</a>
+              <a href="author.html#2480">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Morty, hi Reinhard,
+
+On Mo 18 Jul 2011 17:12:55 CEST Moritz Struebe wrote:
+
+&gt;<i> On 2011-07-18 15:43, Mike Gabriel wrote:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> owner: root
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> doesn't that conflict with the setuid bit?
+</I>&gt;<i>
+</I>&gt;<i> Damn. Stupid me!
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -&gt; owner: x2gouser
+</I>&gt;&gt;<i> -&gt; + setuid bit
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> group: x2gouser
+</I>&gt;&gt;&gt;<i> chmod g+rx,g-w
+</I>&gt;&gt;&gt;<i> (Same for the directory containing the file.....)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> So how can we set permissions with setuid and owner=root?
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Should be possible using the group-S-bit -&gt; keep the user, but make the
+</I>&gt;<i> database writeable to the x2gouser-group.
+</I>&gt;<i>
+</I>&gt;<i> Any objections? Did I think to short-sighted again?
+</I>
+Yes, this works!!! And everything belongs to root afterwards (setuid  
+wrapper, x2gosqlitewrapper.pl, x2go_sessions db, etc.
+
+And/but it also reintroduces the group checking (X2go users must be in  
+group x2gousers).
+
+I would also be happy about a comment on this by Arw...
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110718/d2e5daf6/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110718/d2e5daf6/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002476.html">[X2go-Dev] x2goserver package with setuidwrapper
+</A></li>
+	<LI>Next message: <A HREF="002481.html">[X2go-Dev] x2goserver package with setuidwrapper
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2480">[ date ]</a>
+              <a href="thread.html#2480">[ thread ]</a>
+              <a href="subject.html#2480">[ subject ]</a>
+              <a href="author.html#2480">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] python-x2go and IPv6 ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20python-x2go%20and%20IPv6%20%3F&In-Reply-To=%3C1306521402.32547.18.camel%40castiana.lan.sherb.stgraber.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002252.html">
+   <LINK REL="Next"  HREF="002261.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] python-x2go and IPv6 ?</H1>
+    <B>St&#233;phane Graber</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20python-x2go%20and%20IPv6%20%3F&In-Reply-To=%3C1306521402.32547.18.camel%40castiana.lan.sherb.stgraber.net%3E"
+       TITLE="[X2go-dev] python-x2go and IPv6 ?">stgraber at ubuntu.com
+       </A><BR>
+    <I>Fri May 27 20:36:38 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002252.html">[X2go-dev] iPAD now has X and ssh
+</A></li>
+        <LI>Next message: <A HREF="002261.html">[X2go-dev] python-x2go and IPv6 ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2260">[ date ]</a>
+              <a href="thread.html#2260">[ thread ]</a>
+              <a href="subject.html#2260">[ subject ]</a>
+              <a href="author.html#2260">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2011-05-27 at 20:28 +0200, Mike Gabriel wrote:
+&gt;<i> Hi Stephane,
+</I>&gt;<i> 
+</I>&gt;<i> On Fr 27 Mai 2011 16:03:47 CEST St&#233;phane Graber wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">stgraber at castiana</A>:~$ host weblive-appserv01.nx.stgraber.org
+</I>&gt;<i> &gt; weblive-appserv01.nx.stgraber.org has address 46.4.71.12
+</I>&gt;<i> &gt; weblive-appserv01.nx.stgraber.org has IPv6 address
+</I>&gt;<i> &gt; 2001:470:b4c2:1025:1::1
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">stgraber at castiana</A>:~$ telnet 46.4.71.12 6522
+</I>&gt;<i> &gt; Trying 46.4.71.12...
+</I>&gt;<i> &gt; Connected to 46.4.71.12.
+</I>&gt;<i> &gt; Escape character is '^]'.
+</I>&gt;<i> &gt; SSH-2.0-OpenSSH_5.8p1 Debian-1ubuntu3
+</I>&gt;<i> &gt; ^]
+</I>&gt;<i> &gt; telnet&gt; quit
+</I>&gt;<i> &gt; Connection closed.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">stgraber at castiana</A>:~$ telnet 2001:470:b4c2:1025:1::1 6522
+</I>&gt;<i> &gt; Trying 2001:470:b4c2:1025:1::1...
+</I>&gt;<i> &gt; Connected to 2001:470:b4c2:1025:1::1.
+</I>&gt;<i> &gt; Escape character is '^]'.
+</I>&gt;<i> &gt; SSH-2.0-OpenSSH_5.8p1 Debian-1ubuntu3
+</I>&gt;<i> &gt; ^]
+</I>&gt;<i> &gt; telnet&gt; quit
+</I>&gt;<i> &gt; Connection closed.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">stgraber at castiana</A>:~$ telnet weblive-appserv01.nx.stgraber.org 6522
+</I>&gt;<i> &gt; Trying 2001:470:b4c2:1025:1::1...
+</I>&gt;<i> &gt; Connected to weblive-appserv01.nx.stgraber.org.
+</I>&gt;<i> &gt; Escape character is '^]'.
+</I>&gt;<i> &gt; SSH-2.0-OpenSSH_5.8p1 Debian-1ubuntu3
+</I>&gt;<i> &gt; ^]
+</I>&gt;<i> &gt; telnet&gt; quit
+</I>&gt;<i> &gt; Connection closed.
+</I>&gt;<i> 
+</I>&gt;<i> Could you try somethin like this...
+</I>&gt;<i> 
+</I>&gt;<i> $ python
+</I>&gt;<i> Python 2.6.6 (r266:84292, Dec 26 2010, 22:31:48)
+</I>&gt;<i> [GCC 4.4.5] on linux2
+</I>&gt;<i> Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+</I>&gt;<i> &gt;&gt;&gt; import socket
+</I>&gt;<i> &gt;&gt;&gt; socket.getaddrinfo('vidar.das-netzwerkteam.de', 32032,  
+</I>&gt;<i> &gt;&gt;&gt; socket.AF_UNSPEC, socket.SOCK_STREAM)
+</I>&gt;<i> [(2, 1, 6, '', ('178.63.100.242', 32032))]
+</I>&gt;<i> 
+</I>&gt;<i> What is the result of socket.getaddrinfo for your server (from your  
+</I>&gt;<i> local host)?
+</I>&gt;<i> 
+</I>&gt;<i> The getaddrinfo tuple represents (family, socktype, proto, canonname,  
+</I>&gt;<i> sockaddr).
+</I>&gt;<i> 
+</I>&gt;<i> This information is queried by paramiko.SSHClient.connect():
+</I>&gt;<i> <A HREF="http://www.lag.net/paramiko/docs/paramiko.client-pysrc.html">http://www.lag.net/paramiko/docs/paramiko.client-pysrc.html</A>
+</I>&gt;<i> 
+</I>&gt;<i> There doesn't seem to be a method to force either of the protocols.
+</I>&gt;<i> 
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> PS: could we please these kinds of communication on x2go-dev ML? I  
+</I>&gt;<i> guess our insights should be available for the whole world (mail  
+</I>&gt;<i> archives).
+</I>
+&gt;&gt;&gt;<i>
+</I>socket.getaddrinfo(&quot;weblive-appserv02.nx.stgraber.org&quot;,6522,socket.AF_UNSPEC, socket.SOCK_STREAM)
+[(10, 1, 6, '', ('2001:470:b4c2:1025:1::2', 6522, 0, 0)), (2, 1, 6, '',
+('46.4.71.12', 6522))]
+
+
+As I mentioned, I have another process using paramiko connecting to the
+same server and using IPv6.
+
+
+May 27 14:35:45 weblive-appserv01 sshd[7373]: Accepted password for root
+from 2001:470:8cc0:1000:223:14ff:fea3:d9a4 port 60372 ssh2
+May 27 14:35:45 weblive-appserv01 sshd[7373]: pam_unix(sshd:session):
+session opened for user root by (uid=0)
+May 27 14:35:46 weblive-appserv01 sshd[7373]: pam_unix(sshd:session):
+session closed for user root
+
+Using:
+
+#!/usr/bin/python
+import paramiko
+
+ssh = paramiko.SSHClient()
+ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+ssh.connect(
+    &quot;weblive-appserv01.nx.stgraber.org&quot;,
+    port=6522,
+    username=&quot;root&quot;,
+    password=&quot;MY PASSWORD&quot;,
+    allow_agent=False,
+    look_for_keys=False,
+    timeout=10
+)
+ssh.close()
+
+
+-- 
+St&#233;phane Graber
+Ubuntu developer
+<A HREF="http://www.ubuntu.com">http://www.ubuntu.com</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110527/7f5312b4/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110527/7f5312b4/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002252.html">[X2go-dev] iPAD now has X and ssh
+</A></li>
+	<LI>Next message: <A HREF="002261.html">[X2go-dev] python-x2go and IPv6 ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2260">[ date ]</a>
+              <a href="thread.html#2260">[ thread ]</a>
+              <a href="subject.html#2260">[ subject ]</a>
+              <a href="author.html#2260">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

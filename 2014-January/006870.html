@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#412: imake issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23412%3A%20imake%20issues&In-Reply-To=%3C52E2D48E.2060603%40cora.nwra.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006869.html">
+   <LINK REL="Next"  HREF="006873.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#412: imake issues</H1>
+    <B>Orion Poplawski</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23412%3A%20imake%20issues&In-Reply-To=%3C52E2D48E.2060603%40cora.nwra.com%3E"
+       TITLE="[X2Go-Dev] Bug#412: imake issues">orion at cora.nwra.com
+       </A><BR>
+    <I>Fri Jan 24 22:01:02 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006869.html">[X2Go-Dev] Bug#411: Fix ppc64 build
+</A></li>
+        <LI>Next message: <A HREF="006873.html">[X2Go-Dev] Bug#108:  Bug#108: Missing fonts in X application
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6870">[ date ]</a>
+              <a href="thread.html#6870">[ thread ]</a>
+              <a href="subject.html#6870">[ subject ]</a>
+              <a href="author.html#6870">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: nx-libs
+Version: 3.5.0.22
+
+The imake in 3.5.0.22 does not compile in current Fedora rawhide due to the
+use of -Werror=format-security:
+
+make[4]: Entering directory
+`/builddir/build/BUILD/nx-libs-3.5.0.22/nx-X11/config/imake'
+gcc -O2 -g -pipe -Wall -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2
+-fexceptions -fstack-protector-strong --param=ssp-buffer-size=4
+-grecord-gcc-switches -specs=/usr/lib/rpm/redhat/redhat-hardened-cc1
+-march=armv7-a -mfpu=vfpv3-d16  -mfloat-abi=hard    -I../../include
+-I../../exports/include/X11  -I../.. -I../../exports/include   -Dlinux
+-D__arm__ -D__arm32__ -U__arm -Uarm -D_POSIX_C_SOURCE=199309L 			
+-D_POSIX_SOURCE -D_XOPEN_SOURCE 				-D_BSD_SOURCE -D_SVID_SOURCE
+                   -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 				
+-D_GNU_SOURCE 				  -DFUNCPROTO=15 -DNARROWPROTO     -DCPP_PROGRAM=&quot;\&quot;cpp\&quot;&quot;
+-DHAS_MERGE_CONSTANTS=`if gcc -fmerge-constants -xc /dev/null -S -o /dev/null
+2&gt; /dev/null 1&gt; /dev/null; then echo 1; else echo 0; fi` 	  -DMONOLITH   -c -o
+imake.o imake.c
+imake.c: In function 'get_libc_version':
+imake.c:1018:5: error: format not a string literal and no format arguments
+[-Werror=format-security]
+     fprintf (inFile, command);
+     ^
+imake.c: In function 'get_ld_version':
+imake.c:1135:5: warning: ignoring return value of 'fscanf', declared with
+attribute warn_unused_result [-Wunused-result]
+     (void) fscanf (ldprog, &quot;%d.%d&quot;, &amp;ldmajor, &amp;ldminor);
+     ^
+imake.c: In function 'ReadLine':
+imake.c:1998:12: warning: ignoring return value of 'ftruncate', declared with
+attribute warn_unused_result [-Wunused-result]
+   ftruncate(fileno(tmpfd), (off_t) 0);
+            ^
+cc1: some warnings being treated as errors
+make[4]: *** [imake.o] Error 1
+
+Ideally, I would like to avoid building a local imake altogether and just use
+the system imake, but I have been unable to figure out how to do that yet.
+
+In the meantime, I'm patching imake.c as attached to bring it up to the
+version that is in Fedora Rawhide.
+
+
+-- 
+Orion Poplawski
+Technical Manager                     303-415-9701 x222
+NWRA, Boulder/CoRA Office             FAX: 303-415-9702
+3380 Mitchell Lane                       <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at nwra.com</A>
+Boulder, CO 80301                   <A HREF="http://www.nwra.com">http://www.nwra.com</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: nx-libs-imake.patch
+Type: text/x-patch
+Size: 29437 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20140124/6da4a5f4/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20140124/6da4a5f4/attachment.bin</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006869.html">[X2Go-Dev] Bug#411: Fix ppc64 build
+</A></li>
+	<LI>Next message: <A HREF="006873.html">[X2Go-Dev] Bug#108:  Bug#108: Missing fonts in X application
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6870">[ date ]</a>
+              <a href="thread.html#6870">[ thread ]</a>
+              <a href="subject.html#6870">[ subject ]</a>
+              <a href="author.html#6870">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

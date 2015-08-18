@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] libjpeg-turbo and NX/X2Go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20libjpeg-turbo%20and%20NX/X2Go&In-Reply-To=%3C4F26D564.3070104%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003315.html">
+   <LINK REL="Next"  HREF="003316.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] libjpeg-turbo and NX/X2Go</H1>
+    <B>newsgroups.mail2 at stefanbaur.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20libjpeg-turbo%20and%20NX/X2Go&In-Reply-To=%3C4F26D564.3070104%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] libjpeg-turbo and NX/X2Go">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Mon Jan 30 18:37:40 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003315.html">[X2Go-Dev] libjpeg-turbo and NX/X2Go
+</A></li>
+        <LI>Next message: <A HREF="003316.html">[X2Go-Dev] libjpeg-turbo and NX/X2Go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3313">[ date ]</a>
+              <a href="thread.html#3313">[ thread ]</a>
+              <a href="subject.html#3313">[ subject ]</a>
+              <a href="author.html#3313">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 29.01.2012 00:46, schrieb Mike Gabriel:
+&gt;<i> From my point of view it is indeed not necessary to recompile NX to be 
+</I>&gt;<i> used with libjpeg-turbo. People may correct me if that is not true.
+</I>&gt;<i>
+</I>&gt;<i> So for a running X2Go server and client you can drop in
+</I>&gt;<i>
+</I>&gt;<i>    on squeeze: apt-get install libjpeg-turbo62
+</I>&gt;<i>    on wheezy, sid: apt-get install libjpeg-turbo8
+</I>&gt;<i>
+</I>&gt;<i> And your host should then run with libjpeg-turbo instead of libjpeg. 
+</I>&gt;<i> Please note, that this change affects every application on that 
+</I>&gt;<i> system. So... no warranty given from our side. Also, if testing 
+</I>&gt;<i> libjpeg-turbo, please read the documentation of libjpeg-turbo:
+</I>
+Guys,
+
+it would be really helpful if someone could type up a step-by-step guide 
+for testing.  I'd love to try this out, but either I *did* something 
+wrong or something *goes* wrong, as the following had no positive effect 
+whatsoever:
+* add heuler repository, apt-get update
+* apt-get install libjpeg-turbo62 on my squeeze-based server
+* connect from latest Microsoft Windows client to said server
+* use Iceweasel in rootless mode, access YouTube and watch a movie
+
+The only effect I saw was a &quot;screen hang&quot; when leaving YouTube for 
+another web site, and no speed increase whatsoever. :-(
+
+Looking at the discussion in this thread and at the libjpeg-turbo 
+documentation leaves me even more confused than before.
+
+My questions, in particular, are:
+1) Will this currently only work between Linux Clients and Linux Servers?
+2) Will it work with rootless sessions? (I remember NoMachine/FreeNX 
+once stated that rootless sessions in general - i.e. not related to 
+libjpeg-turbo - gain less speed than a fullscreen session - but that was 
+years ago and may have changed and may not apply to X2Go at all, I don't 
+know.)
+3) Is the library required on both the server *and* on the client?
+4) Should it work &quot;out of the box&quot; after installing the package, or do I 
+have to change some file somewhere to add the library path?
+5) Do I have to restart a daemon after changing this file?
+6) Why was I able to install the package without apt-get telling me it 
+would remove the &quot;non-turbo&quot; library package? To make this clear, I 
+don't complain about a lack of a warning (Mike did provide such a 
+warning in his posting), but I'm surprised about the lack of *action* 
+i.e. no library package has been removed when I installed the 
+libjpeg-turbo62 package.
+
+Kind Regards,
+Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003315.html">[X2Go-Dev] libjpeg-turbo and NX/X2Go
+</A></li>
+	<LI>Next message: <A HREF="003316.html">[X2Go-Dev] libjpeg-turbo and NX/X2Go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3313">[ date ]</a>
+              <a href="thread.html#3313">[ thread ]</a>
+              <a href="subject.html#3313">[ subject ]</a>
+              <a href="author.html#3313">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

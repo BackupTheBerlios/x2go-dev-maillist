@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Automating the installation of the X2Go-TCE
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Automating%20the%20installation%20of%20the%20X2Go-TCE&In-Reply-To=%3Cc71a7666b0410460235f7cd3204694d8%40starbase.arnoldarts.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006115.html">
+   <LINK REL="Next"  HREF="006130.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Automating the installation of the X2Go-TCE</H1>
+    <B>Arnold Krille</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Automating%20the%20installation%20of%20the%20X2Go-TCE&In-Reply-To=%3Cc71a7666b0410460235f7cd3204694d8%40starbase.arnoldarts.de%3E"
+       TITLE="[X2Go-Dev] Automating the installation of the X2Go-TCE">arnold at arnoldarts.de
+       </A><BR>
+    <I>Sat Aug 24 14:00:30 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006115.html">[X2Go-Dev] Bug#289: Launch (suspended) X2Go sessions without the	need of client-side X11
+</A></li>
+        <LI>Next message: <A HREF="006130.html">[X2Go-Dev] Automating the installation of the X2Go-TCE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6118">[ date ]</a>
+              <a href="thread.html#6118">[ thread ]</a>
+              <a href="subject.html#6118">[ subject ]</a>
+              <a href="author.html#6118">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+I spent most of yesterdays working hours automating the setup of a 
+TCE-nfs+tftp server. We use Chef (www.opscode.com) for that. And I will 
+most likely publish the cookbook/recipe soon. The main reason I started 
+this is that we want to automate more and more of the setup. And thus 
+ease setting up our customers systems.
+
+Two problems I encountered:
+
+1) The x2gothinclient_create skript assumes interactive usage and has 
+no option of running non-interactive. I adopted this by removing the 
+single &quot;read&quot; (so it doesn't anymore ask for confirmation and by trying 
+to set the locale without running &quot;dpkg-reconfigure locales&quot;. So that 
+part worked.
+
+2) I got the client-machines (tested with a virtual machine and checked 
+with an atom-based netbook) to boot of the pxe+tftp+nfs as wanted and am 
+presented with x2goclient. But on the way there, the mouse and keyboard 
+are lost and motivation on friday just before the weekend got a little 
+low-point. Any tips where to look at what happened? Keyboard and mouse 
+seem to be gone for good, I could neither move the pointer nor enter 
+anything in x2goclient. Also I couldn't do Ctrl+Alt+F1 to switch to a 
+text-console.
+
+I also copied the x2gothinclient_shell-skript to create an 
+x2gothinclient_execute which takes arguments and just executes these 
+inside the tce-chroot instead of running an interactive bash. I don't 
+know whether that is something I should prepare a patch for x2go for? It 
+sure is very great for example for installing the kernel inside the 
+chroot from the chef-recipe. And probably for other stuff I didn't yet 
+need.
+
+Have a nice weekend,
+
+Arnold
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006115.html">[X2Go-Dev] Bug#289: Launch (suspended) X2Go sessions without the	need of client-side X11
+</A></li>
+	<LI>Next message: <A HREF="006130.html">[X2Go-Dev] Automating the installation of the X2Go-TCE
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6118">[ date ]</a>
+              <a href="thread.html#6118">[ thread ]</a>
+              <a href="subject.html#6118">[ subject ]</a>
+              <a href="author.html#6118">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

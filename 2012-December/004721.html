@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH 6/8] drop	debian/patches/001_add-main-makefile.full+lite.patch
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%206/8%5D%20drop%0A%09debian/patches/001_add-main-makefile.full%2Blite.patch&In-Reply-To=%3CCAJ0cceZQJtOEUzV6wqpMBKDyk%3DZGuSC98veeuSSG9nu5kDQZkw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004720.html">
+   <LINK REL="Next"  HREF="004717.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH 6/8] drop	debian/patches/001_add-main-makefile.full+lite.patch</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%206/8%5D%20drop%0A%09debian/patches/001_add-main-makefile.full%2Blite.patch&In-Reply-To=%3CCAJ0cceZQJtOEUzV6wqpMBKDyk%3DZGuSC98veeuSSG9nu5kDQZkw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] [PATCH 6/8] drop	debian/patches/001_add-main-makefile.full+lite.patch">siretart at gmail.com
+       </A><BR>
+    <I>Wed Dec 12 13:40:02 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004720.html">[X2Go-Dev] [PATCH 6/8] drop debian/patches/001_add-main-makefile.full+lite.patch
+</A></li>
+        <LI>Next message: <A HREF="004717.html">[X2Go-Dev] [PATCH 7/8] drop	debian/patches/025_nxproxy_no-configure-file.full+lite.patch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4721">[ date ]</a>
+              <a href="thread.html#4721">[ thread ]</a>
+              <a href="subject.html#4721">[ subject ]</a>
+              <a href="author.html#4721">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Dec 12, 2012 at 1:34 PM, Mike Gabriel
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+&gt;<i> -1 from me!!! This will break the tarball generation. Note that we provide
+</I>&gt;<i> nx-libs to several other distros that have no clue about what the /debian
+</I>&gt;<i> folder is for.
+</I>&gt;<i>
+</I>&gt;<i> Such a patch is only ok, if you fix the tarball creator in nx-buildscripts
+</I>&gt;<i> (branch in nx-libs.git).
+</I>
+Well, that would require just an additional 'cp' command in this script, right?
+
+diff --git a/bin/nx-tarballrelease b/bin/nx-tarballrelease
+index 0465179..93bc143 100755
+--- a/bin/nx-tarballrelease
++++ b/bin/nx-tarballrelease
+@@ -62,6 +62,9 @@ if [ &quot;x$RELEASE&quot; != &quot;xHEAD&quot; ]; then
+ 	( set -e; cd &quot;$TEMP_DIR/${PROJECT}-$RELEASE/&quot; &amp;&amp; git checkout $CHECKOUT; )
+ fi
+
++# copy the top-level makefile
++( set -e; cd &quot;$TEMP_DIR/${PROJECT}-$RELEASE/&quot; &amp;&amp; cp -v
+debian/patches/Makefile.nx-libs Makefile
++
+ # prepare patches for lite and full tarball
+ if [ &quot;x$MODE&quot; = &quot;xfull&quot; ]; then
+ 	( set -e; cd &quot;$TEMP_DIR/${PROJECT}-$RELEASE/&quot; &amp;&amp; mkdir -p
+doc/applied-patches &amp;&amp; find debian/patches | egrep
+&quot;(debian/patches/[0-9]+_.*\.(full|full\+lite)\.patch)&quot; | while read
+file; do cp -a $file doc/applied-patches; done)
+
+
+-- 
+regards,
+    Reinhard
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004720.html">[X2Go-Dev] [PATCH 6/8] drop debian/patches/001_add-main-makefile.full+lite.patch
+</A></li>
+	<LI>Next message: <A HREF="004717.html">[X2Go-Dev] [PATCH 7/8] drop	debian/patches/025_nxproxy_no-configure-file.full+lite.patch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4721">[ date ]</a>
+              <a href="thread.html#4721">[ thread ]</a>
+              <a href="subject.html#4721">[ subject ]</a>
+              <a href="author.html#4721">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

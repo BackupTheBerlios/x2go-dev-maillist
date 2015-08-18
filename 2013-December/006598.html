@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre02
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20Windows%20binary%204.0.1.2pre02&In-Reply-To=%3CCAMKht8ig0pSKmnWpGQkefvYsvpS-VMJgT3AZmTmV6RDbpXat9Q%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006597.html">
+   <LINK REL="Next"  HREF="006601.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre02</H1>
+    <B>Michael DePaulo</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20Windows%20binary%204.0.1.2pre02&In-Reply-To=%3CCAMKht8ig0pSKmnWpGQkefvYsvpS-VMJgT3AZmTmV6RDbpXat9Q%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre02">mikedep333 at gmail.com
+       </A><BR>
+    <I>Wed Dec 11 01:43:23 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006597.html">[X2Go-Dev] Bug#359: Desktop/Startmenu icon for X2Go Admin Center
+</A></li>
+        <LI>Next message: <A HREF="006601.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre02
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6598">[ date ]</a>
+              <a href="thread.html#6598">[ thread ]</a>
+              <a href="subject.html#6598">[ subject ]</a>
+              <a href="author.html#6598">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+In preparation for the upcoming release of X2Go Client 4.0.1.2, a new
+nightly build of the Windows binary is available for download under:
+
+<A HREF="http://code.x2go.org/releases/binary-win32/x2goclient/previews/4.0.1.2/">http://code.x2go.org/releases/binary-win32/x2goclient/previews/4.0.1.2/</A>
+
+Right now the current plan for 4.0.1.2's release is &quot;We've stopped
+making changes. If no showstopper bugs or regressions are reported,
+we'll release 4.0.1.2 on Friday.&quot; So while we want all bugs reported
+on <A HREF="http://bugs.x2go.org/">http://bugs.x2go.org/</A> , it is especially important that users
+report any regressions since the last stable version of X2Go Client
+for windows, 4.0.0.3, before Friday 2013-12-13.
+
+There have been several commits since pre02 was built. However, the
+changes are so small that we do not intend to release another preview
+build before 4.0.1.2 is officially released. Half of the commits are
+related to Fedora &amp; EPEL packaging anyway.
+
+More information about this build:
+
+- It is still compatible with Windows XP! It bundles VcXsrv 1.14.2.1
+(2013-07-26) because all later versions of VcXsrv (starting with
+1.14.3, released 2013-09-20) are incompatible with Windows XP.
+
+- The X2Go Project will evaluate options for upgrading VcXsrv after
+X2Go Client 4.0.1.2 is released. The general consensus is that X2Go
+Client should continue to support Windows XP until at least when
+Microsoft stops supporting XP in April 2014. Like before, users can
+configure X2Go Client to use a different X server by specifying the X
+Server in Options -&gt; Settings -&gt; X-Server settings.
+
+- It is built from commit 31b6e2a55ac9328c96ae4f61f18a1a3f4dbf9b6b
+(2013-12-10 UTC)
+
+- The version of nx-libs is 3.5.0.21-lite
+
+- It is built according to the instructions here:
+<A HREF="http://wiki.x2go.org/doku.php/wiki:development:build-howto-mswin:x2goclient">http://wiki.x2go.org/doku.php/wiki:development:build-howto-mswin:x2goclient</A>
+
+- Bug #230 &quot;x2goclient on Windows does not show up in Control
+Panel/Programs&quot; has been fixed.
+
+- All other existing windows-specific bugs are probably still present.
+
+- For a high-level changelog of what has been fixed/improved in
+4.0.1.2 as of this build, see:
+<A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=blob;f=debian/changelog;h=1900abfc680f80064d2c1d0f8f1e37e30ae0d3df;hb=31b6e2a55ac9328c96ae4f61f18a1a3f4dbf9b6b">http://code.x2go.org/gitweb?p=x2goclient.git;a=blob;f=debian/changelog;h=1900abfc680f80064d2c1d0f8f1e37e30ae0d3df;hb=31b6e2a55ac9328c96ae4f61f18a1a3f4dbf9b6b</A>
+
+-Mike DePaulo
+X2Go Contributor
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006597.html">[X2Go-Dev] Bug#359: Desktop/Startmenu icon for X2Go Admin Center
+</A></li>
+	<LI>Next message: <A HREF="006601.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre02
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6598">[ date ]</a>
+              <a href="thread.html#6598">[ thread ]</a>
+              <a href="subject.html#6598">[ subject ]</a>
+              <a href="author.html#6598">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

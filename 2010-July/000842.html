@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] source code repository
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20source%20code%20repository&In-Reply-To=%3C4C4347F3.4090408%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000841.html">
+   <LINK REL="Next"  HREF="000846.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] source code repository</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20source%20code%20repository&In-Reply-To=%3C4C4347F3.4090408%40verizon.net%3E"
+       TITLE="[X2go-dev] source code repository">greno at verizon.net
+       </A><BR>
+    <I>Sun Jul 18 20:29:07 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000841.html">[X2go-dev] source code repository
+</A></li>
+        <LI>Next message: <A HREF="000846.html">[X2go-dev] source code repository
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#842">[ date ]</a>
+              <a href="thread.html#842">[ thread ]</a>
+              <a href="subject.html#842">[ subject ]</a>
+              <a href="author.html#842">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 07/18/2010 01:18 PM, Heinz-M. Graesing wrote:
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> I think we need to talk about 3 different things:
+</I>&gt;<i>
+</I>&gt;<i> 1. source code hosting/modification/interactivity/versioning
+</I>&gt;<i>
+</I>&gt;<i> 2. the place where the code shoud be stored
+</I>&gt;<i>
+</I>&gt;<i> 3. the tools which should be used for organisation
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> All three items have become mixed up in some mails and discussions.
+</I>&gt;<i> Again I had a lot of private mails - again: please post those things to
+</I>&gt;<i> the list (especially regarding those topics).
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> -1-----
+</I>&gt;<i>
+</I>&gt;<i> The first item is the question how the source of x2go should be
+</I>&gt;<i> published/handled. The big surprise: we don't have a discussion about
+</I>&gt;<i> what technique should be used (bzr, cvs, git, svn,...).
+</I>&gt;<i> To get this item marked as done:
+</I>&gt;<i>
+</I>&gt;<i> Is it ok to use git as &quot;version control and code publishing tool&quot;?
+</I>&gt;<i>    
+</I>
+One needs to understand the purpose and reasoning behind the different 
+VCS tools in order to make such a decision.  'git' was developed as a 
+tool for use by the Linux kernel developers after the decision was taken 
+many years ago to move away from a predecessor proprietary VCS tool.  
+One of the goals was to make sequences of very small commits across many 
+files perform well.  And git does that rather well.  This is the life of 
+a kernel developer - making the same small changes across many different 
+trees.  Collaboration, distributed teaming, offline coding, none of 
+these were considerations in the development of git.
+
+On the other hand collaboration, distributed teaming and offline coding 
+became increasingly important considerations as development of VCS tools 
+occurred over the years especially in light of the Internet and the 
+global distribution of teams.  And so as you move from cvs, to 
+subversion, to mercurial and bazaar you see more and more focus on these 
+qualities.  And in distributed team environments these qualities are far 
+more important than whether the VCS can perform a small commit sequence 
+in .186 seconds compared to .489 seconds on some distributed team VCS.  
+The difference in performance is mostly negligible and unnoticeable 
+until you get to projects that have beyond 50,000 files in a single 
+directory.  x2go is clearly far from this type of size.
+
+My own preference on any open source project is to use the VCS tools 
+that have the most capabilities in supporting globally distributed 
+development.  To that end, Bazaar (bzr), or Mercurial (hg), are the 
+clear winners.  And the ability to use a fully featured forge such as 
+Launchpad coupled with a fully featured distributed VCS such as Bazaar 
+is very compelling.  And for those that like to work in 'git', 'svn', 
+'hg', etc. there are plugins to Bazaar that allow you to work locally in 
+git/svn/hg and then perform a push to the Bazaar repository on Launchpad 
+when your code is ready.  I suggest you setup a small test project on 
+Launchpad sandbox and try all this for yourselves.
+
+
+
+&gt;<i>
+</I>&gt;<i> -2-----
+</I>&gt;<i>
+</I>&gt;<i> The second thing on the list is the querstion where the source should be
+</I>&gt;<i> stored. The place where you can find a project is in a way a
+</I>&gt;<i> &quot;statement&quot;. Some of those platforms are initiated by governments, some
+</I>&gt;<i> are ruled by companies with added social media and data collection
+</I>&gt;<i> strategies. This affects everybody who want's to collaborate, because
+</I>&gt;<i> she/he needs to get an account on the chossen platform. Some platforms
+</I>&gt;<i> are just not legally usable for us because of the legal situation in the
+</I>&gt;<i> country of copyright: germany (for example if they use ga:
+</I>&gt;<i> <A HREF="http://eu.techcrunch.com/2009/11/24/google-analytics-illegal-germany/">http://eu.techcrunch.com/2009/11/24/google-analytics-illegal-germany/</A>).
+</I>&gt;<i> We first tried to use BerliOS with was in our eyes a good choise because
+</I>&gt;<i> in their special way, they could be called in a way (seen from the web)
+</I>&gt;<i> &quot;apolitical&quot;. The account is still alive and they offer git, so it can
+</I>&gt;<i> be used without any problems. Though some of the configuration is a bit
+</I>&gt;<i> static and can only be access via a webgui. So there was the idea to
+</I>&gt;<i> host it by our own - nobody need to register against some governmental
+</I>&gt;<i> or company driven services.
+</I>&gt;<i>    
+</I>
+Google Analytics has NOT been made illegal in Germany nor is it likely.  
+There were a bunch of ill-informed tech-illiterate politicians running 
+around making out like the sky was falling because Google was collecting 
+some anonymous usage patterns.  Google does not know who you are.  They 
+only know this browser with this cookie does these usage patterns.  And 
+today in most browsers you can block all or specific cookies to prevent 
+any usage data from being stored.  The other ill-informed paranoia was 
+about IP addresses being stored out of Germany.  Well, every time you 
+send an email IP addresses are stored on mail servers all over the 
+world.  What many of these ill-informed politicians did not know is that 
+with DHCP most people's IP addresses are constantly being changed making 
+anything linked to IP addresses almost completely useless.  This whole 
+baseless paranoia now seems to have calmed down as people began 
+educating these politicians.
+
+
+&gt;<i> It would be intersting which of the services you prefer to discuss the
+</I>&gt;<i> final location of the git (osor.eu, berlios, github, sourceforge, google
+</I>&gt;<i> code,...).
+</I>&gt;<i>
+</I>&gt;<i>    
+</I>
+My preference would be either Launchpad or SourceForge.  One of the 
+major forges.  People work with these on a consistent basis and are 
+familiar with all of the tools available.  - No learning curve.
+
+
+&gt;<i> -3-----
+</I>&gt;<i>
+</I>&gt;<i> After we've answered the first two questions, we should talk about which
+</I>&gt;<i> of the offered tools should be used on the choosen platform. At the
+</I>&gt;<i> moment the whole project management is done via this mailing list. This
+</I>&gt;<i> decision was made in the past to avoid decentralized collaboration which
+</I>&gt;<i> caused a lot of duplicated messages from different locations (the
+</I>&gt;<i> Bugtracker on BerliOS is still active).
+</I>&gt;<i> The fact we are discussing now about the future here together in one
+</I>&gt;<i> place is a result of this idea. The mailing list is a very easy type of
+</I>&gt;<i> service. Bugtracker can be much more complicated and sometimes you only
+</I>&gt;<i> have a dictated user experience. This again can influence the choice of
+</I>&gt;<i> users helping us or not.
+</I>&gt;<i>
+</I>&gt;<i> So again: What do you think? Maybe gitbug is a possiblity too (bugs
+</I>&gt;<i> stored inside the git)?
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>    
+</I>
+No need.  Just use one of the major forges and the entire suite of 
+collaboration and tracking tools becomes available to use.
+
+
+
+&gt;<i> As this was a response to Mike's mail:
+</I>&gt;<i>
+</I>&gt;<i> Am 18.07.2010 14:42, schrieb Mike Gabriel:
+</I>&gt;<i>    
+</I>&gt;&gt;<i> possible focus could be:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>    1. support the next release as best as we can (testing, bug reports etc.)
+</I>&gt;&gt;<i>      
+</I>&gt;<i> Most of the bugs are not part of our code but can be find inside the
+</I>&gt;<i> used projects (xming,...). This makes it a bit harder to fix all known
+</I>&gt;<i> bugs. Another thing is the status of the mac port of x2goclient:
+</I>&gt;<i>
+</I>&gt;<i>   - we don't have mac hardware (anymore)
+</I>&gt;<i>   - we don't know how to embedd the window of
+</I>&gt;<i>     x2goagent inside the browserview (x2goplugin
+</I>&gt;<i>     vs. style guide of mac development)
+</I>&gt;<i>   - there is a big number of complaints about the
+</I>&gt;<i>     mac port because it is not using cocoa and
+</I>&gt;<i>     build on objective c
+</I>&gt;<i>
+</I>&gt;<i>    
+</I>&gt;&gt;<i>    2. be happy once the release is out
+</I>&gt;&gt;<i>      
+</I>&gt;<i> This should be worth a party :).
+</I>&gt;<i>    
+</I>
+Absolutely!
+
+
+&gt;<i>    
+</I>&gt;&gt;<i>    3. ONLY THEN: take our time to listen to each others ideas, find a
+</I>&gt;&gt;<i> synthesis
+</I>&gt;&gt;<i>      of them all and setup a working scenario that allows fluid
+</I>&gt;&gt;<i> collaboration,
+</I>&gt;&gt;<i>      coordinated by the core developers of X2go
+</I>&gt;&gt;<i>      
+</I>&gt;<i> I think we needed this exchange of ideas to get a bit more to know about
+</I>&gt;<i> each other and the project.
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i>
+</I>&gt;<i> Heinz
+</I>&gt;<i>    
+</I>  Very definitely.
+
+
+Regards,
+Gerry
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000841.html">[X2go-dev] source code repository
+</A></li>
+	<LI>Next message: <A HREF="000846.html">[X2go-dev] source code repository
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#842">[ date ]</a>
+              <a href="thread.html#842">[ thread ]</a>
+              <a href="subject.html#842">[ subject ]</a>
+              <a href="author.html#842">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

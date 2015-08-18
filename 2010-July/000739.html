@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go client for mac osx
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20client%20for%20mac%20osx&In-Reply-To=%3CAANLkTil6wBAmds2lC8i7zqkT3aQODanJidt0R2j4GFx7%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000737.html">
+   <LINK REL="Next"  HREF="000730.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go client for mac osx</H1>
+    <B>Ricardo D&#237;az Mart&#237;n</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20client%20for%20mac%20osx&In-Reply-To=%3CAANLkTil6wBAmds2lC8i7zqkT3aQODanJidt0R2j4GFx7%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] x2go client for mac osx">oceanosoftlapalma at gmail.com
+       </A><BR>
+    <I>Fri Jul  2 12:32:30 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000737.html">[X2go-dev] x2go client for mac osx
+</A></li>
+        <LI>Next message: <A HREF="000730.html">[X2go-dev] Account on wiki
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#739">[ date ]</a>
+              <a href="thread.html#739">[ thread ]</a>
+              <a href="subject.html#739">[ subject ]</a>
+              <a href="author.html#739">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks to all for replies.
+
+When you open X11 terminal on before I't works fine. It's important Max said
+(other way to set this is in X11 Mac Preferences-&gt;Security set Allow
+networks connections to checked).
+
+I have try shared folders and remote printing and work too.
+
+Regards,
+Ricardo
+
+
+2010/7/2 Max Chao &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">yochaos at gmail.com</A>&gt;
+
+&gt;<i> Ricardo D&#237;az Mart&#237;n &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oceanosoftlapalma at ...</A>&gt; writes:
+</I>&gt;<i>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Is there somebody with x2go client working in MAC OS X Leopard or Snow
+</I>&gt;<i> Leopard?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I have try in two different mac box and I always get the same message
+</I>&gt;<i> info
+</I>&gt;<i> &quot;Can't connect to X-Server. Please check your settings&quot;. In settings looks
+</I>&gt;<i> like
+</I>&gt;<i> all ok (path to X11.app in mac osx is ok and verify it got right
+</I>&gt;<i> permissions).
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; X-Server in both macs are installed and running. I have try to connect to
+</I>&gt;<i> nomachine linux server and X works fine.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Some tips?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Regards,
+</I>&gt;<i> &gt; Ricardo D&#237;az
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> &gt; X2go-dev mailing list
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at ...</A>
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> Hi Ricardo,
+</I>&gt;<i>
+</I>&gt;<i> It needs to do a litter configuration with X11 on Mac.
+</I>&gt;<i>
+</I>&gt;<i> On the terminal, input:
+</I>&gt;<i> defaults write org.x.X11 nolisten_tcp -boolean false
+</I>&gt;<i>
+</I>&gt;<i> You can check the configuration by:
+</I>&gt;<i> defaults read org.x.X11
+</I>&gt;<i>
+</I>&gt;<i> which should be:
+</I>&gt;<i> {
+</I>&gt;<i>    ...
+</I>&gt;<i>    &quot;nolisten_tcp&quot; = 0;
+</I>&gt;<i>    ...
+</I>&gt;<i> }
+</I>&gt;<i>
+</I>&gt;<i> I am not familiar with Mac, just met this issue before.
+</I>&gt;<i> Hope it helps you.
+</I>&gt;<i>
+</I>&gt;<i> Max
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20100702/e8a56684/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20100702/e8a56684/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000737.html">[X2go-dev] x2go client for mac osx
+</A></li>
+	<LI>Next message: <A HREF="000730.html">[X2go-dev] Account on wiki
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#739">[ date ]</a>
+              <a href="thread.html#739">[ thread ]</a>
+              <a href="subject.html#739">[ subject ]</a>
+              <a href="author.html#739">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

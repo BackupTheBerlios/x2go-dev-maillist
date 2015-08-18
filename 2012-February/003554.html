@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] I18n - how to do it
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20I18n%20-%20how%20to%20do%20it&In-Reply-To=%3C20120220201050.164528jioc1sio56%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003553.html">
+   <LINK REL="Next"  HREF="003558.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] I18n - how to do it</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20I18n%20-%20how%20to%20do%20it&In-Reply-To=%3C20120220201050.164528jioc1sio56%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] I18n - how to do it">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Feb 20 20:10:50 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003553.html">[X2Go-Dev] I18n - how to do it
+</A></li>
+        <LI>Next message: <A HREF="003558.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3554">[ date ]</a>
+              <a href="thread.html#3554">[ thread ]</a>
+              <a href="subject.html#3554">[ subject ]</a>
+              <a href="author.html#3554">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Terje,
+
+On Mo 20 Feb 2012 19:59:09 CET Terje Andersen wrote:
+
+&gt;<i> Hi Moritz, Mike &amp; all
+</I>&gt;<i>
+</I>&gt;<i> Den 20. feb. 2012 11:12, skrev Moritz Struebe:
+</I>&gt;&gt;<i> Hi Mike.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On 2012-02-20 10:46, Mike Gabriel wrote:
+</I>&gt;&gt;&gt;<i> Most important thing is that such a translation service does not
+</I>&gt;&gt;&gt;<i> conflict with manual translation commits.
+</I>&gt;&gt;<i> No, this should of course not be the case. Basically I am thinking of an
+</I>&gt;&gt;<i> upload and a download script. The upload-script will take the latest
+</I>&gt;&gt;<i> files from GIT and upload them to the server. This _can_ be triggered
+</I>&gt;&gt;<i> using a cron job or done manually. The download script will download the
+</I>&gt;&gt;<i> files and update the git. I'm not sure yet, whether it is better to do
+</I>&gt;&gt;<i> this manually or by using a cron job. None the loss the workload should
+</I>&gt;&gt;<i> not be lower than accepting a patch.
+</I>&gt;&gt;<i> Using the client is described in [1]. It even denies to update the local
+</I>&gt;&gt;<i> files when updating from the server, if you made local changes. :) Or if
+</I>&gt;&gt;<i> someone else checks a new version into git you can automatically update
+</I>&gt;&gt;<i> the version on the translation server.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Cheers
+</I>&gt;&gt;<i> Morty
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I've used transifex, rosetta and pootle before and I'm not a big fan,
+</I>&gt;<i> the only two positive things (in my view) with them is that they make
+</I>&gt;<i> it easy for &quot;drive-by&quot; translation (not dedicated translation). This
+</I>&gt;<i> might be a big plus if what you want is a greater numbers of
+</I>&gt;<i> languages (which might, or might not be completely translated),
+</I>&gt;<i> but I think the quality goes down on the actual translation.
+</I>&gt;<i> With the web-based solutions also the amount of collected words,
+</I>&gt;<i> with their potential translation, from all the different projects using
+</I>&gt;<i> the service might be of help to someone, but still might lead the
+</I>&gt;<i> translator into using wrong words because of the missing context
+</I>&gt;<i> and the fact that others have chosen this word (in another, not
+</I>&gt;<i> related project).
+</I>
+Thanks a lot for this statement. That is my gut feeling with such  
+services, as well (but I could have never expressed it that clearly).  
+I'd rather prefer translators being more close to the project.  
+Passers-by-translation, we should avoid that.
+
+&gt;<i> With Qt Linguest, often the dialog will be shown (Wow! I wish this
+</I>&gt;<i> would be the case for all the strings :p) which helps tremendously
+</I>&gt;<i> in understanding the context of the strings currently being translated.
+</I>&gt;<i> With po-edit it's more like the web-based ones, it's not easy to
+</I>&gt;<i> understand the context.
+</I>
+Yeah! Unfortunately, this has to be sad about poedit. You have to know  
+the application, where the string are within the GUI widgets, etc.
+
+&gt;<i> 1) Keep clean and concise (and always updated) instructions on how
+</I>&gt;<i> to do the actual translation, how to create the patch, and finally where
+</I>&gt;<i> to send the patches.
+</I>&gt;<i> 2) Give translators git commit access (somehow I see this one as
+</I>&gt;<i> being the least likely to happen :p).
+</I>
+about 2): I can definitely see this happen for people who have sent  
+reliable patches a couple of times (like you and Daniel have over the  
+last days, also like Milan has in terms of code, recently).
+
+&gt;<i> In my view, translators, web-page admins and documentation
+</I>&gt;<i> writes in a project on equal footing as those who commits
+</I>&gt;<i> small code-patches - all being potential committers to either
+</I>&gt;<i> git, or wiki/web. As people show commitment, trust should be
+</I>&gt;<i> given in different levels and on different arenas.
+</I>
++1 from me.
+
+&gt;<i> This isn't an argument for giving me git, or any other access, it's
+</I>&gt;<i> just my point on view and my points towards the web-based
+</I>&gt;<i> translation services.
+</I>
+I got that! Good points given.
+
+&gt;<i> Anyway, I guess I'll be committed either way in translating X2Go,
+</I>&gt;<i> (as long as you want me, that is :-)), it's your choice what to
+</I>&gt;<i> use ;-)
+</I>
+If you may, you can start through with the smaller projects  
+(x2godesktopsharing, plasma-widget-x2go, etc.). ;-)
+
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120220/5cfffdbf/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120220/5cfffdbf/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003553.html">[X2Go-Dev] I18n - how to do it
+</A></li>
+	<LI>Next message: <A HREF="003558.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3554">[ date ]</a>
+              <a href="thread.html#3554">[ thread ]</a>
+              <a href="subject.html#3554">[ subject ]</a>
+              <a href="author.html#3554">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

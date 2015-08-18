@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Bump LDAP / AD / Pulseaudio related login issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Bump%20LDAP%20/%20AD%20/%20Pulseaudio%20related%20login%20issues&In-Reply-To=%3C4D89D723.5060704%40informatik.hu-berlin.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001950.html">
+   <LINK REL="Next"  HREF="001952.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Bump LDAP / AD / Pulseaudio related login issues</H1>
+    <B>Robert Schumann</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Bump%20LDAP%20/%20AD%20/%20Pulseaudio%20related%20login%20issues&In-Reply-To=%3C4D89D723.5060704%40informatik.hu-berlin.de%3E"
+       TITLE="[X2go-dev] Bump LDAP / AD / Pulseaudio related login issues">schumann at informatik.hu-berlin.de
+       </A><BR>
+    <I>Wed Mar 23 12:18:59 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001950.html">[X2go-dev] Bump LDAP / AD / Pulseaudio related login issues
+</A></li>
+        <LI>Next message: <A HREF="001952.html">[X2go-dev] [X2go-user] LDAP-Problem: Zertifikateproblem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1951">[ date ]</a>
+              <a href="thread.html#1951">[ thread ]</a>
+              <a href="subject.html#1951">[ subject ]</a>
+              <a href="author.html#1951">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+&gt;<i> Date: Wed, 23 Mar 2011 09:10:58 -0000 (GMT)
+</I>&gt;<i> From: &quot;--[ UxBoD ]--&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">uxbod at splatnix.net</A>&gt;
+</I>&gt;<i> Robert,
+</I>&gt;<i> as John has mentioned we use LDAP with AD in our environment. The
+</I>local/central database holds details pertinent to the session state eg.
+mounted shares; whereas the authentication is performed against whatever
+you have configured in PAM.  Have you integrated Linux authentication
+with AD yet ?
+
+Phil,
+thanks for your answer. Yes I have already integrated AD into my Linux
+boxes. The user is authenticated through winbind. Everything works like
+expected, all the NX clients and plain SSH - for the login I have to use
+a scheme like DOMAIN\USER or <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">USER at DOMAIN</A> because we have a multi-trusted
+domain environment here. I cannot enable &quot;use default domain&quot; in Samba
+therefore. For plain SSH I can run it like that:
+
+ssh 'domain\user'@box
+
+and it's working. For x2go no matter if I use &quot;\&quot; or &quot;@&quot;, they both seem
+to result in some trouble (not created folders and links on the box, or
+if they are created then the &quot;\&quot; is missing and the session ID refers to
+a non existing folder). Most stuff is called from the client, but when
+ending the session a perl script on the server fails too, because it
+cannot find the cmdoutput file IIRC.
+
+Cheers
+
+Robert
+
+- -- 
+
+|<i>-----------------------------------------------------address-+
+</I>|<i> work:   jacob-und-wilhelm-grimm-zentrum
+</I>|<i>         geschwister-scholl-str. 1, 10117 berlin
+</I>|<i> postal: humboldt-universit&#228;t zu berlin
+</I>|<i>         computer- und medienservice
+</I>|<i>         unter den linden 6
+</I>|<i>         10099 berlin
+</I>|<i>-----------------------------------------------------contact-+
+</I>|<i> mail:   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">schumann at informatik.hu-berlin.de</A>
+</I>|<i> icq:    93163687
+</I>|<i> xmpp:   <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">betulichergutmensch at googlemail.com</A>
+</I>|<i> huchat: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">schumanr at chat.hu-berlin.de</A>
+</I>|<i> phone:  +49(0)30-2093-70133
+</I>|<i>-----------------------------------------------------gpg/pgp-+
+</I>|<i> key:    remembrance.de/gpg/0xA5A5FAA2.asc
+</I>|<i> fprint: 9220-9732-7390-7A0C-5623-3336-4233-FDF8-A5A5-FAA2
+</I>|<i>-------------------------------------------------------------+
+</I>
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+Comment: Using GnuPG with Fedora - <A HREF="http://enigmail.mozdev.org/">http://enigmail.mozdev.org/</A>
+
+iEYEARECAAYFAk2J1yMACgkQQjP9+KWl+qJVJwCeKnpWKu57zfhII8p5Ew/fRDtv
+NyMAn2NmEqzQPjQGvXU8n85smBJY3d3M
+=gmmM
+-----END PGP SIGNATURE-----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001950.html">[X2go-dev] Bump LDAP / AD / Pulseaudio related login issues
+</A></li>
+	<LI>Next message: <A HREF="001952.html">[X2go-dev] [X2go-user] LDAP-Problem: Zertifikateproblem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1951">[ date ]</a>
+              <a href="thread.html#1951">[ thread ]</a>
+              <a href="subject.html#1951">[ subject ]</a>
+              <a href="author.html#1951">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

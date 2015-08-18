@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#105: Logic errors in x2goruncommand
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23105%3A%20Logic%20errors%20in%20x2goruncommand&In-Reply-To=%3C7AD4B654-3C34-40A2-8C95-C370F80A20AC%40dartmouth.edu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004917.html">
+   <LINK REL="Next"  HREF="004920.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#105: Logic errors in x2goruncommand</H1>
+    <B>Matthew L. Dailey</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23105%3A%20Logic%20errors%20in%20x2goruncommand&In-Reply-To=%3C7AD4B654-3C34-40A2-8C95-C370F80A20AC%40dartmouth.edu%3E"
+       TITLE="[X2Go-Dev] Bug#105: Logic errors in x2goruncommand">matthew.l.dailey at dartmouth.edu
+       </A><BR>
+    <I>Fri Jan 18 18:15:56 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004917.html">[X2Go-Dev] [gmane.comp.lib.cairo] cairo release 1.12.10 now	available
+</A></li>
+        <LI>Next message: <A HREF="004920.html">[X2Go-Dev] locale problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4931">[ date ]</a>
+              <a href="thread.html#4931">[ thread ]</a>
+              <a href="subject.html#4931">[ subject ]</a>
+              <a href="author.html#4931">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goserver
+Version: 4.1.0.0
+
+Greetings.
+
+In working on a deployment of X2Go on some Ubuntu machines, I found some logic errors in the x2goruncommand script that cased it not to determine the proper session to run for Gnome or Unity on Ubuntu 12.04 (and probably others). In essence, the script was testing the return code of bc, rather than the actual answer (1 or 0) to the boolean question being passed to it.
+
+Here is a patch (also attached) that fixes this problem and I can verify that this works on at least Ubuntu 12.04 systems. I don't have any others I can easily test on. I'm not crazy about the quotes both outside and inside $(), but I think it should be okay. Perhaps a more adept bash programmer might have a better suggestion. :-)
+
+Thanks for your attention and please let me know if you have any questions or need any other information. And, thanks for your hard work on this terrific project!
+
+-- 
+Matthew L. Dailey
+Systems Administrator
+Thayer School of Engineering
+Dartmouth College
+
+--- x2goruncommand.orig	2012-12-30 16:49:03.000000000 -0500
++++ x2goruncommand	2013-01-15 16:45:33.623393451 -0500
+@@ -91,13 +91,13 @@
+ if [ &quot;$cmd&quot; == &quot;GNOME&quot; ] || [ &quot;$cmd&quot; == &quot;gnome-session&quot; ]; then
+ 
+ 	cmd=&quot;/usr/bin/gnome-session&quot;
+-	if [ &quot;$DISTRIB_ID&quot; == &quot;Ubuntu&quot; ] &amp;&amp; $(echo &quot;$DISTRIB_RELEASE &gt;= 11.10&quot; | bc); then
++	if [ &quot;$DISTRIB_ID&quot; == &quot;Ubuntu&quot; ] &amp;&amp; [ &quot;$(echo &quot;$DISTRIB_RELEASE &gt;= 11.10&quot; | bc)&quot; == &quot;1&quot; ]; then
+ 		export DESKTOP_SESSION=&quot;gnome-fallback&quot;
+ 		args=&quot; --session=$DESKTOP_SESSION&quot;
+-	elif [ &quot;$DISTRIB_ID&quot; == &quot;Ubuntu&quot; ] &amp;&amp; $(echo &quot;$DISTRIB_RELEASE == 11.04&quot; | bc); then
++	elif [ &quot;$DISTRIB_ID&quot; == &quot;Ubuntu&quot; ] &amp;&amp; [ &quot;$(echo &quot;$DISTRIB_RELEASE == 11.04&quot; | bc)&quot; == &quot;1&quot; ]; then
+ 		export DESKTOP_SESSION=&quot;2d-gnome&quot;
+ 		args=&quot; --session=$DESKTOP_SESSION&quot;
+-	elif [ &quot;$DISTRIB_ID&quot; == &quot;Ubuntu&quot; ] &amp;&amp; $(echo &quot;$DISTRIB_RELEASE &lt;= 10.10&quot; | bc); then
++	elif [ &quot;$DISTRIB_ID&quot; == &quot;Ubuntu&quot; ] &amp;&amp; [ &quot;$(echo &quot;$DISTRIB_RELEASE &lt;= 10.10&quot; | bc)&quot; == &quot;1&quot; ]; then
+ 		export DESKTOP_SESSION=&quot;gnome&quot;
+ 	elif cat /etc/debian_version | egrep &quot;^(squeeze|6\.).*&quot; &gt;/dev/null; then
+ 		export DESKTOP_SESSION=&quot;gnome&quot;
+@@ -108,13 +108,13 @@
+ 
+ elif ([ &quot;$cmd&quot; == &quot;UNITY&quot; ] || [ &quot;$cmd&quot; == &quot;unity&quot; ]); then
+ 	cmd=&quot;/usr/bin/gnome-session&quot;
+-	if [ &quot;$DISTRIB_ID&quot; == &quot;Ubuntu&quot; ] &amp;&amp; $(echo &quot;$DISTRIB_RELEASE&quot; &gt;= 12.10 | bc); then
++	if [ &quot;$DISTRIB_ID&quot; == &quot;Ubuntu&quot; ] &amp;&amp; [ &quot;$(echo &quot;$DISTRIB_RELEASE &gt;= 12.10&quot; | bc)&quot; == &quot;1&quot; ]; then
+ 		export DESKTOP_SESSION=&quot;ubuntu&quot;
+ 		args=&quot; --session=$DESKTOP_SESSION&quot;
+-	elif [ &quot;$DISTRIB_ID&quot; == &quot;Ubuntu&quot; ] &amp;&amp; [ $(echo &quot;$DISTRIB_RELEASE&quot; == 11.10 | bc) || $(echo $DISTRIB_RELEASE == 12.04 | bc) ]; then
++	elif [ &quot;$DISTRIB_ID&quot; == &quot;Ubuntu&quot; ] &amp;&amp; [ &quot;$(echo &quot;$DISTRIB_RELEASE == 11.10&quot; | bc)&quot; == &quot;1&quot; -o &quot;$(echo &quot;$DISTRIB_RELEASE == 12.04&quot; | bc)&quot; == &quot;1&quot; ]; then
+ 		export DESKTOP_SESSION=&quot;ubuntu-2d&quot;
+ 		args=&quot; --session=$DESKTOP_SESSION&quot;
+-	elif [ &quot;$DISTRIB_ID&quot; == &quot;Ubuntu&quot; ] &amp;&amp; $(echo &quot;$DISTRIB_RELEASE&quot; == 11.04 | bc); then
++	elif [ &quot;$DISTRIB_ID&quot; == &quot;Ubuntu&quot; ] &amp;&amp; [ &quot;$(echo &quot;$DISTRIB_RELEASE == 11.04&quot; | bc)&quot; == &quot;1&quot; ]; then
+ 		export DESKTOP_SESSION=&quot;2d-ubuntu&quot;
+ 		args=&quot; --session=$DESKTOP_SESSION&quot;
+ 	fi
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: x2goruncommand.patch
+Type: application/octet-stream
+Size: 2091 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130118/3fe1c458/attachment.obj">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130118/3fe1c458/attachment.obj</A>&gt;
+-------------- next part --------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004917.html">[X2Go-Dev] [gmane.comp.lib.cairo] cairo release 1.12.10 now	available
+</A></li>
+	<LI>Next message: <A HREF="004920.html">[X2Go-Dev] locale problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4931">[ date ]</a>
+              <a href="thread.html#4931">[ thread ]</a>
+              <a href="subject.html#4931">[ subject ]</a>
+              <a href="author.html#4931">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

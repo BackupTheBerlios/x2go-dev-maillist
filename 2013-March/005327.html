@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [X2Go-User] 25 user logon problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2Go-User%5D%2025%20user%20logon%20problem&In-Reply-To=%3C514DD8A5.2020807%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005326.html">
+   <LINK REL="Next"  HREF="005348.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [X2Go-User] 25 user logon problem</H1>
+    <B>Moritz Str&#252;be</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2Go-User%5D%2025%20user%20logon%20problem&In-Reply-To=%3C514DD8A5.2020807%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] [X2Go-User] 25 user logon problem">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Sat Mar 23 17:30:29 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005326.html">[X2Go-Dev] [X2Go-User] 25 user logon problem
+</A></li>
+        <LI>Next message: <A HREF="005348.html">[X2Go-Dev] [X2Go-User] 25 user logon problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5327">[ date ]</a>
+              <a href="thread.html#5327">[ thread ]</a>
+              <a href="subject.html#5327">[ subject ]</a>
+              <a href="author.html#5327">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 23.03.2013 16:54, Mike Gabriel schrieb:
+&gt;<i> You experience a race condition where the server tries to allocate a
+</I>&gt;<i> display port per session and if two users log in very simulataneously,
+</I>&gt;<i> the second user won't get a valid display.
+</I>&gt;<i>
+</I>&gt;<i> I am not sure if this can be avoided really reliably. However, instead
+</I>&gt;<i> of incrementing the X2GO_PORT by 1 in x2gostartagent (in case the
+</I>&gt;<i> probed port is not usable anymore) we could increment the X2GO_PORT by
+</I>&gt;<i> some random value (between 1 and 30). Then it could still be that two
+</I>&gt;<i> clients try to get the same DISPLAY port (in case two random calls
+</I>&gt;<i> deliver the same value), but the failing logins should reduce by far. 
+</I>
+No, adding randomness is doing it wrong! Normally the db should make
+sure that no display and the associated port is applied twice. Probably
+we should check the sqlite code anyway, because sqlite does not support
+concurrency out of the box. 
+Additionally, if I remember right, before that stuff was rewritten to
+perl, I wrote an while-loop that looped through the displays until it
+had a valid display and free ports. Maybe that somehow got lost during
+the rewrite. Anyway something like that should be added. Maybe: If the
+agent fails to start check whether ports or display might have been the
+reason and retry n times silently.
+
+Morty
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005326.html">[X2Go-Dev] [X2Go-User] 25 user logon problem
+</A></li>
+	<LI>Next message: <A HREF="005348.html">[X2Go-Dev] [X2Go-User] 25 user logon problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5327">[ date ]</a>
+              <a href="thread.html#5327">[ thread ]</a>
+              <a href="subject.html#5327">[ subject ]</a>
+              <a href="author.html#5327">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

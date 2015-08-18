@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Packaging%20nx-libs%20%28aka%20x2goagent%29%20for%20your%20distro&In-Reply-To=%3C20120211205628.017185fb%40athlon.garagome%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003383.html">
+   <LINK REL="Next"  HREF="003387.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro</H1>
+    <B>Milan Kn&#237;&#382;ek</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Packaging%20nx-libs%20%28aka%20x2goagent%29%20for%20your%20distro&In-Reply-To=%3C20120211205628.017185fb%40athlon.garagome%3E"
+       TITLE="[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro">knizek.confy at gmail.com
+       </A><BR>
+    <I>Sat Feb 11 20:56:28 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003383.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+        <LI>Next message: <A HREF="003387.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3386">[ date ]</a>
+              <a href="thread.html#3386">[ thread ]</a>
+              <a href="subject.html#3386">[ subject ]</a>
+              <a href="author.html#3386">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>V Fri, 10 Feb 2012 23:23:16 +0100
+Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; naps&#225;no:
+
+&gt;<i> Hi Oliver, Milan,
+</I>&gt;<i> 
+</I>&gt;<i> Please build x2goagent from nx-libs.git. Tarballs are available here:
+</I>&gt;<i> <A HREF="http://code.x2go.org/releases/source/nx-libs">http://code.x2go.org/releases/source/nx-libs</A>
+</I>
+Hello Mike,
+
+what is the status with &quot;make install&quot; for the packages included in
+nx-libs (i.e. nxcomp, nxcompext, nxcompshad, nxproxy, nxagent,
+2goagent)?
+
+Unless I am doing something wrong, &quot;fakeroot make DESTDIR=/some/path
+install&quot; leads to installation of the libs&amp;binaries to usr/X11R6 and
+not all components required for x2goagent (incl. x2goagent wrapper
+itself) are installed anyway.
+
+To work around that, I am using &quot;install&quot; command for all the libs
+and binaries with the use of the precompiled DEB packages as a template.
+
+
+
+A second point: in Arch linux, the X2Go packages (incl. nx-libs) are in
+AUR (user-contributed repository), which does not support so called
+split packages (i.e. I cannot compile the nx-libs tar ball and
+create several packages in one go like you do in Debian) [1].
+
+So at the moment, the semi-automatic build process has to download and
+compile major part of nx-libs repeatedly for each of the dependency
+(nxcomp: requires nx-x11; nxagent: requires nx-x11, nxcomp,
+nxcompext, ..., nx-x11; etc...). It works, nonetheless it is slow and
+inefficient.
+
+How difficult would it be to have the Makefiles modified to search for
+the dependency in the system (/usr/lib/nx/X11...) instead in the source
+tree?
+
+
+[1] It actually is possible to create split packages with a little hack,
+but then it is not possible to automatically install the split packages
+as dependencies of others - AUR (and tools supporting automated
+compilation &amp; installation from AUR like &quot;yaourt&quot;) cannot search in the
+list of split packages.
+
+Regards,
+Milan
+
+
+-- 
+<A HREF="http://www.milan-knizek.net/">http://www.milan-knizek.net/</A>
+About linux and photography (Czech only)
+O linuxu a fotografov&#225;n&#237;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120211/d7abcc3b/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120211/d7abcc3b/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003383.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+	<LI>Next message: <A HREF="003387.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3386">[ date ]</a>
+              <a href="thread.html#3386">[ thread ]</a>
+              <a href="subject.html#3386">[ subject ]</a>
+              <a href="author.html#3386">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

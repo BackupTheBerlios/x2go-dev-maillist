@@ -1,0 +1,73 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] BUG: bash login shell required ...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BUG%3A%20bash%20login%20shell%20required%20...&In-Reply-To=%3Cloom.20100304T125658-47%40post.gmane.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000362.html">
+   <LINK REL="Next"  HREF="000364.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] BUG: bash login shell required ...</H1>
+    <B>armin</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BUG%3A%20bash%20login%20shell%20required%20...&In-Reply-To=%3Cloom.20100304T125658-47%40post.gmane.org%3E"
+       TITLE="[X2go-dev] BUG: bash login shell required ...">armin.taschwer at gmx.at
+       </A><BR>
+    <I>Thu Mar  4 13:04:58 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000362.html">[X2go-dev] Copy &amp; Paste from between windows client and	x2go	server
+</A></li>
+        <LI>Next message: <A HREF="000364.html">[X2go-dev] BUG: bash login shell required ...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#363">[ date ]</a>
+              <a href="thread.html#363">[ thread ]</a>
+              <a href="subject.html#363">[ subject ]</a>
+              <a href="author.html#363">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>the session management will fail if you connect to a X2Go server and your
+default login shell deviates from a BASH.
+reason: any client tries to export the host environment variable before it
+starts x2glistsession. export only works for BASH and not e.g. for  tcsh.
+
+if someone is responding to that bug-report i can offer a workaround .. 
+(i just want to find out if someone is interested in ;)
+
+cheers
+armin
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000362.html">[X2go-dev] Copy &amp; Paste from between windows client and	x2go	server
+</A></li>
+	<LI>Next message: <A HREF="000364.html">[X2go-dev] BUG: bash login shell required ...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#363">[ date ]</a>
+              <a href="thread.html#363">[ thread ]</a>
+              <a href="subject.html#363">[ subject ]</a>
+              <a href="author.html#363">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

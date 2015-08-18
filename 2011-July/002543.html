@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] [PATCH] Allow users to edit their *own* sessions only
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BPATCH%5D%20Allow%20users%20to%20edit%20their%20%2Aown%2A%20sessions%20only&In-Reply-To=%3C20110725131949.17902oo7kh0sbm8l%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002542.html">
+   <LINK REL="Next"  HREF="002548.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] [PATCH] Allow users to edit their *own* sessions only</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BPATCH%5D%20Allow%20users%20to%20edit%20their%20%2Aown%2A%20sessions%20only&In-Reply-To=%3C20110725131949.17902oo7kh0sbm8l%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] [PATCH] Allow users to edit their *own* sessions only">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Jul 25 13:19:49 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002542.html">[X2go-Dev] [PATCH] Allow users to edit their *own* sessions only
+</A></li>
+        <LI>Next message: <A HREF="002548.html">[X2go-Dev] [PATCH] Allow users to edit their *own* sessions only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2543">[ date ]</a>
+              <a href="thread.html#2543">[ thread ]</a>
+              <a href="subject.html#2543">[ subject ]</a>
+              <a href="author.html#2543">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi John,
+
+On Mo 25 Jul 2011 12:32:44 CEST &quot;John A. Sullivan III&quot; wrote:
+
+&gt;<i> On Mon, 2011-07-25 at 08:32 +0200, Mike Gabriel wrote:
+</I>&gt;&gt;<i> Hi Reinhard,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Mo 25 Jul 2011 00:10:03 CEST Reinhard Tartler wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &gt; previously, users could create sessions under wrong uids or delete
+</I>&gt;&gt;<i> &gt; sessions from other users. This patch implements prevents this by
+</I>&gt;&gt;<i> &gt; checking the userid of the caller with the session id.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> +1 from me...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &gt; [... patch ...]
+</I>&gt;&gt;<i>
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> We addressed this a little differently as it is one of the problems we
+</I>&gt;<i> immediately recognized in X2Go two years ago and one of the major
+</I>&gt;<i> modifications we made in our environment.
+</I>
+The script Reinhard modified only concerns SQLite...
+
+However, based on the current x2goserver code... if you come up with  
+postgres patches (I strongly guess that you were refering to postgres  
+changes on the x2goserver script) we will be happy to introspect them.
+
+Unfortunately, there has been a complete rewrite of the database  
+scripts of X2go in the meantime, so I suppose your patches that you  
+sent to the ML 1-2 years ago will not apply anymore.
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110725/15c1cc41/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110725/15c1cc41/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002542.html">[X2go-Dev] [PATCH] Allow users to edit their *own* sessions only
+</A></li>
+	<LI>Next message: <A HREF="002548.html">[X2go-Dev] [PATCH] Allow users to edit their *own* sessions only
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2543">[ date ]</a>
+              <a href="thread.html#2543">[ thread ]</a>
+              <a href="subject.html#2543">[ subject ]</a>
+              <a href="author.html#2543">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

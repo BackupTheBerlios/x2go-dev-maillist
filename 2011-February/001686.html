@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] wayland remote desktop comment by
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20wayland%20remote%20desktop%20comment%20by&In-Reply-To=%3C4D4ACFCC.6080706%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001685.html">
+   <LINK REL="Next"  HREF="001688.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] wayland remote desktop comment by</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20wayland%20remote%20desktop%20comment%20by&In-Reply-To=%3C4D4ACFCC.6080706%40verizon.net%3E"
+       TITLE="[X2go-dev] wayland remote desktop comment by">greno at verizon.net
+       </A><BR>
+    <I>Thu Feb  3 16:54:52 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001685.html">[X2go-dev] wayland remote desktop comment by
+</A></li>
+        <LI>Next message: <A HREF="001688.html">[X2go-dev] wayland remote desktop comment by
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1686">[ date ]</a>
+              <a href="thread.html#1686">[ thread ]</a>
+              <a href="subject.html#1686">[ subject ]</a>
+              <a href="author.html#1686">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 02/03/2011 09:35 AM, John A. Sullivan III wrote:
+&gt;<i> On Thu, 2011-02-03 at 09:19 -0500, brian mullan wrote:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Per Wayland FAQ: Is Wayland network transparent / does it support
+</I>&gt;&gt;<i> remote rendering?
+</I>&gt;&gt;<i> No, that is outside the scope of Wayland. &lt;snip&gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It is also possible to put a remoting protocol into a wayland
+</I>&gt;&gt;<i> compositor, either a standalone remoting compositor or as a part of a
+</I>&gt;&gt;<i> full desktop compositor. This will let us forward native Wayland
+</I>&gt;&gt;<i> applications. The standalone compositor could let you log into a
+</I>&gt;&gt;<i> server and run an application back on your desktop. Building the
+</I>&gt;&gt;<i> fowarding into the desktop compositor, could let you export or share a
+</I>&gt;&gt;<i> window on the fly with a remote wayland compositor, for example a
+</I>&gt;&gt;<i> friends desktop.
+</I>&gt;&gt;<i>     
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> I am WAY out of my depth here but that last paragraph is really
+</I>&gt;<i> interesting and I wonder if it provides an opportunity for X2Go to think
+</I>&gt;<i> outside the box.  Why do we need NX? To forward X traffic in a WAN
+</I>&gt;<i> friendly way to the remote X Server.  So, what if we bypass it
+</I>&gt;<i> completely - completely eliminate the need to transmit, cache, compress,
+</I>&gt;<i> optimize X traffic.  Does the above mean we can just us our SSH
+</I>&gt;<i> forwarding to send the Wayland traffic to a compositor on the remote
+</I>&gt;<i> side and not worry about X over a network? - John
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+Nope.  Wayland is not network transparent.
+
+For network transparency you would still have to layer X on top of Wayland.
+
+Right now there is no test implementation of Wayland with an X layer
+where we could test this out.
+
+And I am not sure whether Wayland is a good idea to have as the
+'default' display technology in Ubuntu.
+
+I don't think most Ubuntu users are gamers, but rather folks that from
+time to time rely upon the fact that Linux has always natively had a
+network transparent display technology (X) that could be used to
+remotely display apps and desktops.  That is why I think X should remain
+the default and people should be able to enable &quot;Wayland&quot; if they want
+it for fast gaming.  And not the other way around.
+
+
+Regards,
+Gerry
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001685.html">[X2go-dev] wayland remote desktop comment by
+</A></li>
+	<LI>Next message: <A HREF="001688.html">[X2go-dev] wayland remote desktop comment by
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1686">[ date ]</a>
+              <a href="thread.html#1686">[ thread ]</a>
+              <a href="subject.html#1686">[ subject ]</a>
+              <a href="author.html#1686">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2goserver package with setuidwrapper
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20package%20with%20setuidwrapper&In-Reply-To=%3C20110718150459.66624qjt7ul895dn%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002472.html">
+   <LINK REL="Next"  HREF="002474.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2goserver package with setuidwrapper</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20package%20with%20setuidwrapper&In-Reply-To=%3C20110718150459.66624qjt7ul895dn%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] x2goserver package with setuidwrapper">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Jul 18 15:04:59 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002472.html">[X2go-Dev] x2goserver package with setuidwrapper
+</A></li>
+        <LI>Next message: <A HREF="002474.html">[X2go-Dev] x2goserver package with setuidwrapper
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2473">[ date ]</a>
+              <a href="thread.html#2473">[ thread ]</a>
+              <a href="subject.html#2473">[ subject ]</a>
+              <a href="author.html#2473">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Reinhard,
+
+On Mo 18 Jul 2011 14:06:04 CEST Reinhard Tartler wrote:
+
+&gt;&gt;<i> As user foo I execute /usr/bin/x2gosqlitewrapper, this wraps an  execvpe
+</I>&gt;&gt;<i> call around the Perl script  /usr/lib/x2go/x2gosqlitewrapper.pl. The
+</I>&gt;&gt;<i> execvpe call
+</I>&gt;&gt;<i> evokes a change of the effective UID/GID as
+</I>&gt;&gt;<i> /usr/lib/x2go/x2gosqlitewrapper.pl has its setuid bit set.
+</I>&gt;<i>
+</I>&gt;<i> So this trick effectively disables perls internal suid check somehow,
+</I>&gt;<i> and I currently don't see what this non-suid wrapper does differently
+</I>&gt;<i> than the shell that tries to execute the script.
+</I>
+Ok. Good question.
+
+&gt;&gt;<i> What you can try out is: do a chmod 6755 /usr/bin/X2gosqlitewrapper  and
+</I>&gt;&gt;<i> a chown x2gouser:x2gousers /usr/bin/x2gosqlitewrapper and then  call
+</I>&gt;&gt;<i> x2golistsessions (on a server that uses sqlite as X2go db  backend). You
+</I>&gt;&gt;<i> will get a kernel complaint (or libc) that this is not  allowed with the
+</I>&gt;&gt;<i> current kernel configuration.
+</I>&gt;<i>
+</I>&gt;<i> I just did:
+</I>&gt;<i> -rwsr-sr-x 1 x2gouser x2gousers  5388 2011-07-18 00:12  
+</I>&gt;<i> /usr/bin/x2gosqlitewrapper*
+</I>&gt;<i> -rwxr-xr-x 1 x2gouser x2gousers 10094 2011-07-18 00:02  
+</I>&gt;<i> /usr/lib/x2go/x2gosqlitewrapper.pl*
+</I>&gt;<i>
+</I>&gt;<i> And everything works as expected. You need to become more specific what
+</I>&gt;<i> you observed.
+</I>
+I had an error messages, two lines, all written in capital letters,  
+noticing me about some kernel option/flag or something not set. I  
+cannot reproduce this now... :-(
+
+Hmmm... Ok... so maybe we should change the set bits accordingly?
+
+&gt;<i> Now after reading the perlsec manpage, let me quote this part:
+</I>&gt;<i>
+</I>&gt;<i> ,----
+</I>&gt;<i> |    Security Bugs
+</I>&gt;<i> |
+</I>&gt;<i> |        Beyond the obvious problems that stem from giving special
+</I>&gt;<i> |        privileges to systems as flexible as scripts, on many versions of
+</I>&gt;<i> |        Unix, set-id scripts are inherently insecure right from the
+</I>&gt;<i> |        start.  The problem is a race condition in the kernel.  Between
+</I>&gt;<i> |        the time the kernel opens the file to see which interpreter to
+</I>&gt;<i> |        run and when the (now-set-id) interpreter turns around and
+</I>&gt;<i> |        reopens the file to interpret it, the file in question may have
+</I>&gt;<i> |        changed, especially if you have symbolic links on your system.
+</I>&gt;<i> |        [...]
+</I>&gt;<i> |
+</I>&gt;<i> |        The use of suidperl is considered deprecated, and will be
+</I>&gt;<i> |        removed in Perl 5.12.0.  It is strongly recommended that all
+</I>&gt;<i> |        code uses the simplier and more secure C-wrappers described
+</I>&gt;<i> |        below.
+</I>&gt;<i> |
+</I>&gt;<i> |        If the kernel set-id script feature isn't disabled, Perl will
+</I>&gt;<i> |        complain loudly that your set-id script is insecure.  You'll
+</I>&gt;<i> |        need to either disable the kernel set-id script feature, or put
+</I>&gt;<i> |        a C wrapper around the script.  A C wrapper is just a compiled
+</I>&gt;<i> |        program that does nothing except call your Perl program.
+</I>&gt;<i> |        Compiled programs are not subject to the kernel bug that
+</I>&gt;<i> |        plagues set-id scripts.
+</I>&gt;<i> `----
+</I>
+Reading this, we should definitely change the setuid bits as you  
+propose above. I cannot reproduce the problem I formerly had. When  
+trying out the file permissions you propose above everything works for  
+me as well...
+
+&gt;<i> In any case, I guess no file should be made actually writeable by the
+</I>&gt;<i> x2gouser. Moreover, is the script run in tainted mode this way? AFAIUI
+</I>&gt;<i> no, but we can (and should) set it forcefully in the perl script.
+</I>
+Then we should also make sure, no one can su to the x2gouser,  
+shouldn't we? Or at least make sure that x2gouser cannot change  
+permissions on that file? How that?
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110718/30701f17/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110718/30701f17/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002472.html">[X2go-Dev] x2goserver package with setuidwrapper
+</A></li>
+	<LI>Next message: <A HREF="002474.html">[X2go-Dev] x2goserver package with setuidwrapper
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2473">[ date ]</a>
+              <a href="thread.html#2473">[ thread ]</a>
+              <a href="subject.html#2473">[ subject ]</a>
+              <a href="author.html#2473">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

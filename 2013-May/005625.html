@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Google Chrome and chromium-browser both crash when	their advanced settings menu is accessed (Windows X2GoClient)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Google%20Chrome%20and%20chromium-browser%20both%20crash%20when%0A%09their%20advanced%20settings%20menu%20is%20accessed%20%28Windows%20X2GoClient%29&In-Reply-To=%3CBDA4270A-4401-421C-8F17-053E34D79FAC%40surfcrew.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005624.html">
+   <LINK REL="Next"  HREF="005674.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Google Chrome and chromium-browser both crash when	their advanced settings menu is accessed (Windows X2GoClient)</H1>
+    <B>Gary Kratkin</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Google%20Chrome%20and%20chromium-browser%20both%20crash%20when%0A%09their%20advanced%20settings%20menu%20is%20accessed%20%28Windows%20X2GoClient%29&In-Reply-To=%3CBDA4270A-4401-421C-8F17-053E34D79FAC%40surfcrew.com%3E"
+       TITLE="[X2Go-Dev] Google Chrome and chromium-browser both crash when	their advanced settings menu is accessed (Windows X2GoClient)">gary at surfcrew.com
+       </A><BR>
+    <I>Thu May 16 18:46:14 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005624.html">[X2Go-Dev] Google Chrome and chromium-browser both crash when their advanced settings menu is accessed (Windows X2GoClient)
+</A></li>
+        <LI>Next message: <A HREF="005674.html">[X2Go-Dev] Bug#215: Fwd: Google Chrome and chromium-browser both	crash when their advanced settings menu is accessed (Windows	X2GoClient)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5625">[ date ]</a>
+              <a href="thread.html#5625">[ thread ]</a>
+              <a href="subject.html#5625">[ subject ]</a>
+              <a href="author.html#5625">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I also get vcxsrv crashes with Chrome, to the extent that I consider Chrome unusable under x2go. In my case it's a read fault in the fbBlt function accessing freed memory. I filed a bug against vcxsrv (<A HREF="http://sourceforge.net/p/vcxsrv/bugs/11/">http://sourceforge.net/p/vcxsrv/bugs/11/</A> on vcxsrv's bug tracker, but I haven't heard back from the developer.
+
+It's an interesting data point that vcxsrv doesn't crash in unaccelerated sessions. It sounds like nxproxy is feeding something unexpected to the x-server.
+
+Regards,
+Gary Kratkin
+
+On May 16, 2013, at 4:55 AM, Stefan Baur &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>&gt; wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> this is basically a repeat of Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">4FB3F9DA.1020602 at stefanbaur.de</A>&gt;, as the problem still hasn't been fixed.
+</I>&gt;<i> 
+</I>&gt;<i> I'm not copying it to the bugtracker directly as I am not sure whether it is a client- or server-side issue, or both.
+</I>&gt;<i> @DEVs: Please advise how it should be tagged, or forward and tag it yourself.
+</I>&gt;<i> 
+</I>&gt;<i> What's new is that I've now also tried it on Debian Wheezy with the following packages installed on the server:
+</I>&gt;<i> 
+</I>&gt;<i> dpkg -l | grep x2go
+</I>&gt;<i> ii  cups-x2go 3.0.0.4-0~x2go1+wheezy~main~62~build1  all          Virtual X2Go printer for CUPS
+</I>&gt;<i> ii  x2go-keyring 2012.07.23+wheezy~main~17~build1       all          GnuPG keys of all X2Go developers and the X2Go archive
+</I>&gt;<i> ii  x2goagent 2:3.5.0.20-0+wheezy~main~405~build1    all          X2Go agent
+</I>&gt;<i> ii  x2goserver 4.0.0.1-0~x2go1+wheezy~main~648~build1 i386         X2Go server daemon scripts
+</I>&gt;<i> ii  x2goserver-extensions 4.0.0.1-0~x2go1+wheezy~main~648~build1 all          X2Go server daemon scripts (extensions)
+</I>&gt;<i> ii  x2goserver-printing 4.0.0.1-0~x2go1+wheezy~main~648~build1 all          X2Go server daemon scripts (printing)
+</I>&gt;<i> 
+</I>&gt;<i> dpkg -l | grep nx
+</I>&gt;<i> ii  libnx-x11 2:3.5.0.20-0+wheezy~main~405~build1    i386         nx-X11
+</I>&gt;<i> ii  nxagent 2:3.5.0.20-0+wheezy~main~405~build1    i386         NX agent
+</I>&gt;<i> 
+</I>&gt;<i> On the client side, I am now using X2GoClient V. 4.0.0.3 on Windows 7 (32-bit, German)
+</I>&gt;<i> 
+</I>&gt;<i> Note: The problem is *independent* of the compression *settings* (it occurs with WAN/nopack as well), but it does *not* occur when bypassing X2Go and running an unaccelerated, regular X session via SSH - with the X Server &quot;stolen&quot; from the X2GoClient package. Also, it doesn't matter which version of the X2GoClient you use, both the interim client and the new one show this behavior in their 4.0.0.3 versions.
+</I>&gt;<i> 
+</I>&gt;<i> What happens: Whenever you try to access the advanced settings/proxy settings in chromium-browser or Google Chrome, vcxsrv.exe crashes.
+</I>&gt;<i> 
+</I>&gt;<i> The following problem details are given:
+</I>&gt;<i> 
+</I>&gt;<i> Problemsignatur:
+</I>&gt;<i>  Problemereignisname:    APPCRASH
+</I>&gt;<i>  Anwendungsname:    vcxsrv.exe
+</I>&gt;<i>  Anwendungsversion:    0.0.0.0
+</I>&gt;<i>  Anwendungszeitstempel:    4f852997
+</I>&gt;<i>  Fehlermodulname:    vcxsrv.exe
+</I>&gt;<i>  Fehlermodulversion:    0.0.0.0
+</I>&gt;<i>  Fehlermodulzeitstempel:    4f852997
+</I>&gt;<i>  Ausnahmecode:    c0000005
+</I>&gt;<i>  Ausnahmeoffset:    00160860
+</I>&gt;<i>  Betriebsystemversion:    6.1.7601.2.1.0.768.3
+</I>&gt;<i>  Gebietsschema-ID:    1031
+</I>&gt;<i>  Zusatzinformation 1:    0a9e
+</I>&gt;<i>  Zusatzinformation 2:    0a9e372d3b4ad19135b953a78882e789
+</I>&gt;<i>  Zusatzinformation 3:    0a9e
+</I>&gt;<i>  Zusatzinformation 4:    0a9e372d3b4ad19135b953a78882e789
+</I>&gt;<i> 
+</I>&gt;<i> Lesen Sie unsere Datenschutzbestimmungen online:
+</I>&gt;<i>  <A HREF="http://go.microsoft.com/fwlink/?linkid=104288&amp;clcid=0x0407">http://go.microsoft.com/fwlink/?linkid=104288&amp;clcid=0x0407</A>
+</I>&gt;<i> 
+</I>&gt;<i> Wenn die Onlinedatenschutzbestimmungen nicht verf&#252;gbar sind, lesen Sie unsere Datenschutzbestimmungen offline:
+</I>&gt;<i>  C:\windows\system32\de-DE\erofflps.txt
+</I>&gt;<i> 
+</I>&gt;<i> It would be really cool if you see to getting this fixed soon, some of my users really want to use Chrome these days.
+</I>&gt;<i> 
+</I>&gt;<i> Kind Regards,
+</I>&gt;<i> Stefan
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005624.html">[X2Go-Dev] Google Chrome and chromium-browser both crash when their advanced settings menu is accessed (Windows X2GoClient)
+</A></li>
+	<LI>Next message: <A HREF="005674.html">[X2Go-Dev] Bug#215: Fwd: Google Chrome and chromium-browser both	crash when their advanced settings menu is accessed (Windows	X2GoClient)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5625">[ date ]</a>
+              <a href="thread.html#5625">[ thread ]</a>
+              <a href="subject.html#5625">[ subject ]</a>
+              <a href="author.html#5625">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

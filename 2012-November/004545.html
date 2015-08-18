@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2go without root on server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20without%20root%20on%20server&In-Reply-To=%3C509E7B61.5090906%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004544.html">
+   <LINK REL="Next"  HREF="004546.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2go without root on server</H1>
+    <B>Moritz Str&#252;be</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20without%20root%20on%20server&In-Reply-To=%3C509E7B61.5090906%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] x2go without root on server">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Sat Nov 10 17:05:53 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004544.html">[X2Go-Dev] x2go without root on server
+</A></li>
+        <LI>Next message: <A HREF="004546.html">[X2Go-Dev] x2go without root on server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4545">[ date ]</a>
+              <a href="thread.html#4545">[ thread ]</a>
+              <a href="subject.html#4545">[ subject ]</a>
+              <a href="author.html#4545">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 10.11.2012 15:31, Ralf Hemmecke schrieb:
+&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> &gt;&gt;&gt; If the configure file works for system-wide installations, then
+</I>&gt;&gt;&gt;&gt;<i> &gt;&gt;&gt; yes.
+</I>&gt;<i> I looked a bit into the x2goserver repository. There are several
+</I>&gt;<i> subdirectories. Obviously x2goserver uses recursive make (you certainly
+</I>&gt;<i> know <A HREF="http://miller.emu.id.au/pmiller/books/rmch/">http://miller.emu.id.au/pmiller/books/rmch/</A>). Is there any deep
+</I>&gt;<i> reaon to leave it like that?
+</I>
+Feel free to fix it. But as with other things time is likely spent
+better otherwise.
+
+&gt;<i>
+</I>&gt;&gt;<i> &gt; For your approach: please start on x2goserver first. Install
+</I>&gt;&gt;<i> &gt; x2goagent locally as root first and focus on adapting x2goserver.
+</I>&gt;<i> Thanks for this hint. Maybe I still need a bit more. What does actually
+</I>&gt;<i> happen when x2goclient connects to the server machine? Is it calling
+</I>&gt;<i> x2goagent and x2goagent then starts x2goserver? Could you point me to
+</I>&gt;<i> the code in x2goclient that does the first steps? What is currently not
+</I>&gt;<i> so clear to me is, in which order and what programs are started until I
+</I>&gt;<i> have a running connection.
+</I>&gt;<i>
+</I>
+As I already said in a previous mail: The x2go-client prints all
+commands executed on the server, and the responsible scripts on the
+server sum up to about 1800 LOC. That's really not that much, that it
+needs in detail explaining.
+
+Cheers
+Morty
+
+
+
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004544.html">[X2Go-Dev] x2go without root on server
+</A></li>
+	<LI>Next message: <A HREF="004546.html">[X2Go-Dev] x2go without root on server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4545">[ date ]</a>
+              <a href="thread.html#4545">[ thread ]</a>
+              <a href="subject.html#4545">[ subject ]</a>
+              <a href="author.html#4545">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

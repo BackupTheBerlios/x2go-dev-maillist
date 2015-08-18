@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] 3.99 Testing - General sluggishness
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20General%20sluggishness&In-Reply-To=%3C1311345305.8194.257.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002538.html">
+   <LINK REL="Next"  HREF="002525.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] 3.99 Testing - General sluggishness</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20General%20sluggishness&In-Reply-To=%3C1311345305.8194.257.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] 3.99 Testing - General sluggishness">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Jul 22 16:35:05 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002538.html">[X2go-Dev] 3.99 Testing - General sluggishness
+</A></li>
+        <LI>Next message: <A HREF="002525.html">[X2go-Dev] 3.99 Testing - knotify: no process found
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2539">[ date ]</a>
+              <a href="thread.html#2539">[ thread ]</a>
+              <a href="subject.html#2539">[ subject ]</a>
+              <a href="author.html#2539">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2011-07-22 at 10:30 -0400, John A. Sullivan III wrote:
+&gt;<i> On Fri, 2011-07-22 at 00:26 -0400, John A. Sullivan III wrote:
+</I>&gt;<i> &gt; I suppose I'll cover this one next as John Williams raised one of the
+</I>&gt;<i> &gt; issues.  This is another Windows only issue.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; This issue has two categories.  It is complicated by the packing problem
+</I>&gt;<i> &gt; because we can only run the Windows client now with sub-optimal packing
+</I>&gt;<i> &gt; but it was a problem before the corruption issue struck.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Screen painting is just slower - not just a little slower - a lot
+</I>&gt;<i> &gt; slower.  The typical anecdotal test I've been using is scrolling through
+</I>&gt;<i> &gt; my Evolution Inbox.  Evolution has always seemed to have terrible
+</I>&gt;<i> &gt; graphics handling. I don't know what it does but it is always sluggish
+</I>&gt;<i> &gt; and awkward - thus an excellent test of how well we handle challenging
+</I>&gt;<i> &gt; graphics.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Even under Linux on a LAN, scrolling is miserably slow.  Shift down
+</I>&gt;<i> &gt; arrow and wait 1/4 second for a response.  This is really annoying.
+</I>&gt;<i> &gt; However, in Windows, it is wait 1/2 to 3/4 seconds for a response.  This
+</I>&gt;<i> &gt; takes it from annoying to dangerous as users wind up deleting or opening
+</I>&gt;<i> &gt; unintended emails, i.e., the hold the shift down arrow until they think
+</I>&gt;<i> &gt; they have highlighted the mails they want and then press enter.  What
+</I>&gt;<i> &gt; they don't realize is that five more emails will be selected because of
+</I>&gt;<i> &gt; the delay between what they see and the key buffer.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> Ugh! Make that 2 to 3 seconds between down arrow and response!!!!
+</I>&gt;<i> 
+</I>&gt;<i> I tried to resume a session I had suspended from Linux but it complained
+</I>&gt;<i> about a mismatched color depth.  I checked my Windows laptop and,
+</I>&gt;<i> indeed, it was set to 16 bit color.  I changed it to 32 bit color and
+</I>&gt;<i> performance has gone through the floor - John
+</I>&gt;<i> 
+</I>&lt;snip&gt;
+Hmm . . . more important information. It almost looks like the events
+are being buffered.  For example, if I arrow and wait, arrow, wait,
+arrow, wait, arrow wait - each arrow takes about 2-3 seconds for a
+screen response.  If I arrow, arrow, arrow, arrow, the first screen
+response takes 2-3 seconds, then, 2-3 seconds later, all the other arrow
+events are processed.
+
+Are we disabling the Nagle algorithm on all the sockets we open? We
+should if we are not.  Otherwise, we can see this kind of buffering
+effect.  I don't know why that would cause such a change between 16 and
+32 bit.  Just a thought - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002538.html">[X2go-Dev] 3.99 Testing - General sluggishness
+</A></li>
+	<LI>Next message: <A HREF="002525.html">[X2go-Dev] 3.99 Testing - knotify: no process found
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2539">[ date ]</a>
+              <a href="thread.html#2539">[ thread ]</a>
+              <a href="subject.html#2539">[ subject ]</a>
+              <a href="author.html#2539">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

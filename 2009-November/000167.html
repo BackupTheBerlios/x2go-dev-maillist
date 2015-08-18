@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2go and Debian Etch
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20and%20Debian%20Etch&In-Reply-To=%3C4AFA7B68.5010000%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000166.html">
+   <LINK REL="Next"  HREF="000168.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2go and Debian Etch</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20and%20Debian%20Etch&In-Reply-To=%3C4AFA7B68.5010000%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] X2go and Debian Etch">paul at vandervlis.nl
+       </A><BR>
+    <I>Wed Nov 11 09:52:56 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000166.html">[X2go-dev] X2go and Debian Etch
+</A></li>
+        <LI>Next message: <A HREF="000168.html">[X2go-dev] x2go with windows vista
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#167">[ date ]</a>
+              <a href="thread.html#167">[ thread ]</a>
+              <a href="subject.html#167">[ subject ]</a>
+              <a href="author.html#167">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Heinz-M. Graesing schreef:
+&gt;&gt;<i> -----Urspr&#252;ngliche Nachricht----- Von: &quot;Paul van der Vlis&quot;
+</I>&gt;&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">paul at vandervlis.nl</A>&gt; Gesendet: 10.11.09 15:48:28
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Hello,
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> I have installed x2goserver on a Debian Etch machine and I added
+</I>&gt;&gt;<i> myself to the x2gousers group. But I cannot get contact from a
+</I>&gt;&gt;<i> client on Debian Lenny. I don't see an error.
+</I>&gt;<i> 
+</I>&gt;<i> Hello Paul,
+</I>&gt;<i> 
+</I>&gt;<i> is there an entry inside your /etc/sudoers which gives the group
+</I>&gt;<i> x2gousers access to the x2gopgwrapper? 
+</I>
+Yes, that was automatically made. I wondered about that.
+-------
+#### X2GO section
+%x2gousers ALL=(ALL) NOPASSWD: /usr/bin/x2gopgwrapper
+-------
+
+&gt;<i> The etch version doesn't
+</I>&gt;<i> install automatically like the new lenny ones. So you'll have to
+</I>&gt;<i> install the postgres db
+</I>
+Ah, stupid. That's the problem. I forgot the installation of PostgreSQL
+completely...  Thanks.
+
+I think I can use /usr/lib/x2go/script/x2gocreatebase.sh to create a
+database, correct?  I don't have an installation manual anymore for this
+version.
+
+&gt;<i> and make the sudo changes on your own.
+</I>&gt;<i> Normally it should be no problem to contact an x2go 2.x server with
+</I>&gt;<i> an 3.x Client.
+</I>
+OK, thanks.
+
+&gt;&gt;<i> Is it possible to install the X2go version for Lenny on Etch?
+</I>&gt;<i> 
+</I>&gt;<i> Not with the help of the debian packages. The whole LDAP components
+</I>&gt;<i> have changed. 
+</I>
+I don't use LDAP at the moment.
+
+&gt;<i> Maybe it is possible to compile a 3.x Version for Etch.
+</I>&gt;<i> After Etch hat some major issues in some schools, we really recommend
+</I>&gt;<i> lenny as installation base.
+</I>
+I have some customers who are still not migrated to Lenny.
+It are mostly complex installations with thinclients.
+
+&gt;<i> What do you need to run under Etch? Maybe I can have a look on the
+</I>&gt;<i> needed components.
+</I>
+Only remote screen, keyboard, mouse. Nothing special.
+I would prefer to use sqlite as a database. Is that possible?
+
+With regards,
+Paul.
+
+
+
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000166.html">[X2go-dev] X2go and Debian Etch
+</A></li>
+	<LI>Next message: <A HREF="000168.html">[X2go-dev] x2go with windows vista
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#167">[ date ]</a>
+              <a href="thread.html#167">[ thread ]</a>
+              <a href="subject.html#167">[ subject ]</a>
+              <a href="author.html#167">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Gentoo Ebuild x2goclient-gtk-3.01.6
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Gentoo%20Ebuild%20x2goclient-gtk-3.01.6&In-Reply-To=%3C200910111700.32702.joachim%40falaba.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000117.html">
+   <LINK REL="Next"  HREF="000120.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Gentoo Ebuild x2goclient-gtk-3.01.6</H1>
+    <B>Joachim Langenbach</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Gentoo%20Ebuild%20x2goclient-gtk-3.01.6&In-Reply-To=%3C200910111700.32702.joachim%40falaba.de%3E"
+       TITLE="[X2go-dev] Gentoo Ebuild x2goclient-gtk-3.01.6">joachim at falaba.de
+       </A><BR>
+    <I>Sun Oct 11 17:00:29 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000117.html">[X2go-dev] X2Go Windows Client
+</A></li>
+        <LI>Next message: <A HREF="000120.html">[X2go-dev] NXPROXY 3.2.0 and 3.3.0 included in provided Debian	package
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#118">[ date ]</a>
+              <a href="thread.html#118">[ thread ]</a>
+              <a href="subject.html#118">[ subject ]</a>
+              <a href="author.html#118">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Good Evening,
+
+I'm trying to create an ebuild for x2goclient-gtk-3.01-6 to extand the 
+available ebuilds related to x2goserver at the nx overlay.
+
+The ebuild (a gentoo package file which tells the package-system how to 
+compile and install the software) compiles fine. But if I try to start the 
+client it terminates with &quot;Cannot allocate memory&quot; after a time. Before it 
+uses 99% cpu-power, but nothing is shown.
+I added all related stuff, which I think, it can be useful. It's a strace 
+output of x2goclient_gtk and the ebuild I created and the install log. So may 
+be I'm missing a package dependencie or have installed some file on a wrong 
+location. But this can be seen at the files.
+
+The only change I made at the source code is the uncomment of the 
+sig++/compatability.h in main_window.cc. this change is done via the patch, 
+which I also include. I also post the stuff at 
+<A HREF="http://bugs.gentoo.org/show_bug.cgi?id=249600.">http://bugs.gentoo.org/show_bug.cgi?id=249600.</A> At this page is another error 
+(comment 31) which is a little bit strange and I don't whether it may be have 
+to do with our packages or it's a kind of bug of x2go. The problem is, the 
+user starts xterm via x2go and than at the xterm he starts other programms. 
+If he pause the session now, after a resume, all programs which are started 
+with the xterms are not resumed, only the xterm.
+
+I'm thankful for any advice!
+
+Great rest sunday!
+
+Joachim Langenbach
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20091011/8c25ad7b/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20091011/8c25ad7b/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000117.html">[X2go-dev] X2Go Windows Client
+</A></li>
+	<LI>Next message: <A HREF="000120.html">[X2go-dev] NXPROXY 3.2.0 and 3.3.0 included in provided Debian	package
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#118">[ date ]</a>
+              <a href="thread.html#118">[ thread ]</a>
+              <a href="subject.html#118">[ subject ]</a>
+              <a href="author.html#118">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

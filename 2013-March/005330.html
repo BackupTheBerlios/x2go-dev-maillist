@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#149: Profile files not being sources in	x2goserver-xsession
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23149%3A%20Profile%20files%20not%20being%20sources%20in%0A%09x2goserver-xsession&In-Reply-To=%3C6771F3F3-D07E-414B-BD54-FB5862F08767%40dartmouth.edu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005329.html">
+   <LINK REL="Next"  HREF="005331.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#149: Profile files not being sources in	x2goserver-xsession</H1>
+    <B>Matthew L. Dailey</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23149%3A%20Profile%20files%20not%20being%20sources%20in%0A%09x2goserver-xsession&In-Reply-To=%3C6771F3F3-D07E-414B-BD54-FB5862F08767%40dartmouth.edu%3E"
+       TITLE="[X2Go-Dev] Bug#149: Profile files not being sources in	x2goserver-xsession">matthew.l.dailey at dartmouth.edu
+       </A><BR>
+    <I>Mon Mar 25 17:17:33 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005329.html">[X2Go-Dev] GSOC2013: last call for code project ideas (wiki URL)
+</A></li>
+        <LI>Next message: <A HREF="005331.html">[X2Go-Dev] Bug#149: Bug#149: Profile files not being sources in	x2goserver-xsession
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5330">[ date ]</a>
+              <a href="thread.html#5330">[ thread ]</a>
+              <a href="subject.html#5330">[ subject ]</a>
+              <a href="author.html#5330">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goserver
+Version: 4.1.0.0
+
+Greetings,
+
+When launching X sessions, x2goserver-xsession does not source the following files:
+
+/etc/profile
+$HOME/.profile
+/etc/xprofile
+$HOME/.xprofile
+
+This can lead to problems if important things are needed from these files, usually PATH additions. I've looked at a couple of greeters - lightdm and gdm - and each of these source these files within their Xsession script.
+
+So, the fix is to just use the same logic in the Xsession script within x2goserver-xsession. Below (and attached) is a patch based on code from the lightdm Xsession script.
+
+Thanks for your attention and please let me know if you have any questions or need any other information. 
+
+-- 
+Matthew L. Dailey
+Systems Administrator
+Thayer School of Engineering
+Dartmouth College
+
+--- Xsession.orig	2013-03-25 11:41:16.629002598 -0400
++++ Xsession	2013-03-25 11:54:44.588718173 -0400
+@@ -49,6 +49,14 @@
+            &quot;&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.x2go.org</A>&gt;.&quot;
+ }
+
++# Load profile
++for file in &quot;/etc/profile&quot; &quot;$HOME/.profile&quot; &quot;/etc/xprofile&quot; &quot;$HOME/.xprofile&quot;; do
++    if [ -f &quot;$file&quot; ]; then
++        echo &quot;Loading profile from $file&quot;;
++        . &quot;$file&quot;
++    fi
++done
++
+ # initialize variables for use by all session scripts
+
+ OPTIONFILE=/etc/x2go/Xsession.options
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: xsession.patch
+Type: application/octet-stream
+Size: 471 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130325/a509569a/attachment.obj">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130325/a509569a/attachment.obj</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005329.html">[X2Go-Dev] GSOC2013: last call for code project ideas (wiki URL)
+</A></li>
+	<LI>Next message: <A HREF="005331.html">[X2Go-Dev] Bug#149: Bug#149: Profile files not being sources in	x2goserver-xsession
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5330">[ date ]</a>
+              <a href="thread.html#5330">[ thread ]</a>
+              <a href="subject.html#5330">[ subject ]</a>
+              <a href="author.html#5330">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

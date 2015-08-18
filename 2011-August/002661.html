@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] 3.99 Testing - Huge browsing delays
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Huge%20browsing%20delays&In-Reply-To=%3C1312381128.2756.10.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002653.html">
+   <LINK REL="Next"  HREF="002682.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] 3.99 Testing - Huge browsing delays</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Huge%20browsing%20delays&In-Reply-To=%3C1312381128.2756.10.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] 3.99 Testing - Huge browsing delays">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Aug  3 16:18:48 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002653.html">[X2go-Dev] 3.99 Testing - Huge browsing delays
+</A></li>
+        <LI>Next message: <A HREF="002682.html">[X2go-Dev] 3.99 Testing - Huge browsing delays
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2661">[ date ]</a>
+              <a href="thread.html#2661">[ thread ]</a>
+              <a href="subject.html#2661">[ subject ]</a>
+              <a href="author.html#2661">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2011-08-02 at 14:21 -0400, John A. Sullivan III wrote:
+&gt;<i> On Tue, 2011-08-02 at 11:15 -0700, John Williams wrote:
+</I>&gt;<i> &gt; On Tue, Aug 2, 2011 at 11:09 AM, John A. Sullivan III
+</I>&gt;<i> &gt; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt; wrote:
+</I>&gt;<i> &gt; &gt; I wondered if it was because our servers are still using 3.0.1-5 as this
+</I>&gt;<i> &gt; &gt; smells like it could be an NXAgent problem.  I connected to an X2Go
+</I>&gt;<i> &gt; &gt; server using the latest X2GoAgent (3.5.0.2-0~x2go1
+</I>&gt;<i> &gt; &gt; +squeeze~heuler~201107) and experienced the same problem.  I have
+</I>&gt;<i> &gt; &gt; backleveled my Windows system to 3.0.1-4 to see if the problem goes away
+</I>&gt;<i> &gt; &gt; but do not have enough data yet to report.  Thanks - John
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I am also using server 3.0.1-5.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Here is a summary of whether I have seen this bug with different
+</I>&gt;<i> &gt; windows client versions (64-bit Windows 7 OS) on server 3.01-5:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; windows
+</I>&gt;<i> &gt; client
+</I>&gt;<i> &gt; version     bug occurs?
+</I>&gt;<i> &gt; ==================
+</I>&gt;<i> &gt; 3.01-13    NO
+</I>&gt;<i> &gt; 3.01-18    YES
+</I>&gt;<i> &gt; 3.99          YES
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> I should add I am testing from Windows XP - John
+</I>&lt;snip&gt;
+I was able to gain some interesting, confounding, and possibly important
+data on this problem today.  I still haven't hooked up xkbwatch but I
+did try a number of different combinations of clients and servers with
+astoundingly different results.
+
+The above results posted by John Williams, my results on a XP platform,
+and Phil's results with 3.0.18 in Linux all have the 16-20 second delay
+when speaking to either 3.0.1-5 or 3.99.0.0 servers with both X2GoAgents
+3.4 and 3.5.
+
+However, I tried two new combinations today:
+ 
+3.0.1-4 Windows client to 3.0.1-5 server: frequent delay but 3 - 4
+seconds - much, much shorter.  This explains why our clients are upset
+but not throwing us out the door as they are all using this combination.
+
+3.0.1-4 Windows client to 3.99.0.0 server with X2GoAgent 3.5: No delay
+whatsoever - and that's after pounding it for a long time.
+
+I know nothing about NX internals so I am just speculating here.  The
+problem only seems to be with heavy AJAX applications as far as I can
+tell.  Could it be related to how AJAX only paints part of the screen?
+Could it be that NX does not pick up the screen change because if is
+only a subportion of the application Window and done in a way different
+from, for example, OpenOffice updates the area being typed? Could it be
+that every certain number of seconds, NX checks the entire screen for
+updates and that this timer is different in the various configurations
+and maybe non existent with two mismatched Agents?
+
+I have no idea but I would consider this a blocking bug.  I'll try to
+squeeze some xkbwatch in this week - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002653.html">[X2go-Dev] 3.99 Testing - Huge browsing delays
+</A></li>
+	<LI>Next message: <A HREF="002682.html">[X2go-Dev] 3.99 Testing - Huge browsing delays
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2661">[ date ]</a>
+              <a href="thread.html#2661">[ thread ]</a>
+              <a href="subject.html#2661">[ subject ]</a>
+              <a href="author.html#2661">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

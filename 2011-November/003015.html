@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2goserver load balancing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20load%20balancing&In-Reply-To=%3CCAAcYc%2BsSYnX12ZGDVeLKXzupYjN9mN4qNDqe3Q2HC61y1hwQCA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003014.html">
+   <LINK REL="Next"  HREF="003012.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2goserver load balancing</H1>
+    <B>Jean Milot</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20load%20balancing&In-Reply-To=%3CCAAcYc%2BsSYnX12ZGDVeLKXzupYjN9mN4qNDqe3Q2HC61y1hwQCA%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] x2goserver load balancing">milot.jean at gmail.com
+       </A><BR>
+    <I>Fri Nov 11 08:56:00 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003014.html">[X2go-Dev] x2goserver load balancing
+</A></li>
+        <LI>Next message: <A HREF="003012.html">[X2go-Dev] compile x2gclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3015">[ date ]</a>
+              <a href="thread.html#3015">[ thread ]</a>
+              <a href="subject.html#3015">[ subject ]</a>
+              <a href="author.html#3015">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I'm interested in load too.
+
+How it works ?
+
+Can you make like with nxserver and create a script &quot;nxcheckload&quot; an use a
+server like broker of session ?
+
+Thanks .
+
+Jean
+
+2011/11/11 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Fr 11 Nov 2011 00:43:41 CET Vasilica Petcu wrote:
+</I>&gt;<i>
+</I>&gt;<i>  Hello to all,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In the old versions of x2go, there is an option to install x2goserver
+</I>&gt;&gt;<i> with load-balancing...
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> The default (Debianic) installation does install without load balancing.
+</I>&gt;<i> The focus was to make it run out of the box, so:
+</I>&gt;<i>
+</I>&gt;<i>  o x2goserver db is sqlite (not postgresql)
+</I>&gt;<i>  o x2goserver works with local accounts
+</I>&gt;<i>  o for printing it is assumed: cups server := x2goserver
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>  Is this option still available ? How can I achieve that ???
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> For load balancing you need to setup postgresql as DB backend:
+</I>&gt;<i> <A HREF="http://wiki.x2go.org/wiki:**advanced:multi-node:**x2goserver-pgsql&lt;http://wiki.x2go.org/wiki:advanced:multi-node:x2goserver-pgsql">http://wiki.x2go.org/wiki:**advanced:multi-node:**x2goserver-pgsql&lt;http://wiki.x2go.org/wiki:advanced:multi-node:x2goserver-pgsql</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> And you have to use LDAP for user, group and host management:
+</I>&gt;<i> (no current docs available yet, sorry!!!)
+</I>&gt;<i>
+</I>&gt;<i> And for printing you might want to read this:
+</I>&gt;<i> <A HREF="http://wiki.x2go.org/wiki:**advanced:multi-node:**x2goserver-printing&lt;http://wiki.x2go.org/wiki:advanced:multi-node:x2goserver-printing">http://wiki.x2go.org/wiki:**advanced:multi-node:**x2goserver-printing&lt;http://wiki.x2go.org/wiki:advanced:multi-node:x2goserver-printing</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;<i> fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0xB588399B
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+
+-- 
+MILOT Jean
+T&#233;l. : 0659514624
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">milot.jean at gmail.com</A>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20111111/15ef28d6/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20111111/15ef28d6/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003014.html">[X2go-Dev] x2goserver load balancing
+</A></li>
+	<LI>Next message: <A HREF="003012.html">[X2go-Dev] compile x2gclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3015">[ date ]</a>
+              <a href="thread.html#3015">[ thread ]</a>
+              <a href="subject.html#3015">[ subject ]</a>
+              <a href="author.html#3015">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

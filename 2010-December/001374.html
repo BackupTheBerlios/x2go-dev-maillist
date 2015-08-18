@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go with likewise-open (ldap) questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CAANLkTi%3DPdU5pLMj-qRNqN6EGxfvCgQyrxO-dostD1S%2B6%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001371.html">
+   <LINK REL="Next"  HREF="001375.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go with likewise-open (ldap) questions</H1>
+    <B>Ivan Boyadzhiev</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CAANLkTi%3DPdU5pLMj-qRNqN6EGxfvCgQyrxO-dostD1S%2B6%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] x2go with likewise-open (ldap) questions">ivancho.b at gmail.com
+       </A><BR>
+    <I>Tue Dec 14 15:58:31 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001371.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+        <LI>Next message: <A HREF="001375.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1374">[ date ]</a>
+              <a href="thread.html#1374">[ thread ]</a>
+              <a href="subject.html#1374">[ subject ]</a>
+              <a href="author.html#1374">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> I admit to not reading this carefully as I am running out the door but
+</I>&gt;<i> doesn't one also need to be a member of fuse (file sharing) and pulse,
+</I>&gt;<i> pulse-access, and pulse-rt? - John
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>Ok, after my final investigations, it seems problem with the escape of &quot;@&quot;
+which is changed to DOMAIN&quot;\&quot;User. Everything else is the same. Only, only
+pulseaudio ssh forward doesn't happen. I have found this inside
+/var/log/syslog:
+
+Dec 14 16:01:43 bgtrmx02 pulseaudio[11757]: pid.c: Failed to open PID file
+'/home/likewise-open/DOMAIN/iboyadzi/.pulse/512381a4f3b57a9260ac14f100000005-runtime/pid':
+No such file or directory
+Dec 14 16:01:43 bgtrmx02 pulseaudio[11757]: pid.c: Failed to open PID file
+'/home/likewise-open/DOMAIN/iboyadzi/.pulse/512381a4f3b57a9260ac14f100000005-runtime/pid':
+No such file or directory
+
+- I've compared 2 newly created user folders (local and LDAP). There had
+differences:
+ * media symlink to /tmp/DOMAIN\USER_media wasn't successful for LDAP user
+ * LDAP user has .pulse folder with the pid error above
+ * local user has .pulse-client.conf and .pulse-cookie inside
+~/.x2go/C-Username...dp32/
+
+- ps axwww compare showed no difference
+
+The point with LDAP user logged in locally, has same effect as changing
+/dev/snd/* files permissions to 0666 (SUBSYSTEM==&quot;sound&quot;, MODE=&quot;0666&quot; part),
+and thus the sound is hearing on the server side.
+
+My questions:
+1. Do you know how this SSH Pulseaudio forwarding is implemented. I would
+like to try to create manually a new pulseaudio forwarding to current remote
+LDAP account session.
+2. Can you show me where in the sources, are the parts written both for the
+server and client side. When I get more deep understanding how this
+pulseaudio is happening I would provide exact reason why it fails.
+
+Thanks and Best Regards
+Ivan
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101214/f6cd7dec/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101214/f6cd7dec/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001371.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+	<LI>Next message: <A HREF="001375.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1374">[ date ]</a>
+              <a href="thread.html#1374">[ thread ]</a>
+              <a href="subject.html#1374">[ subject ]</a>
+              <a href="author.html#1374">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

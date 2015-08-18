@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Fwd:  MAC developers wanted
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fwd%3A%20%20MAC%20developers%20wanted&In-Reply-To=%3C4F400940.9020200%40ionic.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003502.html">
+   <LINK REL="Next"  HREF="003500.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Fwd:  MAC developers wanted</H1>
+    <B>Mihai Moldovan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fwd%3A%20%20MAC%20developers%20wanted&In-Reply-To=%3C4F400940.9020200%40ionic.de%3E"
+       TITLE="[X2Go-Dev] Fwd:  MAC developers wanted">ionic at ionic.de
+       </A><BR>
+    <I>Sat Feb 18 21:25:36 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003502.html">[X2Go-Dev] Problem with X2Go and VMWare Tools
+</A></li>
+        <LI>Next message: <A HREF="003500.html">[X2Go-Dev] Fwd:  MAC developers wanted
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3498">[ date ]</a>
+              <a href="thread.html#3498">[ thread ]</a>
+              <a href="subject.html#3498">[ subject ]</a>
+              <a href="author.html#3498">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Stefan
+
+thanks - I've seen your message via the webfrontend earlier and thus
+decided to sign up. However, CCing me would have been a good idea, yes.
+
+I am flattered, but unfortunately not skilled enough to help you. The
+fix I send originated from a hour-long debugging session with two other
+people (non-OS X developers) - I am pretty sure I would have never
+caught such a stack overflow by myself. (Actually, I tried debugging via
+gdb at first and noticed the this pointer changed when going into the
+newly called channelLoop function, causing the program to crash - but
+was more than startled because this should have never had happened.
+Turns out, the stack was full and the first parameter of the function,
+i.e., &quot;this&quot; could not be pushed onto it, thus reading some random memory.)
+
+At the same time, I am happy to say that otherwise the x2go client (from
+git) is fully functioning on OS X with one little flaw - I have to test
+the same git version on Linux as well to confirm a OS X specific bug though.
+
+Oh yeah, and building nxproxy on OS X is not trivial but easily
+manageable with a few build system modifications.
+
+Best regards,
+
+
+Mihai
+
+&gt;<i> Am 18.02.2012 04:57, schrieb Mihai Moldovan:
+</I>&gt;&gt;<i>  Raise the stack space to 2MB for secondary threads. It previously used
+</I>&gt;&gt;<i>  the 512KB system default.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>  Signed-off-by: Mihai Moldovan&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">ionic at ionic.de</A>&gt;
+</I>&gt;&gt;<i>
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i>
+</I>&gt;<i> Mihai, since you committed an OS X-specific patch: Would you be
+</I>&gt;<i> interested in picking up development of the OS X X2Go-Client?
+</I>&gt;<i> Originally, Mike wanted to take a stab at it, but didn't get around to
+</I>&gt;<i> do it, and Alex won't touch the OS X port unless he gets paid for it.
+</I>&gt;<i>
+</I>&gt;<i> If you have the necessary skills and the time to keep the OS X port
+</I>&gt;<i> current, I could provide you with a Mac mini for testing.
+</I>&gt;<i> See
+</I>&gt;<i> <A HREF="http://comments.gmane.org/gmane.linux.terminal-server.x2go.devel/2112">http://comments.gmane.org/gmane.linux.terminal-server.x2go.devel/2112</A>
+</I>&gt;<i> and
+</I>&gt;<i> <A HREF="http://comments.gmane.org/gmane.linux.terminal-server.x2go.devel/2347">http://comments.gmane.org/gmane.linux.terminal-server.x2go.devel/2347</A>
+</I>&gt;<i> for the specs&amp;  background info.
+</I>&gt;<i>
+</I>&gt;<i> I bought this Mac specifically so someone skilled enough can work on the
+</I>&gt;<i> X2Go-Client, and it's kind of sad that no one wants to pick up
+</I>&gt;<i> development even though hardware is provided for free/in exchange for a
+</I>&gt;<i> deposit.
+</I>&gt;<i>
+</I>&gt;<i> I don't have enough Mac users among my clients that paying Alex (or
+</I>&gt;<i> anyone else) to work on it would be economically viable...
+</I>&gt;<i>
+</I>&gt;<i> -Stefan
+</I>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4369 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120218/9dc9c382/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120218/9dc9c382/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003502.html">[X2Go-Dev] Problem with X2Go and VMWare Tools
+</A></li>
+	<LI>Next message: <A HREF="003500.html">[X2Go-Dev] Fwd:  MAC developers wanted
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3498">[ date ]</a>
+              <a href="thread.html#3498">[ thread ]</a>
+              <a href="subject.html#3498">[ subject ]</a>
+              <a href="author.html#3498">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

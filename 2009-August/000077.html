@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Password in plain text!?!?!?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Password%20in%20plain%20text%21%3F%21%3F%21%3F&In-Reply-To=%3C4A7827DC.7070805%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000076.html">
+   <LINK REL="Next"  HREF="000078.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Password in plain text!?!?!?</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Password%20in%20plain%20text%21%3F%21%3F%21%3F&In-Reply-To=%3C4A7827DC.7070805%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] Password in plain text!?!?!?">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Tue Aug  4 14:21:48 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000076.html">[X2go-dev] install : at least 4 mistakes in pdf de.insstallation.x2go.pdf and a install script
+</A></li>
+        <LI>Next message: <A HREF="000078.html">[X2go-dev] x2go  after restart desstroy nfs system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#77">[ date ]</a>
+              <a href="thread.html#77">[ thread ]</a>
+              <a href="subject.html#77">[ subject ]</a>
+              <a href="author.html#77">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello list,
+As I have promised, new x2goclien-gtk and x2goclient for maemo are
+available in our repository. You can also download new x2goclient for mac:
+<A HREF="http://x2go.obviously-nice.de/deb/pool-lenny/x2goclient/x2goclient-3.01-2.dmg.zip">http://x2go.obviously-nice.de/deb/pool-lenny/x2goclient/x2goclient-3.01-2.dmg.zip</A>
+
+Greetings,
+
+Alex
+
+Oleksandr Shneyder schrieb:
+&gt;<i> Hello list,
+</I>&gt;<i> I have found the bug described by Alexander.
+</I>&gt;<i> If x2goclient will terminated during ssh connection, it can not
+</I>&gt;<i> delete/hide file with password and it is possible to read this password
+</I>&gt;<i> from file in userhome\.x2go\ssh\. This file is still inaccessible for
+</I>&gt;<i> users that are not owner of this file, but in case of public access to
+</I>&gt;<i> machine (especially running windows) it is possible that unauthorized
+</I>&gt;<i> person read password from hard disk.
+</I>&gt;<i> 
+</I>&gt;<i> To fix this bug I made some changes in x2goclient. Now x2goclient work
+</I>&gt;<i> as SSH_ASKPASS program. It read password from master application via
+</I>&gt;<i> protected local socket. To get password client must send to master
+</I>&gt;<i> application 128-bit cookie which is valid for only one password request.
+</I>&gt;<i> So, x2goclient not need to save password on disk any more.
+</I>&gt;<i> 
+</I>&gt;<i> You can install x2goclient (qt) 3.0.1-2 for linux from our repository
+</I>&gt;<i> right now. You can also download Windows version form our site at
+</I>&gt;<i> evening or right now using this direct link:
+</I>&gt;<i> <A HREF="http://x2go.obviously-nice.de/deb/pool-lenny/x2goclient/x2goclient-3.01-2-setup.exe">http://x2go.obviously-nice.de/deb/pool-lenny/x2goclient/x2goclient-3.01-2-setup.exe</A>
+</I>&gt;<i> 
+</I>&gt;<i> I will include the same changes in gtk,maemo and macos clients next week.
+</I>&gt;<i> 
+</I>&gt;<i> Yours sincerely,
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------------------------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 260 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090804/654fc21e/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090804/654fc21e/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000076.html">[X2go-dev] install : at least 4 mistakes in pdf de.insstallation.x2go.pdf and a install script
+</A></li>
+	<LI>Next message: <A HREF="000078.html">[X2go-dev] x2go  after restart desstroy nfs system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#77">[ date ]</a>
+              <a href="thread.html#77">[ thread ]</a>
+              <a href="subject.html#77">[ subject ]</a>
+              <a href="author.html#77">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

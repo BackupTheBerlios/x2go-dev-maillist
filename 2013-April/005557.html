@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#194: Traceback in pyhoca-gui
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23194%3A%20Traceback%20in%20pyhoca-gui&In-Reply-To=%3Czarafa.517a2e51.097b.2444ea086ed9e39c%40mail.int.lindix.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005556.html">
+   <LINK REL="Next"  HREF="005558.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#194: Traceback in pyhoca-gui</H1>
+    <B>Dick Kniep</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23194%3A%20Traceback%20in%20pyhoca-gui&In-Reply-To=%3Czarafa.517a2e51.097b.2444ea086ed9e39c%40mail.int.lindix.nl%3E"
+       TITLE="[X2Go-Dev] Bug#194: Traceback in pyhoca-gui">dick at lindix.nl
+       </A><BR>
+    <I>Fri Apr 26 09:35:45 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005556.html">[X2Go-Dev] Processed: your mail
+</A></li>
+        <LI>Next message: <A HREF="005558.html">[X2Go-Dev] Processed: your mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5557">[ date ]</a>
+              <a href="thread.html#5557">[ thread ]</a>
+              <a href="subject.html#5557">[ subject ]</a>
+              <a href="author.html#5557">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: pyhoca-gui
+Severity: normal
+Version 4.0.2
+
+Following log is produced on Ubuntu 12.10 using Menea to connect to. The connection is established and the terminal is started, however, there is a traceback in the logs. It is the standard pyhoca that is on  ppa:x2go/stable 
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">dick at dick-MS-7640</A>:/usr/share/doc/pyhoca-gui$ pyhoca-gui
+Xlib.protocol.request.QueryExtension
+pyhoca-gui[6334] (PyHoca-GUI) WARN: the current release of PyHoca-GUI does not support client configuration
+^Cpyhoca-gui[6334] (PyHoca-GUI) NOTICE: Received Ctrl-C keyboard interrupt... Wait till PyHoca-GUI has exited cleanly.
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">dick at dick-MS-7640</A>:/usr/share/doc/pyhoca-gui$ pyhoca-gui --libdebug
+Xlib.protocol.request.QueryExtension
+pyhoca-gui[6345] (x2goinifiles-pylib) INFO: proposed config files are ['/home/dick/.x2goclient/sessions']
+pyhoca-gui[6345] (x2goinifiles-pylib) INFO: config files found: ['/home/dick/.x2goclient/sessions']
+pyhoca-gui[6345] (x2goinifiles-pylib) INFO: proposed config files are ['/home/dick/.x2goclient/settings']
+pyhoca-gui[6345] (x2goinifiles-pylib) INFO: config files found: ['/home/dick/.x2goclient/settings']
+pyhoca-gui[6345] (x2goinifiles-pylib) INFO: proposed config files are ['/home/dick/.x2goclient/printing']
+pyhoca-gui[6345] (x2goinifiles-pylib) INFO: config files found: ['/home/dick/.x2goclient/printing']
+pyhoca-gui[6345] (PyHoca-GUI) WARN: the current release of PyHoca-GUI does not support client configuration
+pyhoca-gui[6345] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+pyhoca-gui[6345] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG: X2Go control session parameters for profile Menea:
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     username: dick
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     key_filename: 
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     unique_hostkey_aliases: True
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     look_for_keys: False
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG: X2Go terminal session parameters for profile Menea:
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     client_encoding: UTF-8
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     set_session_title: False
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     snd_system: none
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     session_type: application
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     server_encoding: UTF-8
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     snd_port: 4713
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     rdp_server: 
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     kbtype: auto
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     applications: ['TERMINAL', 'WWWBROWSER', 'MAILCLIENT', 'OFFICE']
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     published_applications: False
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     link: wan
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     xdmcp_server: localhost
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     kbvariant: null
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     geometry: 800x600
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     rdp_options: -u X2GO_USER -p X2GO_PASSWORD
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     cmd: TERMINAL
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     convert_encoding: False
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     kblayout: null
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     session_title: 
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     pack: 16m-jpeg-9
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG: X2Go sshproxy parameters for profile Menea:
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     sshproxy_host: menea.cvix.nl
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     sshproxy_port: 3389
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     sshproxy_tunnel: localhost:44444:127.0.0.1:3389
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     sshproxy_look_for_keys: True
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     sshproxy_allow_agent: True
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     sshproxy_key_filename: /home/dick/.ssh/menea
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG:     sshproxy_user: menea
+pyhoca-gui[6345] (x2gosession-pylib) DEBUG: initializing X2GoControlSession
+pyhoca-gui[6345] (x2gosessregistry-pylib) NOTICE: registering X2Go session Menea...
+pyhoca-gui[6345] (x2gosessregistry-pylib) DEBUG: registering X2Go session with UUID 3e47c12e-ae43-11e2-9297-8c89a56151d6
+pyhoca-gui[6345] (x2goclient-pylib) NOTICE: initializing X2Go session...
+pyhoca-gui[6345] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+pyhoca-gui[6345] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+pyhoca-gui[6345] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+pyhoca-gui[6345] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+pyhoca-gui[6345] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+pyhoca-gui[6345] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+pyhoca-gui[6345] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+pyhoca-gui[6345] (PyHoca-GUI) NOTICE: [Menea - gewijzigd] Wijzigingen in het profiel zijn opgeslagen.
+pyhoca-gui[6345] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+pyhoca-gui[6345] (x2gosessregistry-pylib) NOTICE: using already initially-registered yet-unused session 3e47c12e-ae43-11e2-9297-8c89a56151d6
+pyhoca-gui[6345] (x2goclient-pylib) NOTICE: initializing X2Go session...
+pyhoca-gui[6345] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+pyhoca-gui[6345] (x2gosession-pylib) NOTICE: SSH host key verification for host [meneanew.cvix.nl]:3389 with SSH-RSA fingerprint ,,85:d0:f8:32:7d:a3:1a:45:7d:ae:ca:80:04:0c:7f:4e'' initiated. We are seeing this X2Go server for the first time.
+pyhoca-gui[6345] (x2gosshproxy-pylib) NOTICE: SSH proxy tunnel via [meneanew.cvix.nl]:3389 has been set up
+pyhoca-gui[6345] (x2gosshproxy-pylib) NOTICE: SSH proxy tunnel startpoint is [127.0.0.1]:44444, endpoint is [127.0.0.1]:3389
+pyhoca-gui[6345] (x2gocontrolsession-pylib) NOTICE: connecting to [127.0.0.1]:44444
+pyhoca-gui[6345] (x2gocontrolsession-pylib) DEBUG: trying keyboard-interactive SSH authentication with server
+pyhoca-gui[6345] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+pyhoca-gui[6345] (x2gofwtunnel-pylib) INFO: connected!  Tunnel open ('127.0.0.1', 37151) -&gt; ('95.170.66.29', 3389) -&gt; (u'127.0.0.1', 3389)
+pyhoca-gui[6345] (x2gosession-pylib) NOTICE: SSH host key verification for SSH-proxied host [127.0.0.1]:3389 with SSH-RSA fingerprint ,,85:d0:f8:32:7d:a3:1a:45:7d:ae:ca:80:04:0c:7f:4e'' succeeded. This host is known by the X2Go session profile ID of profile &#187;Menea&#171;.
+pyhoca-gui[6345] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,Menea'': sh -c &quot;which x2gofeaturelist &gt;/dev/null &amp;&amp; x2gofeaturelist&quot;
+pyhoca-gui[6345] (x2gocontrolsession-pylib) DEBUG: server-side X2Go features are: ['X2GO_LIST_DESKTOPS', 'X2GO_MOUNTDIRS', 'X2GO_PRINTING', 'X2GO_PUBLISHED_APPLICATIONS', 'X2GO_RUN_EXTENSIONS', 'X2GO_SERVERSIDE_DESKTOPCOMMANDS', 'X2GO_SET_KEYBOARD', 'X2GO_UMOUNTSESSION_ALL', 'X2GO_UMOUNTSESSION_ONLYPATH']
+pyhoca-gui[6345] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,Menea'': sh -c &quot;echo $HOME&quot;
+pyhoca-gui[6345] (x2gocontrolsession-pylib) DEBUG: remote user' home directory: /home/dick
+pyhoca-gui[6345] (x2gocontrolsession-pylib) DEBUG: executing command on X2Go server ,,Menea'': sh -c &quot;stat -tL &quot;/home/dick&quot;&quot;
+pyhoca-gui[6345] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,Menea'': sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;
+pyhoca-gui[6345] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,Menea'': sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;
+pyhoca-gui[6345] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,Menea'': sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;
+pyhoca-gui[6345] (PyHoca-GUI) NOTICE: [Menea - verbinden] Authenticatie is gelukt.
+pyhoca-gui[6345] (x2gocontrolsession-pylib) DEBUG: executing command on X2Go server ,,Menea'': sh -c &quot;echo&quot;
+pyhoca-gui[6345] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,Menea'': sh -c &quot;x2gostartagent 800x600 wan 16m-jpeg-9 unix-kde-depth_24 null auto 1 R TERMINAL&quot;
+pyhoca-gui[6345] (x2goproxy-pylib) INFO: starting local NX3 proxy...
+pyhoca-gui[6345] (x2goproxy-pylib) DEBUG: NX3 Proxy mode is server, cookie=32f347bf11ae627143691e268d92025c, host=127.0.0.1, port=30001.
+pyhoca-gui[6345] (x2goproxy-pylib) DEBUG: NX3 proxy writes session log to /home/dick/.x2go/S-dick-50-1366961510_stRTERMINAL_dp24/session.log.
+pyhoca-gui[6345] (x2goproxy-pylib) DEBUG: forking threaded subprocess: /usr/bin/nxproxy -S nx/nx,retry=5,composite=1,connect=127.0.0.1,clipboard=1,cookie=32f347bf11ae627143691e268d92025c,port=30001,errors=/home/dick/.x2go/S-dick-50-1366961510_stRTERMINAL_dp24/session.log:50
+pyhoca-gui[6345] (x2goproxy-pylib) DEBUG: waiting for proxy to come up: 0.4s x 1
+pyhoca-gui[6345] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+Exception in thread Thread-1:
+Traceback (most recent call last):
+  File &quot;/usr/lib/python2.7/threading.py&quot;, line 552, in __bootstrap_inner
+    self.run()
+  File &quot;/usr/lib/python2.7/threading.py&quot;, line 505, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File &quot;/usr/lib/python2.7/dist-packages/x2go/guardian.py&quot;, line 116, in guardian
+    update_mounts=self.auto_update_listmounts_cache,
+  File &quot;/usr/lib/python2.7/dist-packages/x2go/client.py&quot;, line 3117, in update_cache_all_profiles
+    for profile_name in self.client_connected_profiles(return_profile_names=True):
+  File &quot;/usr/lib/python2.7/dist-packages/x2go/client.py&quot;, line 2958, in client_connected_profiles
+    return [ self.to_profile_name(p_id) for p_id in self.session_registry.connected_profiles() ]
+  File &quot;/usr/lib/python2.7/dist-packages/x2go/client.py&quot;, line 2929, in to_profile_name
+    return self.session_profiles.to_profile_name(profile_id)
+  File &quot;/usr/lib/python2.7/dist-packages/x2go/backends/profiles/_file.py&quot;, line 343, in to_profile_name
+    _profile_config = self.get_profile_config(profile_id=profile_id)
+  File &quot;/usr/lib/python2.7/dist-packages/x2go/backends/profiles/_file.py&quot;, line 215, in get_profile_config
+    for option in self.iniConfig.options(_profile_id):
+  File &quot;/usr/lib/python2.7/ConfigParser.py&quot;, line 279, in options
+    raise NoSectionError(section)
+NoSectionError: No section: '20130426070420965145'
+
+pyhoca-gui[6345] (x2gofwtunnel-pylib) INFO: connected!  Tunnel open ('127.0.0.1', 53774) -&gt; ('127.0.0.1', 44444) -&gt; ('127.0.0.1', 30001)
+pyhoca-gui[6345] (x2goproxy-pylib) INFO: NX3 proxy is up and running.
+pyhoca-gui[6345] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,Menea'': sh -c &quot;getent group fuse | cut -d&quot;:&quot; -f4&quot;
+pyhoca-gui[6345] (x2gocontrolsession-pylib) DEBUG: remote fuse group: ['dick', 'sean', 'verbeekl', 'suttelsj']
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: waiting for incoming sFTP channel on X2Go server port: [localhost]:30003
+pyhoca-gui[6345] (x2goterminalsession-pylib) INFO: sharing local folder: /home/dick/.x2go/S-dick-50-1366961510_stRTERMINAL_dp24/spool
+pyhoca-gui[6345] (x2gocontrolsession-pylib) DEBUG: sFTP-write: opening remote file /home/dick/.x2go/ssh/key.z10266 on host ('127.0.0.1', 44444) for writing
+pyhoca-gui[6345] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,Menea'': sh -c &quot;export HOSTNAME &amp;&amp; x2gomountdirs dir dick-50-1366961510_stRTERMINAL_dp24 'dick' /home/dick/.x2go/ssh/key.z10266 /home/dick/.x2go/S-dick-50-1366961510_stRTERMINAL_dp24/spool__PRINT_SPOOL___REVERSESSH_PORT__30003;  rm -f /home/dick/.x2go/ssh/key.z10266 /home/dick/.x2go/ssh/key.z10266.ident&quot;
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: notifying thread of incoming channel: &lt;X2GoRevFwTunnelToSFTP(Thread-7, started daemon 59108720)&gt;
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: Detected incoming sFTP channel on X2Go server port: [localhost]:30003
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: sFTP channel &lt;paramiko.Channel 13 (open) window=2097152 -&gt; &lt;paramiko.Transport at 0x3af1410L (cipher aes128-ctr, 128 bits) (active; 3 open channel(s))&gt;&gt; for server port [localhost]:30003 is up
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: initializing internal SSH server for handling incoming sFTP requests, allowing connections for user ,,dick'' only
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: waiting for incoming sFTP channel on X2Go server port: [localhost]:30003
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: sFTP server &lt;x2go.sftpserver._SSHServer object at 0x40e6290&gt;: username is dick
+pyhoca-gui[6345] (x2gosftpserver-pylib) INFO: sFTP server &lt;x2go.sftpserver._SSHServer object at 0x40e6290&gt;: publickey auth has been successful
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: sFTP server: initializing new channel...
+pyhoca-gui[6345] (x2goterminalsession-pylib) NOTICE: x2gomountdirs output is: ['dirs:/home/dick/.x2go/S-dick-50-1366961510_stRTERMINAL_dp24/spool__PRINT_SPOOL___REVERSESSH_PORT__30003', 'ssh port:30003', 'Host:127.0.0.1', 'User:dick', 'inserted, sshfs  -o idmap=user,uid=`id -u`,gid=`id -g`,ServerAliveInterval=300,Cipher=blowfish,IdentityFile=/home/dick/.x2go/ssh/key.z10266,UserKnownHostsFile=/home/dick/.x2go/ssh/key.z10266.ident &quot;dick&quot;@127.0.0.1:&quot;/home/dick/.x2go/S-dick-50-1366961510_stRTERMINAL_dp24/spool&quot; &quot;/tmp/.x2go-dick/spool/C-dick-50-1366961510_stRTERMINAL_dp24&quot; -p 30003', 'mount /home/dick/.x2go/S-dick-50-1366961510_stRTERMINAL_dp24/spool ok', '']
+pyhoca-gui[6345] (x2goprintqueue-pylib) DEBUG: starting print queue thread: &lt;X2GoPrintQueue(Thread-11, started daemon 68080176)&gt;
+pyhoca-gui[6345] (x2goterminalsession-pylib) INFO: sharing local folder: /home/dick/.x2go/S-dick-50-1366961510_stRTERMINAL_dp24/mimebox
+pyhoca-gui[6345] (x2gocontrolsession-pylib) DEBUG: sFTP-write: opening remote file /home/dick/.x2go/ssh/key.z10266 on host ('127.0.0.1', 44444) for writing
+pyhoca-gui[6345] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,Menea'': sh -c &quot;export HOSTNAME &amp;&amp; x2gomountdirs dir dick-50-1366961510_stRTERMINAL_dp24 'dick' /home/dick/.x2go/ssh/key.z10266 /home/dick/.x2go/S-dick-50-1366961510_stRTERMINAL_dp24/mimebox__MIMEBOX_SPOOL___REVERSESSH_PORT__30003;  rm -f /home/dick/.x2go/ssh/key.z10266 /home/dick/.x2go/ssh/key.z10266.ident&quot;
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: notifying thread of incoming channel: &lt;X2GoRevFwTunnelToSFTP(Thread-7, started daemon 59108720)&gt;
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: Detected incoming sFTP channel on X2Go server port: [localhost]:30003
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: sFTP channel &lt;paramiko.Channel 16 (open) window=2097152 -&gt; &lt;paramiko.Transport at 0x3af1410L (cipher aes128-ctr, 128 bits) (active; 4 open channel(s))&gt;&gt; for server port [localhost]:30003 is up
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: initializing internal SSH server for handling incoming sFTP requests, allowing connections for user ,,dick'' only
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: waiting for incoming sFTP channel on X2Go server port: [localhost]:30003
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: sFTP server &lt;x2go.sftpserver._SSHServer object at 0x40f09d0&gt;: username is dick
+pyhoca-gui[6345] (x2gosftpserver-pylib) INFO: sFTP server &lt;x2go.sftpserver._SSHServer object at 0x40f09d0&gt;: publickey auth has been successful
+pyhoca-gui[6345] (x2gosftpserver-pylib) DEBUG: sFTP server: initializing new channel...
+pyhoca-gui[6345] (x2goterminalsession-pylib) NOTICE: x2gomountdirs output is: ['dirs:/home/dick/.x2go/S-dick-50-1366961510_stRTERMINAL_dp24/mimebox__MIMEBOX_SPOOL___REVERSESSH_PORT__30003', 'ssh port:30003', 'Host:127.0.0.1', 'User:dick', 'inserted, sshfs  -o idmap=user,uid=`id -u`,gid=`id -g`,ServerAliveInterval=300,Cipher=blowfish,IdentityFile=/home/dick/.x2go/ssh/key.z10266,UserKnownHostsFile=/home/dick/.x2go/ssh/key.z10266.ident &quot;dick&quot;@127.0.0.1:&quot;/home/dick/.x2go/S-dick-50-1366961510_stRTERMINAL_dp24/mimebox&quot; &quot;/tmp/.x2go-dick/mimebox/C-dick-50-1366961510_stRTERMINAL_dp24&quot; -p 30003', 'mount /home/dick/.x2go/S-dick-50-1366961510_stRTERMINAL_dp24/mimebox ok', '']
+pyhoca-gui[6345] (x2gomimeboxqueue-pylib) DEBUG: starting MIME box queue thread: &lt;X2GoMIMEboxQueue(Thread-15, started daemon 68081296)&gt;
+pyhoca-gui[6345] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,Menea'': sh -c &quot;X2GO_MIMEBOX=/home/dick/.x2go/C-dick-50-1366961510_stRTERMINAL_dp24/mimebox X2GO_SPOOLDIR=/home/dick/.x2go/C-dick-50-1366961510_stRTERMINAL_dp24/spool setsid x2goruncommand 50 10266 dick-50-1366961510_stRTERMINAL_dp24 30002 &quot;TERMINAL&quot; none R 1&gt;/dev/null 2&gt;/dev/null &amp; exit&quot;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: sessions
+Type: application/octet-stream
+Size: 2511 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130426/d39edb08/attachment.obj">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130426/d39edb08/attachment.obj</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005556.html">[X2Go-Dev] Processed: your mail
+</A></li>
+	<LI>Next message: <A HREF="005558.html">[X2Go-Dev] Processed: your mail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5557">[ date ]</a>
+              <a href="thread.html#5557">[ thread ]</a>
+              <a href="subject.html#5557">[ subject ]</a>
+              <a href="author.html#5557">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

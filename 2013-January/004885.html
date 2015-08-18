@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#44:
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2344%3A&In-Reply-To=%3CCAE36HYzyVZTeK2aYwKdSKGH0_kMDRotUo_rJLmEz53HG11kWnw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004875.html">
+   <LINK REL="Next"  HREF="004883.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#44:</H1>
+    <B>Lukas</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2344%3A&In-Reply-To=%3CCAE36HYzyVZTeK2aYwKdSKGH0_kMDRotUo_rJLmEz53HG11kWnw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#44:">mr.bobukas at gmail.com
+       </A><BR>
+    <I>Wed Jan  9 18:57:40 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004875.html">[X2Go-Dev] Bug#28: Xfixes issues with Ubuntu precise and above
+</A></li>
+        <LI>Next message: <A HREF="004883.html">[X2Go-Dev] Bug#98: Use a IRC bot to inject Git commit messages into	#x2go on irc.freenode.net
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4885">[ date ]</a>
+              <a href="thread.html#4885">[ thread ]</a>
+              <a href="subject.html#4885">[ subject ]</a>
+              <a href="author.html#4885">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+I think, I experienced this bug as well (same kind of backtrace). In my
+case this happened, when installing nxproxy and x2goclient in a non
+standard place which is not on the path.
+The client tries to start nxproxy which fails. x2goclient never checks, if
+the start suceeded or not (see x2goclient-4.0.0.1/onmainwindow.cpp, lines:
+3135, 5065).
+Workaround: add nxproxy to $PATH.
+
+Best,
+Lukas
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130109/d882cd7a/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130109/d882cd7a/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004875.html">[X2Go-Dev] Bug#28: Xfixes issues with Ubuntu precise and above
+</A></li>
+	<LI>Next message: <A HREF="004883.html">[X2Go-Dev] Bug#98: Use a IRC bot to inject Git commit messages into	#x2go on irc.freenode.net
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4885">[ date ]</a>
+              <a href="thread.html#4885">[ thread ]</a>
+              <a href="subject.html#4885">[ subject ]</a>
+              <a href="author.html#4885">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

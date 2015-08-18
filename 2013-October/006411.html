@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#332: RPM issue of the OSBD queues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23332%3A%20RPM%20issue%20of%20the%20OSBD%20queues&In-Reply-To=%3C20131029154701.Horde.oNZD5S1QiJlwVuYF-0wngg1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006408.html">
+   <LINK REL="Next"  HREF="006410.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#332: RPM issue of the OSBD queues</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23332%3A%20RPM%20issue%20of%20the%20OSBD%20queues&In-Reply-To=%3C20131029154701.Horde.oNZD5S1QiJlwVuYF-0wngg1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#332: RPM issue of the OSBD queues">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Oct 29 16:47:01 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006408.html">[X2Go-Dev] Bug#332: RPM issue of the OSBD queues
+</A></li>
+        <LI>Next message: <A HREF="006410.html">[X2Go-Dev] Bug#311: X2Go issue (in src:x2goclient) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6411">[ date ]</a>
+              <a href="thread.html#6411">[ thread ]</a>
+              <a href="subject.html#6411">[ subject ]</a>
+              <a href="author.html#6411">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Jan,
+
+On  Di 29 Okt 2013 16:06:22 CET, Jan Engelhardt wrote:
+
+&gt;<i> On Tuesday 2013-10-29 15:54, Mike Gabriel wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hi Jan,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On  Di 29 Okt 2013 15:41:09 CET, Jan Engelhardt wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> On Tuesday 2013-10-29 14:51, Frank Warnke wrote:
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> If I have figured out the problem, it looks like the x2goserver  
+</I>&gt;&gt;&gt;&gt;<i> installation
+</I>&gt;&gt;&gt;&gt;<i> script on CentOS v6 may need to have &quot;chkconfig --add  
+</I>&gt;&gt;&gt;&gt;<i> x2gocleansessions&quot; run
+</I>&gt;&gt;&gt;&gt;<i> in it.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Such consideration has already been done by distros, and I concur
+</I>&gt;&gt;&gt;<i> with openSUSE's current opinion to not enable services just because
+</I>&gt;&gt;&gt;<i> their constituting package got installed (possibly automated and/or
+</I>&gt;&gt;&gt;<i> drawing in dependent packages).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> thanks for clearing that up.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Can you please add that bit of information to the X2Go wiki then? The X2Go
+</I>&gt;&gt;<i> Server DB will fill with loads of dead sessions if the  
+</I>&gt;&gt;<i> x2gocleansessions Perl
+</I>&gt;&gt;<i> script (via init script) does not run.
+</I>&gt;<i>
+</I>&gt;<i> Which makes me wonder - can't you remove the dead sockets when &quot;it&quot;
+</I>&gt;<i> exits?
+</I>
+no sockets remain. In some cases (session crashes, etc.) a clean-up of  
+remaining SSHFS mounts is necessary.
+
+Also, in future version of X2Go Server, the suspend/terminate  
+functionality will be provided in x2gocleansessions, as well. A change  
+in the database will then actually suspend the session. For the  
+correct functionality of the session broker this is necessary already  
+today.
+
+Please make x2gocleansessions available or document that it is not  
+available and why and how to enable it. Thanks!
+
+Greets,
+Mike
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-keys
+Size: 7251 bytes
+Desc: ?ffentlicher PGP-Schl?ssel
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/2bd7b2b1/attachment.key">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/2bd7b2b1/attachment.key</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/2bd7b2b1/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/2bd7b2b1/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006408.html">[X2Go-Dev] Bug#332: RPM issue of the OSBD queues
+</A></li>
+	<LI>Next message: <A HREF="006410.html">[X2Go-Dev] Bug#311: X2Go issue (in src:x2goclient) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6411">[ date ]</a>
+              <a href="thread.html#6411">[ thread ]</a>
+              <a href="subject.html#6411">[ subject ]</a>
+              <a href="author.html#6411">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

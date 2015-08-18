@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#315: X2Go issue (in src:x2goclient) has been marked	as closed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23315%3A%20X2Go%20issue%20%28in%20src%3Ax2goclient%29%20has%20been%20marked%0A%09as%20closed&In-Reply-To=%3C20131217145521.6715D5DB2C%40ymir%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006737.html">
+   <LINK REL="Next"  HREF="006742.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#315: X2Go issue (in src:x2goclient) has been marked	as closed</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23315%3A%20X2Go%20issue%20%28in%20src%3Ax2goclient%29%20has%20been%20marked%0A%09as%20closed&In-Reply-To=%3C20131217145521.6715D5DB2C%40ymir%3E"
+       TITLE="[X2Go-Dev] Bug#315: X2Go issue (in src:x2goclient) has been marked	as closed">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Dec 17 15:55:21 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006737.html">[X2Go-Dev] Bug#328: X2Go issue (in src:x2goclient) has been marked	as closed
+</A></li>
+        <LI>Next message: <A HREF="006742.html">[X2Go-Dev] Bug#333: X2Go issue (in src:x2goclient) has been marked	as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6738">[ date ]</a>
+              <a href="thread.html#6738">[ thread ]</a>
+              <a href="subject.html#6738">[ subject ]</a>
+              <a href="author.html#6738">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>close #315
+thanks
+
+Hello,
+
+we are very hopeful that X2Go issue #315 reported by you
+has been resolved in the new release (4.0.1.2) of the
+X2Go source project &#187;src:x2goclient&#171;.
+
+You can view the complete changelog entry of src:x2goclient (4.0.1.2)
+below, and you can use the following link to view all the code changes
+between this and the last release of src:x2goclient.
+
+    <A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=34591fd62844b2b955e6a4bf3cf44d4759c5e44c;hp=d5ff7886ae22a1e36541570e7095fac9860af6e8">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=34591fd62844b2b955e6a4bf3cf44d4759c5e44c;hp=d5ff7886ae22a1e36541570e7095fac9860af6e8</A>
+
+If you feel that the issue has not been resolved satisfyingly, feel
+free to reopen this bug report or submit a follow-up report with
+further observations described based on the new released version
+of src:x2goclient.
+
+Thanks a lot for contributing to X2Go!!!
+
+light+love
+X2Go Git Admin (on behalf of the sender of this mail)
+
+---
+X2Go Component: src:x2goclient
+Version: 4.0.1.2-0x2go2
+Status: RELEASE
+Date: Tue, 17 Dec 2013 15:21:38 +0100
+Fixes: 139 230 241 311 315 316 328 333
+Changes: 
+ x2goclient (4.0.1.2-0x2go2) RELEASED; urgency=low
+ .
+   [ Mike Gabriel ]
+   * New upstream version (4.0.1.2):
+     - Provide Keywords: key in .desktop file.
+     - Add NSIS packaging files for win32 builds to source tree.
+       (Files provided by Oleksandr Shneyder, thanks!!!).
+     - Rename win32 desktop and startmenu icon from &quot;X2goClient&quot; to &quot;X2Go
+       Client&quot;.
+     - Store broker HTTPS certificate exceptions in
+       $HOME/.x2go/ssl/exceptions (before: $HOME/ssl/exceptions).
+       (Fixes: #328).
+     - Perform sanity checks on data that comes in from X2Go Servers.
+       Prohibit the execution of arbitrary code via the ~/.bashrc file.
+       (Fixes: #333).
+     - Add option --broker-cacertfile. Allow usage of non-system-wide
+       installed (self-signed) SSL certificate chains for https (SSL)
+       session broker connections. (Fixes: #311).
+     - Update man page for new --tray-icon cmdline option.
+     - Update man page for --broker-url. Explain the syntax of &lt;URL&gt;.
+     - Properly handle (=expand) the &quot;~&quot; character in key filenames. (Brought to
+       attention by Eldamir on IRC. Thanks!).
+     - Expand tilde operator for all other file paths handed over to X2Go Client
+       via sessions file or cmdline parameter.
+     - Syntax fix of x2goclient.desktop file.
+     - Test for various file locations of the pulseaudio cookie file.
+     - Allow patching of qmake-qt4 executable path in Makefile.
+     - Make qmake-qt4 and lrelease path in Makefile easily replacable (as
+       RHEL-5 does not have those tools in $PATH).
+     - Make sure that build_client and build_plugin are not build with parallel
+       make.
+     - Make x2goplugin-provider installable via Makefile.
+   * Pull-in packaging changes from Debian.
+   * debian/source/format:
+     + Switch to format 1.0.
+   * x2goclient.spec:
+     + Ship x2goclient.spec (RPM package definitions) in upstream project.
+       (Thanks to the Fedora package maintainers).
+     + Clear (Fedora package) changelog.
+     + Make package build on Fedora/EPEL versions that do not have the
+       qtbrowserplugin package.
+     + For EPEL-5 builds: replace full path to qmake-qt4 and lrelease.
+     + Split up package into bin:packages: x2goclient, x2goplugin,
+       x2goplugin-provider.
+     + Make sure lrelease-qt4 is executed (not just lrelease).
+ .
+   [ Ricardo D&#237;az Mart&#237;n ]
+   * New upstream versino (4.0.1.2):
+     - Strip whitespaces off of user name, host name and other
+       strings when loading / saving session profiles.(Fixes: #315).
+     - New option --tray-icon. Force showing the tray icon, even for
+       hidden sessions. Also allow creation of .desktop files with
+       --tray-icon optionally being enabled. (Fixes: #316).
+     - Update Spanish translation.
+ .
+   [ Oleksandr Shneyder ]
+   * New upstream version (4.0.1.2):
+     - Support for keys &quot;shadowuser&quot; &quot;shadowdisplay&quot; and &quot;shadowmode&quot; in
+       config file. This allows choosing the default display for shadow
+       sessions.
+     - Support for GSSApi(Kerberos 5) authentication. Using ssh/scp commands
+       on Linux and Mac and plink/pscp on Windows.
+     - Support for ChallengeResponseAuthentication (Google Authenticator)
+     - Setting main window focus on mac (Fixes: #139).
+     - Additional check if authentication with GSSApi successfull
+     - c121b7e2d3d83abdc2d7a29637bc3294e38b2ec3 broke checking if remote
+       command produce only stderr and not stdout. It made x2goclient crash
+       if x2gostartagent send LIMIT error. Current commit fixes this issue.
+     - SshMasterConnection should use current user name if no user name is
+       specified in session settings
+     - GSSApi(Kerberos 5) authentication for sshproxy and sshbroker
+     - fixed GSSApi(Kerberos 5) authentication for sshproxy and sshbroker
+       on windows
+ .
+   [ Heinrich Schuchardt ]
+   * New upstream version (4.0.1.2):
+     - Handle SSH host key changes more elegantly and allow user interaction
+       if such a host key change occurs. (Fixes: #241).
+ .
+   [ Michael DePaulo ]
+   * New upstream version (4.0.1.2):
+     - win32: Add uninstall information to Add/Remove Programs. (Fixes: #230).
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006737.html">[X2Go-Dev] Bug#328: X2Go issue (in src:x2goclient) has been marked	as closed
+</A></li>
+	<LI>Next message: <A HREF="006742.html">[X2Go-Dev] Bug#333: X2Go issue (in src:x2goclient) has been marked	as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6738">[ date ]</a>
+              <a href="thread.html#6738">[ thread ]</a>
+              <a href="subject.html#6738">[ subject ]</a>
+              <a href="author.html#6738">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

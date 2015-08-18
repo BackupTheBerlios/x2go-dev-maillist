@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Problem with X2Go and VMWare Tools
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Problem%20with%20X2Go%20and%20VMWare%20Tools&In-Reply-To=%3C4F3FF870.2090206%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003490.html">
+   <LINK REL="Next"  HREF="003492.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Problem with X2Go and VMWare Tools</H1>
+    <B>newsgroups.mail2 at stefanbaur.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Problem%20with%20X2Go%20and%20VMWare%20Tools&In-Reply-To=%3C4F3FF870.2090206%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Problem with X2Go and VMWare Tools">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Sat Feb 18 20:13:52 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003490.html">[X2Go-Dev] Problem with X2Go and VMWare Tools
+</A></li>
+        <LI>Next message: <A HREF="003492.html">[X2Go-Dev] Problem with X2Go and VMWare Tools
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3491">[ date ]</a>
+              <a href="thread.html#3491">[ thread ]</a>
+              <a href="subject.html#3491">[ subject ]</a>
+              <a href="author.html#3491">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 18.02.2012 19:54, schrieb Daniel Lindgren:
+&gt;<i> I've been troubleshooting a weird problem with X2Go for a while, when
+</I>&gt;<i> connecting to Gnome sessions in virtual machines the top and bottom
+</I>&gt;<i> panels are displayed but the desktop/background never shows up and the
+</I>&gt;<i> mouse pointer never stops spinning. It's like the Gnome session
+</I>&gt;<i> startup reaches 99% and then just waits forever for something.
+</I>&gt;<i>
+</I>&gt;<i> It turns out it's related to VMWare Tools. I use VMWare Hypervisor
+</I>&gt;<i> (ESXi) 5, I can't say if the problem started when I upgraded from ESXi
+</I>&gt;<i> 4 to 5, but it's fairly recent.
+</I>&lt;snip&gt;
+
+&gt;<i> Starting a Gnome session locally on the virtual machine console
+</I>&gt;<i> successfully finishes. I've tried using xrdp instead of X2Go and had
+</I>&gt;<i> no problems starting sessions, both using X11rdp and X11vnc on the
+</I>&gt;<i> server side. There's only one vmtoolsd running unless it's a X2Go
+</I>&gt;<i> session.
+</I>&gt;<i>
+</I>&gt;<i> I've unsuccessfully tried to figure out what the root cause is. It
+</I>&gt;<i> seems related to X2Go login/startup, somehow vmtoolsd starts twice and
+</I>&gt;<i> there's a conflict blocking Gnome startup.
+</I>&gt;<i>
+</I>&gt;<i> I did however find a workaround; uninstall VMWare Tools and install
+</I>&gt;<i> the open-vm-tools package from the Debian repository (contrib has to
+</I>&gt;<i> be added). No problems with X2Go so far and VMWare seems happy with
+</I>&gt;<i> the open source tools (Shutdown/Restart Guest is available in vSphere
+</I>&gt;<i> Client).
+</I>
+Exactly which flavor of Linux are you running? Plain Debian, Ubuntu 
+(&quot;bastardized&quot; with an additional Debian repository for open-vm-tools), 
+or something completely different? And which version?
+
+I remember seeing some VMtools related issues in the release notes for 
+VMware Workstation, so - have you checked ESXi's release notes?
+Workstation release notes can be found here: 
+<A HREF="https://www.vmware.com/support/pubs/ws_pubs.html">https://www.vmware.com/support/pubs/ws_pubs.html</A> - I'd wager a guess 
+that ESXi's release notes are available somewhere in the vicinity of 
+that page.
+
+&lt;soapbox&gt;
+The hassle with having to install vmware tools in every guest to perform 
+a soft power-off, and keeping the tools up-to-date and matching the 
+currently installed kernel is one of the many reasons why I'm moving my 
+customers away from VMware to KVM+libvirt.  Of course, they were using 
+VMware Server, not ESXi, but honestly, my personal opinion after years 
+of using VMware products in multiple scenarios is, if you aren't forced 
+to use VMware (upper management decisions, already existing virtual 
+infrastructure based on VMware components,...), don't.  Had KVM been 
+available and in a usable state 6 years ago, I would never have touched 
+VMware Server.  VMware Workstation is kind of neat for debugging/demoing 
+stuff, though, I have to admit that.
+
+Shutting down a guest in KVM/libvirt works by sending an ACPI 
+&quot;power-button pressed&quot; event to the guest, no special drivers/modules 
+required, just the stock ACPI support present in every modern operating 
+system, be it Linux, *BSD or Windows.
+&lt;/soapbox&gt;
+-Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003490.html">[X2Go-Dev] Problem with X2Go and VMWare Tools
+</A></li>
+	<LI>Next message: <A HREF="003492.html">[X2Go-Dev] Problem with X2Go and VMWare Tools
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3491">[ date ]</a>
+              <a href="thread.html#3491">[ thread ]</a>
+              <a href="subject.html#3491">[ subject ]</a>
+              <a href="author.html#3491">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

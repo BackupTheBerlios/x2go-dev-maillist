@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] BUG: when sharing local folders ~/media symlinks not	as	expected
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BUG%3A%20when%20sharing%20local%20folders%20%7E/media%20symlinks%20not%0A%09as%09expected&In-Reply-To=%3C4C3D4746.9050905%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000795.html">
+   <LINK REL="Next"  HREF="000797.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] BUG: when sharing local folders ~/media symlinks not	as	expected</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20BUG%3A%20when%20sharing%20local%20folders%20%7E/media%20symlinks%20not%0A%09as%09expected&In-Reply-To=%3C4C3D4746.9050905%40verizon.net%3E"
+       TITLE="[X2go-dev] BUG: when sharing local folders ~/media symlinks not	as	expected">greno at verizon.net
+       </A><BR>
+    <I>Wed Jul 14 07:12:38 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000795.html">[X2go-dev] BUG: when sharing local folders ~/media symlinks not	as	expected
+</A></li>
+        <LI>Next message: <A HREF="000797.html">[X2go-dev] BUG: when sharing local folders ~/media symlinks not	as	expected
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#796">[ date ]</a>
+              <a href="thread.html#796">[ thread ]</a>
+              <a href="subject.html#796">[ subject ]</a>
+              <a href="author.html#796">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 07/14/2010 12:38 AM, Gerry Reno wrote:
+&gt;<i> On 07/13/2010 07:02 AM, Mike Gabriel wrote:
+</I>&gt;&gt;<i> Hi there,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> testing the heuler x2go packages...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Client system: Debian squeeze
+</I>&gt;&gt;<i> Server system: Ubuntu Lucid
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> 1.
+</I>&gt;&gt;<i> When sharing a local folder it gets mounted properly on the client, 
+</I>&gt;&gt;<i> but the symlinks in ~/media look weird:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at vidar</A>:~/media$ tree -L 2
+</I>&gt;&gt;<i> .
+</I>&gt;&gt;<i> |
+</I>&gt;&gt;<i> |`- cd
+</I>&gt;&gt;<i> |
+</I>&gt;&gt;<i> |`- disk
+</I>&gt;&gt;<i> |   |
+</I>&gt;&gt;<i> |   `- _home_m.gabriel_test
+</I>&gt;&gt;<i> |
+</I>&gt;&gt;<i> `- rm
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Is this intended?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> 2.
+</I>&gt;&gt;<i> When suspending an x2go session the local shared directory gets 
+</I>&gt;&gt;<i> unmounted properly on the server, but the desktop link (GNOME) 
+</I>&gt;&gt;<i> remains on the desktop. After having resumed a session the desktop 
+</I>&gt;&gt;<i> link is still there but it is invalid. I have to remove it manually, 
+</I>&gt;&gt;<i> to get rid of it.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Greets,
+</I>&gt;&gt;<i> Mike
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Mike,
+</I>&gt;<i>   I tried duplicating your issue but did not see this problem.  I'm 
+</I>&gt;<i> using Lucid on both sides and with a GNOME desktop I could suspend the 
+</I>&gt;<i> session and then reconnect to it later.  The shared folder was no 
+</I>&gt;<i> longer mounted on the desktop and I had to remount it and it mounted 
+</I>&gt;<i> successfully.  I did not see any type of link problems while doing 
+</I>&gt;<i> this.  This was using server 3.01-9 and client 3.01-11.
+</I>&gt;<i>
+</I>&gt;<i> HTH,
+</I>&gt;<i> Gerry
+</I>&gt;<i>
+</I>My only other thought about your links problem is that somehow they had 
+become owned by the wrong user.
+
+Gerry
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000795.html">[X2go-dev] BUG: when sharing local folders ~/media symlinks not	as	expected
+</A></li>
+	<LI>Next message: <A HREF="000797.html">[X2go-dev] BUG: when sharing local folders ~/media symlinks not	as	expected
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#796">[ date ]</a>
+              <a href="thread.html#796">[ thread ]</a>
+              <a href="subject.html#796">[ subject ]</a>
+              <a href="author.html#796">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goclient and ssh-agent
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20and%20ssh-agent&In-Reply-To=%3C20110601112151.111050z47n97ve7j%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002273.html">
+   <LINK REL="Next"  HREF="002313.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goclient and ssh-agent</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20and%20ssh-agent&In-Reply-To=%3C20110601112151.111050z47n97ve7j%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] x2goclient and ssh-agent">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Jun  1 11:21:51 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002273.html">[X2go-dev] x2goagent/NXAgent bug with evdev keyboard driver
+</A></li>
+        <LI>Next message: <A HREF="002313.html">[X2go-Dev] [X2go-dev] x2goclient and ssh-agent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2274">[ date ]</a>
+              <a href="thread.html#2274">[ thread ]</a>
+              <a href="subject.html#2274">[ subject ]</a>
+              <a href="author.html#2274">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Heiko,
+
+On Mo 30 Mai 2011 19:12:44 CEST Heiko Baumann wrote:
+
+&gt;<i> hi,
+</I>&gt;<i>
+</I>&gt;<i> if you enable ssh agent forwarding (ssh option -A or ForwardAgent in  
+</I>&gt;<i> ssh_config) your agent connection is &quot;forwarded&quot; to the remote host.  
+</I>&gt;<i> this way you can use your ssh-agent (and smartcard in my case) to  
+</I>&gt;<i> login (or mount sshfs) to another host using your private key stored  
+</I>&gt;<i> in you local ssh-agent. this works with a socket created in  
+</I>&gt;<i> /tmp/ssh-&lt;somerandomstring&gt;/agent.&lt;pid&gt; on the ssh server/host.
+</I>&gt;<i>
+</I>&gt;<i> if i use a current x2goclient this socket is not created and so i  
+</I>&gt;<i> cannot mount a directory from another host from within my x2gosession.
+</I>
+Is it possible that Alex and you discuss two very separate things?
+
+Alex's topic: By looking at the sources of X2goClient, there obviously  
+is an SSH agent implementation in X2goClient. BUT: that's for session  
+authentication.
+
+Heiko's topic: What you are referrring to in your last sentence is  
+using X2go's reverse SSH port forwarding tunnel to access other  
+server's shares in the X2go client's sub-LAN? This currently is not  
+supported (and probably now wanted, either). Also: if the  
+implementation of such a feature became a future endeavour we would  
+have really to look at it very closely for considerations on security.
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110601/5a9843ac/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110601/5a9843ac/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002273.html">[X2go-dev] x2goagent/NXAgent bug with evdev keyboard driver
+</A></li>
+	<LI>Next message: <A HREF="002313.html">[X2go-Dev] [X2go-dev] x2goclient and ssh-agent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2274">[ date ]</a>
+              <a href="thread.html#2274">[ thread ]</a>
+              <a href="subject.html#2274">[ subject ]</a>
+              <a href="author.html#2274">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

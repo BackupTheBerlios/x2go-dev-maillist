@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20Windows%20binary%204.0.1.2pre01&In-Reply-To=%3C52A50302.7010402%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006577.html">
+   <LINK REL="Next"  HREF="006576.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20Windows%20binary%204.0.1.2pre01&In-Reply-To=%3C52A50302.7010402%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Mon Dec  9 00:38:42 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006577.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+</A></li>
+        <LI>Next message: <A HREF="006576.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6578">[ date ]</a>
+              <a href="thread.html#6578">[ thread ]</a>
+              <a href="subject.html#6578">[ subject ]</a>
+              <a href="author.html#6578">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 09.12.2013 00:21, schrieb Michael DePaulo:
+
+&gt;&gt;&gt;<i> Are there any plans to split off a version for Windows XP
+</I>&gt;&gt;&gt;<i> compatibility, and to let the main version continue to get VcXsrv
+</I>&gt;&gt;&gt;<i> updates?
+</I>[...]
+
+&gt;<i> Also, remember that the build instructions for X2Go Client for Windows
+</I>&gt;<i> consist of just installing VcXsrv to your program files folder and
+</I>&gt;<i> then copying and pasting VcXsrv's folder into the x2goclient folder.
+</I>&gt;<i> We do not link against VcXsrv. So feel free to replace the
+</I>&gt;<i> x2gofolder\VcXsrv folder with a newer version of VcXsrv. Doing so may
+</I>&gt;<i> not be officially supported by the X2Go project, but it is very likely
+</I>&gt;<i> to &quot;just work&quot;(TM).
+</I>
+There's a menu setting to use a custom X server, too.
+So no one keeps you from using an older copy of VcXsrv by installing it 
+to a different directory, then pointing the X2Go client to use that X 
+server.
+
+Whether or not that is a sane and safe thing to do, on the other hand ...
+
+What might be more of a problem is libraries needed by x2goclient.exe 
+itself (VCredist stuff) becoming unavailable for XP.
+
+&gt;&gt;<i> Given that Microsoft's XP security support ends in April 2014, I'm guessing
+</I>&gt;&gt;<i> that X2Go support for XP could be dropped in May 2014.
+</I>
+&gt;<i> This is something that I wanted to discuss on this mailing list.
+</I>&gt;<i> Personally, I think it sounds like a &quot;killer use case&quot; of X2Go Client
+</I>&gt;<i> to use it on Windows XP machines after May 2014. The XP machines could
+</I>&gt;<i> be secured by sysadmins by having their firewall turned on (to allow
+</I>&gt;<i> no incoming traffic), and their unpatched apps like IE blocked. The XP
+</I>&gt;<i> machines could then be used securely as dumb clients to X2Go Servers
+</I>&gt;<i> or RDP servers running Firefox, office suites, etc with all the latest
+</I>&gt;<i> patches installed. Of course, the machines could just be reformatted
+</I>&gt;<i> to run Linux. But many sysadmins are less comfortable with Linux, or
+</I>&gt;<i> their ill-informed bosses might order them to not reformat any XP
+</I>&gt;<i> machines.
+</I>
+The problem with running XP past its expiration date is that a 
+(software) firewall setting on the particular XP machine itself might 
+not protect you from all evil.
+All it needs for that is a bug in the firewall code itself that chokes 
+on a particularly crafted packet - and Microsoft will neither actively 
+look for such bugs in XP's firewall, nor develop/deploy patches for it 
+past April 2014.
+
+The smart move, if you can't upgrade to a newer version of Windows, 
+would be to go the Terminal Services route - for both Windows and Linux 
+applications - and run the Clients as dumb terminals, possibly even 
+without reformatting them, but by having them boot X2Go 
+ThinClientEdition via PXE. From there, you can access RDP and X2Go sessions.
+
+Similar to how X2Go Server packages for Lenny are still occasionally 
+receiving updates thanks to companies contracting X2Go core developers, 
+I would suggest that if a company insists on running XP past April 2014 
+and needs a working X2Go client, they should contract one of the 
+developers to build a modified x2goclient.exe for them.
+
+And who knows, some of my customers might even do that, we'll see.
+
+-Stefan
+</PRE>
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006577.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+</A></li>
+	<LI>Next message: <A HREF="006576.html">[X2Go-Dev] X2Go Client Windows binary 4.0.1.2pre01
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6578">[ date ]</a>
+              <a href="thread.html#6578">[ thread ]</a>
+              <a href="subject.html#6578">[ subject ]</a>
+              <a href="author.html#6578">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

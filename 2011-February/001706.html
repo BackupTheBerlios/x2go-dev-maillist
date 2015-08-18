@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] VcXsrv
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20VcXsrv&In-Reply-To=%3C4D4C3232.2090004%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001705.html">
+   <LINK REL="Next"  HREF="001722.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] VcXsrv</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20VcXsrv&In-Reply-To=%3C4D4C3232.2090004%40verizon.net%3E"
+       TITLE="[X2go-dev] VcXsrv">greno at verizon.net
+       </A><BR>
+    <I>Fri Feb  4 18:06:58 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001705.html">[X2go-dev] VcXsrv
+</A></li>
+        <LI>Next message: <A HREF="001722.html">[X2go-dev] VcXsrv
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1706">[ date ]</a>
+              <a href="thread.html#1706">[ thread ]</a>
+              <a href="subject.html#1706">[ subject ]</a>
+              <a href="author.html#1706">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 02/04/2011 11:46 AM, John A. Sullivan III wrote:
+&gt;<i> On Fri, 2011-02-04 at 11:09 -0500, Gerry Reno wrote:
+</I>&gt;<i>   
+</I>&gt;&gt;<i> John,
+</I>&gt;&gt;<i>     Did you ever try using the Cygwin/X server?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     Been quite a while since I've used it but I think there was a way to
+</I>&gt;&gt;<i> reconnect a lost mouse pointer from the menu.
+</I>&gt;&gt;<i>     
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> We did not for performance reasons.  I gather that Cygwin places the X
+</I>&gt;<i> traffic on its own IP stack which then talks to the Windows network
+</I>&gt;<i> stack and thus introduces considerable latency.  This is why Xming
+</I>&gt;<i> performs better; it directly uses the native Windows network stack.
+</I>&gt;<i>
+</I>&gt;<i> In fact, we are eagerly anticipating better performance in general using
+</I>&gt;<i> libssh rather than ssh via Cygwin for the same reason - John
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+I just loaded Cygwin/X and now there is no menu option to reconnect mouse.
+
+Agree on the network stack issue.  If it's not using the native windows
+network stack then performance will not be good.
+
+
+Regards,
+Gerry
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001705.html">[X2go-dev] VcXsrv
+</A></li>
+	<LI>Next message: <A HREF="001722.html">[X2go-dev] VcXsrv
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1706">[ date ]</a>
+              <a href="thread.html#1706">[ thread ]</a>
+              <a href="subject.html#1706">[ subject ]</a>
+              <a href="author.html#1706">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

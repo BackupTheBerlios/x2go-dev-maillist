@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Problems with the GTK-client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Problems%20with%20the%20GTK-client&In-Reply-To=%3C4A72EF78.3040307%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000067.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Problems with the GTK-client</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Problems%20with%20the%20GTK-client&In-Reply-To=%3C4A72EF78.3040307%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] Problems with the GTK-client">paul at vandervlis.nl
+       </A><BR>
+    <I>Fri Jul 31 15:19:52 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000067.html">[X2go-dev] Problems after installing x2go 3.01  RESOLVED
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#69">[ date ]</a>
+              <a href="thread.html#69">[ thread ]</a>
+              <a href="subject.html#69">[ subject ]</a>
+              <a href="author.html#69">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I have some problems with the GTK-client. The KDE client works fine, and
+the GTK client does work fine as another user on the same machine.
+
+I have purged and reinstalled the gtk-client and I removed the
+config-data with:
+gconftool-2 --recursive-unset /apps/x2goclient
+(as the user where the problems are). But it does not help.
+
+When I try to start a session everything works fine, I only see no
+session. When I start the client again, I can see a running session, I
+cannot kill that session with the GTK client, but I can kill that
+session with the KDE client.
+
+I don't know how to fix this problem. I will add the complete
+information from the file .xsessionerrors.
+
+The interesting part (I think) is:
+--------
+debug1: Local forwarding listening on 127.0.0.1 port 30049.
+bind: Address already in use
+debug1: Local forwarding listening on ::1 port 30049.
+bind: Address already in use
+channel_setup_fwd_listener: cannot listen to port: 30049
+Could not request local forwarding.
+debug1: Requesting <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">no-more-sessions at openssh.com</A>
+--------
+
+With regards,
+Paul van der Vlis.
+
+
+
+The complete information from .xsessionerrors:
+---------
+^@^@^@^@^@^@^@^@^@^@^@^@^@   (...)
+(x2goclient_gtk:4879): Gdk-CRITICAL **: gdk_drawable_copy_to_image:
+assertion `src_x &gt;= 0' failed
+ssh command: export HOSTNAME &amp;&amp; x2golistsessions
+x2gostartagent fullscreen adsl 16m-jpeg-9 unix-kde-depth_32 us pc105/us
+0 D GNOME
+ssh command: x2gostartagent fullscreen adsl 16m-jpeg-9 unix-kde-depth_32
+us pc105/us 0 D GNOME
+66
+8a976570f364deacb15b8bcebf314e0e
+4998
+paul-66-1249044365_stDGNOME_dp32
+30049
+30050
+30051
+
+ssh command: mkdir ~/.pulse;echo &quot;default-server=localhost:30050&quot; &gt;
+~/.pulse/client.conf
+OpenSSH_5.1p1 Debian-5, OpenSSL 0.9.8g 19 Oct 2007
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: Applying options for *
+debug1: Connecting to localhost [127.0.0.1] port 22.
+debug1: fd 3 clearing O_NONBLOCK
+debug1: Connection established.
+debug1: identity file /home/paul/.ssh/identity type -1
+debug1: identity file /home/paul/.ssh/id_rsa type -1
+debug1: identity file /home/paul/.ssh/id_dsa type 2
+debug1: Checking blacklist file /usr/share/ssh/blacklist.DSA-1024
+debug1: Checking blacklist file /etc/ssh/blacklist.DSA-1024
+debug1: Remote protocol version 2.0, remote software version
+OpenSSH_5.1p1 Debian-5
+debug1: match: OpenSSH_5.1p1 Debian-5 pat OpenSSH*
+debug1: Enabling compatibility mode for protocol 2.0
+debug1: Local version string SSH-2.0-OpenSSH_5.1p1 Debian-5
+debug1: SSH2_MSG_KEXINIT sent
+debug1: SSH2_MSG_KEXINIT received
+debug1: kex: server-&gt;client blowfish-cbc hmac-md5 none
+debug1: kex: client-&gt;server blowfish-cbc hmac-md5 none
+debug1: SSH2_MSG_KEX_DH_GEX_REQUEST(1024&lt;1
+OpenSSH_5.1p1 Debian-5, OpenSSL 0.9.8g 19 Oct 2007
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: Applying options for *
+debug1: Connecting to localhost [127.0.0.1] port 22.
+debug1: fd 3 clearing O_NONBLOCK
+debug1: Connection established.
+debug1: identity file /home/paul/.ssh/identity type -1
+debug1: identity file /home/paul/.ssh/id_rsa type -1
+debug1: identity file /home/paul/.ssh/id_dsa type 2
+debug1: Checking blacklist file /usr/share/ssh/blacklist.DSA-1024
+debug1: Checking blacklist file /etc/ssh/blacklist.DSA-1024
+debug1: Remote protocol version 2.0, remote software version
+OpenSSH_5.1p1 Debian-5
+debug1: match: OpenSSH_5.1p1 Debian-5 pat OpenSSH*
+debug1: Enabling compatibility mode for protocol 2.0
+debug1: Local version string SSH-2.0-OpenSSH_5.1p1 Debian-5
+debug1: SSH2_MSG_KEXINIT sent
+debug1: SSH2_MSG_KEXINIT received
+debug1: kex: server-&gt;client blowfish-cbc hmac-md5 none
+debug1: kex: client-&gt;server blowfish-cbc hmac-md5 none
+debug1: SSH2_MSG_KEX_DH_GEX_REQUEST(1024&lt;1
+024&lt;8192) sent
+debug1: expecting SSH2_MSG_KEX_DH_GEX_GROUP
+debug1: SSH2_MSG_KEX_DH_GEX_INIT sent
+debug1: expecting SSH2_MSG_KEX_DH_GEX_REPLY
+debug1: Host 'localhost' is known and matches the RSA host key.
+debug1: Found key in /home/paul/.ssh/known_hosts:35
+debug1: ssh_rsa_verify: signature correct
+debug1: SSH2_MSG_NEWKEYS sent
+debug1: expecting SSH2_MSG_NEWKEYS
+debug1: SSH2_MSG_NEWKEYS received
+debug1: SSH2_MSG_SERVICE_REQUEST sent
+debug1: SSH2_MSG_SERVICE_ACCEPT received
+debug1: Authentications that can continue: publickey,keyboard-interactive
+debug1: Next authentication method: publickey
+debug1: Trying private key: /home/paul/.ssh/identity
+debug1: Trying private key: /home/paul/.ssh/id_rsa
+debug1: Offering public key: /home/paul/.ssh/id_dsa
+debug1: Authentications that can continue: publickey,keyboard-interactive
+debug1: Next authentication method: keyboard-interactive
+debug1: read_passphrase: can't open /dev/tty: No such device or address
+debug1: permanently_drop_suid: 1000
+debug1: Au
+mkdir: kan map '/home/paul/.pulse' niet aanmaken: Bestand bestaat al
+
+024&lt;8192) sent
+debug1: expecting SSH2_MSG_KEX_DH_GEX_GROUP
+debug1: SSH2_MSG_KEX_DH_GEX_INIT sent
+debug1: expecting SSH2_MSG_KEX_DH_GEX_REPLY
+debug1: Host 'localhost' is known and matches the RSA host key.
+debug1: Found key in /home/paul/.ssh/known_hosts:35
+debug1: ssh_rsa_verify: signature correct
+debug1: SSH2_MSG_NEWKEYS sent
+debug1: expecting SSH2_MSG_NEWKEYS
+debug1: SSH2_MSG_NEWKEYS received
+debug1: SSH2_MSG_SERVICE_REQUEST sent
+debug1: SSH2_MSG_SERVICE_ACCEPT received
+debug1: Authentications that can continue: publickey,keyboard-interactive
+debug1: Next authentication method: publickey
+debug1: Trying private key: /home/paul/.ssh/identity
+debug1: Trying private key: /home/paul/.ssh/id_rsa
+
+debug1: Offering public key: /home/paul/.ssh/id_dsa
+debug1: Authentications that can continue: publickey,keyboard-interactive
+debug1: Next authentication method: keyboard-interactive
+debug1: read_passphrase: can't open /dev/tty: No such device or address
+debug1: permanently_drop_suid: 1000
+debug1: Au
+thentication succeeded (keyboard-interactive).
+debug1: Local connections to LOCALHOST:30049 forwarded to remote address
+localhost:30049
+debug1: Local forwarding listening on 127.0.0.1 port 30049.
+bind: Address already in use
+debug1: Local forwarding listening on ::1 port 30049.
+bind: Address already in use
+channel_setup_fwd_listener: cannot listen to port: 30049
+Could not request local forwarding.
+debug1: Requesting <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">no-more-sessions at openssh.com</A>
+debug1: Entering interactive session.
+
+thentication succeeded (keyboard-interactive).
+debug1: Remote connections from LOCALHOST:30050 forwarded to local
+address localhost:4713
+debug1: Requesting <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">no-more-sessions at openssh.com</A>
+debug1: Entering interactive session.
+debug1: remote forward success for: listen 30050, connect localhost:4713
+debug1: All remote forwarding requests processed
+------------
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000067.html">[X2go-dev] Problems after installing x2go 3.01  RESOLVED
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#69">[ date ]</a>
+              <a href="thread.html#69">[ thread ]</a>
+              <a href="subject.html#69">[ subject ]</a>
+              <a href="author.html#69">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

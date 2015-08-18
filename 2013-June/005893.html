@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#251: User x2goclient expected,	but user x2gothinclient established
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23251%3A%20User%20x2goclient%20expected%2C%0A%09but%20user%20x2gothinclient%20established&In-Reply-To=%3C201306271609.25516.stephan.wagner%40itos-gmbh.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005892.html">
+   <LINK REL="Next"  HREF="005896.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#251: User x2goclient expected,	but user x2gothinclient established</H1>
+    <B>Stephan Wagner</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23251%3A%20User%20x2goclient%20expected%2C%0A%09but%20user%20x2gothinclient%20established&In-Reply-To=%3C201306271609.25516.stephan.wagner%40itos-gmbh.com%3E"
+       TITLE="[X2Go-Dev] Bug#251: User x2goclient expected,	but user x2gothinclient established">stephan.wagner at itos-gmbh.com
+       </A><BR>
+    <I>Thu Jun 27 16:09:24 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005892.html">[X2Go-Dev] Bug#250: ultiple xorg.conf's in x2go TCE
+</A></li>
+        <LI>Next message: <A HREF="005896.html">[X2Go-Dev] Bug#251:  Bug#251: User x2goclient expected,	but user x2gothinclient established
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5893">[ date ]</a>
+              <a href="thread.html#5893">[ thread ]</a>
+              <a href="subject.html#5893">[ subject ]</a>
+              <a href="author.html#5893">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2gothinclient
+Version: 1.0.1.8-0
+
+A user &quot;x2gothinclient&quot; is established in the TCE- environment, but 
+/usr/sbin/x2gothinclientd expects the user &quot;x2goclient&quot;, with its home 
+directory at /home/x2goclient. Therefore /usr/bin/x2goclient will not start, 
+leaving the user in front of a black screen.
+
+Intruducing the user 'x2goclient' solved the problem.
+
+Stephan
+
+-- 
+__________________________________________________
+Dr. Stephan Wagner
+ITos GmbH
+Bitzi-Bendel 2555
+9642 Ebnat-Kappel
+Tel: +41 (0)71 990 05 94
+mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">swagner at itos-gmbh.com</A>
+<A HREF="http://www.itos-gmbh.com">http://www.itos-gmbh.com</A>
+--------------------------------------------------
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005892.html">[X2Go-Dev] Bug#250: ultiple xorg.conf's in x2go TCE
+</A></li>
+	<LI>Next message: <A HREF="005896.html">[X2Go-Dev] Bug#251:  Bug#251: User x2goclient expected,	but user x2gothinclient established
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5893">[ date ]</a>
+              <a href="thread.html#5893">[ thread ]</a>
+              <a href="subject.html#5893">[ subject ]</a>
+              <a href="author.html#5893">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

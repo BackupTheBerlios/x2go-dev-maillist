@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] GNOME vs. Unity on Ubuntu precise
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20GNOME%20vs.%20Unity%20on%20Ubuntu%20precise&In-Reply-To=%3C4F9D47A0.1060806%40ubuntu.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003932.html">
+   <LINK REL="Next"  HREF="003939.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] GNOME vs. Unity on Ubuntu precise</H1>
+    <B>St&#233;phane Graber</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20GNOME%20vs.%20Unity%20on%20Ubuntu%20precise&In-Reply-To=%3C4F9D47A0.1060806%40ubuntu.com%3E"
+       TITLE="[X2Go-Dev] GNOME vs. Unity on Ubuntu precise">stgraber at ubuntu.com
+       </A><BR>
+    <I>Sun Apr 29 15:52:32 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003932.html">[X2Go-Dev] GNOME vs. Unity on Ubuntu precise
+</A></li>
+        <LI>Next message: <A HREF="003939.html">[X2Go-Dev] GNOME vs. Unity on Ubuntu precise
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3938">[ date ]</a>
+              <a href="thread.html#3938">[ thread ]</a>
+              <a href="subject.html#3938">[ subject ]</a>
+              <a href="author.html#3938">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+On 04/29/2012 12:22 AM, Mike Gabriel wrote:
+&gt;<i> Hi all,
+</I>&gt;<i> 
+</I>&gt;<i> with Ubuntu precise launching an X2Go session named ,,GNOME''
+</I>&gt;<i> results in a UNITY-2D desktop session.
+</I>&gt;<i> 
+</I>&gt;<i> First thing: it is nice to have Unity available via X2Go.
+</I>&gt;<i> 
+</I>&gt;<i> Second thing: it is a PITA that starting ,,gnome-session'' ends up
+</I>&gt;<i> with the UNITY shell. If we say GNOME in the client we should end
+</I>&gt;<i> up with GNOME(3).
+</I>&gt;<i> 
+</I>&gt;<i> @devs: ------ Currently, the client-side translates the session
+</I>&gt;<i> profile &lt;command&gt; (GNOME, KDE, ...) into the server-side command
+</I>&gt;<i> (gnome-session, startkde). For single applications this translation
+</I>&gt;<i> is done within x2goruncommand.
+</I>&gt;<i> 
+</I>&gt;<i> I would like to suggest to move this translation into
+</I>&gt;<i> x2goruncommand completely. Allowing the server-side to detect what
+</I>&gt;<i> actual command has to be executed for ,,GNOME'' or ,,KDE'' or
+</I>&gt;<i> &lt;OTHER&gt; will be much more handy than making the client-side aware
+</I>&gt;<i> of the server's operating system, shell, Xsession files, etc.
+</I>&gt;<i> 
+</I>&gt;<i> Your opinions, please!!!
+</I>&gt;<i> 
+</I>&gt;<i> Greets, Mike
+</I>
+To solve the problem properly, you'd need something that understands
+gnome-session and uses it as it's expected.
+
+Here are some example calls of gnome-session:
+ - gnome-session =&gt; starts the default session, on Ubuntu, unity-3d
+ - gnome-session --session=ubuntu =&gt; starts unity-3d
+ - gnome-session --session=ubuntu-2d =&gt; starts unity-2d
+ - gnome-session --session=gnome =&gt; starts Gnome3 (shell)
+ - gnome-session --session=gnome-fallback =&gt; starts the gnome 3.x
+fallback session
+
+
+The names match entries in /usr/share/gnome-session/sessions/
+
+It's also generally recommended to start these sessions through
+/etc/X11/Xsession or some things won't be set properly (gconf/dconf
+profile being the most annoying one).
+
+I'm usually using:
+export DESKTOP_SESSION=gnome-fallback
+/etc/X11/Xsession &quot;gnome-session --session=$DESKTOP_SESSION&quot;
+
+This simulates what gdm/lightdm do and make all the Xsessions script
+do the right thing and finally calling gnome-session with the right
+session.
+(DESKTOP_SESSION is used by gconf to change the default settings
+depending on the session).
+
+
+Hope that helps you get a clear picture of how that all works and let
+you get good support for that in x2go. I had to dig into that lately
+when fixing some bugs in LTSP and in Weblive (with both x2go and NX).
+
+- -- 
+St&#233;phane Graber
+Ubuntu developer
+<A HREF="http://www.ubuntu.com">http://www.ubuntu.com</A>
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+Comment: Using GnuPG with Mozilla - <A HREF="http://enigmail.mozdev.org/">http://enigmail.mozdev.org/</A>
+
+iQIcBAEBCgAGBQJPnUebAAoJEMY4l01keS1nNx4QAISKX1vw/Ciuz3JLyF2lhLwP
+BM5dHtOo3LUowbvBao9DK8HYa44C+DPuZdq+E788vei5NRI1DW+qaLaT2LIhPstl
+BXhQjj8pPf4uhP5y/LDb434m09bJGrsWou3YS2rMwkcx8wQ14HtDBfB2WnqiNTmW
+UsoEmYJcgHfnDFEsU5oy8S+VyXi2wp56vTKfiO0YsyPZIkhApUdpqKkKq2qCbFBE
+jNxh8uot2D3UjZCsT3+9IuJp1igFapkS7PfJbTpAjldc+sP/+JaKO9Od05ySYCt4
+000/RpmbG5qFLM+XNLZRGbWXtCNKLK4MF3j8AYja94ayVT9VrdBLwGnfCqWLmbFI
+L87TlyPB1T6CMy8J6qeWM0LZ1ZGzjGE00t7mfQqL0HKBgWrXJoPtJ4zBdoqRhepY
+dUZBUgC5DxOgdPY9VaeGrmMjpDUBjFNs+l2F2ACLqUsrktnQYLp86LkfNLehYuye
+KnE65tSi5jY/SOPPDmOiRTV2OU04cqIgmIVDgoNc/3iGxyYcM//l3rUC4TBRv7Ht
+gOmdINTLhXzEmadTLXgnGhXZRGVUhGzoZG3s18q3135TGPb38tWN4+6vmUbWyBHB
++yla9b3YkB6UPk5VocTZDDadDTxTRdHGb2Bb6JHakBRDrqswsXkUVgNknhwNBLsQ
+5YLNmaPLKp5BjxF88gWg
+=S0F0
+-----END PGP SIGNATURE-----
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003932.html">[X2Go-Dev] GNOME vs. Unity on Ubuntu precise
+</A></li>
+	<LI>Next message: <A HREF="003939.html">[X2Go-Dev] GNOME vs. Unity on Ubuntu precise
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3938">[ date ]</a>
+              <a href="thread.html#3938">[ thread ]</a>
+              <a href="subject.html#3938">[ subject ]</a>
+              <a href="author.html#3938">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

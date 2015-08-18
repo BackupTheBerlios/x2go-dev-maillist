@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Major%20issue%20with%20users%27%20mounts%20and%20encrypted%0A%20%28ecryptfs%29%20homes%20in%20suspended%20sessions&In-Reply-To=%3CCAAVBiEW9%3DSF%2BjzjKdrZi8dRx6CCpYx8fbxyqWAhcN%3D_kYXP5QA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004484.html">
+   <LINK REL="Next"  HREF="004486.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions</H1>
+    <B>Eugene San</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Major%20issue%20with%20users%27%20mounts%20and%20encrypted%0A%20%28ecryptfs%29%20homes%20in%20suspended%20sessions&In-Reply-To=%3CCAAVBiEW9%3DSF%2BjzjKdrZi8dRx6CCpYx8fbxyqWAhcN%3D_kYXP5QA%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions">eugenesan at gmail.com
+       </A><BR>
+    <I>Sat Nov  3 14:27:43 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004484.html">[X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions
+</A></li>
+        <LI>Next message: <A HREF="004486.html">[X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4485">[ date ]</a>
+              <a href="thread.html#4485">[ thread ]</a>
+              <a href="subject.html#4485">[ subject ]</a>
+              <a href="author.html#4485">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+Referred thread discuss generic usage if encryption. But my issue is
+specific to x2go.
+Encryption mounting works perfectly via physical, ssh and even nomachine
+sessions but fails during suspended x2go sessions.
+
+My guess is that nomachine's nxssh (which stays alive during suspended
+sessions) is making encryption working during suspended sessions.
+
+The question is how to provide adequate alternative in x2go sessions.
+ On Nov 3, 2012 3:17 PM, &quot;Mike Gabriel&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+wrote:
+
+&gt;<i> Hi!
+</I>&gt;<i>
+</I>&gt;<i> On Sa 03 Nov 2012 10:58:05 CET Eugene San wrote:
+</I>&gt;<i>
+</I>&gt;<i>  I am afraid your assumption is incorrect, even with open files pam
+</I>&gt;&gt;<i> unmounts
+</I>&gt;&gt;<i> home directory.
+</I>&gt;&gt;<i> Looks like only ssh sessions keep home mounted.
+</I>&gt;&gt;<i> Once session is suspended and all ssh connections closed, home folder is
+</I>&gt;&gt;<i> gone.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Any suggestions how to solve the problem?
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Does  taking the information into consideration found here help you any
+</I>&gt;<i> further?
+</I>&gt;<i> <A HREF="https://bbs.archlinux.org/**viewtopic.php?id=98227&lt;https://bbs.archlinux.org/viewtopic.php?id=98227">https://bbs.archlinux.org/**viewtopic.php?id=98227&lt;https://bbs.archlinux.org/viewtopic.php?id=98227</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+</I>&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121103/b1472d45/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121103/b1472d45/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004484.html">[X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions
+</A></li>
+	<LI>Next message: <A HREF="004486.html">[X2Go-Dev] Major issue with users' mounts and encrypted (ecryptfs) homes in suspended sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4485">[ date ]</a>
+              <a href="thread.html#4485">[ thread ]</a>
+              <a href="subject.html#4485">[ subject ]</a>
+              <a href="author.html#4485">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

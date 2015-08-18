@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Password handling and CAPS lock issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Password%20handling%20and%20CAPS%20lock%20issues&In-Reply-To=%3C1274226643.20211.22.camel%40Family.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000496.html">
+   <LINK REL="Next"  HREF="000475.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Password handling and CAPS lock issues</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Password%20handling%20and%20CAPS%20lock%20issues&In-Reply-To=%3C1274226643.20211.22.camel%40Family.pacifera.com%3E"
+       TITLE="[X2go-dev] Password handling and CAPS lock issues">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed May 19 01:50:43 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000496.html">[X2go-dev] Windows X2Go printing
+</A></li>
+        <LI>Next message: <A HREF="000475.html">[X2go-dev] Windows fullscreen and clipboard parameters not passed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#474">[ date ]</a>
+              <a href="thread.html#474">[ thread ]</a>
+              <a href="subject.html#474">[ subject ]</a>
+              <a href="author.html#474">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, all.  We have a problem with CAPS lock getting out of sync
+between the physical and virtual desktops.  I assume this is the
+downside of the very powerful feature of being able to change physical
+computers connected to the same virtual session.  However, it is more
+than annoying.  Because X2Go attempts so many logins at once (separate
+SSH sessions for video, print, sound, file sharing), a wrong login
+quickly exhausts grace logins and can even trip our OSSEC active
+response as a perceived brute force intrusion attempt and lock out all
+computers from the same site.
+
+Perhaps password handling could be improved in two ways in X2Go.  If the
+first password attempt fails, the user should be alerted and continued
+login attempts for other ssh sessions should cease. Secondly, the first
+failed attempt could be retried in reverse case. If it succeeds, a
+message should be displayed to the user.  The problem could be either
+that their physical CAPS lock is on (in which case we do nothing but
+warn) or that the CAPS lock is out of sync, in which case we can offer
+to toggle the CAPS lock state on the virtual desktop.  Is this possible?
+Is it reasonable? Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000496.html">[X2go-dev] Windows X2Go printing
+</A></li>
+	<LI>Next message: <A HREF="000475.html">[X2go-dev] Windows fullscreen and clipboard parameters not passed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#474">[ date ]</a>
+              <a href="thread.html#474">[ thread ]</a>
+              <a href="subject.html#474">[ subject ]</a>
+              <a href="author.html#474">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

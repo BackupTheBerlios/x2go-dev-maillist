@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] running X2Go Server in userspace (was: x2go with git submodules)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20running%20X2Go%20Server%20in%20userspace%20%28was%3A%20x2go%20with%20git%0A%20submodules%29&In-Reply-To=%3C20121108225217.91710sj9jlke8hox%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004547.html">
+   <LINK REL="Next"  HREF="004533.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] running X2Go Server in userspace (was: x2go with git submodules)</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20running%20X2Go%20Server%20in%20userspace%20%28was%3A%20x2go%20with%20git%0A%20submodules%29&In-Reply-To=%3C20121108225217.91710sj9jlke8hox%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] running X2Go Server in userspace (was: x2go with git submodules)">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Nov  8 22:52:17 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004547.html">[X2Go-Dev] x2go without root on server
+</A></li>
+        <LI>Next message: <A HREF="004533.html">[X2Go-Dev] running X2Go Server in userspace
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4532">[ date ]</a>
+              <a href="thread.html#4532">[ thread ]</a>
+              <a href="subject.html#4532">[ subject ]</a>
+              <a href="author.html#4532">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+(thread renamed, please let us move over to thread subjects that  
+describe what the thread is about...)
+
+On Do 08 Nov 2012 16:36:40 CET Ralf Hemmecke wrote:
+
+&gt;<i> On 11/07/2012 02:23 PM, Mike Gabriel wrote:
+</I>&gt;&gt;<i> On Mi 07 Nov 2012 13:48:10 CET Ralf Hemmecke wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Sorry about the non-user installation,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> That's at least a clear statement. Thanks.
+</I>&gt;&gt;&gt;<i> However, might this change in a near future?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It is not a use case here, so I won't work on it.
+</I>&gt;<i>
+</I>&gt;<i> Let me ask you about the big picture.
+</I>&gt;<i>
+</I>&gt;<i> AFAIU, x2goclient connects via ssh to the server with and basically logs
+</I>&gt;<i> into the server with the user account that is given to x2goclient.
+</I>&gt;<i>
+</I>&gt;<i> Then everything is done on behalf of this user.
+</I>&gt;<i>
+</I>&gt;<i> But... I've seen a new x2gouser account on the server. Why do you need this?
+</I>
+...answered by Morty...
+
+&gt;<i> Furthermore, are there (and I'm pretty sure there are) any processes
+</I>&gt;<i> that must be run as root or x2gouser after installation? If yes, which
+</I>&gt;<i> are they and do you see a reason which prevents these processes from
+</I>&gt;<i> being run as the user that comes from x2goclient?
+</I>
+There is a cleanup daemon running in the background that updates the  
+X2Go session database in case of certain sorts of failures (e.g. SSH  
+connection line disruptions, etc.). This daemon runs as root (instead  
+of having one cleanup process per user). This cleanup script  
+(/usr/sbin/x2gocleansessions) can be moved into user space, of course.
+
+&gt;<i> Are there any real needs for a root user in x2go's server setup or does
+</I>&gt;<i> this just happen by convenience for the developers?
+</I>
+Also for multi-node printing (where X2Go Server != CUPS server) we use  
+some sudo and su - tricks. (the CUPS virtual X2Go printer runs as  
+priviledged root user because it has to do a chown &lt;user&gt; on incoming  
+print jobs). Please study x2goserver-printing and cups-x2go for  
+further insights on this.
+
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121108/867d3083/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121108/867d3083/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004547.html">[X2Go-Dev] x2go without root on server
+</A></li>
+	<LI>Next message: <A HREF="004533.html">[X2Go-Dev] running X2Go Server in userspace
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4532">[ date ]</a>
+              <a href="thread.html#4532">[ thread ]</a>
+              <a href="subject.html#4532">[ subject ]</a>
+              <a href="author.html#4532">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

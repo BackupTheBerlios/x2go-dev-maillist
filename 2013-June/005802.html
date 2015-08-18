@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#228: Mount MTP on thinclients
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23228%3A%20Mount%20MTP%20on%20thinclients&In-Reply-To=%3CCAFJm-UOHEqQvbqaqDCetCBOCV4Nw3kO%3DCMSUbrXkR-EEKnPFCw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005800.html">
+   <LINK REL="Next"  HREF="005811.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#228: Mount MTP on thinclients</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23228%3A%20Mount%20MTP%20on%20thinclients&In-Reply-To=%3CCAFJm-UOHEqQvbqaqDCetCBOCV4Nw3kO%3DCMSUbrXkR-EEKnPFCw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#228: Mount MTP on thinclients">abo at dsl.dk
+       </A><BR>
+    <I>Wed Jun 12 11:57:56 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005800.html">[X2Go-Dev] Bug#228: Mount MTP on thinclients
+</A></li>
+        <LI>Next message: <A HREF="005811.html">[X2Go-Dev] Bug#228:  Bug#228: Mount MTP on thinclients
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5802">[ date ]</a>
+              <a href="thread.html#5802">[ thread ]</a>
+              <a href="subject.html#5802">[ subject ]</a>
+              <a href="author.html#5802">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Okay, fair enough. It seems that gvfs does indeed mount the MTP device
+under /run/user/USERNAME/gvfs (wasn't listed with just the mount command,
+but is in /proc/mounts). But I don't think getting gvfs to play nicely with
+the rest of the x2gothinclient setup is worth the trouble. It might also be
+problematic as there is no way for the user to tell gvfs to mount the MTP
+device. It needs to be automatic. I think go-mtpfs might be the solution,
+but I am unable to test it today, as I am away from my work machine, where
+I have the before mentioned VM setup.
+
+
+2013/6/12 Nable 80 &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">nable.maininbox at googlemail.com</A>&gt;
+
+&gt;<i> Hi, Anders.
+</I>&gt;<i> &gt; MTP is handled by an updated gvfs and is accessible in Nautilus, but
+</I>&gt;<i> does not get mounted as a part of the filesystem in a way that is available
+</I>&gt;<i> outside Nautilus
+</I>&gt;<i> Are you sure that it doesn't appear as part of VFS? Open MTP in
+</I>&gt;<i> Nautilus and then do `cat /proc/mounts' in terminal (if you haven't
+</I>&gt;<i> tried it yet), look for entries that seems to belong to gvfs. I don't
+</I>&gt;<i> have any MTP devices but, for example, samba shares that are opened
+</I>&gt;<i> via gvfs appear in VFS via (AFAIR) FUSE.
+</I>&gt;<i>
+</I>&gt;<i> 2013/6/12, Anders Bruun Olsen &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">abo at dsl.dk</A>&gt;:
+</I>&gt;<i> &gt; Hi Mike,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I have setup a virtual machine running Ubuntu 12.04 to test out MTP and
+</I>&gt;<i> &gt; have found out that it is quite annoying to deal with. mtpfs does not
+</I>&gt;<i> work
+</I>&gt;<i> &gt; out-of-the-box. A Google-employee has made go-mtpfs, which supposedly
+</I>&gt;<i> works
+</I>&gt;<i> &gt; better, but I have yet to experiment with it. With normal mtpfs it seems
+</I>&gt;<i> &gt; that you need to setup udev rules for your specific device, meaning that
+</I>&gt;<i> it
+</I>&gt;<i> &gt; can't be used as a catch-all solution for MTP devices. I will try to
+</I>&gt;<i> &gt; experiment with go-mtpfs and see if it can work as a general solution
+</I>&gt;<i> &gt; without having to do specific udev rules for all devices.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; As a side-note, on my Ubuntu 13.04 desktop, MTP is handled by an updated
+</I>&gt;<i> &gt; gvfs and is accessible in Nautilus, but does not get mounted as a part of
+</I>&gt;<i> &gt; the filesystem in a way that is available outside Nautilus. Which is why
+</I>&gt;<i> I
+</I>&gt;<i> &gt; haven't actually played with mtpfs before, despite having an MTP device
+</I>&gt;<i> :)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 2013/6/10 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; reassign #228 x2gousbmount
+</I>&gt;<i> &gt;&gt; thanks
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Hi Anders,
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; On Mo 10 Jun 2013 11:38:29 CEST Anders Bruun Olsen wrote:
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;  Package: x2gothinclientmanagement
+</I>&gt;<i> &gt;&gt;&gt; Severity: wishlist
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;&gt; X2go thinclients currently mount usb-storage devices nicely. It would
+</I>&gt;<i> be
+</I>&gt;<i> &gt;&gt;&gt; nice if they could also handle MTP-devices (like newer Android-phones).
+</I>&gt;<i> &gt;&gt;&gt; The
+</I>&gt;<i> &gt;&gt;&gt; mechanics for connecting the x2goserver session to the actual device
+</I>&gt;<i> &gt;&gt;&gt; (sshfs) wouldn't need to be changed. It would be a case of adding mtpfs
+</I>&gt;<i> &gt;&gt;&gt; or
+</I>&gt;<i> &gt;&gt;&gt; something similar to the thinclient chroot and making sure it auto
+</I>&gt;<i> &gt;&gt;&gt; mounts.
+</I>&gt;<i> &gt;&gt;&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; This basically has to be solved in the x2gousbmount package of the
+</I>&gt;<i> &gt;&gt; src:x2gothinclient X2Go component.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; As I do not have such a device here for testing, I need help for that.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; A test rig would look like this:
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt;   o Install a minimal Debian/Ubuntu system
+</I>&gt;<i> &gt;&gt;   o install the x2gothinclient package from our nightly builds
+</I>&gt;<i> &gt;&gt; (+dependencies)
+</I>&gt;<i> &gt;&gt;     (or build from source: x2gothinclient.git)
+</I>&gt;<i> &gt;&gt;   o edit the files you find in [1] and add mtpfs to the test system till
+</I>&gt;<i> &gt;&gt; it
+</I>&gt;<i> &gt;&gt;     works
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Greets,
+</I>&gt;<i> &gt;&gt; Mike
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; [1] <A HREF="http://code.x2go.org/gitweb?p=**x2gothinclient.git;a=tree;f=**">http://code.x2go.org/gitweb?p=**x2gothinclient.git;a=tree;f=**</A>
+</I>&gt;<i> &gt;&gt; x2gousbmount&lt;
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2gothinclient.git;a=tree;f=x2gousbmount">http://code.x2go.org/gitweb?p=x2gothinclient.git;a=tree;f=x2gousbmount</A>&gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; --
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; DAS-NETZWERKTEAM
+</I>&gt;<i> &gt;&gt; mike gabriel, herweg 7, 24357 fleckeby
+</I>&gt;<i> &gt;&gt; fon: +49 (1520) 1976 148
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; GnuPG Key ID 0x25771B31
+</I>&gt;<i> &gt;&gt; mail:
+</I>&gt;<i> &gt;&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;<i> &gt;&gt; <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; freeBusy:
+</I>&gt;<i> &gt;&gt; <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;<i> &gt;&gt; netzwerkteam.de.xfb&lt;
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; --
+</I>&gt;<i> &gt; Anders Bruun Olsen
+</I>&gt;<i> &gt; It-ansvarlig
+</I>&gt;<i> &gt; Det Danske Sprog- og Litteraturselskab
+</I>&gt;<i> &gt; (Society for Danish Language and Literature)
+</I>&gt;<i> &gt;
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130612/2da4a8a4/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130612/2da4a8a4/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005800.html">[X2Go-Dev] Bug#228: Mount MTP on thinclients
+</A></li>
+	<LI>Next message: <A HREF="005811.html">[X2Go-Dev] Bug#228:  Bug#228: Mount MTP on thinclients
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5802">[ date ]</a>
+              <a href="thread.html#5802">[ thread ]</a>
+              <a href="subject.html#5802">[ subject ]</a>
+              <a href="author.html#5802">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

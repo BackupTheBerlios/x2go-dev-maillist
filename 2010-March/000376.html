@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Seg fault (was Re:  SSH Key issues)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Seg%20fault%20%28was%20Re%3A%20%20SSH%20Key%20issues%29&In-Reply-To=%3C1268644786.5897.3.camel%40Family.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000375.html">
+   <LINK REL="Next"  HREF="000386.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Seg fault (was Re:  SSH Key issues)</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Seg%20fault%20%28was%20Re%3A%20%20SSH%20Key%20issues%29&In-Reply-To=%3C1268644786.5897.3.camel%40Family.pacifera.com%3E"
+       TITLE="[X2go-dev] Seg fault (was Re:  SSH Key issues)">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Mon Mar 15 10:19:46 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000375.html">[X2go-dev] SSH Key issues
+</A></li>
+        <LI>Next message: <A HREF="000386.html">[X2go-dev] SSH Key issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#376">[ date ]</a>
+              <a href="thread.html#376">[ thread ]</a>
+              <a href="subject.html#376">[ subject ]</a>
+              <a href="author.html#376">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, 2010-03-14 at 04:18 -0400, John A. Sullivan III wrote:
+&gt;<i> Hello, all.  We recently recreated an X2Go Server and found we had
+</I>&gt;<i> serious ssh key issues when we tried to connect from the previously
+</I>&gt;<i> existing X2Go clients.  We're still working these through so I'll list
+</I>&gt;<i> them in the order we find them.
+</I>&gt;<i> 
+</I>&gt;<i> The GUI key popping up Accept Key dialogs with Yes and No options but no
+</I>&gt;<i> text.  It was only when we canceled that we saw the error message about
+</I>&gt;<i> there being an old, conflicting key.  By the way, we use both hashed
+</I>&gt;<i> known_host files and non-default ssh ports.  This created a problem when
+</I>&gt;<i> we went to remove the offending keys in that the syntax ssh-keygen -R
+</I>&gt;<i> &lt;server name&gt; did not work.  We needed to use ssh-keygen -R [&lt;server
+</I>&gt;<i> name&gt;]:&lt;port number&gt; (note the brackets).
+</I>&gt;<i> 
+</I>&gt;<i> We then hit a problem where the X2Go Client for some reason started
+</I>&gt;<i> trying to open an SSH sessions as root.  Since we use active host
+</I>&gt;<i> intrusion detection (OSSEC), the failed login attempts lock out the user
+</I>&gt;<i> and the screen stops at the X2Go logo.  Oops! This was our
+</I>&gt;<i> misunderstanding of the auth.log.  The problem was that our users are
+</I>&gt;<i> only defined in LDAP.  We configured pam to look at pam_unix first.
+</I>&gt;<i> This tripped our HIDS and blocked our users.  From our internal
+</I>&gt;<i> documentation:
+</I>&gt;<i> 
+</I>&gt;<i> Now we need to fix some pam files.  It is critical that the ldap modules
+</I>&gt;<i> are processed first even though that is non-standard.  In the X2Go
+</I>&gt;<i> environment, many ssh sessions are fired off in quick succession.  Since
+</I>&gt;<i> the pam_unix authentications fail for the LDAP users (as they are not
+</I>&gt;<i> defined locally), all the failed authentications trip the OSSEC
+</I>&gt;<i> auto-response and block the user from access to VD01.  Thus, LDAP
+</I>&gt;<i> credentials MUST be processed first.
+</I>&gt;<i> 
+</I>&gt;<i> This just leaves the empty dialog box.  Thanks - John
+</I>&lt;snip&gt;
+Oops! We've hit some nastier issues.  Using an X2Go Client on a
+different station this morning, I encountered the empty dialog.  I
+cleared the offending entry from known_hosts and tried again.  This time
+I was told I needed to answer yes or no.  Clicking Yes had no effect.
+Clicking no caused the entire x2goclient to crash and disappear - I
+assume a seg fault.
+
+I had a sneaking suspicion of what was happening.  Connecting from a
+console gave me this:
+Warning: the RSA host key for '[vdhost01.ssiservices.biz]:443' differs
+from the key for the IP address '[208.46.93.8]:443'
+Offending key for IP in /home/jsullivan/.ssh/known_hosts:3
+Matching host key in /home/jsullivan/.ssh/known_hosts:24
+Are you sure you want to continue connecting (yes/no)?
+
+I cleared the offending IP address entry and all worked well but we do
+have this seg fault to address - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000375.html">[X2go-dev] SSH Key issues
+</A></li>
+	<LI>Next message: <A HREF="000386.html">[X2go-dev] SSH Key issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#376">[ date ]</a>
+              <a href="thread.html#376">[ thread ]</a>
+              <a href="subject.html#376">[ subject ]</a>
+              <a href="author.html#376">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

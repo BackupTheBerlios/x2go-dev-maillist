@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] High Performance SSH/SCP - HPN-SSH
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20High%20Performance%20SSH/SCP%20-%20HPN-SSH&In-Reply-To=%3C1277734322.3413.2.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000670.html">
+   <LINK REL="Next"  HREF="000674.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] High Performance SSH/SCP - HPN-SSH</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20High%20Performance%20SSH/SCP%20-%20HPN-SSH&In-Reply-To=%3C1277734322.3413.2.camel%40localhost%3E"
+       TITLE="[X2go-dev] High Performance SSH/SCP - HPN-SSH">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Mon Jun 28 16:12:02 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000670.html">[X2go-dev] High Performance SSH/SCP - HPN-SSH
+</A></li>
+        <LI>Next message: <A HREF="000674.html">[X2go-dev] High Performance SSH/SCP - HPN-SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#671">[ date ]</a>
+              <a href="thread.html#671">[ thread ]</a>
+              <a href="subject.html#671">[ subject ]</a>
+              <a href="author.html#671">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2010-06-28 at 14:28 +0200, Erik Auerswald wrote:
+&gt;<i> Hello John,
+</I>&gt;<i> 
+</I>&gt;<i> On Mon, Jun 28, 2010 at 07:47:47AM -0400, John A. Sullivan III wrote:
+</I>&gt;<i> &gt; On Mon, 2010-06-28 at 09:30 +0200, Erik Auerswald wrote:
+</I>&gt;<i> &gt; &gt; On Mon, Jun 28, 2010 at 06:55:56AM +0000, cougarmaster wrote:
+</I>&gt;<i> &gt; &gt; &gt;    Was reading about how to increase SSH performance and I came across this.
+</I>&gt;<i> &gt; &gt; &gt; [...]
+</I>&gt;<i> &gt; &gt; &gt; Also in there is a link to tuning network performance too just wanted
+</I>&gt;<i> &gt; &gt; &gt; to see if it would be of any help.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; This is the standard network performance tuning found everywhere. This is
+</I>&gt;<i> &gt; &gt; interesting for a saturated server, but will not solve any fundamental
+</I>&gt;<i> &gt; &gt; speed issues.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; I have been wondering if it will help with resilience.  We are having
+</I>&gt;<i> &gt; problems where, if the Internet connection starts dropping packets,
+</I>&gt;<i> &gt; recovery of the X2Go client is much slower than recovery of other
+</I>&gt;<i> &gt; applications such as web browsing.
+</I>&gt;<i> 
+</I>&gt;<i> Web browsing will start new TCP connections (not for every fetched URL
+</I>&gt;<i> as back in the day, but still), while SSH uses just one connection. Thus
+</I>&gt;<i> you might have the combination of TCP slow start with several competing
+</I>&gt;<i> TCP connections (web browsing, file sharing, ...). As long as data
+</I>&gt;<i> is available to send (e.g. a screen update of X2Go), TCP will try to
+</I>&gt;<i> increase the send window, which might result in packet loss and slow
+</I>&gt;<i> the stream down again.
+</I>&gt;<i> 
+</I>&gt;<i> You could try with a different congestion control algorithm for the ssh
+</I>&gt;<i> session or with quality of service settings (end-to-end or at least at the
+</I>&gt;<i> choke point, which might be the client side internet router).
+</I>&gt;<i> 
+</I>&gt;<i> &gt;  We have tried playing with
+</I>&gt;<i> &gt; ClientAliveInterval and ClientAliveCountMax but that has not helped.
+</I>&gt;<i> 
+</I>&gt;<i> This would only help to keep the session alive, but not to speed up
+</I>&gt;<i> recovery.
+</I>&lt;snip&gt;
+Thanks, Erik.  Yes, I assume we are falling into the TCP backoff
+algorithm for resending the packets and I don't know of a way to
+reinitiate the connection.  I was hoping ClientAlive would do that but
+it apparently doesn't.  We could time it out faster using the ssh
+timeout parameter but that won't help recovery - just drop the session
+faster - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000670.html">[X2go-dev] High Performance SSH/SCP - HPN-SSH
+</A></li>
+	<LI>Next message: <A HREF="000674.html">[X2go-dev] High Performance SSH/SCP - HPN-SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#671">[ date ]</a>
+              <a href="thread.html#671">[ thread ]</a>
+              <a href="subject.html#671">[ subject ]</a>
+              <a href="author.html#671">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

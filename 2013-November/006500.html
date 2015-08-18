@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fwd%3A%20%5BBug%201033876%5D%20New%3A%20x2go%20session%20does%20not%20set%0A%20correct%20keyboard%20type&In-Reply-To=%3C52968A62.9000008%40cora.nwra.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006488.html">
+   <LINK REL="Next"  HREF="006502.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type</H1>
+    <B>Orion Poplawski</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fwd%3A%20%5BBug%201033876%5D%20New%3A%20x2go%20session%20does%20not%20set%0A%20correct%20keyboard%20type&In-Reply-To=%3C52968A62.9000008%40cora.nwra.com%3E"
+       TITLE="[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type">orion at cora.nwra.com
+       </A><BR>
+    <I>Thu Nov 28 01:12:18 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006488.html">[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+</A></li>
+        <LI>Next message: <A HREF="006502.html">[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6500">[ date ]</a>
+              <a href="thread.html#6500">[ thread ]</a>
+              <a href="subject.html#6500">[ subject ]</a>
+              <a href="author.html#6500">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>This in x2gostartagent seems wrong:
+
+
+if [ &quot;$X2GO_SET_KBD&quot; == &quot;0&quot; ] || [ &quot;$X2GO_KBD_TYPE&quot; != &quot;auto&quot; ]; then
+         $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;blocking creation of 
+agent's keyboard file ${SESSION_DIR}/keyboard as requested by session 
+startup command&quot;
+         mkdir -p ${SESSION_DIR}/keyboard
+fi
+
+In the normal case, X2GO_SET_KBD is 1 and the type is specified as 
+pc105/us or pc105/gb, etc.  Since X2GO_KBD_TYPE != auto it does not set 
+the keyboard setttings.
+
+I'm not sure what is trying to be done here.  An earlier comparison is:
+
+if [ &quot;$X2GO_SET_KBD&quot; == &quot;0&quot; ] || [ &quot;$X2GO_KBD_TYPE&quot; == &quot;auto&quot; ];then
+ 
+X2GO_HOST=&quot;nx/nx,link=${X2GO_LINK},pack=${X2GO_PACK},limit=0,root=${SESSION_DIR},cache=8M,images=32M,type=${X2GO_TYPE},id=${SESSION_NAME},cookie=$X2GO_COOKIE,errors=${SESSION_LOG},kbtype=null/null,${option_geometry}resize=${X2GO_RESIZE},fullscreen=${X2GO_FULLSCREEN},accept=${REMOTE},listen=${GR_PORT},client=linux,menu=0&quot;
+else
+ 
+X2GO_HOST=&quot;nx/nx,link=${X2GO_LINK},pack=${X2GO_PACK},limit=0,root=${SESSION_DIR},cache=8M,images=32M,type=${X2GO_TYPE},id=${SESSION_NAME},cookie=$X2GO_COOKIE,errors=${SESSION_LOG},kbtype=${X2GO_KBD_TYPE},${option_geometry}resize=${X2GO_RESIZE},fullscreen=${X2GO_FULLSCREEN},accept=${REMOTE},listen=${GR_PORT},client=linux,menu=0&quot;
+fi
+
+So you probably want a == auto.
+
+
+On 11/23/2013 07:56 PM, Orion Poplawski wrote:
+&gt;<i> Could anyone see what it going wrong here?  Thanks.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> -------- Original Message --------
+</I>&gt;<i> Subject: [Bug 1033876] New: x2go session does not set correct keyboard type
+</I>&gt;<i> Date: Sat, 23 Nov 2013 23:20:58 +0000
+</I>&gt;<i> From: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">bugzilla at redhat.com</A>
+</I>&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at cora.nwra.com</A>
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="https://bugzilla.redhat.com/show_bug.cgi?id=1033876">https://bugzilla.redhat.com/show_bug.cgi?id=1033876</A>
+</I>&gt;<i>
+</I>&gt;<i>              Bug ID: 1033876
+</I>&gt;<i>             Summary: x2go session does not set correct keyboard type
+</I>&gt;<i>             Product: Fedora
+</I>&gt;<i>             Version: 20
+</I>&gt;<i>           Component: x2goserver
+</I>&gt;<i>            Severity: medium
+</I>&gt;<i>            Assignee: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at cora.nwra.com</A>
+</I>&gt;<i>            Reporter: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">rmj at ast.cam.ac.uk</A>
+</I>&gt;<i>          QA Contact: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">extras-qa at fedoraproject.org</A>
+</I>&gt;<i>                  CC: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at cora.nwra.com</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Description of problem:
+</I>&gt;<i> x2go KDE session does not have correct keyboard type
+</I>&gt;<i>
+</I>&gt;<i> Version-Release number of selected component (if applicable):
+</I>&gt;<i> This is seen on Fedora 20 beta
+</I>&gt;<i> x2goserver-4.0.1.6-5.fc20.x86_64
+</I>&gt;<i>
+</I>&gt;<i> x2goclient 4.0.0.3 on Windows XP
+</I>&gt;<i>
+</I>&gt;<i> How reproducible:
+</I>&gt;<i> Every time.
+</I>&gt;<i>
+</I>&gt;<i> Steps to Reproduce:
+</I>&gt;<i> 1. From a Windows XP laptop with UK keyboard, configure an x2go session
+</I>&gt;<i> with
+</I>&gt;<i> Session preferences / settings /
+</I>&gt;<i> keyboard layout: gb
+</I>&gt;<i> keyboard model: pc105/gb
+</I>&gt;<i> 2. Start x2go session to Fedora 20 beta
+</I>&gt;<i> 3. Type on the keyboard
+</I>&gt;<i>
+</I>&gt;<i> Actual results:
+</I>&gt;<i> Keyboard is incorrectly mapped.
+</I>&gt;<i> eg Shift 3 gives # instead of &#163;.
+</I>&gt;<i> | key gives &gt;
+</I>&gt;<i> ~ key gives |
+</I>&gt;<i> # key gives \
+</I>&gt;<i> &quot; key gives @
+</I>&gt;<i> @ key gives &quot;
+</I>&gt;<i> etc
+</I>&gt;<i>
+</I>&gt;<i> Seen in konsole, firefox, gedit etc.
+</I>&gt;<i>
+</I>&gt;<i> Expected results:
+</I>&gt;<i> Keys give the symbols printed on them
+</I>&gt;<i>
+</I>&gt;<i> Additional info:
+</I>&gt;<i> Correct keyboard mapping can be recovered by giving the command:
+</I>&gt;<i> setxkbmap gb
+</I>&gt;<i>
+</I>&gt;<i> The file:
+</I>&gt;<i> /tmp/.x2go-testuser/session-C-testuser-51-1385245333_stDKDE_dp32.log
+</I>&gt;<i>
+</I>&gt;<i> contains the message:
+</I>&gt;<i> nxagentXkbGetRules: WARNING! Failed to stat file
+</I>&gt;<i> [/usr/lib64/nx/X11/xkb/rules/xorg]: Unknown error -1.
+</I>&gt;<i> keyboard file created
+</I>&gt;<i>
+</I>
+
+-- 
+Orion Poplawski
+Technical Manager                     303-415-9701 x222
+NWRA/CoRA Division                    FAX: 303-415-9702
+3380 Mitchell Lane                  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at cora.nwra.com</A>
+Boulder, CO 80301              <A HREF="http://www.cora.nwra.com">http://www.cora.nwra.com</A>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006488.html">[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+</A></li>
+	<LI>Next message: <A HREF="006502.html">[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6500">[ date ]</a>
+              <a href="thread.html#6500">[ thread ]</a>
+              <a href="subject.html#6500">[ subject ]</a>
+              <a href="author.html#6500">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

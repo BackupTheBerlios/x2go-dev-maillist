@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Suggestion: Make x2gothinclientsystem less invasive
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Suggestion%3A%20Make%20x2gothinclientsystem%20less%20invasive&In-Reply-To=%3C4D8C6B2B.9030402%40edv-serviceteam.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001953.html">
+   <LINK REL="Next"  HREF="001955.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Suggestion: Make x2gothinclientsystem less invasive</H1>
+    <B>Michael Hierweck</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Suggestion%3A%20Make%20x2gothinclientsystem%20less%20invasive&In-Reply-To=%3C4D8C6B2B.9030402%40edv-serviceteam.net%3E"
+       TITLE="[X2go-dev] Suggestion: Make x2gothinclientsystem less invasive">team at edv-serviceteam.net
+       </A><BR>
+    <I>Fri Mar 25 11:15:07 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001953.html">[X2go-dev] [X2go-user] LDAP-Problem: Zertifikateproblem
+</A></li>
+        <LI>Next message: <A HREF="001955.html">[X2go-dev] Suggestion: Make x2gothinclientsystem less invasive
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1954">[ date ]</a>
+              <a href="thread.html#1954">[ thread ]</a>
+              <a href="subject.html#1954">[ subject ]</a>
+              <a href="author.html#1954">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi x2go folks,
+
+I would like to suggest a solution to make x2gothinclientsystem less
+invasive.
+
+Instead of mounting a ramdisk and removing/symlinking some files and
+directories (which might be a Debian packaging policy violation) it
+might be smarter to mount a read only root filesystem and transparently
+overlay it with a tempfs.
+
+I can this be achieved?
+
+a) Install aufs modules in the clients' chroot environment. Aufs modules
+are part of Squeeze's default kernel.
+
+b) Add &quot;aufs&quot; to /etc/initramfs-tools/modules.
+
+c) Set &quot;BOOT=aufs&quot; in /etc/initramfs-tools/initramfs.conf.
+
+d) Add a &quot;magic&quot; script (see attachment) named &quot;aufs&quot; to
+/etc/initramfs-tools/scripts
+
+e) Call update-initramfs -u inside the chroot.
+
+The &quot;aufs&quot; script is based on Debian's
+/usr/share/initramfs-tools/scripts/nfs script.
+
+The attached script provides a three layer file root filesystem.
+
+ro nfsroot/master (generic thinclients' chroot)
+ro nfsroot/&lt;ip-address&gt; (individual thinclient's configuration
+overriding master)
+rw tempfs (simulates a fully rw root file system)
+
+Pros:
+
+* simple (to my mind)
+* flexible
+* less &quot;hacky&quot; (less/no conflicts with other packages)
+* therefore more Debian compliant (to my mind)
+* x2go related stuff currently stored in /ramdisk can go into
+/var/lib/x2go...
+
+Cons:
+
+* any?
+
+Any feedback is appreciated.
+
+Michael
+
+-- 
+EDV-Serviceteam Annika &amp; Michael Hierweck GbR
+Egerstra&#223;e 53, 44225 Dortmund (Germany)
+<A HREF="http://www.edv-serviceteam.net">http://www.edv-serviceteam.net</A>
+-------------- next part --------------
+An embedded and charset-unspecified text was scrubbed...
+Name: aufs
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110325/7e7a0ade/attachment.ksh">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110325/7e7a0ade/attachment.ksh</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001953.html">[X2go-dev] [X2go-user] LDAP-Problem: Zertifikateproblem
+</A></li>
+	<LI>Next message: <A HREF="001955.html">[X2go-dev] Suggestion: Make x2gothinclientsystem less invasive
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1954">[ date ]</a>
+              <a href="thread.html#1954">[ thread ]</a>
+              <a href="subject.html#1954">[ subject ]</a>
+              <a href="author.html#1954">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

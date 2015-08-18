@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] New major distribution builds available for X2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3C4F3CB902.1050802%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003441.html">
+   <LINK REL="Next"  HREF="003466.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] New major distribution builds available for X2go</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3C4F3CB902.1050802%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] New major distribution builds available for X2go">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Thu Feb 16 09:06:26 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003441.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+        <LI>Next message: <A HREF="003466.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3445">[ date ]</a>
+              <a href="thread.html#3445">[ thread ]</a>
+              <a href="subject.html#3445">[ subject ]</a>
+              <a href="author.html#3445">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 15.02.2012 10:27, schrieb Mike Gabriel:
+
+[...............]
+
+&gt;&gt;<i> 2382 ./nx-libs/unique-libnames.diff
+</I>&gt;<i> 
+</I>&gt;<i> Mike loves this one!!! Especially thanks for this piece of awesome work.
+</I>&gt;<i> If I take a look at the file list of the Debian package libnx-x11, I can
+</I>&gt;<i> still see some lib files that are not renamed to the new scheme
+</I>&gt;<i> (libNX_&lt;name&gt;.so). Does this need some more fine-tuning?
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=07f9dfa05ab83e094e823b4af8478b25addd0fa5">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=07f9dfa05ab83e094e823b4af8478b25addd0fa5</A>
+</I>&gt;<i> 
+</I>[..............]
+
+Unfortunately, this patch breaking functionality of Xinerama. It rename
+libXinerama* to libNX_Xinerama*, which make impossible for X clients to
+find a modified version of Xinerama library under
+/usr/lib/nx/X11/Xinerama and they using a system libXinerama instead.
+
+Simple making links
+/usr/lib/nx/X11/Xinerama/libNX_Xinerama* -&gt;
+/usr/lib/nx/X11/Xinerama/libXinerama*
+don't work, because due to new build procedure libXinerama is linked
+against libNX_Xext and libNX_X11, not libXext and libX11.
+
+As solution, I can suggest:
+
+leave libNX_Xinerama* under /usr/lib/nx/X11/
+make symbolic links /usr/lib/nx/X11/libNX_Xinerama* -&gt;
+/usr/lib/nx/X11/Xinerama/libXinerama*
+
+link system libraries libX11 and libXext into /usr/lib/nx/X11/Xinerama
+/usr/lib/libX11* -&gt; /usr/lib/nx/X11/Xinerama/libNX_X11*
+/usr/lib/libXext* -&gt; /usr/lib/nx/X11/Xinerama/libNX_Xext*
+
+regards,
+Alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120216/807645bc/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120216/807645bc/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003441.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+	<LI>Next message: <A HREF="003466.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3445">[ date ]</a>
+              <a href="thread.html#3445">[ thread ]</a>
+              <a href="subject.html#3445">[ subject ]</a>
+              <a href="author.html#3445">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

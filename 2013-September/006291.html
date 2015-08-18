@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#314: nx-libs compilation warnings
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23314%3A%20nx-libs%20compilation%20warnings&In-Reply-To=%3C1380443474.965226.29295.15700%40saddam1.rambler.ru%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006289.html">
+   <LINK REL="Next"  HREF="006293.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#314: nx-libs compilation warnings</H1>
+    <B>Mirraz Mirraz</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23314%3A%20nx-libs%20compilation%20warnings&In-Reply-To=%3C1380443474.965226.29295.15700%40saddam1.rambler.ru%3E"
+       TITLE="[X2Go-Dev] Bug#314: nx-libs compilation warnings">mirraz1 at rambler.ru
+       </A><BR>
+    <I>Sun Sep 29 10:31:14 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006289.html">[X2Go-Dev] Processed: Re:  Bug#307: x2goserver dependency breaks
+</A></li>
+        <LI>Next message: <A HREF="006293.html">[X2Go-Dev] Bug#314:  Bug#314: nx-libs compilation warnings
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6291">[ date ]</a>
+              <a href="thread.html#6291">[ thread ]</a>
+              <a href="subject.html#6291">[ subject ]</a>
+              <a href="author.html#6291">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Package: nx-libs
+Version: 3.5.0.21
+
+Building nx-libs-3.5.0.21-full I'v got this compilation warnings:
+
+ddxLoad.c:220:3: warning: implicit declaration of function &#8216;stat&#8217; [-Wimplicit-function-declaration]
+
+imLcPrs.c:592:14: warning: array subscript is above array bounds [-Warray-bounds]
+get.c:1797:40: warning: array subscript is above array bounds [-Warray-bounds]
+get.c:1809:40: warning: array subscript is above array bounds [-Warray-bounds]
+get.c:1821:40: warning: array subscript is above array bounds [-Warray-bounds]
+get.c:3645:40: warning: array subscript is above array bounds [-Warray-bounds]
+get.c:3657:40: warning: array subscript is above array bounds [-Warray-bounds]
+get.c:3669:40: warning: array subscript is above array bounds [-Warray-bounds]
+get.c:5493:40: warning: array subscript is above array bounds [-Warray-bounds]
+get.c:5505:40: warning: array subscript is above array bounds [-Warray-bounds]
+get.c:5517:40: warning: array subscript is above array bounds [-Warray-bounds]
+arbprogparse.c:3262:14: warning: array subscript is above array bounds [-Warray-bounds]
+
+XKBMisc.c:669:23: warning: the address of &#8216;newTypes&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+lcFile.c:441:11: warning: the address of &#8216;cat&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+miwindow.c:117:51: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+security.c:1403:51: warning: the address of &#8216;imageBox&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+window.c:442:51: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+window.c:443:51: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+window.c:444:51: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+window.c:445:51: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+panoramiX.c:453:48: warning: the address of &#8216;TheBox&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+panoramiX.c:1185:51: warning: the address of &#8216;SrcBox&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+miexpose.c:219:48: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+miexpose.c:252:48: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+miexpose.c:256:51: warning: the address of &#8216;srcBox&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+miexpose.c:549:49: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+miexpose.c:750:52: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+mibstore.c:480:48: warning: the address of &#8216;bounds&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+mibank.c:778:59: warning: the address of &#8216;fastBox&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+mioverlay.c:224:49: warning: the address of &#8216;fullBox&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+mioverlay.c:225:49: warning: the address of &#8216;fullBox&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+mioverlay.c:1056:49: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+mioverlay.c:1801:51: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+XKBMisc.c:669:23: warning: the address of &#8216;newTypes&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+render2.c:107:12: warning: the address of &#8216;u1&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+render2.c:108:14: warning: the address of &#8216;u2&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+render2.c:150:12: warning: the address of &#8216;u1&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+render2.c:151:14: warning: the address of &#8216;u2&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+render2.c:152:15: warning: the address of &#8216;v1&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+render2.c:153:15: warning: the address of &#8216;v2&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+render2swap.c:143:12: warning: the address of &#8216;u1&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+render2swap.c:144:14: warning: the address of &#8216;u2&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+render2swap.c:191:12: warning: the address of &#8216;u1&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+render2swap.c:192:14: warning: the address of &#8216;u2&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+render2swap.c:193:15: warning: the address of &#8216;v1&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+render2swap.c:194:15: warning: the address of &#8216;v2&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbcopy.c:575:48: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fboverlay.c:149:48: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:312:51: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1416:490: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1461:490: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1492:405: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1521:405: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1552:405: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1590:490: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1654:490: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1721:490: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1753:494: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1758:494: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1763:494: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1768:494: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1818:490: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1869:490: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1911:490: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1950:490: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:1987:405: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:2026:405: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:2067:405: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:2106:405: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:2154:405: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:2195:405: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:2219:405: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:2261:287: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+fbpseudocolor.c:2298:288: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+damage.c:234:49: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+damage.c:1937:52: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+X/NXwindow.c:516:51: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+X/NXwindow.c:517:51: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+X/NXwindow.c:518:51: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+X/NXwindow.c:519:51: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+X/NXmiexpose.c:256:48: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+X/NXmiexpose.c:289:48: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+X/NXmiexpose.c:293:51: warning: the address of &#8216;srcBox&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+X/NXmiexpose.c:604:49: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+X/NXmiexpose.c:824:52: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+X/NXmiwindow.c:134:51: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+X/NXdamage.c:251:49: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+X/NXdamage.c:2044:52: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+Events.c:2444:53: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+Screen.c:2157:55: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+Screen.c:2158:55: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+Screen.c:2408:49: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+Screen.c:2409:49: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+Screen.c:2410:49: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+Screen.c:2411:49: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+Screen.c:3106:53: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+Screen.c:4034:49: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+Drawable.c:797:55: warning: the address of &#8216;tileBox&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+Drawable.c:1546:53: warning: the address of &#8216;tmpBox&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+Drawable.c:2468:51: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+Window.c:2158:55: warning: the address of &#8216;box&#8217; will always evaluate as &#8216;true&#8217; [-Waddress]
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006289.html">[X2Go-Dev] Processed: Re:  Bug#307: x2goserver dependency breaks
+</A></li>
+	<LI>Next message: <A HREF="006293.html">[X2Go-Dev] Bug#314:  Bug#314: nx-libs compilation warnings
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6291">[ date ]</a>
+              <a href="thread.html#6291">[ thread ]</a>
+              <a href="subject.html#6291">[ subject ]</a>
+              <a href="author.html#6291">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

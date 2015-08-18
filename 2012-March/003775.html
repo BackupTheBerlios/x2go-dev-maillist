@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] RDP services
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20RDP%20services&In-Reply-To=%3C1331570945.6657.11.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003771.html">
+   <LINK REL="Next"  HREF="003768.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] RDP services</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20RDP%20services&In-Reply-To=%3C1331570945.6657.11.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2Go-Dev] RDP services">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Mon Mar 12 17:49:05 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003771.html">[X2Go-Dev] OT: How to use a mailing list (Was: RDP services)
+</A></li>
+        <LI>Next message: <A HREF="003768.html">[X2Go-Dev] [XREF] [Qt bugreports] (QTBUG-24729) Out of source building for App bundles broken (Info.plist and ICON)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3775">[ date ]</a>
+              <a href="thread.html#3775">[ thread ]</a>
+              <a href="subject.html#3775">[ subject ]</a>
+              <a href="author.html#3775">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I've been really looking forward to it but have not yet found the time.
+It will be important for clients where we have them booting from stick
+into a scaled down LXDE/XFCE environment.
+
+The big find for us and our clients using Windows XP desktops was the
+TSPlus Windows RDP7 client.
+
+I'm wondering what freerdp integration with X2Go would look like (which
+is, I assume, why you sent it to the dev list).  Are you thinking that
+freerdp would be part of the x2goclient for Linux to connect to Windows
+RDP servers or that RDP would be an alternative protocol to NX for
+communication between X2Go client and server?
+
+If the latter, I've never looked seriously at the RDP server side
+solution for Linux but I thought it relied upon VNC which, I assume,
+would make it rather slow.  If not, and it really does use fully native
+RDP6+, that could be an interesting solution.
+
+One problem we are seeing using RDP as a transport is no way to
+distinguish bulk from interactive RDP traffic for traffic shaping.  That
+would be something we'd have to address.  In fact, not to drift too far
+afield, but I think we have this problem in the current implementation
+of X2Go using SSH.  I think the move to libssh has eliminated the
+practice of setting the minimize-latency TOS bit for interactive traffic
+and minimize-cost for bulk like openssh does.  That has hurt us as we
+can no longer shape X2Go interactive traffic separately from bulk on our
+WAN/Internet connections.  I have no idea how difficult that is to fix
+using libssh.  Thanks - John
+
+On Sun, 2012-03-11 at 12:08 -0400, brian mullan wrote:
+&gt;<i> John
+</I>&gt;<i> 
+</I>&gt;<i> Have you tried the new FreeRDP client yet?    
+</I>&gt;<i> 
+</I>&gt;<i> I've not done any extensive testing but it does now support both
+</I>&gt;<i> Microsoft's RemoteFX &amp; RemoteApp services.   Its an Apache
+</I>&gt;<i> license app and v1.0 was released and demo'd  at the Ubuntu Developer
+</I>&gt;<i> conference in Nov 2011.
+</I>&gt;<i> 
+</I>&gt;<i> RemoteFX - <A HREF="https://github.com/FreeRDP/FreeRDP/wiki/RemoteFX">https://github.com/FreeRDP/FreeRDP/wiki/RemoteFX</A>
+</I>&gt;<i> and
+</I>&gt;<i> RemoteApp services - <A HREF="https://github.com/FreeRDP/FreeRDP/wiki/RemoteApp">https://github.com/FreeRDP/FreeRDP/wiki/RemoteApp</A>
+</I>&gt;<i> 
+</I>&gt;<i> I've configured Windows 2008 r2 servers on KVM and on AWS EC2,
+</I>&gt;<i> published applications for RemoteApp and then from linux/ubuntu
+</I>&gt;<i> machines run the xfreerdp client and the Windows RemoteApp appears on
+</I>&gt;<i> screen like any other app.   I used to have to use
+</I>&gt;<i> seamlessrdp for this but now it just works since the freerdp v1.x
+</I>&gt;<i> release.
+</I>&gt;<i> 
+</I>&gt;<i> I'd like to see FreeRDP support in x2go as I understand in the next
+</I>&gt;<i> Ubuntu FreeRDP is replacing rdesktop.
+</I>&gt;<i> 
+</I>&gt;<i> Brian
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ---------- Forwarded message ----------
+</I>&gt;<i> From: &quot;John A. Sullivan III&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt;
+</I>&gt;<i> To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i> Cc: 
+</I>&gt;<i> Date: Sat, 10 Mar 2012 06:30:51 -0500
+</I>&gt;<i> Subject: Re: [X2Go-Dev] X2Go Sessions File Format Specs
+</I>&gt;<i> On Sat, 2012-03-10 at 11:51 +0100, Mike Gabriel wrote:
+</I>&gt;<i> &gt; Hi Alex, hi all,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I have started documenting the versatile session profile options of
+</I>&gt;<i> &gt; X2Go Client and Python X2Go (as found in ~/.x2goclient/sessions).
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; @Alex: Could you please proof-read this wiki page and fix+change
+</I>&gt;<i> +amend?
+</I>&gt;<i> &gt; <A HREF="http://wiki.x2go.org/doku.php/wiki:development:sessions-file">http://wiki.x2go.org/doku.php/wiki:development:sessions-file</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> Thanks for documenting these, Mike; I read them with great interest.
+</I>&gt;<i> Toward the end, you write, &quot;Setting the command to RDP will turn X2Go
+</I>&gt;<i> into an RDP proxy (RDP via NX). RDP will receive a peformance
+</I>&gt;<i> improvement on WAN connections&quot;
+</I>&gt;<i> 
+</I>&gt;<i> In our experience, this is true for RDP5 but it significantly degrades
+</I>&gt;<i> the native performance of RDP6 and RDP7.  For those wishing to use
+</I>&gt;<i> RDP6
+</I>&gt;<i> or 7 with Windows XP, TSPlus (www.tsplus.net) makes an XP RDP6/7
+</I>&gt;<i> client
+</I>&gt;<i> and distributes it freely.
+</I>&gt;<i> 
+</I>&gt;<i> I would love to see mimebox included in x2goclient.  I know we had
+</I>&gt;<i> planned to write a &quot;multimedia player&quot; to automatically redirect to
+</I>&gt;<i> mimebox similar to the way printing works but have not gotten around
+</I>&gt;<i> to
+</I>&gt;<i> it - still overwhelmed by a large consulting contract completely
+</I>&gt;<i> outside
+</I>&gt;<i> of X2Go :(  Thanks again - John
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>
+
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003771.html">[X2Go-Dev] OT: How to use a mailing list (Was: RDP services)
+</A></li>
+	<LI>Next message: <A HREF="003768.html">[X2Go-Dev] [XREF] [Qt bugreports] (QTBUG-24729) Out of source building for App bundles broken (Info.plist and ICON)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3775">[ date ]</a>
+              <a href="thread.html#3775">[ thread ]</a>
+              <a href="subject.html#3775">[ subject ]</a>
+              <a href="author.html#3775">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

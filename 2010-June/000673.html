@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goplugin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goplugin&In-Reply-To=%3C1277750548.3413.13.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000672.html">
+   <LINK REL="Next"  HREF="000680.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goplugin</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goplugin&In-Reply-To=%3C1277750548.3413.13.camel%40localhost%3E"
+       TITLE="[X2go-dev] x2goplugin">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Mon Jun 28 20:42:28 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000672.html">[X2go-dev] x2goplugin
+</A></li>
+        <LI>Next message: <A HREF="000680.html">[X2go-dev] x2goplugin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#673">[ date ]</a>
+              <a href="thread.html#673">[ thread ]</a>
+              <a href="subject.html#673">[ subject ]</a>
+              <a href="author.html#673">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2010-06-28 at 20:31 +0200, Mike Gabriel wrote:
+&gt;<i> Hi Paul,
+</I>&gt;<i> 
+</I>&gt;<i> thank you for your reply.
+</I>&gt;<i> 
+</I>&gt;<i> On Mo 28 Jun 2010 09:08:36 CEST Paul van der Vlis wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&gt; Main question is: how do i configure the sessions with the x2go plugin?
+</I>&gt;<i> &gt;&gt; I understood that there is a .css file and a javascript file managing
+</I>&gt;<i> &gt;&gt; the installation and upgrade of the xpi plugin code in firefox. However,
+</I>&gt;<i> &gt;&gt; I couldn't find any hints where the plugin retrieves its configuration
+</I>&gt;<i> &gt;&gt; from...
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Hints are very much appreciated as I would like to play with the plugin...
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I think you can use the html sourcecode of <A HREF="http://plugin.x2go.org">http://plugin.x2go.org</A>
+</I>&gt;<i> 
+</I>&gt;<i> I can't see any hints on configuring the x2go server session from  
+</I>&gt;<i> within the html framework... There must be another answer...
+</I>&gt;<i> 
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>Here is how we did it.
+
+We created our local web server and, in the root, we placed a file named
+x2gobase.html with the following contents:
+
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;SimplicITy Data Service&lt;/title&gt;
+    &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot;
+href=&quot;<A HREF="http://plugin.x2go.org/media/x2goplugin.css">http://plugin.x2go.org/media/x2goplugin.css</A>&quot;&gt;
+    &lt;script src=&quot;<A HREF="http://plugin.x2go.org/media/x2goplugin.js">http://plugin.x2go.org/media/x2goplugin.js</A>&quot;
+type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body onload=&quot;checkPlugin()&quot;&gt;
+    &lt;div id=&quot;x2goplugin&quot;&gt;
+    &lt;object src=&quot;location&quot;
+        type=&quot;application/x2go&quot;
+        pluginspage=&quot;<A HREF="http://plugin.x2go.org/index.html">http://plugin.x2go.org/index.html</A>&quot;
+
+pluginurl=&quot;<A HREF="http://plugin.x2go.org/download/x2goplugin_linux32.xpi">http://plugin.x2go.org/download/x2goplugin_linux32.xpi</A>&quot;
+        data=&quot;config.x2go&quot;
+        hidden=&quot;false&quot;
+        name=&quot;x2goplugin&quot;
+        palette=&quot;background&quot;
+        height=&quot;100%&quot;
+        hspace=&quot;0&quot;
+        vspace=&quot;0&quot;
+        width=&quot;100%&quot;&gt;
+        &lt;!--x2goplugin //--&gt;
+    &lt;/object&gt;
+    &lt;/div&gt;
+    &lt;div id=&quot;description&quot;&gt;
+    &lt;h4&gt;SimplicITy Plugin&lt;/h4&gt;
+    &lt;p&gt;This website will offer you a plugin named &quot;x2goplugin&quot; which
+will enable you to start or reconnect to your SimplicITy desktop.&lt;/br&gt;
+For more information about SimplicITy and other services to simplify
+your office, please visit &lt;a
+href=&quot;<A HREF="http://www.pacifera.com">http://www.pacifera.com</A>&quot;&gt;www.pacifera.com&lt;/a&gt;&lt;/br&gt;
+For more information about X2Go, please visit &lt;a
+href=&quot;<A HREF="http://www.x2go.org">http://www.x2go.org</A>&quot;&gt;<A HREF="http://www.x2go.org&lt;/a">http://www.x2go.org&lt;/a</A>&gt;.
+    &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+As you can see, this is just slightly customized to our needs - very
+simple to adapt.
+
+We then created subdirectories for each user.  In each subdirectory, we
+created a link to the x2gobase.html named index.html.  In the same user
+subdirectory, we created a file named config.x2go with contents similar
+to the following:
+
+session=SimplicITy (our utility office product name)
+server=x2gohost.mycompany.com
+user=&lt;we leave this blank as an extra security precaution&gt;
+sshport=443(or whatever port the user is using)
+command=KDE
+rootless=false
+
+It has worked well for us other than the few bugs we reported.  Good
+luck - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000672.html">[X2go-dev] x2goplugin
+</A></li>
+	<LI>Next message: <A HREF="000680.html">[X2go-dev] x2goplugin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#673">[ date ]</a>
+              <a href="thread.html#673">[ thread ]</a>
+              <a href="subject.html#673">[ subject ]</a>
+              <a href="author.html#673">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

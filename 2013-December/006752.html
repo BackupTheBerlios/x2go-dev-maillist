@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Periodic X2Go Server CPU usage
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Periodic%20X2Go%20Server%20CPU%20usage&In-Reply-To=%3CCAAWyt1q-UucYybM9V0_TZYh_uygg8YYxeOnROX7xz3-h6fkXHA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006751.html">
+   <LINK REL="Next"  HREF="006753.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Periodic X2Go Server CPU usage</H1>
+    <B>Daniel Lindgren</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Periodic%20X2Go%20Server%20CPU%20usage&In-Reply-To=%3CCAAWyt1q-UucYybM9V0_TZYh_uygg8YYxeOnROX7xz3-h6fkXHA%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Periodic X2Go Server CPU usage">bd.dali at gmail.com
+       </A><BR>
+    <I>Thu Dec 26 11:50:09 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006751.html">[X2Go-Dev] Bug#381: Outdated Fedora information in	installation:x2goclient#fedora
+</A></li>
+        <LI>Next message: <A HREF="006753.html">[X2Go-Dev] Periodic X2Go Server CPU usage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6752">[ date ]</a>
+              <a href="thread.html#6752">[ thread ]</a>
+              <a href="subject.html#6752">[ subject ]</a>
+              <a href="author.html#6752">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all.
+
+I have a virtual Arch machine with X2Go Server 4.0.1.8-1 installed. There
+seems to some CPU activity even when no X2Go sessions are running, see
+attached image. The first half of the graph is with x2goserver running, the
+other halt with it stopped. No X2Go Sessions were active on the machine.
+
+Using top it looks like it is x2golistsessions and x2gocleansessions that
+use CPU periodically.
+
+If you have multiple virtual machines running X2Go Server, the total CPU
+consumption of frequently running x2go(list|clean)sessions could probably
+add up to a noticeable performance hit.
+
+Is there a way to change how often they run?
+
+Cheers,
+Daniel
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131226/305a18d3/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131226/305a18d3/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: x2goserver_cpu.png
+Type: image/png
+Size: 1609 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131226/305a18d3/attachment.png">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131226/305a18d3/attachment.png</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006751.html">[X2Go-Dev] Bug#381: Outdated Fedora information in	installation:x2goclient#fedora
+</A></li>
+	<LI>Next message: <A HREF="006753.html">[X2Go-Dev] Periodic X2Go Server CPU usage
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6752">[ date ]</a>
+              <a href="thread.html#6752">[ thread ]</a>
+              <a href="subject.html#6752">[ subject ]</a>
+              <a href="author.html#6752">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

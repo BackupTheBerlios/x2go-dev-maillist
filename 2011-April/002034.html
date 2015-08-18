@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] [PATCH 2/4] cups-x2go.conf: explain an option before setting the option
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%5BPATCH%202/4%5D%20cups-x2go.conf%3A%20explain%20an%20option%20before%0A%20setting%20the%20option&In-Reply-To=%3C1302855023.4203.8.camel%40mattotaupa%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002036.html">
+   <LINK REL="Next"  HREF="002039.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] [PATCH 2/4] cups-x2go.conf: explain an option before setting the option</H1>
+    <B>Paul Menzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%5BPATCH%202/4%5D%20cups-x2go.conf%3A%20explain%20an%20option%20before%0A%20setting%20the%20option&In-Reply-To=%3C1302855023.4203.8.camel%40mattotaupa%3E"
+       TITLE="[X2go-dev] [PATCH 2/4] cups-x2go.conf: explain an option before setting the option">paulepanter at users.sourceforge.net
+       </A><BR>
+    <I>Fri Apr 15 10:10:23 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002036.html">[X2go-dev] [PATCH 1/4] cups-x2go.conf: remove broken parts from patch application
+</A></li>
+        <LI>Next message: <A HREF="002039.html">[X2go-dev] [PATCH 2/4] cups-x2go.conf: explain an option before setting the option
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2034">[ date ]</a>
+              <a href="thread.html#2034">[ thread ]</a>
+              <a href="subject.html#2034">[ subject ]</a>
+              <a href="author.html#2034">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Date: Fri, 15 Apr 2011 09:57:07 +0200
+
+In my experience this way is more widely used.
+
+Signed-off-by: Paul Menzel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">paulepanter at users.sourceforge.net</A>&gt;
+---
+&#8226; wording in commit summary: Use explain or describe?
+&#8226; Maybe the example file should be put in a separate file `cups-x2go.conf.example`?
+---
+ README.Multi-CUPS-Servers |   20 ++++++++++----------
+ cups-x2go.conf            |   13 +++++++------
+ 2 files changed, 17 insertions(+), 16 deletions(-)
+
+diff --git a/README.Multi-CUPS-Servers b/README.Multi-CUPS-Servers
+index 4041840..885d8bf 100644
+--- a/README.Multi-CUPS-Servers
++++ b/README.Multi-CUPS-Servers
+@@ -91,36 +91,36 @@ like this (this example includes sample customizations):
+ # Used when this print server must service multiple X2Go Servers
+ # This requires a single database for all X2Go Server session data
+ 
+-#multiserver = 0
+-multiserver = 1
+ # Set multiserver to 0 (zero) to disable and 1 (one) to enable
+ # defaults to 0
++#multiserver = 0
++multiserver = 1
+ 
+-#dbhost = localhost
+-dbhost = pgserver.mycompany.com
+ # Set dbhost to the name of the database host
+ # defaults to localhost
++#dbhost = localhost
++dbhost = pgserver.mycompany.com
+ 
+-#dbuser = postgres
+-dbuser = someuser
+ # Set dbuser to the user ID for logging into the database
+ # defaults to postgres
++#dbuser = postgres
++dbuser = someuser
+ 
+-#dbname = x2go_sessions
+ # Set dbname to the database name
+ # defaults to x2go_sessions
++#dbname = x2go_sessions
+ 
+-#dbschema =
+-dbschema = postgres
+ # Set dbschema to the master schema in a multi-schema X2Go database
+ # This is the schema used to coordinate information from the individual
+ # X2Go Server schemas in a secure environment (where one server cannot
+ # view another server's session data
+ # defaults to an empty string
++#dbschema =
++dbschema = postgres
+ 
+-#dbtable = sessions
+ # Set dbtables to the database table used to hold the session data
+ # defaults to sessions
++#dbtable = sessions
+ #==========================
+ 
+ 
+diff --git a/cups-x2go.conf b/cups-x2go.conf
+index 7232018..e21628c 100644
+--- a/cups-x2go.conf
++++ b/cups-x2go.conf
+@@ -15,30 +15,31 @@
+ #==========================
+ # Used when this print server must service multiple X2Go Servers
+ # This requires a single database for all X2Go Server session data
+-#multiserver = 0
++
+ # Set multiserver to 0 (zero) to disable and 1 (one) to enable
+ # defaults to 0
++#multiserver = 0
+ 
+-#dbhost = localhost
+ # Set dbhost to the name of the database host
+ # defaults to localhost
++#dbhost = localhost
+ 
+-#dbuser = postgres
+ # Set dbuser to the user ID for logging into the database
+ # defaults to postgres
++#dbuser = postgres
+ 
+-#dbname = x2go_sessions
+ # Set dbname to the database name
+ # defaults to x2go_sessions
++#dbname = x2go_sessions
+ 
+-#dbschema = 
+ # Set dbschema to the master schema in a multi-schema X2Go database
+ # This is the schema used to coordinate information from the individual
+ # X2Go Server schemas in a secure environment (where one server cannot 
+ # view another server's session data
+ # defaults to an empty string
++#dbschema = 
+ 
+-#dbtable = sessions
+ # Set dbtables to the database table used to hold the session data
+ # defaults to sessions
++#dbtable = sessions
+ #==========================
+-- 
+1.7.4.1
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110415/87b7a3fe/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110415/87b7a3fe/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002036.html">[X2go-dev] [PATCH 1/4] cups-x2go.conf: remove broken parts from patch application
+</A></li>
+	<LI>Next message: <A HREF="002039.html">[X2go-dev] [PATCH 2/4] cups-x2go.conf: explain an option before setting the option
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2034">[ date ]</a>
+              <a href="thread.html#2034">[ thread ]</a>
+              <a href="subject.html#2034">[ subject ]</a>
+              <a href="author.html#2034">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

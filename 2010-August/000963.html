@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goclient fails cannot connect to xserver
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20fails%20cannot%20connect%20to%20xserver&In-Reply-To=%3C4C7267FB.5000008%40immerda.ch%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000957.html">
+   <LINK REL="Next"  HREF="000965.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goclient fails cannot connect to xserver</H1>
+    <B>kamerun at immerda.ch</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20fails%20cannot%20connect%20to%20xserver&In-Reply-To=%3C4C7267FB.5000008%40immerda.ch%3E"
+       TITLE="[X2go-dev] x2goclient fails cannot connect to xserver">kamerun at immerda.ch
+       </A><BR>
+    <I>Mon Aug 23 14:22:19 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000957.html">[X2go-dev] x2goclient fails cannot connect to xserver
+</A></li>
+        <LI>Next message: <A HREF="000965.html">[X2go-dev] Windows clipboard solution in next release?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#963">[ date ]</a>
+              <a href="thread.html#963">[ thread ]</a>
+              <a href="subject.html#963">[ subject ]</a>
+              <a href="author.html#963">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hello,
+
+On 08/22/2010 03:28 PM, Heinz-M. Graesing wrote:
+&gt;<i>  Hello,
+</I>&gt;<i>
+</I>&gt;<i> you can start any other command inside the boot environment and you 
+</I>&gt;<i> can change the filesystem to rw for debugging purpose. You should try 
+</I>&gt;<i> starting x2goclient by hand and other applications with the same user 
+</I>&gt;<i> and as root. I think this is caused by user permissions (or group 
+</I>&gt;<i> membership).
+</I>
+the rights are ok, but the automatic starting of x2goclient end with a 
+loop, because the display environment variables are not set(or not 
+correctly set).
+(manually starting x2goclient is OK (with DISPLAY=:0.0 ).
+
+Our questions are:
+
+1.)  where is the variable of the DISPLAY env. variable is 
+set/initialized/configured ?
+
+2.) must ldap-client software be installed on the thin-client locally ?
+
+3.) the the parameters for x2goclient are in the documentation
+/opt/x2gothinclient/etc/default/x2gothinclient. This is false. Is the 
+right file name x2goclient   ?
+&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i>
+</I>&gt;<i> Heintz
+</I>&gt;<i>
+</I>&gt;<i> Am 21.08.2010 15:05, schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kamerun at immerda.ch</A>:
+</I>&gt;&gt;<i> hello,
+</I>&gt;&gt;<i> installation with ldap:
+</I>&gt;&gt;<i> the program x2goclient
+</I>&gt;&gt;<i> ( in /opt/x2gothinclient/usr/bin )
+</I>&gt;&gt;<i> starts, but exits with the message
+</I>&gt;&gt;<i> &quot;cannot connect to X server&quot; .
+</I>&gt;&gt;<i> the parameter file
+</I>&gt;&gt;<i> /opt/x2gothinclient/etc/default/x2gothinclient
+</I>&gt;&gt;<i> is present, but also if it is not present it gives the same 
+</I>&gt;&gt;<i> error-messages.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> please send us the necessary information about parametrisation of 
+</I>&gt;&gt;<i> this program.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> the program is started again and again on the thin-client(&quot;endless 
+</I>&gt;&gt;<i> loop&quot;).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> michel and paul
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2go-dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000957.html">[X2go-dev] x2goclient fails cannot connect to xserver
+</A></li>
+	<LI>Next message: <A HREF="000965.html">[X2go-dev] Windows clipboard solution in next release?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#963">[ date ]</a>
+              <a href="thread.html#963">[ thread ]</a>
+              <a href="subject.html#963">[ subject ]</a>
+              <a href="author.html#963">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

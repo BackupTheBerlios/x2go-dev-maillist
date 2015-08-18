@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Go Client Code Changes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20Client%20Code%20Changes&In-Reply-To=%3C1295495868.9500.117.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001509.html">
+   <LINK REL="Next"  HREF="001548.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Go Client Code Changes</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20Client%20Code%20Changes&In-Reply-To=%3C1295495868.9500.117.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] X2Go Client Code Changes">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu Jan 20 04:57:48 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001509.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+        <LI>Next message: <A HREF="001548.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1511">[ date ]</a>
+              <a href="thread.html#1511">[ thread ]</a>
+              <a href="subject.html#1511">[ subject ]</a>
+              <a href="author.html#1511">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2011-01-20 at 02:09 +0100, Oleksandr Shneyder wrote:
+&gt;<i> Am 19.01.2011 17:03, schrieb John A. Sullivan III:
+</I>&gt;<i> &gt; On Wed, 2011-01-19 at 16:40 +0100, Oleksandr Shneyder wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Thanks, Oleksandr.  This is helpful.  Phil and I (mostly Phil) do have
+</I>&gt;<i> &gt; vcxsrv up and running with libssh and on everything from Windows XP to
+</I>&gt;<i> &gt; Windows 7.  It has eliminated all the crippling bugs and appears to
+</I>&gt;<i> &gt; perform better.  We can probably send you the simple code changes we
+</I>&gt;<i> &gt; made if it will save you some time.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; However, we still have some of our original issues.  I'll restate them
+</I>&gt;<i> &gt; using your numbers from above.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 1) Thankfully, vcxsrv is working perfectly fine in full screen and
+</I>&gt;<i> &gt; rootless as well as multi-windows so these possibilities are now open to
+</I>&gt;<i> &gt; us.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 2) That's an important point but it still leaves us with the original
+</I>&gt;<i> &gt; dilemma: if we start X before we know the session parameters, we cannot
+</I>&gt;<i> &gt; run fullscreen or rootless.  More accurately, we can but we must choose
+</I>&gt;<i> &gt; one of the three (fullscreen, rootless, or multi-window) before we know
+</I>&gt;<i> &gt; the session parameters.  If we default to full screen, then we get a
+</I>&gt;<i> &gt; full screen but the session may only paint into a part of it and leave
+</I>&gt;<i> &gt; the rest of the screen black.  My understanding from Phil is that it
+</I>&gt;<i> &gt; does not automatically resize the session to consume the entire windows
+</I>&gt;<i> &gt; like it does on Linux.  Even if it did, fullscreen is not what all users
+</I>&gt;<i> &gt; will want (or rootless or multi-window - exactly why we should give them
+</I>&gt;<i> &gt; a choice).  My guess would be the delayed start would be a worthwhile
+</I>&gt;<i> &gt; trade-off for giving users important options.  Thoughts? Vehement
+</I>&gt;<i> &gt; disagreements? Insults? (well . . . hopefully no insults :)  )
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 3) Argh!! That's really unfortunate.  Our practical experience is that
+</I>&gt;<i> &gt; losing &lt;ALT&gt;&lt;TAB&gt; significantly impacts productivity and makes the users
+</I>&gt;<i> &gt; more likely to resist transitioning to X2Go desktops.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 4) I think I did not communicate this well in my original email.  I'm
+</I>&gt;<i> &gt; not referring to the &quot;magic pixel&quot; to minimize the X2Go session.  What
+</I>&gt;<i> &gt; we find happening VERY frequently is that a user has an application
+</I>&gt;<i> &gt; maximized in their X2Go desktop.  They then want to close the
+</I>&gt;<i> &gt; application and do so by clicking on the top right most &quot;x&quot; box on the
+</I>&gt;<i> &gt; title bar, i.e., the shortcut to close (alongside restore and minimize).
+</I>&gt;<i> &gt; They click the top right most one because that's the habit they have
+</I>&gt;<i> &gt; built for closing maximized applications and briefly forget that the top
+</I>&gt;<i> &gt; rightmost &quot;x&quot; is not the one for the application but the one for the
+</I>&gt;<i> &gt; X2Go session.  Thus, they accidentally close their X2Go session rather
+</I>&gt;<i> &gt; than the application.  If they were working in full screen mode, the
+</I>&gt;<i> &gt; X2Go desktop would be more like their physical desktop rather than a
+</I>&gt;<i> &gt; desktop within a desktop and thus their habitual actions are less like
+</I>&gt;<i> &gt; to be a problem.  It also gives &lt;ALT&gt;&lt;TAB&gt; and eliminates the confusion
+</I>&gt;<i> &gt; we frequently hear among end users as they say &quot;now where am I - my
+</I>&gt;<i> &gt; virtual world or my physical world&quot;.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Thanks again - John
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> &gt; X2go-dev mailing list
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> 
+</I>&gt;<i> Hello John,
+</I>&gt;<i> All I wrote is relative to Xming, not vcxsrv. Sure, we will change a
+</I>&gt;<i> behavior of X2Go client to make it work as good as possible with new
+</I>&gt;<i> Xserver. For example, we can start Xserver after the users choose his
+</I>&gt;<i> session, in this case x2goclient can use a time, that user need to type
+</I>&gt;<i> password to start Xserver. It is possible, that vcxsrv have not alt+tab
+</I>&gt;<i> problem in fullscreen mode. But I must do some researches before we will
+</I>&gt;<i> replace Xming with vcxsrv. I hope, I can give you an answer next week.
+</I>&lt;snip&gt;
+Thanks, Oleksandr.  We just wanted to make sure we weren't overlooking
+something before we set about changing the start sequence.  We'll get
+working on our proposed changes to incorporate vcxsrv right away - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001509.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+	<LI>Next message: <A HREF="001548.html">[X2go-dev] X2Go Client Code Changes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1511">[ date ]</a>
+              <a href="thread.html#1511">[ thread ]</a>
+              <a href="subject.html#1511">[ subject ]</a>
+              <a href="author.html#1511">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2GO Screen Refresh Performance
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2GO%20Screen%20Refresh%20Performance&In-Reply-To=%3C7930302.756.1272553881858.JavaMail.root%40office.splatnix.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000439.html">
+   <LINK REL="Next"  HREF="000441.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2GO Screen Refresh Performance</H1>
+    <B>--[ UxBoD ]--</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2GO%20Screen%20Refresh%20Performance&In-Reply-To=%3C7930302.756.1272553881858.JavaMail.root%40office.splatnix.net%3E"
+       TITLE="[X2go-dev] X2GO Screen Refresh Performance">uxbod at splatnix.net
+       </A><BR>
+    <I>Thu Apr 29 17:11:21 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000439.html">[X2go-dev] screen saver extension
+</A></li>
+        <LI>Next message: <A HREF="000441.html">[X2go-dev] X2GO Screen Refresh Performance
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#440">[ date ]</a>
+              <a href="thread.html#440">[ thread ]</a>
+              <a href="subject.html#440">[ subject ]</a>
+              <a href="author.html#440">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello all,
+
+I am looking for a little bit of explanation on how the X11 session is delivered to the X2GO client; and whether improving the performance of the local X11 server would improve the overall experience?
+
+As a reference point I ran x11perf while connected to a remote X2GO session with the following results:
+
+x11perf -copywinwin10
+x11perf - X11 performance program, version 1.2
+The X.Org Foundation server version 60900000 on :54.0
+from uxbod
+Thu Apr 29 15:18:53 2010
+
+Sync time adjustment is 0.0263 msecs.
+
+  36000 reps @   0.1401 msec (  7140.0/sec): Copy 10x10 from window to window
+  36000 reps @   0.1460 msec (  6850.0/sec): Copy 10x10 from window to window
+  36000 reps @   0.1457 msec (  6860.0/sec): Copy 10x10 from window to window
+  36000 reps @   0.1424 msec (  7020.0/sec): Copy 10x10 from window to window
+  36000 reps @   0.1450 msec (  6900.0/sec): Copy 10x10 from window to window
+ 180000 trep @   0.1438 msec (  6950.0/sec): Copy 10x10 from window to window
+
+when I run the same test on my physical laptop which has a NVidia Quadro card I get:
+
+x11perf -copywinwin10
+x11perf - X11 performance program, version 1.2
+The X.Org Foundation server version 10604000 on :0.0
+from cyborg
+Thu Apr 29 15:19:18 2010
+
+Sync time adjustment is 0.0979 msecs.
+
+2400000 reps @   0.0020 msec (492000.0/sec): Copy 10x10 from window to window
+2400000 reps @   0.0021 msec (486000.0/sec): Copy 10x10 from window to window
+2400000 reps @   0.0020 msec (502000.0/sec): Copy 10x10 from window to window
+2400000 reps @   0.0020 msec (488000.0/sec): Copy 10x10 from window to window
+2400000 reps @   0.0020 msec (496000.0/sec): Copy 10x10 from window to window
+12000000 trep @   0.0020 msec (493000.0/sec): Copy 10x10 from window to window
+
+Reading one of the NX documents about slow performance it mentions:
+
+&quot;Upgrading to a more recent version of the X server or trying a different video driver can surely offer a great boost. For example a hardware accelerated video card is recommended to obtain the best speed.&quot;
+
+Would one of the devs be able to cast some light on where I should look to tune the performance?
+-- 
+Thanks, Phil
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000439.html">[X2go-dev] screen saver extension
+</A></li>
+	<LI>Next message: <A HREF="000441.html">[X2go-dev] X2GO Screen Refresh Performance
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#440">[ date ]</a>
+              <a href="thread.html#440">[ thread ]</a>
+              <a href="subject.html#440">[ subject ]</a>
+              <a href="author.html#440">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] python-x2go fails to build on launchpad
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20python-x2go%20fails%20to%20build%20on%20launchpad&In-Reply-To=%3C20120927091023.29412n40yktqzjkv%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004370.html">
+   <LINK REL="Next"  HREF="004372.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] python-x2go fails to build on launchpad</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20python-x2go%20fails%20to%20build%20on%20launchpad&In-Reply-To=%3C20120927091023.29412n40yktqzjkv%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] python-x2go fails to build on launchpad">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Sep 27 09:10:23 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004370.html">[X2Go-Dev] Bug#40: xkeyboard-config 2.6.0 might break NX keyboard	layout
+</A></li>
+        <LI>Next message: <A HREF="004372.html">[X2Go-Dev] python-x2go fails to build on launchpad
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4371">[ date ]</a>
+              <a href="thread.html#4371">[ thread ]</a>
+              <a href="subject.html#4371">[ subject ]</a>
+              <a href="author.html#4371">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Reinhard,
+
+Python X2Go fails to build on Launchpad for Ubuntu lucid currently.  
+This is due to the missing --with python2 addon feature in debhelper  
+8.0.0, I guess.
+
+You uploaded debhelper 8.0.0 to ppa:x2go/ppa already. Would it make  
+sense to provide a newer version of debhelper via our ppa? This, I  
+guess, then has to be in ppa:x2go/ppa and ppa:x2go/stable. Could you  
+take a look at that?
+
+Below you see the last portion of the build log...
+
+Thanks,
+Mike
+
+&quot;&quot;&quot; buildlog of python-x2go
+[...]
+Writing extended state information...
+  -&gt; Finished parsing the build-deps
+dpkg-buildpackage: set CFLAGS to default value: -g -O2
+dpkg-buildpackage: set CPPFLAGS to default value:
+dpkg-buildpackage: set LDFLAGS to default value: -Wl,-Bsymbolic-functions
+dpkg-buildpackage: set FFLAGS to default value: -g -O2
+dpkg-buildpackage: set CXXFLAGS to default value: -g -O2
+dpkg-buildpackage: source package python-x2go
+dpkg-buildpackage: source version 0.2.0.11-0~873~lucid1
+dpkg-buildpackage: source changed by x2go &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at x2go.org</A>&gt;
+  fakeroot debian/rules clean
+dh clean --with python2
+dh: unable to load addon python2: Can't locate  
+Debian/Debhelper/Sequence/python2.pm in @INC (@INC contains: /etc/perl  
+/usr/local/lib/perl/5.10.1 /usr/local/share/perl/5.10.1 /usr/lib/perl5  
+/usr/share/perl5 /usr/lib/perl/5.10 /usr/share/perl/5.10  
+/usr/local/lib/site_perl .) at (eval 8) line 2.
+BEGIN failed--compilation aborted at (eval 8) line 2.
+
+make: *** [clean] Error 2
+dpkg-buildpackage: error: fakeroot debian/rules clean gave error exit status 2
+RUN: /usr/share/launchpad-buildd/slavebin/scan-for-processes  
+['/usr/share/launchpad-buildd/slavebin/scan-for-processes',  
+'3d5e10808110d295fa5221265b7e180df0615b2d']
+Scanning for processes to kill in build  
+/home/buildd/build-3d5e10808110d295fa5221265b7e180df0615b2d/chroot-autobuild...
+RUN: /usr/share/launchpad-buildd/slavebin/umount-chroot  
+['umount-chroot', '3d5e10808110d295fa5221265b7e180df0615b2d']
+Unmounting chroot for build 3d5e10808110d295fa5221265b7e180df0615b2d...
+RUN: /usr/share/launchpad-buildd/slavebin/remove-build  
+['remove-build', '3d5e10808110d295fa5221265b7e180df0615b2d']
+Removing build 3d5e10808110d295fa5221265b7e180df0615b2d
+&quot;&quot;&quot;
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120927/d5df933d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120927/d5df933d/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004370.html">[X2Go-Dev] Bug#40: xkeyboard-config 2.6.0 might break NX keyboard	layout
+</A></li>
+	<LI>Next message: <A HREF="004372.html">[X2Go-Dev] python-x2go fails to build on launchpad
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4371">[ date ]</a>
+              <a href="thread.html#4371">[ thread ]</a>
+              <a href="subject.html#4371">[ subject ]</a>
+              <a href="author.html#4371">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

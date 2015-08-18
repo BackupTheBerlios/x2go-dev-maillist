@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Go Ubuntu and Gnome desktop
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20Ubuntu%20and%20Gnome%20desktop&In-Reply-To=%3C4B2118A9.1060106%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000202.html">
+   <LINK REL="Next"  HREF="000203.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Go Ubuntu and Gnome desktop</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20Ubuntu%20and%20Gnome%20desktop&In-Reply-To=%3C4B2118A9.1060106%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] X2Go Ubuntu and Gnome desktop">paul at vandervlis.nl
+       </A><BR>
+    <I>Thu Dec 10 16:50:01 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000202.html">[X2go-dev] X2Go Ubuntu and Gnome desktop
+</A></li>
+        <LI>Next message: <A HREF="000203.html">[X2go-dev] Session shadowing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#206">[ date ]</a>
+              <a href="thread.html#206">[ thread ]</a>
+              <a href="subject.html#206">[ subject ]</a>
+              <a href="author.html#206">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>jasper van der marel schreef:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> I am currently evaluating X2Go to be used as a terminalserver solution.
+</I>&gt;<i> I am running into some problems and I hope someone can help me.
+</I>&gt;<i> 
+</I>&gt;<i> When using X2GO a user doesn't get the same environment (variables) as
+</I>&gt;<i> when he logs in trough GDM.
+</I>&gt;<i> So some specific settings like profiles created by Pessulus and Sabayon
+</I>&gt;<i> (kioskprofiles) will not be applied.
+</I>&gt;<i> 
+</I>&gt;<i> How can I solve this ?
+</I>
+You can start a script what will change the environment and start Gnome.
+Something like this:
+
+umask 0002
+export TESTVAR=test21
+. ~/.gnomerc
+/usr/bin/gnome-session
+
+Last command is starting Gnome.
+This was tested with FreeNX, not with X2go.
+But I expect it will work in X2go.
+
+It would be nice if X2go would have a special feature for this.
+
+With regards,
+Paul van der Vlis.
+
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000202.html">[X2go-dev] X2Go Ubuntu and Gnome desktop
+</A></li>
+	<LI>Next message: <A HREF="000203.html">[X2go-dev] Session shadowing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#206">[ date ]</a>
+              <a href="thread.html#206">[ thread ]</a>
+              <a href="subject.html#206">[ subject ]</a>
+              <a href="author.html#206">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

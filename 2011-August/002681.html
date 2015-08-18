@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2go printing follow up
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2go%20printing%20follow%20up&In-Reply-To=%3CFB59B770-F3E5-49AB-AFB0-832F129288B2%40comcast.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002663.html">
+   <LINK REL="Next"  HREF="002683.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2go printing follow up</H1>
+    <B>Ted Barnes</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2go%20printing%20follow%20up&In-Reply-To=%3CFB59B770-F3E5-49AB-AFB0-832F129288B2%40comcast.net%3E"
+       TITLE="[X2go-Dev] x2go printing follow up">senrabdet at comcast.net
+       </A><BR>
+    <I>Mon Aug  8 18:04:18 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002663.html">[X2go-Dev] core dev-team testing x2goclient during next week
+</A></li>
+        <LI>Next message: <A HREF="002683.html">[X2go-Dev] x2go printing follow up
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2681">[ date ]</a>
+              <a href="thread.html#2681">[ thread ]</a>
+              <a href="subject.html#2681">[ subject ]</a>
+              <a href="author.html#2681">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi All:
+
+We are experimenting with X2go (very cool), but having a devil of a time getting printing to work.  This request for help is keying off of posts by John Sullivan and Mario Oroz (thanks so much for those, guys, e.g.,  see tread <A HREF="http://www.mail-archive.com/x2go-user@lists.berlios.de/msg00104.html">http://www.mail-archive.com/x2go-user@lists.berlios.de/msg00104.html</A> and <A HREF="http://www.mail-archive.com/x2go-user@lists.berlios.de/msg00115.html">http://www.mail-archive.com/x2go-user@lists.berlios.de/msg00115.html</A>). We are having pretty much the same problem as described there.  We are assuming that X2go printing in general can be made &quot;to work&quot; and that this is a matter of something we are doing wrong (maybe starting with the install?), some necessary &quot;tweaks&quot;, etc.
+
+We'd like to post this on the developer's list too to see if that's helpful.
+
+We're hoping to get a number of questions answered, and have provided what may be &quot;too much&quot; description below:
+
+Questions:
+ 
+Q:  Did we miss something during the setup and installation process?
+
+Q:  Our server does not have a /root/.x2go/ssh/.x2oprint/id_dsa&quot; directory or id_dsa file - do these need to get created by hand?  In fact, our server does not have an &quot;id_dsa&quot; file anywhere on the machine.  If we need to add this, how does one do so (i.e., using the normal ssh key creation process)?  We have some other dsa files, but not one with the specific name id_dsa (i.e., can we use one of the existing ones in /etc/ssh?).
+
+Q:  We assume X2goprint and cups-x2go perl scripts are part of this picture.  We don't believe they are being called by the printing process - how would we tell?  If they are necessary but not getting called, thoughts as to why they are not getting invoked when we print and how to fix this?   
+
+Q:  In testing (where we simulate what we imagine the printing process to be by doing each step manually) when we issue the .ready command, why does that only seems to work sometimes as judged by the x2go print client popping on the XP side?  Does that tell us something?
+
+Q:  Should printing be putting jobs in &quot;/&quot; (is that normal)?  Does the x2goprint script know what to grab based on job#s?  We assume this all should work with multiple users and the x2goscript identifies which jobs to grab and put them individual user spool queues.
+
+Q:  To work, should x2goprinting pass the print file from the server through the ssh connection to the client?  Is this in part an &quot;ssh passing the file&quot; problem?  We can connect through putty from the client to the server, and assume we have the keys correct because we can connect from XP to the Ubuntu server via x2go in the first place.  Back to the lack of an id_dsa file?  Again, we're not sure that printing is invoking the right scripts to begin with.
+
+Q:  Assuming we get this working, we also assume that on the Ghostview/Ghostscript side we shouldn't be having to put the name of the file in the command line, nor actually having to use the command line.  I.e., there is an option there to print that refers to whatever default printer we have set on the XP machine, but currently nothing happens if we use that particular option instead of the command line.
+
+Q:  Should we be using Posgress instead of SQLite?  We are assuming that SQLite is fine until we want to deal with load balancing.
+
+DESCRIPTION
+
+We are connecting from XP machines using x2goclient to Ubuntu Server 9.10 (connecting is pretty consistent, a few issues now and then but all in all it works well) over Comcast or Fios connection (DSL too slow).  We are using the X2go with SQLite, cups-x2togo and x2goprint; we have not installed any of the optional &quot;bindings&quot; packages.  We used visudo to add the line &quot;x2goprint All=(ALL) NOPASSWD:  /usr/bin/x2goprint&quot;, and added an &quot;x2goprinter&quot; user by hand (that action also created an &quot;x2goprinter&quot; group to which we added our test user accounts).   We have tried uncommenting the settings to activate them in &quot;/etc/cups/cups-x2go.conf&quot; (even though we understand these settings to be used only for a separate cups server) with no change.  As noted above, our server does not have an id_dsa file and while we suspect that as being part of the problem we would have assumed that file would be created as part of the install pocess.
+
+On the server, we have a minimal &quot;Ubuntu Desktop&quot; installed so we can use Firefox to browse from the server.  
+
+We have GSview 4.9 and Ghostscript 9.02 installed on the XP clients.  We are trying to print to an older HP Laserjet 4000 shared out on local XP machine (this 2nd machine is not one connecting to the Ubuntu server, no X2go on it, no Ghostview or Ghostscript) and another HP color laser that is a network device.  All printing behavior is the same regardless of which printer we try.
+
+We are hoping outlining the following will help describe what we think is going on, and possible not working:
+
+1)  On the 9.10 Ubunu server, we installed X2go printing.  If we go to System-&gt;Administration-&gt;Printing, we can see a &quot;Generic-Cups-X2go-Printer&quot; and it is active.  Its properties include a URI of &quot;cups-x2go:/&quot;.   On the same Printer Configuration window, if we press Server-&gt;Connect the resulting Cups server is &quot;/var/run/cups/cups.sock&quot;.  We are using a 64 bit machine, and can find two instances of the &quot;cups-x2go&quot; and maybe this is part of the problem (one is is /usr/lib64/cups/backend, the other in usr/lib/cups/backend)?
+
+2)  If we print from the server, we briefly see a job get created both on the top (right) panel and if we are watching in the Print Configuration window.  Jobs are stored in &quot;/&quot; and stay there until we delete or move them with names that follow the syntax &quot;jobname-username-cupsjob#&quot;.  Their permissions are root as owner, lp as group, and no access for users.   For each print file, there is another cups file of some sort stored in &quot;var/spool/cups&quot; with names like &quot;c00052&quot;.  This describes what occurs consistently.  The jobs get &quot;printed&quot; but nothing happens on the windows client side or on the printer.
+
+3)  In troubleshoot this, we have tried manually changing the permissions on the print job files stored in &quot;/&quot; (so the current user is the owner, as well as leaving the group either as &quot;lp&quot; or trying &quot;x2goprinter&quot; to which our users belong or changing the group to the current user),  moving them into a dynamic spool folder that we believe gets generated dynamically after trying to print in each log in session.  We believe the spool folder directory is /tmp/spool_username/username-sessionID_stDGNOME_dp32.  We think this either gets created or we can make it accessible by manually issuing a &quot;Mount&quot; command.  We we manually move print jobs into this folder and from the command line issue echo &quot;63-username-cupsjob####&quot; &gt;&gt; 63-username-cupsjob####.ready where the #### are the actual numbers for the print job.  The permissions change when we move the file - owner becomes user 1006, group is 513 (thanks to John and Mario for providing this technique).
+
+Sometimes we can see the .ready file in the dynamic spool folder, sometimes not.    Often but not always on the XP client side, we get the &quot;Print - x2go client&quot; window from the Ghost apps.  None of the settings work unless we use the command line option along the lines of &quot;&quot;C:\Program Files\Ghostgum\gsview\gsprint.exe&quot; -query -color 71-username-cupsjob16907&quot;, in other words having to specifically name the print job in the command line.  
+
+Occasionally (and this may be irrelevant but only when we try to print a test page, never a real document) something comes out the printer (but again, only if we use a test page).  Most often, we get a dos window with an error message &quot;Last OS error:  No such file or directory  GPL Ghostscript 9.02:  Unrecoverable error, exit code 1&quot; so it sounds like this is an ssh issue where the file doesn't actually cross over, though it's puzzling then why we would ever have gotten a few print attempts to work.
+
+In System Monitor, no new items seem to appear (x2goagent and x2goruncommand are sleeping), so as best we can tell the x2goprint and cups-x2go perl scripts aren't being called, but we're not sure.
+
+When we tried to run the x2goprint script through a debugger, it quits early on on the elsif statement.
+
+if (scalar(@ARGV) ==1)
+{
+     system (&quot;su @ARGV[0] -c \&quot;x2golistsessions --all-servers\&quot; &quot;);
+}
+elsif (scalar(@ARGV) != 4)
+{
+    print STDERR &quot;ERROR: Usage:\nx2goprint user session file titleFile\nx2goprint user\n&quot;;
+    exit 1;
+}
+
+We can't tell if this is because the script is supposed to be called from something else and the @ARGV is populated that way, but again we don't believe the script gets called by the Printing action.
+
+Because the script appears to use &quot;x2godbwrapper&quot; in /usr/lib/x2go&quot; we tried making that file execuable with no change. 
+
+ 
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110808/0643a6d6/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110808/0643a6d6/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002663.html">[X2go-Dev] core dev-team testing x2goclient during next week
+</A></li>
+	<LI>Next message: <A HREF="002683.html">[X2go-Dev] x2go printing follow up
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2681">[ date ]</a>
+              <a href="thread.html#2681">[ thread ]</a>
+              <a href="subject.html#2681">[ subject ]</a>
+              <a href="author.html#2681">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

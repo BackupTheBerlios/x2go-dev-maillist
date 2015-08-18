@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#171: X2Go issue #171 (src:x2gobroker) has been	marked as closed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23171%3A%20X2Go%20issue%20%23171%20%28src%3Ax2gobroker%29%20has%20been%0A%09marked%20as%20closed&In-Reply-To=%3C20130423195621.A24F55DB27%40ymir%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005535.html">
+   <LINK REL="Next"  HREF="005537.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#171: X2Go issue #171 (src:x2gobroker) has been	marked as closed</H1>
+    <B>tag at das-netzwerkteam.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23171%3A%20X2Go%20issue%20%23171%20%28src%3Ax2gobroker%29%20has%20been%0A%09marked%20as%20closed&In-Reply-To=%3C20130423195621.A24F55DB27%40ymir%3E"
+       TITLE="[X2Go-Dev] Bug#171: X2Go issue #171 (src:x2gobroker) has been	marked as closed">tag at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Apr 23 21:56:21 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005535.html">[X2Go-Dev] Bug#170: X2Go issue #170 (src:x2gobroker) has been	marked as closed
+</A></li>
+        <LI>Next message: <A HREF="005537.html">[X2Go-Dev] Bug#172: X2Go issue #172 (src:x2gobroker) has been	marked as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5536">[ date ]</a>
+              <a href="thread.html#5536">[ thread ]</a>
+              <a href="subject.html#5536">[ subject ]</a>
+              <a href="author.html#5536">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>close #171
+thanks
+
+Hello,
+
+we are very hopeful that X2Go issue #171 reported by you
+has been resolved in the new release (0.0.1.1) of the
+X2Go source project &#187;src:x2gobroker&#171;.
+
+You can view the complete changelog entry of src:x2gobroker (0.0.1.1)
+below, and you can use the following link to view all the code changes
+between this and the last release of src:x2gobroker.
+
+    <A HREF="http://code.x2go.org/gitweb?p=x2gobroker.git;a=commitdiff;h=4085176be6f5895c931e34e6549ea9849e13ca0b;hp=7a77058f345af93356c9615df70c92644fa98549">http://code.x2go.org/gitweb?p=x2gobroker.git;a=commitdiff;h=4085176be6f5895c931e34e6549ea9849e13ca0b;hp=7a77058f345af93356c9615df70c92644fa98549</A>
+
+If you feel that the issue has not been resolved satisfyingly, feel
+free to reopen this bug report or submit a follow-up report with
+further observations described based on the new released version
+of src:x2gobroker.
+
+Thanks a lot for contributing to X2Go!!!
+
+light+love
+X2Go Git Admin (on behalf of sender of this mail)
+
+---
+X2Go Component: src:x2gobroker
+Version: 0.0.1.1
+Status: RELEASE
+Date: Tue, 23 Apr 2013 21:38:07 +0200
+Fixes: 154 170 171 172 175 176 180
+Changes: 
+ x2gobroker (0.0.1.1) RELEASED; urgency=low
+ .
+   * New upstream version (0.0.1.1):
+     - Add WSGI support to X2Go Session Broker. Allows plugging into
+       Apache2 by using the mod_wsgi module.
+     - Add Apache2 configuration for WSGI support that shows how to
+       setup a VirtualHost for X2Go Session Broker.
+     - For sessions profiles with autologin enable, add a dummy key
+       session profile parameter that triggers key based auth in X2Go Client.
+       (Fixes: #154).
+     - Fix hard-coded path to x2gobroker's authservice socket.
+     - Separate logging logic of x2gobroker-authservice from the rest of
+       the logging in x2gobroker. (Fixes: #172).
+     - x2gobroker-pubkeyauthorizer: no logging-to-file support anymore.
+       (Fixes: #175).
+     - Fix name of get() method for /pubkeys/ URL path. (Fixes: #176).
+     - Move AuthService server code fully into x2gobroker-authservice
+       daemon script.
+     - Add forgotten file: x2gobroker-authservice-logger.conf. (Fixes: #180).
+     - Add script: x2gobroker-testauth.
+     - Add enable()/disable() methods to broker backends.
+     - Move complete authservice logic into x2gobroker-authservice script.
+     - Add command and directrdp session profile parameters to defaults.
+     - Fix wrong usage of session option &#187;cmd&#171;, has to be &#187;command&#171;.
+   * /debian/control:
+     + Fix --root parameter in DEB_PYTHON_INSTALL_ARGS.
+     + Let bin:package x2gobroker-authservice depend on python-x2gobroker (of the
+       same version). (Fixes: #170).
+   * Properly remove the X2Go Session broker log files on package purgal.
+   * Let bin:package x2gobroker-authservice create x2gouser:x2gouser, as well.
+     (Fixes: #171).
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005535.html">[X2Go-Dev] Bug#170: X2Go issue #170 (src:x2gobroker) has been	marked as closed
+</A></li>
+	<LI>Next message: <A HREF="005537.html">[X2Go-Dev] Bug#172: X2Go issue #172 (src:x2gobroker) has been	marked as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5536">[ date ]</a>
+              <a href="thread.html#5536">[ thread ]</a>
+              <a href="subject.html#5536">[ subject ]</a>
+              <a href="author.html#5536">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

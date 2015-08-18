@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#32: x2gocleansessions not properly suspending	disconnected sessions.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2332%3A%20x2gocleansessions%20not%20properly%20suspending%0A%09disconnected%20sessions.&In-Reply-To=%3Czarafa.5059a7b4.0192.339c729e548c696e%40mail.int.lindix.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004258.html">
+   <LINK REL="Next"  HREF="004260.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#32: x2gocleansessions not properly suspending	disconnected sessions.</H1>
+    <B>Dick Kniep</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2332%3A%20x2gocleansessions%20not%20properly%20suspending%0A%09disconnected%20sessions.&In-Reply-To=%3Czarafa.5059a7b4.0192.339c729e548c696e%40mail.int.lindix.nl%3E"
+       TITLE="[X2Go-Dev] Bug#32: x2gocleansessions not properly suspending	disconnected sessions.">dick at lindix.nl
+       </A><BR>
+    <I>Wed Sep 19 13:08:36 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004258.html">[X2Go-Dev] X2Go server source tree changes
+</A></li>
+        <LI>Next message: <A HREF="004260.html">[X2Go-Dev] Bug#24: Pyhoca-GUI is now DirectRDP aware...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4259">[ date ]</a>
+              <a href="thread.html#4259">[ thread ]</a>
+              <a href="subject.html#4259">[ subject ]</a>
+              <a href="author.html#4259">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+
+Severity: normal
+
+Version 3.1.1.3
+
+&#160;
+&#160;
+&#160;
+Sometimes a session is improperly terminated, but keeps the status 'R' this prevents the start of a new session.&#160;
+
+&#160;
+After investigating further I found x2goagent was running but could not be canceled normally. So I ran kill -9. After that the session disappeared and everything turned back to normal. So apparently there can be circumstances that x2goagent hangs.
+
+&#160;
+In fact there are 2 issues here
+
+&#160;
+1. x2goterminate-session should be able to handle a situation where x2goagent hangs and cannot be terminated normally
+
+2. it is possible to get in a situation where x2goagent hangs. (I have no idea how that is done)
+
+
+
+Met vriendelijke groet,
+Dick Kniep
+Lindix BV
+tel. 036-5215580
+mob. 06-50991858
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120919/ebd1f045/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120919/ebd1f045/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004258.html">[X2Go-Dev] X2Go server source tree changes
+</A></li>
+	<LI>Next message: <A HREF="004260.html">[X2Go-Dev] Bug#24: Pyhoca-GUI is now DirectRDP aware...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4259">[ date ]</a>
+              <a href="thread.html#4259">[ thread ]</a>
+              <a href="subject.html#4259">[ subject ]</a>
+              <a href="author.html#4259">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] - Dependency for kdialog
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20-%20Dependency%20for%20kdialog&In-Reply-To=%3C4F390399.3090908%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003402.html">
+   <LINK REL="Next"  HREF="003405.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] - Dependency for kdialog</H1>
+    <B>newsgroups.mail2 at stefanbaur.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20-%20Dependency%20for%20kdialog&In-Reply-To=%3C4F390399.3090908%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] - Dependency for kdialog">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Mon Feb 13 13:35:37 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003402.html">[X2Go-Dev] - Dependency for kdialog
+</A></li>
+        <LI>Next message: <A HREF="003405.html">[X2Go-Dev] - Dependency for kdialog
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3404">[ date ]</a>
+              <a href="thread.html#3404">[ thread ]</a>
+              <a href="subject.html#3404">[ subject ]</a>
+              <a href="author.html#3404">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 13.02.2012 13:18, schrieb Moritz Struebe:
+&gt;<i> On 2012-02-13 11:02, S&#246;ren Pl&#246;nnigs wrote:
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> is it possible to remove the dependency for kdialog from x2goserver
+</I>&gt;&gt;<i> package?
+</I>&gt;&gt;<i> [...]
+</I>&gt;<i> What about switching to zenity? It needs GTK, but opposed to KDE, that
+</I>&gt;<i> should be available on almost any system, shouldn't it?
+</I>
+Well, I'm not S&#246;ren, but IMO it should not be hard-coded to any *dialog 
+at all.
+My current systems, which obviously and admittedly are &quot;historically 
+grown&quot;, are Gnome-free and based on KDE.
+Which is probably why I never noticed that kdialog is hardcoded here, 
+since everything worked for me.
+In the future, I'd like to move away from that and use a bare minimum 
+install providing only the absolutely necessary binaries to my users 
+(they're using rootless mode, so I don't need a full-blown desktop 
+environment) - that should significantly reduce the required disk space 
+and thus make updating/upgrading these distributed systems (spread 
+across Germany, with some in rural regions with &quot;DSL lite&quot; connections) 
+a lot easier...
+
+I was hoping that I could do away with dialog-based scripts entirely, 
+thanks to Alex' willingness to add a much-needed (by me, at least ;-)) 
+feature to X2Go soon, but if there still is a need for some kind of 
+*dialog, it should be configurable (and I'd probably use Xdialog on my 
+machines, even though it is currently unmaintained).
+
+-Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003402.html">[X2Go-Dev] - Dependency for kdialog
+</A></li>
+	<LI>Next message: <A HREF="003405.html">[X2Go-Dev] - Dependency for kdialog
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3404">[ date ]</a>
+              <a href="thread.html#3404">[ thread ]</a>
+              <a href="subject.html#3404">[ subject ]</a>
+              <a href="author.html#3404">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

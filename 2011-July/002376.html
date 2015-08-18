@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2go and android tablets - some progress
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2go%20and%20android%20tablets%20-%20some%20progress&In-Reply-To=%3CBANLkTi%3DR1OcJKFrXJohy%3Dp9v%3DJPUJV5HOg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002375.html">
+   <LINK REL="Next"  HREF="002380.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2go and android tablets - some progress</H1>
+    <B>brian mullan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2go%20and%20android%20tablets%20-%20some%20progress&In-Reply-To=%3CBANLkTi%3DR1OcJKFrXJohy%3Dp9v%3DJPUJV5HOg%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] x2go and android tablets - some progress">bmullan.mail at gmail.com
+       </A><BR>
+    <I>Fri Jul  1 12:29:54 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002375.html">[X2go-Dev] x2go and android tablets - some progress
+</A></li>
+        <LI>Next message: <A HREF="002380.html">[X2go-Dev] x2go and android tablets - some progress
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2376">[ date ]</a>
+              <a href="thread.html#2376">[ thread ]</a>
+              <a href="subject.html#2376">[ subject ]</a>
+              <a href="author.html#2376">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>one last thing I forgot to mention is that I used the Ubuntu PPA listed on
+the x2go wiki
+
+       <A HREF="http://wiki.x2go.org/adding_the_x2go_repository_ubuntu">http://wiki.x2go.org/adding_the_x2go_repository_ubuntu</A>
+
+When doing the apt-get install ... I can see the package manager initiate
+the download and then a message about accessing the ARMEL library so
+my Android ARM system's request is somehow recognized as needing ARM
+repository packages... I'm not smart enough in that area to know how that
+occurs &lt;g&gt;
+
+
+On Fri, Jul 1, 2011 at 6:24 AM, brian mullan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">bmullan.mail at gmail.com</A>&gt; wrote:
+
+&gt;<i> I didn't mention it but if you read the Canonical engineer's blog... the
+</I>&gt;<i> goal of that cluster from Canonical's point of view was to have both Ubuntu
+</I>&gt;<i> and as much 3rd party software built and ready for the release of Ubuntu
+</I>&gt;<i> 11.10 in October.
+</I>&gt;<i>
+</I>&gt;<i> My view is the combination of Unity (which seems to work really well so far
+</I>&gt;<i> on my 11.04 systems) will be a really good UI for tablets and finger
+</I>&gt;<i> oriented multi-touch screens.
+</I>&gt;<i> So Ubuntu 11.10 could become very interesting on Tablets.
+</I>&gt;<i>
+</I>&gt;<i> Brian
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Fri, Jul 1, 2011 at 6:10 AM, brian mullan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">bmullan.mail at gmail.com</A>&gt;wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Mike et al
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> If you were referring to:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>    &quot;the custom 42 core ARM Cluster to in order to do have a a proper build
+</I>&gt;&gt;<i> environment and hardware that will allow contributors to submit and build
+</I>&gt;&gt;<i> the 20,000+&quot;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> My reading of the information available is that the cluster would be
+</I>&gt;&gt;<i> available and used by *both* canonical and 3rd party app developers
+</I>&gt;&gt;<i> as a build system to create the ARM packages of their software.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Brian
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Fri, Jul 1, 2011 at 12:20 AM, Mike Gabriel &lt;
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hi Brian,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> On Fr 01 Jul 2011 03:18:47 CEST brian mullan wrote:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>  Then I installed Ubuntu 10.10 successfully on it.   First with the LXDI
+</I>&gt;&gt;&gt;&gt;<i> but
+</I>&gt;&gt;&gt;&gt;<i> later switched it to Gnome (just because I'm more at home with Gnome)
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I probably have no influence on armel-builds on Launchpad, but I have an
+</I>&gt;&gt;&gt;<i> influence on the X2go package build process for Debian. I have already
+</I>&gt;&gt;&gt;<i> thought to build the main area in the packages.x2go.org repos for armel,
+</I>&gt;&gt;&gt;<i> as well. I use qemubuilder for build the packages, so I could basically
+</I>&gt;&gt;&gt;<i> build for any available architecture. It will take time (qemu software
+</I>&gt;&gt;&gt;<i> emulation), but it will work (and my build machine is quite smart).
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>  I added the Ubuntu x2go repository
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>  The 'sudo apt-get install x2goclient&quot; did successfully run but so far it
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Really? x2goclient should not be in the armel repositories. Where did you
+</I>&gt;&gt;&gt;<i> actually install from. Maybe the old location on obviously-nice.de???
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>  only finds the following in the ARMEL repository for x2go:
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> *p    python-x2go        - python module for X2go client support*
+</I>&gt;&gt;&gt;&gt;<i> *p    x2goserver          - x2go server daemon scripts*
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> pyhoca-gui is arch-independent and should also be available. As there is
+</I>&gt;&gt;&gt;<i> an old version of nxproxy in Ubuntu you should actually be able to run
+</I>&gt;&gt;&gt;<i> pyhoca-gui on armel. Could you please try that (apt-get install pyhoca-gui).
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>  [...]
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I didn't really get the last part. Concrete question, maybe also to
+</I>&gt;&gt;&gt;<i> Reinhard: is there a possibility to build armel packages on Ubuntu
+</I>&gt;&gt;&gt;<i> launchpad?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Greets,
+</I>&gt;&gt;&gt;<i> Mike
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> --
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;&gt;&gt;<i> mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;&gt;&gt;<i> fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> GnuPG Key ID 0xB588399B
+</I>&gt;&gt;&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;&gt;&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> freeBusy:
+</I>&gt;&gt;&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;&gt;&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110701/200f5a10/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110701/200f5a10/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002375.html">[X2go-Dev] x2go and android tablets - some progress
+</A></li>
+	<LI>Next message: <A HREF="002380.html">[X2go-Dev] x2go and android tablets - some progress
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2376">[ date ]</a>
+              <a href="thread.html#2376">[ thread ]</a>
+              <a href="subject.html#2376">[ subject ]</a>
+              <a href="author.html#2376">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

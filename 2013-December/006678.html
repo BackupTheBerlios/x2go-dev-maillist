@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#372: x2goadmin writes to users homes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23372%3A%20x2goadmin%20writes%20to%20users%20homes&In-Reply-To=%3CCAJ0cceZBqnQ1MfvTFfP7i55MtTi-cyjyABD8TtjHbi9kcxg%3D2A%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006691.html">
+   <LINK REL="Next"  HREF="006686.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#372: x2goadmin writes to users homes</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23372%3A%20x2goadmin%20writes%20to%20users%20homes&In-Reply-To=%3CCAJ0cceZBqnQ1MfvTFfP7i55MtTi-cyjyABD8TtjHbi9kcxg%3D2A%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#372: x2goadmin writes to users homes">siretart at gmail.com
+       </A><BR>
+    <I>Sun Dec 15 01:13:35 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006691.html">[X2Go-Dev] Do we really need an x2gouser
+</A></li>
+        <LI>Next message: <A HREF="006686.html">[X2Go-Dev] Bug#372:  Bug#372: x2goadmin writes to users homes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6678">[ date ]</a>
+              <a href="thread.html#6678">[ thread ]</a>
+              <a href="subject.html#6678">[ subject ]</a>
+              <a href="author.html#6678">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goserver
+Severity: serious
+
+Hi,
+
+my understanding of the x2goadmin code [code], end of sub add_user, is
+that the code tries to write the sql password in users homes. This
+will fail for installations that have the user homes on NFS with the
+option &quot;rootsquash&quot; mounted.
+
+I set the severity to &quot;serious&quot; because I imagine that this is a
+rather common scenario.
+
+Also, this approach has another problem: Imagine you want to give
+access to the unix group &quot;staff&quot;? According to the documentation, you
+can use the options &quot;--addgroup&quot; and &quot;--rmgroup&quot; for this. What if a
+new employee joins the company later and wants to use x2go? In this
+case you need to call x2godbadmin for this new user again, which is
+suboptimal.
+
+Is there really no way to get around generated user passwords?
+
+[code] <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=blob;f=x2goserver/sbin/x2godbadmin">http://code.x2go.org/gitweb?p=x2goserver.git;a=blob;f=x2goserver/sbin/x2godbadmin</A>
+
+-- 
+regards,
+    Reinhard
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006691.html">[X2Go-Dev] Do we really need an x2gouser
+</A></li>
+	<LI>Next message: <A HREF="006686.html">[X2Go-Dev] Bug#372:  Bug#372: x2goadmin writes to users homes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6678">[ date ]</a>
+              <a href="thread.html#6678">[ thread ]</a>
+              <a href="subject.html#6678">[ subject ]</a>
+              <a href="author.html#6678">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

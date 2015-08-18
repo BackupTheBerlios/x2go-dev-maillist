@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2go, printing, Vserver, PostgreSQL - Progress....
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2go%2C%20printing%2C%20Vserver%2C%20PostgreSQL%20-%20Progress....&In-Reply-To=%3C1349057545.18710.12.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="004403.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2go, printing, Vserver, PostgreSQL - Progress....</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2go%2C%20printing%2C%20Vserver%2C%20PostgreSQL%20-%20Progress....&In-Reply-To=%3C1349057545.18710.12.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2Go-Dev] X2go, printing, Vserver, PostgreSQL - Progress....">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Mon Oct  1 04:12:25 CEST 2012</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="004403.html">[X2Go-Dev] X2go, printing, Vserver, PostgreSQL - Progress....
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4402">[ date ]</a>
+              <a href="thread.html#4402">[ thread ]</a>
+              <a href="subject.html#4402">[ subject ]</a>
+              <a href="author.html#4402">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, 2012-09-30 at 10:35 -0400, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">senrabdet at aol.com</A> wrote:
+&gt;<i> Hi All: 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Another quick update - we think enabling fuse in the vserver guest is
+</I>&gt;<i> part of the problem, though the vserver folks suggest this may be a
+</I>&gt;<i> security/stability problem.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> In any event, that fixed the broken spool link, and we think we're on
+</I>&gt;<i> to &quot;cups admin how to&quot; issues that may be solved outside of this
+</I>&gt;<i> forum.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> More to follow...
+</I>&gt;<i> 
+</I>&lt;snip&gt;
+Newer kernels may break out the capability required to make FUSE work
+from the admin capability but I've not investigated that yet.  If you
+allowed the admin capability in your vserver guest, you shot your
+security to bits.  If I recall correctly, the capability limitation was
+not in mounting FUSE drives but only in unmounting them, strangely.
+That's why we moved the x2gocleansessions script to the VServer host -
+not to mention that it means we can run one process for many hundreds of
+servers rather than one each firing every five seconds.
+
+We do have this working without opening the admin capabilities but I do
+not remember the details off the top of my head and we are using an old
+and heavily adapted version.  Good luck with it - John
+
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="004403.html">[X2Go-Dev] X2go, printing, Vserver, PostgreSQL - Progress....
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4402">[ date ]</a>
+              <a href="thread.html#4402">[ thread ]</a>
+              <a href="subject.html#4402">[ subject ]</a>
+              <a href="author.html#4402">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

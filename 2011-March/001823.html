@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Looking%20for%20information%20on%20the%20future%20of%20x2go%20%28and%0A%20some%20other%20x2go-related%20stuff%29&In-Reply-To=%3C20110302164735.497953oonr0cemqf%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001878.html">
+   <LINK REL="Next"  HREF="001828.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Looking%20for%20information%20on%20the%20future%20of%20x2go%20%28and%0A%20some%20other%20x2go-related%20stuff%29&In-Reply-To=%3C20110302164735.497953oonr0cemqf%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Mar  2 16:47:35 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001878.html">[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+</A></li>
+        <LI>Next message: <A HREF="001828.html">[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1823">[ date ]</a>
+              <a href="thread.html#1823">[ thread ]</a>
+              <a href="subject.html#1823">[ subject ]</a>
+              <a href="author.html#1823">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Stefan,
+
+On Mi 02 M&#228;r 2011 13:55:03 CET Stefan Baur wrote:
+
+&gt;<i> I have been &quot;playing&quot; with x2go for a while and it looks very  
+</I>&gt;<i> promising - a worthy successor to Nomachine NX - though I am unsure  
+</I>&gt;<i> about a few things - maybe someone here on this list could provide  
+</I>&gt;<i> some information?
+</I>
+I will try to provide as much information as I have, primarily to take  
+workload off of Heinz and Alex (the other core developer). They will  
+definitely supplement aspects where and if needed.
+
+&gt;<i> 1) With the recent announcement of Nomachine going closed source,  
+</I>&gt;<i> what does the future of x2go look like?
+</I>
+I will not answer this question directly as I know from a phone call  
+(yesterday) that Heinz plans to post some information on future  
+development of X2go on this list. So stay tuned for this.
+
+&gt;<i> 1a) As far as I understand, x2go uses parts of the GPL'ed Nomachine  
+</I>&gt;<i> code, which will remain available in its current state due to the  
+</I>&gt;<i> GPL, but will not be maintained by Nomachine any more. Are the x2go  
+</I>&gt;<i> developers willing - and able - to maintain this part of the code,  
+</I>&gt;<i> in case it requires maintenance and / or security patches?
+</I>
+As far as I currently know, X2go's code base for NX3 components will  
+become the upstream source for Debian packages in the very near  
+future. As far as I can tell, there has come up quite some man power  
+in the project that can handle XServer code (i.e. Phil supporting the  
+VcXsrv developer with bugfixes and debugging) as well as NX code (esp.  
+Alex). Lately, there has also been offer of support from people from  
+the university of Erlangen. More on that will be in Heinz mail -  
+probably already tonight.
+
+&gt;<i> 1b) Or are you going to do a re-write of the Nomachine code currently in use?
+</I>
+Of course there is a collection of ideas on NX alternatives. However,  
+this indeed is a question of man power and competence. The main  
+improvement X2go will need is around video streaming (MPEG etc.,  
+Flash). So a rewrite should include that. But as far as I know, the  
+current strategy is to stay with NX3 (as I said: out of lack of man  
+power).
+
+&gt;<i> 1c) FreeNX seems to be a dying project (correct me if I'm wrong),  
+</I>&gt;<i> since their lead developer Fabian Franz has left the project (or at  
+</I>&gt;<i> least became inactive) quite a while ago - There are no Debian  
+</I>&gt;<i> packages available any more, the latest Ubuntu packages are, umm,  
+</I>&gt;<i> &quot;flaky&quot;, and there hasn't been a new upstream release from the  
+</I>&gt;<i> FreeNX team in a few years, unless I'm totally mistaken.
+</I>&gt;<i> From what I found out about x2go, the guy in the lead is Heinz-M.  
+</I>&gt;<i> Graesing, who is working full-time as a system administrator and  
+</I>&gt;<i> maintaining x2go purely in his spare time (again, correct me if I'm  
+</I>&gt;<i> wrong). I would hate to see x2go going the FreeNX route once  
+</I>&gt;<i> something happens to Heinz that leaves him unable to maintain the  
+</I>&gt;<i> project. So I was wondering if there is a sufficient amount of other  
+</I>&gt;<i> people backing the project that the loss of the lead developer (be  
+</I>&gt;<i> it due to increased workload at his day job, health issues, or  
+</I>&gt;<i> simply loss of interest) can be dealt with, should the situation  
+</I>&gt;<i> arise? If that isn't the case right now, I would like to suggest  
+</I>&gt;<i> making plans for it asap - the best time to install a fire escape  
+</I>&gt;<i> ladder is before the house has a chance to start burning. ;-)
+</I>
+Thanks for addressing this issue. We are currently trying to share the  
+work load on more than two shoulders. The two main shoulders are Heinz  
+and Alex (Oleksandr Shneyder), both living and working southern Germany.
+
+The sharing looks like this:
+
+   o Project coordination (Heinz, Alex)
+   o Core upstream development (Heinz, Alex)
+   o Code (C++, Perl etc.) development heavily supported by Uni  
+Erlangen (Morty,
+     Reinhart, Alexander)
+   o XServer troubles -&gt; Phil, John (THANKS)
+   o Git/Bugtracker -&gt; Mike
+   o Python X2go API / PyHoca-GUI -&gt; Mike (currently sponsored by LinDix NL)
+   o Debian packaging -&gt; moves to Collab-Maint (Team: Jonas Smedegaard, Mike
+     Gabriel)
+   o Ubuntu packaging -&gt; Uni Erlangen (Reinhart)
+   o other packaging?
+
+The code base is currently put into a sustainable and managable form  
+(Git: git.x2go.org), the release management will be switched to a Git  
+based release management.
+
+The server code is relatively easy to understand and maintain. It's  
+mostly build up from scripts that wrap around helper applications,  
+some of these helper apps are standard Linux apps (ssh, pulseaudio,  
+sftp sub-system), some are X2go specific (as currently a derivative of  
+nxagent, called x2goagent).
+
+The x2goclient-qt however is a Qt4 client written in C++ (or C?). The  
+latest great change was a full rewrite to usage of libssh (as opposed  
+to calling ssh child processes). This work is mainly committed by  
+Heinz and Alex.
+
+The NX code is also written in C (or C++?). For this you need C/C++  
+coding abilities and also an insight into XServer technology. Man  
+power is welcome here, AFAIK.
+
+Quite recent is my Python implementation of an X2go client, called  
+PyHoca. PyHoca brings with it a Python X2go(Client) API, a pyhoca-cli  
+(command line client, mostly for demo purpose) and a pyhoca-gui  
+(wxPython systray icon, basically working menu-based like GNOME's  
+network manager).
+
+There will also be a complete rewrite of the X2go administration  
+tools. In Zweibr&#252;cken on Debian Edu conference Heinz has presented a  
+first alpha version of these and as far as I know they have already  
+advanced quite a bit with the code (he said something like... it's  
+finished for testing...).
+
+Another plan is to put the i18n files of all subprojects together into  
+one x2go-i18n project in Git. Thus, translators of the software will  
+just have one location for the whole project to look after.
+
+&gt;<i> 2) I read that Univention is using x2go for their desktop  
+</I>&gt;<i> virtualization (see  
+</I>&gt;<i> &lt;<A HREF="http://wiki.univention.de/index.php?title=UCS_Desktop_Virtualization_Services">http://wiki.univention.de/index.php?title=UCS_Desktop_Virtualization_Services</A>&gt;). Are they active supporters of x2go (i.e. donating money or manpower to the  
+</I>&gt;<i> project)?
+</I>&gt;<i> (I ask because I'm hoping that a company planning a large-scale  
+</I>&gt;<i> commerial deployment like Univention seems to be doing would have an  
+</I>&gt;<i> interest in the x2go project staying alive and expanding.)
+</I>
+This is interesting... I have been on Univention's partner summit in  
+Feb this year and they told me about those plans. As I know that they  
+are heavily Pythonian I talked to the main developer (his name was als  
+Stefan, I think) about a Python API being available for X2go and left  
+my contact details. I have heard from them again, so far...  
+Interesting indeed.
+
+As far as I know Univention does not directly re-inject code into the  
+OSS community (also a lack of man power). They publish under AGPL,  
+though, but as an OSS upstream developer you have to pick the ideas  
+and fixes out of there tarballs (not public VCS as far as I know).  
+Thus, I estimate that they will actually fork X2go for the UCS server  
+and maintain there own X2go'ish system (just a guess).
+
+Maybe, if there is someone from Univention listening to this list you  
+could write some of the strategies you follow concerning X2go.
+
+&gt;<i> 3) I heard of legal issues regarding the project name and some other  
+</I>&gt;<i> stuff. That was back in December. Since the project is still named  
+</I>&gt;<i> x2go, and Univention is openly using this name, I was wondering if  
+</I>&gt;<i> these issues have been resolved?
+</I>
+The current status on this has to be answered by Heinz.
+
+&gt;<i> 4) Browsing the list archive, I saw that you are planning to provide  
+</I>&gt;<i> packages for sid and wheezy via the official Debian repositories - I  
+</I>&gt;<i> understand that it is too late to add packages for squeeze to the  
+</I>&gt;<i> official Debian repositories, now that squeeze has been released,  
+</I>&gt;<i> but will you provide packages for squeeze via your own repository?  
+</I>&gt;<i> Currently it only shows packages for lenny (regarding Debian; I'm  
+</I>&gt;<i> aware that you are providing packages for other Debian-based Distros  
+</I>&gt;<i> as well).
+</I>
+You currently can install the lenny packages on ,,all'' .deb based  
+Debian and Ubuntu versions. Beginning with Squeeze there are some  
+complaints about missing LSB definitions in the x2goserver init  
+script, but that will also be fixed soon and you can ignore them.
+
+And yes: the plan is to provide .deb packages for Debian squeeze and  
+also backports for Debian lenny if feasible in the project's repository.
+
+Additionally, the Ubuntu packaging will soon be covered fully by Uni  
+Erlangen, but more on that will be readable in Heinz's mail within the  
+next days.
+
+&gt;<i> 5) I understand that you need some sort of full-screen application  
+</I>&gt;<i> (similar to xdm/kdm/gdm) when running in thin client mode, and that  
+</I>&gt;<i> this is why the current x2go client looks the way it looks, but I  
+</I>&gt;<i> would really like to see a client that doesn't take up as much  
+</I>&gt;<i> screen space, especially on Windows.
+</I>&gt;<i> Would it be possible to add an option for a &quot;smaller&quot; login window,  
+</I>&gt;<i> similar to the one used by the current NX client:
+</I>&gt;<i> Provide text entry fields for username and password, and a drop-down  
+</I>&gt;<i> list for the session name; when a session name is given on the  
+</I>&gt;<i> command line, only show username and password fields; when the  
+</I>&gt;<i> session file was stored with a password, directly start the login  
+</I>&gt;<i> process?
+</I>
+Have you taken a look at PyHoca-GUI? That could be an alternative for  
+you then...
+
+deb <A HREF="http://packages.das-netzwerkteam.de/debian">http://packages.das-netzwerkteam.de/debian</A> &lt;codename&gt; main
+
+or
+
+deb <A HREF="http://packages.das-netzwerkteam.de/ubuntu">http://packages.das-netzwerkteam.de/ubuntu</A> &lt;codename&gt; main
+
+=&gt;
+
+$ apt-get update
+$ apt-get install pyhoca-gui
+
+&gt;<i> (The reason why I'm asking for this is that I see a use case where  
+</I>&gt;<i> x2go is used in rootless mode to allow access to single  
+</I>&gt;<i> applications, and the big fullscreen thingie is kind of annoying to  
+</I>&gt;<i> the users that are currently used to the NX client.)
+</I>
+I plan to write an embedded menu extension for PyHoca-GUI (client  
+retrieves a menu tree from the server and allows to start remote  
+rootless applications from the GUI's menu). Some similar setup  
+(rootless provision of remote applications) is the current SAS  
+strategy of the PyHoca-GUI's main sponsor (Dick Kniep from LinDix in  
+the Netherlands).
+
+&gt;<i> Regarding question 5, I cannot provide patches myself, as I am not a  
+</I>&gt;<i> coder, but I would be willing to make a financial contribution  
+</I>&gt;<i> either to the x2go project, if it is possible for them to accept  
+</I>&gt;<i> such contributions, or to the coder providing the necessary patches  
+</I>&gt;<i> (as long as the price quote seems reasonable and affordable to me) -  
+</I>&gt;<i> if that helps motivate you to code. ;-)
+</I>
+So far, there has been a donation model for X2go. In several private  
+talks with Heinz I have suggested moving this donation model to a much  
+clearer contracting model. If you want a feature and if it is generic  
+enough for the X2go community, then you can contract Heinz, Alex, Mike  
+(Python) and in the future possibly others. If the feature is not  
+generic enough it is still possible to contract people, but the code  
+will not be merged into X2go mainstream projects (which should,  
+however, be the focus of contracting code developers).
+
+I can definitely only speak for me at this point, and my disposition  
+is: if you need features for the Python X2go API or PyHoca-GUI then  
+you can of course contract me for that.
+
+&gt;<i> 6) Is there any way to get sound working (especially in rootless  
+</I>&gt;<i> mode, say, for Flash-based websites displayed in a remote  
+</I>&gt;<i> Firefox/Iceweasel window) with Debian lenny or squeeze on the server  
+</I>&gt;<i> side, and Windows on the client side? I've seen a few messages  
+</I>&gt;<i> concerning sound issues in the list archives, but I'm not sure if I  
+</I>&gt;<i> made a mistake during my test installation or if there is a general  
+</I>&gt;<i> problem and I can stop banging my head against the wall until the  
+</I>&gt;<i> developers declare that the issue is fixed.
+</I>
+This question has been answered by John already.
+
+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 489 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110302/95a831a6/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110302/95a831a6/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001878.html">[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+</A></li>
+	<LI>Next message: <A HREF="001828.html">[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1823">[ date ]</a>
+              <a href="thread.html#1823">[ thread ]</a>
+              <a href="subject.html#1823">[ subject ]</a>
+              <a href="author.html#1823">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

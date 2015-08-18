@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fwd%3A%20%5BBug%201033876%5D%20New%3A%20x2go%20session%20does%20not%20set%0A%20correct%20keyboard%20type&In-Reply-To=%3C20131128084641.Horde.3xQFUFvjksft9ADZisxTVw1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006500.html">
+   <LINK REL="Next"  HREF="006528.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fwd%3A%20%5BBug%201033876%5D%20New%3A%20x2go%20session%20does%20not%20set%0A%20correct%20keyboard%20type&In-Reply-To=%3C20131128084641.Horde.3xQFUFvjksft9ADZisxTVw1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Nov 28 09:46:41 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006500.html">[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+</A></li>
+        <LI>Next message: <A HREF="006528.html">[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6502">[ date ]</a>
+              <a href="thread.html#6502">[ thread ]</a>
+              <a href="subject.html#6502">[ subject ]</a>
+              <a href="author.html#6502">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Orion,
+
+On  Do 28 Nov 2013 01:12:18 CET, Orion Poplawski wrote:
+
+&gt;<i> This in x2gostartagent seems wrong:
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> if [ &quot;$X2GO_SET_KBD&quot; == &quot;0&quot; ] || [ &quot;$X2GO_KBD_TYPE&quot; != &quot;auto&quot; ]; then
+</I>&gt;<i>         $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;blocking creation of  
+</I>&gt;<i> agent's keyboard file ${SESSION_DIR}/keyboard as requested by  
+</I>&gt;<i> session startup command&quot;
+</I>&gt;<i>         mkdir -p ${SESSION_DIR}/keyboard
+</I>&gt;<i> fi
+</I>&gt;<i>
+</I>&gt;<i> In the normal case, X2GO_SET_KBD is 1 and the type is specified as  
+</I>&gt;<i> pc105/us or pc105/gb, etc.  Since X2GO_KBD_TYPE != auto it does not  
+</I>&gt;<i> set the keyboard setttings.
+</I>
+This is a bit hacky, I agree. Let me start from the beginning...
+
+
+The ~/.x2go/&lt;session&gt;/keyboard file gets created by x2goagent. Always.  
+It is a file containing settings for the client-side keyboard. This  
+parameter in this file can be used to configure the session keyboard  
+automagically.
+
+
+Now, we have three different keyboard setup types (actually four):
+
+1. do not do anything about keyboard setup
+
+   -&gt; X2GO_SET_KBD = 0
+   -&gt; X2GO_KBD_TYPE = null/null (or so)
+
+2. set a keyboard specified in X2Go Client
+
+   -&gt; X2GO_SET_KBD = 1
+   -&gt; X2GO_KBD_TYPE = pc105/de (or so)
+
+3. auto-detect client-side keyboard
+
+   -&gt; X2GO_SET_KBD = 1
+   -&gt; X2GO_KBD_TYPE = auto
+
+Only with this third parameter combination we want the  
+~/.x2go/&lt;session&gt;/keyboard to be created by x2goagent. Best (only?)  
+way for this is blocking the file name with a directory. x2goagent  
+will silently stumble over this blocked directory/file name and it  
+will not create the keyboard file.
+
+(4. from Mac OS X you can theoretically use X2GO_KBD_TYPE = query. In  
+X2Go Client, however, there is code that sets X2GO_KBD_TYPE=query and  
+X2GO_SET_KBD=0, this basically disables the X2GO_KBD_TYPE=query. I  
+tested with a Mac User on IRC lately how the effect would be if we  
+switched this combination to X2GO_KBD_TYPE=query and X2GO_SET_KBD=1.  
+On his setup that change worked, so I added that to the latest X2Go  
+Server release. However, Anders has just reported a f****-up keyboard  
+layout since the latest X2Go Server release and I suspect that that  
+code is effecting that).
+
+
+Next fact that comes into play here now is: the script  
+x2gosetkeyboard. This script is responsible for reading the  
+~/.x2go/&lt;session&gt;/keyboard, extracting its information and running  
+setxkbmap on the X2Go session's $DISPLAY. This, I found, is only good  
+working well, if that x2gosetkeyboard call is evoked from  
+x2goruncommand. However, x2goruncommand does not know about  
+X2GO_SET_KBD and X2GO_KBD_TYPE.
+
+
+Thus, I have to leave a message for x2gosetkeyboard via the  
+x2gostartagent script. The information required is: is x2gosetkeyboard  
+supposed to run or not. This I do with creating  
+~/.x2go/&lt;session&gt;/keyboard as a directory prior to launching x2goagent.
+
+So, IMHO the if clause above is just selecting the described case.
+
+
+&gt;<i> I'm not sure what is trying to be done here.  An earlier comparison is:
+</I>&gt;<i>
+</I>&gt;<i> if [ &quot;$X2GO_SET_KBD&quot; == &quot;0&quot; ] || [ &quot;$X2GO_KBD_TYPE&quot; == &quot;auto&quot; ];then
+</I>&gt;<i>
+</I>&gt;<i> X2GO_HOST=&quot;nx/nx,link=${X2GO_LINK},pack=${X2GO_PACK},limit=0,root=${SESSION_DIR},cache=8M,images=32M,type=${X2GO_TYPE},id=${SESSION_NAME},cookie=$X2GO_COOKIE,errors=${SESSION_LOG},kbtype=null/null,${option_geometry}resize=${X2GO_RESIZE},fullscreen=${X2GO_FULLSCREEN},accept=${REMOTE},listen=${GR_PORT},client=linux,menu=0&quot;
+</I>&gt;<i> else
+</I>&gt;<i>
+</I>&gt;<i> X2GO_HOST=&quot;nx/nx,link=${X2GO_LINK},pack=${X2GO_PACK},limit=0,root=${SESSION_DIR},cache=8M,images=32M,type=${X2GO_TYPE},id=${SESSION_NAME},cookie=$X2GO_COOKIE,errors=${SESSION_LOG},kbtype=${X2GO_KBD_TYPE},${option_geometry}resize=${X2GO_RESIZE},fullscreen=${X2GO_FULLSCREEN},accept=${REMOTE},listen=${GR_PORT},client=linux,menu=0&quot;
+</I>&gt;<i> fi
+</I>
+This one is also correct... In this if clause we set the NX option  
+kbtype=null/null or kbtype=${X2GO_KBD_TYPE}. We only want to set  
+kbtype=${X2GO_KBD_TYPE}, if it is not auto and X2GO_SET_KBD is  
+enabled. This is handled by the above quoted if-clause IMHO.
+
+&gt;<i> So you probably want a == auto.
+</I>
+Don't think so...
+
+Mike
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131128/75186c6b/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131128/75186c6b/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006500.html">[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+</A></li>
+	<LI>Next message: <A HREF="006528.html">[X2Go-Dev] Fwd: [Bug 1033876] New: x2go session does not set correct keyboard type
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6502">[ date ]</a>
+              <a href="thread.html#6502">[ thread ]</a>
+              <a href="subject.html#6502">[ subject ]</a>
+              <a href="author.html#6502">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

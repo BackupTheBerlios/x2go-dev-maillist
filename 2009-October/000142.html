@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goclient hangs on login
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20hangs%20on%20login&In-Reply-To=%3C4AE3077F.7080603%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000141.html">
+   <LINK REL="Next"  HREF="000145.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goclient hangs on login</H1>
+    <B>Alternativende</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20hangs%20on%20login&In-Reply-To=%3C4AE3077F.7080603%40gmx.de%3E"
+       TITLE="[X2go-dev] x2goclient hangs on login">sauron99 at gmx.de
+       </A><BR>
+    <I>Sat Oct 24 15:56:15 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000141.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+        <LI>Next message: <A HREF="000145.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#142">[ date ]</a>
+              <a href="thread.html#142">[ thread ]</a>
+              <a href="subject.html#142">[ subject ]</a>
+              <a href="author.html#142">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+ok so if Im able to add a User with LUMA in the LDAP tree and if Im able 
+to log on directly on my Server with it Im going on and uncomment every 
+user beside root of /etc/group. Right? I just have to uncomment every 
+User except root to guarantee that they are no Conflicts anymore.
+
+
+Greetings...
+
+Heinz-M. Graesing schrieb:
+&gt;&gt;<i> -----Urspr&#252;ngliche Nachricht-----
+</I>&gt;&gt;<i> Von: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Sauron99 at gmx.de</A>&gt;
+</I>&gt;&gt;<i> Gesendet: 23.10.09 08:27:33
+</I>&gt;&gt;<i> An: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> Betreff: Re: [X2go-dev] x2goclient hangs on login
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Hello
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i> so let me see if I got this right now. The users which are in /etc/group have to be in the LDAP tree as well to guarantee that X2go works right?
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> You should have the users only in one place. If you wan't to use LDAP - keep them in ldap. The initsystem command in the x2goldaptools imports al users and groups into the ldap tree. What happens if you keep them in both places? The system gets confused by setting passwords. Some commands may alter the LDAP tree, because they are made for ldap, other tools may touch the files or use what is configured unter /etc/nsswitch.conf.
+</I>&gt;<i> X2goclient for example NEEDS the users in the LDAP tree to display them in displaymanager mode.
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Well Im sorry but im pretty new with LDAP and so I have just added my users with &quot;adduser user x2gousers&quot; like it is described in the manual. I would really love to try X2GO out with LDAP support to have the full functionality, especially the Thinclient things. 
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> I recommend this manual: 
+</I>&gt;<i> <A HREF="http://www.x2go.org/fileadmin/doc/installation_x2go_debian_en.html">http://www.x2go.org/fileadmin/doc/installation_x2go_debian_en.html</A>
+</I>&gt;<i>
+</I>&gt;<i> What is done in this manual? Our config scripts are generating preferences for your system, so the LDAP can be startet without touching every needed file. In the end you'll get a typical LDAP installation with SSL security. There is nothing special about this installation so you can even use other tutorials about configuring LDAP. 
+</I>&gt;<i> If you wan't to have a nice look inside your LDAP tree, I recommend the tool &quot;LUMA&quot; - a graphical LDAP browser. 
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> Basically I have just done what&#381;s in the manual without giving a [LDAPMASTER URI] in the genconf Script and creatings the certificates. I have no idea how to check that LDAP is working correctly.
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Add an user to the LDAP - only to the LDAP. Try to log into the system using this user - if your LDAP + authentification is ok, you'll be able to get into the system.
+</I>&gt;<i>
+</I>&gt;<i> Greetings,
+</I>&gt;<i>
+</I>&gt;<i> Heinz
+</I>&gt;<i> ______________________________________________________
+</I>&gt;<i> GRATIS f&#252;r alle WEB.DE-Nutzer: Die maxdome Movie-FLAT!
+</I>&gt;<i> Jetzt freischalten unter <A HREF="http://movieflat.web.de">http://movieflat.web.de</A>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000141.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+	<LI>Next message: <A HREF="000145.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#142">[ date ]</a>
+              <a href="thread.html#142">[ thread ]</a>
+              <a href="subject.html#142">[ subject ]</a>
+              <a href="author.html#142">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

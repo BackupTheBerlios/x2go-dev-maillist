@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#67: Bug when you mount more 1 folder at login
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2367%3A%20Bug%20when%20you%20mount%20more%201%20folder%20at%20login&In-Reply-To=%3CCAPTrY-kyAReZvjPb%2B5274U6sMPOyaxRWCAH-1NcANtOqH1YMCw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004619.html">
+   <LINK REL="Next"  HREF="004621.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#67: Bug when you mount more 1 folder at login</H1>
+    <B>Pascal Vibet - ADACIS</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2367%3A%20Bug%20when%20you%20mount%20more%201%20folder%20at%20login&In-Reply-To=%3CCAPTrY-kyAReZvjPb%2B5274U6sMPOyaxRWCAH-1NcANtOqH1YMCw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#67: Bug when you mount more 1 folder at login">pvibet at gmail.com
+       </A><BR>
+    <I>Fri Nov 30 07:49:28 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004619.html">[X2Go-Dev] Bug#66: pstree output after first startup
+</A></li>
+        <LI>Next message: <A HREF="004621.html">[X2Go-Dev] Bug#67: Bug when you mount more 1 folder at login
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4620">[ date ]</a>
+              <a href="thread.html#4620">[ thread ]</a>
+              <a href="subject.html#4620">[ subject ]</a>
+              <a href="author.html#4620">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goserver
+
+Version: 3.1.1.3-0~571~precise1_amd64
+
+
+I want to mount 3 folder at login. Only the first one is mount at
+login.
+
+This is log file: cat ~/mounts.log
+SSHFS version 2.3
+Server version: 3
+Extension: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">posix-rename at openssh.com</A> &lt;1&gt;
+Extension: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">statvfs at openssh.com</A> &lt;2&gt;
+Extension: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">fstatvfs at openssh.com</A> &lt;2&gt;
+Extension: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">hardlink at openssh.com</A> &lt;1&gt;
+fuse: bad mount point
+`/tmp/.x2go-xxxxxxx/media/disk/disk/_home_xxxxxxx_folder2': No such file
+or directory
+fuse: bad mount point
+`/tmp/.x2go-xxxxxxx/media/disk/disk/disk/_home_xxxxxxx_folder3': No such
+file or directory
+
+
+The bug is in /usr/bin/x2gomountdirs, explication:
+
+the $mdir variable is initialize line:
+87	my $mdir=&quot;$tmp_dir/.x2go-$ENV{'USER'}/media&quot;;
+
+but in code bloc
+    162	for (my $i=0;$i&lt;@dirs;$i++)
+    163	{
+    164		my $printspool=0;
+    165		my $mimeboxspool=0;
+    166		my $mntpath;
+    167		if(@dirs[$i]=~m/__PRINT_SPOOL_/)
+    168		{
+    169			@dirs[$i]=~s/__PRINT_SPOOL_//;
+    170			$printspool=1;
+    171			$mntpath=$spooldir;
+    172			syslog('debug', &quot;mounting $spooldir, mount point type is print
+spool directory&quot;);
+    173		}
+    174		elsif(@dirs[$i]=~m/__MIMEBOX_SPOOL_/)
+    175		{
+    176			@dirs[$i]=~s/__MIMEBOX_SPOOL_//;
+    177			$mimeboxspool=1;
+    178			$mntpath=$mimeboxdir;
+    179			syslog('debug', &quot;mounting $mimeboxdir, mount point type is
+MIME box directory&quot;);
+    180		}
+    181		else
+    182		{
+    183			my $p=@dirs[$i];
+    184			if ($type ne &quot;dir&quot;)
+    185			{
+    186				$p=~s/\/ramdrive\/mnt\///;
+    187				if ($p =~ m/CDROM/)
+    188				{
+    189					$mdir=$mdir.&quot;/cd&quot;;
+    190				}
+    191				else
+    192				{
+    193					$mdir=$mdir.&quot;/rm&quot;;
+    194				}
+    195			}
+    196			else
+    197			{
+    198				$mdir=$mdir.&quot;/disk&quot;;
+    199			}
+    200			$p=~s/\//_/g;
+    201			$p=~s/ /_/g;
+    202			$p=~s/~_cygdrive_//;
+    203			$p=~s/~_windrive_//;
+    204			$p=~s/~//g;
+    205			mkdir(&quot;$mdir/$p&quot;);
+    206			$mntpath=&quot;$mdir/$p&quot;;
+    207		}
+
+if we have more than 1 folder to share, $mdir variable will became:
+first time:
+$mdir=&quot;$tmp_dir/.x2go-$ENV{'USER'}/media/disk&quot;
+second time:
+$mdir=&quot;$tmp_dir/.x2go-$ENV{'USER'}/media/disk/disk&quot;;
+third time:
+$mdir=&quot;$tmp_dir/.x2go-$ENV{'USER'}/media/disk/disk/disk&quot;;
+
+
+Solution is to fix $mdir variable in begin for loop. Add
+$mdir=&quot;$tmp_dir/.x2go-$ENV{'USER'}/media&quot; in line:
+    164		my $printspool=0;
+    165		my $mimeboxspool=0;
+    166		my $mntpath;
+=&gt; 167          $mdir=&quot;$tmp_dir/.x2go-$ENV{'USER'}/media&quot;;
+
+Regards
+
+---------------------------------
+Pascal Vibet
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121130/7476a4b6/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121130/7476a4b6/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004619.html">[X2Go-Dev] Bug#66: pstree output after first startup
+</A></li>
+	<LI>Next message: <A HREF="004621.html">[X2Go-Dev] Bug#67: Bug when you mount more 1 folder at login
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4620">[ date ]</a>
+              <a href="thread.html#4620">[ thread ]</a>
+              <a href="subject.html#4620">[ subject ]</a>
+              <a href="author.html#4620">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] pending x2goprint patch / Possible security issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20pending%20x2goprint%20patch%20/%20Possible%20security%20issues&In-Reply-To=%3C4DABE4AB.6010506%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002025.html">
+   <LINK REL="Next"  HREF="002046.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] pending x2goprint patch / Possible security issues</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20pending%20x2goprint%20patch%20/%20Possible%20security%20issues&In-Reply-To=%3C4DABE4AB.6010506%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] pending x2goprint patch / Possible security issues">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Mon Apr 18 09:13:47 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002025.html">[X2go-dev] pending x2goprint patch / Possible security issues
+</A></li>
+        <LI>Next message: <A HREF="002046.html">[X2go-dev] pending x2goprint patch / Possible security issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2045">[ date ]</a>
+              <a href="thread.html#2045">[ thread ]</a>
+              <a href="subject.html#2045">[ subject ]</a>
+              <a href="author.html#2045">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 2011-04-13 17:43, Mike Gabriel wrote:
+&gt;<i> Hi Morty,
+</I>&gt;<i>
+</I>&gt;<i> On Mi 13 Apr 2011 16:46:00 CEST Moritz Struebe wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> I also don't really see why x2goprint needs to be root.
+</I>&gt;<i>
+</I>&gt;<i> The cups-x2go/x2goprint principle is as follows:
+</I>&gt;<i>
+</I>&gt;<i>   o cups-x2go can run on x2goserver or on another print server
+</I>&gt;<i>   o cups creates a PDF (as root)
+</I>&gt;<i>   o cups-x2go scp-copies the file to <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2gprint at x2goserver</A> which might
+</I>&gt;<i> be local
+</I>&gt;<i>   o cups-x2go calls x2goprint on x2goserver
+</I>&gt;<i>   o x2goprint (as user x2goprint) will pick up the print job
+</I>&gt;<i>   o ... move it to /tmp/...
+</I>&gt;<i>   o chown to the x2go session user
+</I>&gt;<i>   o ... and move the print job to the x2goclient (sshfs)
+</I>&gt;<i>
+</I>&gt;<i>   =&gt; the chown part needs root privs...
+</I>&gt;<i>
+</I>&gt;<i> Maybe we should really start thinking about a non-sudo way of getting
+</I>&gt;<i> the print job from the cups server to the x2goserver to the client...
+</I>
+I put some basic research into this, and what I found out by now is:
+* Using Cups there is no way of generating the PDF locally if the server
+is remote.
+* Therefore I see no way around: x2goserver -&gt; cups-server -&gt; x2goserver
+-&gt; client
+
+I don't think we can get around the ugly thing of the cups-server
+connecting back to the x2go-server, but I do think we can get around
+sudo using the sbit/suidperl once again. If we have a script in the user
+home that is executed as the user, we can use that to pipe the pdf to
+the appropriate folder. This file can be created by the client or one of
+the server-scripts and can even be deleted if the client does not
+support printing.
+This way there is no need to become root and the worst thing that can
+happen is, that the quota of the home is exceeded. No root, though.
+
+Any thoughts?
+
+Morty
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 5867 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110418/a2bff231/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110418/a2bff231/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002025.html">[X2go-dev] pending x2goprint patch / Possible security issues
+</A></li>
+	<LI>Next message: <A HREF="002046.html">[X2go-dev] pending x2goprint patch / Possible security issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2045">[ date ]</a>
+              <a href="thread.html#2045">[ thread ]</a>
+              <a href="subject.html#2045">[ subject ]</a>
+              <a href="author.html#2045">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#108: Bug#108: Bug#108: Missing fonts in X application
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23108%3A%20Bug%23108%3A%20Bug%23108%3A%20Missing%20fonts%20in%20X%20application&In-Reply-To=%3C20140127091442.Horde.h306GBudnuhp2jXvSy1sGA1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006873.html">
+   <LINK REL="Next"  HREF="006875.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#108: Bug#108: Bug#108: Missing fonts in X application</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23108%3A%20Bug%23108%3A%20Bug%23108%3A%20Missing%20fonts%20in%20X%20application&In-Reply-To=%3C20140127091442.Horde.h306GBudnuhp2jXvSy1sGA1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#108: Bug#108: Bug#108: Missing fonts in X application">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Jan 27 10:14:42 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006873.html">[X2Go-Dev] Bug#108:  Bug#108: Missing fonts in X application
+</A></li>
+        <LI>Next message: <A HREF="006875.html">[X2Go-Dev] Bug#108: Bug#108: Bug#108: Missing fonts in X application
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6874">[ date ]</a>
+              <a href="thread.html#6874">[ thread ]</a>
+              <a href="subject.html#6874">[ subject ]</a>
+              <a href="author.html#6874">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike#2,
+
+On  Mo 27 Jan 2014 03:16:41 CET, Michael DePaulo wrote:
+
+&gt;<i> Hi Stephane, I'm the new Win32 package maintainer for X2Go Client.
+</I>&gt;<i>
+</I>&gt;<i> I see that you worked around this issue by copying over VcXsrv's  
+</I>&gt;<i> fonts folder:
+</I>&gt;<i> <A HREF="https://lists.berlios.de/pipermail/x2go-user/2013-January/001253.html">https://lists.berlios.de/pipermail/x2go-user/2013-January/001253.html</A>
+</I>&gt;<i>
+</I>&gt;<i> I've experienced this bug too with ClearCase 8.0.0's &quot;xclearcase&quot; GUI.
+</I>&gt;<i> It is a very old UNIX/Linux GUI and it uses motif.
+</I>&gt;<i>
+</I>&gt;<i> My successful workaround was to both install a bunch of fonts packages
+</I>&gt;<i> server-side (including international fonts,) and to copy over the
+</I>&gt;<i> fonts directory.
+</I>&gt;<i>
+</I>&gt;<i> Still, I believe that we should take the same approach that NX did and
+</I>&gt;<i> provide a seperate setup.exe containing the extra fonts. Unless there
+</I>&gt;<i> are any objections, that will officially be on my to do list as the
+</I>&gt;<i> win32 package maintainer.
+</I>&gt;<i>
+</I>&gt;<i> Note that I do not want to include the fonts in the main X2Go Client
+</I>&gt;<i> setup.exe because:
+</I>&gt;<i> 1. They are 4,673 files, which would add a lot to the installation time
+</I>&gt;<i> 2. They are 32MB compressed with 7-zip, so they would add that much
+</I>&gt;<i> space or more. (X2goclient 4.0.1.3's setup .exe is only 23MB).
+</I>&gt;<i>
+</I>&gt;<i> For reference to others who need to copy fonts:
+</I>&gt;<i> - X2Go Client 4.0.0.3 uses VcXsrv 1.12.0.1
+</I>&gt;<i> - X2Go Client 4.0.1.2 and 4.0.1.3 use VcXsrv 1.14.2.1.
+</I>&gt;<i>
+</I>&gt;<i> -Mike#2
+</I>
+Wouldn't the best approach be a .git project on git.x2go.org that  
+includes the fonts and two nsis scripts (one for PyHoca, one for X2Go  
+Client)?
+
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20140127/79fd5bad/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20140127/79fd5bad/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006873.html">[X2Go-Dev] Bug#108:  Bug#108: Missing fonts in X application
+</A></li>
+	<LI>Next message: <A HREF="006875.html">[X2Go-Dev] Bug#108: Bug#108: Bug#108: Missing fonts in X application
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6874">[ date ]</a>
+              <a href="thread.html#6874">[ thread ]</a>
+              <a href="subject.html#6874">[ subject ]</a>
+              <a href="author.html#6874">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

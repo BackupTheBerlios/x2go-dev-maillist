@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Client-side%20printing%20not%20working%20%28most%20likely%20due%20to%0A%20the%20x2goserver-printing%20package%20being%20unavailable%20for%20installation%29&In-Reply-To=%3C20111216153519.73124qmrww34fnzb%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003117.html">
+   <LINK REL="Next"  HREF="003119.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Client-side%20printing%20not%20working%20%28most%20likely%20due%20to%0A%20the%20x2goserver-printing%20package%20being%20unavailable%20for%20installation%29&In-Reply-To=%3C20111216153519.73124qmrww34fnzb%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Dec 16 15:35:19 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003117.html">[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)
+</A></li>
+        <LI>Next message: <A HREF="003119.html">[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3118">[ date ]</a>
+              <a href="thread.html#3118">[ thread ]</a>
+              <a href="subject.html#3118">[ subject ]</a>
+              <a href="author.html#3118">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Stefan,
+
+On Fr 16 Dez 2011 15:28:18 CET Stefan Baur wrote:
+
+&gt;<i> Replying to myself here, as I didn't notice this until after posting:
+</I>&gt;<i>
+</I>&gt;&gt;<i> I was unable to follow the instructions from  
+</I>&gt;&gt;<i> <A HREF="http://wiki.x2go.org/wiki:components:printing,">http://wiki.x2go.org/wiki:components:printing,</A> as &quot;apt-get install  
+</I>&gt;&gt;<i> x2goserver-printing&quot; complains:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Some packages could not be installed. This may mean that you have
+</I>&gt;&gt;&gt;<i> requested an impossible situation or if you are using the unstable
+</I>&gt;&gt;&gt;<i> distribution that some required packages have not yet been created
+</I>&gt;&gt;&gt;<i> or been moved out of Incoming.
+</I>&gt;&gt;&gt;<i> The following information may help to resolve the situation:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> The following packages have unmet dependencies:
+</I>&gt;&gt;&gt;<i> x2goserver-printing : Depends: x2goserver (&lt;  
+</I>&gt;&gt;&gt;<i> 3.0.99.8-0~x2go1+squeeze~main~373~build1.1~) but  
+</I>&gt;&gt;&gt;<i> 3.0.99.8-0~x2go-bpo1+lenny~main~388~build1 is to be installed
+</I>&gt;<i>
+</I>&gt;<i> Why the fnord is it trying to install  
+</I>&gt;<i> 3.0.99.8-0~x2go-bpo1+lenny~main~388~build1 - a Lenny package - when  
+</I>&gt;<i> my sources.list says
+</I>&gt;&gt;<i> [...]
+</I>&gt;&gt;<i> #Backports
+</I>&gt;&gt;<i> deb <A HREF="http://ftp.de.debian.org/debian-backports">http://ftp.de.debian.org/debian-backports</A> squeeze-backports  
+</I>&gt;&gt;<i> main contrib non-free
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> # X2go Repository
+</I>&gt;&gt;<i> deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze main
+</I>&gt;&gt;<i> # X2go Repository (sources)
+</I>&gt;&gt;<i> deb-src <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze main
+</I>&gt;<i>
+</I>&gt;<i> &quot;bpo&quot; would be an indication that the package is in the backports  
+</I>&gt;<i> repository, but even that one is set to squeeze, not lenny.
+</I>&gt;<i> What's going on here?
+</I>&gt;<i>
+</I>&gt;<i> Confused,
+</I>&gt;<i> Stefan
+</I>
+I will check this ASAP. This should not be this way. However, the  
+lenny-bpo package should work for you as well as it contains pretty  
+much the same code as the squeeze 3.0.99.8.
+
+Thanks for reporting!!!
+
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20111216/1a8ce684/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20111216/1a8ce684/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003117.html">[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)
+</A></li>
+	<LI>Next message: <A HREF="003119.html">[X2go-Dev] Client-side printing not working (most likely due to the x2goserver-printing package being unavailable for installation)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3118">[ date ]</a>
+              <a href="thread.html#3118">[ thread ]</a>
+              <a href="subject.html#3118">[ subject ]</a>
+              <a href="author.html#3118">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

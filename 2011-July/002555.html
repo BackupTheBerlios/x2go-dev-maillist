@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Command line alternatives to x2goclient-cli
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Command%20line%20alternatives%20to%20x2goclient-cli&In-Reply-To=%3CCAAWyt1o8kquCVRCMKmvDe5NZdWVzj-vAeARJfYdYPu_BvKuejA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002582.html">
+   <LINK REL="Next"  HREF="002558.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Command line alternatives to x2goclient-cli</H1>
+    <B>Daniel Lindgren</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Command%20line%20alternatives%20to%20x2goclient-cli&In-Reply-To=%3CCAAWyt1o8kquCVRCMKmvDe5NZdWVzj-vAeARJfYdYPu_BvKuejA%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] Command line alternatives to x2goclient-cli">bd.dali at gmail.com
+       </A><BR>
+    <I>Wed Jul 27 09:13:35 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002582.html">[X2go-Dev] [X2go-dev] suidperl depreciated upstream?
+</A></li>
+        <LI>Next message: <A HREF="002558.html">[X2go-Dev] Command line alternatives to x2goclient-cli
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2555">[ date ]</a>
+              <a href="thread.html#2555">[ thread ]</a>
+              <a href="subject.html#2555">[ subject ]</a>
+              <a href="author.html#2555">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello.
+
+I mainly use x2goclient-cli to start/resume x2go sessions, for these reasons:
+
+- No sessions have to be created in the GUI, all necessary options are
+available as command line parameters. I can use aliases for all my
+sessions and they work on any machine that has x2goclient-cli
+installed, no further configuration necessary.
+- Easier to start multiple x2go sessions than with the QT client.
+- Automatically resumes existing session or starts a new one if needed.
+
+If I've interpreted recent mail traffic (and roadmap in wiki)
+correctly, x2goclient-cli is deprecated and will no longer be actively
+develeoped. As far as I can see there currently are two alternatives
+to using x2goclient-cli:
+
+- x2goclient (the QT client) with command line options.
+- pyhoca-cli.
+
+x2goclient works quite well from the command line (with --hide), but
+unfortunately you can't create a session only with command line
+options, it needs a manually  (GUI) created session to be able to
+connect. If you use x2goclient on multiple machines with multiple
+sessions, it takes a lot of work to set them all up. If you want to
+change or add anything, all clients will have to be manually updated.
+
+pyhoca-cli supports needed command line options, but can't
+automatically resume an existing session, you have to manually list
+existing sessions and manually tell which session you want to
+reconnect to. Also, closing the window terminates the session,
+x2goclient and -cli suspend the session, you have to press Ctrl-C to
+suspend a pyhoca-cli session which is cumbersome if you've put it in
+the background.
+
+Are there any plans to add command line functionality to x2goclient to
+make it possible to connect/resume sessions without having to define
+them in the GUI? As far as I can see, the option --user would need to
+accept non-LDAP usernames and the options --server and --ssh-key would
+have to be added.
+
+Alternatively, can pyhoca-cli be updated with:
+
+- An option to automatically resume an existing session if there is
+one or create a new one if there isn't.
+- An option to suspend a running session if the windows is closed, not
+terminate it. Makes it possible to start pyhoca-cli in the background.
+
+Cheers,
+Daniel
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002582.html">[X2go-Dev] [X2go-dev] suidperl depreciated upstream?
+</A></li>
+	<LI>Next message: <A HREF="002558.html">[X2go-Dev] Command line alternatives to x2goclient-cli
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2555">[ date ]</a>
+              <a href="thread.html#2555">[ thread ]</a>
+              <a href="subject.html#2555">[ subject ]</a>
+              <a href="author.html#2555">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#22: bug#22: bug#22: bug#22: Keyboard focus lost when	connecting to Win2008r2 RDP-Server (proxied through NX) in	fullscreen mode
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2322%3A%20bug%2322%3A%20bug%2322%3A%20bug%2322%3A%20Keyboard%20focus%20lost%20when%0A%09connecting%20to%20Win2008r2%20RDP-Server%20%28proxied%20through%20NX%29%20in%0A%09fullscreen%20mode&In-Reply-To=%3C50504F9A.7070809%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004231.html">
+   <LINK REL="Next"  HREF="004237.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#22: bug#22: bug#22: bug#22: Keyboard focus lost when	connecting to Win2008r2 RDP-Server (proxied through NX) in	fullscreen mode</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2322%3A%20bug%2322%3A%20bug%2322%3A%20bug%2322%3A%20Keyboard%20focus%20lost%20when%0A%09connecting%20to%20Win2008r2%20RDP-Server%20%28proxied%20through%20NX%29%20in%0A%09fullscreen%20mode&In-Reply-To=%3C50504F9A.7070809%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] Bug#22: bug#22: bug#22: bug#22: Keyboard focus lost when	connecting to Win2008r2 RDP-Server (proxied through NX) in	fullscreen mode">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Wed Sep 12 11:02:18 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004231.html">[X2Go-Dev] bug#22: bug#22: bug#22: Keyboard focus lost when	connecting to Win2008r2 RDP-Server (proxied through NX) in	fullscreen mode
+</A></li>
+        <LI>Next message: <A HREF="004237.html">[X2Go-Dev] Bug#22: Keyboard focus lost when connecting to Win2008r2	RDP-Server (proxied through NX) in fullscreen mode
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4235">[ date ]</a>
+              <a href="thread.html#4235">[ thread ]</a>
+              <a href="subject.html#4235">[ subject ]</a>
+              <a href="author.html#4235">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Mike,
+
+It looking OK for me. However, I think it it wrong place to fix this
+issue. In February this year I fixed some keyboard focus issues:
+<A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=236d841becb21398f6137f6e8c569494f10ab11f">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=236d841becb21398f6137f6e8c569494f10ab11f</A>
+
+Unfortunately I have not a TCE in daily use. Now I see, that this fix
+working only for desktop sessions, with nxproxy that have Window ID. In
+case of rootless sessions or direct RDP connections it not working. I
+wrote a patch, that should fix it:
+
+<A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commit;h=bace365a71c05d924288e2f0b8d0ff1af2245a19">http://code.x2go.org/gitweb?p=x2goclient.git;a=commit;h=bace365a71c05d924288e2f0b8d0ff1af2245a19</A>
+
+Please try it. And you can revert the changes you have made.
+
+regards
+Alex
+
+Am 11.09.2012 21:19, schrieb Mike Gabriel:
+&gt;<i> Hi Alex,
+</I>&gt;<i> 
+</I>&gt;<i> On Di 11 Sep 2012 16:26:53 CEST Mike Gabriel wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> tags #22 pending
+</I>&gt;&gt;<i> clone #22 -1
+</I>&gt;&gt;<i> reassign -1 python-x2go
+</I>&gt;&gt;<i> thanks
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hi all,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Di 11 Sep 2012 12:17:12 CEST Mike Gabriel wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> When launching an X2Go-proxied RDP session in fullscreen mode to a 
+</I>&gt;&gt;&gt;<i>  Windows 7 or Windows 2008r2 server, the keyboard focus gets lost
+</I>&gt;&gt;&gt;<i> in   the RDP session window. Thus, it is not possible to enter the 
+</I>&gt;&gt;&gt;<i> password  in the fullscreen login window of the RDP server.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The approach to work-around this issue is to launch fullscreen 
+</I>&gt;&gt;<i> rdesktop sessions with X2Go session type &quot;D&quot; (desktop) not &quot;R&quot; 
+</I>&gt;&gt;<i> (rootless).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This commit should change this behaviour in x2goclient:
+</I>&gt;&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=1c4064a61af7cd322b3a755913dfe448cfccb005">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=1c4064a61af7cd322b3a755913dfe448cfccb005</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i> 
+</I>&gt;<i> Can you look at that commit (and the follow-up commit) and judge if that
+</I>&gt;<i> is the way to go?
+</I>&gt;<i> 
+</I>&gt;<i> I actually would love to gradually convert the sessions file so that RDP
+</I>&gt;<i> fullscreen session get:
+</I>&gt;<i> 
+</I>&gt;<i>   rootless=false
+</I>&gt;<i> 
+</I>&gt;<i> and RDP non-fullscreen get
+</I>&gt;<i> 
+</I>&gt;<i>   rootless=true
+</I>&gt;<i> 
+</I>&gt;<i> This has to be implemented in PyHoca and X2GoClient then.
+</I>&gt;<i> 
+</I>&gt;<i> What do you think?
+</I>&gt;<i> 
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120912/1888d6b9/attachment-0001.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120912/1888d6b9/attachment-0001.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004231.html">[X2Go-Dev] bug#22: bug#22: bug#22: Keyboard focus lost when	connecting to Win2008r2 RDP-Server (proxied through NX) in	fullscreen mode
+</A></li>
+	<LI>Next message: <A HREF="004237.html">[X2Go-Dev] Bug#22: Keyboard focus lost when connecting to Win2008r2	RDP-Server (proxied through NX) in fullscreen mode
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4235">[ date ]</a>
+              <a href="thread.html#4235">[ thread ]</a>
+              <a href="subject.html#4235">[ subject ]</a>
+              <a href="author.html#4235">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

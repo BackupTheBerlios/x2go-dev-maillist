@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#301: Execute commands given as arguments
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23301%3A%20Execute%20commands%20given%20as%20arguments&In-Reply-To=%3C1378371061-28314-1-git-send-email-a.krille%40b-c-s.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006166.html">
+   <LINK REL="Next"  HREF="006167.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#301: Execute commands given as arguments</H1>
+    <B>Arnold Krille</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23301%3A%20Execute%20commands%20given%20as%20arguments&In-Reply-To=%3C1378371061-28314-1-git-send-email-a.krille%40b-c-s.de%3E"
+       TITLE="[X2Go-Dev] Bug#301: Execute commands given as arguments">a.krille at b-c-s.de
+       </A><BR>
+    <I>Thu Sep  5 10:51:01 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006166.html">[X2Go-Dev] Bug#300: Allow x2gothinclientcreate to run	non-interactive
+</A></li>
+        <LI>Next message: <A HREF="006167.html">[X2Go-Dev] Bug#302: No session resume
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6165">[ date ]</a>
+              <a href="thread.html#6165">[ thread ]</a>
+              <a href="subject.html#6165">[ subject ]</a>
+              <a href="author.html#6165">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2gothinclient
+
+When automatically setting up the TCE via scripts, there is the need to execute
+arbitrary commands inside the TCE, extend x2gothinclient_shell to run anything
+given as arguments and fall back to $TC_SHELL when nothing is given.
+---
+ x2gothinclientmanagement/sbin/x2gothinclient_shell |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/x2gothinclientmanagement/sbin/x2gothinclient_shell b/x2gothinclientmanagement/sbin/x2gothinclient_shell
+index 42f4f5d..ba4ec21 100755
+--- a/x2gothinclientmanagement/sbin/x2gothinclient_shell
++++ b/x2gothinclientmanagement/sbin/x2gothinclient_shell
+@@ -82,7 +82,7 @@ export X2GO_HANDLE_DAEMONS=false
+ 
+ mount /root
+ 
+-/bin/$TC_SHELL
++${*:-/bin/$TC_SHELL}
+ 
+ umount /root
+ 
+-- 
+1.7.9.5
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006166.html">[X2Go-Dev] Bug#300: Allow x2gothinclientcreate to run	non-interactive
+</A></li>
+	<LI>Next message: <A HREF="006167.html">[X2Go-Dev] Bug#302: No session resume
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6165">[ date ]</a>
+              <a href="thread.html#6165">[ thread ]</a>
+              <a href="subject.html#6165">[ subject ]</a>
+              <a href="author.html#6165">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

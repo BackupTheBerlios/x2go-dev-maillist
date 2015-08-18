@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go Client - new features and bugfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20-%20new%20features%20and%20bugfix&In-Reply-To=%3C20131212140453.GB24005%40cip.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006626.html">
+   <LINK REL="Next"  HREF="006644.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go Client - new features and bugfix</H1>
+    <B>Alexander Wuerstlein</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20-%20new%20features%20and%20bugfix&In-Reply-To=%3C20131212140453.GB24005%40cip.informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] X2Go Client - new features and bugfix">snalwuer at cip.informatik.uni-erlangen.de
+       </A><BR>
+    <I>Thu Dec 12 15:04:53 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006626.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+        <LI>Next message: <A HREF="006644.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6628">[ date ]</a>
+              <a href="thread.html#6628">[ thread ]</a>
+              <a href="subject.html#6628">[ subject ]</a>
+              <a href="author.html#6628">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 13-12-12 14:44, Stefan Baur &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>&gt; wrote:
+&gt;<i> Am 12.12.2013 14:20, schrieb Oleksandr Shneyder:
+</I>&gt;<i> 
+</I>&gt;<i> &gt;1. Support for GSSApi (Kerberos 5) authentication.
+</I>&gt;<i> 
+</I>&gt;<i> Care to explain what that can be used for, to the non-initiated? :-)
+</I>
+Single-Sign-On done right. You log on with your Kerberos password, which
+creates an ephemeral &quot;ticket&quot; that allows password-less login to
+other services. Services might be e.g. ssh, but also websites,
+SMTP/IMAP/POP3 and quite a lot more.
+
+Hypothetical scenario: You log in to your thin client running x2go with
+your username and password (smartcard would also be possible
+theoretically). Thats the only time you need to type a password. You
+then connect to the x2go session broker, authenticated by your ticket,
+which assigns you to a server. On that server you log in with your
+ticket. You start a web browser and open your IMAP webclient,
+authenticated by your ticket wich is forwarded from your thinclient over
+the ssh/x2go connection to your browser. The IMAP webclient also
+authenticates via a forwarded ticket to the IMAP server where you read
+your Email.
+
+Of course this is somewhat hypothetical still because not every piece of
+software supports ticket forwarding and I'm not sure if x2go already
+does all that. Also, services like the x2go session broker would have to
+be extended to support this kind of authentication I guess. But what
+should generally work is passwordless x2go in places where passwordless
+ssh already works via Kerberos.
+
+
+Ciao,
+
+Alexander Wuerstlein.
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006626.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+	<LI>Next message: <A HREF="006644.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6628">[ date ]</a>
+              <a href="thread.html#6628">[ thread ]</a>
+              <a href="subject.html#6628">[ subject ]</a>
+              <a href="author.html#6628">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

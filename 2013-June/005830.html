@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#240: ecdsa-sha2-nistp256 not supported
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23240%3A%20ecdsa-sha2-nistp256%20not%20supported&In-Reply-To=%3C51BE1119.4030004%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005829.html">
+   <LINK REL="Next"  HREF="005851.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#240: ecdsa-sha2-nistp256 not supported</H1>
+    <B>Heinrich Schuchardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23240%3A%20ecdsa-sha2-nistp256%20not%20supported&In-Reply-To=%3C51BE1119.4030004%40gmx.de%3E"
+       TITLE="[X2Go-Dev] Bug#240: ecdsa-sha2-nistp256 not supported">xypron.glpk at gmx.de
+       </A><BR>
+    <I>Sun Jun 16 21:25:13 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005829.html">[X2Go-Dev] Bug#243: SshMasterConnection::serverAuth:	ssh_clean_pubkey_hash not called
+</A></li>
+        <LI>Next message: <A HREF="005851.html">[X2Go-Dev] Bug#240:  Bug#240: ecdsa-sha2-nistp256 not supported
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5830">[ date ]</a>
+              <a href="thread.html#5830">[ thread ]</a>
+              <a href="subject.html#5830">[ subject ]</a>
+              <a href="author.html#5830">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+
+What I observed is that the entries in known_hosts created by ssh that 
+are not supported contain a string ecdsa-sha2-nistp256 instead of ssh-rsa.
+Hashed entries with ssh-rsa are supported.
+
+readelf -d /usr/bin/x2goclient
+|<i>does not show a dependency on libcrypto which contains the elliptic 
+</I>curve cryptography functions while
+readlef -d /usr/bin/ssh
+shows such a dependency.|
+
+Best regards
+
+Heinrich Schuchardt
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130616/510f84be/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130616/510f84be/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005829.html">[X2Go-Dev] Bug#243: SshMasterConnection::serverAuth:	ssh_clean_pubkey_hash not called
+</A></li>
+	<LI>Next message: <A HREF="005851.html">[X2Go-Dev] Bug#240:  Bug#240: ecdsa-sha2-nistp256 not supported
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5830">[ date ]</a>
+              <a href="thread.html#5830">[ thread ]</a>
+              <a href="subject.html#5830">[ subject ]</a>
+              <a href="author.html#5830">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

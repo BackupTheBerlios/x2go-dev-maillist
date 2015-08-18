@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Hardware SSH acceleration
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Hardware%20SSH%20acceleration&In-Reply-To=%3C20100924071646.GA32478%40fgnfs.fg-networking.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001087.html">
+   <LINK REL="Next"  HREF="001089.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Hardware SSH acceleration</H1>
+    <B>Erik Auerswald</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Hardware%20SSH%20acceleration&In-Reply-To=%3C20100924071646.GA32478%40fgnfs.fg-networking.de%3E"
+       TITLE="[X2go-dev] Hardware SSH acceleration">auerswald at fg-networking.de
+       </A><BR>
+    <I>Fri Sep 24 09:16:47 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001087.html">[X2go-dev] Hardware SSH acceleration
+</A></li>
+        <LI>Next message: <A HREF="001089.html">[X2go-dev] Hardware SSH acceleration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1101">[ date ]</a>
+              <a href="thread.html#1101">[ thread ]</a>
+              <a href="subject.html#1101">[ subject ]</a>
+              <a href="author.html#1101">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+On Thu, Sep 23, 2010 at 06:39:41PM +0200, Mike Gabriel wrote:
+&gt;<i> On Do 23 Sep 2010 18:01:31 CEST Jo-Erlend Schinstad wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> One possible solution:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> 1) use PXE boot for your thin clients, mounting everything over the network.
+</I>&gt;&gt;<i> 2) in local GNOME, run only a bottom panel with menu for apps that
+</I>&gt;&gt;<i> needs to be run locally.
+</I>&gt;&gt;<i> 3) On the remote GNOME, run only a top panel.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Now, instead of running a complete GNOME session, simply run
+</I>&gt;&gt;<i> gnome-panel from x2go. That way, you'll have a &quot;mixed-mode&quot; session so
+</I>&gt;&gt;<i> that users feel like they're doing everything on the same machine,
+</I>&gt;&gt;<i> when in fact they're not.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It is a work-around, but it felt quite nice here.
+</I>&gt;<i>
+</I>&gt;<i> NICE!!!! I will keep that in the back of my mind... (I am currently  
+</I>&gt;<i> working on an X2go integration into LTSP thinclients...
+</I>
+The LTSP project provides the ltsp-localapps wrapper. If you are using LTSP
+terminals exclusively[1], you could edit the menu on the server to use the
+wrapper for some applications. This could be a simpler setup than the
+&quot;mixed-mode&quot; approach and would work with other desktop environments as
+well.
+
+How do you want to integrate X2go into LTSP? It could be nice to add
+something NX based as transport alternative to XDMCP and SSH. :-)
+
+Best regards,
+Erik
+
+[1] Otherwise you would have to used different menu entries for terminal
+    users than for local/workstation  users, which tends to confuse people.
+-- 
+Dipl.-Inform. Erik Auerswald                <A HREF="http://www.fg-networking.de/">http://www.fg-networking.de/</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">auerswald at fg-networking.de</A> Tel: +49-631-4149988-0 Fax: +49-631-4149988-9
+
+Gesellschaft f&#252;r Fundamental Generic Networking mbH
+Gesch&#228;ftsf&#252;hrung: Volker Bauer, J&#246;rg Mayer
+Gerichtsstand: Amtsgericht Kaiserslautern - HRB: 3630
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001087.html">[X2go-dev] Hardware SSH acceleration
+</A></li>
+	<LI>Next message: <A HREF="001089.html">[X2go-dev] Hardware SSH acceleration
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1101">[ date ]</a>
+              <a href="thread.html#1101">[ thread ]</a>
+              <a href="subject.html#1101">[ subject ]</a>
+              <a href="author.html#1101">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

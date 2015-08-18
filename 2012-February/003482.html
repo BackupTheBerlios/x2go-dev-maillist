@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Re%3A%20x2godesktopsharing%20SIGSEV%20-%20how%20to%0A%20compile%20with%20debugging%20info%3F&In-Reply-To=%3Calpine.LNX.2.01.1202180837520.6138%40frira.zrqbmnf.qr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003480.html">
+   <LINK REL="Next"  HREF="003485.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Re%3A%20x2godesktopsharing%20SIGSEV%20-%20how%20to%0A%20compile%20with%20debugging%20info%3F&In-Reply-To=%3Calpine.LNX.2.01.1202180837520.6138%40frira.zrqbmnf.qr%3E"
+       TITLE="[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?">jengelh at medozas.de
+       </A><BR>
+    <I>Sat Feb 18 09:00:30 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003480.html">[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+</A></li>
+        <LI>Next message: <A HREF="003485.html">[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3482">[ date ]</a>
+              <a href="thread.html#3482">[ thread ]</a>
+              <a href="subject.html#3482">[ subject ]</a>
+              <a href="author.html#3482">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On Saturday 2012-02-18 00:55, Mike Gabriel wrote:
+&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I get Segmentation fault when I right-click on x2godesktopsharing
+</I>&gt;&gt;&gt;<i> icon in the system tray and choose &quot;Activate Desktop Sharing&quot;. (Arch
+</I>&gt;&gt;&gt;<i> Linux.)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The segfault was due to non-existent &quot;x2godesktopsharing&quot; group in the
+</I>&gt;&gt;<i> system.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This involves two matters:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> x Arch Linux does not allow for group names longer then 16 characters.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> x x2godesktopsharing should check for existence of the group and quit
+</I>&gt;&gt;<i> nicely otherwise.
+</I>&gt;<i>
+</I>&gt;<i>I need some feedback from the other devs how to handle this. We/I
+</I>&gt;<i>changed from group x2godesktopshare to x2godesktopsharing more or
+</I>&gt;<i>less recently, but was not aware of gid-lenght limitations in POSIX.
+</I>&gt;<i>
+</I>&gt;<i>What do other devs think of reverting the group name change?
+</I>
+I do not see any group name length limit either, however,
+
+(a) there is a limit as to what a user can/want to take. While
+tabcompletion probably gets you out most of the time, nobody really
+wants e.g. /home/Karl\ Theodor\ Maria\ Nikolaus\ Johann\ Jacob\
+Philipp\ Franz\ Joseph\ Sylvester\ Freiherr\ von\ und\ zu\ Guttenberg
+(21st century, though past-time, German politician serving for this
+example).
+
+(b) not defined by POSIX, but there is an actual sanity limit.
+A username length about PATH_MAX chars long becomes problematic
+to be used in a path, e.g. when attempting to use for /home :)
+
+The 16 character limit in Arch is just like the 80 character &quot;limit&quot;
+in coding. But actually, it is not a limit, but a wellness target: it
+may be exceeded if there is a justification. In contrast, historic UNIX 
+usernames of 8 chars - /that/ was a limit.
+
+Was there a reason to put users through a name change the first time?
+(Note that such changes may not necessarily be automated, e.g. when
+users relocate the group into LDAP)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003480.html">[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+</A></li>
+	<LI>Next message: <A HREF="003485.html">[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3482">[ date ]</a>
+              <a href="thread.html#3482">[ thread ]</a>
+              <a href="subject.html#3482">[ subject ]</a>
+              <a href="author.html#3482">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

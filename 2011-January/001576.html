@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2go client window in rootless mode crashes when	mouse is moved over title bar
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20client%20window%20in%20rootless%20mode%20crashes%20when%0A%09mouse%20is%20moved%20over%20title%20bar&In-Reply-To=%3C201101252241.25055.mike.gabriel%40das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001570.html">
+   <LINK REL="Next"  HREF="001633.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2go client window in rootless mode crashes when	mouse is moved over title bar</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20client%20window%20in%20rootless%20mode%20crashes%20when%0A%09mouse%20is%20moved%20over%20title%20bar&In-Reply-To=%3C201101252241.25055.mike.gabriel%40das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] X2go client window in rootless mode crashes when	mouse is moved over title bar">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Jan 25 22:41:19 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001570.html">[X2go-dev] X2go client window in rootless mode crashes when mouse is moved over title bar
+</A></li>
+        <LI>Next message: <A HREF="001633.html">[X2go-dev] X2go client window in rootless mode crashes when	mouse is moved over title bar
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1576">[ date ]</a>
+              <a href="thread.html#1576">[ thread ]</a>
+              <a href="subject.html#1576">[ subject ]</a>
+              <a href="author.html#1576">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi there,
+
+Am Dienstag, 25. Januar 2011, 13:14:26 schrieb Mike Gabriel:
+&gt;<i> Hi there,
+</I>&gt;<i> 
+</I>&gt;<i> this issue has probably been already addressed:
+</I>&gt;<i> 
+</I>&gt;<i> During development of PyHoca-GUI I encounter some weird behaviour on
+</I>&gt;<i> mouse moves that cross the title bar of a rootless session window
+</I>&gt;<i> (e.g. xterm via X2go, but also any other app). I think that this
+</I>&gt;<i> problem only occurs with the initial rootless window (e.g. xterm). Any
+</I>&gt;<i> subsequently started application window has not shown this behaviour
+</I>&gt;<i> so far.
+</I>
+I have a gut feeling that the problem is burried in Events.c of the nxagent 
+hw. Maybe it's worth trying to comment out the nxagentOption(Menu) block in 
+Events.c. However, I currently cannot compile the x2goagent package (because 
+of mismatching nxlib versions in Debian and the ones used by X2go).
+
+Greets,
+Mike
+
+
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at minobo</A>:~/MyDocuments/4packages/_examples_/x2goagent-3.4.0-3/programs/Xserver/hw/nxagent$ 
+diff -u Events.c.orig Events.c
+--- Events.c.orig       2011-01-25 22:36:54.000000000 +0100
++++ Events.c    2011-01-25 22:22:06.000000000 +0100
+@@ -1028,6 +1028,7 @@
+             nxagentLastEnteredWindow = pWin;
+           }
+ 
++          /*
+           if (nxagentPulldownDialogPid == 0 &amp;&amp; 
+nxagentLastEnteredTopLevelWindow &amp;&amp;
+                   (X.xmotion.y_root &lt; nxagentLastEnteredTopLevelWindow -&gt; 
+drawable.y + 4))
+           {
+@@ -1043,6 +1044,7 @@
+               nxagentPulldownDialog(nxagentLastEnteredTopLevelWindow -&gt; 
+drawable.id);
+             }
+           }
++          */
+ 
+           x.u.keyButtonPointer.rootX = X.xmotion.x_root;
+           x.u.keyButtonPointer.rootY = X.xmotion.y_root;
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0x1943CA5B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110125/bcff8c6a/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110125/bcff8c6a/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001570.html">[X2go-dev] X2go client window in rootless mode crashes when mouse is moved over title bar
+</A></li>
+	<LI>Next message: <A HREF="001633.html">[X2go-dev] X2go client window in rootless mode crashes when	mouse is moved over title bar
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1576">[ date ]</a>
+              <a href="thread.html#1576">[ thread ]</a>
+              <a href="subject.html#1576">[ subject ]</a>
+              <a href="author.html#1576">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

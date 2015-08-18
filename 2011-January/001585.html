@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goserver, x2goserver-one, x2godesktopsharing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goserver%2C%20x2goserver-one%2C%20x2godesktopsharing&In-Reply-To=%3C4D40095A.2020305%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001583.html">
+   <LINK REL="Next"  HREF="001607.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goserver, x2goserver-one, x2godesktopsharing</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goserver%2C%20x2goserver-one%2C%20x2godesktopsharing&In-Reply-To=%3C4D40095A.2020305%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] x2goserver, x2goserver-one, x2godesktopsharing">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Wed Jan 26 12:45:30 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001583.html">[X2go-dev] Project Managemant (Was:  Repository for Squeeze)
+</A></li>
+        <LI>Next message: <A HREF="001607.html">[X2go-dev] x2goserver, x2goserver-one, x2godesktopsharing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1585">[ date ]</a>
+              <a href="thread.html#1585">[ thread ]</a>
+              <a href="subject.html#1585">[ subject ]</a>
+              <a href="author.html#1585">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hallo list users,
+
+New server packages (deb and tar.gz) are available over our heuler
+repository:
+<A HREF="http://x2go.obviously-nice.de/deb/pool-heuler/">http://x2go.obviously-nice.de/deb/pool-heuler/</A>
+
+You can install this packages with apt:
+deb <A HREF="http://x2go.obviously-nice.de/deb/">http://x2go.obviously-nice.de/deb/</A> heuler main
+
+Please keep in mind, that the heuler archive is an additional repository
+- you'll need to have the lenny repository configured as well!
+
+Changes:
+
+Sudo commands are no longer required by x2goserver to contact the
+postgresql database. Now postgres views and rules are used to restrict
+users form modifying or accessing data of other users.
+
+Sudo isn&#8217;t required for the use of x2godesktopsharing (but
+the users must be part of group x2gousers) too.
+
+If you want to use x2goserver with sqlite, you still need to configure
+sudo. But instead of the user &quot;root&quot;, an unprivileged user &quot;x2gouser&quot;
+will be used.
+
+I've used Perl DBI to work with databases.
+
+
+How to setup x2goserver with postgres:
+
+configure postgresql server to enable tcp connections from x2goserver
+configure postgresql server for md5 authentication for users from
+x2goserver in /etc/postgresql/(version)/main/pg_hba.conf, for example:
+
+# IPv4 local connections:
+
+host    all         all         127.0.0.1/32          md5
+
+You must create a database user which can create databases and users for
+x2go database administration. You can also use user postgres to do this
+job.
+
+You must save the password of this user in the file
+/etc/x2go/x2gosql/passwords/pgadmin. Only root should have access to
+this file. It will be used only for database and users creation, you
+may/should delete it after this tasks are done. You can set new password
+using this
+commands:
+
+x2goserver:/# su postgres -c &quot;psql&quot;
+Dies ist psql 8.3.8, das interaktive PostgreSQL-Terminal.
+
+Geben Sie ein:  \copyright f&#252;r Urheberrechtsinformationen
+                \h f&#252;r Hilfe &#252;ber SQL-Anweisungen
+                \? f&#252;r Hilfe &#252;ber interne Anweisungen
+                \g oder Semikolon, um eine Anfrage auszuf&#252;hren
+                \q um zu beenden
+
+postgres=# alter user postgres encrypted password 'Gjyxc45WET';
+ALTER ROLE
+postgres=# \q
+
+
+database configurations in file /etc/x2go/x2gosql/sql:
+
+backend=postgres
+[postgres]
+host=localhost
+port=5432
+#database admin (must have permissions to create databases and users)
+dbadmin=postgres
+
+
+
+database administration using /usr/lib/x2go/script/x2godbadmin.
+
+x2goserver:/# /usr/lib/x2go/script/x2godbadmin --help
+X2Go SQL admin interface. Use it to create x2go database and insert or
+remove users or groups in x2go database
+Usage:
+x2godbadmin --createdb
+x2godbadmin --listusers
+x2godbadmin --adduser|rmuser &lt;UNIX user&gt;
+x2godbadmin --addgroup|rmgroup &lt;UNIX group&gt;
+
+
+Create database:
+x2goserver:/# /usr/lib/x2go/script/x2godbadmin --createdb
+
+Create database users:
+You can add UNIX users or groups to database using commands
+/usr/lib/x2go/script/x2godbadmin --adduser example
+or
+/usr/lib/x2go/script/x2godbadmin --addgroup x2gousers
+after that step users can create x2go sessions.
+
+
+
+
+How to setup x2goserver with sqlite:
+
+Add sudo entry:
+
+
+
+#### X2GO section
+
+
+%x2gousers ALL=(x2gouser) NOPASSWD: /usr/bin/x2gosqlitewrapper
+
+to create x2go sessions user must be part of group &quot;x2gousers&quot;
+
+database configurations in file /etc/x2go/x2gosql/sql:
+
+backend=sqlite
+
+
+
+Create database:
+x2goserver:/# /usr/lib/x2go/script/x2godbadmin --createdb
+
+
+By installing package x2goserver-one this steps will be done automatically.
+
+Regards,
+alex
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110126/c9f0dcb4/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110126/c9f0dcb4/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001583.html">[X2go-dev] Project Managemant (Was:  Repository for Squeeze)
+</A></li>
+	<LI>Next message: <A HREF="001607.html">[X2go-dev] x2goserver, x2goserver-one, x2godesktopsharing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1585">[ date ]</a>
+              <a href="thread.html#1585">[ thread ]</a>
+              <a href="subject.html#1585">[ subject ]</a>
+              <a href="author.html#1585">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

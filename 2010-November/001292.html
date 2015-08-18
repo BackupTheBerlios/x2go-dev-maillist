@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Installing x2goserver-one in Debian added 300 users to fuse and x2gousers groups
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Installing%20x2goserver-one%20in%20Debian%20added%20300%20users%0A%20to%20fuse%20and%20x2gousers%20groups&In-Reply-To=%3C20101120215459.548779ehaukahvvn%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001290.html">
+   <LINK REL="Next"  HREF="001293.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Installing x2goserver-one in Debian added 300 users to fuse and x2gousers groups</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Installing%20x2goserver-one%20in%20Debian%20added%20300%20users%0A%20to%20fuse%20and%20x2gousers%20groups&In-Reply-To=%3C20101120215459.548779ehaukahvvn%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] Installing x2goserver-one in Debian added 300 users to fuse and x2gousers groups">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Nov 20 21:54:59 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001290.html">[X2go-dev] Installing x2goserver-one in Debian added 300 users to fuse and x2gousers groups
+</A></li>
+        <LI>Next message: <A HREF="001293.html">[X2go-dev] Installing x2goserver-one in Debian added 300 users to fuse and x2gousers groups
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1292">[ date ]</a>
+              <a href="thread.html#1292">[ thread ]</a>
+              <a href="subject.html#1292">[ subject ]</a>
+              <a href="author.html#1292">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Nikos,
+
+On Sa 20 Nov 2010 18:12:16 CET Nikos Chantziaras wrote:
+
+&gt;<i> On 11/20/2010 12:03 PM, Mike Gabriel wrote:
+</I>&gt;&gt;<i> Hi Nikos,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Sa 20 Nov 2010 01:04:25 CET Nikos Chantziaras wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I followed the instructions in the Wiki and installed x2goserver-one
+</I>&gt;&gt;&gt;<i> on my Debian Lenny server. However, during the installation, it told me:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Attention: If you want to allow users to log into the x2go system,
+</I>&gt;&gt;&gt;<i> you'll need to add them to the &quot;x2gousers&quot; group
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> but then it went on all on its own and added all users (about 300) of
+</I>&gt;&gt;&gt;<i> the system to the &quot;x2gousers&quot; as well as &quot;fuse&quot; groups! How do I undo
+</I>&gt;&gt;&gt;<i> that? Right now, I need to click around for hours in the Users and
+</I>&gt;&gt;&gt;<i> Groups admin tool :-$
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The x2goserver-one package is intended for little Ubuntu systems...
+</I>&gt;&gt;<i> (standalone, sqlite, make your desktop reachable from home). So the
+</I>&gt;&gt;<i> auto-adding for groupmember is intended here, I suppose (make it easy
+</I>&gt;&gt;<i> for the user).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> For bigger installations/contexts use the x2goserver package (no -home,
+</I>&gt;&gt;<i> no -one at the end of the package name) with PostgreSQL DB backend, the
+</I>&gt;&gt;<i> x2goserver package does not impose auto-groupmemberships on you.
+</I>&gt;<i>
+</I>&gt;<i> I don't understand what a &quot;big installation/context&quot; is.
+</I>
+That's a terminal server, for example.
+
+&gt;<i> Most admins just want a remote desktop for the servers they  
+</I>&gt;<i> administer. Me too. I don't have a reason to use Postgre for anything.
+</I>
+In this case the sqlite version is preferable. I never have problems  
+with the scripts as my user DB is always LDAP. Thus, only my local  
+admin user gets added automatically.
+
+I guess Gerry is right with his posting, only users with a local home  
+may be added. Much nicer would be a debconf selection screen that  
+allows the administrator to manually select X2go users from a list of  
+local passwd user.
+
+&gt;<i> So it's a big server, and I want a remote desktop to it for  
+</I>&gt;<i> administrative purposes.  Do you recommend to install Postgre and  
+</I>&gt;<i> the normal x2goserver on it?
+</I>
+Nope, not in that case.
+
+&gt;<i> I was under the impression that the home version was -home.  The one  
+</I>&gt;<i> person version was -one.  I'm one person, and I want me, and only  
+</I>&gt;<i> me, to be able to login per x2go.  So I installed -one.
+</I>
+As I have already written in my other posting: always test software on  
+non-production systems. Once you have done that you know about the  
+caveats and then things like this do not happen.
+
+&gt;<i> I suggest the installation to be adapted to this. -home might add  
+</I>&gt;<i> users to x2gousers, but why -one?
+</I>
+I rather suggest a line of documentation in the wiki... Changing  
+package names after many people have already installed them is nasty...
+
+&gt;<i> Also, what's the point in adding users like &quot;apache&quot; and &quot;mysql&quot; to  
+</I>&gt;<i> x2gousers and fuse?
+</I>
+This has never happened on my systems that I access as a local  
+administrator. You are using Ubuntu... what version? Are you using  
+apache and mysql from the Ubuntu archive or do you have a special  
+blend of the LAMP software. The X2go x2goconfigusers script only adds  
+users that have uidNumber 1000-29999. The apache and mysql user should  
+be system users, that is have a uidNumber &lt;1000. So maybe there is  
+something irregular...
+
+For further reference: adding users to X2go groups in GIT:
+<A HREF="http://git.x2go.org/?a=viewblob&amp;p=x2go&amp;h=5025991b72d4f67006e9998bd9ee7f1a1be4c43d&amp;hb=38b730a075cc77f747acf6fe585e0aeb728dda55&amp;f=db-builds/x2goserver-one/x2goserver-one-3.0.1/x2goconfigusers">http://git.x2go.org/?a=viewblob&amp;p=x2go&amp;h=5025991b72d4f67006e9998bd9ee7f1a1be4c43d&amp;hb=38b730a075cc77f747acf6fe585e0aeb728dda55&amp;f=db-builds/x2goserver-one/x2goserver-one-3.0.1/x2goconfigusers</A>
+
+Greetings,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001290.html">[X2go-dev] Installing x2goserver-one in Debian added 300 users to fuse and x2gousers groups
+</A></li>
+	<LI>Next message: <A HREF="001293.html">[X2go-dev] Installing x2goserver-one in Debian added 300 users to fuse and x2gousers groups
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1292">[ date ]</a>
+              <a href="thread.html#1292">[ thread ]</a>
+              <a href="subject.html#1292">[ subject ]</a>
+              <a href="author.html#1292">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

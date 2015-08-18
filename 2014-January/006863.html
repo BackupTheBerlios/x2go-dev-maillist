@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Issue with 100% cpu usage in x2goclient + libssh 0.6.0
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Issue%20with%20100%25%20cpu%20usage%20in%20x2goclient%20%2B%20libssh%0A%200.6.0&In-Reply-To=%3C20140124101036.Horde.PpHtGuszZFiOWRZYGOUySw8%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006860.html">
+   <LINK REL="Next"  HREF="006858.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Issue with 100% cpu usage in x2goclient + libssh 0.6.0</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Issue%20with%20100%25%20cpu%20usage%20in%20x2goclient%20%2B%20libssh%0A%200.6.0&In-Reply-To=%3C20140124101036.Horde.PpHtGuszZFiOWRZYGOUySw8%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Issue with 100% cpu usage in x2goclient + libssh 0.6.0">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jan 24 11:10:36 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006860.html">[X2Go-Dev] Issue with 100% cpu usage in x2goclient + libssh	0.6.0
+</A></li>
+        <LI>Next message: <A HREF="006858.html">[X2Go-Dev] libssh 0.6.0 broke scp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6863">[ date ]</a>
+              <a href="thread.html#6863">[ thread ]</a>
+              <a href="subject.html#6863">[ subject ]</a>
+              <a href="author.html#6863">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alex,
+
+On  Do 23 Jan 2014 00:36:37 CET, Oleksandr Shneyder wrote:
+
+&gt;<i> Am 22.01.2014 22:36, schrieb Orion Poplawski:
+</I>&gt;&gt;<i> With libssh 0.6.0, x2goclient consumes 100% cpu on connection.  The trigger
+</I>&gt;&gt;<i> for this is that ssh_select() was rewritten to use poll() instead  
+</I>&gt;&gt;<i> of select().
+</I>&gt;&gt;<i>  poll() has a timeout in milliseconds, select() in microseconds.  x2goclient
+</I>&gt;&gt;<i> requests a timeout of 500 microseconds which is getting rounded down to a
+</I>&gt;&gt;<i> timeout of 0 milliseconds for poll().
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> However, this still seems to point to some poor coding on the part of
+</I>&gt;&gt;<i> x2goclient that we're using such short timeouts.  Why can't we just wait
+</I>&gt;&gt;<i> forever in ssh_select() in SshMasterConnection::channelLoop() ?
+</I>&gt;&gt;<i>
+</I>
+&gt;<i> Hello Orion,
+</I>&gt;<i>
+</I>&gt;<i> We can't wait forever in ssh_select, we must perform other tasks in
+</I>&gt;<i> loop, for example accepting forwarded connections. However, I have
+</I>&gt;<i> already increased a select timeout and made a lot of other changes in
+</I>&gt;<i> ssh code of X2Go Client. The changes are not yet in master GIT because
+</I>&gt;<i> they depend on reverse forwarding fixes, that I made to libssh. As soon
+</I>&gt;<i> as we have libssh packages ready, I'll push my local commits to GIT.
+</I>
+I have merged the revtunnel branch of x2goclient.git now into the  
+repo's master branch.
+
+For Debian, I already have provided the libssh fixes  
+(0.5.4-2~debX+x2go1 where X in {6, 7, 8}.
+
+For Ubuntu and our Fedora/EPEL builds this is still pending and on my  
+todo list.
+
+Please commit your recent (local) changes on top of the current master HEAD.
+
+Thanks,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20140124/e9745f98/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20140124/e9745f98/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006860.html">[X2Go-Dev] Issue with 100% cpu usage in x2goclient + libssh	0.6.0
+</A></li>
+	<LI>Next message: <A HREF="006858.html">[X2Go-Dev] libssh 0.6.0 broke scp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6863">[ date ]</a>
+              <a href="thread.html#6863">[ thread ]</a>
+              <a href="subject.html#6863">[ subject ]</a>
+              <a href="author.html#6863">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

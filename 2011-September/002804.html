@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Status load balancing in X2go, and alternatives
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Status%20load%20balancing%20in%20X2go%2C%20and%20alternatives&In-Reply-To=%3C4E77A850.1060006%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002785.html">
+   <LINK REL="Next"  HREF="002805.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Status load balancing in X2go, and alternatives</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Status%20load%20balancing%20in%20X2go%2C%20and%20alternatives&In-Reply-To=%3C4E77A850.1060006%40vandervlis.nl%3E"
+       TITLE="[X2go-Dev] Status load balancing in X2go, and alternatives">paul at vandervlis.nl
+       </A><BR>
+    <I>Mon Sep 19 22:38:40 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002785.html">[X2go-Dev] Status load balancing in X2go, and alternatives
+</A></li>
+        <LI>Next message: <A HREF="002805.html">[X2go-Dev] Status load balancing in X2go, and alternatives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2804">[ date ]</a>
+              <a href="thread.html#2804">[ thread ]</a>
+              <a href="subject.html#2804">[ subject ]</a>
+              <a href="author.html#2804">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Op 16-09-11 07:31, John A. Sullivan III schreef:
+
+&gt;<i> We are building that scale of environment.  For better or worse, we have
+</I>&gt;<i> been so overrun with consulting work that we are way behind where we
+</I>&gt;<i> hoped to be in our X2Go build but we have taken a different approach.
+</I>&gt;<i> 
+</I>&gt;<i> We integrated X2Go and Linux-VServer.  Each user has a dedicated system
+</I>&gt;<i> (great for things like non-repudiation) but the extra resource
+</I>&gt;<i> requirements are minimal.  
+</I>
+Even with RAM? I think every user needs his own OpenOffice in RAM, so
+you need much more RAM this way. But maybe I'm wrong.
+
+We have been thinking about using Linux containers. But we decide first
+to work with some shared virtual machines because we have more
+experience with that.  <A HREF="http://lxc.sourceforge.net/">http://lxc.sourceforge.net/</A>
+
+&gt;<i> We then moved the x2gocleansession
+</I>&gt;<i> processing to the VServer host so there is only one daemon running every
+</I>&gt;<i> five seconds instead of hundreds.
+</I>&gt;<i> 
+</I>&gt;<i> We also adapted the database to use schemas - one per user, and triggers
+</I>&gt;<i> for coordinating individual user changes with the master database used
+</I>&gt;<i> by x2gocleansession and other reporting utilities we created.  Thus, we
+</I>&gt;<i> have a single database for all those potentially hundreds of X2Go
+</I>&gt;<i> servers.
+</I>&gt;<i> 
+</I>&gt;<i> Finally, we adapted the x2go printing so that we could use a single CUPS
+</I>&gt;<i> server for all X2Go users and not have hundreds of instances of CUPS
+</I>&gt;<i> running.
+</I>&gt;<i> 
+</I>&gt;<i> So far it has scaled very nicely but I am way behind in seeing how we
+</I>&gt;<i> would make the same changes to 3.99 - John
+</I>
+Does every user have it's own IP on the server?
+
+With regards,
+Paul.
+
+
+-- 
+Paul van der Vlis Linux systeembeheer, Groningen
+<A HREF="http://www.vandervlis.nl">http://www.vandervlis.nl</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002785.html">[X2go-Dev] Status load balancing in X2go, and alternatives
+</A></li>
+	<LI>Next message: <A HREF="002805.html">[X2go-Dev] Status load balancing in X2go, and alternatives
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2804">[ date ]</a>
+              <a href="thread.html#2804">[ thread ]</a>
+              <a href="subject.html#2804">[ subject ]</a>
+              <a href="author.html#2804">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

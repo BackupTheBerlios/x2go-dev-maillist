@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Clean sessions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Clean%20sessions&In-Reply-To=%3C87bowituvt.fsf%40faui43f.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002545.html">
+   <LINK REL="Next"  HREF="002547.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Clean sessions</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Clean%20sessions&In-Reply-To=%3C87bowituvt.fsf%40faui43f.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-Dev] Clean sessions">siretart at tauware.de
+       </A><BR>
+    <I>Mon Jul 25 14:19:50 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002545.html">[X2go-Dev] Clean sessions (Was: Allow users to edit their *own*	sessions only)
+</A></li>
+        <LI>Next message: <A HREF="002547.html">[X2go-Dev] Clean sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2546">[ date ]</a>
+              <a href="thread.html#2546">[ thread ]</a>
+              <a href="subject.html#2546">[ subject ]</a>
+              <a href="author.html#2546">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, Jul 25, 2011 at 13:52:30 (CEST), Moritz Struebe wrote:
+
+&gt;<i> On 2011-07-25 13:37, Reinhard Tartler wrote:
+</I>&gt;&gt;<i> To be honest, I'd like to remove the cleanup daemon completely and
+</I>&gt;&gt;<i> integrate the cleanup into the listsessions command. The current
+</I>&gt;&gt;<i> implementation of the cleanup daemon in perl that runs as root and
+</I>&gt;&gt;<i> doesn't work properly anyway makes me feel quite uneasy.
+</I>&gt;<i>
+</I>&gt;<i> I think there are two things that nedd cleaning up:
+</I>&gt;<i> 1) Clean dead sessions from the DB  to free displays.
+</I>&gt;<i> 2) Clean up hold sessions in the home-dir to free memory.
+</I>&gt;<i>
+</I>&gt;<i> The first is probably better done as daemon/cron-job. The daemon needs
+</I>&gt;<i> extended rights, because it needs access to all sessions (this is
+</I>&gt;<i> relevant due to the postgres-implementation), and needs to run on every
+</I>&gt;<i> server. Running as x2gouser should do the trick, though.
+</I>
+Why can't this run in user context? I mean the user has priviledges to
+create sessions, why can't he clean up after himself?
+
+&gt;<i> The second is probably best placed in x2gocreatesession, as the user
+</I>&gt;<i> should have the rights to clean up it's old sessions (root normally may
+</I>&gt;<i> not access foreign homes via NFS).
+</I>
+Why is this cleanup better done at 'create session' time rather than at
+'listing sessions' time?
+
+-- 
+Gruesse/greetings,
+Reinhard Tartler, KeyID 945348A4
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002545.html">[X2go-Dev] Clean sessions (Was: Allow users to edit their *own*	sessions only)
+</A></li>
+	<LI>Next message: <A HREF="002547.html">[X2go-Dev] Clean sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2546">[ date ]</a>
+              <a href="thread.html#2546">[ thread ]</a>
+              <a href="subject.html#2546">[ subject ]</a>
+              <a href="author.html#2546">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

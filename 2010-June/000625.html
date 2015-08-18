@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] trouble getting printing to work
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20trouble%20getting%20printing%20to%20work&In-Reply-To=%3C1277377985.3444.1.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000623.html">
+   <LINK REL="Next"  HREF="000624.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] trouble getting printing to work</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20trouble%20getting%20printing%20to%20work&In-Reply-To=%3C1277377985.3444.1.camel%40localhost%3E"
+       TITLE="[X2go-dev] trouble getting printing to work">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu Jun 24 13:13:05 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000623.html">[X2go-dev] trouble getting printing to work
+</A></li>
+        <LI>Next message: <A HREF="000624.html">[X2go-dev] INSTALLATION IN CLEAN UBUNTU 10.04/DEBIAN WORKS BUT	CLIENTS CAN'T CONNECT
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#625">[ date ]</a>
+              <a href="thread.html#625">[ thread ]</a>
+              <a href="subject.html#625">[ subject ]</a>
+              <a href="author.html#625">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>That is strange.  In our case, we had a lot customization to do because
+we are using X2Go in a VServer environment and the VMs have
+intentionally limited POSIX capabitities, e.g,. they cannot mount by
+default and they cannot fusermount -u at all.  Once we solved that
+problem, it worked reliably.  I'm surprised you had so much difficulty
+but I'm glad it's finally working for you - John
+
+On Wed, 2010-06-23 at 22:48 -0500, Gerry Reno wrote:
+&gt;<i> I closed out the existing 'gedit' and restarted the session again and
+</I>&gt;<i> this time I have 2 sshfs mounts and printing now works as well.  What
+</I>&gt;<i> an exercise!
+</I>&gt;<i> 
+</I>&gt;<i> -Gerry
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Jun 23, 2010 10:46:15 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> wrote:
+</I>&gt;<i>         Ok, I go and 'modprobe fuse' again on both server and client.
+</I>&gt;<i>         On client I get an error: FATAL: Module fuse not found.  I
+</I>&gt;<i>         know this is stupid error because I already have manually
+</I>&gt;<i>         mounted sshfs previously.  I go into x2goclient interface and
+</I>&gt;<i>         redefine mountpoint, redo everything under printing.
+</I>&gt;<i>         Disconnect, reboot everything, reconnect.  I click the Share
+</I>&gt;<i>         button on the client and select the mount and click Share.  I
+</I>&gt;<i>         run 'mount' on the server and lo and behold I see a sshfs
+</I>&gt;<i>         mounted directory.  Yay!  So then I bring up 'gedit' and type
+</I>&gt;<i>         a few words and try to print but I get same as before - no
+</I>&gt;<i>         printing.  
+</I>&gt;<i>         
+</I>&gt;<i>         So I got halfway there but I'm really not sure exactly what
+</I>&gt;<i>         made the shares work.  Now to try to figure out what keeps
+</I>&gt;<i>         printing from working...
+</I>&gt;<i>         
+</I>&gt;<i>         -Gerry
+</I>&gt;<i>         
+</I>&gt;<i>         
+</I>&gt;<i>         
+</I>&gt;<i>         Jun 23, 2010 08:24:39 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> wrote:
+</I>&gt;<i>                 Then I think you are going to have to add debugging to
+</I>&gt;<i>                 the scripts or
+</I>&gt;<i>                 walk through them and try the commands manually to
+</I>&gt;<i>                 find out where it is
+</I>&gt;<i>                 failing. I do know Ubuntu is not a supported platform
+</I>&gt;<i>                 but the fixes to
+</I>&gt;<i>                 make it work may be simple.
+</I>&gt;<i>                 
+</I>&gt;<i>                 Ah - just a thought. It could be the scripts are
+</I>&gt;<i>                 making calls that are
+</I>&gt;<i>                 only supported in bash. I believe the default shell in
+</I>&gt;<i>                 Ubuntu is dash.
+</I>&gt;<i>                 What happens if you change the default system shell,
+</I>&gt;<i>                 i.e., links /bin/sh
+</I>&gt;<i>                 to /bin/bash instead of /bin/dash? Does that fix the
+</I>&gt;<i>                 problem? - John
+</I>&gt;<i>                 
+</I>&gt;<i>                 On Wed, 2010-06-23 at 15:32 -0500, Gerry Reno wrote:
+</I>&gt;<i>                 &gt; Ok, I just installed the Qt client and it connects
+</I>&gt;<i>                 to the server just
+</I>&gt;<i>                 &gt; fine but has the exact same problem as the gtk
+</I>&gt;<i>                 client - no printing -
+</I>&gt;<i>                 &gt; no shares. This is using lucid for both client and
+</I>&gt;<i>                 server. I cannot
+</I>&gt;<i>                 &gt; find any errors and the cups log shows that my docs
+</I>&gt;<i>                 are printing.
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; -Gerry
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; Jun 23, 2010 04:06:04 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i>                 wrote:
+</I>&gt;<i>                 &gt; While I'm working on getting the Qt client, here's
+</I>&gt;<i>                 something
+</I>&gt;<i>                 &gt; interesting I just tried:
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; # sshfs -o IdentityFile=keypair1.pem
+</I>&gt;<i>                 &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">ubuntu at testmachine1</A>:/home/ubuntu /tmp/sshfs_mount
+</I>&gt;<i>                 &gt; # mount | grep ssh
+</I>&gt;<i>                 &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">ubuntu at testmachine1</A>:/home/ubuntu on /tmp/sshfs_mount
+</I>&gt;<i>                 type
+</I>&gt;<i>                 &gt; fuse.sshfs (rw,nosuid,nodev,max_read=65536)
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; So I can mount a server directory back on the client
+</I>&gt;<i>                 manually.
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; -Gerry
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; Jun 23, 2010 03:38:38 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i>                 wrote:
+</I>&gt;<i>                 &gt; On Wed, 2010-06-23 at 13:21 -0500, Gerry Reno wrote:
+</I>&gt;<i>                 &gt; &gt; Jun 23, 2010 06:19:18 AM,
+</I>&gt;<i>                 <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i>                 &gt; wrote:
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; &gt; 
+</I>&gt;<i>                 &gt; &gt; Hi John,
+</I>&gt;<i>                 &gt; &gt; Well I setup a whole new server from scratch
+</I>&gt;<i>                 (lucid
+</I>&gt;<i>                 &gt; again) and tried
+</I>&gt;<i>                 &gt; &gt; printing from it back to the same client and got
+</I>&gt;<i>                 the
+</I>&gt;<i>                 &gt; same results - no
+</I>&gt;<i>                 &gt; &gt; printing or shares. So I went looking for the Qt
+</I>&gt;<i>                 &gt; client but I don't
+</I>&gt;<i>                 &gt; &gt; see it:
+</I>&gt;<i>                 &gt; &gt; 
+</I>&gt;<i>                 &gt; &gt; # apt-show-versions -a -R x2go | grep client
+</I>&gt;<i>                 &gt; &gt; x2goclient 3.01-5 lenny x2go.obviously-nice.de
+</I>&gt;<i>                 &gt; &gt; x2goclient not installed
+</I>&gt;<i>                 &gt; &gt; x2goclient-cli 3.0.1-1.2 lenny
+</I>&gt;<i>                 &gt; x2go.obviously-nice.de
+</I>&gt;<i>                 &gt; &gt; x2goclient-cli not installed
+</I>&gt;<i>                 &gt; &gt; x2goclient-gtk 3.01-8 install ok installed
+</I>&gt;<i>                 &gt; &gt; x2goclient-gtk 3.01-8 lenny x2go.obviously-nice.de
+</I>&gt;<i>                 &gt; &gt; x2goclient-gtk/lenny uptodate 3.01-8
+</I>&gt;<i>                 &gt; &gt; x2gothinclient 1.0.1-1 lenny
+</I>&gt;<i>                 x2go.obviously-nice.de
+</I>&gt;<i>                 &gt; &gt; x2gothinclient not installed
+</I>&gt;<i>                 &gt; &gt; x2gothinclientsystem 1.0.1-2 lenny
+</I>&gt;<i>                 &gt; x2go.obviously-nice.de
+</I>&gt;<i>                 &gt; &gt; x2gothinclientsystem not installed
+</I>&gt;<i>                 &gt; &gt; 
+</I>&gt;<i>                 &gt; &gt; Is it the plain 'x2goclient'? The version doesn't
+</I>&gt;<i>                 &gt; look as recent as
+</I>&gt;<i>                 &gt; &gt; the gtk client.
+</I>&gt;<i>                 &gt; &gt; 
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; Yes, sorry, that's a bit confusing. x2goclient
+</I>&gt;<i>                 3.0.1-5
+</I>&gt;<i>                 &gt; is the Qt
+</I>&gt;<i>                 &gt; version - John
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; _______________________________________________
+</I>&gt;<i>                 &gt; X2go-dev mailing list
+</I>&gt;<i>                 &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i>                 &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt;
+</I>&gt;<i>                 ______________________________________________________________
+</I>&gt;<i>                 &gt; 
+</I>&gt;<i>                 &gt; _______________________________________________
+</I>&gt;<i>                 &gt; X2go-dev mailing list
+</I>&gt;<i>                 &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i>                 &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>                 &gt; _______________________________________________
+</I>&gt;<i>                 &gt; X2go-dev mailing list
+</I>&gt;<i>                 &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i>                 &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>                 
+</I>&gt;<i>                 
+</I>&gt;<i>                 _______________________________________________
+</I>&gt;<i>                 X2go-dev mailing list
+</I>&gt;<i>                 <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i>                 <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>         
+</I>&gt;<i>         
+</I>&gt;<i>         ______________________________________________________________
+</I>&gt;<i>         
+</I>&gt;<i>         _______________________________________________
+</I>&gt;<i>         X2go-dev mailing list
+</I>&gt;<i>         <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i>         <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000623.html">[X2go-dev] trouble getting printing to work
+</A></li>
+	<LI>Next message: <A HREF="000624.html">[X2go-dev] INSTALLATION IN CLEAN UBUNTU 10.04/DEBIAN WORKS BUT	CLIENTS CAN'T CONNECT
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#625">[ date ]</a>
+              <a href="thread.html#625">[ thread ]</a>
+              <a href="subject.html#625">[ subject ]</a>
+              <a href="author.html#625">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20NX%20%28redistributed%29%20--%20x2goagent%20fully%20integrated%0A%20into%20NX-libs%20%28call%20for%20testing%29&In-Reply-To=%3C4F101A14.2030105%40math.uni-goettingen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003185.html">
+   <LINK REL="Next"  HREF="003188.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)</H1>
+    <B>Jochen Schulz</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20NX%20%28redistributed%29%20--%20x2goagent%20fully%20integrated%0A%20into%20NX-libs%20%28call%20for%20testing%29&In-Reply-To=%3C4F101A14.2030105%40math.uni-goettingen.de%3E"
+       TITLE="[X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)">schulz at math.uni-goettingen.de
+       </A><BR>
+    <I>Fri Jan 13 12:48:36 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003185.html">[X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)
+</A></li>
+        <LI>Next message: <A HREF="003188.html">[X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3186">[ date ]</a>
+              <a href="thread.html#3186">[ thread ]</a>
+              <a href="subject.html#3186">[ subject ]</a>
+              <a href="author.html#3186">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi!
+
+&gt;&gt;<i> Sadly, the upgraded nxagent had the effect that neither freenx nor
+</I>&gt;&gt;<i> neatx-server was working anymore (ubuntu 10.04, neatx-server and x2go
+</I>&gt;&gt;<i> side by side using <A HREF="http://ppa.launchpad.net/freenx-team/ppa/ubuntu">http://ppa.launchpad.net/freenx-team/ppa/ubuntu</A> and
+</I>&gt;&gt;<i> <A HREF="http://ppa.launchpad.net/x2go/stable/ubuntu">http://ppa.launchpad.net/x2go/stable/ubuntu</A>)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Looking at the debug-output of the server shows this:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> DEBUG daemon:461 /usr/bin/nxagent[8867] stderr: Error: Aborting session
+</I>&gt;&gt;<i> with 'Unable to open display
+</I>&gt;&gt;<i> 'nx/nx,options=/var/lib/neatx/sessions/09BD2B7A618AF0AEAC0292E490A9D340/options:682''.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> ERROR agent:376 Agent error: Aborting session with 'Unable to open
+</I>&gt;&gt;<i> display
+</I>&gt;&gt;<i> 'nx/nx,options=/var/lib/neatx/sessions/09BD2B7A618AF0AEAC0292E490A9D340/options:682''.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> as i didn't had the time right away to track the problem down, i
+</I>&gt;&gt;<i> downgraded the nxagent to the version in the freenx-ppa of ubuntu. It
+</I>&gt;&gt;<i> seems there is some issue with xauth in the end. If you need furhter
+</I>&gt;&gt;<i> help with this, feel free to contact me.
+</I>&gt;<i> 
+</I>&gt;<i> Please provide more information on that. Esp. what exact package
+</I>&gt;<i> versions are installed on your system. Furthermore, please provide the
+</I>&gt;<i> deb-URLs where you got all the software components from. Thanks.
+</I>
+the deb-urls are
+# FreeNX
+deb <A HREF="http://ppa.launchpad.net/freenx-team/ppa/ubuntu">http://ppa.launchpad.net/freenx-team/ppa/ubuntu</A> lucid main
+# X2Go
+deb <A HREF="http://ppa.launchpad.net/x2go/stable/ubuntu">http://ppa.launchpad.net/x2go/stable/ubuntu</A> lucid main
+
+the versions now running are:
+x2goagent 3.5.0.5-0~72~lucid1
+x2gognomebindings 2.0.1.3-0~47~lucid1
+x2goserver 3.0.99.7
+nx-common 0.3.1+svn59-0~ppa1~lucid1
+nxagent 1:3.5.0-1-2-0ubuntu1ppa8
+nxauth 2:3.5.0.2-0~135~lucid1
+nxclient 3.4.0-7
+nxlibs 1:3.5.0-1-2-0ubuntu1ppa8
+nxproxy		2:3.5.0.2-0~135~lucid1
+neatx-server                0.3.1+svn59-0~ppa1~lucid1
+libnx-x11                   2:3.5.0.2-0~135~lucid1
+libxcomp3                   2:3.5.0.2-0~135~lucid1
+libxcompext3                2:3.5.0.2-0~135~lucid1
+libxcomp3                   2:3.5.0.2-0~135~lucid1
+libssh-4                    0.4.8-2
+
+and pyhoca-gui and the corresponding python-libs,  but i think this
+isn't relevant here.
+
+i only tried connecting to the server via nxclient 3.4 or 3.5 from
+ubuntu-machines (if this is relevant, but i think not).
+
+&gt;&gt;<i> (slightly) off-topic:
+</I>&gt;&gt;<i> In the long run i would like to only use x2go, but there is an issue
+</I>&gt;&gt;<i> left which i name here:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> When connecting from computers with german-keyboard-layout to a session
+</I>&gt;&gt;<i> where an english-keyboard layout was set, it happens that pressing
+</I>&gt;&gt;<i> 'ALTGR+Q' (which should write '@') will switch to a mode which always
+</I>&gt;&gt;<i> have ALTGR on. Only defocus+focus the window again 'fixes' the problem.
+</I>&gt;&gt;<i> No setting of the keyboard-layout via gnome-keyboar-switcher or setting
+</I>&gt;&gt;<i> via 'setxkbmap de' is helping. Perhaps you can gave me a hint what to do
+</I>&gt;&gt;<i> in such a case or to even track this bug down? Thanks!
+</I>&gt;<i> 
+</I>&gt;<i> This smells like you are using old X2Go agent code. This has been
+</I>&gt;<i> settled some months ago...
+</I>
+I pinned the x2goserver-package to 3.0.99.7 (and patched some things
+manually) because of some problems with the newer ones, so yes, i have
+old code.. but i did not recognised that this bug was fixed, sorry. For
+the &quot;problems&quot; i had with newer x2goserver-packages and my patches: when
+i have more time, i will look if there are gone and, if not provide, the
+necessary information and/or patches. The problem above with nxagent
+should not be affected by theses differences.
+
+Jochen
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: schulz.vcf
+Type: text/x-vcard
+Size: 347 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120113/c41c1113/attachment.vcf">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120113/c41c1113/attachment.vcf</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 5005 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120113/c41c1113/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120113/c41c1113/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003185.html">[X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)
+</A></li>
+	<LI>Next message: <A HREF="003188.html">[X2go-Dev] NX (redistributed) -- x2goagent fully integrated into NX-libs (call for testing)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3186">[ date ]</a>
+              <a href="thread.html#3186">[ thread ]</a>
+              <a href="subject.html#3186">[ subject ]</a>
+              <a href="author.html#3186">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

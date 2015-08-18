@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2go and (none)security
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20and%20%28none%29security&In-Reply-To=%3C519B432B.3040906%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005672.html">
+   <LINK REL="Next"  HREF="005676.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2go and (none)security</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20and%20%28none%29security&In-Reply-To=%3C519B432B.3040906%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] x2go and (none)security">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Tue May 21 11:49:31 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005672.html">[X2Go-Dev] x2go and (none)security
+</A></li>
+        <LI>Next message: <A HREF="005676.html">[X2Go-Dev] x2go and (none)security
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5673">[ date ]</a>
+              <a href="thread.html#5673">[ thread ]</a>
+              <a href="subject.html#5673">[ subject ]</a>
+              <a href="author.html#5673">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 21.05.2013 10:40, schrieb Oleksandr Shneyder:
+&gt;<i> You are right, it is possible, that X2Go Client can be crashed with the
+</I>&gt;<i> wrong output from the server. This issue could (and should) be easily
+</I>&gt;<i> fixed by replacing operator &quot;[n]&quot; with method &quot;value(n)&quot;. However, I
+</I>&gt;<i> don't think, that this issue is so dramatic as you described it. Why
+</I>&gt;<i> some one should open a SSH/X2GO connection to &quot;rough&quot; server?
+</I>
+Scenario:
+DNS server is under the control of an attacker.
+Requests for &quot;myserver.foobar.com&quot; are answered with the IP of the rogue 
+server.
+
+Obviously, in case of SSH, there should be a fingerprint mismatch 
+warning if the key of myserver.foobar.com is already known, which in 
+case of the X2Go client cannot be overridden by clicking it away. But if 
+it is a first-time connection, there will be a pop-up asking whether the 
+key fingerprint is correct. If the user doesn't pay attention there (and 
+to be honest - which average user does?), it would be possible to 
+connect to a rogue server without wanting to.
+
+-Stefan
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005672.html">[X2Go-Dev] x2go and (none)security
+</A></li>
+	<LI>Next message: <A HREF="005676.html">[X2Go-Dev] x2go and (none)security
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5673">[ date ]</a>
+              <a href="thread.html#5673">[ thread ]</a>
+              <a href="subject.html#5673">[ subject ]</a>
+              <a href="author.html#5673">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

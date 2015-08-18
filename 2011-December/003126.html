@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Can not use FreeNX alongside latest X2Go packages
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Can%20not%20use%20FreeNX%20alongside%20latest%20X2Go%20packages&In-Reply-To=%3C20111217220651.758137p1p0q8dmqz%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003125.html">
+   <LINK REL="Next"  HREF="003129.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Can not use FreeNX alongside latest X2Go packages</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Can%20not%20use%20FreeNX%20alongside%20latest%20X2Go%20packages&In-Reply-To=%3C20111217220651.758137p1p0q8dmqz%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] Can not use FreeNX alongside latest X2Go packages">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Dec 17 22:06:51 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003125.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages
+</A></li>
+        <LI>Next message: <A HREF="003129.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3126">[ date ]</a>
+              <a href="thread.html#3126">[ thread ]</a>
+              <a href="subject.html#3126">[ subject ]</a>
+              <a href="author.html#3126">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Stefan,
+
+On Fr 16 Dez 2011 22:51:25 CET Stefan Baur wrote:
+
+&gt;<i> Am 16.12.2011 22:32, schrieb Mike Gabriel:
+</I>&gt;&gt;<i> Hi Stefan,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Fr 16 Dez 2011 16:10:08 CET Stefan Baur wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> During my debug session, I noticed that these two packages:
+</I>&gt;&gt;&gt;&gt;<i> ii libxcompext3 1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1 NX X11  
+</I>&gt;&gt;&gt;&gt;<i> protocol compression extensions library
+</I>&gt;&gt;&gt;&gt;<i> ii libxcompshad3 3.5.0-2-0~x2go-bpo1+lenny~main~24~build1 NX  
+</I>&gt;&gt;&gt;&gt;<i> shadowing library
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Please try the NX packages from the heuler Repos. We have  
+</I>&gt;&gt;<i> re-engineered building NX packages for Debian/Ubuntu. The heuler  
+</I>&gt;&gt;<i> packages should be fully compatible with FreeNX. Though the  
+</I>&gt;&gt;<i> nxagent/nxauth binaries are not yet tested.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> If you encounter any problems with those, please report that here.
+</I>&gt;<i>
+</I>&gt;<i> So I should add
+</I>&gt;<i> deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze heuler
+</I>&gt;<i> to my sources.list, is that correct?
+</I>
+Yes!
+
+&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> So I tried uninstalling and reinstalling them.
+</I>&gt;&gt;&gt;<i> Trying to uninstall them, I got a warning that this would  
+</I>&gt;&gt;&gt;<i> uninstall the FreeNX packages as well, so I repackaged all of the  
+</I>&gt;&gt;&gt;<i> named packages (freenx
+</I>&gt;&gt;&gt;<i> freenx-media, freenx-session-launcher, freenx-rdp, freenx-server,  
+</I>&gt;&gt;&gt;<i> freenx-vnc, nxagent, x2goserver-printing, x2goserver-extensions,  
+</I>&gt;&gt;&gt;<i> x2goserver, x2goagent) using dpkg-repack just to be safe.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Ok... should not be needed with the NX packages in the heuler Repos.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> After that, I proceeded with the uninstall/reinstall and re-added  
+</I>&gt;&gt;&gt;<i> the FreeNX packages.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> From what repos do you install FreeNX, I would like to cross-check  
+</I>&gt;&gt;<i> your experience.
+</I>&gt;<i>
+</I>&gt;<i> I had used
+</I>&gt;<i> deb <A HREF="http://ppa.launchpad.net/freenx-team/ppa/ubuntu">http://ppa.launchpad.net/freenx-team/ppa/ubuntu</A> intrepid main
+</I>&gt;<i> deb-src <A HREF="http://ppa.launchpad.net/freenx-team/ppa/ubuntu">http://ppa.launchpad.net/freenx-team/ppa/ubuntu</A> intrepid main
+</I>&gt;<i>
+</I>&gt;<i> but it seems they are broken:
+</I>&gt;<i> apt-get install --reinstall freenx
+</I>&gt;<i> Reading package lists... Done
+</I>&gt;<i> Building dependency tree
+</I>&gt;<i> Reading state information... Done
+</I>&gt;<i> Reinstallation of freenx is not possible, it cannot be downloaded.
+</I>&gt;<i>
+</I>&gt;<i> I think I saw a message mentioning errors with this repository on  
+</I>&gt;<i> the freenx-knx mailing list a short while ago, but hadn't bothered,  
+</I>&gt;<i> as I kept local copies of the required *.deb files...
+</I>&gt;<i>
+</I>&gt;<i> Trying
+</I>&gt;<i> deb <A HREF="http://ppa.launchpad.net/freenx-team/ppa/ubuntu">http://ppa.launchpad.net/freenx-team/ppa/ubuntu</A> lucid main
+</I>&gt;<i> deb-src <A HREF="http://ppa.launchpad.net/freenx-team/ppa/ubuntu">http://ppa.launchpad.net/freenx-team/ppa/ubuntu</A> lucid main
+</I>
+OK...
+
+&gt;<i> does pull new freenx*.deb packages, but not libxcompext3:
+</I>&gt;<i> apt-get install --reinstall libxcompext3
+</I>&gt;<i> Reading package lists... Done
+</I>&gt;<i> Building dependency tree
+</I>&gt;<i> Reading state information... Done
+</I>&gt;<i> Reinstallation of libxcompext3 is not possible, it cannot be downloaded.
+</I>
+Install with ;;apt-get install &lt;package&gt;=&lt;version&gt;'', version numbers  
+of packages are shown when using ,,apt-cache show &lt;package&gt;''
+
+&gt;<i> Trying to find out which libxcompext3 my system knows about, I tried this:
+</I>&gt;<i> apt-cache show libxcompext3| egrep '(Maintainer|Version|Filename)'
+</I>&gt;<i>
+</I>&gt;<i> With the following result (Newlines added for clarity):
+</I>&gt;<i>
+</I>&gt;<i> Maintainer: Ubuntu MOTU Developers &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">ubuntu-motu at lists.ubuntu.com</A>&gt;
+</I>&gt;<i> Version: 1:3.5.0-1-0ubuntu1
+</I>&gt;<i> Filename: pool/main/n/nxcompext/libxcompext3_3.5.0-1-0ubuntu1_i386.deb
+</I>&gt;<i>
+</I>&gt;<i> Version: 1:3.5.0-1-2
+</I>&gt;<i> Maintainer: Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+</I>&gt;<i> Filename: pool/main/libx/libxcompext3/libxcompext3_3.5.0-1-2_i386.deb
+</I>&gt;<i>
+</I>&gt;<i> Maintainer: Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+</I>&gt;<i> Version: 1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1
+</I>
+You want the ones we built, they start with 2:3.5.0 in the version number.
+
+&gt;<i> The last one doesn't show a &quot;Filename&quot; entry and seems to be the one  
+</I>&gt;<i> currently installed on my system, judging by the matching &quot;  
+</I>&gt;<i> 1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1&quot;.
+</I>
+Yeah, this sounds weird... Please check your apt sources again, our  
+packages files are clean, I have checked that. You seem to be pulling  
+in packages from
+
+deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> lenny main
+
+&gt;<i> I'm anything but an expert on how to interpret this output.  Please  
+</I>&gt;<i> let me know if there are any specific commands I should try that  
+</I>&gt;<i> might provide further helpful info.
+</I>
+I would try this:
+
+Purge everything NX'ish, X2Go'ish...
+Install NX packages from packages.x2go.org squeeze heuler
+Install FreeNX from Launchpad (lucid)
+Install the rest of X2Go from packages.x2go.org squeeze main (or heuler)
+
+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20111217/d1569fd1/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20111217/d1569fd1/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003125.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages
+</A></li>
+	<LI>Next message: <A HREF="003129.html">[X2go-Dev] Can not use FreeNX alongside latest X2Go packages
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3126">[ date ]</a>
+              <a href="thread.html#3126">[ thread ]</a>
+              <a href="subject.html#3126">[ subject ]</a>
+              <a href="author.html#3126">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,144 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#103: Bug#103: Fwd: [PATCH] x2gopath: make use of	this helper
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23103%3A%20Bug%23103%3A%20Fwd%3A%20%5BPATCH%5D%20x2gopath%3A%20make%20use%20of%0A%09this%20helper&In-Reply-To=%3C20130325232906.10027k58jm38t19u%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005333.html">
+   <LINK REL="Next"  HREF="005335.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#103: Bug#103: Fwd: [PATCH] x2gopath: make use of	this helper</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23103%3A%20Bug%23103%3A%20Fwd%3A%20%5BPATCH%5D%20x2gopath%3A%20make%20use%20of%0A%09this%20helper&In-Reply-To=%3C20130325232906.10027k58jm38t19u%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#103: Bug#103: Fwd: [PATCH] x2gopath: make use of	this helper">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Mar 25 23:29:06 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005333.html">[X2Go-Dev] Processed: your mail
+</A></li>
+        <LI>Next message: <A HREF="005335.html">[X2Go-Dev] Processed: Re: Bug#103: Fwd: [PATCH] x2gopath: make use of this helper
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5334">[ date ]</a>
+              <a href="thread.html#5334">[ thread ]</a>
+              <a href="subject.html#5334">[ subject ]</a>
+              <a href="author.html#5334">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>tag #103 pending
+thanks
+
+On Do 17 Jan 2013 00:46:18 CET Mike Gabriel wrote:
+
+&gt;<i> Package: x2goserver
+</I>&gt;<i> Tag: patch
+</I>&gt;<i>
+</I>&gt;<i> Before I forget to commit this patch, here it is in X2Go BTS...
+</I>&gt;<i>
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i> ----- Weitergeleitete Nachricht von <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jengelh at inai.de</A> -----
+</I>&gt;<i>      Datum: Wed,  9 Jan 2013 14:51:11 +0100
+</I>&gt;<i>        Von: Jan Engelhardt &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jengelh at inai.de</A>&gt;
+</I>&gt;<i>    Betreff: [PATCH] x2gopath: make use of this helper
+</I>&gt;<i>         An: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i>         Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i>
+</I>&gt;<i> Note that .pm Perl modules must be placed in an arch-specific
+</I>&gt;<i> directory (e.g. /usr/lib64/... rather than /usr/libexec/...) since
+</I>&gt;<i> they could possibly entail XS modules.
+</I>&gt;<i> ---
+</I>&gt;<i>  x2goserver-printing/bin/x2goprint     |    2 +-
+</I>&gt;<i>  x2goserver/bin/x2gogetapps            |    2 +-
+</I>&gt;<i>  x2goserver/bin/x2gogetservers         |    2 +-
+</I>&gt;<i>  x2goserver/bin/x2golistdesktops       |    2 +-
+</I>&gt;<i>  x2goserver/bin/x2golistmounts         |    2 +-
+</I>&gt;<i>  x2goserver/bin/x2golistsessions       |    2 +-
+</I>&gt;<i>  x2goserver/bin/x2gomountdirs          |    2 +-
+</I>&gt;<i>  x2goserver/bin/x2gosessionlimit       |    2 +-
+</I>&gt;<i>  x2goserver/bin/x2goshowblocks         |    2 +-
+</I>&gt;<i>  x2goserver/bin/x2goumount-session     |    2 +-
+</I>&gt;<i>  x2goserver/lib/x2gochangestatus       |    2 +-
+</I>&gt;<i>  x2goserver/lib/x2gocreatesession      |    2 +-
+</I>&gt;<i>  x2goserver/lib/x2godbwrapper.pm       |    4 ++--
+</I>&gt;<i>  x2goserver/lib/x2gogetagent           |    2 +-
+</I>&gt;<i>  x2goserver/lib/x2gogetdisplays        |    2 +-
+</I>&gt;<i>  x2goserver/lib/x2gogetports           |    2 +-
+</I>&gt;<i>  x2goserver/lib/x2gogetstatus          |    2 +-
+</I>&gt;<i>  x2goserver/lib/x2goinsertport         |    2 +-
+</I>&gt;<i>  x2goserver/lib/x2goinsertsession      |    2 +-
+</I>&gt;<i>  x2goserver/lib/x2golistsessions_sql   |    2 +-
+</I>&gt;<i>  x2goserver/lib/x2gologlevel           |    2 +-
+</I>&gt;<i>  x2goserver/lib/x2goresume             |    2 +-
+</I>&gt;<i>  x2goserver/lib/x2gormport             |    2 +-
+</I>&gt;<i>  x2goserver/lib/x2gosuspend-agent      |    2 +-
+</I>&gt;<i>  x2goserver/lib/x2gosyslog             |    2 +-
+</I>&gt;<i>  x2goserver/sbin/x2godbadmin           |    2 +-
+</I>&gt;<i>  x2goserver/sbin/x2golistsessions_root |    2 +-
+</I>&gt;<i>  27 files changed, 28 insertions(+), 28 deletions(-)
+</I>&gt;<i>
+</I>&gt;<i> [...]
+</I>
+This patch has been applied on the relase/4.0.0.x branch. For the  
+master branch this patch is not needed.
+
+<A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=44e6743519e92ca1c1520032f2c0b13d81780956">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=44e6743519e92ca1c1520032f2c0b13d81780956</A>
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130325/57194fc7/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130325/57194fc7/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005333.html">[X2Go-Dev] Processed: your mail
+</A></li>
+	<LI>Next message: <A HREF="005335.html">[X2Go-Dev] Processed: Re: Bug#103: Fwd: [PATCH] x2gopath: make use of this helper
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5334">[ date ]</a>
+              <a href="thread.html#5334">[ thread ]</a>
+              <a href="subject.html#5334">[ subject ]</a>
+              <a href="author.html#5334">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

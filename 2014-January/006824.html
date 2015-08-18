@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Raspberry Pi as cheap Thin Client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Raspberry%20Pi%20as%20cheap%20Thin%20Client&In-Reply-To=%3C52CFDDB1.2030400%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006820.html">
+   <LINK REL="Next"  HREF="006825.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Raspberry Pi as cheap Thin Client</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Raspberry%20Pi%20as%20cheap%20Thin%20Client&In-Reply-To=%3C52CFDDB1.2030400%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Raspberry Pi as cheap Thin Client">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Fri Jan 10 12:46:57 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006820.html">[X2Go-Dev] Raspberry Pi as cheap Thin Client
+</A></li>
+        <LI>Next message: <A HREF="006825.html">[X2Go-Dev] Raspberry Pi as cheap Thin Client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6824">[ date ]</a>
+              <a href="thread.html#6824">[ thread ]</a>
+              <a href="subject.html#6824">[ subject ]</a>
+              <a href="author.html#6824">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 09.01.2014 09:32, schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kamerun at immerda.ch</A>:
+
+&gt;<i> as raspberry has no pxe we load raspian and x2goglient [...]
+</I>
+I don't know how the boot process of the RasPi works, but if it allows 
+for booting alternative kernels/initrds, I would strongly suggest adding 
+two bootable environments.
+Either as two separate partitions, or, if you're using
+kernel + initrd + squashfs(or nfs), two subdirectories under your boot 
+folder. That way, you can push/pull updates of the base operating system 
+from the running system to the non-running system in the other 
+folder/partition and simply switch the default boot entry once the 
+update has been completed.
+
+I'm currently using such a code for some older non-PXE-bootable* 
+Intel-based computers at home, but it's not ready for inclusion into 
+X2Go yet.
+
+-Stefan
+
+*It's usually possible to PXE-boot an Intel-based computer using the 
+images from <A HREF="http://boot.ipxe.org,">http://boot.ipxe.org,</A> even when the network card doesn't 
+support PXE natively, but in my particular case, that doesn't help, either.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006820.html">[X2Go-Dev] Raspberry Pi as cheap Thin Client
+</A></li>
+	<LI>Next message: <A HREF="006825.html">[X2Go-Dev] Raspberry Pi as cheap Thin Client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6824">[ date ]</a>
+              <a href="thread.html#6824">[ thread ]</a>
+              <a href="subject.html#6824">[ subject ]</a>
+              <a href="author.html#6824">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

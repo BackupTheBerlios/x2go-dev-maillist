@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#99: x2goclient segmentation fault
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2399%3A%20x2goclient%20segmentation%20fault&In-Reply-To=%3C1624451357919560%40web10d.yandex.ru%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004886.html">
+   <LINK REL="Next"  HREF="004892.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#99: x2goclient segmentation fault</H1>
+    <B>Peter W</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2399%3A%20x2goclient%20segmentation%20fault&In-Reply-To=%3C1624451357919560%40web10d.yandex.ru%3E"
+       TITLE="[X2Go-Dev] Bug#99: x2goclient segmentation fault">peterwolf at yandex.ru
+       </A><BR>
+    <I>Fri Jan 11 16:52:40 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004886.html">[X2Go-Dev] Bug#98: Git IRC hook
+</A></li>
+        <LI>Next message: <A HREF="004892.html">[X2Go-Dev] Resuming &quot;running&quot; session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4891">[ date ]</a>
+              <a href="thread.html#4891">[ thread ]</a>
+              <a href="subject.html#4891">[ subject ]</a>
+              <a href="author.html#4891">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package:&#160;x2goclient
+Version:&#160;4.0.0.1-0~352~quantal1
+
+Dear&#160;bug&#160;tracker,
+
+I&#160;get&#160;this&#160;segmentation&#160;fault&#160;when&#160;using&#160;x2goclient&#160;to&#160;connect&#160;to&#160;remote&#160;host:
+
+&lt;&lt;&lt;
+$&#160;x2goclient&#160;
+QGtkStyle&#160;could&#160;not&#160;resolve&#160;GTK.&#160;Make&#160;sure&#160;you&#160;have&#160;installed&#160;the&#160;proper&#160;libraries.
+ONMainWindow&#160;constructor
+
+Can't&#160;load&#160;translator&#160;(:/x2goclient_en_us)&#160;!
+
+Can't&#160;load&#160;translator&#160;:/qt_en_US&#160;
+ONMainWindows&#160;constructor&#160;finished,&#160;home&#160;Directory&#160;is:&#160;&quot;/home/[...]&quot;
+
+read&#160;1&#160;sessions&#160;from&#160;config&#160;file&#160;
+start&#160;new&#160;ssh&#160;connection&#160;to&#160;server:&#160;&quot;[...]&quot;&#160;:&#160;&quot;22&quot;&#160;krb:&#160;false
+
+ssh&#160;connection&#160;ok
+
+continue&#160;normal&#160;x2go&#160;session
+
+Segmentation&#160;fault&#160;(core&#160;dumped)
+&gt;&gt;&gt;<i>
+</I>
+I&#160;also&#160;get&#160;the&#160;segmentation&#160;fault&#160;message&#160;on&#160;simple&#160;commands&#160;like&#160;&quot;x2goclient&#160;--help&quot;:
+&lt;&lt;&lt;
+$&#160;x2goclient&#160;--help
+ONMainWindow&#160;constructor
+
+Can't&#160;load&#160;translator&#160;(:/x2goclient_en_us)&#160;!
+
+Can't&#160;load&#160;translator&#160;:/qt_en_US&#160;
+Usage:&#160;x2goclient&#160;[Options]
+Options:
+--help&#160;show&#160;this&#160;message
+--help-pack&#160;show&#160;available&#160;pack&#160;methods
+--no-menu&#160;hide&#160;menu&#160;bar
+--no-session-edit&#160;not&#160;allow&#160;user&#160;to&#160;edit&#160;preconfigured
+&#160;sessions
+--maximize&#160;start&#160;maximized
+--hide&#160;start&#160;hidden
+--portable&#160;start&#160;in&#160;&quot;portable&quot;&#160;mode
+--pgp-card&#160;use&#160;openPGP&#160;card&#160;authentication
+--xinerama&#160;use&#160;Xinerama&#160;by&#160;default
+--ldap-printing&#160;allow&#160;client&#160;side&#160;printing&#160;in&#160;LDAP&#160;mode
+--thinclient&#160;run&#160;without&#160;window&#160;manager
+--haltbt&#160;show&#160;shutdown&#160;button
+--add-to-known-hosts&#160;add&#160;RSA&#160;key&#160;fingerprint&#160;to&#160;.ssh/known_hosts
+&#160;if&#160;authenticity&#160;of&#160;server&#160;can't&#160;be&#160;established
+
+--ldap=&lt;host:port:dn&gt;&#160;start&#160;with&#160;LDAP&#160;support.&#160;Example:
+&#160;--ldap=ldapserver:389:o=organization,c=de
+
+--ldap1=&lt;host:port&gt;&#160;LDAP&#160;failover&#160;server&#160;#1&#160;
+--ldap2=&lt;host:port&gt;&#160;LDAP&#160;failover&#160;server&#160;#2&#160;
+--ssh-port=&lt;port&gt;&#160;connect&#160;to&#160;this&#160;port,&#160;default&#160;22
+--client-ssh-port=&lt;port&gt;&#160;local&#160;ssh&#160;port&#160;(for&#160;fs&#160;export),&#160;default&#160;22
+--command=&lt;cmd&gt;&#160;Set&#160;default&#160;command,&#160;default&#160;value&#160;'KDE'
+--session=&lt;session&gt;&#160;Start&#160;session&#160;'session'
+--user=&lt;username&gt;&#160;select&#160;user&#160;'username'
+--geomerty=&lt;W&gt;x&lt;H&gt;|fullscreen&#160;set&#160;default&#160;geometry,&#160;default&#160;value&#160;'800x600'
+--dpi=&lt;dpi&gt;&#160;set&#160;dpi&#160;of&#160;x2goagent&#160;to&#160;dpi,&#160;default&#160;not&#160;set
+--link=&lt;modem|isdn|adsl|wan|lan&gt;&#160;set&#160;default&#160;link&#160;type,&#160;default&#160;'adsl'
+--pack=&lt;packmethod&gt;&#160;set&#160;default&#160;pack&#160;method,&#160;default&#160;'16m-jpeg-9'
+--kbd-layout=&lt;layout&gt;&#160;set&#160;default&#160;keyboard&#160;layout&#160;or&#160;layouts
+&#160;comma&#160;separated
+--kbd-type=&lt;typed&gt;&#160;set&#160;default&#160;keyboard&#160;type
+--home=&lt;dir&gt;&#160;set&#160;users&#160;home&#160;directory
+--set-kbd=&lt;0|1&gt;&#160;overwrite&#160;current&#160;keyboard&#160;settings
+--autostart=&lt;app&gt;&#160;launch&#160;&quot;app&quot;&#160;by&#160;session&#160;start&#160;in&#160;&quot;published&#160;applications&quot;&#160;mode
+--session-conf=&lt;file&gt;&#160;path&#160;to&#160;alternative&#160;session&#160;config
+
+close&#160;event&#160;
+Segmentation&#160;fault&#160;(core&#160;dumped)
+&gt;&gt;&gt;<i>
+</I>
+
+I&#160;would&#160;be&#160;really&#160;glad&#160;to&#160;have&#160;assistance&#160;finding what&#160;might&#160;be&#160;the&#160;cause&#160;of&#160;this&#160;issue,&#160;because&#160;x2go&#160;functionality&#160;is&#160;quite&#160;important&#160;to&#160;me.
+
+Thank&#160;you,
+Eugene
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004886.html">[X2Go-Dev] Bug#98: Git IRC hook
+</A></li>
+	<LI>Next message: <A HREF="004892.html">[X2Go-Dev] Resuming &quot;running&quot; session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4891">[ date ]</a>
+              <a href="thread.html#4891">[ thread ]</a>
+              <a href="subject.html#4891">[ subject ]</a>
+              <a href="author.html#4891">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

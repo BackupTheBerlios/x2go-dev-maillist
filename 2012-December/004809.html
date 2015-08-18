@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#92: Install icons, images,	man page and desktop files through setup.py (was: Re: Bug#92:	ZeroDivisionError: float division by zero error on startup)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2392%3A%20Install%20icons%2C%20images%2C%0A%09man%20page%20and%20desktop%20files%20through%20setup.py%20%28was%3A%20Re%3A%20Bug%2392%3A%0A%09ZeroDivisionError%3A%20float%20division%20by%20zero%20error%20on%20startup%29&In-Reply-To=%3C20121220095954.19205bpbyk4bf5ai%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004785.html">
+   <LINK REL="Next"  HREF="004786.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#92: Install icons, images,	man page and desktop files through setup.py (was: Re: Bug#92:	ZeroDivisionError: float division by zero error on startup)</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2392%3A%20Install%20icons%2C%20images%2C%0A%09man%20page%20and%20desktop%20files%20through%20setup.py%20%28was%3A%20Re%3A%20Bug%2392%3A%0A%09ZeroDivisionError%3A%20float%20division%20by%20zero%20error%20on%20startup%29&In-Reply-To=%3C20121220095954.19205bpbyk4bf5ai%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#92: Install icons, images,	man page and desktop files through setup.py (was: Re: Bug#92:	ZeroDivisionError: float division by zero error on startup)">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Dec 20 09:59:54 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004785.html">[X2Go-Dev] Bug#92: ZeroDivisionError: float division by zero error	on startup
+</A></li>
+        <LI>Next message: <A HREF="004786.html">[X2Go-Dev] [x2go-i18n] x2godesktopsharing: call for translation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4809">[ date ]</a>
+              <a href="thread.html#4809">[ thread ]</a>
+              <a href="subject.html#4809">[ subject ]</a>
+              <a href="author.html#4809">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>retitle #92 Install icons, images, man page and desktop files through setup.py
+tag #92 pending
+thanks
+
+Hi Orion,
+
+On Di 18 Dez 2012 23:22:20 CET Orion Poplawski wrote:
+
+&gt;<i> On 12/18/2012 01:57 PM, Mike Gabriel wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It seems very likely that your pyhoca-gui instance does not find the image
+</I>&gt;&gt;<i> folder shipped with it.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Can you check that?
+</I>&gt;<i>
+</I>&gt;<i> Ah, it seems setup.py doesn't do everything it needs to.  The  
+</I>&gt;<i> attached patch I think does what is needed for the most part.   
+</I>&gt;<i> Doesn't handle the debian links file though.
+</I>
+I have added two commits for that to X2Go Git, can you cross-check that?
+
+First one (unfortunately a dirty commit, see at the botton):
+<A HREF="http://code.x2go.org/gitweb?p=pyhoca-gui.git;a=commitdiff;h=51c52fb1b0d3f94c6cc9c1d42fe5f84674e6026e">http://code.x2go.org/gitweb?p=pyhoca-gui.git;a=commitdiff;h=51c52fb1b0d3f94c6cc9c1d42fe5f84674e6026e</A>
+
+Then for the symlinks:
+<A HREF="http://code.x2go.org/gitweb?p=pyhoca-gui.git;a=commitdiff;h=052916c4ea0d523a6db253b4f0ffe394d932aab9">http://code.x2go.org/gitweb?p=pyhoca-gui.git;a=commitdiff;h=052916c4ea0d523a6db253b4f0ffe394d932aab9</A>
+
+&gt;<i> Other notes:
+</I>&gt;<i> - Categories in pyhoca-gui.desktop needs a trailing semicolon.
+</I>
+Done!
+<A HREF="http://code.x2go.org/gitweb?p=pyhoca-gui.git;a=commitdiff;h=1a1ab1dbd055d31ec639da9ddf815afc7a55d86f">http://code.x2go.org/gitweb?p=pyhoca-gui.git;a=commitdiff;h=1a1ab1dbd055d31ec639da9ddf815afc7a55d86f</A>
+
+&gt;<i> - There is /usr/bin/env python at the top of  
+</I>&gt;<i> pyhoca/wxgui/messages.py, but I imagine that file isn't meant to be  
+</I>&gt;<i> executed directly.
+</I>
+Done!
+<A HREF="http://code.x2go.org/gitweb?p=pyhoca-gui.git;a=commitdiff;h=6cdc40a31c8ca51ac9feade208cea13a9157308c">http://code.x2go.org/gitweb?p=pyhoca-gui.git;a=commitdiff;h=6cdc40a31c8ca51ac9feade208cea13a9157308c</A>
+
+&gt;<i> Finally, I seem to be able to connect to the server properly, but no  
+</I>&gt;<i> window ever appears, and no errors.
+</I>
+I will answer that off-BTS as it is not part of this bug report, actually.
+
+
+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121220/71ca7384/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121220/71ca7384/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004785.html">[X2Go-Dev] Bug#92: ZeroDivisionError: float division by zero error	on startup
+</A></li>
+	<LI>Next message: <A HREF="004786.html">[X2Go-Dev] [x2go-i18n] x2godesktopsharing: call for translation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4809">[ date ]</a>
+              <a href="thread.html#4809">[ thread ]</a>
+              <a href="subject.html#4809">[ subject ]</a>
+              <a href="author.html#4809">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

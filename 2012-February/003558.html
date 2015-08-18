@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Traffic%20shaping%20nightmare%20-%20missing%20SSH%20TOS%20bits&In-Reply-To=%3C1329804315.2788.110.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003554.html">
+   <LINK REL="Next"  HREF="003559.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Traffic%20shaping%20nightmare%20-%20missing%20SSH%20TOS%20bits&In-Reply-To=%3C1329804315.2788.110.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Feb 21 07:05:15 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003554.html">[X2Go-Dev] I18n - how to do it
+</A></li>
+        <LI>Next message: <A HREF="003559.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3558">[ date ]</a>
+              <a href="thread.html#3558">[ thread ]</a>
+              <a href="subject.html#3558">[ subject ]</a>
+              <a href="author.html#3558">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, all.  I've been working on a project to implement traffic shaping
+to conform to 95th percentile billing including our X2Go virtual
+desktops.  One of the challenges is prioritizing the interactive X2Go
+traffic (screen, keyboard, mouse) differently from bulk traffic like
+local share transfers, printing, and possibly sound.  I thought this
+would be trivial because of the SSH transport since SSH sets the
+minimize-delay bit for interactive traffic and the maximize-throughput
+bit for bulk transfers.  Thus we could distinguish the packets by
+looking at the TOS bits.  This is how the default Linux pfifo_fast qdisc
+does it anyway.
+
+I took a packet trace just to confirm it and, to my horror, I see that
+we are not setting any of the TOS bits and thus not prioritizing
+interactive traffic even with the default traffic shaping.
+
+I'm guessing this is a casualty of moving to libssh.  Is there any way
+to set the TOS bits for interactive to 0x10, bulk to 0x08 as it is in
+OpenSSH?.  It would be really nice if sound could be configured either
+way according the the administrator's preference.  Unfortunately, I did
+not see anything in the libssh documentation to show how to do this
+although I do not claim to understand it.
+
+This is a critical issue for any WAN based deployments like ours.
+Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003554.html">[X2Go-Dev] I18n - how to do it
+</A></li>
+	<LI>Next message: <A HREF="003559.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3558">[ date ]</a>
+              <a href="thread.html#3558">[ thread ]</a>
+              <a href="subject.html#3558">[ subject ]</a>
+              <a href="author.html#3558">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

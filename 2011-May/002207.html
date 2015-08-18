@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] installing/packaging X2go from tarball
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20installing/packaging%20X2go%20from%20tarball&In-Reply-To=%3C20110519004810.51334eydqf15agtm%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002206.html">
+   <LINK REL="Next"  HREF="002208.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] installing/packaging X2go from tarball</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20installing/packaging%20X2go%20from%20tarball&In-Reply-To=%3C20110519004810.51334eydqf15agtm%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] installing/packaging X2go from tarball">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu May 19 00:48:10 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002206.html">[X2go-dev] re-structured x2goserver.git project
+</A></li>
+        <LI>Next message: <A HREF="002208.html">[X2go-dev] installing/packaging X2go from tarball
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2207">[ date ]</a>
+              <a href="thread.html#2207">[ thread ]</a>
+              <a href="subject.html#2207">[ subject ]</a>
+              <a href="author.html#2207">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi John,
+
+by some reason who have only sent this mail to me privately. I  
+re-include the list in the flow with my answer...
+
+On Mi 18 Mai 2011 20:44:34 CEST John Williams wrote:
+
+&gt;<i> On Wed, May 18, 2011 at 4:00 AM, Mike Gabriel
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+</I>&gt;&gt;<i> Hi all, esp. non-deb-distro-packages,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I have just set up a page in the X2go wiki that documents, which parts of
+</I>&gt;&gt;<i> X2go are installable from Makefile (by calling ,,make &amp;&amp; make install'').
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The first code project I have changed in that way is x2goclient
+</I>&gt;&gt;<i> (&gt;=3.0.1.19). The tarball has not yet been released, but the code is already
+</I>&gt;&gt;<i> available on git.x2go.org (x2goclient.git project, master branch, still
+</I>&gt;&gt;<i> tagged as 3.0.1.18).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The other packages will follow in the hopefully not-too-far-away future.
+</I>&gt;&gt;<i> Watch the wiki page for updates (at the bottom):
+</I>&gt;&gt;<i> <A HREF="http://wiki.x2go.org/tarball_releases_of_x2go">http://wiki.x2go.org/tarball_releases_of_x2go</A>
+</I>&gt;<i>
+</I>&gt;<i> Thanks for doing that. I am anxiously awaiting the tarball release of
+</I>&gt;<i> x2goserver-one, since I use arch-linux and all its packages are based
+</I>&gt;<i> on tarball releases. The guy who had previously packaged the
+</I>&gt;<i> x2goserver stuff for arch-linux has an old version currently, since he
+</I>&gt;<i> could not get the newer version to work by himself. I think it will
+</I>&gt;<i> help a lot to have a tarball version.
+</I>
+The x2goserver Git project now also has a Makefile. It also has an  
+INSTALL and and UNINSTALL file included now.
+
+&gt;<i> If you need any help testing the tarball version of x2goserver-one,
+</I>&gt;<i> please let me know.
+</I>
+Until the x2goserver project gets its next release tag (and appears as  
+tarball on <A HREF="http://code.x2go.org/releases/source/x2goserver">http://code.x2go.org/releases/source/x2goserver</A> please use  
+the Git repos as source for testing code:
+
+  $ cd some/parent/folder/
+  $ git clone <A HREF="git://code.x2go.org/x2goserver.git">git://code.x2go.org/x2goserver.git</A>
+
+Thanks+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110519/579f2835/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110519/579f2835/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002206.html">[X2go-dev] re-structured x2goserver.git project
+</A></li>
+	<LI>Next message: <A HREF="002208.html">[X2go-dev] installing/packaging X2go from tarball
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2207">[ date ]</a>
+              <a href="thread.html#2207">[ thread ]</a>
+              <a href="subject.html#2207">[ subject ]</a>
+              <a href="author.html#2207">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

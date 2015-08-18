@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] libjpeg-turbo and NX/X2Go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20libjpeg-turbo%20and%20NX/X2Go&In-Reply-To=%3C4F26A527.4080809%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003310.html">
+   <LINK REL="Next"  HREF="003315.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] libjpeg-turbo and NX/X2Go</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20libjpeg-turbo%20and%20NX/X2Go&In-Reply-To=%3C4F26A527.4080809%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] libjpeg-turbo and NX/X2Go">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Mon Jan 30 15:11:51 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003310.html">[X2Go-Dev] libjpeg-turbo and NX/X2Go
+</A></li>
+        <LI>Next message: <A HREF="003315.html">[X2Go-Dev] libjpeg-turbo and NX/X2Go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3311">[ date ]</a>
+              <a href="thread.html#3311">[ thread ]</a>
+              <a href="subject.html#3311">[ subject ]</a>
+              <a href="author.html#3311">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 30.01.2012 14:50, schrieb Mike Gabriel:
+&gt;<i> Hi Alex,
+</I>&gt;<i> 
+</I>&gt;<i> On Mo 30 Jan 2012 14:01:02 CET Oleksandr Shneyder wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;&gt;<i> And your host should then run with libjpeg-turbo instead of libjpeg.
+</I>&gt;&gt;&gt;<i> Please note, that this change affects every application on that system.
+</I>&gt;&gt;&gt;<i> So... no warranty given from our side. Also, if testing libjpeg-turbo,
+</I>&gt;&gt;&gt;<i> please read the documentation of libjpeg-turbo:
+</I>&gt;&gt;&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=libjpeg-turbo.git;a=blob;f=README-turbo.txt;h=ac37556f1335b006e6d15f3341290aa4b18dc8a6;hb=b72411e1b5aa2c0549be406284b90e9de407154c">http://code.x2go.org/gitweb?p=libjpeg-turbo.git;a=blob;f=README-turbo.txt;h=ac37556f1335b006e6d15f3341290aa4b18dc8a6;hb=b72411e1b5aa2c0549be406284b90e9de407154c</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> It should be possible to use libjpeg-turbo only with nxproxy and
+</I>&gt;&gt;<i> x2goagent. If you specifying the directory where this libraries are
+</I>&gt;&gt;<i> installed in proxy and agent wrappers using the LD_LIBRARY_PATH
+</I>&gt;&gt;<i> environment variable. In that case it will not have affect on other
+</I>&gt;&gt;<i> applications in system.
+</I>&gt;<i> 
+</I>&gt;<i> The fundamental question is if we want to offer libjpeg-turbo with X2Go
+</I>&gt;<i> for distros that do not have libjpeg-turbo. If so, we could install
+</I>&gt;<i> libjpeg-turbo into /usr/lib/nx/.
+</I>&gt;<i> 
+</I>&gt;<i> Shall we do this?
+</I>&gt;<i> 
+</I>&gt;<i> Mike
+</I>
+Hm, I'm not sure. I think, the users should be able to decide it. But we
+can make configuration of X2Go with libjpeg-turbo be easier. For
+example, if user have already installed libjpeg-turbo_1.1.90_i386.deb
+from
+<A HREF="http://sourceforge.net/projects/libjpeg-turbo/files/1.1.90%20%281.2beta1%29/">http://sourceforge.net/projects/libjpeg-turbo/files/1.1.90%20%281.2beta1%29/</A>
+, agent wrapper can check if directory /opt/libjpeg-turbo/lib/ exists
+and export it to LD_LIBRARY_PATH. I'm not sure that we should provide
+libjpeg-turbo by ourself.
+
+regards,
+Alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120130/2cc4d89e/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120130/2cc4d89e/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003310.html">[X2Go-Dev] libjpeg-turbo and NX/X2Go
+</A></li>
+	<LI>Next message: <A HREF="003315.html">[X2Go-Dev] libjpeg-turbo and NX/X2Go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3311">[ date ]</a>
+              <a href="thread.html#3311">[ thread ]</a>
+              <a href="subject.html#3311">[ subject ]</a>
+              <a href="author.html#3311">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

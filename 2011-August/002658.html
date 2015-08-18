@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] 3.99 Testing - Huge browsing delays
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Huge%20browsing%20delays&In-Reply-To=%3C1312314703.15629.19.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002659.html">
+   <LINK REL="Next"  HREF="002656.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] 3.99 Testing - Huge browsing delays</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Huge%20browsing%20delays&In-Reply-To=%3C1312314703.15629.19.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] 3.99 Testing - Huge browsing delays">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Aug  2 21:51:43 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002659.html">[X2go-Dev] 3.99 Testing - Huge browsing delays
+</A></li>
+        <LI>Next message: <A HREF="002656.html">[X2go-Dev] offline till 13th August / automatic Debian package	builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2658">[ date ]</a>
+              <a href="thread.html#2658">[ thread ]</a>
+              <a href="subject.html#2658">[ subject ]</a>
+              <a href="author.html#2658">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2011-08-02 at 20:39 +0200, Moritz Struebe wrote:
+&gt;<i> On 2011-08-02 20:09, John A. Sullivan III wrote:
+</I>&gt;<i> &gt;  To summarize, when using
+</I>&gt;<i> &gt; firefox/iceweasel in X2Go, the browser frequently hangs for between 16
+</I>&gt;<i> &gt; and 20 seconds.  All other applications work perfectly fine, accept
+</I>&gt;<i> &gt; input, and display output, but the browser window remains frozen.  Once
+</I>&gt;<i> &gt; it unfreezes, all input and output is processed, e.g., typed letters are
+</I>&gt;<i> &gt; displayed and tab clicks are executed.  It appears to happen in AJAX
+</I>&gt;<i> &gt; intensive sites (Zimbra, GMail, GLPI) but this is not definitive.
+</I>&gt;<i> 
+</I>&gt;<i> The smells like Nagle, but who knows.... Can you give information on
+</I>&gt;<i> your connection parameters. For example: I'm in a LAN and noticed that I
+</I>&gt;<i> get the best results using no compression (rgb) - but one in a while
+</I>&gt;<i> there are small errors in the disply (e.g. an immage not being updated
+</I>&gt;<i> correctly) - opposed to png. I also have the gnome-system-monitor-applet
+</I>&gt;<i> running, therefore data is sent continuously. I would also be interested
+</I>&gt;<i> whether the whole screen hangs (e.g. including the system monitor) or
+</I>&gt;<i> only the single Applicaiton. Maby you cold start xkbwatch and see,
+</I>&gt;<i> whether the keystrokes (e.g. shift ) still arrive at the server.
+</I>&gt;<i> 
+</I>&lt;snip&gt;
+I believe we can rule out Nagle or anything on the network layer because
+it only affects the single application. If it were Nagle, the entire
+connection would freeze while it buffered responses and this would
+typically appear as a slight lag I believe - not a 20 second delay.
+
+The single application feature is the strange part.  This is a WAN
+environment using 16m-png-jpeg.  While the browser is hung, all other
+applications interact appropriate so data is being transmitted.
+
+xkbwatch sounds like an interesting idea.  I have never used it but will
+find out how.  Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002659.html">[X2go-Dev] 3.99 Testing - Huge browsing delays
+</A></li>
+	<LI>Next message: <A HREF="002656.html">[X2go-Dev] offline till 13th August / automatic Debian package	builds
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2658">[ date ]</a>
+              <a href="thread.html#2658">[ thread ]</a>
+              <a href="subject.html#2658">[ subject ]</a>
+              <a href="author.html#2658">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

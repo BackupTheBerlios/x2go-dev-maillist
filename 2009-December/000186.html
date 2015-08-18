@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go Single Application sudden session closing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20Single%20Application%20sudden%20session%20closing&In-Reply-To=%3C1259670952.4204.0.camel%40perdita%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000199.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go Single Application sudden session closing</H1>
+    <B>Paul Jaros</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20Single%20Application%20sudden%20session%20closing&In-Reply-To=%3C1259670952.4204.0.camel%40perdita%3E"
+       TITLE="[X2go-dev] x2go Single Application sudden session closing">paul.jaros at adcubum.com
+       </A><BR>
+    <I>Tue Dec  1 13:35:52 CET 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000199.html">[X2go-dev] x2go Single Application sudden session closing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#186">[ date ]</a>
+              <a href="thread.html#186">[ thread ]</a>
+              <a href="subject.html#186">[ subject ]</a>
+              <a href="author.html#186">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear x2go Listers
+
+I've found out about x2go at the Dornbirn Linuxday. I've installed
+x2goserver-home at work on a Ubuntu 8.04 server with a 2.6.24-24-generic
+#1 SMP - Kernel on a 64 bit machine. Ubuto 9.10 runs on the client with
+a 2.6.31-14-generic 32 bit machine.
+
+Using a Gnome-Session everything run's pretty smooth. The
+sound-forwarding is nothing short of amazing.
+Unfortunatly one of my co-workers insist on using a &quot;Single
+Apllication&quot;-Session. We use Eclipse 3.5.1 which is started from a
+&quot;Single Application&quot; Terminal.
+It works, but I have two problems:
+- Even without Eclipse, the Terminal get's dimmed by Compiz, which it
+does to all &quot;unresponsive&quot; Application. I don't know how
+'responsiveness' is measured by Compiz. The Terminal and Eclipse of
+course *are* responsive. I've got a workaround though so this isn't so
+bad. I've changed the Compiz settings under &quot;Effekte&quot; -&gt; &quot;Fenser ein- /
+ausblenden&quot; -&gt; &quot;Dim Unresponsive Windows&quot; to &quot;off&quot;
+- The second problem is after some time (sometimes 15-30 Minutes,
+sometimes up until 2 hours) working with Eclipse the session gets closed
+without prompting any error. Running the x2goclient in a local terminal
+I see the messages: &quot;&quot;&quot;
+QProcess: Destroyed while process is still running.
+QProcess: Destroyed while process is still running.
+QProcess: Destroyed while process is still running.
+check command message
+&quot;&quot;&quot;
+
+I can then reopen my (now suspended) session without any problems. But
+it's very annoying being forced to reopen the session ever so often.
+
+I don't know how to get further information about this. I can't find any
+log-files about it. The output on the STDERR (STDOUT?) was the only
+thing I could find.
+
+On the server (Ubuntu 8.04) I got the following Versions installed
+x2goagent 3.4.0-3-1
+x2goserver 3.0.1-2
+x2goserver-home 3.0.1-1
+x2goserver-one 3.0.1-1
+from deb <A HREF="http://apt-cacher.cube.ch:3142/x2go.obviously-nice.de/deb/">http://apt-cacher.cube.ch:3142/x2go.obviously-nice.de/deb/</A>
+lenny main
+
+On the client (Ubuntu 9.10)
+x2goclient 3.01-5
+from deb <A HREF="http://apt-cacher.cube.ch:3142/x2go.obviously-nice.de/deb/">http://apt-cacher.cube.ch:3142/x2go.obviously-nice.de/deb/</A>
+lenny main
+
+Greetings
+Paul
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000199.html">[X2go-dev] x2go Single Application sudden session closing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#186">[ date ]</a>
+              <a href="thread.html#186">[ thread ]</a>
+              <a href="subject.html#186">[ subject ]</a>
+              <a href="author.html#186">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

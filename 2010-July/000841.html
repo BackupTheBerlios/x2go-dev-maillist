@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] source code repository
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20source%20code%20repository&In-Reply-To=%3C4C433773.3070401%40x2go.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000840.html">
+   <LINK REL="Next"  HREF="000842.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] source code repository</H1>
+    <B>Heinz-M. Graesing</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20source%20code%20repository&In-Reply-To=%3C4C433773.3070401%40x2go.org%3E"
+       TITLE="[X2go-dev] source code repository">x2go-dev at x2go.org
+       </A><BR>
+    <I>Sun Jul 18 19:18:43 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000840.html">[X2go-dev] source code repository
+</A></li>
+        <LI>Next message: <A HREF="000842.html">[X2go-dev] source code repository
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#841">[ date ]</a>
+              <a href="thread.html#841">[ thread ]</a>
+              <a href="subject.html#841">[ subject ]</a>
+              <a href="author.html#841">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I think we need to talk about 3 different things:
+
+1. source code hosting/modification/interactivity/versioning
+
+2. the place where the code shoud be stored
+
+3. the tools which should be used for organisation
+
+
+All three items have become mixed up in some mails and discussions.
+Again I had a lot of private mails - again: please post those things to
+the list (especially regarding those topics).
+
+
+-1-----
+
+The first item is the question how the source of x2go should be
+published/handled. The big surprise: we don't have a discussion about
+what technique should be used (bzr, cvs, git, svn,...).
+To get this item marked as done:
+
+Is it ok to use git as &quot;version control and code publishing tool&quot;?
+
+
+-2-----
+
+The second thing on the list is the querstion where the source should be
+stored. The place where you can find a project is in a way a
+&quot;statement&quot;. Some of those platforms are initiated by governments, some
+are ruled by companies with added social media and data collection
+strategies. This affects everybody who want's to collaborate, because
+she/he needs to get an account on the chossen platform. Some platforms
+are just not legally usable for us because of the legal situation in the
+country of copyright: germany (for example if they use ga:
+<A HREF="http://eu.techcrunch.com/2009/11/24/google-analytics-illegal-germany/">http://eu.techcrunch.com/2009/11/24/google-analytics-illegal-germany/</A>).
+We first tried to use BerliOS with was in our eyes a good choise because
+in their special way, they could be called in a way (seen from the web)
+&quot;apolitical&quot;. The account is still alive and they offer git, so it can
+be used without any problems. Though some of the configuration is a bit
+static and can only be access via a webgui. So there was the idea to
+host it by our own - nobody need to register against some governmental
+or company driven services.
+
+It would be intersting which of the services you prefer to discuss the
+final location of the git (osor.eu, berlios, github, sourceforge, google
+code,...).
+
+
+-3-----
+
+After we've answered the first two questions, we should talk about which
+of the offered tools should be used on the choosen platform. At the
+moment the whole project management is done via this mailing list. This
+decision was made in the past to avoid decentralized collaboration which
+caused a lot of duplicated messages from different locations (the
+Bugtracker on BerliOS is still active).
+The fact we are discussing now about the future here together in one
+place is a result of this idea. The mailing list is a very easy type of
+service. Bugtracker can be much more complicated and sometimes you only
+have a dictated user experience. This again can influence the choice of
+users helping us or not.
+
+So again: What do you think? Maybe gitbug is a possiblity too (bugs
+stored inside the git)?
+
+
+As this was a response to Mike's mail:
+
+Am 18.07.2010 14:42, schrieb Mike Gabriel:
+&gt;<i> possible focus could be:
+</I>&gt;<i> 
+</I>&gt;<i>   1. support the next release as best as we can (testing, bug reports etc.)
+</I>
+Most of the bugs are not part of our code but can be find inside the
+used projects (xming,...). This makes it a bit harder to fix all known
+bugs. Another thing is the status of the mac port of x2goclient:
+
+ - we don't have mac hardware (anymore)
+ - we don't know how to embedd the window of
+   x2goagent inside the browserview (x2goplugin
+   vs. style guide of mac development)
+ - there is a big number of complaints about the
+   mac port because it is not using cocoa and
+   build on objective c
+
+&gt;<i>   2. be happy once the release is out
+</I>
+This should be worth a party :).
+
+&gt;<i>   3. ONLY THEN: take our time to listen to each others ideas, find a
+</I>&gt;<i> synthesis
+</I>&gt;<i>     of them all and setup a working scenario that allows fluid
+</I>&gt;<i> collaboration,
+</I>&gt;<i>     coordinated by the core developers of X2go
+</I>
+I think we needed this exchange of ideas to get a bit more to know about
+each other and the project.
+
+Regards,
+
+Heinz
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000840.html">[X2go-dev] source code repository
+</A></li>
+	<LI>Next message: <A HREF="000842.html">[X2go-dev] source code repository
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#841">[ date ]</a>
+              <a href="thread.html#841">[ thread ]</a>
+              <a href="subject.html#841">[ subject ]</a>
+              <a href="author.html#841">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

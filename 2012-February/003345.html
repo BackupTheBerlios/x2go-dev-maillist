@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] nx-libs breaks with libpng 1.5.x
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nx-libs%20breaks%20with%20libpng%201.5.x&In-Reply-To=%3C20120206105149.18154qv3sn4g0zat%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003343.html">
+   <LINK REL="Next"  HREF="003346.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] nx-libs breaks with libpng 1.5.x</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nx-libs%20breaks%20with%20libpng%201.5.x&In-Reply-To=%3C20120206105149.18154qv3sn4g0zat%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] nx-libs breaks with libpng 1.5.x">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Feb  6 10:51:49 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003343.html">[X2Go-Dev] nx-libs breaks with libpng 1.5.x
+</A></li>
+        <LI>Next message: <A HREF="003346.html">[X2Go-Dev] nx-libs breaks with libpng 1.5.x
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3345">[ date ]</a>
+              <a href="thread.html#3345">[ thread ]</a>
+              <a href="subject.html#3345">[ subject ]</a>
+              <a href="author.html#3345">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi John,
+
+On Mo 06 Feb 2012 05:22:01 CET John Williams wrote:
+
+&gt;<i> Archlinux just upgraded libpng 1.4.x to 1.5.8, and it appears to have
+</I>&gt;<i> broken nx-libs. With libpng 1.4.8, I was able to build nx-libs 3.5.0.9
+</I>&gt;<i> and successfully run it with x2goserver, but with libpng 1.5.8, when I
+</I>&gt;<i> try to build nx-libs it gets to compiling Pgn.cpp and fails with
+</I>&gt;<i> errors:
+</I>&gt;<i>
+</I>&gt;<i> g++ -c -O3 -fno-rtti -fno-exceptions -I../nx-X11/exports/include
+</I>&gt;<i> -Wno-deprecated -fPIC -DIN_ADDR_T=in_addr_t -DVERSION=\&quot;3.5.0\&quot;
+</I>&gt;<i> -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot;
+</I>&gt;<i> -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -Wall -Wpointer-arith
+</I>&gt;<i> Pgn.cpp
+</I>&gt;<i>
+</I>&gt;<i> Pgn.cpp: In function 'int DecompressPng16(unsigned char*, int,
+</I>&gt;<i> unsigned int, unsigned int, unsigned char*, int)':
+</I>&gt;<i> Pgn.cpp:417:15: error: invalid use of incomplete type 'png_info {aka
+</I>&gt;<i> struct png_info_def}'
+</I>&gt;<i> /usr/include/png.h:720:16: error: forward declaration of 'png_info
+</I>&gt;<i> {aka struct png_info_def}'
+</I>&gt;<i>
+</I>&gt;<i> Pgn.cpp: In function 'int DecompressPng24(unsigned char*, int,
+</I>&gt;<i> unsigned int, unsigned int, unsigned char*, int)':
+</I>&gt;<i> Pgn.cpp:568:15: error: invalid use of incomplete type 'png_info {aka
+</I>&gt;<i> struct png_info_def}'
+</I>&gt;<i> /usr/include/png.h:720:16: error: forward declaration of 'png_info
+</I>&gt;<i> {aka struct png_info_def}'
+</I>&gt;<i>
+</I>&gt;<i> Pgn.cpp: In function 'int DecompressPng32(unsigned char*, int,
+</I>&gt;<i> unsigned int, unsigned int, unsigned char*, int)':
+</I>&gt;<i> Pgn.cpp:712:15: error: invalid use of incomplete type 'png_info {aka
+</I>&gt;<i> struct png_info_def}'
+</I>&gt;<i> /usr/include/png.h:720:16: error: forward declaration of 'png_info
+</I>&gt;<i> {aka struct png_info_def}'
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On the libpng homepage, I found this note
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://www.libpng.org/pub/png/libpng.html">http://www.libpng.org/pub/png/libpng.html</A>
+</I>&gt;<i>
+</I>&gt;<i> &quot;The libpng 1.5.x series continues the evolution of the libpng API,
+</I>&gt;<i> finally hiding the contents of the venerable and hoary png_struct and
+</I>&gt;<i> png_info data structures inside private (i.e., non-installed) header
+</I>&gt;<i> files. Instead of direct struct-access, applications should be using
+</I>&gt;<i> the various png_get_xxx() and png_set_xxx() accessor functions, which
+</I>&gt;<i> have existed for almost as long as libpng itself. (Apps that compiled
+</I>&gt;<i> against libpng 1.4 without warnings about deprecated features should
+</I>&gt;<i> happily compile against 1.5, too.)&quot;
+</I>&gt;<i>
+</I>&gt;<i> I don't see any warnings from my previous build logs with libpng
+</I>&gt;<i> 1.4.8, but since the compiler was given the option &quot;-Wno-deprecated&quot;
+</I>&gt;<i> I'm not sure that the warnings would have shown up anyway.
+</I>&gt;<i>
+</I>&gt;<i> And it does appear that the Pgn.cpp functions DecompressPngXY() are
+</I>&gt;<i> trying to access the png_info struct, which is now private in libpng
+</I>&gt;<i> 1.5.8.
+</I>&gt;<i>
+</I>&gt;<i> What do you think is the best way to fix this issue? Would an upstream
+</I>&gt;<i> bug report to the NX folks be likely to accomplish anything? I'm not
+</I>&gt;<i> sure how big a job it will be to patch all of the code in nx-libs that
+</I>&gt;<i> attempts to access png_info or png_struct.
+</I>
+Reinhard Tartler has made us aware of this in the Debian packaging  
+context already. To address this, we first need a working concept for  
+patching this. Then we will ship that patch with NX (redistributed)  
+and also report to original upstream (NoMachine).
+
+Any ideas how to address this? I have not had the time for this, yet.
+
+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120206/7c0abc7f/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120206/7c0abc7f/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003343.html">[X2Go-Dev] nx-libs breaks with libpng 1.5.x
+</A></li>
+	<LI>Next message: <A HREF="003346.html">[X2Go-Dev] nx-libs breaks with libpng 1.5.x
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3345">[ date ]</a>
+              <a href="thread.html#3345">[ thread ]</a>
+              <a href="subject.html#3345">[ subject ]</a>
+              <a href="author.html#3345">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

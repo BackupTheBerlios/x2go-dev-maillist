@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go Client - new features and bugfix
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20-%20new%20features%20and%20bugfix&In-Reply-To=%3CCAMKht8isRi5RtkzkJKg6t0Wpf07EMXFpFHiTRZhkViKS%3DcR53Q%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006656.html">
+   <LINK REL="Next"  HREF="006663.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go Client - new features and bugfix</H1>
+    <B>Michael DePaulo</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Client%20-%20new%20features%20and%20bugfix&In-Reply-To=%3CCAMKht8isRi5RtkzkJKg6t0Wpf07EMXFpFHiTRZhkViKS%3DcR53Q%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] X2Go Client - new features and bugfix">mikedep333 at gmail.com
+       </A><BR>
+    <I>Sat Dec 14 03:47:12 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006656.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+        <LI>Next message: <A HREF="006663.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6658">[ date ]</a>
+              <a href="thread.html#6658">[ thread ]</a>
+              <a href="subject.html#6658">[ subject ]</a>
+              <a href="author.html#6658">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alex,
+
+Your patch successfully fixed the problem of X2goClient crashing when
+a username is not entered. Good job on that.
+
+And I tested it on my Windows XP SP3 32-bit VM (in addition to my
+desktop with Win 8.1 64-bit), the GSSAPI / Kerberos auth works there
+too.
+
+However, I still managed to produce one more crash on Windows, albeit
+an obscure one.
+
+If GSSAPI authentication is enabled, and you connect through an SSH
+proxy, that SSH proxy must also use GSSAPI. It prompts you for a
+password, but it seems to ignore it. I've entered an incorrect
+password and still connects. This is not that bad of a bug and I think
+we can launch 4.0.1.2 despite it.
+
+If that proxy does successfully authenticate using GSSAPI, and you
+successfully connect to the x2goserver via GSSAPI, the session opens
+and works as far as I've tested it. However, on disconnect, the
+x2goclient crashes.
+
+I do not know if this crash would be realistically produced. After
+all, if the entire point of the proxy is to connect through a
+firewall, would you really be using Kerberos auth to both the proxy
+and the x2goserver? I do not think this crash bug has to be fixed
+before 4.0.1.2, but I thought I'd mention it and the former bug. (I
+will put them in the bug tracker if we do launch with these bugs.)
+
+-Mike
+
+On Fri, Dec 13, 2013 at 10:57 AM, Michael DePaulo &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mikedep333 at gmail.com</A>&gt; wrote:
+&gt;<i> I will test it when I get home in about 7 hours. I will not be able to build
+</I>&gt;<i> until then also.
+</I>&gt;<i>
+</I>&gt;<i> FYI, if you leave the username blank when using password auth, x2goclient
+</I>&gt;<i> prompts you for both the username and password. That's why the username
+</I>&gt;<i> field is likely left blank.
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i> On Dec 13, 2013 9:57 AM, &quot;Oleksandr Shneyder&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">o.shneyder at phoca-gmbh.de</A>&gt;
+</I>&gt;<i> wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hi Mike,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I newer sought, that some one will try to open connection without
+</I>&gt;&gt;<i> specifying a username. But ok, this patch make x2go client to use
+</I>&gt;&gt;<i> default user name if no username is specified.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commit;h=b69329589121f2476a111622ec1cc34b12b5c112">http://code.x2go.org/gitweb?p=x2goclient.git;a=commit;h=b69329589121f2476a111622ec1cc34b12b5c112</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> regards,
+</I>&gt;&gt;<i> Alex
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Am 13.12.2013 14:59, schrieb Michael DePaulo:
+</I>&gt;&gt;<i> &gt; On Fri, Dec 13, 2013 at 7:07 AM, Oleksandr Shneyder
+</I>&gt;&gt;<i> &gt; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">o.shneyder at phoca-gmbh.de</A>&gt; wrote:
+</I>&gt;&gt;<i> &gt;&gt; Hello Mike,
+</I>&gt;&gt;<i> &gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt; this patch:
+</I>&gt;&gt;<i> &gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt; <A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=6f9ead7cf9184799f0b6ae9ff1efd0c7b879d0c6">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=6f9ead7cf9184799f0b6ae9ff1efd0c7b879d0c6</A>
+</I>&gt;&gt;<i> &gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt; should fix the issue.
+</I>&gt;&gt;<i> &gt;&gt;
+</I>&gt;&gt;<i> &gt;&gt; regards,
+</I>&gt;&gt;<i> &gt;&gt; Alex
+</I>&gt;&gt;<i> &gt;&gt;
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; Hi Alex,
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; That appears to partially fix the issue.
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; When I enter an invalid username (e.g. &quot;a&quot;), I get the error message
+</I>&gt;&gt;<i> &gt; &quot;Check your GSSApi configuration or choose another authentication
+</I>&gt;&gt;<i> &gt; method&quot;. So that's a good improvement.
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; But if the username field is left blank, the x2goclient still crashes.
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i> &gt; regards,
+</I>&gt;&gt;<i> &gt; -Mike
+</I>&gt;&gt;<i> &gt; _______________________________________________
+</I>&gt;&gt;<i> &gt; X2Go-Dev mailing list
+</I>&gt;&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;<i> &gt;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i> ----------------------------------------------------
+</I>&gt;&gt;<i> Oleksandr Shneyder  | Email: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">o.shneyder at phoca-gmbh.de</A>
+</I>&gt;&gt;<i> phoca GmbH          | Tel. : 0911 - 14870374 0
+</I>&gt;&gt;<i> Br&#228;uhausgasse 9     | Fax. : 0911 - 14870374 9
+</I>&gt;&gt;<i> D-82205 Gilching    | Mobil: 0163 - 49 64 461
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Gesch&#228;ftsf&#252;hrung:
+</I>&gt;&gt;<i> Dipl.-Inf. Oleksandr Shneyder
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Amtsgericht M&#252;nchen | <A HREF="http://www.phoca-gmbh.de">http://www.phoca-gmbh.de</A>
+</I>&gt;&gt;<i> HRB 196 658         | <A HREF="http://www.x2go.org">http://www.x2go.org</A>
+</I>&gt;&gt;<i> USt-IdNr.: DE281977973
+</I>&gt;&gt;<i> ----------------------------------------------------
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2Go-Dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I></PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006656.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+	<LI>Next message: <A HREF="006663.html">[X2Go-Dev] X2Go Client - new features and bugfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6658">[ date ]</a>
+              <a href="thread.html#6658">[ thread ]</a>
+              <a href="subject.html#6658">[ subject ]</a>
+              <a href="author.html#6658">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

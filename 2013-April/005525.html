@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#187: Destroying SshMasterConnection off the main	thread leads to a diagnostic from Qt debug libs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23187%3A%20Destroying%20SshMasterConnection%20off%20the%20main%0A%09thread%20leads%20to%20a%20diagnostic%20from%20Qt%20debug%20libs&In-Reply-To=%3CB6C80FD4-1D5F-4CE1-BB65-7F3A7935BD99%40surfcrew.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005524.html">
+   <LINK REL="Next"  HREF="005541.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#187: Destroying SshMasterConnection off the main	thread leads to a diagnostic from Qt debug libs</H1>
+    <B>Gary Kratkin</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23187%3A%20Destroying%20SshMasterConnection%20off%20the%20main%0A%09thread%20leads%20to%20a%20diagnostic%20from%20Qt%20debug%20libs&In-Reply-To=%3CB6C80FD4-1D5F-4CE1-BB65-7F3A7935BD99%40surfcrew.com%3E"
+       TITLE="[X2Go-Dev] Bug#187: Destroying SshMasterConnection off the main	thread leads to a diagnostic from Qt debug libs">gary at surfcrew.com
+       </A><BR>
+    <I>Tue Apr 23 21:15:18 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005524.html">[X2Go-Dev] Processed: X2Go issue #164 (src:x2goclient) has been marked as pending for release
+</A></li>
+        <LI>Next message: <A HREF="005541.html">[X2Go-Dev] Bug#187: Bug#187: Destroying SshMasterConnection off the	main thread leads to a diagnostic from Qt debug libs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5525">[ date ]</a>
+              <a href="thread.html#5525">[ thread ]</a>
+              <a href="subject.html#5525">[ subject ]</a>
+              <a href="author.html#5525">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient 
+Version: 4.0.1.0 
+
+Note: I'm running a debug build from 4.0.1.0 sources, linked against Qt debug libs.
+
+When shutting down a connection (e.g. by closing the x2goclient window), the debug build of Qt gives two diagnostics when two SshMasterConnection objects are destructed:
+
+ASSERT failure in QCoreApplication::sendEvent: &quot;Cannot send events to objects owned by a different thread. Current thread 27050c0. Receiver '' (of type 'SshMasterConnection') was created in thread 5d7500&quot;, file kernel\qcoreapplication.cpp, line 532
+ASSERT failure in QCoreApplication::sendEvent: &quot;Cannot send events to objects owned by a different thread. Current thread 27050c0. Receiver '' (of type 'SshMasterConnection') was created in thread 5d7500&quot;, file kernel\qcoreapplication.cpp, line 532
+
+Thread 5d7500 is the main thread.
+
+Ignoring the assert messagebox sometimes results in a GP fault. Most of the time the app exits cleanly. I'm not getting the fault at the moment, so I don't have a callstack for you.
+
+The callstack from the diagnostic is as follows:
+
+ 	QtCored4.dll!qt_message_output
+ 	QtCored4.dll!qt_message
+ 	QtCored4.dll!qFatal
+ 	QtCored4.dll!qt_assert_x
+ 	QtCored4.dll!QCoreApplicationPrivate::checkReceiverThread
+ 	QtGuid4.dll!QApplication::notify  Line 3845	C++
+ 	QtCored4.dll!QCoreApplication::notifyInternal Line 946 + 0x15 bytes	C++
+ 	QtCored4.dll!QCoreApplication::sendEvent Line 231 + 0x39 bytes	C++
+ 	QtCored4.dll!QObjectPrivate::setParent_helper  Line 1933 + 0x10 bytes	C++
+ 	QtCored4.dll!QObject::~QObject()  Line 939	C++
+ 	QtCored4.dll!QThread::~QThread()  Line 455 + 0xf bytes	C++
+&gt;<i>	x2goclient.exe!SshMasterConnection::~SshMasterConnection()  Line 552 + 0x171 bytes	C++
+</I> 	x2goclient.exe!SshMasterConnection::`scalar deleting destructor'()  + 0xf bytes	C++
+ 	x2goclient.exe!SshMasterConnection::channelLoop()  Line 1004 + 0x47 bytes	C++
+ 	          for ( int i=reverseTunnelConnections.size()-1; i&gt;=0; --i)
+            {
+ ***               delete reverseTunnelConnections[i];
+            }
+ 	x2goclient.exe!SshMasterConnection::run()  Line 526	C++
+ 	QtCored4.dll!QThreadPrivate::start(void * arg=0x01164d08)  Line 348	C++
+ 	msvcr100d.dll!__beginthreadex()  + 0x243 bytes	
+ 	msvcr100d.dll!__beginthreadex()  + 0x1d4 bytes	
+ 	kernel32.dll!@<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">BaseThreadInitThunk at 12</A>()  + 0x12 bytes	
+ 	ntdll.dll!<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">___RtlUserThreadStart at 8</A>()  + 0x27 bytes	
+ 	ntdll.dll!<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">__RtlUserThreadStart at 8</A>()  + 0x1b bytes	
+
+
+Thank you,
+Gary Kratkin
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130423/4e3ae212/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130423/4e3ae212/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005524.html">[X2Go-Dev] Processed: X2Go issue #164 (src:x2goclient) has been marked as pending for release
+</A></li>
+	<LI>Next message: <A HREF="005541.html">[X2Go-Dev] Bug#187: Bug#187: Destroying SshMasterConnection off the	main thread leads to a diagnostic from Qt debug libs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5525">[ date ]</a>
+              <a href="thread.html#5525">[ thread ]</a>
+              <a href="subject.html#5525">[ subject ]</a>
+              <a href="author.html#5525">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

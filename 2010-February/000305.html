@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Font mangling in X2Go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Font%20mangling%20in%20X2Go&In-Reply-To=%3C1265162710.3616.20.camel%40jaseee.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000311.html">
+   <LINK REL="Next"  HREF="000312.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Font mangling in X2Go</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Font%20mangling%20in%20X2Go&In-Reply-To=%3C1265162710.3616.20.camel%40jaseee.pacifera.com%3E"
+       TITLE="[X2go-dev] Font mangling in X2Go">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Feb  3 03:05:10 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000311.html">[X2go-dev] bash settings missing
+</A></li>
+        <LI>Next message: <A HREF="000312.html">[X2go-dev]  smartcard without pin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#305">[ date ]</a>
+              <a href="thread.html#305">[ thread ]</a>
+              <a href="subject.html#305">[ subject ]</a>
+              <a href="author.html#305">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, all.  We recently changed our set up from NoMachine to X2Go.
+Lots of good improvements, e.g., sound and device sharing.  However, the
+system fonts are all minuscule - very hard to read.  We did set system
+fonts to 96 dpi in the client.  This made no difference.  Looking at
+x2gostartagent, it appears this setting is not used.  If anyone knows
+what calls x2gostartagent, I'll see if we can come up with a patch.  A
+quick grepping around /usr/bin, /usr/sbin, and /usr/lib64/x2go didn't
+reveal it.
+
+We found
+<A HREF="https://lists.berlios.de/pipermail/x2go-dev/2009-August/000082.html">https://lists.berlios.de/pipermail/x2go-dev/2009-August/000082.html</A> most
+helpful and, if we do manually edit x2gostartagent, it does work but we
+were hoping to avoid that.  However, we are not seeing the results we
+expect by trying other methods.
+
+I suspect part of the problem is that we are not directly connected to
+the monitor so DDC is not detecting the monitor's resolution.  With no
+data upon which to make a decision, X appears to default to 75x75.
+Thus, we thought we would set it in xorg.conf so that we'd have some
+consistency between the wildly varying resolutions our clients might
+encounter as they move from desk to desk.  However, the setting seem to
+have no effect.  This is our standard device section:
+
+Section &quot;Device&quot;
+        Identifier      &quot;Configured Video Device&quot;
+        Driver          &quot;dummy&quot;
+        Option          &quot;UseEDID&quot; &quot;FALSE&quot;
+        Option          &quot;USEdidDPI&quot; &quot;false&quot;
+        Option          &quot;DPI&quot; &quot;96 x 96&quot;
+EndSection
+
+I would think we'd need only the DPI option with the dummy driver.
+
+We also tried editing /etc/X11/Xresources/x11-common by adding Xft.dpi:
+96.0.  This did not work.
+
+We then created a ~/.Xresources file with the same setting.  That had an
+interesting effect. It did not affect the desktop icon labels in KDE but
+the font in Konsole was now correct.  However, when we did xdpyinfo |
+grep resolution in Konsole, it still thought it was 75x75!
+
+Is there anyway to get consistent and usable font sizes without manually
+editing x2gostartagent? Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000311.html">[X2go-dev] bash settings missing
+</A></li>
+	<LI>Next message: <A HREF="000312.html">[X2go-dev]  smartcard without pin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#305">[ date ]</a>
+              <a href="thread.html#305">[ thread ]</a>
+              <a href="subject.html#305">[ subject ]</a>
+              <a href="author.html#305">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

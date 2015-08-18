@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] sudo permissions?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20sudo%20permissions%3F&In-Reply-To=%3CAANLkTikRNv0aU_bHBvT8duQGRoTfXnJnrspVket%2B5-Pm%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001136.html">
+   <LINK REL="Next"  HREF="001141.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] sudo permissions?</H1>
+    <B>Rob Lemley</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20sudo%20permissions%3F&In-Reply-To=%3CAANLkTikRNv0aU_bHBvT8duQGRoTfXnJnrspVket%2B5-Pm%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] sudo permissions?">roblemley at gmail.com
+       </A><BR>
+    <I>Sun Oct  3 05:22:37 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001136.html">[X2go-dev] sudo permissions?
+</A></li>
+        <LI>Next message: <A HREF="001141.html">[X2go-dev] sudo permissions?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1137">[ date ]</a>
+              <a href="thread.html#1137">[ thread ]</a>
+              <a href="subject.html#1137">[ subject ]</a>
+              <a href="author.html#1137">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hey John,
+
+I double-triple checked again, and tried a session myself that mounted
+my desktop with my changes. No issues.
+
+The only script that gets called with sudo is x2gopgwrapper. It's the
+only script that can get called as it's the only entry added to the
+sudoers file.
+
+x2gopgwrapper calls one of x2pgwrapper_local, x2pgwrapper_sqlite, or
+x2pgwrapper_net. That's all it does. Those scripts are a giant case
+blocks that only runs sql queries against a database.  In the case of
+sqlite you need to assume the id of the sqlite database file owner. (I
+thought about making the file group-writable, but chose not to go that
+direction. With the sudoers entry and the script there's some level of
+protection from average-joe user mangling the database.) As for
+postgres, it's the same idea. It can authenticate by userid with the
+right entry in pg_hba.conf (?? right filename??)
+
+The mounting and unmounting seems to be done through fuse so the only
+privilege needed is to be a member of the fuse group.  The
+x2gocleansessions process started by init will unmount a fuse mounted
+directory if it finds a stale session, but that is running as root so
+there's no issue there.
+
+Enjoy the rest of your getaway!
+
+-rob
+
+
+&lt;snip&gt;
+On Sat, Oct 2, 2010 at 9:56 AM, John A. Sullivan III
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt; wrote:
+&gt;<i> &lt;snip&gt;
+</I>&gt;<i> Hi, Rob. &#160;I'm on a getaway with the family and &quot;sneaking&quot; this in so I
+</I>&gt;<i> may be remembering the details incorrectly :)
+</I>&gt;<i>
+</I>&gt;<i> You may want to trace all the other scripts which are invoked as part of
+</I>&gt;<i> the process, especially x2gomount_sessions and x2goumount_sessions.
+</I>&gt;<i> These may need root access - I'm not sure - John
+</I>&gt;<i>
+</I>
+Hey John,
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001136.html">[X2go-dev] sudo permissions?
+</A></li>
+	<LI>Next message: <A HREF="001141.html">[X2go-dev] sudo permissions?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1137">[ date ]</a>
+              <a href="thread.html#1137">[ thread ]</a>
+              <a href="subject.html#1137">[ subject ]</a>
+              <a href="author.html#1137">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

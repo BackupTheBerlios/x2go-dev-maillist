@@ -1,0 +1,204 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Broken glyphs and icons after suspending a session
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Broken%20glyphs%20and%20icons%20after%20suspending%20a%20session&In-Reply-To=%3CCAA%2B0xP2DdKopkwG72cxO1zbMwwGi1jiJQFJUvQQzFoNEbSOcRg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003967.html">
+   <LINK REL="Next"  HREF="003969.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Broken glyphs and icons after suspending a session</H1>
+    <B>Jim Burnes</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Broken%20glyphs%20and%20icons%20after%20suspending%20a%20session&In-Reply-To=%3CCAA%2B0xP2DdKopkwG72cxO1zbMwwGi1jiJQFJUvQQzFoNEbSOcRg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Broken glyphs and icons after suspending a session">jvburnes at gmail.com
+       </A><BR>
+    <I>Sat May 12 17:18:36 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003967.html">[X2Go-Dev] Broken glyphs and icons after suspending a session
+</A></li>
+        <LI>Next message: <A HREF="003969.html">[X2Go-Dev] Broken glyphs and icons after suspending a session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3968">[ date ]</a>
+              <a href="thread.html#3968">[ thread ]</a>
+              <a href="subject.html#3968">[ subject ]</a>
+              <a href="author.html#3968">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I'll do what I can on this patch.  I definitely plan on improving it, but
+my first objective was to get firefox and emacs running again so I could
+get back to work.
+
+No, I don't know Keith Packard but I thought that NX was valuable enough so
+that it's continued functionality might be important to the wider X
+community.
+
+To create a proper patch I'll have to figure out exactly what those render
+ops are doing and (the null src drawables are gradients and related ops),
+but processing them intelligently so they are sync'd with the nxclient end
+will take some digging.
+
+It could be that the sync operation just needs a small fix so that it
+doesn't reference the null components.   I'm bringing up a new laptop this
+morning, but I'll see what I can do.
+
+Let me know if you hear from nomachine at all.  I used to chat with those
+guys once in a while and even gave them a quote for a book they released,
+but it's been 7 years.
+
+jim
+
+On Sat, May 12, 2012 at 6:45 AM, Mike Gabriel &lt;
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+
+&gt;<i> Hi Jim, hi Holger,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Sa 12 Mai 2012 03:22:24 CEST Jim Burnes wrote:
+</I>&gt;<i>
+</I>&gt;<i>  Hello x2go dev team
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> as I was looking for an alternative on NX nomachine, because it was
+</I>&gt;&gt;&gt;<i> broken with the last Cairo 1.12 update, I found your x2go solution,
+</I>&gt;&gt;&gt;<i> which is great.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> So as it bases on the same libraries than the original nomachine, you
+</I>&gt;&gt;&gt;<i> had the same issues - with rendering to undrawable objects, the whole
+</I>&gt;&gt;&gt;<i> nxagent crashes because of SEGV.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> With the patch of Jan (thanks to) you committed to the master branch
+</I>&gt;&gt;&gt;<i> today, I compiled another nxagent. Actually it worked fine, but after
+</I>&gt;&gt;&gt;<i> suspending and reconnecting to a session, some graphical objects get
+</I>&gt;&gt;&gt;<i> broken...
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> All characters/fonts that has been rendered on the screen prior the
+</I>&gt;&gt;&gt;<i> suspension, are gone. (See Screenshots the link below).
+</I>&gt;&gt;&gt;<i> Creating new text by starting applications is ok, as long as the
+</I>&gt;&gt;&gt;<i> characters has not been rendered in the session before.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I thought it might be problem with a kind of glyph cache of the X
+</I>&gt;&gt;&gt;<i> session (ubuntu/x86 x2goclient). But I found one case, where
+</I>&gt;&gt;&gt;<i> additionally to the text, all icons are gone also, which was with an
+</I>&gt;&gt;&gt;<i> debian/x64 x2goclient... (Difference can be seen on screenshots)
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Might it have to do something with the patch from today, that could
+</I>&gt;&gt;&gt;<i> filter out to much rendering? Or is this issue known from somewhere else?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Here are some screenshots: <A HREF="http://www.computerfreak.de/**sonic/x2shots/&lt;http://www.computerfreak.de/sonic/x2shots/">http://www.computerfreak.de/**sonic/x2shots/&lt;http://www.computerfreak.de/sonic/x2shots/</A>&gt;
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Thanks for your help,
+</I>&gt;&gt;&gt;<i> Holger
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i>  If the glyph breakage is because of my patch it's probably because the
+</I>&gt;&gt;<i> patch is rather non-selective.  If nxagent's render code tries to
+</I>&gt;&gt;<i> reference
+</I>&gt;&gt;<i> a null pointer I prevent it from doing that.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I'm not specifically aware how that might break your glyphs, but if it
+</I>&gt;&gt;<i> does
+</I>&gt;&gt;<i> I suspect it's because my code is preventing remote synchronization of the
+</I>&gt;&gt;<i> rendered object.  Look at all of the conditionals in the patch that
+</I>&gt;&gt;<i> perform
+</I>&gt;&gt;<i> a sync operation if true.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I wonder if someone like Keith Packard could help.  Perhaps if we point
+</I>&gt;&gt;<i> the
+</I>&gt;&gt;<i> nomachine guys at our patch they might suggest a cleaner fix.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> ...or it might be completely unrelated to your problem.  :-)
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>  On May 11, 2012 4:51 PM, &quot;Holger Hahn&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at computerfreak.de</A>&gt; wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i> The phenomenon described by Holger did not exist before the patch.
+</I>&gt;<i> However, the patch currently still is an improvement when X2Go is installed
+</I>&gt;<i> on Debian wheezy or sid.
+</I>&gt;<i>
+</I>&gt;<i> @Jim-1: it seems like you currently have the most expertise on your own
+</I>&gt;<i> patch. Possibly you find some more time to look at it. I cannot yet confirm
+</I>&gt;<i> the suspend-resume-phenomenon described by Holger, but the screenshots are
+</I>&gt;<i> self-explaining.
+</I>&gt;<i>
+</I>&gt;<i> @All: whoever has some ressources during the next week, it would be good
+</I>&gt;<i> to take a look at Jim's patch.
+</I>&gt;<i>
+</I>&gt;<i> @Jim-2: I am in contact with NoMachine and they are aware of our
+</I>&gt;<i> comprehensive patch series we apply on top of NX upstream. That result we
+</I>&gt;<i> call NX (redistributed) and we are also upstream for the Debian src:package
+</I>&gt;<i> nx-libs-lite. I will additionaly send an eMail to the NoMachine developer
+</I>&gt;<i> list.
+</I>&gt;<i>
+</I>&gt;<i> @Jim-3: are you in direct contact with Keith Packard? If so, please
+</I>&gt;<i> contact him. We are (at the end) searching for a team of people who are
+</I>&gt;<i> willing to port NX to Xorg7 and make it a constant component of Xorg, but
+</I>&gt;<i> that's still more a dream than something in near reality...+
+</I>&gt;<i>
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;<i> fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0xB588399B
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120512/5893d5bc/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120512/5893d5bc/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003967.html">[X2Go-Dev] Broken glyphs and icons after suspending a session
+</A></li>
+	<LI>Next message: <A HREF="003969.html">[X2Go-Dev] Broken glyphs and icons after suspending a session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3968">[ date ]</a>
+              <a href="thread.html#3968">[ thread ]</a>
+              <a href="subject.html#3968">[ subject ]</a>
+              <a href="author.html#3968">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

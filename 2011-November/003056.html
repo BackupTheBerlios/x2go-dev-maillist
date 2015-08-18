@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20New%20session%20param%20for%20.x2goclient/sessions%20file%20%28was%0A%20Re%3A%20Change%20Title%20of%20Frontend%20of%20Pyhoca%29&In-Reply-To=%3C20111130121953.89454mlev7igywk9%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003055.html">
+   <LINK REL="Next"  HREF="003057.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20New%20session%20param%20for%20.x2goclient/sessions%20file%20%28was%0A%20Re%3A%20Change%20Title%20of%20Frontend%20of%20Pyhoca%29&In-Reply-To=%3C20111130121953.89454mlev7igywk9%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Nov 30 12:19:53 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003055.html">[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+</A></li>
+        <LI>Next message: <A HREF="003057.html">[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3056">[ date ]</a>
+              <a href="thread.html#3056">[ thread ]</a>
+              <a href="subject.html#3056">[ subject ]</a>
+              <a href="author.html#3056">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alex,
+
+On Mi 30 Nov 2011 10:45:09 CET Oleksandr Shneyder wrote:
+
+&gt;<i> Am 30.11.2011 10:00, schrieb Mike Gabriel:
+</I>&gt;&gt;<i> Hi Alex, hi Edwin,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Fr 25 Nov 2011 12:56:02 CET Edwin Hern&#225;n Hurtado Cruz wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> That's Great!!!
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> That solution works perfect for me!!!!
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Anyway, I was wondering If its possible to change it in the
+</I>&gt;&gt;&gt;<i> client-side...
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Thanks!!!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Today I have improved client-side session title renaming in
+</I>&gt;&gt;<i> x2gostartagent (package: x2goserver).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> And: I have added a session profile parameter to .x2goclient/sessions
+</I>&gt;&gt;<i> when using pyhoca-gui (python-x2go).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The new session profile parameter's name is: sessiontitle.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> If sessiontitle is set to a non-empty string, python-x2go will export
+</I>&gt;&gt;<i> the env variable ,,X2GO_SESSION_WINDOW_TITLE before calling
+</I>&gt;&gt;<i> x2gostartagent on the server-side.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The x2gostartagent script will notice that $X2GO_SESSION_WINDOW_TITLE is
+</I>&gt;&gt;<i> defined and it will use this string as the session window title (+
+</I>&gt;&gt;<i> X2GO-&lt;session_id&gt; in parentheses).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> @Alex: could you please take a look at my latest x2goserver commits?
+</I>&gt;&gt;<i> Maybe such a feature could be interesting for x2goclient itself. It
+</I>&gt;&gt;<i> would be nice if we could use the same session profile parameter (i.e.
+</I>&gt;&gt;<i> ,,sessiontitle'').
+</I>&gt;<i>
+</I>&gt;<i> x2go client and plugin using window title for searching window with
+</I>&gt;<i> agent session. That will be needed if client should change parameters of
+</I>&gt;<i> such window, for example - hide window decorations, resize window or
+</I>&gt;<i> embed it in other window. Allowing user to change a window title can
+</I>&gt;<i> break functionality of x2go client and plugin.
+</I>
+Ok, I did not know this... Sorry!!!
+
+Still, I think the feature would be nice. Couldn't we provide a change  
+in x2goclient that allows to change the session window title as long  
+as the identifier X2GO-&lt;session_id&gt; stays within the title? That could  
+be assured on the server-side and currently (with the latest  
+x2goserver commits) is the case anyway.
+
+For X11FindWindow a patch possibly could be this:
+
+&lt;quote&gt;
+diff --git a/onmainwindow_part4.cpp b/onmainwindow_part4.cpp
+index 76fd224..3db23e1 100644
+--- a/onmainwindow_part4.cpp
++++ b/onmainwindow_part4.cpp
+@@ -2359,7 +2359,7 @@ long ONMainWindow::X11FindWindow ( QString text,  
+long rootWin )
+              {
+                  QString title ( wname );
+                  XFree ( wname );
+-                if ( title==text )
++                if ( title.indexOf(text) != -1 )
+                  {
+                      proxyId=child_list[i];
+                      break;
+&lt;/quote&gt;
+
+But for Windows (wapiFindWindow function), I am not so sure...
+
+Mike (who would love to make the session window renaming feature and  
+find a way how to handle that with x2goclient, including old  
+x2goclient versions)
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20111130/619561aa/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20111130/619561aa/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003055.html">[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+</A></li>
+	<LI>Next message: <A HREF="003057.html">[X2go-Dev] New session param for .x2goclient/sessions file (was Re: Change Title of Frontend of Pyhoca)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3056">[ date ]</a>
+              <a href="thread.html#3056">[ thread ]</a>
+              <a href="subject.html#3056">[ subject ]</a>
+              <a href="author.html#3056">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

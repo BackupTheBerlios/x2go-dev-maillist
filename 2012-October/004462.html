@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#52: x2goclient deletes all files in a given	directory, possible regression
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2352%3A%20x2goclient%20deletes%20all%20files%20in%20a%20given%0A%09directory%2C%20possible%20regression&In-Reply-To=%3C508698FD.100%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004460.html">
+   <LINK REL="Next"  HREF="004464.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#52: x2goclient deletes all files in a given	directory, possible regression</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2352%3A%20x2goclient%20deletes%20all%20files%20in%20a%20given%0A%09directory%2C%20possible%20regression&In-Reply-To=%3C508698FD.100%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Bug#52: x2goclient deletes all files in a given	directory, possible regression">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Tue Oct 23 15:17:49 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004460.html">[X2Go-Dev] Processed: #50 reassigned to not-a-bug pseudo-package
+</A></li>
+        <LI>Next message: <A HREF="004464.html">[X2Go-Dev] Bug#52: x2goclient deletes all files in a given	directory, possible regression
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4462">[ date ]</a>
+              <a href="thread.html#4462">[ thread ]</a>
+              <a href="subject.html#4462">[ subject ]</a>
+              <a href="author.html#4462">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Version: 3.99.3.0
+Severity: important
+
+This is happening with:
+<A HREF="http://code.x2go.org/releases/binary-win32/x2goclient/with-old-pulseaudio-0.9.6/x2goclient-3.99.3.0.interims-pre2-setup.exe">http://code.x2go.org/releases/binary-win32/x2goclient/with-old-pulseaudio-0.9.6/x2goclient-3.99.3.0.interims-pre2-setup.exe</A>
+Haven't had a chance to try pre3 yet, but I am assuming it behaves the 
+same, as nobody else reported the bug so far.
+
+Steps to reproduce:
+
+Create a batch file anyname.cmd with this content:
+
+@echo off
+\\box\x2go\Windows\x2goclient\x2goclient.exe --portable --no-menu 
+--no-session-edit --hide --add-to-known-hosts --session=&quot;BOX&quot; 
+--home=&quot;%USERPROFILE%&quot; --session-conf=&quot;\\box\x2go\box-configs\sessions&quot; 
+--autostart=iceweasel --user=unlimited1
+pause
+
+Save this file in a directory where the user has write access.
+
+Double-click the batch file, enter password.
+
+Close Iceweasel.
+
+Right-Click the X2Go icon in the Notification area.
+Select &quot;BOX&quot; (or whatever you named your session, if you didn't follow 
+the example from above).
+
+Select &quot;Exit&quot;.
+
+As soon as the session terminates, ALL the files in the directory where 
+the batch file was stored are deleted - including the batch file itself.
+
+This is BAD(tm).
+
+I've seen this with an older copy of x2goclient for Windows and reported 
+it to Alex back then, not sure if it never got fixed or if it cropped up 
+again.
+</PRE>
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004460.html">[X2Go-Dev] Processed: #50 reassigned to not-a-bug pseudo-package
+</A></li>
+	<LI>Next message: <A HREF="004464.html">[X2Go-Dev] Bug#52: x2goclient deletes all files in a given	directory, possible regression
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4462">[ date ]</a>
+              <a href="thread.html#4462">[ thread ]</a>
+              <a href="subject.html#4462">[ subject ]</a>
+              <a href="author.html#4462">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

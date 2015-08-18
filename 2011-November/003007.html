@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] new strategy for building NX libraries
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20new%20strategy%20for%20building%20NX%20libraries&In-Reply-To=%3C20111109175758.19802lf4k71eczkm%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003004.html">
+   <LINK REL="Next"  HREF="003008.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] new strategy for building NX libraries</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20new%20strategy%20for%20building%20NX%20libraries&In-Reply-To=%3C20111109175758.19802lf4k71eczkm%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] new strategy for building NX libraries">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Nov  9 17:57:58 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003004.html">[X2go-Dev] NX workaround packages,	temporarily SOLVES: crashing X2Go sessions
+</A></li>
+        <LI>Next message: <A HREF="003008.html">[X2go-Dev] x2go Client on Mac OS X Lion (10.7) [Workaround]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3007">[ date ]</a>
+              <a href="thread.html#3007">[ thread ]</a>
+              <a href="subject.html#3007">[ subject ]</a>
+              <a href="author.html#3007">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+after a chat with Reinhard this noon, we (X2Go packagers/upstreamers)  
+will change the strategy for building NoMachine library packages for  
+Debian based systems.
+
+We have discovered that the functionality of the libxcomp* packages is  
+mid-heavily broken if they (probably esp. the libxcompext package) are  
+not built against NoMachine's X server nx-X11 but built against the  
+distro's own X-Server code. The newer the distro's X-Server seems to  
+be the greater the problems seem to become.
+
+Thus, we have set up the nx-libs.git project on the X2Go Git site:
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=summary">http://code.x2go.org/gitweb?p=nx-libs.git;a=summary</A>
+
+In the test branch of that repository you can find a dirtily hacked  
+proof of concept.
+
+Proof in that context means: we (X2Go upstream) had tremendous  
+problems with crashing x2goagent sessions (X2Go's pendant to nxagent)  
+and we could narrow it down to the way we build the NX lib packages.  
+So far, we used to build each NoMachine source tarball as a separate  
+.deb source package.
+
+The source tree of the test branch of nx-libs.git shows the structure  
+of the new package strategy. It already builds most of NX properly  
+(most of... means: the -dev packages are not complete yet).
+
+However, the test branch is a dirty hack in terms of upstream release  
+history etc. Thus, Reinhard has agreed on cleanly importing NoMachine  
+upstream tarballs of the missing code projects nxcomp, nxcompshad,  
+nxcompext and merge(?) them into the master branch.
+
+Once this is done, I will add patches (via quilt) and place the  
+/debian folder from the test branch into the master branch.
+
+X2Go will from then on use these NX libraries in their Repositories.  
+.deb packages will bear a new package version number:
+
+   old: 3.5.0-X-Y~x2go1...
+   new: 2:3.5.0-0~x2go1...
+
+Also: as we pull several NoMachine upstream source projects into one  
+big source package, we will not be able to fully map the version  
+numbers as used by NoMachine, e.g.
+
+   nxcomp 3.5.0-2
+   nxcompext 2.5.0-1
+   ...
+
+will all be pulled into
+
+   nx-libs 3.5.0
+
+What packages with what exact version numbers are included in that big  
+source package has to be documented elsewise (e.g. a README,  
+debian/changelog, etc.).
+
+BTW: nx-libs will also have nxauth and nxagent as fall-out (not such a  
+nice word...). So X2Go's nx-libs.git project can also be interesting  
+for other NX related projects.
+
+@Stephane, RT: I guess that this piece of information might also be  
+helpful to the FreeNX people. Are you in contact with any of the  
+developers? Maybe it would be good to point them at this mail?
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20111109/8b840b3d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20111109/8b840b3d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003004.html">[X2go-Dev] NX workaround packages,	temporarily SOLVES: crashing X2Go sessions
+</A></li>
+	<LI>Next message: <A HREF="003008.html">[X2go-Dev] x2go Client on Mac OS X Lion (10.7) [Workaround]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3007">[ date ]</a>
+              <a href="thread.html#3007">[ thread ]</a>
+              <a href="subject.html#3007">[ subject ]</a>
+              <a href="author.html#3007">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

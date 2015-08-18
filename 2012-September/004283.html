@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#35: On Debian systems (wheezy/sid): Menus in	Libreoffice and some other applications are not rendered properly
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2335%3A%20On%20Debian%20systems%20%28wheezy/sid%29%3A%20Menus%20in%0A%09Libreoffice%20and%20some%20other%20applications%20are%20not%20rendered%20properly&In-Reply-To=%3C505C4CB3.6040902%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004280.html">
+   <LINK REL="Next"  HREF="004284.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#35: On Debian systems (wheezy/sid): Menus in	Libreoffice and some other applications are not rendered properly</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2335%3A%20On%20Debian%20systems%20%28wheezy/sid%29%3A%20Menus%20in%0A%09Libreoffice%20and%20some%20other%20applications%20are%20not%20rendered%20properly&In-Reply-To=%3C505C4CB3.6040902%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Bug#35: On Debian systems (wheezy/sid): Menus in	Libreoffice and some other applications are not rendered properly">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Fri Sep 21 13:17:07 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004280.html">[X2Go-Dev] Bug#35: On Debian systems (wheezy/sid): Menus in	Libreoffice and some other applications are not rendered properly
+</A></li>
+        <LI>Next message: <A HREF="004284.html">[X2Go-Dev] Bug#35: On Debian systems (wheezy/sid): Menus in	Libreoffice and some other applications are not rendered properly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4283">[ date ]</a>
+              <a href="thread.html#4283">[ thread ]</a>
+              <a href="subject.html#4283">[ subject ]</a>
+              <a href="author.html#4283">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 21.09.2012 12:57, schrieb Mike Gabriel:
+&gt;<i> 2. ROOTLESS SESSIONS
+</I>&gt;<i>
+</I>&gt;<i>    * Libreoffice (from wheezy/sid) does not have any text in the menus
+</I>&gt;<i> at all
+</I>
+I can *not* confirm this - Libreoffice works fine here. Attaching lists 
+of installed packages, sources.list and debian version for comparison. 
+Feel free to request more info. Could it be a client-side X-Server issue?
+
+dpkg -l |grep libreoff
+ii  libreoffice                          1:3.5.4+dfsg-1 
+          i386         office productivity suite
+ii  libreoffice-base                     1:3.5.4+dfsg-1 
+          i386         office productivity suite -- database
+ii  libreoffice-base-core                1:3.5.4+dfsg-1 
+          i386         office productivity suite -- shared library
+ii  libreoffice-calc                     1:3.5.4+dfsg-1 
+          i386         office productivity suite -- spreadsheet
+ii  libreoffice-common                   1:3.5.4+dfsg-1 
+          all          office productivity suite -- arch-independent files
+ii  libreoffice-core                     1:3.5.4+dfsg-1 
+          i386         office productivity suite -- arch-dependent files
+ii  libreoffice-draw                     1:3.5.4+dfsg-1 
+          i386         office productivity suite -- drawing
+ii  libreoffice-emailmerge               1:3.5.4+dfsg-1 
+          all          office productivity suite -- email mail merge
+ii  libreoffice-filter-binfilter         1:3.5.4+dfsg-1 
+          i386         office productivity suite -- legacy filters (e.g. 
+StarOffice 5.2)
+ii  libreoffice-filter-mobiledev         1:3.5.4+dfsg-1 
+          all          office productivity suite -- mobile devices filters
+ii  libreoffice-help-de                  1:3.5.4+dfsg-1 
+          all          office productivity suite -- German help
+ii  libreoffice-impress                  1:3.5.4+dfsg-1 
+          i386         office productivity suite -- presentation
+ii  libreoffice-java-common              1:3.5.4+dfsg-1 
+          all          office productivity suite -- arch-independent 
+Java support files
+ii  libreoffice-l10n-de                  1:3.5.4+dfsg-1 
+          all          office productivity suite -- German language package
+ii  libreoffice-math                     1:3.5.4+dfsg-1 
+          i386         office productivity suite -- equation editor
+ii  libreoffice-officebean               1:3.5.4+dfsg-1 
+          i386         office productivity suite -- Java bean
+ii  libreoffice-report-builder-bin       1:3.5.4+dfsg-1 
+          i386         LibreOffice extension for building database 
+reports -- libraries
+ii  libreoffice-style-crystal            1:3.5.4+dfsg-1 
+          all          office productivity suite -- Crystal symbol style
+ii  libreoffice-style-oxygen             1:3.5.4+dfsg-1 
+          all          office productivity suite -- Oxygen symbol style
+ii  libreoffice-writer                   1:3.5.4+dfsg-1 
+          i386         office productivity suite -- word processor
+
+dpkg -l | grep nx
+rc  freenx-media 
+0.7.3+teambzr104-0freenxteam1~intrepid1 i386         Remote 
+desktop/application/thin-client server media support
+ii  libnx-x11 
+2:3.5.0.14-0+wheezy~main~312~build1     i386         nx-X11
+ii  nxagent 
+2:3.5.0.14-0+wheezy~main~312~build1     i386         NX agent
+
+dpkg -l | grep x2go
+ii  cups-x2go 
+3.0.0.3-0~x2go1+wheezy~main~54~build1   all          X2GO printer for CUPS
+ii  x2go-keyring 
+2012.07.23+wheezy~main~17~build1        all          GnuPG keys of all 
+X2Go developers and the X2Go archive
+ii  x2goagent 
+2:3.5.0.14-0+wheezy~main~312~build1     all          X2Go agent
+ii  x2goserver 
+3.1.1.3-0~x2go1+wheezy~main~571~build1  i386         X2Go server daemon 
+scripts
+ii  x2goserver-extensions 
+3.1.1.3-0~x2go1+wheezy~main~571~build1  all          X2Go server daemon 
+scripts (extensions)
+ii  x2goserver-printing 
+3.1.1.3-0~x2go1+wheezy~main~571~build1  all          X2Go server daemon 
+scripts (printing)
+
+cat /etc/apt/sources.list
+# Security Updates
+deb <A HREF="http://security.debian.org/">http://security.debian.org/</A> wheezy/updates main contrib non-free
+deb-src <A HREF="http://security.debian.org/">http://security.debian.org/</A> wheezy/updates main contrib non-free
+
+# Backports
+#deb <A HREF="http://ftp.de.debian.org/debian-backports">http://ftp.de.debian.org/debian-backports</A> wheezy-backports main 
+contrib non-free
+
+# ClamAV etc.
+#deb <A HREF="http://ftp.debian.org/debian">http://ftp.debian.org/debian</A> wheezy-updates main contrib non-free
+#deb-src <A HREF="http://ftp.debian.org/debian">http://ftp.debian.org/debian</A> wheezy-updates main contrib non-free
+
+# Acrobat Reader
+deb <A HREF="http://www.deb-multimedia.org">http://www.deb-multimedia.org</A> wheezy main non-free
+
+# Wheezy
+deb <A HREF="http://ftp.de.debian.org/debian/">http://ftp.de.debian.org/debian/</A> wheezy main contrib non-free
+deb-src <A HREF="http://ftp.de.debian.org/debian/">http://ftp.de.debian.org/debian/</A> wheezy main contrib non-free
+
+# X2go Repository
+deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> wheezy main
+# X2go Repository (sources)
+deb-src <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> wheezy main
+
+cat /etc/debian_version
+wheezy/sid
+
+This is the server side, client is using Windows 7, 32-Bit, German with 
+the interim client from 
+<A HREF="http://code.x2go.org/releases/binary-win32/x2goclient/with-old-pulseaudio-0.9.6/x2goclient-3.99.3.0.interims-pre2-setup.exe">http://code.x2go.org/releases/binary-win32/x2goclient/with-old-pulseaudio-0.9.6/x2goclient-3.99.3.0.interims-pre2-setup.exe</A> 
+working in *published application mode* (which is rootless, obviously).
+
+-Stefan
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004280.html">[X2Go-Dev] Bug#35: On Debian systems (wheezy/sid): Menus in	Libreoffice and some other applications are not rendered properly
+</A></li>
+	<LI>Next message: <A HREF="004284.html">[X2Go-Dev] Bug#35: On Debian systems (wheezy/sid): Menus in	Libreoffice and some other applications are not rendered properly
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4283">[ date ]</a>
+              <a href="thread.html#4283">[ thread ]</a>
+              <a href="subject.html#4283">[ subject ]</a>
+              <a href="author.html#4283">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

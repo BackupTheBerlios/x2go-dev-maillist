@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] screen saver extension
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20screen%20saver%20extension&In-Reply-To=%3C19487.35880.871614.683431%40gargle.gargle.HOWL%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000585.html">
+   <LINK REL="Next"  HREF="000588.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] screen saver extension</H1>
+    <B>rf at q-leap.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20screen%20saver%20extension&In-Reply-To=%3C19487.35880.871614.683431%40gargle.gargle.HOWL%3E"
+       TITLE="[X2go-dev] screen saver extension">rf at q-leap.de
+       </A><BR>
+    <I>Mon Jun 21 17:58:32 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000585.html">[X2go-dev] screen saver extension
+</A></li>
+        <LI>Next message: <A HREF="000588.html">[X2go-dev] Extra functions requested in x2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#586">[ date ]</a>
+              <a href="thread.html#586">[ thread ]</a>
+              <a href="subject.html#586">[ subject ]</a>
+              <a href="author.html#586">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;&gt;&gt;&gt;&gt;<i> &quot;Paul&quot; == Paul van der Vlis &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">paul at vandervlis.nl</A>&gt; writes:
+</I>
+I looked into this a bit deeper, and I found out that
+/usr/lib/x2go/x2goagent is the actual X server that is being used by
+x2go. Now this X server doesn't have the MIT-SCREEN-SAVER compiled as a
+module. So the question is, whether it is possible to obtain the source
+code somewhere, so I could compile this with the screen saver extension
+included.
+
+Best regards,
+
+Roland
+
+    Paul&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">rf at q-leap.de</A> schreef:
+    &gt;&gt;&gt;&gt;&gt;&gt;&gt; &quot;Paul&quot; == Paul van der Vlis &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">paul at vandervlis.nl</A>&gt; writes:
+    &gt;&gt; 
+    &gt;&gt; Hi Paul,
+    &gt;&gt; 
+    &gt;&gt; thanks for continued interest.
+    &gt;&gt; 
+    Paul&gt; Hello Roland, I asked some questions, you did not answer
+    Paul&gt; them. Maybe you can tell a bit more about your problem.
+    &gt;&gt; 
+    &gt;&gt; in my reply a couple of weeks ago, I wrote (see also below):
+    &gt;&gt; 
+    &gt;&gt; &quot;I know, some screensavers don't use the X11 screen saver
+    &gt;&gt; extension. But I need the program xprintidle to work which
+    &gt;&gt; requires this extension (see Ubuntu/Debian package xprintidle).&quot;
+
+    Paul&gt; Sorry, maybe I've missed this message.
+
+    &gt;&gt; If you start the program xprintidle, you get the message:
+    &gt;&gt; 
+    &gt;&gt; $ xprintidle screen saver extension not supported
+    &gt;&gt; 
+    &gt;&gt; I need this program to work, because it will tell me the amount
+    &gt;&gt; of X11 idle time from which I trigger some actions for other
+    &gt;&gt; programs when a certain amount of idle time has passed.
+    &gt;&gt; 
+    &gt;&gt; So the fact that some screensavers work, unfortunately doesn't
+    &gt;&gt; help, since these obviously are programmed without needing the
+    &gt;&gt; &quot;X11 screen saver extension&quot;.
+    &gt;&gt; 
+    &gt;&gt; All this comes back to the final question: Is it possible to
+    &gt;&gt; activate the extension (or other X11 extensions), and if yes how?
+
+    Paul&gt; Sorry, I don't know.
+
+    Paul&gt; X2go is using the NX libraries from Nomachine. These libraries
+    Paul&gt; have a complete (changed) embedded copy of Xorg inside, maybe
+    Paul&gt; without the X11 extention. I know you can change some things
+    Paul&gt; on it, e.g. with shortcuts:
+    Paul&gt; <A HREF="http://www.nomachine.com/ar/view.php?ar_id=AR03C00172">http://www.nomachine.com/ar/view.php?ar_id=AR03C00172</A> But I
+    Paul&gt; think some things are possible with arguments too.
+
+    Paul&gt; I would search the site of Nomachine to find more information
+    Paul&gt; about it: <A HREF="http://www.nomachine.com/support.php">http://www.nomachine.com/support.php</A> Not sure you
+    Paul&gt; will find...
+
+    Paul&gt; With regards, Paul van der Vlis.
+
+
+
+
+    Paul&gt; -- <A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+    Paul&gt; _______________________________________________ X2go-dev
+    Paul&gt; mailing list <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+    Paul&gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000585.html">[X2go-dev] screen saver extension
+</A></li>
+	<LI>Next message: <A HREF="000588.html">[X2go-dev] Extra functions requested in x2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#586">[ date ]</a>
+              <a href="thread.html#586">[ thread ]</a>
+              <a href="subject.html#586">[ subject ]</a>
+              <a href="author.html#586">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

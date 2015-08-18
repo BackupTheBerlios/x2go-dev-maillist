@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#354: X2Go issue (in src:x2goserver) has been marked	as closed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23354%3A%20X2Go%20issue%20%28in%20src%3Ax2goserver%29%20has%20been%20marked%0A%09as%20closed&In-Reply-To=%3C20140106172854.EC48A5DB26%40ymir%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006802.html">
+   <LINK REL="Next"  HREF="006801.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#354: X2Go issue (in src:x2goserver) has been marked	as closed</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23354%3A%20X2Go%20issue%20%28in%20src%3Ax2goserver%29%20has%20been%20marked%0A%09as%20closed&In-Reply-To=%3C20140106172854.EC48A5DB26%40ymir%3E"
+       TITLE="[X2Go-Dev] Bug#354: X2Go issue (in src:x2goserver) has been marked	as closed">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Jan  6 18:28:54 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006802.html">[X2Go-Dev] Bug#356: X2Go issue (in src:x2goserver) has been marked	as closed
+</A></li>
+        <LI>Next message: <A HREF="006801.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goserver) has been	marked as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6795">[ date ]</a>
+              <a href="thread.html#6795">[ thread ]</a>
+              <a href="subject.html#6795">[ subject ]</a>
+              <a href="author.html#6795">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>close #354
+thanks
+
+Hello,
+
+we are very hopeful that X2Go issue #354 reported by you
+has been resolved in the new release (4.0.1.10) of the
+X2Go source project &#187;src:x2goserver&#171;.
+
+You can view the complete changelog entry of src:x2goserver (4.0.1.10)
+below, and you can use the following link to view all the code changes
+between this and the last release of src:x2goserver.
+
+    <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=1a793e3d843bbeee3e597c762d9fe1d19c97baa7;hp=f26122424320ebdb563af072fc89cc03ce8bc158">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=1a793e3d843bbeee3e597c762d9fe1d19c97baa7;hp=f26122424320ebdb563af072fc89cc03ce8bc158</A>
+
+If you feel that the issue has not been resolved satisfyingly, feel
+free to reopen this bug report or submit a follow-up report with
+further observations described based on the new released version
+of src:x2goserver.
+
+Thanks a lot for contributing to X2Go!!!
+
+light+love
+X2Go Git Admin (on behalf of the sender of this mail)
+
+---
+X2Go Component: src:x2goserver
+Version: 4.0.1.10-0x2go1
+Status: RELEASE
+Date: Fri, 03 Jan 2014 11:34:36 +0100
+Fixes: 354 355
+Changes: 
+ x2goserver (4.0.1.10-0x2go1) RELEASED; urgency=low
+ .
+   * New upstream version (4.0.1.10):
+     - Fix x2goresume-session. The several parameters placed into the NX options
+       file are expected by x2goresume-session at very specific positions. This
+       we broke by trying to fix the fullscreen/geometry issue in x2gostartagent.
+       Thanks to Harvey Eneman for tracking this down!!! (Fixes: #355).
+     - x2goserver-fmbindings/Makefile: install x2gofm.
+     - x2goserver-fmbindings/Makefile: install share/applications and share/mime.
+     - x2goserver-printing/Makefile: create feature.d directory before installing
+       files into it.
+     - Handle TCP listening of x2goagent in x2goagent.options. (Fixes: #354).
+     - Clean up Makefiles, remove commented out lines.
+     - Use xkb ruleset 'base' rather than xfree86 as on RHEL systems the
+       xfree86 symlink to base ruleset does not exist.
+     - Grab systemd service file from Fedora and ship it upstream.
+     - Provide RHEL/Fedora support in x2goserver-xsession.
+     - Only sanity check for existence of /etc/x2go/Xsession.d on Debian
+       (derived) systems.
+     - Provide man page for x2goserver.conf.
+   * x2goserver.spec:
+     + Ship x2goserver.spec (RPM package definitions) in upstream project.
+       (Thanks to the Fedora package maintainers). File differs from the Fedora
+       file already.
+     + Add init script for RPM based distro. Taken from the Fedora
+       package.
+     + Clear (Fedora package) changelog.
+</PRE>
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006802.html">[X2Go-Dev] Bug#356: X2Go issue (in src:x2goserver) has been marked	as closed
+</A></li>
+	<LI>Next message: <A HREF="006801.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goserver) has been	marked as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6795">[ date ]</a>
+              <a href="thread.html#6795">[ thread ]</a>
+              <a href="subject.html#6795">[ subject ]</a>
+              <a href="author.html#6795">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

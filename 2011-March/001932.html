@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Wishlist: x2gofeatures query before session start
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Wishlist%3A%20x2gofeatures%20query%20before%20session%20start&In-Reply-To=%3Cvmime.4d852045.814.7fa4d2141ddc1f0c%40mail.pl20%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001945.html">
+   <LINK REL="Next"  HREF="001947.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Wishlist: x2gofeatures query before session start</H1>
+    <B>Dick Kniep</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Wishlist%3A%20x2gofeatures%20query%20before%20session%20start&In-Reply-To=%3Cvmime.4d852045.814.7fa4d2141ddc1f0c%40mail.pl20%3E"
+       TITLE="[X2go-dev] Wishlist: x2gofeatures query before session start">dick.kniep at lindix.nl
+       </A><BR>
+    <I>Sat Mar 19 22:29:41 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001945.html">[X2go-dev] Wishlist: x2gofeatures query before session start
+</A></li>
+        <LI>Next message: <A HREF="001947.html">[X2go-dev] Bump LDAP / AD / Pulseaudio related login issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1932">[ date ]</a>
+              <a href="thread.html#1932">[ thread ]</a>
+              <a href="subject.html#1932">[ subject ]</a>
+              <a href="author.html#1932">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+&#160;Hi Morty,
+
+&#160;
+
+I totally agree with you on this. As a matter of fact we are developing a script that checks serverside whether one is allowed to start a certain command. It uses the normal Linux users and groups and there is also a maintainance option. Within 4 weeks this should be completely finished and I can send you the code together with the patches of the server. 
+
+&#160;
+
+As soon as it is ready (and tested) I will send the patch also to Mike and Alex and ask them to incorporate it in the main distribution. 
+
+&#160;
+
+But again, it will take some time.
+&#160;
+
+Also, in the pyhoca-gui there is a possibility (with some tweeking of the ssh config) to make a connection to the client with a key and after that a logon with a user. Mike has done a wonderful job on that one!
+
+&#160;
+
+Dick Kniep
+
+
+&#160;
+
+-----Oorspronkelijk bericht-----
+Van: Moritz Str&#252;be &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Moritz.Struebe at informatik.uni-erlangen.de</A>&gt;
+Verzonden: za 19-03-11 19:10:05
+Aan: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>; 
+Onderwerp: Re: [X2go-dev] Wishlist: x2gofeatures query before session start
+
+Hi Mike,
+
+to make this reasonable there must be ways to actually enforce this. Currently a little tweaking of the client will allow you to circumvent any of these rules: Start x2goagent &quot;manually&quot; - the db is only convenience, desktop-mode is client-related only, you can patch the client to start any command you wish, audio is only a matter of setting the right environment variables, etc. Basically x2go is just an optimized x-forwarding. So doing rights-control on this level would be to block the main road and leave the side roads open. While this might be enough for a lot of scenarios it might also let administrators think, that there rules are actually enforced. All in all it would be just as safe as doing all the rights-management in the client.... 
+The right way of doing this, would be to the learn about Linux system administration and use the sufficient tools already provided to you (e.g. ACLs). Everything else creates false feeling of security. 
+
+Cheers
+Morty
+
+
+
+Am 19.03.2011 17:11, Mike Gabriel schrieb: Hi there, 
+
+Here is a feature request proposal for the post-Baikal release (Rebun): 
+
+The handshake on session start should be extended in the following way: 
+
+&#160; o login as user 
+&#160; o call a script x2gofeatures (or similar) 
+&#160; o this script replies with some file format that states 
+&#160;&#160;&#160;&#160; - user may / must not start an X2go session 
+&#160;&#160;&#160;&#160; - user may / must not start in rootless/desktop mode 
+&#160;&#160;&#160;&#160; - available commands to execute (KDE, TERMINAL, /usr/bin/xterm...) 
+&#160;&#160;&#160;&#160; - user may / must not print 
+&#160;&#160;&#160;&#160; - user may / must not use audio 
+&#160;&#160;&#160;&#160; - ... 
+&#160;&#160; o the client should obey to this returned list of features 
+&#160;&#160; o if the user tries to hack some feature that he/she is not allowed to 
+&#160;&#160;&#160;&#160; use, the server of course also has to deny this feature (and maybe even 
+&#160;&#160;&#160;&#160; the whole session) 
+
+Greets, 
+Mike 
+
+
+
+_______________________________________________ X2go-dev mailing list <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A> 
+
+!DSPAM:4d84f17d19577730779061!
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110319/9ed227c1/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110319/9ed227c1/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001945.html">[X2go-dev] Wishlist: x2gofeatures query before session start
+</A></li>
+	<LI>Next message: <A HREF="001947.html">[X2go-dev] Bump LDAP / AD / Pulseaudio related login issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1932">[ date ]</a>
+              <a href="thread.html#1932">[ thread ]</a>
+              <a href="subject.html#1932">[ subject ]</a>
+              <a href="author.html#1932">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Reconnect to suspended session
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Reconnect%20to%20suspended%20session&In-Reply-To=%3C1265406722.3445.65.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000328.html">
+   <LINK REL="Next"  HREF="000334.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Reconnect to suspended session</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Reconnect%20to%20suspended%20session&In-Reply-To=%3C1265406722.3445.65.camel%40localhost%3E"
+       TITLE="[X2go-dev] Reconnect to suspended session">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Feb  5 22:52:02 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000328.html">[X2go-dev] Reconnect to suspended session
+</A></li>
+        <LI>Next message: <A HREF="000334.html">[X2go-dev] Reconnect to suspended session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#330">[ date ]</a>
+              <a href="thread.html#330">[ thread ]</a>
+              <a href="subject.html#330">[ subject ]</a>
+              <a href="author.html#330">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2010-02-05 at 20:57 +0100, Heinz-M. Graesing wrote:
+&gt;<i> 
+</I>&gt;<i>  &gt;&gt;On Fri, 2010-02-05 at 08:53 +0100, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">olivier.arnaud at trialys.fr</A> wrote:
+</I>&gt;<i>  &gt;&gt; Hello,
+</I>&gt;<i>  &gt;&gt;
+</I>&gt;<i>  &gt;&gt; I was previously using Freenx and was able to:
+</I>&gt;<i>  &gt;&gt;
+</I>&gt;<i>  &gt;&gt; 1. automatically reconnect to a suspended session (maximum one
+</I>&gt;<i>  &gt;&gt; concurrent session per user)
+</I>&gt;<i>  &gt;&gt; 2. automatically disconnect a session from a terminal when
+</I>&gt;<i>  &gt;&gt; reconnecting from a new one.
+</I>&gt;<i>  &gt;&gt;
+</I>&gt;<i>  &gt;&gt; and having recently installed x2go on Ubuntu 9.10 I don't get the same
+</I>&gt;<i>  &gt;&gt; results ( a new session is created each time).
+</I>&gt;<i>  &gt;&gt; Is there some configuration to do (some equivalent of node.conf)?
+</I>&gt;<i>  &gt;
+</I>&gt;<i>  &gt;
+</I>&gt;<i>  &gt;We are testing on Hardy (Ubuntu 8.0.4) and are about to move to Lenny.
+</I>&gt;<i>  &gt;In our case, we find T no longer brings up the terminate or
+</I>&gt;<i>  &gt;disconnect dialog. However, the X2Go client has a suspend option that
+</I>&gt;<i>  &gt;is working fine for us. It just cannot be done from within the X2Go
+</I>&gt;<i>  &gt;session - a bit unfortunate when in full screen mode. If there is a way,
+</I>&gt;<i>  &gt;would someone kindly let us know. For now, we simply return to the X2Go
+</I>&gt;<i>  &gt;client on the physical desktop and click on Suspend - John
+</I>&gt;<i> 
+</I>&gt;<i> Hello John,
+</I>&gt;<i> Hello Oliver,
+</I>&gt;<i> 
+</I>&gt;<i> with the command:
+</I>&gt;<i> 
+</I>&gt;<i> # x2gosuspend-session $X2GO_SESSION
+</I>&gt;<i> 
+</I>&gt;<i> (executed on the server inside your session) you can suspend your 
+</I>&gt;<i> session. It is also possible to use the packages &quot;x2gognomebindings&quot; and 
+</I>&gt;<i> &quot;x2gokdebindings&quot; (please don't forget to run updatelockbutton) to get 
+</I>&gt;<i> this function inside your session graphically.
+</I>&lt;snip&gt;
+Ah, I had forgotten about the bindings.  Worked great except it showed
+up in the menu as a lost item.  I do realize Hardy is not a target
+platform and I trust it will do better on Lenny.  Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000328.html">[X2go-dev] Reconnect to suspended session
+</A></li>
+	<LI>Next message: <A HREF="000334.html">[X2go-dev] Reconnect to suspended session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#330">[ date ]</a>
+              <a href="thread.html#330">[ thread ]</a>
+              <a href="subject.html#330">[ subject ]</a>
+              <a href="author.html#330">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

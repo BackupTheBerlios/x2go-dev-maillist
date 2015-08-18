@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#107: nx-libs makefile install messed up
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23107%3A%20nx-libs%20makefile%20install%20messed%20up&In-Reply-To=%3C20130212081441.20866z4gawxf8kbl%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004998.html">
+   <LINK REL="Next"  HREF="005000.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#107: nx-libs makefile install messed up</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23107%3A%20nx-libs%20makefile%20install%20messed%20up&In-Reply-To=%3C20130212081441.20866z4gawxf8kbl%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#107: nx-libs makefile install messed up">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Feb 12 08:14:41 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004998.html">[X2Go-Dev] Processed: your mail
+</A></li>
+        <LI>Next message: <A HREF="005000.html">[X2Go-Dev] Processed: Re: Bug#107: nx-libs makefile install messed	up
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4999">[ date ]</a>
+              <a href="thread.html#4999">[ thread ]</a>
+              <a href="subject.html#4999">[ subject ]</a>
+              <a href="author.html#4999">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>tag #107 pending
+thanks
+
+Hi Orion,
+
+On Fr 18 Jan 2013 22:14:00 CET Orion Poplawski wrote:
+
+&gt;<i> Package: nx-libs
+</I>&gt;<i> Version: 3.5.0.17
+</I>&gt;<i> Tags: patch
+</I>&gt;<i>
+</I>&gt;<i> On 01/16/2013 05:13 PM, Orion Poplawski wrote:
+</I>&gt;&gt;<i> On 01/15/2013 05:03 PM, Orion Poplawski wrote:
+</I>&gt;&gt;&gt;<i> With current git head, the main nx-libs Makefile install gets it backwards
+</I>&gt;&gt;&gt;<i> installing the libraries:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>         $(INSTALL_FILE) nx-X11/.build-exports/lib/*.so
+</I>&gt;&gt;&gt;<i> $(DESTDIR)$(NXLIBDIR)/X11/
+</I>&gt;&gt;&gt;<i>         $(COPY_SYMLINK) nx-X11/.build-exports/lib/*.so.*
+</I>&gt;&gt;&gt;<i> $(DESTDIR)$(NXLIBDIR)/X11/
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> The *.so and *.so.# are symlinks to *.so.#.#.  Though some libs only have a
+</I>&gt;&gt;&gt;<i> single version (*.so -&gt; *.so.#).
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hmm, gets messed up earlier:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -rwxr-xr-x. 1 orion nwra 10421469 Jan 16 17:07
+</I>&gt;&gt;<i> nx-libs-HEAD/nx-X11/.build-exports/lib/libNX_X11.so
+</I>&gt;&gt;<i> lrwxrwxrwx. 1 orion nwra       12 Jan 16 17:07
+</I>&gt;&gt;<i> nx-libs-HEAD/nx-X11/.build-exports/lib/libNX_X11.so.6 -&gt; libNX_X11.so
+</I>&gt;&gt;<i> lrwxrwxrwx. 1 orion nwra       12 Jan 16 17:07
+</I>&gt;&gt;<i> nx-libs-HEAD/nx-X11/.build-exports/lib/libNX_X11.so.6.2 -&gt; libNX_X11.so
+</I>&gt;&gt;<i> lrwxrwxrwx. 1 orion nwra       26 Jan 16 17:06
+</I>&gt;&gt;<i> nx-libs-HEAD/nx-X11/exports/lib/libNX_X11.so -&gt; ../../lib/X11/libNX_X11.so
+</I>&gt;&gt;<i> lrwxrwxrwx. 1 orion nwra       28 Jan 16 17:06
+</I>&gt;&gt;<i> nx-libs-HEAD/nx-X11/exports/lib/libNX_X11.so.6 -&gt;  
+</I>&gt;&gt;<i> ../../lib/X11/libNX_X11.so.6
+</I>&gt;&gt;<i> lrwxrwxrwx. 1 orion nwra       30 Jan 16 17:06
+</I>&gt;&gt;<i> nx-libs-HEAD/nx-X11/exports/lib/libNX_X11.so.6.2 -&gt;
+</I>&gt;&gt;<i> ../../lib/X11/libNX_X11.so.6.2
+</I>&gt;&gt;<i> lrwxrwxrwx. 1 orion nwra       16 Jan 16 17:06
+</I>&gt;&gt;<i> nx-libs-HEAD/nx-X11/lib/X11/libNX_X11.so -&gt; libNX_X11.so.6.2
+</I>&gt;&gt;<i> lrwxrwxrwx. 1 orion nwra       16 Jan 16 17:06
+</I>&gt;&gt;<i> nx-libs-HEAD/nx-X11/lib/X11/libNX_X11.so.6 -&gt; libNX_X11.so.6.2
+</I>&gt;&gt;<i> -rwxr-xr-x. 1 orion nwra 10421469 Jan 16 17:06
+</I>&gt;&gt;<i> nx-libs-HEAD/nx-X11/lib/X11/libNX_X11.so.6.2
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Don't have time to see how .build-exports gets populated yet.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Okay, here is the fix.
+</I>
+Applied to nx-libs.git:
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=d439556ff1b83aecb10991cf0f031fd4da23494e">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=d439556ff1b83aecb10991cf0f031fd4da23494e</A>
+
+THANKS!
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130212/baeac600/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130212/baeac600/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004998.html">[X2Go-Dev] Processed: your mail
+</A></li>
+	<LI>Next message: <A HREF="005000.html">[X2Go-Dev] Processed: Re: Bug#107: nx-libs makefile install messed	up
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4999">[ date ]</a>
+              <a href="thread.html#4999">[ thread ]</a>
+              <a href="subject.html#4999">[ subject ]</a>
+              <a href="author.html#4999">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

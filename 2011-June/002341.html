@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Upgrading our git branches to NX 3.5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Upgrading%20our%20git%20branches%20to%20NX%203.5&In-Reply-To=%3C87r56csboo.fsf%40faui43f.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002339.html">
+   <LINK REL="Next"  HREF="002342.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Upgrading our git branches to NX 3.5</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Upgrading%20our%20git%20branches%20to%20NX%203.5&In-Reply-To=%3C87r56csboo.fsf%40faui43f.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-Dev] Upgrading our git branches to NX 3.5">siretart at tauware.de
+       </A><BR>
+    <I>Wed Jun 29 21:02:47 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002339.html">[X2go-Dev] Upgrading our git branches to NX 3.5
+</A></li>
+        <LI>Next message: <A HREF="002342.html">[X2go-Dev] Upgrading our git branches to NX 3.5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2341">[ date ]</a>
+              <a href="thread.html#2341">[ thread ]</a>
+              <a href="subject.html#2341">[ subject ]</a>
+              <a href="author.html#2341">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Jun 29, 2011 at 20:57:48 (CEST), Mike Gabriel wrote:
+
+&gt;<i> Hi Reinhard,
+</I>&gt;<i>
+</I>&gt;<i> On Mi 29 Jun 2011 16:52:47 CEST Reinhard Tartler wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I've started to upgrade the git branches on code.x2go.org to 3.5. So far
+</I>&gt;&gt;<i> I've completed:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>  - nxcomp
+</I>&gt;&gt;<i>  - nxcompext
+</I>&gt;&gt;<i>  - nxcompshad
+</I>&gt;&gt;<i>  - nxproxy
+</I>&gt;<i>
+</I>&gt;<i> Very great so far!!!
+</I>&gt;<i>
+</I>&gt;&gt;<i> x2goagent is still missing, and this is a bit hairy. In order to find
+</I>&gt;&gt;<i> out what has been actually changed compared to NX, I've compared the
+</I>&gt;&gt;<i> sources in nxagent-3.4.0-5.tar.gz to what we ship in x2goagent. Here, I
+</I>&gt;&gt;<i> noticed that 'our' x2goagent tarball actually combines several NX
+</I>&gt;&gt;<i> 'upstream' tarballs, among others 'nxagent' and 'nx-x11'. It is not
+</I>&gt;&gt;<i> totally clear to me what tarballs have been exactly used to construct
+</I>&gt;&gt;<i> the x2goagent sources.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> As for modifications, I've grepped through all sources for 'x2go'
+</I>&gt;&gt;<i> markers, and compared those files against the NX version. Find the diff
+</I>&gt;&gt;<i> attached to this e-mail. Alex, do you remember any additional changes
+</I>&gt;&gt;<i> that have been done to the NX sources?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> As comparison, I've had a look what the freenx team is doing [1]. It
+</I>&gt;&gt;<i> seems that they have had similar problems and also combined several
+</I>&gt;&gt;<i> tarballs into the source package 'nx-x11'. Feel free to check.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> [1] <A HREF="https://launchpad.net/~freenx-team/+archive/ppa/+packages">https://launchpad.net/~freenx-team/+archive/ppa/+packages</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> So, how to upgrade all this mess? Well, TBH, I think the FreeNX guys are
+</I>&gt;&gt;<i> doing a great job with their package.  They have accumulated a fair
+</I>&gt;&gt;<i> number of patches (18 to my counting) so far, which are mostly
+</I>&gt;&gt;<i> undocumented but generally look reasonable on the first glance. I think
+</I>&gt;&gt;<i> it would make sense to consider using their 'nx-x11' package as basis
+</I>&gt;&gt;<i> for x2goagent and add the x2go modification as additional patch to that
+</I>&gt;&gt;<i> package.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Comments/Flames welcome.
+</I>&gt;<i>
+</I>&gt;<i> Alex has already patched/upgraded x2goagent to version 3.5.0.x by
+</I>&gt;<i> incorporating nxagent 3.5.0-x. Unfortunately, not yet in Git.
+</I>&gt;<i>
+</I>&gt;<i> The current plan is (telephone session with Heinz yesterday) that he
+</I>&gt;<i> will send me his work at the weekend and I would then upload his code
+</I>&gt;<i> to x2goagent.git (if that is fine by you). Maybe then, we should take
+</I>&gt;<i> individual looks at the freenx patches?!?
+</I>&gt;<i>
+</I>&gt;<i> Would that work for you? Sorry for overlaps at this point!!!
+</I>
+So far I see no overlap, yet. However, I'm curious what Alex did exactly
+for upgrading to 3.5.0-1, and how the x2goagent tarball is exactly constructed.
+
+Moreover, shall I (already) push the four git branchs that I have
+locally here?
+
+-- 
+Gruesse/greetings,
+Reinhard Tartler, KeyID 945348A4
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002339.html">[X2go-Dev] Upgrading our git branches to NX 3.5
+</A></li>
+	<LI>Next message: <A HREF="002342.html">[X2go-Dev] Upgrading our git branches to NX 3.5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2341">[ date ]</a>
+              <a href="thread.html#2341">[ thread ]</a>
+              <a href="subject.html#2341">[ subject ]</a>
+              <a href="author.html#2341">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

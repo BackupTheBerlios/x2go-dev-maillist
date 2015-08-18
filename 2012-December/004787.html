@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2393%3A%20x2goagent%20should%20create%20/tmp/.X11-unix%20directory&In-Reply-To=%3C20121219092041.880519tm7945r8ih%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004786.html">
+   <LINK REL="Next"  HREF="004788.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2393%3A%20x2goagent%20should%20create%20/tmp/.X11-unix%20directory&In-Reply-To=%3C20121219092041.880519tm7945r8ih%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Dec 19 09:20:41 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004786.html">[X2Go-Dev] [x2go-i18n] x2godesktopsharing: call for translation
+</A></li>
+        <LI>Next message: <A HREF="004788.html">[X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4787">[ date ]</a>
+              <a href="thread.html#4787">[ thread ]</a>
+              <a href="subject.html#4787">[ subject ]</a>
+              <a href="author.html#4787">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goagent
+Severity: normal
+
+
+
+----- Weitergeleitete Nachricht von <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Burnce at gmx.net</A> -----
+      Datum: Wed, 19 Dec 2012 08:57:53 +0100
+        Von: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Burnce at gmx.net</A>
+    Betreff: [X2Go-User] RHEL6 package should create /tmp/.X11-unix directory
+         An: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-User at lists.berlios.de</A>
+
+Hi all,
+
+After much hunting I found what the problem was runnung x2goserver on  
+a freshly installed server.
+
+Apparently X2Go requires the /tmp/.X11-unix directory to exist with  
+permissions 1777.
+
+Could you please see to it the creation of this directory and the  
+permissions settings are performed by teh x2goserver package.
+
+Thanks,
+
+Burnce
+_______________________________________________
+X2Go-User mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-User at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-user">https://lists.berlios.de/mailman/listinfo/x2go-user</A>
+
+
+----- Ende der weitergeleiteten Nachricht -----
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121219/ec87bc5c/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121219/ec87bc5c/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004786.html">[X2Go-Dev] [x2go-i18n] x2godesktopsharing: call for translation
+</A></li>
+	<LI>Next message: <A HREF="004788.html">[X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4787">[ date ]</a>
+              <a href="thread.html#4787">[ thread ]</a>
+              <a href="subject.html#4787">[ subject ]</a>
+              <a href="author.html#4787">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

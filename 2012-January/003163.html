@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Untrusted library search path in x2gostartagent bash	script
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Untrusted%20library%20search%20path%20in%20x2gostartagent%20bash%0A%09script&In-Reply-To=%3CCAHAfbHnLWBEErdBo54ywFWzCBok8m6q%2B-n_Q6re8DL%3D12GXtFg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003162.html">
+   <LINK REL="Next"  HREF="003164.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Untrusted library search path in x2gostartagent bash	script</H1>
+    <B>Hayawardh V</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Untrusted%20library%20search%20path%20in%20x2gostartagent%20bash%0A%09script&In-Reply-To=%3CCAHAfbHnLWBEErdBo54ywFWzCBok8m6q%2B-n_Q6re8DL%3D12GXtFg%40mail.gmail.com%3E"
+       TITLE="[X2go-Dev] Untrusted library search path in x2gostartagent bash	script">hayawardh at gmail.com
+       </A><BR>
+    <I>Sat Jan  7 03:34:53 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003162.html">[X2go-Dev] Untrusted library search path in x2gostartagent bash script
+</A></li>
+        <LI>Next message: <A HREF="003164.html">[X2go-Dev] Untrusted library search path in x2gostartagent bash script
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3163">[ date ]</a>
+              <a href="thread.html#3163">[ thread ]</a>
+              <a href="subject.html#3163">[ subject ]</a>
+              <a href="author.html#3163">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+
+Thanks for your prompt reply and patching!
+
+Regards,
+Hayawardh
+
+On Fri, Jan 6, 2012 at 1:55 PM, Mike Gabriel &lt;
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+
+&gt;<i> Hi Hayawardh,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Fr 06 Jan 2012 00:26:29 CET Hayawardh V wrote:
+</I>&gt;<i>
+</I>&gt;<i>  Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> There is an untrusted library search path vulnerability in x2gostartagent.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Lines 188,189 in /usr/bin/x2gostartagent in the Ubuntu PPA package say:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> LD_LIBRARY_PATH=&quot;${LD_LIBRARY_**PATH}:${X2GO_LIB}&quot;
+</I>&gt;&gt;<i> export LD_LIBRARY_PATH
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> If one of these are empty, then there will be an empty addendum to
+</I>&gt;&gt;<i> LD_LIBRARY_PATH, which will make ld search for libraries in the current
+</I>&gt;&gt;<i> working directory.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Programs xauth, x2goserver-run-extensions and x2gofeature (and the
+</I>&gt;&gt;<i> programs
+</I>&gt;&gt;<i> further spawned by them, including perl, basename, find, grep, sort, bash
+</I>&gt;&gt;<i> etc.) are launched with this insecure LD_LIBRARY_PATH.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thus, the current working directory will be searched for shared libraries
+</I>&gt;&gt;<i> when this command is launched.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Usually, x2gostartagent is launched over ssh, and the current working
+</I>&gt;&gt;<i> directory will be the user's home directory.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The problem is that if a user is tricked into downloading a malicious
+</I>&gt;&gt;<i> library off the Internet and saves it into his home directory, this
+</I>&gt;&gt;<i> malicious library will be loaded and can take control of the user's
+</I>&gt;&gt;<i> process
+</I>&gt;&gt;<i> when an x2go session is launched.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The fix is simply to check if either LD_LIBRARY_PATH or X2GO_LIB are
+</I>&gt;&gt;<i> empty.
+</I>&gt;&gt;<i> I am pasting the patch below.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Please keep me updated on this issue.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Thanks,
+</I>&gt;&gt;<i> Hayawardh Vijayakumar
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> --- /usr/bin/x2gostartagent     2012-01-05 17:48:07.843705023 -0500
+</I>&gt;&gt;<i> +++ /usr/bin/x2gostartagent.fixed       2012-01-05 16:44:41.839705377
+</I>&gt;&gt;<i> -0500
+</I>&gt;&gt;<i> @@ -184,8 +184,13 @@
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>  X2GO_COOKIE=`mcookie`
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> +if [ ! ${LD_LIBRARY_PATH} ] || [ ! ${X2GO_LIB} ]
+</I>&gt;&gt;<i> +then
+</I>&gt;&gt;<i> +       LD_LIBRARY_PATH=&quot;${LD_LIBRARY_**PATH}${X2GO_LIB}&quot;
+</I>&gt;&gt;<i> +else
+</I>&gt;&gt;<i> +       LD_LIBRARY_PATH=&quot;${LD_LIBRARY_**PATH}:${X2GO_LIB}&quot;
+</I>&gt;&gt;<i> +fi
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -LD_LIBRARY_PATH=&quot;${LD_**LIBRARY_PATH}:${X2GO_LIB}&quot;
+</I>&gt;&gt;<i>  export LD_LIBRARY_PATH
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>  PATH=&quot;${PATH}:${X2GO_BIN}/&quot;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i> Very sensible patch!!! Just committed...
+</I>&gt;<i>
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;<i> fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0xB588399B
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120106/08fa86cd/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120106/08fa86cd/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003162.html">[X2go-Dev] Untrusted library search path in x2gostartagent bash script
+</A></li>
+	<LI>Next message: <A HREF="003164.html">[X2go-Dev] Untrusted library search path in x2gostartagent bash script
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3163">[ date ]</a>
+              <a href="thread.html#3163">[ thread ]</a>
+              <a href="subject.html#3163">[ subject ]</a>
+              <a href="author.html#3163">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Raspberry Pi as cheap Thin Client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Raspberry%20Pi%20as%20cheap%20Thin%20Client&In-Reply-To=%3C52CFEB90.6080902%40cesga.es%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006824.html">
+   <LINK REL="Next"  HREF="006826.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Raspberry Pi as cheap Thin Client</H1>
+    <B>Javier Cacheiro Lopez</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Raspberry%20Pi%20as%20cheap%20Thin%20Client&In-Reply-To=%3C52CFEB90.6080902%40cesga.es%3E"
+       TITLE="[X2Go-Dev] Raspberry Pi as cheap Thin Client">jlopez at cesga.es
+       </A><BR>
+    <I>Fri Jan 10 13:46:08 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006824.html">[X2Go-Dev] Raspberry Pi as cheap Thin Client
+</A></li>
+        <LI>Next message: <A HREF="006826.html">[X2Go-Dev] Raspberry Pi as cheap Thin Client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6825">[ date ]</a>
+              <a href="thread.html#6825">[ thread ]</a>
+              <a href="subject.html#6825">[ subject ]</a>
+              <a href="author.html#6825">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+ From my point of view one of the advantadges of RPi is that you can 
+easily deploy new OS images by just replacing the SD card with a 
+different one (all v1 or v2 RPi have basically the same hardware ).
+
+So in general I would just update one of the RPi nodes, check everything 
+works and after that take the SD card to a standard computer and make a 
+dd image of it. Then with that image you can update the SD cards of the 
+rest of RPi.
+
+If you can afford having some extra SD cards then you can just replace 
+one SD card with the updated one.
+
+In case you prefer network updates take into account that the network in 
+the RPi is not especially fast because the NIC is only 100Mbits and the 
+processor is also a limiting factor for the speed if using encrypted 
+transfers (like scp).
+
+Cheers,
+Javier
+
+On 09/01/14 09:32, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kamerun at immerda.ch</A> wrote:
+&gt;<i> hello,
+</I>&gt;<i>
+</I>&gt;<i> yes we am testing to make x2go network with raspberry we have now in 
+</I>&gt;<i> testing phase.
+</I>&gt;<i> as raspberry has no pxe we load raspian and x2goglient it works now we 
+</I>&gt;<i> have only 2 clients but we will do it with 5 to 10 clients
+</I>&gt;<i>
+</I>&gt;<i> i would be very happy to have help, i am in kamerun and it is not easy 
+</I>&gt;<i> here to test
+</I>&gt;<i>
+</I>&gt;<i> our project has the motto
+</I>&gt;<i>
+</I>&gt;<i> computer everywhere for every body
+</I>&gt;<i>
+</I>&gt;<i> to solve it we use solar technology low power computer (alix board as 
+</I>&gt;<i> client, now raspberry) and low power server (dual core 20 watts) 
+</I>&gt;<i> monitor 12 watts all with 12 and 5 volts imputs
+</I>&gt;<i>
+</I>&gt;<i> assiciation linux friends limbe (cameroon)
+</I>&gt;<i>
+</I>&gt;<i> michel
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> we are an open source  informatic school against digital gap between 
+</I>&gt;<i> north and south and digital gap in south between village and town
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://sokolo.cronopios.org">http://sokolo.cronopios.org</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Zitat von Stefan Baur &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>&gt;:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I just stumbled over <A HREF="http://rpitc.blogspot.de/">http://rpitc.blogspot.de/</A> - a project to turn 
+</I>&gt;&gt;<i> Raspis into cheap thin clients.
+</I>&gt;&gt;<i> They're including an X2Go client in their image, too.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I'd be curious how these boxes perform under load - did anyone on 
+</I>&gt;&gt;<i> this list try it out already?
+</I>&gt;&gt;<i> If no, who owns a Raspi and is willing to give it a try?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -Stefan
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2Go-Dev mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006824.html">[X2Go-Dev] Raspberry Pi as cheap Thin Client
+</A></li>
+	<LI>Next message: <A HREF="006826.html">[X2Go-Dev] Raspberry Pi as cheap Thin Client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6825">[ date ]</a>
+              <a href="thread.html#6825">[ thread ]</a>
+              <a href="subject.html#6825">[ subject ]</a>
+              <a href="author.html#6825">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

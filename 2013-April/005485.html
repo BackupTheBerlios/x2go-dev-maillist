@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#141: Fwd: autologin with x2goclient in broker-mode:	analysis and fix for &quot;enter passphrase&quot;-bug
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23141%3A%20Fwd%3A%20autologin%20with%20x2goclient%20in%20broker-mode%3A%0A%09analysis%20and%20fix%20for%20%22enter%20passphrase%22-bug&In-Reply-To=%3C20130420205239.87507fsoftcfnqbb%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005484.html">
+   <LINK REL="Next"  HREF="005486.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#141: Fwd: autologin with x2goclient in broker-mode:	analysis and fix for &quot;enter passphrase&quot;-bug</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23141%3A%20Fwd%3A%20autologin%20with%20x2goclient%20in%20broker-mode%3A%0A%09analysis%20and%20fix%20for%20%22enter%20passphrase%22-bug&In-Reply-To=%3C20130420205239.87507fsoftcfnqbb%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#141: Fwd: autologin with x2goclient in broker-mode:	analysis and fix for &quot;enter passphrase&quot;-bug">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Apr 20 20:52:39 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005484.html">[X2Go-Dev] GSOC-2013 rejection feedback (IRC protocol)
+</A></li>
+        <LI>Next message: <A HREF="005486.html">[X2Go-Dev] Processed: Fwd: autologin with x2goclient in broker-mode: analysis and fix for &quot;enter passphrase&quot;-bug
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5485">[ date ]</a>
+              <a href="thread.html#5485">[ thread ]</a>
+              <a href="subject.html#5485">[ subject ]</a>
+              <a href="author.html#5485">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>tag #141 - moreinfo
+thanks
+
+Detailed analysis from Anders below...
+
+----- Weitergeleitete Nachricht von <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">abo at dsl.dk</A> -----
+      Datum: Fri, 19 Apr 2013 16:16:47 +0200
+        Von: Anders Bruun Olsen &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">abo at dsl.dk</A>&gt;
+Antwort an: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+    Betreff: [X2Go-Dev] autologin with x2goclient in broker-mode:  
+analysis and fix for &quot;enter passphrase&quot;-bug
+         An: x2go-dev &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>&gt;
+
+Hi guys,
+
+I just spent most of the day digging through source code for x2goclient
+(reminds my why I code Python rather than C++ :) ), trying to understand
+why the &quot;enter passphrase&quot; dialog box appears when the broker is set to do
+autologin.
+
+Summary of the bug:
+x2gobroker can be setup to do autologin of users, to avoid users having to
+enter their credentials twice. This is accomplished by the broker placing a
+temporary SSH public key in $HOME/.x2go/authorized_keys and handing the
+matching private key to the client. This temporary key is then removed
+after a short while. Unfortunately, on all machines I have tested with,
+including thinclients, x2goclient pops up a dialog box with the text &quot;Enter
+passphrase to decrypt a key&quot; after authenticating against the broker and
+choosing a session with autologin enabled. Pressing cancel on this dialog
+box will on my desktop machine result in the autologin completing and
+getting logged in. However on the x2gothinclient I tested with, the dialog
+box would just pop up again and again and login would never occur.
+
+Analysis of the bug:
+When autologin is enabled, SshMasterConnection::userAuth() will react by
+calling userAuthAuto(), which will look for ssh keys and if you, like me,
+have an ssh key with a passphrase, it will want to try out this key by
+asking for the passphrase (despite having ssh-agent running). If it does
+not find a key, it also asks for a passphrase, at least on my system. The
+reasons for this aren't really important here, in my oppinion. The
+important question here is why it even looks for other keys when the nice
+broker has provided a key. Further analysis and testing showed me that
+after userAuthAuto() exists without having gotten a proper key loaded (by
+pressing Cancel on the dialog box), userAuth() will then test if a key is
+loaded. And because httpbrokerclient has recieved a key and put it into the
+config-variable, a key IS available. This key is then used for login and
+all is good. Looking closer at the code revealed that setting
+config-&gt;autologin to true was actually not needed at all, and is the
+culprit here. If autologin is false, then userAuth() will still see that
+there is a key loaded, and happily log in the user.
+
+My naive fix for this bug:
+In ONMainWindow::startSession(), make setting the autologin variable
+dependent upon not being in brokerMode:
+
+diff --git a/onmainwindow.cpp b/onmainwindow.cpp
+index 31dbc17..bc2b70f 100644
+--- a/onmainwindow.cpp
++++ b/onmainwindow.cpp
+@@ -3249,8 +3249,9 @@ bool ONMainWindow::startSession ( const QString&amp; sid )
+
+      QString cmd=st-&gt;setting()-&gt;value ( sid+&quot;/command&quot;,
+                                         ( QVariant ) QString::null
+).toString();
+-    autologin=st-&gt;setting()-&gt;value ( sid+&quot;/autologin&quot;,
+-                                     ( QVariant ) false ).toBool();
++    if (!brokerMode)
++        autologin=st-&gt;setting()-&gt;value ( sid+&quot;/autologin&quot;,
++                                         ( QVariant ) false ).toBool();
+      krblogin=st-&gt;setting()-&gt;value ( sid+&quot;/krblogin&quot;,
+                                      ( QVariant ) false ).toBool();
+  #ifdef Q_OS_LINUX
+
+I can't say what other consequences this might have, not knowing the code
+well enough, but initial tests on my system shows that it works. This patch
+is against git/master btw.
+
+--
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+
+
+----- Ende der weitergeleiteten Nachricht -----
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130420/7a379679/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130420/7a379679/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005484.html">[X2Go-Dev] GSOC-2013 rejection feedback (IRC protocol)
+</A></li>
+	<LI>Next message: <A HREF="005486.html">[X2Go-Dev] Processed: Fwd: autologin with x2goclient in broker-mode: analysis and fix for &quot;enter passphrase&quot;-bug
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5485">[ date ]</a>
+              <a href="thread.html#5485">[ thread ]</a>
+              <a href="subject.html#5485">[ subject ]</a>
+              <a href="author.html#5485">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

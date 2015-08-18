@@ -1,0 +1,164 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Patch for python-x2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Patch%20for%20python-x2go&In-Reply-To=%3C20110512121751.18094pu1x8rzx4gf%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002200.html">
+   <LINK REL="Next"  HREF="002153.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Patch for python-x2go</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Patch%20for%20python-x2go&In-Reply-To=%3C20110512121751.18094pu1x8rzx4gf%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] Patch for python-x2go">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu May 12 12:17:51 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002200.html">[X2go-dev] Project page update on Launchpad
+</A></li>
+        <LI>Next message: <A HREF="002153.html">[X2go-dev] x2gothinclient write problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2152">[ date ]</a>
+              <a href="thread.html#2152">[ thread ]</a>
+              <a href="subject.html#2152">[ subject ]</a>
+              <a href="author.html#2152">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi St&#233;phane, hi x2go-dev-list,
+
+@x2go-dev-ML: this discussion about using python-x2go in Ubuntu's  
+Software Center started as a private mail from St&#233;phane to me and I  
+requested making it public which he granted (THANKS!).
+
+@St&#233;phane: could you resend your reply to the list as well? THANKS!
+
+On Do 12 Mai 2011 09:31:57 CEST St&#233;phane Graber wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> I'm currently working on implementing x2go support in the Ubuntu
+</I>&gt;<i> Software Center to use it as a replacement for FreeNX in WebLive[1].
+</I>
+This is great news!!!! I am very open to feedback and improvements   
+(patches!). Whenever you find something, send it over.
+
+You can find our latest code at
+<A HREF="http://git.x2go.org">http://git.x2go.org</A>
+
+&gt;<i> I found a few issues in backends/proxy/base.py that are causing crashes
+</I>&gt;<i> on disconnect.
+</I>&gt;<i> Attached is a very small patch fixing these issues.
+</I>
+Applied and uploaded to our Git. THANKS!
+
+&gt;<i> I also know that we have some issues with using python-x2go in the
+</I>&gt;<i> software-center because of it using gevent and causing some weird
+</I>&gt;<i> threading issues in our code but I'll have a look at these either this
+</I>&gt;<i> week (though I'm at the Ubuntu Developer Summit in Budapest) or next
+</I>&gt;<i> from home.
+</I>
+If you use another event handler in combination with python-gevent you  
+  have to call a gevent.sleep every few milliseconds. Please refer to   
+the pyhoca-gui code for an example:
+
+<A HREF="http://code.x2go.org/gitweb?p=pyhoca-gui.git;a=blob;f=pyhoca/wxgui/frontend.py;h=c06c51c4dc05aa91b0ec9928fafd0c4de3c4b626;hb=63c6f4cb928e735ae3b6202ff34cfc82d09cf816">http://code.x2go.org/gitweb?p=pyhoca-gui.git;a=blob;f=pyhoca/wxgui/frontend.py;h=c06c51c4dc05aa91b0ec9928fafd0c4de3c4b626;hb=63c6f4cb928e735ae3b6202ff34cfc82d09cf816</A>
+
+In the above file take a look at the OnIdle method in line 159.
+
+&gt;<i> Our test branch is:
+</I>&gt;<i> <A HREF="https://code.launchpad.net/~weblive-dev/software-center/weblive-x2go">https://code.launchpad.net/~weblive-dev/software-center/weblive-x2go</A>
+</I>&gt;<i>
+</I>&gt;<i> I'll let you know how things are going on our side and if we have any
+</I>&gt;<i> question or other fixes/improvements we'd like to see in python-x2go.
+</I>
+Yes, do so!!! Very welcome!!! If it turns out that you will have quite  
+  a few patches to add we can also discuss direct access to our Git  
+site.
+
+ From our Git we build nightly packages on Launchpad, I have just   
+kicked that off today...
+<A HREF="http://launchpad.net/~x2go">http://launchpad.net/~x2go</A>
+
+&gt;<i> Thanks for the great software!
+</I>
+Thanks for considering its usage!!! Note, that the whole X2go project   
+is moving towards AGPL soon. Will that be a problem for you and your   
+project context?
+
+Greets,
+Mike
+
+PS: I would like to send a copy of this mail to the X2go dev mailing   
+list and actually would also love to continue the discussion and   
+sharing their. Would that be OK for you?
+
+X2go-dev ML:
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+----- Ende der weitergeleiteten Nachricht -----
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110512/8459c23b/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110512/8459c23b/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002200.html">[X2go-dev] Project page update on Launchpad
+</A></li>
+	<LI>Next message: <A HREF="002153.html">[X2go-dev] x2gothinclient write problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2152">[ date ]</a>
+              <a href="thread.html#2152">[ thread ]</a>
+              <a href="subject.html#2152">[ subject ]</a>
+              <a href="author.html#2152">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

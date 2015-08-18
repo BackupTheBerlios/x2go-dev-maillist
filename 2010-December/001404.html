@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go with likewise-open (ldap) questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CC505792E7472474DAC90E6C2844BBD96717EF6%40destroyer.VSTI.LOCAL%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001403.html">
+   <LINK REL="Next"  HREF="001405.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go with likewise-open (ldap) questions</H1>
+    <B>Neil W. Hunt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CC505792E7472474DAC90E6C2844BBD96717EF6%40destroyer.VSTI.LOCAL%3E"
+       TITLE="[X2go-dev] x2go with likewise-open (ldap) questions">nwhunt at vsticorp.com
+       </A><BR>
+    <I>Fri Dec 17 06:30:55 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001403.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+        <LI>Next message: <A HREF="001405.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1404">[ date ]</a>
+              <a href="thread.html#1404">[ thread ]</a>
+              <a href="subject.html#1404">[ subject ]</a>
+              <a href="author.html#1404">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I think this did it! I will confirm my findings tomorrow.
+
+
+-----Original Message-----
+From: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-bounces at lists.berlios.de</A> on behalf of John A. Sullivan III
+Sent: Thu 12/16/2010 10:46 PM
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+Subject: Re: [X2go-dev] x2go with likewise-open (ldap) questions
+ 
+On Thu, 2010-12-16 at 21:21 -0500, Neil W. Hunt wrote:
+&gt;<i> Ok, another update after 24 hours more of trial-and-error:
+</I>&gt;<i> 
+</I>&gt;<i> I have tried many combinations and STILL no gnome desktop for Likewise users! I don't understand it, I have tried:
+</I>&gt;<i> -10.10 maverick with Likewise 6.0 and x2goserver-one 3.01-1
+</I>&gt;<i> -10.10 maverick with Likewise 5.3 and x2goserver-home 3.01-1
+</I>&gt;<i> -10.04 lucid with Likewise 5.4 and x2goserver 3.01-5
+</I>&gt;<i> 
+</I>&gt;<i> Also, I have tried using unspecified domain and default domain (e.g. either &quot;DOMAIN\username&quot; or just &quot;username&quot; when using default domain), same result either way. Authentiction is successful, but no desktop!
+</I>&gt;<i> 
+</I>&gt;<i> And every time, perfect success with local users (full GNOME desktop), blank/black screen with Likewise users, no matter what x2go client (Linux, Mac, Windows, 3.01-04 all the way through latest 3.01-14)
+</I>&gt;<i> 
+</I>&gt;<i> Ivan, you are for certain using 10.10 maverick and LW 5.4 and x2goserver (not home/one) and you have never seen this black screen issue at all?
+</I>&gt;<i> 
+</I>&gt;<i> I'm determined to get this working as I know we will have audio if we can get it!
+</I>&lt;snip&gt;
+Oh, wait a second . . . Ubuntu.  Does Ubuntu still use dash as the
+default shell? If I recall correctly, there are some calls in the X2Go
+scripts that work in bash but fail in dash.  If you change the symbolic
+link /bin/sh to point to /bin/bash instead of /bin/dash, does it work? 
+
+I would also suggest to the devs to change the scripts to use
+#!/bin/bash rather than #!/bin/sh as the scripts do invoke bash specific
+statements - John
+
+_______________________________________________
+X2go-dev mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+
+
+This e-mail and any attachments are for the intended recipient(s) only and may contain proprietary, confidential material. If you are not the intended recipient, (even if the email address above is yours) do not use, retain, copy or disclose any part of this communication or any attachment as it is strictly prohibited and may be unlawful. If you believe that you have received this e-mail in error, please notify the sender immediately and permanently delete. This email may be a personal communication from the sender and as such does not represent the views of the company.
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: winmail.dat
+Type: application/ms-tnef
+Size: 3932 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101217/c9e8e1ab/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101217/c9e8e1ab/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001403.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+	<LI>Next message: <A HREF="001405.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1404">[ date ]</a>
+              <a href="thread.html#1404">[ thread ]</a>
+              <a href="subject.html#1404">[ subject ]</a>
+              <a href="author.html#1404">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

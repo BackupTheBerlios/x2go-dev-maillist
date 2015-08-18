@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] bug#23: Resume is broken under certain conditions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20bug%2323%3A%20Resume%20is%20broken%20under%20certain%20conditions&In-Reply-To=%3Czarafa.504f12a6.30f4.1da1867e22d62b76%40mail.int.lindix.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004237.html">
+   <LINK REL="Next"  HREF="004214.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] bug#23: Resume is broken under certain conditions</H1>
+    <B>Dick Kniep</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20bug%2323%3A%20Resume%20is%20broken%20under%20certain%20conditions&In-Reply-To=%3Czarafa.504f12a6.30f4.1da1867e22d62b76%40mail.int.lindix.nl%3E"
+       TITLE="[X2Go-Dev] bug#23: Resume is broken under certain conditions">dick at lindix.nl
+       </A><BR>
+    <I>Tue Sep 11 12:29:58 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004237.html">[X2Go-Dev] Bug#22: Keyboard focus lost when connecting to Win2008r2	RDP-Server (proxied through NX) in fullscreen mode
+</A></li>
+        <LI>Next message: <A HREF="004214.html">[X2Go-Dev] bug#24: Make PyHoca-GUI DirectRDP aware
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4212">[ date ]</a>
+              <a href="thread.html#4212">[ thread ]</a>
+              <a href="subject.html#4212">[ subject ]</a>
+              <a href="author.html#4212">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: python-x2go
+
+Severity: normal
+
+Version: 0.2.0.9
+
+&#160;
+&#160;
+Resume breaks pyhoca. When I try to resume a session, it briefly shows the session that is to be resumed and after that, it crashes. After that it is no longer possible to start a session. Maybe the session is not cleaned up properly / completely.&#160;
+
+&#160;
+pyhoca-gui[5356] (x2gocontrolsession-pylib) DEBUG: executing command on X2Go server ,,lindix'': sh -c &quot;echo&quot;
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,lindix'': sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) DEBUG: executing command on X2Go server ,,lindix'': sh -c &quot;echo&quot;
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,lindix'': sh -c &quot;x2goresume-session dick-50-1347267367_stRTERMINAL_dp24 800x600 adsl 16m-jpeg-9 null auto 1&quot;
+
+pyhoca-gui[5356] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,lindix'': sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,lindix'': sh -c &quot;export HOSTNAME &amp;&amp; x2golistmounts dick-50-1347267367_stRTERMINAL_dp24&quot;
+
+pyhoca-gui[5356] (x2goproxy-pylib) INFO: starting local NX3 proxy...
+
+pyhoca-gui[5356] (x2goproxy-pylib) DEBUG: NX3 Proxy mode is server, cookie=eb1245024e1afa192f8ff9d812aa0fc2, host=127.0.0.1, port=30001.
+
+pyhoca-gui[5356] (x2goproxy-pylib) DEBUG: NX3 proxy writes session log to /home/dick/.x2go/S-dick-50-1347267367_stRTERMINAL_dp24/session.log.
+
+pyhoca-gui[5356] (x2goproxy-pylib) DEBUG: forking threaded subprocess: /usr/bin/nxproxy -S nx/nx,retry=5,composite=1,connect=127.0.0.1,clipboard=1,cookie=eb1245024e1afa192f8ff9d812aa0fc2,port=30001,errors=/home/dick/.x2go/S-dick-50-1347267367_stRTERMINAL_dp24/session.log:50
+
+pyhoca-gui[5356] (x2goproxy-pylib) DEBUG: waiting for proxy to come up: 0.4s x 1
+
+Exception AttributeError: AttributeError(&quot;'_DummyThread' object has no attribute '_Thread__block'&quot;,) in &lt;module 'threading' from '/usr/lib/python2.7/threading.pyc'&gt; ignored
+
+pyhoca-gui[5356] (x2gofwtunnel-pylib) INFO: connected! &#160;Tunnel open ('127.0.0.1', 43667) -&gt; ('127.0.0.1', 53422) -&gt; ('127.0.0.1', 30001)
+
+pyhoca-gui[5356] (x2goproxy-pylib) INFO: NX3 proxy is up and running.
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: executing command on X2Go server ,,lindix'': sh -c &quot;getent group fuse | cut -d&quot;:&quot; -f4&quot;
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) DEBUG: remote fuse group: ['henk', 'sean', 'dick', 'demodemo', 'sylvie', 'tes00001', 'dicktest', 'merkusrj', 'leffbehe', 'eb77001', 'coachtes', 'demomatc', 'schiphol', 'syl00001', 'demogebr', 'beterenp', 'busteren', 'hee00001', 'rosamvan', 'demobehe', 'testtest', 'test170m', 'bliekn1', 'donm1', 'beta171t', 'bet00001', 'bet00002', 'bet00003', 'nicooud', 'marketin', 'mike', 'demobasi', 'basiscoa', 'arjen', 'flexlm', 'bart', 'kpntest1', 'lindix', 'testjeme', 'hansvanb', 'annemiek', 'alca0001', 'nieuwadr', 'nieuwege', 'mavutoku', 'kuynders', 'bartlaba']
+
+pyhoca-gui[5356] (x2gosftpserver-pylib) DEBUG: waiting for incoming sFTP channel on X2Go server port: [localhost]:30003
+
+pyhoca-gui[5356] (x2goterminalsession-pylib) INFO: sharing local folder: /home/dick/.x2go/S-dick-50-1347267367_stRTERMINAL_dp24/spool
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) DEBUG: sFTP-write: opening remote file /home/dick/.x2go/ssh/key.z22614 on host ('127.0.0.1', 53422) for writing
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) WARN: sFTP-write: opening remote file /home/dick/.x2go/ssh/key.z22614 on host ('127.0.0.1', 53422) failed
+
+Traceback (most recent call last):
+
+&#160; File &quot;/usr/lib/python2.7/dist-packages/gevent/greenlet.py&quot;, line 390, in run
+
+&#160; &#160; result = self._run(*self.args, **self.kwargs)
+
+&#160; File &quot;/usr/lib/python2.7/dist-packages/x2go/backends/terminal/_stdout.py&quot;, line 651, in start_printing
+
+&#160; &#160; self.share_local_folder(local_path=spool_dir, folder_type='spool')
+
+&#160; File &quot;/usr/lib/python2.7/dist-packages/x2go/backends/terminal/_stdout.py&quot;, line 834, in share_local_folder
+
+&#160; &#160; self.control_session._x2go_sftp_write(_x2go_key_fname, _x2go_key_bundle)
+
+&#160; File &quot;/usr/lib/python2.7/dist-packages/x2go/backends/control/_stdout.py&quot;, line 313, in _x2go_sftp_write
+
+&#160; &#160; raise x2go_exceptions.X2goControlSessionException('The SSH connection was dropped during an sFTP write action.')
+
+X2goControlSessionException: The SSH connection was dropped during an sFTP write action.
+
+&lt;Greenlet at 0x2f1eaf0: &lt;bound method X2goTerminalSessionSTDOUT.start_printing of &lt;x2go.backends.terminal._stdout.X2goTerminalSessionSTDOUT object at 0x2f8e510&gt;&gt;&gt; failed with X2goControlSessionException
+
+&#160;
+pyhoca-gui[5356] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: control session seams to be dead, not executing command ,,sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;'' on X2Go server lindix
+
+pyhoca-gui[5356] (PyHoca-GUI) NOTICE: [lindix - be&#235;indigen] X2Go Sessie wordt be&#235;indigd dick-50-1347267367_stRTERMINAL_dp24
+
+pyhoca-gui[5356] (x2goproxy-pylib) DEBUG: terminating proxy: &lt;x2go.gevent_subprocess.Popen object at 0x2f8e910&gt;
+
+pyhoca-gui[5356] (x2goproxy-pylib) DEBUG: Shutting down X2Go proxy subprocess
+
+pyhoca-gui[5356] (x2goproxy-pylib) DEBUG: Shutting down Paramiko/SSH forwarding tunnel
+
+pyhoca-gui[5356] (x2gofwtunnel-pylib) INFO: Tunnel closed from ('127.0.0.1', 53422)
+
+pyhoca-gui[5356] (x2goterminalsession-pylib) NOTICE: cleaning up session dick-50-1347267367_stRTERMINAL_dp24 after termination
+
+pyhoca-gui[5356] (x2gosftpserver-pylib) DEBUG: paused thread: &lt;X2goRevFwTunnelToSFTP(Thread-7, started daemon 49408888)&gt;
+
+pyhoca-gui[5356] (x2gosftpserver-pylib) DEBUG: stopping thread: &lt;X2goRevFwTunnelToSFTP(Thread-7, started daemon 49408888)&gt;
+
+pyhoca-gui[5356] (x2gosftpserver-pylib) DEBUG: notifying thread of incoming channel: &lt;X2goRevFwTunnelToSFTP(Thread-7, started daemon 49408888)&gt;
+
+pyhoca-gui[5356] (x2gosftpserver-pylib) DEBUG: closing down rev forwarding sFTP tunnel on remote end [localhost]:30003
+
+pyhoca-gui[5356] (x2gosessregistry-pylib) DEBUG: Forgetting session UUID 7f23c82a-fbf9-11e1-9382-1c6f65375d09
+
+pyhoca-gui[5356] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: control session seams to be dead, not executing command ,,sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;'' on X2Go server lindix
+
+pyhoca-gui[5356] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: control session seams to be dead, not executing command ,,sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;'' on X2Go server lindix
+
+pyhoca-gui[5356] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: control session seams to be dead, not executing command ,,sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;'' on X2Go server lindix
+
+pyhoca-gui[5356] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: control session seams to be dead, not executing command ,,sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;'' on X2Go server lindix
+
+pyhoca-gui[5356] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: control session seams to be dead, not executing command ,,sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;'' on X2Go server lindix
+
+pyhoca-gui[5356] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: control session seams to be dead, not executing command ,,sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;'' on X2Go server lindix
+
+&#160;
+It briefly shows the session that is to be resumed and after that, it is not possible to start a new session
+
+&#160;
+&#160;
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: control session seams to be dead, not executing command ,,sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;'' on X2Go server lindix
+
+pyhoca-gui[5356] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: control session seams to be dead, not executing command ,,sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;'' on X2Go server lindix
+
+pyhoca-gui[5356] (x2goclient-pylib) INFO: Cannot find a terminal session for profile ,,lindix'' that can be used to query folder sharing capabilities
+
+pyhoca-gui[5356] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: control session seams to be dead, not executing command ,,sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;'' on X2Go server lindix
+
+pyhoca-gui[5356] (x2gosessregistry-pylib) NOTICE: using already initially-registered yet-unused session 790298cc-fbf9-11e1-9382-1c6f65375d09
+
+pyhoca-gui[5356] (x2goclient-pylib) NOTICE: initializing X2Go session...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) DEBUG: control session seams to be dead, not executing command ,,sh -c &quot;echo&quot;'' on X2Go server lindix
+
+pyhoca-gui[5356] (PyHoca-GUI) NOTICE: [lindix - Verbindingsfout (channel error)] De Verbinding met de server lindix werd onverwacht verbroken! Probeer om u opnieuw aan te melden...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: control session seams to be dead, not executing command ,,sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;'' on X2Go server lindix
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) DEBUG: control session seams to be dead, not executing command ,,sh -c &quot;echo&quot;'' on X2Go server lindix
+
+pyhoca-gui[5356] (PyHoca-GUI) NOTICE: [lindix - Verbindingsfout (channel error)] De Verbinding met de server lindix werd onverwacht verbroken! Probeer om u opnieuw aan te melden...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: control session seams to be dead, not executing command ,,sh -c &quot;x2gostartagent 800x600 adsl 16m-jpeg-9 unix-kde-depth_24 null auto 1 R TERMINAL&quot;'' on X2Go server lindix
+
+pyhoca-gui[5356] (PyHoca-GUI) NOTICE: [lindix - sessie fout] Opstarten van de sessie is mislukt
+
+pyhoca-gui[5356] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: control session seams to be dead, not executing command ,,sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;'' on X2Go server lindix
+
+pyhoca-gui[5356] (x2goguardian-pylib) DEBUG: Entering X2Go Guardian client management loop...
+
+pyhoca-gui[5356] (x2gocontrolsession-pylib) INFO: control session seams to be dead, not executing command ,,sh -c &quot;export HOSTNAME &amp;&amp; x2golistsessions&quot;'' on X2Go server lindix
+
+&#160;
+
+Met vriendelijke groet,
+Dick Kniep
+Lindix BV
+tel. 036-5215580
+mob. 06-50991858
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120911/3a980931/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120911/3a980931/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004237.html">[X2Go-Dev] Bug#22: Keyboard focus lost when connecting to Win2008r2	RDP-Server (proxied through NX) in fullscreen mode
+</A></li>
+	<LI>Next message: <A HREF="004214.html">[X2Go-Dev] bug#24: Make PyHoca-GUI DirectRDP aware
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4212">[ date ]</a>
+              <a href="thread.html#4212">[ thread ]</a>
+              <a href="subject.html#4212">[ subject ]</a>
+              <a href="author.html#4212">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

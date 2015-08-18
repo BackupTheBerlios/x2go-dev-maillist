@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20xauth%20file%20location%20mismatch%20in%0A%20x2gostartagent&In-Reply-To=%3C20120219165655.34856r43zp179hhj%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003512.html">
+   <LINK REL="Next"  HREF="003530.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20xauth%20file%20location%20mismatch%20in%0A%20x2gostartagent&In-Reply-To=%3C20120219165655.34856r43zp179hhj%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sun Feb 19 16:56:55 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003512.html">[X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent
+</A></li>
+        <LI>Next message: <A HREF="003530.html">[X2Go-Dev] [PATCH] xauth file location mismatch in	x2gostartagent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3514">[ date ]</a>
+              <a href="thread.html#3514">[ thread ]</a>
+              <a href="subject.html#3514">[ subject ]</a>
+              <a href="author.html#3514">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Milan,
+
+On So 19 Feb 2012 16:21:56 CET Milan Kn&#237;&#382;ek wrote:
+
+&gt;&gt;<i> &gt; the /usr/bin/x2gostartagent script does not sufficiently specify the
+</I>&gt;&gt;<i> &gt; location of $XAUTHORITY file for the xauth command, while the
+</I>&gt;&gt;<i> &gt; command line for starting x2goagent refers to a specific location
+</I>&gt;&gt;<i> &gt; $HOME/.Xauthority.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I have modified your patch slightly, could you test my patch if that
+</I>&gt;&gt;<i> works for you???
+</I>&gt;&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=51771f645ffa60d561e156847dbc79cce6b41d4d">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=51771f645ffa60d561e156847dbc79cce6b41d4d</A>
+</I>&gt;<i>
+</I>&gt;<i> Should we want -xauth parameter for x2goagent (xserver), wouldn't it be
+</I>&gt;<i> consistent to add the same for xauth commands? (Patch attached.)
+</I>&gt;<i>
+</I>&gt;<i> P.S. It works for me with the extra patch and also w/o it.
+</I>
+yes, makes sense...
+<A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=4f8e5f05cf758b6b7d98cc563da553b05b443cd2">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=4f8e5f05cf758b6b7d98cc563da553b05b443cd2</A>
+
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120219/45c923a3/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120219/45c923a3/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003512.html">[X2Go-Dev] [PATCH] xauth file location mismatch in x2gostartagent
+</A></li>
+	<LI>Next message: <A HREF="003530.html">[X2Go-Dev] [PATCH] xauth file location mismatch in	x2gostartagent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3514">[ date ]</a>
+              <a href="thread.html#3514">[ thread ]</a>
+              <a href="subject.html#3514">[ subject ]</a>
+              <a href="author.html#3514">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

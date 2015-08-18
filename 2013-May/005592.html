@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#200: Bug#200: Bug#200: When user-directories do not	exist, saving sqlpass with x2godbadmin is not possible
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23200%3A%20Bug%23200%3A%20Bug%23200%3A%20When%20user-directories%20do%20not%0A%09exist%2C%20saving%20sqlpass%20with%20x2godbadmin%20is%20not%20possible&In-Reply-To=%3CCALxOYEYw%2BusF3jUdiR1sopFUZVuxUanpyuRAVfKD77qK6K8XOQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005589.html">
+   <LINK REL="Next"  HREF="005579.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#200: Bug#200: Bug#200: When user-directories do not	exist, saving sqlpass with x2godbadmin is not possible</H1>
+    <B>Nable 80</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23200%3A%20Bug%23200%3A%20Bug%23200%3A%20When%20user-directories%20do%20not%0A%09exist%2C%20saving%20sqlpass%20with%20x2godbadmin%20is%20not%20possible&In-Reply-To=%3CCALxOYEYw%2BusF3jUdiR1sopFUZVuxUanpyuRAVfKD77qK6K8XOQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#200: Bug#200: Bug#200: When user-directories do not	exist, saving sqlpass with x2godbadmin is not possible">nable.maininbox at googlemail.com
+       </A><BR>
+    <I>Fri May 10 11:13:06 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005589.html">[X2Go-Dev] Bug#200: Bug#200: Bug#200: When user-directories do not	exist, saving sqlpass with x2godbadmin is not possible
+</A></li>
+        <LI>Next message: <A HREF="005579.html">[X2Go-Dev] Bug#201: x2gobroker: incomplete install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5592">[ date ]</a>
+              <a href="thread.html#5592">[ thread ]</a>
+              <a href="subject.html#5592">[ subject ]</a>
+              <a href="author.html#5592">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I've thought a bit and finally I can write some ideas.
+
+&gt;<i> Well, I don't mind fixing this to be safe with special chars ... ;) I however really doubt administrators to set homedirs to something with spaces or special chars.
+</I>1.1. I was always taught that programs must be secure by design. At
+least one should do his best trying to achieve it.
+In this exact case it seems that it's not hard to make system() call
+more secure: see
+<A HREF="http://stackoverflow.com/questions/619926/should-i-escape-shell-arguments-in-perl">http://stackoverflow.com/questions/619926/should-i-escape-shell-arguments-in-perl</A>
+as example.
+Tl;dr: One should use `system $cmd, @args' rather than `system &quot;$cmd @args&quot;'.
+1.2. I don't have pam_mkhomedir in my setups. But for those who have
+it may be better to do something like `su - $username -c /bin/true' to
+create a good homedir with skeleton files instead of empty one,
+although i'm not sure that it works, see
+<A HREF="https://bugzilla.redhat.com/show_bug.cgi?id=77791">https://bugzilla.redhat.com/show_bug.cgi?id=77791</A> for example.
+1.3. +1 to Stefan for domain setups. I even have one. Oh, this thread
+brings me the idea that I should also add pam_mkhomedir to it.
+
+&gt;<i> Ideas?
+</I>2. Somehow like this (sorry, i'm not ready to provide a patch at the
+moment, so just pseudoperl) :
+if (! -d &quot;$dir&quot;)
+    # Try pam_mkhomedir way
+    open my $output, &quot;-|&quot;, &quot;su&quot;, (&quot;-&quot;, &quot;$name&quot;, &quot;-c&quot;, &quot;pwd&quot;); # is
+using /bin/pwd better?
+    while (&lt;$output&gt;) { # sorry, i don't remember the way to read full
+line w/o `while'
+        chomp;
+        if ($_ ne $dir) { # Failed? Use force.
+            system &quot;mkdir&quot;, (&quot;-p&quot;, &quot;$dir/.x2go&quot;); # is using /bin/mkdir better?
+            print &quot;Here we should show some HUGE warning&quot;;
+        }
+        break;
+    }
+    close $output;
+}
+if (! -d $dir/.x2go) {
+    mkdir (&quot;$dir/.x2go&quot;);
+}
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005589.html">[X2Go-Dev] Bug#200: Bug#200: Bug#200: When user-directories do not	exist, saving sqlpass with x2godbadmin is not possible
+</A></li>
+	<LI>Next message: <A HREF="005579.html">[X2Go-Dev] Bug#201: x2gobroker: incomplete install
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5592">[ date ]</a>
+              <a href="thread.html#5592">[ thread ]</a>
+              <a href="subject.html#5592">[ subject ]</a>
+              <a href="author.html#5592">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

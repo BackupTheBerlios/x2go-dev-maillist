@@ -1,0 +1,146 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Wishlist: x2gofeatures query before session start
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Wishlist%3A%20x2gofeatures%20query%20before%20session%20start&In-Reply-To=%3C20110321110427.61801yd3251y1h2j%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001936.html">
+   <LINK REL="Next"  HREF="001939.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Wishlist: x2gofeatures query before session start</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Wishlist%3A%20x2gofeatures%20query%20before%20session%20start&In-Reply-To=%3C20110321110427.61801yd3251y1h2j%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] Wishlist: x2gofeatures query before session start">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Mar 21 11:04:27 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001936.html">[X2go-dev] Wishlist: x2gofeatures query before session start
+</A></li>
+        <LI>Next message: <A HREF="001939.html">[X2go-dev] Wishlist: x2gofeatures query before session start
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1937">[ date ]</a>
+              <a href="thread.html#1937">[ thread ]</a>
+              <a href="subject.html#1937">[ subject ]</a>
+              <a href="author.html#1937">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Morty,
+
+On Mo 21 M&#228;r 2011 10:31:58 CET Moritz Struebe wrote:
+
+&gt;<i> On 2011-03-21 09:44, Mike Gabriel wrote:
+</I>&gt;&gt;<i> I share your opinion. So there are two parts of such a feature...
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   1. control management through the available posix etc. mechanisms
+</I>&gt;&gt;<i>   2. a script x2gofeatures, that can tell the client what is allowed
+</I>&gt;&gt;<i> and what
+</I>&gt;&gt;<i>      not: if the server can tell the client what's possible and what
+</I>&gt;&gt;<i> not the
+</I>&gt;&gt;<i>      session start up will be much faster compared to stumbling over a
+</I>&gt;&gt;<i> couple
+</I>&gt;&gt;<i>      of session errors during session handshakes
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Would apparmor be one way to go? Do you already have a clearer idea
+</I>&gt;&gt;<i> how you would tighten up a system?
+</I>&gt;<i>
+</I>&gt;<i> I personally don't see a reason why I shouldn't give some ssh-access and
+</I>&gt;<i> disallow him to run x2go / sound, etc.
+</I>
+This was discussed before on this list and there are use cases that  
+demand SSH access, but no x2go startup permission. So we should try to  
+be compliant to these wishes within the community, I think.
+
+&gt;<i> For most of the stuff ACLs seem
+</I>&gt;<i> the way to go.
+</I>
+You mean filesystem ACLs here? The normal user, group, others triple  
+or the extACL feature? I am still not clear about this.
+
+&gt;<i> For sound I have no idea how you want to keep someone
+</I>&gt;<i> from connecting to a server of his choosing - unless you jump through
+</I>&gt;<i> some hoops. Again I don't see why you want to keep someone from using
+</I>&gt;<i> sound anyway.....
+</I>
+I guess you cannot really forbid audio, you could only try to make it  
+as hard as possible to get sound from the server (refuse copying the  
+pulse-cookie, not setting the PULSE_CLIENTCONFIG variable etc.).
+
+A use case for no-audio could for performance reasons...
+
+&gt;<i> I also don't see why this should speed things up. If someone connects
+</I>&gt;<i> according to the &quot;rules&quot; there should be no delay and if he doesn't -
+</I>&gt;<i> we'll then only the one who is trying to use those features is to blame....
+</I>
+Ok, I partially agree on this... However, an x2gofeatures call could  
+help the client to sort out proper errors/warnings that could be send  
+to the user as GUI message boxes etc. So this would not be for  
+security, but for an enhancement of usability...
+
+&gt;<i> If again you want a preconfigured client which give the user a certain
+</I>&gt;<i> number of preconfigured options (e.g. start App1, App4 or App8) this is
+</I>&gt;<i> something completely different. But this is a matter of usability not
+</I>&gt;<i> security..... (Or security by convenience.... )
+</I>
+For PyHoca-GUI I plan something I will call embedded menus. The menus  
+will be generated on the server and shown with the menu structure of  
+PyHoca-GUI. For this I need to be able to query the server about  
+applications to offer to the user. This will not be for security (with  
+an xterm the user could startup any command available on the server),  
+but for usability.
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 489 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110321/1da5987d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110321/1da5987d/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001936.html">[X2go-dev] Wishlist: x2gofeatures query before session start
+</A></li>
+	<LI>Next message: <A HREF="001939.html">[X2go-dev] Wishlist: x2gofeatures query before session start
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1937">[ date ]</a>
+              <a href="thread.html#1937">[ thread ]</a>
+              <a href="subject.html#1937">[ subject ]</a>
+              <a href="author.html#1937">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

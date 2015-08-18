@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#127: x2gobroker-daemon deb package reinstall/upgrade	fails
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23127%3A%20x2gobroker-daemon%20deb%20package%20reinstall/upgrade%0A%09fails&In-Reply-To=%3CCAFJm-UOkBDGbUgb5AktiZBHBAhjLY-9tTB0zyhHLR1TzauUzDg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005131.html">
+   <LINK REL="Next"  HREF="005123.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#127: x2gobroker-daemon deb package reinstall/upgrade	fails</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23127%3A%20x2gobroker-daemon%20deb%20package%20reinstall/upgrade%0A%09fails&In-Reply-To=%3CCAFJm-UOkBDGbUgb5AktiZBHBAhjLY-9tTB0zyhHLR1TzauUzDg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#127: x2gobroker-daemon deb package reinstall/upgrade	fails">abo at dsl.dk
+       </A><BR>
+    <I>Fri Mar  1 10:17:37 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005131.html">[X2Go-Dev] x2gobroker without auth
+</A></li>
+        <LI>Next message: <A HREF="005123.html">[X2Go-Dev] Bug#127: x2gobroker-daemon deb package reinstall/upgrade	fails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5119">[ date ]</a>
+              <a href="thread.html#5119">[ thread ]</a>
+              <a href="subject.html#5119">[ subject ]</a>
+              <a href="author.html#5119">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Problem found:
+debian/x2gobroker-daemon.postinst line 38 sets home of user x2gobroker to
+be /var/lib/x2go but all other references to the homedir are for
+/var/lib/x2gobroker.
+
+
+2013/2/28 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+
+&gt;<i> tag #127 moreinfo
+</I>&gt;<i> thanks
+</I>&gt;<i>
+</I>&gt;<i> Hi Anders,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Do 28 Feb 2013 14:42:54 CET Anders Bruun Olsen wrote:
+</I>&gt;<i>
+</I>&gt;<i>  Package: x2gobroker-daemon
+</I>&gt;&gt;<i> Version: 0.0.0.5 (compiled from 0.0.0.5 git branch)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> $ dpkg -l x2gobroker-daemon
+</I>&gt;&gt;<i> ...
+</I>&gt;&gt;<i> ii  x2gobroker-daemon                             0.0.0.5-0~x2go1
+</I>&gt;&gt;<i>                     X2Go http(s) based session broker (daemon)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> $ sudo dpkg -i x2gobroker-daemon_0.0.0.5-0~**x2go1_all.deb
+</I>&gt;&gt;<i> (Reading database ... 58838 files and directories currently installed.)
+</I>&gt;&gt;<i> Preparing to replace x2gobroker-daemon 0.0.0.5-0~x2go1 (using
+</I>&gt;&gt;<i> x2gobroker-daemon_0.0.0.5-0~**x2go1_all.deb) ...
+</I>&gt;&gt;<i>  * Stopping X2Go Session Broker standalone daemon x2gobroker
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>                                                [ OK ]
+</I>&gt;&gt;<i> Unpacking replacement x2gobroker-daemon ...
+</I>&gt;&gt;<i> Setting up x2gobroker-daemon (0.0.0.5-0~x2go1) ...
+</I>&gt;&gt;<i> Group x2gobroker already exists.
+</I>&gt;&gt;<i> User x2gobroker already exists.
+</I>&gt;&gt;<i> dpkg: error processing x2gobroker-daemon (--install):
+</I>&gt;&gt;<i>  subprocess installed post-installation script returned error exit status
+</I>&gt;&gt;<i> 1
+</I>&gt;&gt;<i> Processing triggers for ureadahead ...
+</I>&gt;&gt;<i> Errors were encountered while processing:
+</I>&gt;&gt;<i>  x2gobroker-daemon
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> If I do a purge of the x2gobroker-daemon package and then install it, it
+</I>&gt;&gt;<i> installs fine.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> In /debian/x2goserver-daemon.**postinst you find a line with set -e quite
+</I>&gt;<i> at the beginning of the script.
+</I>&gt;<i>
+</I>&gt;<i> Can you set this line to set -ex, recompile the package and try to
+</I>&gt;<i> reproduce the observed error? There should be plenty of output on the
+</I>&gt;<i> console that will point you to the exact line where the postinst script
+</I>&gt;<i> fails.
+</I>&gt;<i>
+</I>&gt;<i> Please report back this bit of information. Send the info to
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">127 at bugs.x2go.org.</A>
+</I>&gt;<i>
+</I>&gt;<i> Thanks,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+</I>&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;<i>
+</I>
+
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130301/be47588d/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130301/be47588d/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005131.html">[X2Go-Dev] x2gobroker without auth
+</A></li>
+	<LI>Next message: <A HREF="005123.html">[X2Go-Dev] Bug#127: x2gobroker-daemon deb package reinstall/upgrade	fails
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5119">[ date ]</a>
+              <a href="thread.html#5119">[ thread ]</a>
+              <a href="subject.html#5119">[ subject ]</a>
+              <a href="author.html#5119">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

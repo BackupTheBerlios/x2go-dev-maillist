@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] fuse and X2Go printing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20fuse%20and%20X2Go%20printing&In-Reply-To=%3C5124A26A.5090905%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005063.html">
+   <LINK REL="Next"  HREF="005065.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] fuse and X2Go printing</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20fuse%20and%20X2Go%20printing&In-Reply-To=%3C5124A26A.5090905%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] fuse and X2Go printing">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Wed Feb 20 11:16:10 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005063.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+        <LI>Next message: <A HREF="005065.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5064">[ date ]</a>
+              <a href="thread.html#5064">[ thread ]</a>
+              <a href="subject.html#5064">[ subject ]</a>
+              <a href="author.html#5064">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 20.02.2013 11:06, schrieb Oleksandr Shneyder:
+&gt;<i> I would prefer the solution suggested by Morty. Actually, I already
+</I>&gt;<i> thought about it and i want include it in new implementation of
+</I>&gt;<i> x2goclient. X2goclient will simply check a spool directory on server and
+</I>&gt;<i> download a print jobs in PDF format via existing libssh connection.
+</I>
+Again, this sounds like unneccessary overhead.  You're turning a stream 
+of data into a file, you need to have some sort of monitoring system 
+(either polling regularly or triggered by the change to the filesystem) 
+and what for - to turn the file into the stream of data that it 
+originally was.  With all this happening on the server.
+
+&gt;<i> This
+</I>&gt;<i> solution is much simpler, no need a cups, lpr, or ssh daemon running on
+</I>&gt;<i> a client and implementation is just the same for all operating systems.
+</I>
+Well, you need the server-side cups or you wouldn't be able to print, 
+with either solution.
+And my previous post contained a solution where you would only turn the 
+data stream into a file after it arrives on the client, not on the 
+server as well.
+This would work without *additional* cups, lpr or ssh on the client - it 
+uses whatever the client (Linux, Mac OS and Windows) normally uses for 
+printing and only needs an open tunneled port in the existing SSH 
+connection.
+
+Though, to be honest, I would simply connect to the existing CUPS via 
+tunnel if the client uses Linux or Mac OS.  No need to add complexity there.
+
+-Stefan
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005063.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+	<LI>Next message: <A HREF="005065.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5064">[ date ]</a>
+              <a href="thread.html#5064">[ thread ]</a>
+              <a href="subject.html#5064">[ subject ]</a>
+              <a href="author.html#5064">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

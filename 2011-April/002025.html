@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] pending x2goprint patch / Possible security issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20pending%20x2goprint%20patch%20/%20Possible%20security%20issues&In-Reply-To=%3C20110413174314.341038y0ye6litua%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002024.html">
+   <LINK REL="Next"  HREF="002045.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] pending x2goprint patch / Possible security issues</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20pending%20x2goprint%20patch%20/%20Possible%20security%20issues&In-Reply-To=%3C20110413174314.341038y0ye6litua%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] pending x2goprint patch / Possible security issues">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Apr 13 17:43:14 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002024.html">[X2go-dev] cups-x2go goes Git (Re: pending x2goprint patch / Possible security issues)
+</A></li>
+        <LI>Next message: <A HREF="002045.html">[X2go-dev] pending x2goprint patch / Possible security issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2025">[ date ]</a>
+              <a href="thread.html#2025">[ thread ]</a>
+              <a href="subject.html#2025">[ subject ]</a>
+              <a href="author.html#2025">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Morty,
+
+On Mi 13 Apr 2011 16:46:00 CEST Moritz Struebe wrote:
+
+&gt;<i> I also don't really see why x2goprint needs to be root.
+</I>
+The cups-x2go/x2goprint principle is as follows:
+
+   o cups-x2go can run on x2goserver or on another print server
+   o cups creates a PDF (as root)
+   o cups-x2go scp-copies the file to <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2gprint at x2goserver</A> which might be local
+   o cups-x2go calls x2goprint on x2goserver
+   o x2goprint (as user x2goprint) will pick up the print job
+   o ... move it to /tmp/...
+   o chown to the x2go session user
+   o ... and move the print job to the x2goclient (sshfs)
+
+   =&gt; the chown part needs root privs...
+
+Maybe we should really start thinking about a non-sudo way of getting  
+the print job from the cups server to the x2goserver to the client...
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110413/1f2319b1/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110413/1f2319b1/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002024.html">[X2go-dev] cups-x2go goes Git (Re: pending x2goprint patch / Possible security issues)
+</A></li>
+	<LI>Next message: <A HREF="002045.html">[X2go-dev] pending x2goprint patch / Possible security issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2025">[ date ]</a>
+              <a href="thread.html#2025">[ thread ]</a>
+              <a href="subject.html#2025">[ subject ]</a>
+              <a href="author.html#2025">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

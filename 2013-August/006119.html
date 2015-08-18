@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Automating the installation of the X2Go-TCE and the problems when trying to do so
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Automating%20the%20installation%20of%20the%20X2Go-TCE%20and%20the%0A%20problems%20when%20trying%20to%20do%20so&In-Reply-To=%3C20130824185800.10649af8%40xingu.arnoldarts.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006117.html">
+   <LINK REL="Next"  HREF="006120.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Automating the installation of the X2Go-TCE and the problems when trying to do so</H1>
+    <B>Arnold Krille</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Automating%20the%20installation%20of%20the%20X2Go-TCE%20and%20the%0A%20problems%20when%20trying%20to%20do%20so&In-Reply-To=%3C20130824185800.10649af8%40xingu.arnoldarts.de%3E"
+       TITLE="[X2Go-Dev] Automating the installation of the X2Go-TCE and the problems when trying to do so">arnold at arnoldarts.de
+       </A><BR>
+    <I>Sat Aug 24 18:58:00 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006117.html">[X2Go-Dev] Automating the installation of the X2Go-TCE and the problems when trying to do so
+</A></li>
+        <LI>Next message: <A HREF="006120.html">[X2Go-Dev] Bug#290: SSH key based authentication problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6119">[ date ]</a>
+              <a href="thread.html#6119">[ thread ]</a>
+              <a href="subject.html#6119">[ subject ]</a>
+              <a href="author.html#6119">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Sorry for the double-post. My webmail interface said &quot;session timeout&quot;
+and forgot to tell me that it already sent the message...
+
+On Sat, 24 Aug 2013 14:02:17 +0200 Arnold Krille &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">arnold at arnoldarts.de</A>&gt; wrote:
+&gt;<i> Hi all,
+</I>&gt;<i> 
+</I>&gt;<i> I spent most of yesterdays working hours automating the setup of a 
+</I>&gt;<i> TCE-nfs+tftp server. We use Chef (www.opscode.com) for that. And I
+</I>&gt;<i> will most likely publish the cookbook/recipe soon. The main reason I
+</I>&gt;<i> started this is that we want to automate more and more of the setup.
+</I>&gt;<i> And thus ease setting up our customers systems.
+</I>&gt;<i> 
+</I>&gt;<i> Two problems I encountered:
+</I>&gt;<i> 
+</I>&gt;<i> 1) The x2gothinclient_create skript assumes interactive usage and has 
+</I>&gt;<i> no option of running non-interactive. I adopted this by removing the 
+</I>&gt;<i> single &quot;read&quot; (so it doesn't anymore ask for confirmation and by
+</I>&gt;<i> trying to set the locale without running &quot;dpkg-reconfigure locales&quot;.
+</I>&gt;<i> So that part worked.
+</I>&gt;<i> 
+</I>&gt;<i> 2) I got the client-machines (tested with a virtual machine and
+</I>&gt;<i> checked with an atom-based netbook) to boot of the pxe+tftp+nfs as
+</I>&gt;<i> wanted and am presented with x2goclient. But on the way there, the
+</I>&gt;<i> mouse and keyboard are lost and motivation on friday just before the
+</I>&gt;<i> weekend got a little low-point. Any tips where to look at what
+</I>&gt;<i> happened? Keyboard and mouse seem to be gone for good, I could
+</I>&gt;<i> neither move the pointer nor enter anything in x2goclient. Also I
+</I>&gt;<i> couldn't do Ctrl+Alt+F1 to switch to a text-console.
+</I>&gt;<i> 
+</I>&gt;<i> I also copied the x2gothinclient_shell-skript to create an 
+</I>&gt;<i> x2gothinclient_execute which takes arguments and just executes these 
+</I>&gt;<i> inside the tce-chroot instead of running an interactive bash. I don't 
+</I>&gt;<i> know whether that is something I should prepare a patch for x2go for?
+</I>&gt;<i> It sure is very great for example for installing the kernel inside
+</I>&gt;<i> the chroot from the chef-recipe. And probably for other stuff I
+</I>&gt;<i> didn't yet need.
+</I>&gt;<i> 
+</I>&gt;<i> Have a nice weekend,
+</I>&gt;<i> 
+</I>&gt;<i> Arnold
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130824/d1a9641a/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130824/d1a9641a/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006117.html">[X2Go-Dev] Automating the installation of the X2Go-TCE and the problems when trying to do so
+</A></li>
+	<LI>Next message: <A HREF="006120.html">[X2Go-Dev] Bug#290: SSH key based authentication problems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6119">[ date ]</a>
+              <a href="thread.html#6119">[ thread ]</a>
+              <a href="subject.html#6119">[ subject ]</a>
+              <a href="author.html#6119">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

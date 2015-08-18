@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#259: centos problems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23259%3A%20centos%20problems&In-Reply-To=%3CCAJ0%3DnQf8-%3DsjbetZwuWpR-veO4u-BeZ5ZAx-Wcs_tKKg9j62Ow%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005945.html">
+   <LINK REL="Next"  HREF="005936.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#259: centos problems</H1>
+    <B>Timotheus Pokorra</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23259%3A%20centos%20problems&In-Reply-To=%3CCAJ0%3DnQf8-%3DsjbetZwuWpR-veO4u-BeZ5ZAx-Wcs_tKKg9j62Ow%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#259: centos problems">timotheus.pokorra at solidcharity.com
+       </A><BR>
+    <I>Thu Jul 18 09:43:47 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005945.html">[X2Go-Dev] Processed: Re: Bug#263: X2Go Client fails to resume
+</A></li>
+        <LI>Next message: <A HREF="005936.html">[X2Go-Dev] Bug#245: Duplicate of X2Go issue #231
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5935">[ date ]</a>
+              <a href="thread.html#5935">[ thread ]</a>
+              <a href="subject.html#5935">[ subject ]</a>
+              <a href="author.html#5935">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Just for the record:
+The workaround described on the associated discussion on the development list
+<A HREF="https://lists.berlios.de/pipermail/x2go-dev/2013-June/005792.html">https://lists.berlios.de/pipermail/x2go-dev/2013-June/005792.html</A>
+works for me:
+
+  mv /usr/libexec/x2go/* /usr/lib64/x2go
+  rm -Rf /usr/libexec/x2go
+  ln -s /usr/lib64/x2go /usr/libexec/x2go
+  service x2gocleansessions start
+  chkconfig x2gocleansessions on
+
+Obviously it would be good that the rpm packages would be fixed.
+</PRE>
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005945.html">[X2Go-Dev] Processed: Re: Bug#263: X2Go Client fails to resume
+</A></li>
+	<LI>Next message: <A HREF="005936.html">[X2Go-Dev] Bug#245: Duplicate of X2Go issue #231
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5935">[ date ]</a>
+              <a href="thread.html#5935">[ thread ]</a>
+              <a href="subject.html#5935">[ subject ]</a>
+              <a href="author.html#5935">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

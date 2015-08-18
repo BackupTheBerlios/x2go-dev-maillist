@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2go Wheezy Gnome Evolution  bug
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2go%20Wheezy%20Gnome%20Evolution%20%20bug&In-Reply-To=%3C201306101200.06599.mirek%40biproraf.com.pl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005774.html">
+   <LINK REL="Next"  HREF="005778.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2go Wheezy Gnome Evolution  bug</H1>
+    <B>Mirek &#321;awniczek</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2go%20Wheezy%20Gnome%20Evolution%20%20bug&In-Reply-To=%3C201306101200.06599.mirek%40biproraf.com.pl%3E"
+       TITLE="[X2Go-Dev] X2go Wheezy Gnome Evolution  bug">mirek at biproraf.com.pl
+       </A><BR>
+    <I>Mon Jun 10 12:00:06 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005774.html">[X2Go-Dev] Processed: X2Go issue (in src:x2godesktopsharing) has been marked as closed
+</A></li>
+        <LI>Next message: <A HREF="005778.html">[X2Go-Dev] Bug#228: Mount MTP on thinclients
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5786">[ date ]</a>
+              <a href="thread.html#5786">[ thread ]</a>
+              <a href="subject.html#5786">[ subject ]</a>
+              <a href="author.html#5786">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi 
+
+After upgrading to wheezy, it is not possible to run gnome email client 
+evolution. If someone connects to linux box from remote client x2go, vnc etc.
+Below message from term screen
+
+Xlib:  extension &quot;GLX&quot; missing on display &quot;:1&quot;.
+Failed to connected to any renderer:
+XServer appears to lack required GLX support
+
+Someone discribed solution 
+<A HREF="http://unix.stackexchange.com/questions/75621/how-to-get-evolution-to-run-in-">http://unix.stackexchange.com/questions/75621/how-to-get-evolution-to-run-in-</A>
+vnc-on-debian-wheezy
+This solution (using VirtualGL code) works for me, evolution starts and does 
+well until I someone try  to compose massage,
+After clicking to edit window in evolution-composer or move to edit window  by 
+tab key, evolution crashes.
+Below message from term screen
+
+evolution(evolution:14075): Gdk-WARNING **: The program 'evolution' received 
+an X Window System error. This probably reflects a bug in the program.
+The error was 'BadValue (integer parameter out of range for operation)'.
+  (Details: serial 2304 error_code 2 request_code 147 minor_code 26)
+
+Greets,
+Mirek 
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005774.html">[X2Go-Dev] Processed: X2Go issue (in src:x2godesktopsharing) has been marked as closed
+</A></li>
+	<LI>Next message: <A HREF="005778.html">[X2Go-Dev] Bug#228: Mount MTP on thinclients
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5786">[ date ]</a>
+              <a href="thread.html#5786">[ thread ]</a>
+              <a href="subject.html#5786">[ subject ]</a>
+              <a href="author.html#5786">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Installing x2goserver-one in Debian added 300 users to fuse and x2gousers groups
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Installing%20x2goserver-one%20in%20Debian%20added%20300%20users%0A%20to%20fuse%20and%20x2gousers%20groups&In-Reply-To=%3C20101120110317.15732ql45htwlwpx%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001283.html">
+   <LINK REL="Next"  HREF="001287.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Installing x2goserver-one in Debian added 300 users to fuse and x2gousers groups</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Installing%20x2goserver-one%20in%20Debian%20added%20300%20users%0A%20to%20fuse%20and%20x2gousers%20groups&In-Reply-To=%3C20101120110317.15732ql45htwlwpx%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] Installing x2goserver-one in Debian added 300 users to fuse and x2gousers groups">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Nov 20 11:03:17 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001283.html">[X2go-dev] Installing x2goserver-one in Debian added 300 users to fuse and x2gousers groups
+</A></li>
+        <LI>Next message: <A HREF="001287.html">[X2go-dev] Installing x2goserver-one in Debian added 300 users to fuse and x2gousers groups
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1284">[ date ]</a>
+              <a href="thread.html#1284">[ thread ]</a>
+              <a href="subject.html#1284">[ subject ]</a>
+              <a href="author.html#1284">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Nikos,
+
+On Sa 20 Nov 2010 01:04:25 CET Nikos Chantziaras wrote:
+
+&gt;<i> I followed the instructions in the Wiki and installed x2goserver-one  
+</I>&gt;<i> on my Debian Lenny server.  However, during the installation, it  
+</I>&gt;<i> told me:
+</I>&gt;<i>
+</I>&gt;<i> Attention: If you want to allow users to log into the x2go system,  
+</I>&gt;<i> you'll need to add them to the &quot;x2gousers&quot; group
+</I>&gt;<i>
+</I>&gt;<i> but then it went on all on its own and added all users (about 300)  
+</I>&gt;<i> of the system to the &quot;x2gousers&quot; as well as &quot;fuse&quot; groups!  How do I  
+</I>&gt;<i> undo that?  Right now, I need to click around for hours in the Users  
+</I>&gt;<i> and Groups admin tool :-$
+</I>
+The x2goserver-one package is intended for little Ubuntu systems...  
+(standalone, sqlite, make your desktop reachable from home). So the  
+auto-adding for groupmember is intended here, I suppose (make it easy  
+for the user).
+
+For bigger installations/contexts use the x2goserver package (no  
+-home, no -one at the end of the package name) with PostgreSQL DB  
+backend, the x2goserver package does not impose auto-groupmemberships  
+on you.
+
+Greets,
+Mike
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001283.html">[X2go-dev] Installing x2goserver-one in Debian added 300 users to fuse and x2gousers groups
+</A></li>
+	<LI>Next message: <A HREF="001287.html">[X2go-dev] Installing x2goserver-one in Debian added 300 users to fuse and x2gousers groups
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1284">[ date ]</a>
+              <a href="thread.html#1284">[ thread ]</a>
+              <a href="subject.html#1284">[ subject ]</a>
+              <a href="author.html#1284">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

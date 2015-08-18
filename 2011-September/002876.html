@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2goserver goes pluggable
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20goes%20pluggable&In-Reply-To=%3C4E856468.1080102%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002871.html">
+   <LINK REL="Next"  HREF="002877.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2goserver goes pluggable</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20goes%20pluggable&In-Reply-To=%3C4E856468.1080102%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-Dev] x2goserver goes pluggable">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Fri Sep 30 08:40:40 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002871.html">[X2go-Dev] x2goserver goes pluggable
+</A></li>
+        <LI>Next message: <A HREF="002877.html">[X2go-Dev] x2goserver goes pluggable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2876">[ date ]</a>
+              <a href="thread.html#2876">[ thread ]</a>
+              <a href="subject.html#2876">[ subject ]</a>
+              <a href="author.html#2876">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+sounds reasonable to me. A few things that came to mind when reading the 
+page (it it not a request to fix the - just a few thoughts):
+* what happens to stdout and stderr? What is propagated to the 
+client/logfile/&lt;/dev/null&gt;?
+* Why always return 0? At least for pre-* it might be nice if something 
+can fail.
+* What do you mean with &quot;fail during execution&quot;? Maybe something like 
+&quot;Return codes are ignored and failures are therefore not propagated&quot; is 
+easier to understand.
+* Most other systems have two-digit ordering
+* I'd make digit ordering the rule, not a suggestion
+* What about the environment? What information do I get 
+(client-string/version/username/remote ip)?
+
+Cheers
+Morty
+
+
+On 2011-09-29 23:20, Mike Gabriel wrote:
+&gt;<i> Hi all,
+</I>&gt;<i>
+</I>&gt;<i> last night I have implemented a very basic pluggable extension system 
+</I>&gt;<i> for x2goserver. The relevant folder structure will be installed by the 
+</I>&gt;<i> x2goserver-extensions package. What the package provides is described 
+</I>&gt;<i> on the x2goserver-run-extensions man page:
+</I>&gt;<i> <A HREF="http://code.x2go.org/doc/x2goserver-extensions/man/man8/x2goserver-run-extensions.8.html">http://code.x2go.org/doc/x2goserver-extensions/man/man8/x2goserver-run-extensions.8.html</A> 
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Feedback+Comments+Criticism are Welcome!!!
+</I>&gt;<i>
+</I>&gt;<i> Mike
+</I>
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4482 bytes
+Desc: S/MIME Kryptografische Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110930/a2a977ed/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110930/a2a977ed/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002871.html">[X2go-Dev] x2goserver goes pluggable
+</A></li>
+	<LI>Next message: <A HREF="002877.html">[X2go-Dev] x2goserver goes pluggable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2876">[ date ]</a>
+              <a href="thread.html#2876">[ thread ]</a>
+              <a href="subject.html#2876">[ subject ]</a>
+              <a href="author.html#2876">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

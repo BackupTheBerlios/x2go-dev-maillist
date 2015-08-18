@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Password in plain text!?!?!?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Password%20in%20plain%20text%21%3F%21%3F%21%3F&In-Reply-To=%3COF4205A25B.6DEE381B-ONC1257603.00531F90-C1257603.0053BA8B%40pruftechnik.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000062.html">
+   <LINK REL="Next"  HREF="000064.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Password in plain text!?!?!?</H1>
+    <B>Alexander.Kuchler at pruftechnik.com</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Password%20in%20plain%20text%21%3F%21%3F%21%3F&In-Reply-To=%3COF4205A25B.6DEE381B-ONC1257603.00531F90-C1257603.0053BA8B%40pruftechnik.com%3E"
+       TITLE="[X2go-dev] Password in plain text!?!?!?">Alexander.Kuchler at pruftechnik.com
+       </A><BR>
+    <I>Thu Jul 30 17:15:33 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000062.html">[X2go-dev] Password in plain text!?!?!?
+</A></li>
+        <LI>Next message: <A HREF="000064.html">[X2go-dev] Password in plain text!?!?!?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#63">[ date ]</a>
+              <a href="thread.html#63">[ thread ]</a>
+              <a href="subject.html#63">[ subject ]</a>
+              <a href="author.html#63">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Hello Alexander,
+</I>&gt;<i> x2goclient need to save password on disk for sending it to ssh via
+</I>&gt;<i> SSH_ASKPASS program. Passwords are saved in protected file direct before
+</I>&gt;<i> initialization of ssh session and should be deleted immediately after
+</I>&gt;<i> initialization of ssh connection.
+</I>&gt;<i> You should not see the file with password in your
+</I>&gt;<i> C:\Documents\%User%\.x2go\ssh\
+</I>&gt;<i> 
+</I>&gt;<i> I have tested x2go client right now and all I can see in my \.x2go\ssh\
+</I>&gt;<i> folder are several files with XXXXXXXXXXXXXXXXXX.
+</I>&gt;<i> 
+</I>&gt;<i> If you can reproduce other behaviour of x2goclient on windows, you have
+</I>&gt;<i> possible found a bug in windows version of x2goclient. Let me know what
+</I>&gt;<i> you do to see file with password and I try to fix this problem. I will
+</I>&gt;<i> also try to found it by myself.
+</I>&gt;<i> 
+</I>I had one file on my own computer
+c:\Documents\%User%\.x2go\ssh\askpass.akk844
+which contained my password in plain text.
+
+The other files
+c:\Documents\%User%\.x2go\ssh\askpass.* contained only XXXXX
+
+The worrying thing was: In the morning I tried to login to the linux 
+machine from the windows workstation of my colleage to figure out the 
+reason for some other strange X2Go client effects. In the afternoon (in 
+the meantime he started a few other x2go sessions) he came to me smiling 
+and told me my password because the plain text askpass file of my session 
+was still on his computer. And he told me he found files with his own 
+password, too. Maybe it's not encrypted when anything is going wrong 
+during initialisation of the session. But in my point of view this should 
+really never happen.
+
+Yours,
+Alexander
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090730/807f28eb/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090730/807f28eb/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000062.html">[X2go-dev] Password in plain text!?!?!?
+</A></li>
+	<LI>Next message: <A HREF="000064.html">[X2go-dev] Password in plain text!?!?!?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#63">[ date ]</a>
+              <a href="thread.html#63">[ thread ]</a>
+              <a href="subject.html#63">[ subject ]</a>
+              <a href="author.html#63">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

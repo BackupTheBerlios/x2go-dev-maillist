@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goserver%20installs%20into%20/usr/lib%20on%20x86_64%20system&In-Reply-To=%3CCALK7e_NfmOHaLiyv2d-tpPyybP%2BYzTOrqpE%3D0Bcp6creJnSqpg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003289.html">
+   <LINK REL="Next"  HREF="003293.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system</H1>
+    <B>Oliver Burger</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goserver%20installs%20into%20/usr/lib%20on%20x86_64%20system&In-Reply-To=%3CCALK7e_NfmOHaLiyv2d-tpPyybP%2BYzTOrqpE%3D0Bcp6creJnSqpg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system">obgr_seneca at mageia.org
+       </A><BR>
+    <I>Sun Jan 29 11:38:24 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003289.html">[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+</A></li>
+        <LI>Next message: <A HREF="003293.html">[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3292">[ date ]</a>
+              <a href="thread.html#3292">[ thread ]</a>
+              <a href="subject.html#3292">[ subject ]</a>
+              <a href="author.html#3292">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2012/1/28 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;:
+&gt;<i> Took a closer look now: each x2goserver Makefile that puts some stuff to
+</I>&gt;<i> /usr/lib/x2go has a line
+</I>&gt;<i>
+</I>&gt;<i> &#160;LIBDIR=$(PREFIX)/lib/x2go
+</I>&gt;<i>
+</I>&gt;<i> You can simply override this var by calling something like this:
+</I>&gt;<i>
+</I>&gt;<i> &#160;$ make PREFIX=/usr LIBDIR=/some/path/lib64 build
+</I>&gt;<i>
+</I>&gt;<i> Is it that what you need?
+</I>The Makefiles do provide that, but it will break x2goserver, since the
+include paths in the files are hardcoded.
+E.g.
+&quot;use lib `echo -n \$(x2gobasepath)/lib/x2go`;&quot;
+in x2godbadmin.
+I don't know perl, but the eror message I get, lets me think, that as
+it is done in python, there are special paths defined for site
+packages:
+&quot;Can't locate x2gologlevel.pm in @INC (@INC contains: /usr/lib/x2go
+/usr/lib/perl5/site_perl/5.14.2/x86_64-linux-thread-multi
+/usr/lib/perl5/site_perl/5.14.2
+/usr/lib/perl5/vendor_perl/5.14.2/x86_64-linux-thread-multi
+/usr/lib/perl5/vendor_perl/5.14.2
+/usr/lib/perl5/5.14.2/x86_64-linux-thread-multi /usr/lib/perl5/5.14.2
+/usr/lib/perl5/site_perl /usr/lib/perl5/vendor_perl/5.14.1
+/usr/lib/perl5/vendor_perl/5.14.1/x86_64-linux-thread-multi
+/usr/lib/perl5/vendor_perl/5.14.0
+/usr/lib/perl5/vendor_perl/5.14.0/x86_64-linux-thread-multi
+/usr/lib/perl5/vendor_perl/5.12.3 /usr/lib/perl5/vendor_perl/5.12.2
+/usr/lib/perl5/vendor_perl .) at /usr/sbin/x2godbadmin line 30.&quot;
+
+So wouldn't it be best to have those &quot;library&quot; files located in a
+&quot;perl site package&quot; path?
+Of course I can have those files installed in /usr/lib/ as well or I
+can use some sed magic in the spec file, correcting those paths. But
+that would be a rather ugly workarround.
+
+Oliver
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003289.html">[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+</A></li>
+	<LI>Next message: <A HREF="003293.html">[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3292">[ date ]</a>
+              <a href="thread.html#3292">[ thread ]</a>
+              <a href="subject.html#3292">[ subject ]</a>
+              <a href="author.html#3292">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

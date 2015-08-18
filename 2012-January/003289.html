@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goserver%20installs%20into%20/usr/lib%20on%20x86_64%20system&In-Reply-To=%3C20120128223741.20534a0jzxktscdh%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003288.html">
+   <LINK REL="Next"  HREF="003292.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goserver%20installs%20into%20/usr/lib%20on%20x86_64%20system&In-Reply-To=%3C20120128223741.20534a0jzxktscdh%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Jan 28 22:37:41 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003288.html">[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+</A></li>
+        <LI>Next message: <A HREF="003292.html">[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3289">[ date ]</a>
+              <a href="thread.html#3289">[ thread ]</a>
+              <a href="subject.html#3289">[ subject ]</a>
+              <a href="author.html#3289">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Oliver, hi Reinhard,
+
+On Sa 28 Jan 2012 22:07:23 CET Reinhard Tartler wrote:
+
+&gt;<i> On Sat, Jan 28, 2012 at 10:02 PM, Oliver Burger  
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">obgr_seneca at mageia.org</A>&gt; wrote:
+</I>&gt;&gt;<i> 2012/1/28 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;:
+</I>&gt;&gt;&gt;<i> I am not at all an expert on this, I can only report the latest approaches
+</I>&gt;&gt;&gt;<i> in Debian here.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> On systems /usr/lib is the default folder for libraries that are built for
+</I>&gt;&gt;&gt;<i> the same architecture as the system itself. There also should be a symlink
+</I>&gt;&gt;&gt;<i> from lib64 -&gt; lib. For other architectures there can be other lib folders
+</I>&gt;&gt;&gt;<i> (e.g. /usr/lib32 for ia32 stuff).
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> On multi-arch systems (like currently under development in Debian  
+</I>&gt;&gt;&gt;<i> sid) there
+</I>&gt;&gt;&gt;<i> are lib folders for each architecture
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &#160;/usr/lib/&lt;arch&gt;/
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> So basically, installing code to /usr/lib should be fine.
+</I>&gt;&gt;<i> It's a bit different in Mageia and iirc the other rpm based distros.
+</I>&gt;&gt;<i> Normally /usr/lib/ is used here for 32bit libraries, x86_64 is for
+</I>&gt;&gt;<i> 64bit libraries. This is especially neccessary if you have to install
+</I>&gt;&gt;<i> 32bit and 64bit versions of the same library next to each other.
+</I>&gt;<i>
+</I>&gt;<i> Debian solves this differently: all library packages that are supposed
+</I>&gt;<i> to be co-installable across archs get installed to
+</I>&gt;<i> /usr/lib/$triplet/lib.foo. This way, you can install sparc 64bit or
+</I>&gt;<i> arm packages on your 32bit i386 laptop. This can be useful for example
+</I>&gt;<i> for cross-compiling, etc.
+</I>&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> But looking into some of those files, lib is hardcoded there, so it
+</I>&gt;&gt;<i> would need quite some patching to make them installable in lib64. But
+</I>&gt;&gt;<i> since all but x2goslitewrapper is actually noarch, it will perhaps not
+</I>&gt;&gt;<i> hurt much...
+</I>&gt;&gt;<i> Especially as different from what I had in mind, our build system does
+</I>&gt;&gt;<i> not block arch dependant 64bit binaries to be installed in /usr/lib :)
+</I>&gt;<i>
+</I>&gt;<i> Yeah, probably the makefiles should be extended to make the the libdir
+</I>&gt;<i> ($PREFIX/$LIBDIR, with $LIBDIR being either /lib, /lib32 or /lib64)
+</I>&gt;<i> configurable.
+</I>
+Took a closer look now: each x2goserver Makefile that puts some stuff  
+to /usr/lib/x2go has a line
+
+   LIBDIR=$(PREFIX)/lib/x2go
+
+You can simply override this var by calling something like this:
+
+   $ make PREFIX=/usr LIBDIR=/some/path/lib64 build
+
+Is it that what you need?
+
+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120128/141f644e/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120128/141f644e/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003288.html">[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+</A></li>
+	<LI>Next message: <A HREF="003292.html">[X2Go-Dev] x2goserver installs into /usr/lib on x86_64 system
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3289">[ date ]</a>
+              <a href="thread.html#3289">[ thread ]</a>
+              <a href="subject.html#3289">[ subject ]</a>
+              <a href="author.html#3289">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

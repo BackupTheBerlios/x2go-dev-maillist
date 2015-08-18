@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] 100% Reproducible: x2go session crash problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20100%25%20Reproducible%3A%20x2go%20session%20crash%20problem&In-Reply-To=%3C1437544.elRGiOL995%40dcam%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002898.html">
+   <LINK REL="Next"  HREF="002900.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] 100% Reproducible: x2go session crash problem</H1>
+    <B>Andrew Mason</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20100%25%20Reproducible%3A%20x2go%20session%20crash%20problem&In-Reply-To=%3C1437544.elRGiOL995%40dcam%3E"
+       TITLE="[X2go-Dev] 100% Reproducible: x2go session crash problem">andrew.mason at digicom.net.au
+       </A><BR>
+    <I>Thu Oct 13 05:14:28 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002898.html">[X2go-Dev] 100% Reproducible: x2go session crash problem
+</A></li>
+        <LI>Next message: <A HREF="002900.html">[X2go-Dev] 100% Reproducible: x2go session crash problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2899">[ date ]</a>
+              <a href="thread.html#2899">[ thread ]</a>
+              <a href="subject.html#2899">[ subject ]</a>
+              <a href="author.html#2899">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, 12 Oct 2011 07:43:22 PM Benjamin Shadwick wrote:
+&gt;<i> Andrew,
+</I>&gt;<i> 
+</I>&gt;<i> Does this happen using the x2go package versions in the stable PPA (*
+</I>&gt;<i> ppa:x2go/stable*)? I experienced the crashing issue with the nightly/testing
+</I>&gt;<i> PPA (*ppa:x2go/ppa*) on Ubuntu 11.04, but on advice from these mailing
+</I>&gt;<i> lists I reverted to the stable PPA versions and the problem went away.
+</I>&gt;<i> 
+</I>&gt;<i> I haven't yet tested with the new stable versions that were just released
+</I>&gt;<i> today; I'm hoping that the crash bug isn't now in those.
+</I>Ah ok i didn't actually know about that repo. 
+My google foo returned the x2go ppa and i didn't think to look further, i had 
+just assumed it was stable. My mistake. I shall try with that PPA and get back 
+to you.  
+
+Andrew
+
+
+
+
+
+
+
+
+
+
+
+
+&gt;<i> 
+</I>&gt;<i> On Wed, Oct 12, 2011 at 5:20 PM, Andrew Mason 
+</I>&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">andrew.mason at voice.net.au</A>&gt;wrote:
+&gt;<i> &gt; Hello,
+</I>&gt;<i> &gt; We have recently started using x2go internally and although it's
+</I>&gt;<i> &gt; wonderful, we
+</I>&gt;<i> &gt; have encountered the same issue that was discussed previously.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; <A HREF="http://comments.gmane.org/gmane.linux.terminal-server.x2go.devel/2461">http://comments.gmane.org/gmane.linux.terminal-server.x2go.devel/2461</A>
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; After googling a bit it seems like this is still unsolved. I have a 100%
+</I>&gt;<i> &gt; reliable way to reproduce the issue and a publicly accessible server
+</I>&gt;<i> &gt; which can
+</I>&gt;<i> &gt; be used for testing, if any one in the team is interested in debugging.
+</I>&gt;<i> &gt; I'm happy to provide access, provide a copy of the VM, install packages
+</I>&gt;<i> &gt; / do whatever. If server access is required please email me off list
+</I>&gt;<i> &gt; and i'll provide username/ssh key.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I couldn't see a bug tracker on the website so I will list the steps to
+</I>&gt;<i> &gt; reproduce below:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Steps to reproduce:
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 1) Log In:
+</I>&gt;<i> &gt; 2) Open 'record it now' (Press Alt + 2 type  'record it now' and enter 
+</I>&gt;<i> &gt; )
+</I>&gt;<i> &gt; 3) Select full screen record
+</I>&gt;<i> &gt; 4) Uncheck the sound recording option
+</I>&gt;<i> &gt; 5) Start recording
+</I>&gt;<i> &gt; 6) once it counts down and starts recording hit the stop button
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; The session 'crash' is then triggered.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; This is on a fully up to date ( including backports ) version of Ubuntu
+</I>&gt;<i> &gt; 10.04
+</I>&gt;<i> &gt; using KDE and the X2go PPA.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Debugging is turned on and there is nothing printed in syslog other than
+</I>&gt;<i> &gt; it appears the server restarts.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Kind regards
+</I>&gt;<i> &gt; Andrew
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; _______________________________________________
+</I>&gt;<i> &gt; X2go-Dev mailing list
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> &gt; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002898.html">[X2go-Dev] 100% Reproducible: x2go session crash problem
+</A></li>
+	<LI>Next message: <A HREF="002900.html">[X2go-Dev] 100% Reproducible: x2go session crash problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2899">[ date ]</a>
+              <a href="thread.html#2899">[ thread ]</a>
+              <a href="subject.html#2899">[ subject ]</a>
+              <a href="author.html#2899">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

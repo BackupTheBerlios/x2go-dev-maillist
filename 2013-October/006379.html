@@ -1,0 +1,473 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2go session broker connect problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20session%20broker%20connect%20problem&In-Reply-To=%3C20131029082159.Horde.8RhoKihiBpnAJslmz028vA1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006377.html">
+   <LINK REL="Next"  HREF="006386.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2go session broker connect problem</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20session%20broker%20connect%20problem&In-Reply-To=%3C20131029082159.Horde.8RhoKihiBpnAJslmz028vA1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] x2go session broker connect problem">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Oct 29 09:21:59 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006377.html">[X2Go-Dev] x2go session broker connect problem
+</A></li>
+        <LI>Next message: <A HREF="006386.html">[X2Go-Dev] Bug#321: X2Go issue (in src:pyhoca-gui) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6379">[ date ]</a>
+              <a href="thread.html#6379">[ thread ]</a>
+              <a href="subject.html#6379">[ subject ]</a>
+              <a href="author.html#6379">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I have replied to this mail on X2Go User. Thread continues there...
+
+Mike
+
+On  Fr 25 Okt 2013 19:28:11 CEST, Ted Barnes wrote:
+
+&gt;<i> Hi All:
+</I>&gt;<i>
+</I>&gt;<i> Am trying to get up to speed on x2go session broker, but am having  
+</I>&gt;<i> trouble.  Any suggestions?
+</I>&gt;<i>
+</I>&gt;<i> When try to connect I get:
+</I>&gt;<i>
+</I>&gt;<i> Error
+</I>&gt;<i> Login failed!
+</I>&gt;<i> Please try again.
+</I>&gt;<i>
+</I>&gt;<i> Along with...
+</I>&gt;<i> broker url: <A HREF="http://xxx.xxx.xxx.xxx/:8080/plain/inifilebroker">http://xxx.xxx.xxx.xxx/:8080/plain/inifilebroker</A>  
+</I>&gt;<i> url:<A HREF="http://xxx.xxxx.xxx.xxx/:8080/plain/inifile">http://xxx.xxxx.xxx.xxx/:8080/plain/inifile</A>
+</I>&gt;<i>
+</I>&gt;<i> or....
+</I>&gt;<i> broker url:<A HREF="http://user@xxx.xxx.xxx.xxx/cgi-bin/x2gobroker.cfgi">http://user@xxx.xxx.xxx.xxx/cgi-bin/x2gobroker.cfgi</A>
+</I>&gt;<i>
+</I>&gt;<i> As I'm getting started, I'm trying to do this on my LAN (all behind  
+</I>&gt;<i> my firewall) without any ssh (longer term I want to see if I can run  
+</I>&gt;<i> sessions inside SSL).  I've disabled all the iptable rules on my  
+</I>&gt;<i> server....and tried various settings in the x2gobroker.conf and  
+</I>&gt;<i> x2gobroker-sessionprofiles.conf files which have not really changed  
+</I>&gt;<i> the error message but may be the problem (see below).
+</I>&gt;<i>
+</I>&gt;<i> I can connect using the x2go client GUI &quot;the normal way&quot;, and the  
+</I>&gt;<i> first time I got a window on the client &quot;The server is unknown.  Do  
+</I>&gt;<i> you trust the host key....&quot;, which I assume is x2go dynamically  
+</I>&gt;<i> creating a ssh tunnel?  This part works fine.
+</I>&gt;<i>
+</I>&gt;<i> However, when I try from the command line with an &quot;x2goclient  
+</I>&gt;<i> --broker-...&quot; type of command, I get the Error message.
+</I>&gt;<i>
+</I>&gt;<i> Both client and server are running Debian Squeeze, and on the server  
+</I>&gt;<i> I've successively installed:
+</I>&gt;<i> x2gobroker-wsgi
+</I>&gt;<i> apache2
+</I>&gt;<i> libapache20mod-wsgi
+</I>&gt;<i> x2gobroker-authservice (wasn't sure if I should install this for my  
+</I>&gt;<i> initial tests)
+</I>&gt;<i>
+</I>&gt;<i> My x2gobroker.conf:
+</I>&gt;<i> # This file is part of the  X2Go Project - <A HREF="http://www.x2go.org">http://www.x2go.org</A>
+</I>&gt;<i> # Copyright (C) 2011-2013 by Oleksandr Shneyder  
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+</I>&gt;<i> # Copyright (C) 2011-2013 by Heinz-Markus Graesing  
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heinz-m.graesing at obviously-nice.de</A>&gt;
+</I>&gt;<i> # Copyright (C) 2012-2013 by Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i> #
+</I>&gt;<i> # X2Go Session Broker is free software; you can redistribute it and/or modify
+</I>&gt;<i> # it under the terms of the GNU Affero General Public License as published by
+</I>&gt;<i> # the Free Software Foundation; either version 3 of the License, or
+</I>&gt;<i> # (at your option) any later version.
+</I>&gt;<i> #
+</I>&gt;<i> # X2Go Session Broker is distributed in the hope that it will be useful,
+</I>&gt;<i> # but WITHOUT ANY WARRANTY; without even the implied warranty of
+</I>&gt;<i> # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+</I>&gt;<i> # GNU Affero General Public License for more details.
+</I>&gt;<i> #
+</I>&gt;<i> # You should have received a copy of the GNU Affero General Public License
+</I>&gt;<i> # along with this program; if not, write to the
+</I>&gt;<i> # Free Software Foundation, Inc.,
+</I>&gt;<i> # 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+</I>&gt;<i>
+</I>&gt;<i> ###
+</I>&gt;<i> ### GLOBAL section
+</I>&gt;<i> ###
+</I>&gt;<i>
+</I>&gt;<i> [global]
+</I>&gt;<i>
+</I>&gt;<i> # Allow unauthenticated connections? Then set check-credentials to false.
+</I>&gt;<i> check-credentials = false
+</I>&gt;<i>
+</I>&gt;<i> # To secure server-client communication the client can start the  
+</I>&gt;<i> communication
+</I>&gt;<i> # with a pre-set, agreed on authentication ID. Set the below value to true
+</I>&gt;<i> # to make the X2Go Session Broker require this feature
+</I>&gt;<i> #require-cookie-auth = false ### NOT-IN-USE-YET
+</I>&gt;<i>
+</I>&gt;<i> # X2Go supports two different cookie authentication modes (static  
+</I>&gt;<i> and dynamic).
+</I>&gt;<i> #use-static-cookie = false ### NOT-IN-USE-YET
+</I>&gt;<i>
+</I>&gt;<i> # Every server-client communication (between X2Go Client and broker)  
+</I>&gt;<i> has to be
+</I>&gt;<i> # accompanied by this initial authentication cookie.
+</I>&gt;<i> #my-cookie = &lt;aaaavveeeerrrrryyyyylooonnnnggggssttrrriiinnnggg&gt; ###  
+</I>&gt;<i> NOT-IN-USE-YET
+</I>&gt;<i>
+</I>&gt;<i> # X2Go Session Broker knows about two output formats: a text/plain  
+</I>&gt;<i> based output
+</I>&gt;<i> # and a text/json based output that is compatible with UCCS. The  
+</I>&gt;<i> different outputs
+</I>&gt;<i> # run under different URLs.
+</I>&gt;<i>
+</I>&gt;<i> enable {base_url}/plain/
+</I>&gt;<i> enable-plain-output = true
+</I>&gt;<i>
+</I>&gt;<i> # enable {base_url}/uccs/
+</I>&gt;<i> #enable-uccs-output = false
+</I>&gt;<i>
+</I>&gt;<i> # use this URL base to create URL field in UCCS-style JSON output
+</I>&gt;<i> #my-uccs-url-base = <A HREF="http://localhost:8080/">http://localhost:8080/</A>
+</I>&gt;<i>
+</I>&gt;<i> # default authentication mechanism for all broker backends
+</I>&gt;<i> default-auth-mech = pam
+</I>&gt;<i>
+</I>&gt;<i> # how does this X2Go Session Broker instance retrieve user and group
+</I>&gt;<i> # information from the system? (defaults for all broker backends)
+</I>&gt;<i> default-user-db = libnss
+</I>&gt;<i> default-group-db = libnss
+</I>&gt;<i>
+</I>&gt;<i> # on large deployments it is recommended to ignore primary group
+</I>&gt;<i> # memberships traversing into all user accounts for primary group
+</I>&gt;<i> # detection can be quite CPU intensive on the X2Go Broker server.
+</I>&gt;<i> #ignore-primary-group-memberships = true
+</I>&gt;<i>
+</I>&gt;<i> # X2Go session autologin via X2Go Session Broker
+</I>&gt;<i> #
+</I>&gt;<i> # Once authenticated against the session
+</I>&gt;<i> # broker, the user becomes a trusted user. That is, the X2Go session  
+</I>&gt;<i> login can
+</I>&gt;<i> # be automatized by a very temporary SSH pub/priv key pair. Prior to  
+</I>&gt;<i> the session
+</I>&gt;<i> # login the key is generated, after successful session login, the  
+</I>&gt;<i> key is dropped
+</I>&gt;<i> # immediately.
+</I>&gt;<i> #
+</I>&gt;<i> # This option can be overridden by the session profile parameter
+</I>&gt;<i> # broker-session-autologin={true|false}
+</I>&gt;<i> broker-session-autologin=true
+</I>&gt;<i> default-session-autologin=true
+</I>&gt;<i>
+</I>&gt;<i> # X2Go's authorized_keys file for broker mediated autologin sessions
+</I>&gt;<i> #
+</I>&gt;<i> # For the X2Go auto-login via X2Go Session Broker feature to work thoroughly,
+</I>&gt;<i> # the X2Go Session Broker has to place the temporary public SSH key into the
+</I>&gt;<i> # user's home
+</I>&gt;<i> directory. It is not recommended to use SSH's default
+</I>&gt;<i> # authorized_keys file for this but a separate and X2Go-specific  
+</I>&gt;<i> authorized_keys
+</I>&gt;<i> # file ($HOME/.x2go/authorized_keys).
+</I>&gt;<i> #
+</I>&gt;<i> # Of course, the SSH daemon has to be made aware of this. This can  
+</I>&gt;<i> be configured
+</I>&gt;<i> # in /etc/ssh/sshd_config like this:
+</I>&gt;<i> #
+</I>&gt;<i> #    --- /etc/ssh/sshd_config.no-x2go        2013-03-01  
+</I>&gt;<i> 09:57:04.000000000 +0100
+</I>&gt;<i> #    +++ /etc/ssh/sshd_config        2013-03-01 09:56:57.000000000 +0100
+</I>&gt;<i> #    @@ -28,7 +28,8 @@
+</I>&gt;<i> #
+</I>&gt;<i> #    RSAAuthentication yes
+</I>&gt;<i> #    PubkeyAuthentication yes
+</I>&gt;<i> #    AuthorizedKeysFile     %h/.ssh/authorized_keys
+</I>&gt;<i> #   +AuthorizedKeysFile2    %h/.x2go/authorized_keys
+</I>&gt;<i> #
+</I>&gt;<i> #    # Don't read the user's ~/.rhosts and ~/.shosts files
+</I>&gt;<i> #    IgnoreRhosts yes
+</I>&gt;<i> #
+</I>&gt;<i> # This option can be overridden by the session profile parameter
+</I>&gt;<i> # broker-authorized-keys=&lt;file-location&gt;
+</I>&gt;<i> #default-authorized-keys=%h/.x2go/authorized_keys
+</I>&gt;<i>
+</I>&gt;<i> # X2Go Broker Agent query mode
+</I>&gt;<i> #
+</I>&gt;<i> # The X2Go Broker Agent is needed for multi-server sites configured for
+</I>&gt;<i> # load balancing. Multi-server sites require a setup that uses the
+</I>&gt;<i> # PostgreSQL X2Go session DB backend. The X2Go Broker Agent has to  
+</I>&gt;<i> be installed
+</I>&gt;<i> # on the local system (mode: LOCAL) or on all X2Go Servers (mode: SSH) in a
+</I>&gt;<i> # multi-server farm.
+</I>&gt;<i> #
+</I>&gt;<i> # So, there are three query modes for the X2GO Broker Agent: NONE, LOCAL and
+</I>&gt;<i> # SSH.
+</I>&gt;<i> #
+</I>&gt;<i> #    NONE  - Try to get along without X2Go Broker Agent queries. For simple
+</I>&gt;<i> #            broker setups this may suffice. For load-balancing or reliable
+</I>&gt;<i> #            session suspending and resuming the broker agent is a must!!!
+</I>&gt;<i> #
+</I>&gt;<i> #    LOCAL - This LOCAL mode only works for _one_ configured  
+</I>&gt;<i> multi-server farm.
+</I>&gt;<i> #            If this X2Go Session Broker is supposed to serve many different
+</I>&gt;<i> #            multi-server farms, then the LOCAL mode will not work!!!
+</I>&gt;<i> #
+</I>&gt;<i> #            How it works: Assume that the local system has an X2Go  
+</I>&gt;<i> Broker Agent
+</I>&gt;<i> #            that knows about the multi-server setup. This means: X2Go Server
+</I>&gt;<i> #            has to be installed locally and the X2Go Server has to be
+</I>&gt;<i> #            configured to use the multi-server farm's PostgreSQL session DB
+</I>&gt;<i> #            backend.
+</I>&gt;<i> #
+</I>&gt;<i> #            The local system that is running the broker does not necessarily
+</I>&gt;<i> #            have to be a real application server. It only has to be aware of
+</I>&gt;<i> #            running/suspended sessions within the X2Go multi-server  
+</I>&gt;<i> farm setup.
+</I>&gt;<i> #
+</I>&gt;<i> #            A typical use-case is X2Go on top of a Debian Edu  
+</I>&gt;<i> Terminal-Server
+</I>&gt;<i> #            farm:
+</I>&gt;<i> #
+</I>&gt;<i> #              TJENER -&gt; PostgreSQL DB, X2Go Server, X2Go Session Broker +
+</I>&gt;<i> #                  Broker Agent
+</I>&gt;<i> #              TS01 - TS0X -&gt; X2Go Server configured to use the PostgreSQL DB
+</I>&gt;<i> #                  on TJENER
+</I>&gt;<i> #
+</I>&gt;<i> #    SSH   - The more generic approach, but also more complex. It allows that
+</I>&gt;<i> #            the broker on this system may serve for many different  
+</I>&gt;<i> X2Go Server
+</I>&gt;<i> #            multi-server setups.
+</I>&gt;<i> #
+</I>&gt;<i> #            With the SSH agent query mode, the X2Go Session Broker  
+</I>&gt;<i> will query
+</I>&gt;<i> #            one of the X2Go Servers in the targeted multi-server  
+</I>&gt;<i> setup (through
+</I>&gt;<i> #            SSH). The SSH authentication is done by a system user account
+</I>&gt;<i> #            (normally UID=x2gobroker) and SSH pub/priv key  
+</I>&gt;<i> authentication has
+</I>&gt;<i> #            to be configured to make this work.
+</I>&gt;<i> #
+</I>&gt;<i> #            All X2Go Servers in a multi-server farm need the X2Go  
+</I>&gt;<i> Broker Agent
+</I>&gt;<i> #            installed, whereas this local system running the X2Go Session
+</I>&gt;<i> #            Broker does not need a local X2Go Broker Agent at all.
+</I>&gt;<i> #
+</I>&gt;<i> # The agent query mode can be configured on a per-broker-backend basis, the
+</I>&gt;<i> # below value is the default.
+</I>&gt;<i> #default-agent-query-mode=LOCAL
+</I>&gt;<i>
+</I>&gt;<i> ###
+</I>&gt;<i> ### BACKEND section
+</I>&gt;<i> ###
+</I>&gt;<i>
+</I>&gt;<i> # Possible X2Go Session Broker backends:
+</I>&gt;<i> #
+</I>&gt;<i> # 1. backend = zeroconf (activated by default)
+</I>&gt;<i> # Use the ZeroConf X2Go Session Broker backend, this backend is for demo only
+</I>&gt;<i> # and only operates on localhost. Make sure you have x2gobroker-daemon and
+</I>&gt;<i> # and x2goserver installed on the same machine. No need to install
+</I>&gt;<i> # x2gobroker-agent.
+</I>&gt;<i>
+</I>&gt;<i> # 2. backend = infile (deactivated by default)
+</I>&gt;<i> # The IniFile X2Go Session Broker backend is for providing session profiles
+</I>&gt;<i> # to multiple users/clients on a text config file basis (.ini file format).
+</I>&gt;<i> #
+</I>&gt;<i> # The session profile setup is accomplished by an extra configuration file,
+</I>&gt;<i> # by default named /etc/x2go/broker/x2gobroker-sessionproiles.conf.
+</I>&gt;<i> #
+</I>&gt;<i> # For small-scale deployments the IniFile backend is the recommended backend.
+</I>&gt;<i>
+</I>&gt;<i> [zeroconf]
+</I>&gt;<i> #enable = true
+</I>&gt;<i> #auth-mech = pam
+</I>&gt;<i> #user-db = libnss
+</I>&gt;<i> #group-db = libnss
+</I>&gt;<i> #desktop-shell = KDE
+</I>&gt;<i>
+</I>&gt;<i> [inifile]
+</I>&gt;<i> enable = true
+</I>&gt;<i> session-profiles = /etc/x2go/broker/x2gobroker-sessionprofiles.conf
+</I>&gt;<i>
+</I>&gt;<i> #[ldap] -&gt; MUSIC OF THE FUTURE
+</I>&gt;<i> #enable = false
+</I>&gt;<i> #auth-mech = ldap
+</I>&gt;<i> #user-db = ldap
+</I>&gt;<i> #group-db = ldap
+</I>&gt;<i> #uri = <A HREF="ldap://localhost:389">ldap://localhost:389</A>
+</I>&gt;<i> #base = dc=example,dc=org
+</I>&gt;<i> #user-search-filter = (&amp;(objectClass=posixAccount)(uid=*))
+</I>&gt;<i> #host-search-filter = (&amp;(objectClass=ipHost)(serial=X2GoServer)(cn=*))
+</I>&gt;<i> #group-search-filter = (&amp;(objectClass=posifxGroup)(cn=*))
+</I>&gt;<i> #starttls = false
+</I>&gt;<i> #agent-query-mode = SSH
+</I>&gt;<i>
+</I>&gt;<i> My x2gobroker-sessionprofiles.conf:
+</I>&gt;<i> ### X2Go Broker Session Profiles - ADAPT TO YOUR NEEDS ###
+</I>&gt;<i>
+</I>&gt;<i> # This whole file reflects a set of examplary X2Go session profiles being
+</I>&gt;<i> # provided via the X2Go Session Broker (backend: iniconf).
+</I>&gt;<i>
+</I>&gt;<i> # This whole file could be the broker setup in some university institute that
+</I>&gt;<i> # runs three server pools (pool-A, pool-B and pool-C). Though most  
+</I>&gt;<i> univerities
+</I>&gt;<i> # have real IPv4 internet addresses, we use private subnets in the examples
+</I>&gt;<i> # below.
+</I>&gt;<i>
+</I>&gt;<i> # The X2Go Session Broker is served into the institutes local intranet, the
+</I>&gt;<i> # broker cannot be reached from the internet directly.
+</I>&gt;<i>
+</I>&gt;<i> # The first section [DEFAULTS] provides a set of default profile  
+</I>&gt;<i> settings that
+</I>&gt;<i> # are common to all session profiles given in sections below.
+</I>&gt;<i>
+</I>&gt;<i> # The other section names can be freely chosen, however, each  
+</I>&gt;<i> section name has
+</I>&gt;<i> # to be unique within this file.
+</I>&gt;<i>
+</I>&gt;<i> # IMPORTANT: in the session profiles below you will find some lines starting
+</I>&gt;<i> # with acl-... These lines do neither protect the X2Go Session Broker nor
+</I>&gt;<i> # your X2Go Servers. They simply allow for selective session profile  
+</I>&gt;<i> provision
+</I>&gt;<i> # based on client address, user name and group memberships.
+</I>&gt;<i> #
+</I>&gt;<i> # For protecting the broker use iptables and ip6tables. For protecting your
+</I>&gt;<i> # X2Go Servers use iptable+ip6tables and a tightened PAM configuration (e.g.
+</I>&gt;<i> # pam_access.so). Securing X2Go Servers means securing the SSH daemon that
+</I>&gt;<i> # runs on the X2Go Server.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> [DEFAULT]
+</I>&gt;<i> command=TERMINAL
+</I>&gt;<i> defsndport=true
+</I>&gt;<i> useiconv=false
+</I>&gt;<i> iconvfrom=UTF-8
+</I>&gt;<i> height=600
+</I>&gt;<i> export=
+</I>&gt;<i> quality=9
+</I>&gt;<i> fullscreen=false
+</I>&gt;<i> layout=
+</I>&gt;<i> useexports=true
+</I>&gt;<i> width=800
+</I>&gt;<i> speed=2
+</I>&gt;<i> soundsystem=pulse
+</I>&gt;<i> print=true
+</I>&gt;<i> type=auto
+</I>&gt;<i> sndport=4713
+</I>&gt;<i> xinerama=true
+</I>&gt;<i> variant=
+</I>&gt;<i> usekbd=true
+</I>&gt;<i> fstunnel=true
+</I>&gt;<i> applications=TERMINAL,WWWBROWSER,MAILCLIENT,OFFICE
+</I>&gt;<i> multidisp=false
+</I>&gt;<i> sshproxyport=22
+</I>&gt;<i> sound=true
+</I>&gt;<i> rootless=false
+</I>&gt;<i> iconvto=UTF-8
+</I>&gt;<i> soundtunnel=true
+</I>&gt;<i> dpi=96
+</I>&gt;<i> sshport=22
+</I>&gt;<i> setdpi=0
+</I>&gt;<i> pack=16m-jpeg
+</I>&gt;<i> directrdp=false
+</I>&gt;<i>
+</I>&gt;<i> [GNOME]
+</I>&gt;<i> user=xxx
+</I>&gt;<i> host=xxx.xxx.xxx.xxx
+</I>&gt;<i> name=GNOME
+</I>&gt;<i> command=GNOME
+</I>&gt;<i> rootless=false
+</I>&gt;<i> acl-users-allow=xxx
+</I>&gt;<i> acl-groups-allow=gnome-users,admins
+</I>&gt;<i> acl-groups-deny=ALL
+</I>&gt;<i> acl-any-order=deny-allow
+</I>&gt;<i> broker-session-autologin=true
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-keys
+Size: 7251 bytes
+Desc: ?ffentlicher PGP-Schl?ssel
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/0ebe9183/attachment.key">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/0ebe9183/attachment.key</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/0ebe9183/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/0ebe9183/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006377.html">[X2Go-Dev] x2go session broker connect problem
+</A></li>
+	<LI>Next message: <A HREF="006386.html">[X2Go-Dev] Bug#321: X2Go issue (in src:pyhoca-gui) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6379">[ date ]</a>
+              <a href="thread.html#6379">[ thread ]</a>
+              <a href="subject.html#6379">[ subject ]</a>
+              <a href="author.html#6379">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

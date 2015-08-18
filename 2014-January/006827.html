@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#398: Automounter only mounts first partition of USB	media (at least in certain cases)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23398%3A%20Automounter%20only%20mounts%20first%20partition%20of%20USB%0A%09media%20%28at%20least%20in%20certain%20cases%29&In-Reply-To=%3C52CFF456.4020504%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006881.html">
+   <LINK REL="Next"  HREF="006829.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#398: Automounter only mounts first partition of USB	media (at least in certain cases)</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23398%3A%20Automounter%20only%20mounts%20first%20partition%20of%20USB%0A%09media%20%28at%20least%20in%20certain%20cases%29&In-Reply-To=%3C52CFF456.4020504%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Bug#398: Automounter only mounts first partition of USB	media (at least in certain cases)">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Fri Jan 10 14:23:34 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006881.html">[X2Go-Dev] Suggestion to improve X2Go-TCE
+</A></li>
+        <LI>Next message: <A HREF="006829.html">[X2Go-Dev] libssh 0.6.0 -&gt; new features for X2Go Client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6827">[ date ]</a>
+              <a href="thread.html#6827">[ thread ]</a>
+              <a href="subject.html#6827">[ subject ]</a>
+              <a href="author.html#6827">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>package: x2gousbmount
+severity: normal
+version: 1.1.0.2-0x2go2~git20131217.483+wheezy.heuler.1
+
+Hi, I have a USB device with several partitions.
+
+It's being detected by the automounter and shows up under /media like so:
+
+ls -lah /media/USB2.0_Mobile_Disk/
+total 16K
+drwxr-xr-x 5 root           root 100 Jan 10 12:16 .
+drwxr-xr-x 4 root           root  80 Jan 10 12:16 ..
+drwxr-xr-x 2 root           root  40 Jan 10 12:16 sdb
+drwxr-xr-x 4 x2gothinclient root 16K Jan  1  1970 sdb1
+drwxr-xr-x 2 root           root  40 Jan 10 12:16 sdb2
+
+As you can already see from the ownership tag, only sdb1 is actually 
+mounted.
+
+file -s /dev/sdb1:
+/dev/sdb1: sticky x86 boot sector, mkdosfs boot message display, code 
+offset 0x3c, OEM-ID &quot; mkdosfs&quot;, sectors/cluster 16, root entries 512, 
+Media descriptor 0xf8, sectors/FAT 208, heads 17, sectors 802816 
+(volumes &gt; 32 MB) , serial number 0x90e07535, label: &quot;           &quot;, FAT 
+(16 bit)
+
+I have to admit that the content of sdb2 is a bit unusual - it's an 
+ISO9660 filesystem like the one you usually find on a CD.
+file -s /dev/sdb2:
+/dev/sdb2: sticky # ISO 9660 CD-ROM filesystem data 'Debian wheezy 
+20131213-23:56    '
+
+Still, it's perfectly possible to mount it manually:
+mount /dev/sdb2 /media/USB2.0_Mobile_Disk/sdb2:
+mount: block device /dev/sdb2 is write-protected, mounting read-only
+
+mount
+[...]
+/dev/sdb1 on /media/USB2.0_Mobile_Disk/sdb1 type vfat 
+(ro,relatime,sync,uid=104,fmask=0022,dmask=0022,codepage=cp437,iocharset=utf8,shortname=mixed,uni_xlate,errors=remount-ro)
+/dev/sdb2 on /media/USB2.0_Mobile_Disk/sdb2 type iso9660 (ro,relatime)
+
+So this should be supported by the automounter as well.
+
+Note: I haven't tried what happens when you insert USB media with 
+several &quot;regulary formatted&quot; (FAT, ext_, ...) partitions, so I don't 
+know if the automounter is limited to mounting the first partition in 
+general, or if it is simply confused by the fact that this particular 
+USB medium contains an ISO9660-formatted partition.
+
+-Stefan
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006881.html">[X2Go-Dev] Suggestion to improve X2Go-TCE
+</A></li>
+	<LI>Next message: <A HREF="006829.html">[X2Go-Dev] libssh 0.6.0 -&gt; new features for X2Go Client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6827">[ date ]</a>
+              <a href="thread.html#6827">[ thread ]</a>
+              <a href="subject.html#6827">[ subject ]</a>
+              <a href="author.html#6827">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

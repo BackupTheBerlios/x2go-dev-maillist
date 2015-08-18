@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] New major distribution builds available for X2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3C4F3E0CFB.60006%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003466.html">
+   <LINK REL="Next"  HREF="003481.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] New major distribution builds available for X2go</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3C4F3E0CFB.60006%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] New major distribution builds available for X2go">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Fri Feb 17 09:16:59 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003466.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+        <LI>Next message: <A HREF="003481.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3472">[ date ]</a>
+              <a href="thread.html#3472">[ thread ]</a>
+              <a href="subject.html#3472">[ subject ]</a>
+              <a href="author.html#3472">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 16.02.2012 23:24, schrieb Jan Engelhardt:
+&gt;<i> 
+</I>&gt;<i> On Thursday 2012-02-16 09:06, Oleksandr Shneyder wrote:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=07f9dfa05ab83e094e823b4af8478b25addd0fa5">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=07f9dfa05ab83e094e823b4af8478b25addd0fa5</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Unfortunately, this patch breaking functionality of Xinerama. It rename
+</I>&gt;&gt;<i> libXinerama* to libNX_Xinerama*, which make impossible for X clients to
+</I>&gt;&gt;<i> find a modified version of Xinerama library under
+</I>&gt;&gt;<i> /usr/lib/nx/X11/Xinerama and they using a system libXinerama instead.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Simple making links
+</I>&gt;&gt;<i> /usr/lib/nx/X11/Xinerama/libNX_Xinerama* -&gt;
+</I>&gt;&gt;<i> /usr/lib/nx/X11/Xinerama/libXinerama*
+</I>&gt;&gt;<i> don't work, because due to new build procedure libXinerama is linked
+</I>&gt;&gt;<i> against libNX_Xext and libNX_X11, not libXext and libX11.
+</I>&gt;<i> 
+</I>&gt;<i> I don't know about the Xinerama/ subdirectory, it does not get installed
+</I>&gt;<i> by nx-libs.
+</I>
+It is a X2Go patch. It enable support for more as one display (for
+example thinclients with multihead)
+
+&gt;<i> But symlinking of /usr/lib/nx/X11/libXext.so.6 to
+</I>&gt;<i> /usr/lib/nx/X11/libNX_Xext.so.6 should work (talking about LD_LIBRARY_PATH-
+</I>&gt;<i> using programs) as long as the SONAME stays NX_Xext for automatic
+</I>&gt;<i> dependency finding of rpm (and perhaps deb?).
+</I>
+It is wrong solution. Only (nx|x2go)agent should be linked against
+nx-libs. X-clients should be linked against system X libraries.
+Exception is libXinerama. Against this library should be linked both -
+agent and client. But in case of agent libXinerama should use libXext
+and libX11 from nx-libs and in case of clients it should use the same
+libraries from system. For this reasons we exporting
+LD_LIBRARY_PATH=/usr/lib/nx/X11 by start of agent and
+LD_LIBRARY_PATH=/usr/lib/nx/X11/Xinerama (*but not /usr/lib/nx/X11*) by
+start of desktop environment.
+
+&gt;&gt;<i> As solution, I can suggest:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> leave libNX_Xinerama* under /usr/lib/nx/X11/
+</I>&gt;&gt;<i> make symbolic links /usr/lib/nx/X11/libNX_Xinerama* -&gt;
+</I>&gt;&gt;<i> /usr/lib/nx/X11/Xinerama/libXinerama*
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> link system libraries libX11 and libXext into /usr/lib/nx/X11/Xinerama
+</I>&gt;&gt;<i> /usr/lib/libX11* -&gt; /usr/lib/nx/X11/Xinerama/libNX_X11*
+</I>&gt;&gt;<i> /usr/lib/libXext* -&gt; /usr/lib/nx/X11/Xinerama/libNX_Xext*
+</I>&gt;<i> 
+</I>&gt;<i> You cannot touch my xorg-x11 libs.
+</I>
+I don't want to touch your xorg-x11 libs, I just want to make links from
+them to /usr/lib/nx/X11/Xinerama/ :
+ln -s /usr/lib/libX11.so.6 /usr/lib/nx/X11/Xinerama/libNX_X11.so.6
+ln -s /usr/lib/libXext.so.6 /usr/lib/nx/X11/Xinerama/libNX_Xext.so.6
+
+libXinerama should use a system libX11 and libXext. But because of your
+patch now it linked against libNX_X11 and libNX_Xext. This is why we
+should create such symbolic links.
+
+&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+regards,
+Alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120217/221c4730/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120217/221c4730/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003466.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+	<LI>Next message: <A HREF="003481.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3472">[ date ]</a>
+              <a href="thread.html#3472">[ thread ]</a>
+              <a href="subject.html#3472">[ subject ]</a>
+              <a href="author.html#3472">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

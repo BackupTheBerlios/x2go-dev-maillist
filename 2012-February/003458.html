@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Packaging%20nx-libs%20%28aka%20x2goagent%29%20for%20your%20distro&In-Reply-To=%3C20120216194430.10186ghzpbybzcsu%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003434.html">
+   <LINK REL="Next"  HREF="003461.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Packaging%20nx-libs%20%28aka%20x2goagent%29%20for%20your%20distro&In-Reply-To=%3C20120216194430.10186ghzpbybzcsu%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Feb 16 19:44:30 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003434.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+        <LI>Next message: <A HREF="003461.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3458">[ date ]</a>
+              <a href="thread.html#3458">[ thread ]</a>
+              <a href="subject.html#3458">[ subject ]</a>
+              <a href="author.html#3458">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi John,
+
+On Mi 15 Feb 2012 21:34:30 CET John Williams wrote:
+
+&gt;<i> On Wed, Feb 15, 2012 at 11:51 AM, Mike Gabriel
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> yes, I have a tarball roller script:
+</I>&gt;&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=blob;f=bin/nx-tarballrelease;h=f0e772f0d2556acb2f24fa8aefefa1734cfd5087;hb=21155f218d7f0ce09ea0f2c905075dec4d4132b4">http://code.x2go.org/gitweb?p=nx-libs.git;a=blob;f=bin/nx-tarballrelease;h=f0e772f0d2556acb2f24fa8aefefa1734cfd5087;hb=21155f218d7f0ce09ea0f2c905075dec4d4132b4</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I tried your script, but I had an error message. I'm not familiar with
+</I>&gt;<i> quilt, so I am not sure if I did something wrong or if there is an
+</I>&gt;<i> error somewhere.
+</I>&gt;<i>
+</I>&gt;<i> Here is the last bit of output from running your script:
+</I>&gt;<i>
+</I>&gt;<i> patching file nx-X11/lib/xkbfile/Imakefile
+</I>&gt;<i> patching file nx-X11/lib/xkbui/Imakefile
+</I>&gt;<i> patching file nx-X11/lib/zlib/Imakefile
+</I>&gt;<i> patching file nx-X11/programs/Xserver/Imakefile
+</I>&gt;<i> Hunk #3 FAILED at 1012.
+</I>&gt;<i> Hunk #4 succeeded at 1073 (offset -2 lines).
+</I>&gt;<i> 1 out of 4 hunks FAILED -- rejects in file nx-X11/programs/Xserver/Imakefile
+</I>&gt;<i> patching file nx-X11/programs/Xserver/hw/xfree86/parser/Imakefile
+</I>&gt;<i> patching file nxcompext/Makefile.in
+</I>&gt;<i> patching file nxcompshad/Makefile.in
+</I>&gt;<i> Patch  
+</I>&gt;<i> doc/applied-patches/600_nx-X11+nxcompext+nxcompshad_unique-libnames.full.patch
+</I>&gt;<i> does not apply (enforce with -f)
+</I>&gt;<i> + rm -f /tmp/tmp.XV8195vo1t
+</I>&gt;<i> + rm -rf /tmp/tmp.b4pEmIDX2f
+</I>
+The script is fixed:
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=shortlog;h=refs/heads/nx-buildscripts">http://code.x2go.org/gitweb?p=nx-libs.git;a=shortlog;h=refs/heads/nx-buildscripts</A>
+
+and also the patch file names within the nx-libs/debian/patches  
+folder. (suffix was .diff, not .patch):
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=7a6cf42d4b47b9f33372470a35f2dfbfc95cfabe">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=7a6cf42d4b47b9f33372470a35f2dfbfc95cfabe</A>
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=e63819e64530f1b786e512e5f4e433ad845979b7">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=e63819e64530f1b786e512e5f4e433ad845979b7</A>
+
+It was a dual problem. Update your script, update your working copy of  
+nx-libs.git and then the script should work...
+
+For a special version (redist-server/3.5.0.10) use:
+$ nx-tarballrelease 3.5.0.10 server
+
+For the latest stuff in Git use:
+$ nx-tarballrelease HEAD server
+
+The tarball will be stored in:
+../_releases_/source/nx-libs/nx-libs_&lt;VERSION&gt;-full.tar.gz
+
+Whereas &lt;VERSION&gt; is HEAD if ,,HEAD'' is used on the command line.
+
+Thanks for noticing this,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120216/cb5811a4/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120216/cb5811a4/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003434.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+	<LI>Next message: <A HREF="003461.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3458">[ date ]</a>
+              <a href="thread.html#3458">[ thread ]</a>
+              <a href="subject.html#3458">[ subject ]</a>
+              <a href="author.html#3458">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

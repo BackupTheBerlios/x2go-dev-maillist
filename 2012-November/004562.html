@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] Remove redundant tool &quot;socket-sucker&quot;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Remove%20redundant%20tool%20%22socket-sucker%22&In-Reply-To=%3C20121112085640.70964hw19ltlcb08%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004557.html">
+   <LINK REL="Next"  HREF="004554.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] Remove redundant tool &quot;socket-sucker&quot;</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Remove%20redundant%20tool%20%22socket-sucker%22&In-Reply-To=%3C20121112085640.70964hw19ltlcb08%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] Remove redundant tool &quot;socket-sucker&quot;">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Nov 12 08:56:40 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004557.html">[X2Go-Dev] [PATCH] Remove redundant tool &quot;socket-sucker&quot;
+</A></li>
+        <LI>Next message: <A HREF="004554.html">[X2Go-Dev] [PATCH] build: continue to run even in the absence of	AM_SILENT_RULES
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4562">[ date ]</a>
+              <a href="thread.html#4562">[ thread ]</a>
+              <a href="subject.html#4562">[ subject ]</a>
+              <a href="author.html#4562">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Jan,
+
+On So 11 Nov 2012 18:34:40 CET Jan Engelhardt wrote:
+
+&gt;<i> On Sunday 2012-11-11 14:01, Nable 80 wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> 1. There is also netcat (nc) and i'm in doubt what is more widespread
+</I>&gt;&gt;<i> in basic system installation: netcat or socat.
+</I>&gt;<i>
+</I>&gt;<i> It is not about what is most spread, but what actually makes sense.
+</I>&gt;<i>
+</I>&gt;<i> netcat in comparison is messy - <A HREF="https://lkml.org/lkml/2012/8/1/243">https://lkml.org/lkml/2012/8/1/243</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;&gt;<i> 2. It's better to use `git format-patch' and attach generated files
+</I>&gt;&gt;<i> (see &quot;man git-format-patch&quot;, it's really easy).
+</I>&gt;<i>
+</I>&gt;<i> I did use git format-patch (by way of git send-email), see the X-Mailer
+</I>&gt;<i> header. What generated file should be attached? Remember also that (a)
+</I>&gt;<i> attachments are frowned upon and (b) I hear git-am is very pesky in
+</I>&gt;<i> processing mails not in the format of {verbatim format-patch text}.
+</I>
+I have two personal preferences on this:
+
+1.
+
+  o git format-patch HEAD~N -&gt; creates a series of patch files
+  o attach the single patch files to a mail
+
+2.
+
+  o create a public git repos with a branch containing your patches (master
+    branch should be a copy of our master)
+  o send me a pull request by mail
+
+
+On sending mails with patches...
+
+Most convenient for me it will be to send patches to the X2Go BTS (bug  
+tracker system).
+
+Mail Template...
+
+&quot;&quot;&quot;
+From: &lt;you&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">submit at bugs.x2go.org</A>
+Subject: &lt;describe your patch&gt;
+
+Source: &lt;name of X2Go source project, see our Git repos for the project names&gt;
+Version: &lt;some of the latest tags or HEAD or a package version&gt;
+Severity: {wishlist,minor,normal,important,serious,grave,critical}
+Tags: patch
+
+&lt;describe your issue in detail here&gt;
+
+&quot;&quot;&quot;
+
+Attach the patch file(s) to this mail.
+
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121112/ea1a609e/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121112/ea1a609e/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004557.html">[X2Go-Dev] [PATCH] Remove redundant tool &quot;socket-sucker&quot;
+</A></li>
+	<LI>Next message: <A HREF="004554.html">[X2Go-Dev] [PATCH] build: continue to run even in the absence of	AM_SILENT_RULES
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4562">[ date ]</a>
+              <a href="thread.html#4562">[ thread ]</a>
+              <a href="subject.html#4562">[ subject ]</a>
+              <a href="author.html#4562">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

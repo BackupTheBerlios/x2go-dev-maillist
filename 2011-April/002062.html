@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Tagging in X2go Git
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Tagging%20in%20X2go%20Git&In-Reply-To=%3C20110419124942.1326472bok7jdb5y%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002061.html">
+   <LINK REL="Next"  HREF="002063.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Tagging in X2go Git</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Tagging%20in%20X2go%20Git&In-Reply-To=%3C20110419124942.1326472bok7jdb5y%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] Tagging in X2go Git">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Apr 19 12:49:42 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002061.html">[X2go-dev] Tagging in X2go Git
+</A></li>
+        <LI>Next message: <A HREF="002063.html">[X2go-dev] Tagging in X2go Git
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2062">[ date ]</a>
+              <a href="thread.html#2062">[ thread ]</a>
+              <a href="subject.html#2062">[ subject ]</a>
+              <a href="author.html#2062">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Reinhard,
+
+On Di 19 Apr 2011 12:29:20 CEST Reinhard Tartler wrote:
+
+&gt;<i> On Tue, Apr 19, 2011 at 12:22:02 (CEST), Mike Gabriel wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Sorry, I overread that part... Could this be automated?
+</I>&gt;<i>
+</I>&gt;<i> Automate what exactly?
+</I>&gt;<i>
+</I>&gt;<i> Besides, yes, launchpad provide an quite extensive API in form of a
+</I>&gt;<i> python library.
+</I>
+The nightly-builds (heuler) will always use the HEAD in Git. The  
+should-be-rather-stable-builds shall be packages that have already  
+been built by Launchpad and represent a state that is also marked in  
+Git (either by tag or branch-off).
+
+So a Launchpad automation I think of could be:
+
+   1a. we tag a project in Git with a special tag, e.g. build-main
+   1b. alternatively, when we tag a release version, we branch-off from master
+       in a branch called build-main
+   2. Launchpad notices this / gets notified by this and Launchpad will
+      build packages (nightlys) that are also automagically copied to  
+the stable
+      ppa.
+
+&gt;&gt;&gt;<i> Launchpad does not provide Debian chroots, but most probably the .debs
+</I>&gt;&gt;&gt;<i> for lucid work on squeeze as well.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I am currently working on a pbuilder setup that I will also need for
+</I>&gt;&gt;<i> another project. It will also be hosted on code.x2go.org and will be
+</I>&gt;&gt;<i> usable to any of the X2go developers. This pbuilder setup focuses on
+</I>&gt;&gt;<i> building in Debian chroots.
+</I>&gt;<i>
+</I>&gt;<i> So, have you thought about build scheduling and builds for both amd64
+</I>&gt;<i> and i386, and several debian distroreleases?
+</I>
+Yes, exactly, that's what I need here for my own projects. I currently  
+fiddle around with 4-6 virtual machines, my notebook etc. to build  
+proper packages... which is rather ridiculous...
+
+&gt;<i> For debimedia, we are currently working on getting something running
+</I>&gt;<i> based on this: <A HREF="http://git.grml.org/?p=grml-buildd.git;a=summary">http://git.grml.org/?p=grml-buildd.git;a=summary</A>
+</I>
+Great!!! I will take a look!!!
+
+&gt;<i> Should work for x2go as well.
+</I>
+Would be awesome!!!
+
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110419/809bcba0/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110419/809bcba0/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002061.html">[X2go-dev] Tagging in X2go Git
+</A></li>
+	<LI>Next message: <A HREF="002063.html">[X2go-dev] Tagging in X2go Git
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2062">[ date ]</a>
+              <a href="thread.html#2062">[ thread ]</a>
+              <a href="subject.html#2062">[ subject ]</a>
+              <a href="author.html#2062">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

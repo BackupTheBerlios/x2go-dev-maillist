@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#255: X2Go issue (in src:x2goclient) has been marked	as pending for release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23255%3A%20X2Go%20issue%20%28in%20src%3Ax2goclient%29%20has%20been%20marked%0A%09as%20pending%20for%20release&In-Reply-To=%3Ctrinity-478ab187-61b8-444c-9213-16c03404dc6b-1372660304458%40msvc031%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005925.html">
+   <LINK REL="Next"  HREF="005912.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#255: X2Go issue (in src:x2goclient) has been marked	as pending for release</H1>
+    <B>xypron.glpk at gmx.de</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23255%3A%20X2Go%20issue%20%28in%20src%3Ax2goclient%29%20has%20been%20marked%0A%09as%20pending%20for%20release&In-Reply-To=%3Ctrinity-478ab187-61b8-444c-9213-16c03404dc6b-1372660304458%40msvc031%3E"
+       TITLE="[X2Go-Dev] Bug#255: X2Go issue (in src:x2goclient) has been marked	as pending for release">xypron.glpk at gmx.de
+       </A><BR>
+    <I>Mon Jul  1 08:31:44 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005925.html">[X2Go-Dev] Bug#258: Bug#258: Bug#258: Bug#258: SECURITY: x2goclient	allows clipboard sniffing
+</A></li>
+        <LI>Next message: <A HREF="005912.html">[X2Go-Dev] Bug#255: X2Go issue (in src:x2goclient) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5907">[ date ]</a>
+              <a href="thread.html#5907">[ thread ]</a>
+              <a href="subject.html#5907">[ subject ]</a>
+              <a href="author.html#5907">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Mike
+
++override_dh_strip:
++       dh_strip --dbg-package=x2goclient-dbg
+
+implies debug symbols for all packaged built.
+
+I guess additonal parameter -p x2goclient is needed.
+
+But this needs to be checked.
+
+Best regards
+
+Heinrich Schuchardt
+
+<A HREF="http://www.xypron.de">http://www.xypron.de</A>
+
+Am 01.07.13 um 02:14 schrieb Mike Gabriel
+
+&gt;<i> tag #255 pending
+</I>&gt;<i>
+</I>&gt;<i> fixed #255 4.0.1.1
+</I>&gt;<i>
+</I>&gt;<i> thanks
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> X2Go issue #255 (src:x2goclient) reported by you has been
+</I>&gt;<i>
+</I>&gt;<i> fixed in X2Go Git. You can see the changelog below, and you can
+</I>&gt;<i>
+</I>&gt;<i> check the diff of the fix at:
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     <A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=2f8cdb2">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=2f8cdb2</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> The issue will most likely be fixed in src:x2goclient (4.0.1.1).
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> light+love
+</I>&gt;<i>
+</I>&gt;<i> X2Go Git Admin (on behalf of the sender of this mail)
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> ---
+</I>&gt;<i>
+</I>&gt;<i> commit 2f8cdb2dd5778cdd8104c6427c25167f7c0c3bf9
+</I>&gt;<i>
+</I>&gt;<i> Author: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;<i>
+</I>&gt;<i> Date:   Mon Jul 1 02:13:33 2013 +0200
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>     Provide bin:package with debug symbols for X2Go Client. (Fixes: #255).
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/debian/changelog b/debian/changelog
+</I>&gt;<i> 
+</I>&gt;<i> index 0ca8369..dd7122b 100644
+</I>&gt;<i>
+</I>&gt;<i> --- a/debian/changelog
+</I>&gt;<i>
+</I>&gt;<i> +++ b/debian/changelog
+</I>&gt;<i>
+</I>&gt;<i> @@ -30,6 +30,7 @@ x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
+</I>&gt;<i>
+</I>&gt;<i>        just calling free(). Required under MS Windows as documented in libssh2
+</I>&gt;<i>
+</I>&gt;<i>        API. (Fixes: #243). (For further details see:
+</I>&gt;<i>
+</I>&gt;<i>        <A HREF="http://api.libssh.org/master/group__libssh__session.html">http://api.libssh.org/master/group__libssh__session.html</A>).
+</I>&gt;<i>
+</I>&gt;<i> +  * Provide bin:package with debug symbols for X2Go Client. (Fixes: #255).
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>    [ Ezra B&#252;hler ]
+</I>&gt;<i>
+</I>&gt;<i>    * New upstream version (4.0.1.1):
+</I></PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005925.html">[X2Go-Dev] Bug#258: Bug#258: Bug#258: Bug#258: SECURITY: x2goclient	allows clipboard sniffing
+</A></li>
+	<LI>Next message: <A HREF="005912.html">[X2Go-Dev] Bug#255: X2Go issue (in src:x2goclient) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5907">[ date ]</a>
+              <a href="thread.html#5907">[ thread ]</a>
+              <a href="subject.html#5907">[ subject ]</a>
+              <a href="author.html#5907">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

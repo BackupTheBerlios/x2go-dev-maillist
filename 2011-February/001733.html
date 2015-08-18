@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go security Issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20security%20Issues&In-Reply-To=%3C4D58F4AD.4030203%40lavabit.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001732.html">
+   <LINK REL="Next"  HREF="001734.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go security Issues</H1>
+    <B>Kevin Moellering</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20security%20Issues&In-Reply-To=%3C4D58F4AD.4030203%40lavabit.com%3E"
+       TITLE="[X2go-dev] x2go security Issues">kevinmoellering at lavabit.com
+       </A><BR>
+    <I>Mon Feb 14 10:23:57 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001732.html">[X2go-dev] x2go-keyring in GIT
+</A></li>
+        <LI>Next message: <A HREF="001734.html">[X2go-dev] x2go security Issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1733">[ date ]</a>
+              <a href="thread.html#1733">[ thread ]</a>
+              <a href="subject.html#1733">[ subject ]</a>
+              <a href="author.html#1733">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello x2go devs,
+
+I've noticed that although you seem to have solved the security flaws in 
+the database access the preinst script in the repository for lenny [1] 
+has not been updated since late 2009. It still contains the command to 
+give all users sudo root permissions on the x2togowrapper.
+
+I would appreciate to know some kind of time frame when you are planning 
+to integrate the update into your repository, because we're planning to 
+install x2go on around 50 hosts of a PC pool at the RWTH Aachen 
+University. Since we do not want to go through the process of checking 
+out new sources, building them and installing them now and then on every 
+machine, we would like to use the deb-repository with apt-get and not 
+some git based source repository.
+
+Furthermore I've got a rather special question. On a current test-system 
+  we have replaced the x2gousers group by a custom group that each user 
+that should be allowed to use x2go already is included in. We have 
+decided to do so, because our we do not want to add additional groups.
+Since you are going to change this specific line in the sudoers file, I 
+wonder if this is still possible.
+If you are just replacing the semantics of &quot;everybody in x2gousers gets 
+root for /usr/bin/x2gopgwrapper&quot; by &quot;everybody in x2gousers gets 
+$someSpecialX2goUser for /usr/bin/x2gopgwrapper&quot; (where 
+$someSpecialX2goUser is a user that is just allowed to access the 
+databases) the should be easily possible, shouldn't it?
+
+And last but not least: You're doing a very good piece of work :)
+
+Thanks in advance for your help.
+
+With regards,
+
+Kevin M&#246;llering
+
+
+
+
+[1] <A HREF="http://x2go.obviously-nice.de/deb/pool-lenny/x2goserver/">http://x2go.obviously-nice.de/deb/pool-lenny/x2goserver/</A>
+
+Mike Gabriel schrieb:
+&gt;<i> Hi Alex,
+</I>&gt;<i> 
+</I>&gt;<i> On Do 20 Jan 2011 17:26:28 CET &quot;John A. Sullivan III&quot; wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> On Thu, 2011-01-20 at 16:17 +0100, Oleksandr Shneyder wrote:
+</I>&gt;&gt;&gt;<i> Am 20.01.2011 15:39, schrieb Alexander Wuerstlein:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> &gt; Forget that, /usr/bin/x2gopgwrapper is of course trivially exploitable
+</I>&gt;&gt;&gt;<i> &gt; to get root in 2 ways:
+</I>&gt;&gt;&gt;<i> &gt; - in the current git version, set 'startshadowagent' as the first
+</I>&gt;&gt;&gt;<i> &gt;   parameter. Choose the 11th parameter in a way such that 
+</I>&gt;&gt;&gt;<i> SHADOW_USER is
+</I>&gt;&gt;&gt;<i> &gt;   set to 'root'. Set the second parameter ($CLIENT) to something like
+</I>&gt;&gt;&gt;<i> &gt;   'foo ; rm -fr /'. Profit.
+</I>&gt;&gt;&gt;<i> &gt; - in the git as well as the stable version, when the database is 
+</I>&gt;&gt;&gt;<i> sqlite:
+</I>&gt;&gt;&gt;<i> &gt;   the x2gopgwrapper_sqlite runs as root meaning that any sql injection
+</I>&gt;&gt;&gt;<i> &gt;   into sqlite would run as root. One possible injection would set the
+</I>&gt;&gt;&gt;<i> &gt;   sqlite output file to /etc/shadow (via .output /etc/shadow) and
+</I>&gt;&gt;&gt;<i> &gt;   overwrite it with a customized version including a new root password
+</I>&gt;&gt;&gt;<i> &gt;   chosen by the attacker. Profit.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I see, thank you Alexander. We'll fix it as quick as possible.
+</I>&gt;&gt;&gt;<i> Regards,
+</I>&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;<i> It has probably been roughly a year but I had posted some changes we
+</I>&gt;&gt;<i> made because we were very uncomfortable calling PostgreSQL as postgres.
+</I>&gt;&gt;<i> In fact, we combined it with our vserver work and eventually used user
+</I>&gt;&gt;<i> based schemas so we could use a single database for any number of X2Go
+</I>&gt;&gt;<i> Servers - John
+</I>&gt;<i> 
+</I>&gt;<i> John sent these patches (with docs!!!) to the list on 20100702. I had 
+</I>&gt;<i> taken a look at them then and they looked quite promising. They are 
+</I>&gt;<i> definitely worth looking at to address this issue.
+</I>&gt;<i> 
+</I>&gt;<i> Cheerio,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> ------------------------------------------------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001732.html">[X2go-dev] x2go-keyring in GIT
+</A></li>
+	<LI>Next message: <A HREF="001734.html">[X2go-dev] x2go security Issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1733">[ date ]</a>
+              <a href="thread.html#1733">[ thread ]</a>
+              <a href="subject.html#1733">[ subject ]</a>
+              <a href="author.html#1733">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

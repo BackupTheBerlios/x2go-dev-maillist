@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] pyhoca/x2go, ubuntu 10.10, Android Tablet -- status update
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20pyhoca/x2go%2C%20ubuntu%2010.10%2C%0A%20Android%20Tablet%20--%20status%20update&In-Reply-To=%3C20110712013207.1640701zzf3j78xj%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002422.html">
+   <LINK REL="Next"  HREF="002423.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] pyhoca/x2go, ubuntu 10.10, Android Tablet -- status update</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20pyhoca/x2go%2C%20ubuntu%2010.10%2C%0A%20Android%20Tablet%20--%20status%20update&In-Reply-To=%3C20110712013207.1640701zzf3j78xj%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] pyhoca/x2go, ubuntu 10.10, Android Tablet -- status update">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Jul 12 01:32:07 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002422.html">[X2go-Dev] pyhoca/x2go, ubuntu 10.10,	Android Tablet -- status update
+</A></li>
+        <LI>Next message: <A HREF="002423.html">[X2go-Dev] x2go live-build based livesystems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2428">[ date ]</a>
+              <a href="thread.html#2428">[ thread ]</a>
+              <a href="subject.html#2428">[ subject ]</a>
+              <a href="author.html#2428">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Brian,
+
+On Sa 09 Jul 2011 13:54:12 CEST brian mullan wrote:
+
+&gt;<i> Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+</I>&gt;<i> Xlib:  extension &quot;RANDR&quot; missing on display &quot;:1.0&quot;.
+</I>
+the X-Server you have does not seem to support RANDR. I am not sure if  
+this lets nxproxy/x2goagent startup fail on your tablet. Maybe...
+
+&gt;<i> shm_open() failed: Function not implemented
+</I>
+shm file systems are not support, do not know if this is also fatal...
+
+&gt;<i> Traceback (most recent call last):
+</I>&gt;<i>   File &quot;/usr/lib/pymodules/python2.6/pyhoca/wxgui/frontend.py&quot;, line 647, in
+</I>&gt;<i> OnP
+</I>&gt;<i> rintingPreferences
+</I>&gt;<i>     _pp_dialog = printingprefs.PyHocaGUI_PrintingPreferences(self)
+</I>&gt;<i>   File &quot;/usr/lib/pymodules/python2.6/pyhoca/wxgui/printingprefs.py&quot;, line
+</I>&gt;<i> 77, in
+</I>&gt;<i>  __init__
+</I>&gt;<i>     cups_connection = cups.Connection()
+</I>&gt;<i> RuntimeError: failed to connect to server
+</I>
+Maybe your session fails because of this Python X2go bug (CUPS is not  
+installed on the client, this should be handled in Python X2go), try  
+to use another default ,,print action'' with
+
+   o right-click on the PyHoca icon
+   o print options menu
+
+Greets,
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110712/89d60746/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110712/89d60746/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002422.html">[X2go-Dev] pyhoca/x2go, ubuntu 10.10,	Android Tablet -- status update
+</A></li>
+	<LI>Next message: <A HREF="002423.html">[X2go-Dev] x2go live-build based livesystems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2428">[ date ]</a>
+              <a href="thread.html#2428">[ thread ]</a>
+              <a href="subject.html#2428">[ subject ]</a>
+              <a href="author.html#2428">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

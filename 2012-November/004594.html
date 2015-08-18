@@ -1,0 +1,510 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] x2gopath: new helper to yield distro paths
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20x2gopath%3A%20new%20helper%20to%20yield%20distro%20paths&In-Reply-To=%3C1353685691-9839-1-git-send-email-jengelh%40inai.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004593.html">
+   <LINK REL="Next"  HREF="004603.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] x2gopath: new helper to yield distro paths</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20x2gopath%3A%20new%20helper%20to%20yield%20distro%20paths&In-Reply-To=%3C1353685691-9839-1-git-send-email-jengelh%40inai.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] x2gopath: new helper to yield distro paths">jengelh at inai.de
+       </A><BR>
+    <I>Fri Nov 23 16:48:11 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004593.html">[X2Go-Dev] Processed (with 3 errors): Fixed in x2goserver 3.1.1.9
+</A></li>
+        <LI>Next message: <A HREF="004603.html">[X2Go-Dev] [PATCH] x2gopath: new helper to yield distro paths
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4594">[ date ]</a>
+              <a href="thread.html#4594">[ thread ]</a>
+              <a href="subject.html#4594">[ subject ]</a>
+              <a href="author.html#4594">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Distributions have different directory layouts and names, so files
+may not necessarily be located in &lt;base&gt;/lib/x2go at all times. Do
+not hardcode such paths and have the programs instead use the new
+x2gopath helper (obsoletes x2gobasepath).
+---
+Patch is also retrievable from
+
+	<A HREF="git://git.inai.de/x2goserver">git://git.inai.de/x2goserver</A> master
+
+ .../share/x2gofeature.d/x2goserver-compat.features |    2 +-
+ .../bin/x2goserver-run-extensions                  |    4 +--
+ .../man/man8/x2goserver-run-extensions.8           |    4 +--
+ .../x2gofeature.d/x2goserver-extensions.features   |    2 +-
+ .../x2gofeature.d/x2goserver-fmbindings.features   |    2 +-
+ .../x2gofeature.d/x2goserver-printing.features     |    2 +-
+ .../share/x2gofeature.d/x2goserver-pyhoca.features |    2 +-
+ x2goserver-xsession/etc/Xsession                   |    4 ++-
+ .../x2gofeature.d/x2goserver-xsession.features     |    2 +-
+ x2goserver/bin/x2gobasepath                        |   31 ++------------------
+ x2goserver/bin/x2gocmdexitmessage                  |    2 +-
+ x2goserver/bin/x2gofeature                         |    4 +--
+ x2goserver/bin/x2gofeaturelist                     |    4 +--
+ x2goserver/bin/x2gopath                            |   19 ++++++++++++
+ x2goserver/bin/x2goresume-session                  |    2 +-
+ x2goserver/bin/x2goruncommand                      |    2 +-
+ x2goserver/bin/x2gosetkeyboard                     |    2 +-
+ x2goserver/bin/x2gostartagent                      |    2 +-
+ x2goserver/bin/x2gosuspend-session                 |    2 +-
+ x2goserver/bin/x2goterminate-session               |    2 +-
+ x2goserver/bin/x2goversion                         |    2 +-
+ x2goserver/man/man8/x2gopath.8                     |   28 ++++++++++++++++++
+ x2goserver/sbin/x2gocleansessions                  |    2 +-
+ x2goserver/sbin/x2golistsessions_root              |    2 +-
+ x2goserver/share/x2gofeature.d/x2goserver.features |    2 +-
+ 25 files changed, 77 insertions(+), 55 deletions(-)
+ create mode 100755 x2goserver/bin/x2gopath
+ create mode 100644 x2goserver/man/man8/x2gopath.8
+
+diff --git a/x2goserver-compat/share/x2gofeature.d/x2goserver-compat.features b/x2goserver-compat/share/x2gofeature.d/x2goserver-compat.features
+index d180d95..f4a9376 100755
+--- a/x2goserver-compat/share/x2gofeature.d/x2goserver-compat.features
++++ b/x2goserver-compat/share/x2gofeature.d/x2goserver-compat.features
+@@ -20,7 +20,7 @@
+ # Copyright (C) 2011-2012  Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+ # Copyright (C) 2011-2012  Heinz-Markus Graesing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heinz-m.graesing at obviously-nice.de</A>&gt;
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+diff --git a/x2goserver-extensions/bin/x2goserver-run-extensions b/x2goserver-extensions/bin/x2goserver-run-extensions
+index 70636f6..f89515c 100755
+--- a/x2goserver-extensions/bin/x2goserver-run-extensions
++++ b/x2goserver-extensions/bin/x2goserver-run-extensions
+@@ -25,7 +25,7 @@ set -e
+ 
+ test -z $2 &amp;&amp; { echo &quot;usage: $(basename $0) &lt;X2GO_SESSION_ID&gt; &lt;MODALITY&gt;&quot;; exit -1; }
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+@@ -33,7 +33,7 @@ X2GO_SESSION=&quot;$1&quot;
+ X2GO_MODALITY=&quot;$2&quot;
+ 
+ # scan extensions and execute them
+-find /usr/lib/x2go/extensions/${X2GO_MODALITY}.d/ -maxdepth 1 -mindepth 1 | egrep &quot;/[0-9]{3}_[[:alnum:]]+&quot; | sort | while read x2go_extension; do
++find &quot;$X2GO_LIB_PATH/extensions/$X2GO_MODALITY.d/&quot; -maxdepth 1 -mindepth 1 | egrep &quot;/[0-9]{3}_[[:alnum:]]+&quot; | sort | while read x2go_extension; do
+ 	$X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;debug&quot; &quot;executing $x2go_extension with option $X2GO_SESSION&quot;
+ 	$x2go_extension &quot;$X2GO_SESSION&quot; &amp;&gt;/dev/null &amp;&amp; {
+ 		$X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$x2go_extension ($(basename $0)) for session $X2GO_SESSION has finished sucessfully&quot;
+diff --git a/x2goserver-extensions/man/man8/x2goserver-run-extensions.8 b/x2goserver-extensions/man/man8/x2goserver-run-extensions.8
+index e2c0c34..3fe1e4f 100644
+--- a/x2goserver-extensions/man/man8/x2goserver-run-extensions.8
++++ b/x2goserver-extensions/man/man8/x2goserver-run-extensions.8
+@@ -36,9 +36,9 @@ Calling X2Go Server core scripts currently are: \fBx2gostartagent(8)\fR, \fBx2go
+ .PP
+ The modality names all refer to a sub-directory of the path:
+ 
+-  \fI&lt;INSTALL_PREFIX&gt;/lib/x2go/extensions\fR,
++  \fI&lt;libexecdir&gt;/x2go/extensions\fR,
+ 
+-where &lt;INSTALL_PREFIX&gt; mostly is /usr on commonly-used GNU/Linux systems.
++where &lt;libexecdir&gt; is /usr/libexec/x2go or /usr/lib/x2go on commonly-used GNU/Linux systems.
+ .PP
+ In any of these sub-directories third-party X2Go extension packages can place scripts or binaries that will then get executed by the core X2Go server
+ commands, either before or after the essential functionality (e.g. x2goagent startup, x2goagent suspension, x2goagent resumption, etc.) or on failure of that
+diff --git a/x2goserver-extensions/share/x2gofeature.d/x2goserver-extensions.features b/x2goserver-extensions/share/x2gofeature.d/x2goserver-extensions.features
+index 2a21cad..7f89a5c 100755
+--- a/x2goserver-extensions/share/x2gofeature.d/x2goserver-extensions.features
++++ b/x2goserver-extensions/share/x2gofeature.d/x2goserver-extensions.features
+@@ -20,7 +20,7 @@
+ # Copyright (C) 2011-2012  Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+ # Copyright (C) 2011-2012  Heinz-Markus Graesing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heinz-m.graesing at obviously-nice.de</A>&gt;
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+diff --git a/x2goserver-fmbindings/share/x2go/x2gofeature.d/x2goserver-fmbindings.features b/x2goserver-fmbindings/share/x2go/x2gofeature.d/x2goserver-fmbindings.features
+index c1d5827..52f6111 100755
+--- a/x2goserver-fmbindings/share/x2go/x2gofeature.d/x2goserver-fmbindings.features
++++ b/x2goserver-fmbindings/share/x2go/x2gofeature.d/x2goserver-fmbindings.features
+@@ -20,7 +20,7 @@
+ # Copyright (C) 2011  Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+ # Copyright (C) 2011  Heinz-Markus Graesing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heinz-m.graesing at obviously-nice.de</A>&gt;
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+diff --git a/x2goserver-printing/share/x2gofeature.d/x2goserver-printing.features b/x2goserver-printing/share/x2gofeature.d/x2goserver-printing.features
+index eb64533..bbe195c 100755
+--- a/x2goserver-printing/share/x2gofeature.d/x2goserver-printing.features
++++ b/x2goserver-printing/share/x2gofeature.d/x2goserver-printing.features
+@@ -20,7 +20,7 @@
+ # Copyright (C) 2011-2012  Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+ # Copyright (C) 2011-2012  Heinz-Markus Graesing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heinz-m.graesing at obviously-nice.de</A>&gt;
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+diff --git a/x2goserver-pyhoca/share/x2gofeature.d/x2goserver-pyhoca.features b/x2goserver-pyhoca/share/x2gofeature.d/x2goserver-pyhoca.features
+index 2411c0e..8c3e4b5 100755
+--- a/x2goserver-pyhoca/share/x2gofeature.d/x2goserver-pyhoca.features
++++ b/x2goserver-pyhoca/share/x2gofeature.d/x2goserver-pyhoca.features
+@@ -20,7 +20,7 @@
+ # Copyright (C) 2011-2012  Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+ # Copyright (C) 2011-2012  Heinz-Markus Graesing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heinz-m.graesing at obviously-nice.de</A>&gt;
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+diff --git a/x2goserver-xsession/etc/Xsession b/x2goserver-xsession/etc/Xsession
+index c241b41..9fd5104 100755
+--- a/x2goserver-xsession/etc/Xsession
++++ b/x2goserver-xsession/etc/Xsession
+@@ -8,6 +8,8 @@
+ 
+ set -e
+ 
++X2GO_LIBEXEC_PATH=&quot;$(x2gopath libexec)&quot;;
++
+ PROGNAME=XSession-x2go
+ 
+ message () {
+@@ -110,7 +112,7 @@ if [ -n &quot;$SESSIONFILES&quot; ]; then
+ 
+     set +e
+     for SESSIONFILE in $SESSIONFILES; do
+-        /usr/lib/x2go/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;executing $SESSIONFILE&quot;
++        &quot;$X2GO_LIBEXEC_PATH/x2gosyslog&quot; &quot;$0&quot; &quot;info&quot; &quot;executing $SESSIONFILE&quot;
+         . $SESSIONFILE
+     done
+     set -e
+diff --git a/x2goserver-xsession/share/x2gofeature.d/x2goserver-xsession.features b/x2goserver-xsession/share/x2gofeature.d/x2goserver-xsession.features
+index cc20f85..f4eb3dc 100755
+--- a/x2goserver-xsession/share/x2gofeature.d/x2goserver-xsession.features
++++ b/x2goserver-xsession/share/x2gofeature.d/x2goserver-xsession.features
+@@ -20,7 +20,7 @@
+ # Copyright (C) 2011-2012  Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+ # Copyright (C) 2011-2012  Heinz-Markus Graesing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heinz-m.graesing at obviously-nice.de</A>&gt;
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+diff --git a/x2goserver/bin/x2gobasepath b/x2goserver/bin/x2gobasepath
+index 35f18bd..f6d8abc 100755
+--- a/x2goserver/bin/x2gobasepath
++++ b/x2goserver/bin/x2gobasepath
+@@ -1,30 +1,3 @@
+-#!/usr/bin/perl
++#!/bin/sh
+ 
+-# Copyright (C) 2007-2012 X2Go Project - <A HREF="http://wiki.x2go.org">http://wiki.x2go.org</A>
+-#
+-# This program is free software; you can redistribute it and/or modify
+-# it under the terms of the GNU General Public License as published by
+-# the Free Software Foundation; either version 2 of the License, or
+-# (at your option) any later version.
+-#
+-# This program is distributed in the hope that it will be useful,
+-# but WITHOUT ANY WARRANTY; without even the implied warranty of
+-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+-# GNU General Public License for more details.
+-#
+-# You should have received a copy of the GNU General Public License
+-# along with this program; if not, write to the
+-# Free Software Foundation, Inc.,
+-# 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
+-#
+-# Copyright (C) 2007-2012  Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+-
+-use strict;
+-use Cwd;
+-use Cwd q{abs_path};
+-use File::Basename;
+-
+-my $dir = dirname($0);
+-my $base_path = abs_path(&quot;$dir/..&quot;); 
+-
+-print &quot;$base_path&quot;;
++exec x2gopath base &quot;$@&quot;;
+diff --git a/x2goserver/bin/x2gocmdexitmessage b/x2goserver/bin/x2gocmdexitmessage
+index a17bb9f..1e6b022 100755
+--- a/x2goserver/bin/x2gocmdexitmessage
++++ b/x2goserver/bin/x2gocmdexitmessage
+@@ -20,7 +20,7 @@
+ # Copyright (C) 2007-2012  Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+ # Copyright (C) 2007-2012  Heinz-Markus Graesing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heinz-m.graesing at obviously-nice.de</A>&gt;
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ X2GO_ROOT=${HOME}/.x2go
+ MESSAGE_FILE=$X2GO_ROOT/C-$1/cmdoutput
+ 
+diff --git a/x2goserver/bin/x2gofeature b/x2goserver/bin/x2gofeature
+index f379070..c2c851b 100755
+--- a/x2goserver/bin/x2gofeature
++++ b/x2goserver/bin/x2gofeature
+@@ -22,8 +22,8 @@
+ 
+ [ -z $1 ] &amp;&amp; { echo usage: &quot;$(basename $0) &lt;X2GO_FEATURE_NAME&gt;&quot;; exit -2; }
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
+-X2GO_SHARE_PATH=`echo -n \$(x2gobasepath)/share/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
++X2GO_SHARE_PATH=&quot;$(x2gopath share)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+diff --git a/x2goserver/bin/x2gofeaturelist b/x2goserver/bin/x2gofeaturelist
+index 1258a77..44b3bfc 100755
+--- a/x2goserver/bin/x2gofeaturelist
++++ b/x2goserver/bin/x2gofeaturelist
+@@ -19,8 +19,8 @@
+ #
+ # Copyright (C) 2011-2012  Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
+-X2GO_SHARE_PATH=`echo -n \$(x2gobasepath)/share/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
++X2GO_SHARE_PATH=&quot;$(x2gopath share)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+diff --git a/x2goserver/bin/x2gopath b/x2goserver/bin/x2gopath
+new file mode 100755
+index 0000000..6d43616
+--- /dev/null
++++ b/x2goserver/bin/x2gopath
+@@ -0,0 +1,19 @@
++#!/bin/sh
++
++base=&quot;${0%/*}&quot;;
++if test &quot;$base&quot; = &quot;$0&quot;; then
++	base=&quot;.&quot;;
++fi;
++base=$(readlink -f &quot;$base/..&quot;);
++# The following section is subject to substitution by distro packaging tools.
++case &quot;$1&quot; in
++base) echo -n &quot;$base&quot;;;
++lib) echo -n &quot;$base/lib/x2go&quot;;;
++libexec) echo -n &quot;$base/lib/x2go&quot;;;
++share) echo -n &quot;$base/share/x2go&quot;;;
++xinerama) echo -n &quot;/usr/lib/nx/X11/Xinerama&quot;;;
++*) exit 1;;
++esac;
++if test -t 1; then
++	echo &quot;&quot;;
++fi;
+diff --git a/x2goserver/bin/x2goresume-session b/x2goserver/bin/x2goresume-session
+index cddbf05..f4b5624 100755
+--- a/x2goserver/bin/x2goresume-session
++++ b/x2goserver/bin/x2goresume-session
+@@ -28,7 +28,7 @@ X2GO_KBD_LAYOUT=&quot;$5&quot;
+ X2GO_KBD_TYPE=&quot;$6&quot;
+ X2GO_SET_KBD=&quot;$7&quot;
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ X2GO_AGENT_PID=`$X2GO_LIB_PATH/x2gogetagent &quot;$SESSION_NAME&quot;`
+ 
+ X2GO_ROOT=&quot;${HOME}/.x2go&quot;
+diff --git a/x2goserver/bin/x2goruncommand b/x2goserver/bin/x2goruncommand
+index 27bb3b5..d8d24da 100755
+--- a/x2goserver/bin/x2goruncommand
++++ b/x2goserver/bin/x2goruncommand
+@@ -27,7 +27,7 @@ cmd=$5
+ sndsys=$6
+ X2GO_SESS_TYPE=$7
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+diff --git a/x2goserver/bin/x2gosetkeyboard b/x2goserver/bin/x2gosetkeyboard
+index 949af5e..cb99b40 100755
+--- a/x2goserver/bin/x2gosetkeyboard
++++ b/x2goserver/bin/x2gosetkeyboard
+@@ -21,7 +21,7 @@
+ # Copyright (C) 2011-2012  Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+ # Copyright (C) 2011-2012  Heinz-Markus Graesing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heinz-m.graesing at obviously-nice.de</A>&gt;
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+diff --git a/x2goserver/bin/x2gostartagent b/x2goserver/bin/x2gostartagent
+index 5499d15..fae66ab 100755
+--- a/x2goserver/bin/x2gostartagent
++++ b/x2goserver/bin/x2gostartagent
+@@ -20,7 +20,7 @@
+ # Copyright (C) 2007-2012  Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+ # Copyright (C) 2007-2012  Heinz-Markus Graesing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heinz-m.graesing at obviously-nice.de</A>&gt;
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+diff --git a/x2goserver/bin/x2gosuspend-session b/x2goserver/bin/x2gosuspend-session
+index f823c69..645c352 100755
+--- a/x2goserver/bin/x2gosuspend-session
++++ b/x2goserver/bin/x2gosuspend-session
+@@ -26,7 +26,7 @@ else
+ 	SESSION_NAME=&quot;$X2GO_SESSION&quot;
+ fi
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+diff --git a/x2goserver/bin/x2goterminate-session b/x2goserver/bin/x2goterminate-session
+index a661dfc..9819498 100755
+--- a/x2goserver/bin/x2goterminate-session
++++ b/x2goserver/bin/x2goterminate-session
+@@ -26,7 +26,7 @@ else
+ 	SESSION_NAME=&quot;$X2GO_SESSION&quot;
+ fi
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+diff --git a/x2goserver/bin/x2goversion b/x2goserver/bin/x2goversion
+index a1fea45..eee00db 100755
+--- a/x2goserver/bin/x2goversion
++++ b/x2goserver/bin/x2goversion
+@@ -20,7 +20,7 @@
+ # Copyright (C) 2011-2012  Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+ # Copyright (C) 2011-2012  Heinz-Markus Graesing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heinz-m.graesing at obviously-nice.de</A>&gt;
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+diff --git a/x2goserver/man/man8/x2gopath.8 b/x2goserver/man/man8/x2gopath.8
+new file mode 100644
+index 0000000..a8d1cbb
+--- /dev/null
++++ b/x2goserver/man/man8/x2gopath.8
+@@ -0,0 +1,28 @@
++.TH x2gopath 8 &quot;Feb 2012&quot; &quot;Version 3.1.0.x&quot; &quot;X2Go Server Tool&quot;
++.SH Name
++.PP
++x2gopath - Show X2Go Server installation paths
++.SH Synopsis
++.PP
++\fBx2gopath\fP {\fBbase\fP|\fBlib\fP|\fBlibexec\fP|\fBshare\fP}
++.SH Description
++.PP
++\fBx2gopath\fP displays the paths of the selected X2Go installation directory.
++.TP
++\fBbase\fP
++The prefix under which X2Go was installed. This is generally \fB/usr\fP or
++\fB/usr/local\fP.
++.TP
++\fBlib\fP
++The location of X2Go architecture-dependent parts (e.g. libraries,
++but also Perl modules).
++.\&quot; Possible examplares are /usr/lib64/x2go (traditional biarch) and
++.\&quot; /usr/lib/x86_64-gnu-linux/x2go (Debian-style multiarch)
++.TP
++\fBlibexec\fP
++The location of private X2Go binaries.
++.\&quot; Possible examples are /usr/libexec/x2go and /usr/lib/x2go.
++.TP
++\fBshare\fP
++The location of X2Go's data files.
++.\&quot; prefix + /share/x2go
+diff --git a/x2goserver/sbin/x2gocleansessions b/x2goserver/sbin/x2gocleansessions
+index 3eb8722..b160dc4 100755
+--- a/x2goserver/sbin/x2gocleansessions
++++ b/x2goserver/sbin/x2gocleansessions
+@@ -24,7 +24,7 @@ use strict;
+ use Sys::Hostname;
+ use Sys::Syslog qw( :standard :macros );
+ 
+-my $x2go_lib_path=`echo -n \$(x2gobasepath)/lib/x2go`;
++my $x2go_lib_path = `x2gopath libexec`;
+ use X2Go::Log qw(loglevel);
+ 
+ openlog($0,'cons,pid','user');
+diff --git a/x2goserver/sbin/x2golistsessions_root b/x2goserver/sbin/x2golistsessions_root
+index c065777..0699d2d 100755
+--- a/x2goserver/sbin/x2golistsessions_root
++++ b/x2goserver/sbin/x2golistsessions_root
+@@ -41,7 +41,7 @@ sub check_stat
+ 	return 1;
+ }
+ 
+-my $x2go_lib_path=`echo -n \$(x2gobasepath)/lib/x2go`;
++my $x2go_lib_path = `x2gopath libexec`;
+ 
+ my $uname;
+ 
+diff --git a/x2goserver/share/x2gofeature.d/x2goserver.features b/x2goserver/share/x2gofeature.d/x2goserver.features
+index db4aaf2..1d23695 100755
+--- a/x2goserver/share/x2gofeature.d/x2goserver.features
++++ b/x2goserver/share/x2gofeature.d/x2goserver.features
+@@ -20,7 +20,7 @@
+ # Copyright (C) 2011-2012  Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+ # Copyright (C) 2011-2012  Heinz-Markus Graesing &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">heinz-m.graesing at obviously-nice.de</A>&gt;
+ 
+-X2GO_LIB_PATH=`echo -n \$(x2gobasepath)/lib/x2go`
++X2GO_LIB_PATH=&quot;$(x2gopath libexec)&quot;;
+ 
+ $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;$(basename $0) called with options: $@&quot;
+ 
+-- 
+1.7.10.4
+
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004593.html">[X2Go-Dev] Processed (with 3 errors): Fixed in x2goserver 3.1.1.9
+</A></li>
+	<LI>Next message: <A HREF="004603.html">[X2Go-Dev] [PATCH] x2gopath: new helper to yield distro paths
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4594">[ date ]</a>
+              <a href="thread.html#4594">[ thread ]</a>
+              <a href="subject.html#4594">[ subject ]</a>
+              <a href="author.html#4594">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

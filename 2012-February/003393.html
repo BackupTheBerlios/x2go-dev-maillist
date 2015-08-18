@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] New major distribution builds available for X2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3Czarafa.4f38273f.36a1.08bd416b0c3223b8%40centaur.medozas.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003392.html">
+   <LINK REL="Next"  HREF="003396.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] New major distribution builds available for X2go</H1>
+    <B>Michael Kromer</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3Czarafa.4f38273f.36a1.08bd416b0c3223b8%40centaur.medozas.de%3E"
+       TITLE="[X2Go-Dev] New major distribution builds available for X2go">mkromer at medozas.de
+       </A><BR>
+    <I>Sun Feb 12 21:55:27 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003392.html">[X2Go-Dev] nx-libs patches and others...
+</A></li>
+        <LI>Next message: <A HREF="003396.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3393">[ date ]</a>
+              <a href="thread.html#3393">[ thread ]</a>
+              <a href="subject.html#3393">[ subject ]</a>
+              <a href="author.html#3393">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+as announced previously I have good news: We have a very large set of packages for the following distributions:
+
+- openSUSE 12.1 &amp; Factory (12.2)
+- Fedora 15
+- Fedora 16
+
+And now we can say x2go is enterprise-ready:
+
+- SLES 11
+- RHEL 5
+- RHEL 6
+
+At this point I would like to thank Jan Engelhardt - Without him this wouldn't had been possible in such a short period of time.
+
+To see the full OBS project please take a look at:
+
+<A HREF="https://build.opensuse.org/project/monitor?project=home%3Ajengelh%3Abranches%3AX11%3ARemoteDesktop%3Ax2go">https://build.opensuse.org/project/monitor?project=home%3Ajengelh%3Abranches%3AX11%3ARemoteDesktop%3Ax2go</A>
+
+To add the repositories, please navigate to:
+
+<A HREF="http://download.opensuse.org/repositories/home:/jengelh:/branches:/X11:/RemoteDesktop:/x2go/">http://download.opensuse.org/repositories/home:/jengelh:/branches:/X11:/RemoteDesktop:/x2go/</A>
+
+The SUSE based packages have been tested and are working great. All distributions have been built to only depend on what is included within the base distro packages. We are _not_ amused by the behaviour like Red Hat works with extended packages they don't want to give support for (like by calling EPEL &quot;a well-maintained&quot; repository [1]). We also must say, that the &quot;modern&quot; versions have been a lot &quot;easier&quot; than the rest, just because of the dependency stuff. All packages have been verified through all kind of (and sometimes also super weird stict) brpchecks and rpmlint checks, so the package format should be fine with about any distro which takes care of clean buildroot-based package building.
+
+There has been a lot of effort to generalize the packages to have just one single SPEC-file for on package on all distros. This resulted in various patches we kindly request to get upstream, as we really think these patches are a great enhancement.
+
+As a result of what we had as a code base and the build requirements we were not able to provide x2goplasmabindings for the older (enterprise) distributions, for example.
+
+Now about what's coming next:
+
+- Please test, test, test. Just send us any feedback back to this list, as we really want x2go to work on more than debian/ubuntu.
+- For the moment we concentrated on the SQLite based stuff, although PostgreSQL should also work
+- We hope to see some tarballs regarding the plugins which have been created some time ago (<A HREF="http://plugin.x2go.org">http://plugin.x2go.org</A> is offline :() to get them packaged as well.
+- Looking to get all our patches upstream with X2Go main development (Alex, Heinz-Markus)
+- Get all packages to the (broke) upstream OBS project X11:RemoteDesktop:x2go
+
+Feel free to comment, suggest, whatever - Thanks!
+
+Just for the fun - some numbers:
+
+Patch sizes (lines):
+
+find . -iname &quot;*.diff&quot; | xargs -l1 wc -l | sort -rn
+2382 ./nx-libs/unique-libnames.diff
+380 ./nx-libs/parallel-make.diff
+180 ./nx-libs/honor-ac-dirs.diff
+122 ./nx-libs/standard-dirs.diff
+102 ./nx-libs/so-version.diff
+98 ./nx-libs/use-shared-libs.diff
+92 ./x2goserver/man2html.diff
+74 ./nx-libs/configure-args.diff
+64 ./fdupes/fdupes-sort-output.diff
+51 ./vh-man2html/man2html-automake.diff
+45 ./fdupes/fdupes.diff
+34 ./libssh/remove-pedantic-errors.diff
+26 ./x2goclient/protos.diff
+24 ./nx-libs/no-x11r6.diff
+22 ./x2goserver/parallel-make.diff
+22 ./x2goclient/parallel-make.diff
+22 ./x2goclient/man2html.diff
+22 ./x2goclient/fd729eb-fix-segfault.diff
+16 ./x2gognomebindings/implicit.diff
+13 ./cmake/cmake-disable-builtin-chrpath.diff
+
+Spec sizes (lines):
+
+find . -iname &quot;*.spec&quot; | xargs -l1 wc -l | sort -rn
+1736 ./nx-libs/nx-libs.spec
+250 ./x2gothinclient/x2gothinclient.spec
+196 ./x2goserver/x2goserver.spec
+148 ./xz/xz.spec
+134 ./libssh/libssh.spec
+130 ./libcap/libcap.spec
+111 ./x2goclient/x2goclient.spec
+105 ./libevent/libevent.spec
+105 ./cmake/cmake.spec
+97 ./cmake/cmake-gui.spec
+95 ./perl-DBD-SQLite/perl-DBD-SQLite.spec
+88 ./perl-DBI/perl-DBI.spec
+82 ./python-x2go/python-x2go.spec
+78 ./perl-macros/perl-macros.spec
+77 ./x2gognomebindings/x2gognomebindings.spec
+76 ./python-greenlet/python-greenlet.spec
+76 ./perl-Config-Simple/perl-Config-Simple.spec
+71 ./x2godesktopsharing/x2godesktopsharing.spec
+71 ./pinentry-x2go/pinentry-x2go.spec
+71 ./cups-x2go/cups-x2go.spec
+70 ./python-pycrypto/python-pycrypto.spec
+68 ./qmake/qmake.spec
+68 ./python-distribute/python-distribute.spec
+67 ./x2golxdebindings/x2golxdebindings.spec
+67 ./python-gevent/python-gevent.spec
+66 ./x2goplasmabindings/x2goplasmabindings.spec
+62 ./vh-man2html/vh-man2html.spec
+61 ./python-paramiko/python-paramiko.spec
+61 ./fdupes/fdupes.spec
+53 ./eh-man2html/eh-man2html.spec
+43 ./makepasswd/makepasswd.spec
+
+Best regards,
+
+- mike
+Michael Kromer
+
+[1] <A HREF="https://www.redhat.com/archives/spacewalk-devel/2011-October/msg00058.html">https://www.redhat.com/archives/spacewalk-devel/2011-October/msg00058.html</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: x2go-patches.tar.gz
+Type: application/x-gzip
+Size: 24715 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120212/7ff56c1a/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120212/7ff56c1a/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003392.html">[X2Go-Dev] nx-libs patches and others...
+</A></li>
+	<LI>Next message: <A HREF="003396.html">[X2Go-Dev] New major distribution builds available for X2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3393">[ date ]</a>
+              <a href="thread.html#3393">[ thread ]</a>
+              <a href="subject.html#3393">[ subject ]</a>
+              <a href="author.html#3393">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

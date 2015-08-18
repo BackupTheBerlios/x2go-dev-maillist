@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [X2Go-Commits] x2goclient.git - master (branch) updated: 4.0.1.0-4-g2419bf3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2Go-Commits%5D%20x2goclient.git%20-%20master%20%28branch%29%0A%20updated%3A%204.0.1.0-4-g2419bf3&In-Reply-To=%3C515D6D8D.6010400%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005388.html">
+   <LINK REL="Next"  HREF="005390.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [X2Go-Commits] x2goclient.git - master (branch) updated: 4.0.1.0-4-g2419bf3</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2Go-Commits%5D%20x2goclient.git%20-%20master%20%28branch%29%0A%20updated%3A%204.0.1.0-4-g2419bf3&In-Reply-To=%3C515D6D8D.6010400%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] [X2Go-Commits] x2goclient.git - master (branch) updated: 4.0.1.0-4-g2419bf3">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Thu Apr  4 14:09:49 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005388.html">[X2Go-Dev] [X2Go-Commits] x2goclient.git - master (branch) updated: 4.0.1.0-4-g2419bf3
+</A></li>
+        <LI>Next message: <A HREF="005390.html">[X2Go-Dev] Bug#162: Shares are not shown correctly in pyhoca-gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5389">[ date ]</a>
+              <a href="thread.html#5389">[ thread ]</a>
+              <a href="subject.html#5389">[ subject ]</a>
+              <a href="author.html#5389">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+
+No, it is not a fix for any bug in BTS. It was also not a serious issue.
+
+regards
+Alex
+
+Am 04.04.2013 14:06, schrieb Mike Gabriel:
+&gt;<i> Hi Alex,
+</I>&gt;<i> 
+</I>&gt;<i> does the below commit fix any bug in X2Go BTS? There were some
+</I>&gt;<i> discussions about such issues and I am not sure if  we have that in BTS.
+</I>&gt;<i> 
+</I>&gt;<i> If there is an open bug for the issue, please tag the bug as pending and
+</I>&gt;<i> mention that in the changelog.
+</I>&gt;<i> 
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> On Do 04 Apr 2013 11:38:26 CEST X2Go dev team wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> The branch, master has been updated
+</I>&gt;&gt;<i>        via  2419bf34d1ecd28696e6c129001057c4de77a328 (commit)
+</I>&gt;&gt;<i>       from  036222619b0e93c7dce07204a5b04ad60e689c49 (commit)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Those revisions listed above that are new to this repository have
+</I>&gt;&gt;<i> not appeared on any other notification email; so we list those
+</I>&gt;&gt;<i> revisions in full, below.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> - Log -----------------------------------------------------------------
+</I>&gt;&gt;<i> commit 2419bf34d1ecd28696e6c129001057c4de77a328
+</I>&gt;&gt;<i> Author: Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">o.shneyder at phoca-gmbh.de</A>&gt;
+</I>&gt;&gt;<i> Date:   Thu Apr 4 11:38:20 2013 +0200
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     waiting for x2gocmdexitmessage to return before closing in hidden
+</I>&gt;&gt;<i> mode
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -----------------------------------------------------------------------
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Summary of changes:
+</I>&gt;&gt;<i>  debian/changelog |    1 +
+</I>&gt;&gt;<i>  onmainwindow.cpp |   16 ++++++++++------
+</I>&gt;&gt;<i>  2 files changed, 11 insertions(+), 6 deletions(-)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The diff of changes is:
+</I>&gt;&gt;<i> diff --git a/debian/changelog b/debian/changelog
+</I>&gt;&gt;<i> index 227a7af..dbe9045 100644
+</I>&gt;&gt;<i> --- a/debian/changelog
+</I>&gt;&gt;<i> +++ b/debian/changelog
+</I>&gt;&gt;<i> @@ -3,6 +3,7 @@ x2goclient (4.0.1.1-0~x2go1) UNRELEASED; urgency=low
+</I>&gt;&gt;<i>    [ Oleksandr Shneyder ]
+</I>&gt;&gt;<i>    * Use &quot;127.0.0.1&quot; instead of localhost to avoid wrong IPv6 hostname
+</I>&gt;&gt;<i>      resolution. (Fixes: #151).
+</I>&gt;&gt;<i> +    - waiting for x2gocmdexitmessage to return before closing in
+</I>&gt;&gt;<i> hidden mode
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   -- Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;  Fri, 22 Mar 2013
+</I>&gt;&gt;<i> 23:21:11 +0100
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> diff --git a/onmainwindow.cpp b/onmainwindow.cpp
+</I>&gt;&gt;<i> index 840a699..dbcb092 100644
+</I>&gt;&gt;<i> --- a/onmainwindow.cpp
+</I>&gt;&gt;<i> +++ b/onmainwindow.cpp
+</I>&gt;&gt;<i> @@ -5284,9 +5284,11 @@ void ONMainWindow::slotProxyFinished (
+</I>&gt;&gt;<i> int,QProcess::ExitStatus )
+</I>&gt;&gt;<i>          delete sshConnection;
+</I>&gt;&gt;<i>          x2goDebug&lt;&lt;&quot;done&quot;&lt;&lt;endl;
+</I>&gt;&gt;<i>          sshConnection=0;
+</I>&gt;&gt;<i> +        if ( startHidden )
+</I>&gt;&gt;<i> +        {
+</I>&gt;&gt;<i> +            close();
+</I>&gt;&gt;<i> +        }
+</I>&gt;&gt;<i>      }
+</I>&gt;&gt;<i> -    if ( startHidden )
+</I>&gt;&gt;<i> -        close();
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>      if ( readExportsFrom!=QString::null )
+</I>&gt;&gt;<i>      {
+</I>&gt;&gt;<i> @@ -8270,9 +8272,6 @@ void ONMainWindow::slotCmdMessage ( bool
+</I>&gt;&gt;<i> result,QString output,
+</I>&gt;&gt;<i>          passForm-&gt;setEnabled ( true );
+</I>&gt;&gt;<i>          pass-&gt;setFocus();
+</I>&gt;&gt;<i>          pass-&gt;selectAll();
+</I>&gt;&gt;<i> -        delete sshConnection;
+</I>&gt;&gt;<i> -        sshConnection=0;
+</I>&gt;&gt;<i> -        return;
+</I>&gt;&gt;<i>      }
+</I>&gt;&gt;<i>      if ( output.indexOf ( &quot;X2GORUNCOMMAND ERR NOEXEC:&quot; ) !=-1 )
+</I>&gt;&gt;<i>      {
+</I>&gt;&gt;<i> @@ -8283,8 +8282,13 @@ void ONMainWindow::slotCmdMessage ( bool
+</I>&gt;&gt;<i> result,QString output,
+</I>&gt;&gt;<i>                                  cmd,QMessageBox::Ok,
+</I>&gt;&gt;<i>                                  QMessageBox::NoButton );
+</I>&gt;&gt;<i>      }
+</I>&gt;&gt;<i> -    delete sshConnection;
+</I>&gt;&gt;<i> +    if(sshConnection)
+</I>&gt;&gt;<i> +        delete sshConnection;
+</I>&gt;&gt;<i>      sshConnection=0;
+</I>&gt;&gt;<i> +    if ( startHidden )
+</I>&gt;&gt;<i> +    {
+</I>&gt;&gt;<i> +        close();
+</I>&gt;&gt;<i> +    }
+</I>&gt;&gt;<i>  }
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> hooks/post-receive
+</I>&gt;&gt;<i> -- 
+</I>&gt;&gt;<i> x2goclient.git (X2Go Client)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This is an automated email from the git hooks/post-receive script. It was
+</I>&gt;&gt;<i> generated because a ref change was pushed to the repository containing
+</I>&gt;&gt;<i> the project &quot;x2goclient.git&quot; (X2Go Client).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2Go-commits mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-commits at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-commits">https://lists.berlios.de/mailman/listinfo/x2go-commits</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130404/a5163eac/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130404/a5163eac/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005388.html">[X2Go-Dev] [X2Go-Commits] x2goclient.git - master (branch) updated: 4.0.1.0-4-g2419bf3
+</A></li>
+	<LI>Next message: <A HREF="005390.html">[X2Go-Dev] Bug#162: Shares are not shown correctly in pyhoca-gui
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5389">[ date ]</a>
+              <a href="thread.html#5389">[ thread ]</a>
+              <a href="subject.html#5389">[ subject ]</a>
+              <a href="author.html#5389">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

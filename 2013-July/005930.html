@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] setuid/setgid in libXcomp
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20setuid/setgid%20in%20libXcomp&In-Reply-To=%3C51E2707B.4050009%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005929.html">
+   <LINK REL="Next"  HREF="005987.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] setuid/setgid in libXcomp</H1>
+    <B>Moritz Str&#252;be</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20setuid/setgid%20in%20libXcomp&In-Reply-To=%3C51E2707B.4050009%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] setuid/setgid in libXcomp">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Sun Jul 14 11:33:47 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005929.html">[X2Go-Dev] setuid/setgid in libXcomp
+</A></li>
+        <LI>Next message: <A HREF="005987.html">[X2Go-Dev] setuid/setgid in libXcomp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5930">[ date ]</a>
+              <a href="thread.html#5930">[ thread ]</a>
+              <a href="subject.html#5930">[ subject ]</a>
+              <a href="author.html#5930">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hey,
+
+this is a bit of guesswork, but,
+* getgit get the _real_ real gid
+* setgit sets the _effective_ gid
+Thus you reset the effective s/gid.
+
+Morty
+
+
+Am 11.07.2013 20:45, Orion Poplawski schrieb:
+&gt;<i> Can anyone explain to my why libXcomp calls setgid/setuid in
+</I>&gt;<i> Pipe.cpp:Popen() after calling fork()?  It also isn't checking the
+</I>&gt;<i> results of the call, but I'm really not sure why the calls are there
+</I>&gt;<i> in the first place.
+</I>&gt;<i>
+</I>&gt;<i>   switch (pid = Fork())
+</I>&gt;<i>   {
+</I>&gt;<i> ...
+</I>&gt;<i>     case 0:
+</I>&gt;<i>     {
+</I>&gt;<i>       //
+</I>&gt;<i>       // Child.
+</I>&gt;<i>       //
+</I>&gt;<i>
+</I>&gt;<i>       setgid(getgid());
+</I>&gt;<i>       setuid(getuid());
+</I>&gt;<i>
+</I>&gt;<i> Nothing is running as a setuid/setgid process is it?
+</I>&gt;<i>
+</I>&gt;<i>
+</I>
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005929.html">[X2Go-Dev] setuid/setgid in libXcomp
+</A></li>
+	<LI>Next message: <A HREF="005987.html">[X2Go-Dev] setuid/setgid in libXcomp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5930">[ date ]</a>
+              <a href="thread.html#5930">[ thread ]</a>
+              <a href="subject.html#5930">[ subject ]</a>
+              <a href="author.html#5930">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] DMG build problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20DMG%20build%20problem&In-Reply-To=%3CCAFJm-UNsTUCeXVCUW4SXLk0c%2B7w-A_cvS7WpwbY%2BYZCojxmCcg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005157.html">
+   <LINK REL="Next"  HREF="005160.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] DMG build problem</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20DMG%20build%20problem&In-Reply-To=%3CCAFJm-UNsTUCeXVCUW4SXLk0c%2B7w-A_cvS7WpwbY%2BYZCojxmCcg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] DMG build problem">abo at dsl.dk
+       </A><BR>
+    <I>Tue Mar  5 12:03:33 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005157.html">[X2Go-Dev] DMG build problem
+</A></li>
+        <LI>Next message: <A HREF="005160.html">[X2Go-Dev] DMG build problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5159">[ date ]</a>
+              <a href="thread.html#5159">[ thread ]</a>
+              <a href="subject.html#5159">[ subject ]</a>
+              <a href="author.html#5159">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Right on the money!
+
+The problem was that libssl-1.0.0.dylib was linked to the wrong lib in the
+DMG. Adding +w rights to libssl and libcrypto in /opt/local/lib fixed that.
+Looking at output from dylibbundler reveals another problem though:
+
+Log: Deploying Qt frameworks found inside:
+(&quot;./x2goclient.app/Contents/PlugIns/imageformats/libqtiff.dylib&quot;)
+Log:  copied: &quot;/opt/local/lib/libtiff.5.dylib&quot;
+Log:  to &quot;./x2goclient.app/Contents/Frameworks//libtiff.5.dylib&quot;
+ERROR: &quot;install_name_tool: changing install names or rpaths can't be redone
+for: ./x2goclient.app/Contents/Frameworks//libtiff.5.dylib (for
+architecture x86_64) because larger updated load commands do not fit (the
+program must be relinked, and you may need to use -headerpad or
+-headerpad_max_install_names)
+&quot;
+ERROR: &quot;&quot;
+ERROR: &quot;install_name_tool: changing install names or rpaths can't be redone
+for: ./x2goclient.app/Contents/Frameworks//libtiff.5.dylib (for
+architecture x86_64) because larger updated load commands do not fit (the
+program must be relinked, and you may need to use -headerpad or
+-headerpad_max_install_names)
+&quot;
+ERROR: &quot;&quot;
+
+I have added +w to libtiff.5.dylib. Any idea what could be the problem
+there?
+
+
+2013/3/5 Clemens Lang &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">neverpanic at gmail.com</A>&gt;
+
+&gt;<i> On Tue, Mar 05, 2013 at 11:16:01AM +0100, Anders Bruun Olsen wrote:
+</I>&gt;<i> &gt; Specifically it tries to load /opt/local/lib/libcrypto-1.0.0.dylib
+</I>&gt;<i> &gt; which doesn't exist on this other system. It is
+</I>&gt;<i> &gt; x2goclient.app/Contents/Frameworks/libssl-1.0.0.dylib which references
+</I>&gt;<i> &gt; it.
+</I>&gt;<i>
+</I>&gt;<i> Please provide the output of
+</I>&gt;<i>  $&gt; otool -L x2goclient.app/Contents/MacOS/x2goclient
+</I>&gt;<i>  $&gt; otool -L x2goclient.app/Contents/Resources/exe/nxproxy
+</I>&gt;<i>  $&gt; otool -L x2goclient.app/Contents/Frameworks/libssl-1.0.0.dylib
+</I>&gt;<i>
+</I>&gt;<i> Also pay attention to any dylibbundler error messages printed during
+</I>&gt;<i> packaging -- openssl has the habit to install their libraries ugo-w,
+</I>&gt;<i> which causes dylibbundler to choke when it tries to modify the library
+</I>&gt;<i> paths using install_name_tool(1). My fix for this currently is changing
+</I>&gt;<i> the modes manually.
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i> Clemens Lang
+</I>&gt;<i> MacPorts Developer
+</I>&gt;<i>
+</I>
+
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130305/e8083ac2/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130305/e8083ac2/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005157.html">[X2Go-Dev] DMG build problem
+</A></li>
+	<LI>Next message: <A HREF="005160.html">[X2Go-Dev] DMG build problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5159">[ date ]</a>
+              <a href="thread.html#5159">[ thread ]</a>
+              <a href="subject.html#5159">[ subject ]</a>
+              <a href="author.html#5159">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

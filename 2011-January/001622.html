@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] VcXsrv
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20VcXsrv&In-Reply-To=%3C1296321834.25381.4.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001621.html">
+   <LINK REL="Next"  HREF="001623.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] VcXsrv</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20VcXsrv&In-Reply-To=%3C1296321834.25381.4.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] VcXsrv">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat Jan 29 18:23:54 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001621.html">[X2go-dev] VcXsrv
+</A></li>
+        <LI>Next message: <A HREF="001623.html">[X2go-dev] VcXsrv
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1622">[ date ]</a>
+              <a href="thread.html#1622">[ thread ]</a>
+              <a href="subject.html#1622">[ subject ]</a>
+              <a href="author.html#1622">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sat, 2011-01-29 at 09:03 +0100, Oleksandr Shneyder wrote:
+&gt;<i> Am 28.01.2011 20:44, schrieb Heinz-M. Graesing:
+</I>&gt;<i> &gt; Hi John,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Am 28.01.2011 17:55, schrieb John A. Sullivan III:
+</I>&gt;<i> &gt;&gt; Even if we ultimately standardize on vcxsrv, I suggest we still keep the
+</I>&gt;<i> &gt;&gt; option to not install it in the installer and the option to use Other in
+</I>&gt;<i> &gt;&gt; the client for those who already have a commercial (or future FOSS)
+</I>&gt;<i> &gt;&gt; Windows X Server.  At least, that's how we thought it through.  Thanks -
+</I>&gt;<i> &gt;&gt; John
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I would suggest not to make this part of the installer. Of cause it
+</I>&gt;<i> &gt; should be part of the client configuration. The problem I see by
+</I>&gt;<i> &gt; modifying the installer is that some companies have already made the
+</I>&gt;<i> &gt; client installer part of their software deployment solution (a lot of
+</I>&gt;<i> &gt; people asked for a &quot;silent install option&quot;).
+</I>&gt;<i> &gt; As the installer is addressed to normal users, this might be a bit
+</I>&gt;<i> &gt; confusing.
+</I>&gt;<i> 
+</I>&gt;<i> Hello,
+</I>&gt;<i> 
+</I>&gt;<i> I have two new Ideas.
+</I>&gt;<i> 
+</I>&gt;<i> 1. We providing a &quot;netinstaller&quot;. With defaults option it will get
+</I>&gt;<i> x2goclient and Xming from net. There is &quot;advanced&gt;&gt;&quot; button in installer
+</I>&gt;<i> dialog, which opening for user advanced options. Advanced options are:
+</I>&gt;<i> &quot;get vcxsrv instead of xming&quot; and &quot;not download Xserver&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> 2. We providing 3 nsis-installers: x2goclient+xming, x2goclient+vcxsrv,
+</I>&gt;<i> x2goclient without Xserver. The first installer is default and it is
+</I>&gt;<i> easy to found on download page. The two other installers are hidden
+</I>&gt;<i> under link &quot;other downloads&quot; or &quot;experimental&quot; or &quot;name is not
+</I>&gt;<i> important, you understand what I mean&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> I would prefer second choice, because for large installations (I think
+</I>&gt;<i> John have such one) is easier to provide a direct url to installer or
+</I>&gt;<i> installer itself then by every installation configure installer to get
+</I>&gt;<i> vcxsrv. There are less chances, that user make something wrong if he
+</I>&gt;<i> just clicks with his mouse without understanding what he making. And is
+</I>&gt;<i> easier to us (we don't need to create &quot;net installer&quot;)
+</I>&gt;<i> 
+</I>&lt;snip&gt;
+Hi, Alex.  Thanks for being so open to input.  I also prefer option #2.
+I'll certainly defer to whatever you choose but I'm really not certain
+we need three installers.  By doing so, users must still make the same
+decision (well, the downloading users which I suppose are more likely to
+be admins than regular users in large deployments, that is true); we've
+just shifted it from the installer to the download page.
+
+I would think a single installer with sensible defaults, with vcxsrv
+labeled as experimental, and with a big warning that says, &quot;Do not
+change the defaults unless you know what you are doing,&quot; would be fine
+and simpler to maintain.  Whatever we do, it does seem like we are
+moving forward! Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001621.html">[X2go-dev] VcXsrv
+</A></li>
+	<LI>Next message: <A HREF="001623.html">[X2go-dev] VcXsrv
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1622">[ date ]</a>
+              <a href="thread.html#1622">[ thread ]</a>
+              <a href="subject.html#1622">[ subject ]</a>
+              <a href="author.html#1622">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

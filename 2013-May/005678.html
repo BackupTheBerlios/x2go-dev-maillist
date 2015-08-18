@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2go and (none)security
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20and%20%28none%29security&In-Reply-To=%3C1346773084.71422.1369126890012.JavaMail.root%40sigma-star.at%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005669.html">
+   <LINK REL="Next"  HREF="005675.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2go and (none)security</H1>
+    <B>Richard RW. Weinberger</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20and%20%28none%29security&In-Reply-To=%3C1346773084.71422.1369126890012.JavaMail.root%40sigma-star.at%3E"
+       TITLE="[X2Go-Dev] x2go and (none)security">richard at sigma-star.at
+       </A><BR>
+    <I>Tue May 21 11:01:30 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005669.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goclient) has been marked as pending for release
+</A></li>
+        <LI>Next message: <A HREF="005675.html">[X2Go-Dev] x2go and (none)security
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5678">[ date ]</a>
+              <a href="thread.html#5678">[ thread ]</a>
+              <a href="subject.html#5678">[ subject ]</a>
+              <a href="author.html#5678">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Urspr&#252;ngliche Mail -----
+&gt;<i> &gt; From: Oleksandr Shneyder &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>&gt;
+</I>&gt;<i> &gt; Subject: Re: [X2Go-Dev] x2go and (none)security
+</I>&gt;<i> &gt; Date: 21. Mai 2013 10:40:45 MESZ
+</I>&gt;<i> &gt; To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i> &gt; Cc: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">david at sigma-star.at</A>, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">t.dierl at sigma-star.at</A>
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Hello Richard,
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Am 18.05.2013 21:48, schrieb Richard Weinberger:
+</I>&gt;<i> &gt;&gt; Hi x2go users/developers,
+</I>&gt;<i> &gt;&gt; 
+</I>&gt;<i> &gt;&gt; while reviewing x2go I've encountered issues which scared hell out
+</I>&gt;<i> &gt;&gt; of me.
+</I>&gt;<i> &gt;&gt; The client seems to perform zero input validation. A rough server
+</I>&gt;<i> &gt;&gt; can
+</I>&gt;<i> &gt;&gt; easily crash the client
+</I>&gt;<i> &gt;&gt; and most likely execute arbitrary code.
+</I>&gt;<i> &gt;&gt; For example x2goSession ONMainWindow::getSessionFromString ( const
+</I>&gt;<i> &gt;&gt; QString&amp; string ), it is feed with input from the server.
+</I>&gt;<i> &gt;&gt; ---
+</I>&gt;<i> &gt;&gt;    QStringList lst=string.split ( '|' );
+</I>&gt;<i> &gt;&gt;    x2goSession s;
+</I>&gt;<i> &gt;&gt;    s.agentPid=lst[0];
+</I>&gt;<i> &gt;&gt;    s.sessionId=lst[1];
+</I>&gt;<i> &gt;&gt;    s.display=lst[2];
+</I>&gt;<i> &gt;&gt;    s.server=lst[3];
+</I>&gt;<i> &gt;&gt;    s.status=lst[4];
+</I>&gt;<i> &gt;&gt;    s.crTime=lst[5];
+</I>&gt;<i> &gt;&gt;    s.cookie=lst[6];
+</I>&gt;<i> &gt;&gt;    s.clientIp=lst[7];
+</I>&gt;<i> &gt;&gt;    s.grPort=lst[8];
+</I>&gt;<i> &gt;&gt;    s.sndPort=lst[9];
+</I>&gt;<i> &gt;&gt; ---
+</I>&gt;<i> &gt;&gt; If a line from the server, does not enough &quot;|&quot; we end up with
+</I>&gt;<i> &gt;&gt; out-of-bound array access.
+</I>&gt;<i> &gt;&gt; The source is full with such issues.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; You are right, it is possible, that X2Go Client can be crashed with
+</I>&gt;<i> &gt; the
+</I>&gt;<i> &gt; wrong output from the server. This issue could (and should) be
+</I>&gt;<i> &gt; easily
+</I>&gt;<i> &gt; fixed by replacing operator &quot;[n]&quot; with method &quot;value(n)&quot;. However,
+</I>&gt;<i> &gt; I
+</I>&gt;<i> &gt; don't think, that this issue is so dramatic as you described it.
+</I>&gt;<i> &gt; Why
+</I>&gt;<i> &gt; some one should open a SSH/X2GO connection to &quot;rough&quot; server? I
+</I>&gt;<i> &gt; didn't
+</I>&gt;<i> &gt; see such use case yet, when an administrator of server want to
+</I>&gt;<i> &gt; crash the
+</I>&gt;<i> &gt; client application on a machine of his user. If a user root on your
+</I>&gt;<i> &gt; Linux system is not an evil person, who want crash the X2Go Client
+</I>&gt;<i> &gt; on
+</I>&gt;<i> &gt; your desktop, you should not worry about this issue. But if you
+</I>&gt;<i> &gt; living
+</I>&gt;<i> &gt; in the world of BOFH, please don't use the X2Go Client until this
+</I>&gt;<i> &gt; issue
+</I>&gt;<i> &gt; will be fixed. I'll fix it very soon.
+</I>
+Every thought about client security?
+What happens if someone connects to another server?
+E.g. a support guys which need to connect to other customers.
+Using x2go you can take over his machine and sniff passwords to access
+other customers.
+
+&gt;<i> &gt;&gt; Finally I've also looked at the server.
+</I>&gt;<i> &gt;&gt; In short, the 90's <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">calx2go-dev at lists.berlios.deled</A>, they want their setuid bugs back.
+</I>&gt;<i> &gt;&gt; x2gosqlitewrapper.c just wrong, anyone can make it executing
+</I>&gt;<i> &gt;&gt; whatever
+</I>&gt;<i> &gt;&gt; binary he wants with higher privileges.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Sorry, I don't understand what are you talking about. I not found
+</I>&gt;<i> &gt; the
+</I>&gt;<i> &gt; file &quot;x2gosqlitewrapper.c&quot; in the source tree of package &quot;x2go
+</I>&gt;<i> &gt; server&quot;.
+</I>&gt;<i> &gt; If you found a security problem in the recent x2goserver code,
+</I>&gt;<i> &gt; please
+</I>&gt;<i> &gt; open a bug report on bug tracker, describe the problem and show how
+</I>&gt;<i> &gt; it
+</I>&gt;<i> &gt; can be used. In best case show an example of exploit and send a bug
+</I>&gt;<i> &gt; fix.
+</I>&gt;<i> &gt; Saying &quot;it is just wrong, anyone can do something&quot; is just your
+</I>&gt;<i> &gt; opinion
+</I>&gt;<i> &gt; without any arguments.
+</I>
+I showed Mike already how the exploit works. He already released a fixed version
+of x2goserver and x2gobroker. Both contained the same broken code.
+If you don't understand the issue I'll happily explain it to you in private but I'll
+not post exploits on a public mailinglist.
+
+&gt;<i> &gt; 
+</I>&gt;<i> &gt;&gt; But it's not only the code that worries me.
+</I>&gt;<i> &gt;&gt; On Windows the client executes per default sshd and x11. Both are
+</I>&gt;<i> &gt;&gt; listening on all available IP-Addresses.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Yes, this components are required by X2Go Client. This services are
+</I>&gt;<i> &gt; configured by default to listen all IP-Adresses. It is possible to
+</I>&gt;<i> &gt; configure them to listen for connections only on localhost, but I
+</I>&gt;<i> &gt; see it
+</I>&gt;<i> &gt; just as &quot;nice to have&quot; feature. Starting this services is not
+</I>&gt;<i> &gt; creating
+</I>&gt;<i> &gt; backdoor on the system, otherwise  most UNIX machines would be
+</I>&gt;<i> &gt; backdoor'ed, because they running same services. Furthermore, SSHD
+</I>&gt;<i> &gt; used
+</I>&gt;<i> &gt; by X2Go is running only with user privileges and opening an access
+</I>&gt;<i> &gt; for
+</I>&gt;<i> &gt; only one user and only shortly for each SSHFS connection. The rest
+</I>&gt;<i> &gt; time
+</I>&gt;<i> &gt; SSHD don't accept a SSH-connections. In addition, each Windows
+</I>&gt;<i> &gt; system
+</I>&gt;<i> &gt; have a firewall that by default configured to drop incoming
+</I>&gt;<i> &gt; TCP-connections. This make SSHD and X11 to be only accessible from
+</I>&gt;<i> &gt; localhost.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt;&gt; You silently install a user &quot;sshuser&quot; on Windows, which has the
+</I>&gt;<i> &gt;&gt; password
+</I>&gt;<i> &gt;&gt; of the currently logged in Windows user and give
+</I>&gt;<i> &gt;&gt; him a login shell.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; This is so untrue! X2Go Client can not install users on Windows
+</I>&gt;<i> &gt; system.
+</I>
+So? You install cygwin with a passwd file that maps to Windows users.
+sshd.exe uses that passwd file and one can login via network.
+Of course you need to know the passwort. But you open a security risk
+just by making sshd and x11 listening on 0.0.0.0!
+
+&gt;<i> &gt; To be able to do something like that, X2Go Client must have an
+</I>&gt;<i> &gt; administrator privileges. All X2Go Client components running with
+</I>&gt;<i> &gt; user
+</I>&gt;<i> &gt; privileges. A SSHD open SSH access for current user and this is
+</I>&gt;<i> &gt; required
+</I>&gt;<i> &gt; for SSHFS, which used to export client directories to server. If
+</I>&gt;<i> &gt; you
+</I>&gt;<i> &gt; don't trust your server, just don't export your directories. And
+</I>&gt;<i> &gt; you
+</I>&gt;<i> &gt; should not do this, independent what kind of network FS are you
+</I>&gt;<i> &gt; using.
+</I>&gt;<i> &gt; It is always possible, that untrusted server can manipulate your
+</I>&gt;<i> &gt; data or
+</I>&gt;<i> &gt; credentials. It's impossible to open a SSH-Connection to your
+</I>&gt;<i> &gt; client
+</I>&gt;<i> &gt; until you don't exporting directories to server.
+</I>
+Then please make sshd listen on localhost and forward the ssh port to the Server...
+
+&gt;<i> &gt; 
+</I>&gt;<i> &gt;&gt; I haven't seen such a trainwreck of software for a long time.
+</I>&gt;<i> &gt;&gt; By installing it on my system you've successfully backdoor'ed my
+</I>&gt;<i> &gt;&gt; clients
+</I>&gt;<i> &gt;&gt; and the server.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I appreciated your criticism, but writing something like that in
+</I>&gt;<i> &gt; the ML
+</I>&gt;<i> &gt; of a community project is just not respecting the work of people,
+</I>&gt;<i> &gt; who
+</I>&gt;<i> &gt; spent a lot of their time and costs to develop something useful for
+</I>&gt;<i> &gt; others.
+</I>
+I'm criticizing your code not you.
+If you cannot deal with that, not my problem.
+
+Thanks,
+//richard
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005669.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goclient) has been marked as pending for release
+</A></li>
+	<LI>Next message: <A HREF="005675.html">[X2Go-Dev] x2go and (none)security
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5678">[ date ]</a>
+              <a href="thread.html#5678">[ thread ]</a>
+              <a href="subject.html#5678">[ subject ]</a>
+              <a href="author.html#5678">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

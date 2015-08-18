@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23131%3A%20Build%20scripts%20for%20DMG%20generation%20on%20OS%20X&In-Reply-To=%3C20130304220712.20172yadonvnr08w%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005148.html">
+   <LINK REL="Next"  HREF="005152.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23131%3A%20Build%20scripts%20for%20DMG%20generation%20on%20OS%20X&In-Reply-To=%3C20130304220712.20172yadonvnr08w%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Mar  4 22:07:12 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005148.html">[X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X
+</A></li>
+        <LI>Next message: <A HREF="005152.html">[X2Go-Dev] [PATCH 0/3] macbuild.sh changes: cleanup,	easier flag modification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5150">[ date ]</a>
+              <a href="thread.html#5150">[ thread ]</a>
+              <a href="subject.html#5150">[ subject ]</a>
+              <a href="author.html#5150">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Anders,
+
+On Mo 04 M&#228;r 2013 14:52:23 CET Anders Bruun Olsen wrote:
+
+&gt;<i> I have just tried building it on my MacBook Pro with OSX 10.8.2 and have
+</I>&gt;<i> run into a small problem. I have installed dependencies using brew, not
+</I>&gt;<i> macports, and it doesn't find libssh.h. Is there a way to add to the
+</I>&gt;<i> include path for the make system or is there a problem with the way it
+</I>&gt;<i> detects where files are located?
+</I>&gt;<i>
+</I>&gt;<i> x2goclient-4.0.0.4 abo$ find /usr/local -name libssh.h
+</I>&gt;<i> /usr/local/Cellar/libssh/0.5.4/include/libssh/libssh.h
+</I>&gt;<i>
+</I>&gt;<i> x2goclient-4.0.0.4 abo$ ./macbuild.sh
+</I>&gt;<i> ...
+</I>&gt;<i> In file included from sharewidget.cpp:19:
+</I>&gt;<i> In file included from ./onmainwindow.h:44:
+</I>&gt;<i> ./sshmasterconnection.h:21:10: fatal error: 'libssh/libssh.h' file not found
+</I>&gt;<i> #include &lt;libssh/libssh.h&gt;
+</I>&gt;<i>          ^
+</I>&gt;<i> In file included from settingswidget.cpp:19:
+</I>&gt;<i> In file included from ./onmainwindow.h:44:
+</I>&gt;<i> ./sshmasterconnection.h:21:10: fatal error: 'libssh/libssh.h' file not found
+</I>&gt;<i> #include &lt;libssh/libssh.h&gt;
+</I>&gt;<i>          ^
+</I>&gt;<i> 1 error generated.
+</I>
+I saw your discussion on IRC about building NX. For the client-side of  
+X2Go you only need nxcomp and nxproxy. This we ship as  
+nx-libs-lite-&lt;version&gt;.tar.gz.
+
+Do not build the full nx-libs stuff. It is fine-tuned for being built  
+on linux-only atm.
+
+Greets,
+Mike
+
+
+
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130304/4f38c58d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130304/4f38c58d/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005148.html">[X2Go-Dev] Bug#131: Build scripts for DMG generation on OS X
+</A></li>
+	<LI>Next message: <A HREF="005152.html">[X2Go-Dev] [PATCH 0/3] macbuild.sh changes: cleanup,	easier flag modification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5150">[ date ]</a>
+              <a href="thread.html#5150">[ thread ]</a>
+              <a href="subject.html#5150">[ subject ]</a>
+              <a href="author.html#5150">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

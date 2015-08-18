@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#240: X2goclient cannot read hashed entries in	known_hosts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23240%3A%20X2goclient%20cannot%20read%20hashed%20entries%20in%0A%09known_hosts&In-Reply-To=%3C51BDB024.4060100%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005825.html">
+   <LINK REL="Next"  HREF="005827.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#240: X2goclient cannot read hashed entries in	known_hosts</H1>
+    <B>Heinrich Schuchardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23240%3A%20X2goclient%20cannot%20read%20hashed%20entries%20in%0A%09known_hosts&In-Reply-To=%3C51BDB024.4060100%40gmx.de%3E"
+       TITLE="[X2Go-Dev] Bug#240: X2goclient cannot read hashed entries in	known_hosts">xypron.glpk at gmx.de
+       </A><BR>
+    <I>Sun Jun 16 14:31:32 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005825.html">[X2Go-Dev] Bug#239: import/export session definitions
+</A></li>
+        <LI>Next message: <A HREF="005827.html">[X2Go-Dev] Bug#241: Changed host key cannot be updated
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5826">[ date ]</a>
+              <a href="thread.html#5826">[ thread ]</a>
+              <a href="subject.html#5826">[ subject ]</a>
+              <a href="author.html#5826">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Version: 4.0.1.0
+Severity: normal
+
+Dear maintainer,
+
+I am running Debian Wheezy AMD64
+
+I have installed
+<A HREF="http://packages.x2go.org/debian/">http://packages.x2go.org/debian/</A> wheezy/main x2goclient amd64 
+4.0.1.0-0~x2go1+wheezy~main~380~build1
+
+After deleting ~/.ssh/known_hosts I have connected my x2goserver with 
+the command line tool ssh.
+
+This created file known_hosts with one entry in the hashed file format 
+described in the sshd(8) man page:
+&quot;Alternately, hostnames may be stored in a hashed form which hides host 
+names and addresses should the file's contents be disclosed.&quot;
+
+I now try to connect the same server with x2goclient and get an error
+
+&quot;Der Host-Key des Servers konnte nicht gefunden werden aber ein anderer 
+Schl&#252;sseltyp existiert. Ein Angreifer kann den Schl&#252;ssel ver&#228;ndert 
+haben, um dem Client vorzut&#228;uschen, dass der Schl&#252;ssel nicht existiert&quot;
+
+in English this would be
+
+&quot;The host key for this server was not found but an other type of key 
+exists.An attacker might change the default server key to confuse your 
+client into thinking the key does not exist&quot;
+
+Please, ensure that x2goclient can work with the hashed format of 
+known_hosts.
+
+Best regards
+
+Heinrich Schuchardt
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005825.html">[X2Go-Dev] Bug#239: import/export session definitions
+</A></li>
+	<LI>Next message: <A HREF="005827.html">[X2Go-Dev] Bug#241: Changed host key cannot be updated
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5826">[ date ]</a>
+              <a href="thread.html#5826">[ thread ]</a>
+              <a href="subject.html#5826">[ subject ]</a>
+              <a href="author.html#5826">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

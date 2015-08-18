@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Cut &amp; Paste between 2 Ubuntu servers
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Cut%20%26%20Paste%20between%202%20Ubuntu%20servers&In-Reply-To=%3Cloom.20120703T125703-835%40post.gmane.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004120.html">
+   <LINK REL="Next"  HREF="004123.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Cut &amp; Paste between 2 Ubuntu servers</H1>
+    <B>UWP</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Cut%20%26%20Paste%20between%202%20Ubuntu%20servers&In-Reply-To=%3Cloom.20120703T125703-835%40post.gmane.org%3E"
+       TITLE="[X2Go-Dev] Cut &amp; Paste between 2 Ubuntu servers">uwp at dicke-aersche.de
+       </A><BR>
+    <I>Tue Jul  3 12:59:39 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004120.html">[X2Go-Dev] Cut &amp; Paste between 2 Ubuntu servers
+</A></li>
+        <LI>Next message: <A HREF="004123.html">[X2Go-Dev] Cut &amp; Paste between 2 Ubuntu servers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4122">[ date ]</a>
+              <a href="thread.html#4122">[ thread ]</a>
+              <a href="subject.html#4122">[ subject ]</a>
+              <a href="author.html#4122">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2012-06-29 at 18:29 +0200, Stefan Baur wrote:
+&gt;<i> Am 29.06.2012 18:22, schrieb Mike Gabriel:
+</I>&gt;<i>
+</I>&gt;<i> &gt; So this is really weird then. I use several desktop sessions from my
+</I>&gt;<i> &gt; notebook on several servers. I can paste between different sessions on
+</I>&gt;<i> &gt; different servers and also between session and the local X display. No
+</I>&gt;<i> &gt; matter if sessions run in desktop mode or rootless mode...
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; So I have to scratch my head on this...
+</I>&gt;<i> 
+</I>&gt;<i> Could it be that you're using different methods, with one working and 
+</I>&gt;<i> the other failing?
+</I>&gt;<i> 
+</I>&gt;<i> After all, there's Ctrl-C/Ctrl-V, Ctrl-Ins/Shift-Ins, copying/pasting 
+</I>&gt;<i> via right mouse button and context menu, copying/pasting via 
+</I>&gt;<i> mouse-select/middle-mouse-button, etc.
+</I>
+I tried all of them: Ctrl-C/V, Mouse and context-menu. Nothing goes out of the
+client or into it.
+
+&gt;<i> And IIRC, there are different types of clipboards on Linux, as well. 
+</I>&gt;<i> See, for example, this link here: 
+</I>&gt;<i> <A HREF="http://mutelight.org/subtleties-of-the-x-clipboard">http://mutelight.org/subtleties-of-the-x-clipboard</A>
+</I>
+Maybe it's because I'm using XFCE?
+
+BTW, this is, what I can see in the client-logs:
+
+
+NXPROXY - Version 3.5.0
+
+Copyright (C) 2001, 2010 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Proxy running in client mode with pid '22737'.
+Session: Starting session at 'Tue Jul  3 12:01:15 2012'.
+Info: Connecting to remote host 'localhost:31031'.
+Info: Connection to remote proxy 'localhost:31031' established.
+Info: Connection with remote proxy completed.
+Warning: Unrecognized session type 'unix-kde-depth_24'.
+Assuming agent session.
+Info: Using LAN link parameters 1536/24/1/0.
+Info: Using pack method '16m-jpeg-9' with session 'unix-kde-depth_24'.
+Info: Not using NX delta compression.
+Info: Not using ZLIB data compression.
+Info: Not using ZLIB stream compression.
+Info: Not using a persistent cache.
+Info: Forwarding X11 connections to display ':0.0'.
+Session: Session started at 'Tue Jul  3 12:01:15 2012'.
+Info: Established X server connection.
+Info: Using shared memory parameters 1/2048K.
+
+And in the session-file:
+
+Loop: WARNING! Disabling NX delta compression.
+Loop: WARNING! Disabling use of NX persistent cache.
+Loop: WARNING! Unrecognized session type 'unix-kde-depth_24'.
+Assuming agent session.
+
+
+
+
+Udo
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004120.html">[X2Go-Dev] Cut &amp; Paste between 2 Ubuntu servers
+</A></li>
+	<LI>Next message: <A HREF="004123.html">[X2Go-Dev] Cut &amp; Paste between 2 Ubuntu servers
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4122">[ date ]</a>
+              <a href="thread.html#4122">[ thread ]</a>
+              <a href="subject.html#4122">[ subject ]</a>
+              <a href="author.html#4122">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,136 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#337: X2Go issue (in src:nx-libs) has been marked as	closed
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23337%3A%20X2Go%20issue%20%28in%20src%3Anx-libs%29%20has%20been%20marked%20as%0A%09closed&In-Reply-To=%3C20140104204244.45F575DB24%40ymir%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006780.html">
+   <LINK REL="Next"  HREF="006786.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#337: X2Go issue (in src:nx-libs) has been marked as	closed</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23337%3A%20X2Go%20issue%20%28in%20src%3Anx-libs%29%20has%20been%20marked%20as%0A%09closed&In-Reply-To=%3C20140104204244.45F575DB24%40ymir%3E"
+       TITLE="[X2Go-Dev] Bug#337: X2Go issue (in src:nx-libs) has been marked as	closed">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Jan  4 21:42:44 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006780.html">[X2Go-Dev] Processed: X2Go issue (in src:nx-libs) has been marked	as closed
+</A></li>
+        <LI>Next message: <A HREF="006786.html">[X2Go-Dev] Processed: X2Go issue (in src:nx-libs) has been marked	as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6777">[ date ]</a>
+              <a href="thread.html#6777">[ thread ]</a>
+              <a href="subject.html#6777">[ subject ]</a>
+              <a href="author.html#6777">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>close #337
+thanks
+
+Hello,
+
+we are very hopeful that X2Go issue #337 reported by you
+has been resolved in the new release (2:3.5.0.22) of the
+X2Go source project &#187;src:nx-libs&#171;.
+
+You can view the complete changelog entry of src:nx-libs (2:3.5.0.22)
+below, and you can use the following link to view all the code changes
+between this and the last release of src:nx-libs.
+
+    <A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=b07b3cca09f5aa4a5c32dc4f75df2978a8aacaac;hp=b2a3143f8a9c2d5aaf20c14408354ef9a712a3ee">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=b07b3cca09f5aa4a5c32dc4f75df2978a8aacaac;hp=b2a3143f8a9c2d5aaf20c14408354ef9a712a3ee</A>
+
+If you feel that the issue has not been resolved satisfyingly, feel
+free to reopen this bug report or submit a follow-up report with
+further observations described based on the new released version
+of src:nx-libs.
+
+Thanks a lot for contributing to X2Go!!!
+
+light+love
+X2Go Git Admin (on behalf of the sender of this mail)
+
+---
+X2Go Component: src:nx-libs
+Version: 2:3.5.0.22-0x2go1
+Status: RELEASE
+Date: Sat, 04 Jan 2014 21:39:17 +0100
+Fixes: 314 337 370
+Changes: 
+ nx-libs (2:3.5.0.22-0x2go1) RELEASED; urgency=low
+ .
+   [ Mirraz Mirraz ]
+   * Add patch: 603_nx-X11_compilation_warnings.full.patch. Fix 3 evident bugs:
+     one implicit function declaration issue and two array index out of bounds
+     issues. (Fixes: #314).
+ .
+   [ Mike Gabriel ]
+   * Add patch 604_nx-X11_recent-freetype-API.full.patch. Fix FTBFS against
+     recent (&gt;= 2.5.0) libfreetype6 API.
+   * Refresh patch: 600_nx-X11+nxcompext+nxcompshad_unique-libnames.full.patch.
+   * Improve patch:
+     601_nx-X11_build-option-changes-to-not-use-bundled-libraries.full.patch.
+     Improvements taken from the current Fedora package. Thanks to Orion
+     Paplowski!!! Also adapt roll-tarball.sh do dropping more bundled
+     libraries.
+   * Rename patch: 302_nxagent_configurable-keystrokes.full.patch to
+     320_nxagent_configurable-keystrokes.full.patch.
+   * debian/source/format:
+     + Switch to format 1.0.
+   * debian/control:
+     + Add libfreetype6-dev to Build-Depends: field.
+     + Drop symlinking libNX_xrandr for setting a custom LD_LIBRARY_PATH. Not in
+       use anymore and not recommended at all to have that.
+     + Make sure all nx-libs components depend on the very same version.
+   * debian/rules:
+     + Remove bundled libraries from source tree before building the package.
+   * nx-libs.spec:
+     + Ship nx-libs.spec (RPM package definitions) in upstream project. (Thanks
+       to the Fedora package maintainers). File differs from the Fedora file
+       already.
+     + Clear (Fedora package) changelog.
+     + Use local tarball, don't expect  ,,-full'' in tarball name.
+     + The RPM macro for the linker flags does not exist on EPEL. Thus, hardcode
+       __global_ldflags macro for EPEL builds.
+     + Enable Xinerama support for RPM packages. (Fixes: #370).
+ .
+   [ Clemens Lang ]
+   * Add patch 605_nxcomp_Types.h-dont-use-STL-internals-on-libc++.full.patch. Fix
+     FTBFS of nx-libs-lite on Mac OS X Mavericks. (Fixes: #337).
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006780.html">[X2Go-Dev] Processed: X2Go issue (in src:nx-libs) has been marked	as closed
+</A></li>
+	<LI>Next message: <A HREF="006786.html">[X2Go-Dev] Processed: X2Go issue (in src:nx-libs) has been marked	as closed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6777">[ date ]</a>
+              <a href="thread.html#6777">[ thread ]</a>
+              <a href="subject.html#6777">[ subject ]</a>
+              <a href="author.html#6777">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

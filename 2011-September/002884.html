@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2godesktopsharing integration into x2goserver
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2godesktopsharing%20integration%20into%20x2goserver&In-Reply-To=%3C4E85C157.6030503%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002862.html">
+   <LINK REL="Next"  HREF="002885.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2godesktopsharing integration into x2goserver</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2godesktopsharing%20integration%20into%20x2goserver&In-Reply-To=%3C4E85C157.6030503%40vandervlis.nl%3E"
+       TITLE="[X2go-Dev] x2godesktopsharing integration into x2goserver">paul at vandervlis.nl
+       </A><BR>
+    <I>Fri Sep 30 15:17:11 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002862.html">[X2go-Dev] x2godesktopsharing integration into x2goserver
+</A></li>
+        <LI>Next message: <A HREF="002885.html">[X2go-Dev] x2godesktopsharing integration into x2goserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2884">[ date ]</a>
+              <a href="thread.html#2884">[ thread ]</a>
+              <a href="subject.html#2884">[ subject ]</a>
+              <a href="author.html#2884">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Op 29-09-11 08:23, Mike Gabriel schreef:
+&gt;<i> Hi all,
+</I>&gt;<i> 
+</I>&gt;<i> yesterday I have been working on the C++ code in x2godesktopsharing.
+</I>
+Great!
+How is the status at the moment, does it work correct?
+
+&gt;<i> To make sure that x2godesktopsharing really gets shutdown on
+</I>&gt;<i> x2goterminate-session, I have added a script to the x2godesktopsharing
+</I>&gt;<i> package that detects the corresponding x2godesktopsharing process for a
+</I>&gt;<i> given session $X2GO_SESSION. This script ,,x2godesktopsharing-terminate&quot;
+</I>&gt;<i> will be exectuted by ,,x2goterminate-session&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> This brought up the next question: how do we want to handle
+</I>&gt;<i> x2godesktopsharing while a session is suspended. This older versions of
+</I>&gt;<i> X2go (I think) this has been possible. I consider this as a security
+</I>&gt;<i> problem and something that most users do not want. Imagine the scenario:
+</I>&gt;<i> 
+</I>&gt;<i>   o start x2go session
+</I>&gt;<i>   o start x2godesktopsharing
+</I>&gt;<i>   o allow user foo to share your desktop and remember this setting
+</I>&gt;<i> permanently
+</I>&gt;<i>     (via .x2godesktopsharing/settings)
+</I>&gt;<i>   o suspend your session (and x2godesktopsharing continues to offer desktop
+</I>&gt;<i>     sharing... :-( )
+</I>&gt;<i>   o user foo tries to connect to your desktop while you are away (while
+</I>&gt;<i>     your session is suspended
+</I>&gt;<i>   o -&gt; this is YUK!
+</I>
+I don't understand why you see this a problem. The user has given this
+right to foo.
+
+As a sysadmin, I would like to do my work even when the user has gone
+for a lunch or something like that. When there are programs open like
+Mozilla or OOo, it's problematic to start them from another session.
+
+With regards,
+Paul.
+
+
+-- 
+Paul van der Vlis Linux systeembeheer, Groningen
+<A HREF="http://www.vandervlis.nl">http://www.vandervlis.nl</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002862.html">[X2go-Dev] x2godesktopsharing integration into x2goserver
+</A></li>
+	<LI>Next message: <A HREF="002885.html">[X2go-Dev] x2godesktopsharing integration into x2goserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2884">[ date ]</a>
+              <a href="thread.html#2884">[ thread ]</a>
+              <a href="subject.html#2884">[ subject ]</a>
+              <a href="author.html#2884">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

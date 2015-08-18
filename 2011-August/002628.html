@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Installing x2go server on Red Hat 5
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Installing%20x2go%20server%20on%20Red%20Hat%205&In-Reply-To=%3C20110801223727.15745p9ne8ax2nwn%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002624.html">
+   <LINK REL="Next"  HREF="002634.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Installing x2go server on Red Hat 5</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Installing%20x2go%20server%20on%20Red%20Hat%205&In-Reply-To=%3C20110801223727.15745p9ne8ax2nwn%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] Installing x2go server on Red Hat 5">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Aug  1 22:37:27 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002624.html">[X2go-Dev] Installing x2go server on Red Hat 5
+</A></li>
+        <LI>Next message: <A HREF="002634.html">[X2go-Dev] Installing x2go server on Red Hat 5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2628">[ date ]</a>
+              <a href="thread.html#2628">[ thread ]</a>
+              <a href="subject.html#2628">[ subject ]</a>
+              <a href="author.html#2628">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Enrico,
+
+On Mo 01 Aug 2011 16:19:23 CEST &quot;Zschemisch, Enrico&quot; wrote:
+
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> I am trying to install x2go server on a recent Red Hat 5 system. No luck :-(
+</I>&gt;<i>
+</I>&gt;<i> I got x2goserver-3.0.99 and installed the SQLite Perl-package from  
+</I>&gt;<i> cpan. Running any of the scripts in the package gives errors like  
+</I>&gt;<i> this:
+</I>&gt;<i> ./x2gostartagent
+</I>&gt;<i> Can't locate Config/Simple.pm in @INC (@INC contains: /usr/lib/x2go  
+</I>&gt;<i> /usr/lib64/perl5/site_perl/5.8.8/x86_64-linux-thread-multi  
+</I>&gt;<i> /usr/lib/perl5/site_perl/5.8.8 /usr/lib/perl5/site_perl  
+</I>&gt;<i> /usr/lib64/perl5/vendor_perl/5.8.8/x86_64-linux-thread-multi  
+</I>&gt;<i> /usr/lib/perl5/vendor_perl/5.8.8 /usr/lib/perl5/vendor_perl  
+</I>&gt;<i> /usr/lib64/perl5/5.8.8/x86_64-linux-thread-multi  
+</I>&gt;<i> /usr/lib/perl5/5.8.8 .) at x2godbwrapper.pm line 4.
+</I>&gt;<i>
+</I>&gt;<i> I tried to find some setup script in there and could not find one.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> This installation guide does not work:  
+</I>&gt;<i> <A HREF="http://wiki.x2go.org/installing_x2goserver_tarball">http://wiki.x2go.org/installing_x2goserver_tarball</A>
+</I>&gt;<i>
+</I>&gt;<i> There is no makefile in the file provided above.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Any ideas or hints?
+</I>
+you need the Simple.pm package from CPAN:
+<A HREF="http://search.cpan.org/~sherzodr/Config-Simple-4.59/Simple.pm">http://search.cpan.org/~sherzodr/Config-Simple-4.59/Simple.pm</A>
+
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110801/7751b20b/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110801/7751b20b/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002624.html">[X2go-Dev] Installing x2go server on Red Hat 5
+</A></li>
+	<LI>Next message: <A HREF="002634.html">[X2go-Dev] Installing x2go server on Red Hat 5
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2628">[ date ]</a>
+              <a href="thread.html#2628">[ thread ]</a>
+              <a href="subject.html#2628">[ subject ]</a>
+              <a href="author.html#2628">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

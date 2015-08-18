@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Windows 7 and libssh
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Windows%207%20and%20libssh&In-Reply-To=%3C1471913716.382.1294841379021.JavaMail.root%40office.splatnix.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001484.html">
+   <LINK REL="Next"  HREF="001486.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Windows 7 and libssh</H1>
+    <B>--[ UxBoD ]--</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Windows%207%20and%20libssh&In-Reply-To=%3C1471913716.382.1294841379021.JavaMail.root%40office.splatnix.net%3E"
+       TITLE="[X2go-dev] Windows 7 and libssh">uxbod at splatnix.net
+       </A><BR>
+    <I>Wed Jan 12 15:09:39 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001484.html">[X2go-dev] Windows 7 and libssh
+</A></li>
+        <LI>Next message: <A HREF="001486.html">[X2go-dev] New thoughts on Git in progress...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1485">[ date ]</a>
+              <a href="thread.html#1485">[ thread ]</a>
+              <a href="subject.html#1485">[ subject ]</a>
+              <a href="author.html#1485">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Original Message -----
+&gt;<i> On Tue, 2011-01-11 at 22:33 +0000, --[ UxBoD ]-- wrote:
+</I>&gt;<i> &gt; ----- Original Message -----
+</I>&gt;<i> &gt; &gt; On Tue, 2011-01-11 at 19:55 +0000, --[ UxBoD ]-- wrote:
+</I>&gt;<i> &gt; &gt; &gt; Hi,
+</I>&gt;<i> &gt; &gt; &gt;
+</I>&gt;<i> &gt; &gt; &gt; I am compiling up the x2go client to use vcxsrv on Windows 7
+</I>&gt;<i> &gt; &gt; &gt; which
+</I>&gt;<i> &gt; &gt; &gt; worked fine. Though when I run the 3.0.14 libssh version it
+</I>&gt;<i> &gt; &gt; &gt; hangs on
+</I>&gt;<i> &gt; &gt; &gt; connecting. I thought it could have been my compilation for
+</I>&gt;<i> &gt; &gt; &gt; which I
+</I>&gt;<i> &gt; &gt; &gt; tried the standard installation and that does exactly the same.
+</I>&gt;<i> &gt; &gt; &gt; If I
+</I>&gt;<i> &gt; &gt; &gt; then kill the client using the red X in the corner I receive a
+</I>&gt;<i> &gt; &gt; &gt; dialogue box with a message from sudo asking if I have had the
+</I>&gt;<i> &gt; &gt; &gt; risks
+</I>&gt;<i> &gt; &gt; &gt; explained to me :) Is anybody else this type of behavior ??
+</I>&gt;<i> &gt; &gt; Hi, Phil. I don't know what has changed but it almost smells like
+</I>&gt;<i> &gt; &gt; the
+</I>&gt;<i> &gt; &gt; client side changes uncovered a problem on the server side. I'm
+</I>&gt;<i> &gt; &gt; not
+</I>&gt;<i> &gt; &gt; sure but that almost certainly a message from one of the scripts
+</I>&gt;<i> &gt; &gt; running
+</I>&gt;<i> &gt; &gt; on the server side being reflected to stdout on ssh running on the
+</I>&gt;<i> &gt; &gt; client.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; We could probably find out where the problem is by adding a series
+</I>&gt;<i> &gt; &gt; of
+</I>&gt;<i> &gt; &gt; logger commands to the server side scripts to see where the server
+</I>&gt;<i> &gt; &gt; side
+</I>&gt;<i> &gt; &gt; script processing is stopping. I'm not sure if we need to suppress
+</I>&gt;<i> &gt; &gt; stdout on the server or client side and if that would solve any of
+</I>&gt;<i> &gt; &gt; the
+</I>&gt;<i> &gt; &gt; problems.
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i> &gt; &gt; I don't know a lot about sudo but I wonder if we need to pass it
+</I>&gt;<i> &gt; &gt; the
+</I>&gt;<i> &gt; &gt; -n
+</I>&gt;<i> &gt; &gt; parameter to suppress that message. Just a bunch of guesses; I
+</I>&gt;<i> &gt; &gt; hope
+</I>&gt;<i> &gt; &gt; they help - John
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Then would the problem not be apparent when the same client is run
+</I>&gt;<i> &gt; on Windows XP ?
+</I>&gt;<i> 
+</I>&gt;<i> One would think so but something is different. That's what I mean that
+</I>&gt;<i> we may have stumbled into something. As far as I know, sudo is not
+</I>&gt;<i> running on the windows client at all but I do believe it is used
+</I>&gt;<i> extensively in the server side scripts. I don't know why we are
+</I>&gt;<i> suddenly seeing the warning message after moving to libssh instead of
+</I>&gt;<i> ssh on cygwin and why it does not appear on XP - John
+</I>
+I rebuilt the exe and re-did the configuration and all is working wonderfully! :) Have tested the client on XP and that works fine as-well. Now need to trim down the size of the VcxSrv distribution and update the installer.
+-- 
+Thanks, Phil
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001484.html">[X2go-dev] Windows 7 and libssh
+</A></li>
+	<LI>Next message: <A HREF="001486.html">[X2go-dev] New thoughts on Git in progress...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1485">[ date ]</a>
+              <a href="thread.html#1485">[ thread ]</a>
+              <a href="subject.html#1485">[ subject ]</a>
+              <a href="author.html#1485">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Segfault issue with x2goserver.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Segfault%20issue%20with%20x2goserver.&In-Reply-To=%3CCALxOYEYcQf2Wi4zDoETeJkHADEa1oSPQvkZGj-fCo6BinhjOWw%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004051.html">
+   <LINK REL="Next"  HREF="004053.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Segfault issue with x2goserver.</H1>
+    <B>Nable 80</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Segfault%20issue%20with%20x2goserver.&In-Reply-To=%3CCALxOYEYcQf2Wi4zDoETeJkHADEa1oSPQvkZGj-fCo6BinhjOWw%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Segfault issue with x2goserver.">nable.maininbox at googlemail.com
+       </A><BR>
+    <I>Thu May 31 22:55:48 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004051.html">[X2Go-Dev] PulseAudio
+</A></li>
+        <LI>Next message: <A HREF="004053.html">[X2Go-Dev] Segfault issue with x2goserver.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4052">[ date ]</a>
+              <a href="thread.html#4052">[ thread ]</a>
+              <a href="subject.html#4052">[ subject ]</a>
+              <a href="author.html#4052">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Good daytime for everyone.
+
+Since 2010 I've been using nxserver (freenx-0.7.3 + nxserver-3.4.0,
+installed into /opt/NX ) on my Debian6 32-bit server ( currently
+kernel 2.6.32-45, here is my /etc/apt/sources.list:
+<A HREF="http://pastebin.ca/2156639">http://pastebin.ca/2156639</A> ).
+I didn't use is for about 2-3 months and today I found that when I try
+to connect to my server, it draws some initial graphics and then
+connection interrupts.
+In dmesg i see:
+[4573539.498493] nxagent[5736]: segfault at 0 ip 080e3f03 sp bf9e6900
+error 4 in nxagent[8048000+438000]
+[4573581.591042] nxagent[6371]: segfault at 0 ip 080e3f03 sp bf9a1d90
+error 4 in nxagent[8048000+438000]
+... (same EIP each time)
+
+I've thought that some update of X11 libs lead it to broke and
+remembered that some some time ago in Debian repos appeared some NX
+libs, so i've looked what depends on them. So, i've found x2goserver.
+I've installed it ( as it described here:
+<A HREF="http://wiki.x2go.org/doku.php/wiki:x2go-repository-debian">http://wiki.x2go.org/doku.php/wiki:x2go-repository-debian</A> ), installed
+x2goclient on my Win32 notebook but when i try to connect, i see the
+same thing: X client application (i use openbox+lxpanel there) do some
+requests, in ~/.xsession-errors i can see smth like:
+XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server &quot;:0.0&quot;
+      after 1070 requests (1070 known processed) with 0 events remaining.
+and then no data comes to client. In dmesg i see:
+[4578741.547603] x2goagent[18222]: segfault at 0 ip 080e87b1 sp
+bfe1afd0 error 4 in nxagent[8048000+460000]
+[4578947.507016] x2goagent[20046]: segfault at 0 ip 080e87b1 sp
+bfbf80c0 error 4 in nxagent[8048000+460000]
+... (same EIP each time)
+
+I've used objdump and found that there program tries to read byte from
+pointer (and doesn't check that it's not NULL) but there are no
+debugging symbols, so i even don't catch what function is it.
+
+Then i've tried installing x2goserver to my new Debian6 64bit server
+(it's almost pure Debian installation) but when i try to connect to
+it, the only application that works is fluxbox, if I try to start
+anything like lxterminal, x2goagent fails at the code that looks very
+similar to 32bit variant:
+[794878.270330] x2goagent[29210]: segfault at 0 ip 00000000004a9bb0 sp
+00007fff41ee6f60 error 4 in nxagent[400000+4f7000]
+[795053.995418] x2goagent[30256]: segfault at 0 ip 00000000004a9bb0 sp
+00007fff8ae42160 error 4 in nxagent[400000+4f7000]
+
+If anyone cares, i'll try to send as much additional info as I can,
+just tell what are you interested in. I can even try to debug it but i
+still haven't understood how to build x2go utils from sources.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004051.html">[X2Go-Dev] PulseAudio
+</A></li>
+	<LI>Next message: <A HREF="004053.html">[X2Go-Dev] Segfault issue with x2goserver.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4052">[ date ]</a>
+              <a href="thread.html#4052">[ thread ]</a>
+              <a href="subject.html#4052">[ subject ]</a>
+              <a href="author.html#4052">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

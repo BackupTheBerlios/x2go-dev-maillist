@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Patch needed for rpm building (unless someone proves me wrong)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Patch%20needed%20for%20rpm%20building%20%28unless%20someone%20proves%0A%20me%20wrong%29&In-Reply-To=%3CCALK7e_P63JjeD%2B6iL4P025M%2B%2BHPZa_OK1P_1t_BRzedLoL7sVg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003381.html">
+   <LINK REL="Next"  HREF="003384.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Patch needed for rpm building (unless someone proves me wrong)</H1>
+    <B>Oliver Burger</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Patch%20needed%20for%20rpm%20building%20%28unless%20someone%20proves%0A%20me%20wrong%29&In-Reply-To=%3CCALK7e_P63JjeD%2B6iL4P025M%2B%2BHPZa_OK1P_1t_BRzedLoL7sVg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Patch needed for rpm building (unless someone proves me wrong)">oliver at mandrivauser.de
+       </A><BR>
+    <I>Sat Feb 11 09:59:59 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003381.html">[X2Go-Dev] Patch needed for rpm building (unless someone proves me wrong)
+</A></li>
+        <LI>Next message: <A HREF="003384.html">[X2Go-Dev] Patch needed for rpm building (unless someone proves me wrong)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3382">[ date ]</a>
+              <a href="thread.html#3382">[ thread ]</a>
+              <a href="subject.html#3382">[ subject ]</a>
+              <a href="author.html#3382">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2012/2/11 Reinhard Tartler &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">siretart at gmail.com</A>&gt;:
+&gt;<i> On Tue, Feb 7, 2012 at 3:32 PM, Oliver Burger &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oliver.bgr at googlemail.com</A>&gt; wrote:
+</I>&gt;&gt;<i> Well, I know, that fakeroot is used in deb packaging but not in rpm
+</I>&gt;&gt;<i> packaging, and since you don't build as root, it's quite impossible to use
+</I>&gt;&gt;<i> those -g and -o options.
+</I>&gt;<i>
+</I>&gt;<i> Just curious, is fakeroot not available *at all* on fedora/mageia systems.
+</I>Well, I just looked. Actually fakeroot is available, at least on
+Mageia. I have no Fedora system here right now.
+But I'm not aware of it normally being used. And I have to ask others
+about our - and the Fedora - build servers being able to use it or
+not.
+
+About the other things, my patch proposes. of course it is possible to
+overwrite INSTALL_DIR, INSTALL_FILE and INSTALL_PROGRAMM, actually
+that didn't come to my mind, but it does make the make line rather
+long ;)
+
+Oliver
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003381.html">[X2Go-Dev] Patch needed for rpm building (unless someone proves me wrong)
+</A></li>
+	<LI>Next message: <A HREF="003384.html">[X2Go-Dev] Patch needed for rpm building (unless someone proves me wrong)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3382">[ date ]</a>
+              <a href="thread.html#3382">[ thread ]</a>
+              <a href="subject.html#3382">[ subject ]</a>
+              <a href="author.html#3382">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

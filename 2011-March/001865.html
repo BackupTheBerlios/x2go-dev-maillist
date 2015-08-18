@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Looking%20for%20information%20on%20the%20future%20of%20x2go%20%28and%0A%20some%20other%20x2go-related%20stuff%29&In-Reply-To=%3C20110303120726.GS14877%40cip.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001866.html">
+   <LINK REL="Next"  HREF="001867.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)</H1>
+    <B>Alexander Wuerstlein</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Looking%20for%20information%20on%20the%20future%20of%20x2go%20%28and%0A%20some%20other%20x2go-related%20stuff%29&In-Reply-To=%3C20110303120726.GS14877%40cip.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)">snalwuer at cip.informatik.uni-erlangen.de
+       </A><BR>
+    <I>Thu Mar  3 13:07:26 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001866.html">[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+</A></li>
+        <LI>Next message: <A HREF="001867.html">[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1865">[ date ]</a>
+              <a href="thread.html#1865">[ thread ]</a>
+              <a href="subject.html#1865">[ subject ]</a>
+              <a href="author.html#1865">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 11-03-03 12:49, Stefan Baur &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>&gt; wrote:
+&gt;<i> Hi Mike,
+</I>&gt;<i> 
+</I>&gt;<i> you wrote:
+</I>&gt;<i> &gt;doesn't Windows 7 have a password storage?
+</I>&gt;<i> Not that I'd know, though I am not exactly a Windows 7 expert (plus,
+</I>&gt;<i> Windows XP and Vista are still out there, too).
+</I>&gt;<i> I only remember seeing a password storage function when it comes to
+</I>&gt;<i> web site logins in Internet Explorer.
+</I>&gt;<i> 
+</I>&gt;<i> [SNIP]
+</I>&gt;<i> 
+</I>&gt;<i> &gt;Generic would also be a statement: this functionality is not supported
+</I>&gt;<i> &gt;for your OS.
+</I>&gt;<i> Which would be a NX/x2go-migration-blocker for those currently using
+</I>&gt;<i> the &quot;store password&quot; function of the NXclient.
+</I>&gt;<i> 
+</I>&gt;<i> Again, I don't mind if you're using ssh keyfiles instead of stored
+</I>&gt;<i> passwords (I could drop such a keyfile into the user's home
+</I>&gt;<i> directory and set it up in a way that it doesn't require a
+</I>&gt;<i> password).
+</I>&gt;<i> FWIW, you could offer to ship invisible dwarves that type the
+</I>&gt;<i> password on the user's keyboard and I wouldn't care. ;-)
+</I>&gt;<i> I just need *some* way to provide a one-click (or double-click,
+</I>&gt;<i> since we're talking Windows here) login.
+</I>
+The keyfiles idea doesn't sound too bad, let the user type the login
+password, create a keyfile and use the password to remotely install the
+private part of that keyfile. Though it has almost the same bad security
+problems as storing cleartext passwords, there are some important
+differences that would make it worthwile: A password will be re-used
+(admins can forbid it all they want, won't work), so storing
+cleartext-passwords will also allow the compromise of other systems. And
+a compromised ssh-key can also be disabled by removing the appropriate
+authorized_keys entry instead of needing to change quite a lot of
+passwords.
+
+&gt;<i> The reason behind this is a mix of usability and security issues:
+</I>&gt;<i> 
+</I>&gt;<i> Usability: The user is already authenticated on the Windows machine
+</I>&gt;<i> or the Windows Domain. No one else has access to the particular
+</I>&gt;<i> configuration file, as it is stored in the user's home directory
+</I>&gt;<i> (for this concept, it doesn't matter if it's a NX config file with a
+</I>&gt;<i> plaintext password, or a passwordless ssh secret key for x2go).
+</I>&gt;<i> There is absolutely no need to ask the user for a password again.
+</I>
+Agreed, but just as a suggestion, you could also use Kerberos via
+winbind for passwordless ssh iirc. That way the authentication via the
+windows domain would be reused without needing any further password and
+without a possible security compromise.
+
+&gt;<i> Security: While it would be possible to connect the NX or x2go
+</I>&gt;<i> server to the Windows Domain using PAM, keeping the two &quot;worlds&quot;
+</I>&gt;<i> seperate is a security benefit, since in the unlikely event that the
+</I>&gt;<i> Linux box gets hacked, the Windows Domain is not exposed to the
+</I>&gt;<i> attacker.
+</I>
+On the other hand, in the far more likely event your Windows Domain gets
+hacked, you have handed the attacker all the Unix passwords on a
+platter.
+
+That said, I don't really care one way or the other, as long as it is
+possible and easy for the admin to disable the &quot;remember password&quot;
+button or as long as its disabled by default.
+
+
+
+Ciao,
+
+Alexander Wuerstlein.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001866.html">[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+</A></li>
+	<LI>Next message: <A HREF="001867.html">[X2go-dev] Looking for information on the future of x2go (and some other x2go-related stuff)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1865">[ date ]</a>
+              <a href="thread.html#1865">[ thread ]</a>
+              <a href="subject.html#1865">[ subject ]</a>
+              <a href="author.html#1865">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

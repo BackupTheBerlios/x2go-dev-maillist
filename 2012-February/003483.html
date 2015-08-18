@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] New major distribution builds available for X2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3Calpine.LNX.2.01.1202180933240.23575%40frira.zrqbmnf.qr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003610.html">
+   <LINK REL="Next"  HREF="003490.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] New major distribution builds available for X2go</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20major%20distribution%20builds%20available%20for%20X2go&In-Reply-To=%3Calpine.LNX.2.01.1202180933240.23575%40frira.zrqbmnf.qr%3E"
+       TITLE="[X2Go-Dev] New major distribution builds available for X2go">jengelh at medozas.de
+       </A><BR>
+    <I>Sat Feb 18 09:33:49 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003610.html">[X2Go-Dev] [PATCH] Fix threading on OS X.
+</A></li>
+        <LI>Next message: <A HREF="003490.html">[X2Go-Dev] Problem with X2Go and VMWare Tools
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3483">[ date ]</a>
+              <a href="thread.html#3483">[ thread ]</a>
+              <a href="subject.html#3483">[ subject ]</a>
+              <a href="author.html#3483">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>[I hate this Reply-To header setting crap... and the absence of the 
+same in the archives.]
+
+On Saturday 2012-02-18 09:32, Jan Engelhardt wrote:
+
+&gt;<i>
+</I>&gt;<i>On Friday 2012-02-17 09:16, Oleksandr Shneyder wrote:
+</I>&gt;&gt;&gt;<i> But symlinking of /usr/lib/nx/X11/libXext.so.6 to
+</I>&gt;&gt;&gt;<i> /usr/lib/nx/X11/libNX_Xext.so.6 should work (talking about LD_LIBRARY_PATH-
+</I>&gt;&gt;&gt;<i> using programs) as long as the SONAME stays NX_Xext for automatic
+</I>&gt;&gt;&gt;<i> dependency finding of rpm (and perhaps deb?).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>It is wrong solution. Only (nx|x2go)agent should be linked against
+</I>&gt;&gt;<i>nx-libs. X-clients should be linked against system X libraries.
+</I>&gt;&gt;<i>Exception is libXinerama. Against this library should be linked both -
+</I>&gt;&gt;<i>agent and client. But in case of agent libXinerama should use libXext
+</I>&gt;&gt;<i>and libX11 from nx-libs and in case of clients it should use the same
+</I>&gt;&gt;<i>libraries from system. For this reasons we exporting
+</I>&gt;&gt;<i>LD_LIBRARY_PATH=/usr/lib/nx/X11 by start of agent and
+</I>&gt;<i>
+</I>&gt;<i>Given that the agent naturally links against libNX_X*.so now,
+</I>&gt;<i>do we still need the LD_LIBRARY_PATH hack for the agent?
+</I>&gt;<i>
+</I>&gt;&gt;<i>LD_LIBRARY_PATH=/usr/lib/nx/X11/Xinerama (*but not /usr/lib/nx/X11*) by
+</I>&gt;&gt;<i>start of desktop environment.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>link system libraries libX11 and libXext into /usr/lib/nx/X11/Xinerama
+</I>&gt;&gt;&gt;&gt;<i>/usr/lib/libX11* -&gt; /usr/lib/nx/X11/Xinerama/libNX_X11*
+</I>&gt;&gt;&gt;&gt;<i>/usr/lib/libXext* -&gt; /usr/lib/nx/X11/Xinerama/libNX_Xext*
+</I>&gt;&gt;<i>[and]
+</I>&gt;&gt;<i>ln -s /usr/lib/libX11.so.6 /usr/lib/nx/X11/Xinerama/libNX_X11.so.6
+</I>&gt;&gt;<i>ln -s /usr/lib/libXext.so.6 /usr/lib/nx/X11/Xinerama/libNX_Xext.so.6
+</I>&gt;<i>
+</I>&gt;<i>I would have my reservations about the formal stability of mixing
+</I>&gt;<i>Xlib implementations within a single program.
+</I>&gt;<i>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003610.html">[X2Go-Dev] [PATCH] Fix threading on OS X.
+</A></li>
+	<LI>Next message: <A HREF="003490.html">[X2Go-Dev] Problem with X2Go and VMWare Tools
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3483">[ date ]</a>
+              <a href="thread.html#3483">[ thread ]</a>
+              <a href="subject.html#3483">[ subject ]</a>
+              <a href="author.html#3483">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

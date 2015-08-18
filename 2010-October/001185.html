@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go python scripts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20python%20scripts&In-Reply-To=%3Cvmime.4cc60b93.819.6ce9b502636a964e%40mail.pl20%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001191.html">
+   <LINK REL="Next"  HREF="001187.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go python scripts</H1>
+    <B>Dick Kniep</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20python%20scripts&In-Reply-To=%3Cvmime.4cc60b93.819.6ce9b502636a964e%40mail.pl20%3E"
+       TITLE="[X2go-dev] x2go python scripts">dick.kniep at lindix.nl
+       </A><BR>
+    <I>Tue Oct 26 00:58:27 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001191.html">[X2go-dev] x2go python scripts
+</A></li>
+        <LI>Next message: <A HREF="001187.html">[X2go-dev] x2go python scripts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1185">[ date ]</a>
+              <a href="thread.html#1185">[ thread ]</a>
+              <a href="subject.html#1185">[ subject ]</a>
+              <a href="author.html#1185">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hi Gerry,
+
+Please add also wxPython 2.8 as a requirement. 
+
+For me the main reason to develop this is that the windows client is not stable if used with a single application. The problem is with XMing, try to run a single application and move the mouse fast around if running under Windows 7 and it crashes.
+
+Furthermore I think we can make some enhancements for the gui, (operating from the Taskbar, automatic minimizing of the gui etc.) and as python and wxpython are crossplatform  we can run the same code on mac, Linux and MS-Windows. So we would have only a single code base to maintain, which would be good for the quality of the total solution.
+
+We are working very hard on this development, but it will take some time before it is all stable. 
+
+Also the gui will be GPL, so please be patient, we will keep you posted.
+
+-----Oorspronkelijk bericht-----
+Van: Gerry Reno &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">greno at verizon.net</A>&gt;
+Verzonden: di 26-10-10 00:09:55
+Aan: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>&gt;; 
+CC: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>; 
+Onderwerp: Re: [X2go-dev] x2go python scripts
+
+&gt;<i> On 10/25/2010 05:36 PM, Mike Gabriel wrote:
+</I>&gt;<i> &gt; Hi Gerry,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; thanks for asking your questions.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; On Mo 25 Okt 2010 17:58:56 CEST Gerry Reno wrote:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; There appear to be a number of efforts involving developing python 
+</I>&gt;<i> &gt;&gt; scripts for x2go.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; What are the status of these python efforts?
+</I>&gt;<i> &gt;&gt; Did J&#246;rg abandon his effort?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Yes, J&#246;rgs approach was initially licensed as GPL, but his contractor 
+</I>&gt;<i> &gt; refused to grant publication under an open license.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; Mike, you mentioned the you were redeveloping J&#246;rg's scripts.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Yes, I have rewritten J&#246;rgs ideas and expanded the possibilities:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;   + pulse audio support
+</I>&gt;<i> &gt;   + local folder sharing
+</I>&gt;<i> &gt;   + printing (work in progress)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; Is that effort finished?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; No, that will probably take a great little while more. Dick Kniep from 
+</I>&gt;<i> &gt; Lindix in the Netherlands writes a GUI around the new Python X2go 
+</I>&gt;<i> &gt; library, whereas I will support his effort by co-developing the Python 
+</I>&gt;<i> &gt; X2go module.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I myself use my pyhoca-cli intensively (from the command line) and I 
+</I>&gt;<i> &gt; am very satisfied with its stability (on Ubuntu lucid).
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; The collaboration with Dick will hopefully bring forth:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;   o a GUI based client (wxPython) that operates form the systray in 
+</I>&gt;<i> &gt; Windows /
+</I>&gt;<i> &gt;     as a docking applet in Linux (GNOME/KDE), one main objective is
+</I>&gt;<i> &gt;     multi-session support. Dick also plans a MacOS X version, but I am 
+</I>&gt;<i> &gt; not sure
+</I>&gt;<i> &gt;     how that will integrate in the Mac desktop (not familiar with 
+</I>&gt;<i> &gt; terminology)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;   o handling of x2goclient config files (printing, settings)
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;   o handling session profiles in ~/.x2goclient/sessions
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I will also later add LDAP support... In fact, there is still a bunch 
+</I>&gt;<i> &gt; of work to do...
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; And what ssh connection approach is being taken with python scripts?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Python X2go uses the Python Paramiko SSH implementation.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; Multiple ssh connections the same as the perl scripts?
+</I>&gt;<i> &gt;&gt; Or establish and reuse a single ssh connection?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Python X2go builds up one SSH Transport connection. Through this 
+</I>&gt;<i> &gt; connection all tunnels (nxproxy, audio, local sharing, printing) are 
+</I>&gt;<i> &gt; handled. I have implemented its own SFTP server into Python X2go. This 
+</I>&gt;<i> &gt; means: Python X2go does not need a local SSH daemon. Python X2go uses 
+</I>&gt;<i> &gt; its own SFTP implementation (works great for me).
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; And what is the minimum python level necessary to run these python 
+</I>&gt;<i> &gt;&gt; scripts?  2.3, 2.4, 2.5, 2.6?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; You need Python2.6 with Greenlet/Gevent module. I have prepared 
+</I>&gt;<i> &gt; packages for Ubuntu lucid/maverick and Debian squeeze/sid in our 
+</I>&gt;<i> &gt; DAS-NETZWERKTEAM repository.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; Just trying to gauge the requirements, features and maturity of the 
+</I>&gt;<i> &gt;&gt; python efforts.
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Please refer to our project homepage, SVN and the Epydoc-generated API 
+</I>&gt;<i> &gt; documentation:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 1.
+</I>&gt;<i> &gt; <A HREF="http://das-netzwerkteam.de/site/?q=node/71">http://das-netzwerkteam.de/site/?q=node/71</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 2.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> <A HREF="https://svn.das-netzwerkteam.de/websvn/listing.php?repname=x2go&amp;path=%2Fpython%2">https://svn.das-netzwerkteam.de/websvn/listing.php?repname=x2go&amp;path=%2Fpython%2</A>
+</I>&gt;<i> Fpython-x2go%2F#_python_python-x2go_ 
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; 3.
+</I>&gt;<i> &gt; <A HREF="http://packages.das-netzwerkteam.de/doc/python-x2go/">http://packages.das-netzwerkteam.de/doc/python-x2go/</A>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Greets,
+</I>&gt;<i> &gt; Mike
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; PS: currently I am working on a completely different project, which 
+</I>&gt;<i> &gt; will last another week at least. Once that is done, I will return to 
+</I>&gt;<i> &gt; Python X2go development.
+</I>&gt;<i> &gt;
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Thanks Mike.  That all sounds great.  Paramiko certainly looks like a 
+</I>&gt;<i> good choice.
+</I>&gt;<i> 
+</I>&gt;<i> Python 2.6 might limit somewhat.  I'll have to see how far back in 
+</I>&gt;<i> distros we could possibly go using 2.6.
+</I>&gt;<i> 
+</I>&gt;<i> When I get some time here I'll start playing around with these scripts.  
+</I>&gt;<i> If at all possible I would prefer to use python over perl.  Better 
+</I>&gt;<i> performance and little nicer syntax.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Gerry
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> 
+</I>&gt;<i> !DSPAM:4cc60033173791344965704!
+</I>&gt;<i> 
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001191.html">[X2go-dev] x2go python scripts
+</A></li>
+	<LI>Next message: <A HREF="001187.html">[X2go-dev] x2go python scripts
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1185">[ date ]</a>
+              <a href="thread.html#1185">[ thread ]</a>
+              <a href="subject.html#1185">[ subject ]</a>
+              <a href="author.html#1185">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

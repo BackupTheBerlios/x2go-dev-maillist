@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] [X2go-dev] x2goclient and ssh-agent
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BX2go-dev%5D%20x2goclient%20and%20ssh-agent&In-Reply-To=%3C056031b55ccde961b27f88c946da873b%40oss.hboss.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002274.html">
+   <LINK REL="Next"  HREF="002335.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] [X2go-dev] x2goclient and ssh-agent</H1>
+    <B>Heiko Baumann</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BX2go-dev%5D%20x2goclient%20and%20ssh-agent&In-Reply-To=%3C056031b55ccde961b27f88c946da873b%40oss.hboss.de%3E"
+       TITLE="[X2go-Dev] [X2go-dev] x2goclient and ssh-agent">heiko at oss.hboss.de
+       </A><BR>
+    <I>Thu Jun 23 10:17:45 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002274.html">[X2go-dev] x2goclient and ssh-agent
+</A></li>
+        <LI>Next message: <A HREF="002335.html">[X2go-Dev] [X2go-dev] x2goclient and ssh-agent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2313">[ date ]</a>
+              <a href="thread.html#2313">[ thread ]</a>
+              <a href="subject.html#2313">[ subject ]</a>
+              <a href="author.html#2313">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE> Hi Mike,
+
+ first at all sorry for my late answer. i was very busy.
+
+ yes i want to access a &quot;share&quot; on a server in the same subnet as the 
+ x2goserver. but not from my x2goclient machine via ssh reverse tunnel. i 
+ just want to access the &quot;share&quot; from within my x2goclient session. this 
+ is imho a standard use case for a terminal server environment. i can 
+ already do this with sshfs from the x2goserver via password 
+ authentication. but if the fileserver does not allow ssh password auth 
+ it is impossible. for sure i could create another ssh private key on the 
+ x2goserver and put the public key part on the fileserver. but this maybe 
+ not wanted if you have one identity (ssl cert/ssh key) for each user 
+ which should only be securely stored on a smartcard.
+
+
+ here is how it works:
+
+ Agent pid 8086
+ 09:52:47 nb-heikob ~ # ssh -A terminalix-hbslx
+ terminalix-hbslx ~ # dir /tmp/ssh-tHRmT17232/
+ insgesamt 512
+ drwx------  2 root root  80 23. Jun 09:52 .
+ drwxrwxrwt 14 root root 496 23. Jun 09:52 ..
+ srwxr-xr-x  1 root root   0 23. Jun 09:52 agent.17232
+
+ terminalix-hbslx ~ # ssh remotix-hbslx
+ remotix-hbslx ~ # logout
+ Connection to remotix-hbslx closed.
+
+
+
+ if the local ssh agent socket does not exists, login via agent 
+ forwarding does not work:
+
+ terminalix-hbslx ~ # rm /tmp/ssh-tHRmT17232/ -r
+
+ terminalix-hbslx ~ # ssh remotix-hbslx
+ Permission denied (publickey,gssapi-with-mic,keyboard-interactive).
+ terminalix-hbslx ~ #
+
+ to get ssh-agent forwarding working with an old x2goclient version 
+ (before using libssh2) i've modified sources to start an additional 
+ persistent ssh tunnel to the x2goserver. this works for me but i guess 
+ it is a ugly hack and it only works with this old version.
+
+ hope this clears things up.
+
+ regards
+ heiko
+
+ On Wed, 01 Jun 2011 11:21:51 +0200, Mike Gabriel 
+ &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+&gt;<i> Hi Heiko,
+</I>&gt;<i>
+</I>&gt;<i> On Mo 30 Mai 2011 19:12:44 CEST Heiko Baumann wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> if you enable ssh agent forwarding (ssh option -A or ForwardAgent in 
+</I>&gt;&gt;<i> ssh_config) your agent connection is &quot;forwarded&quot; to the remote host.  
+</I>&gt;&gt;<i> this way you can use your ssh-agent (and smartcard in my case) to  
+</I>&gt;&gt;<i> login (or mount sshfs) to another host using your private key stored  
+</I>&gt;&gt;<i> in you local ssh-agent. this works with a socket created in  
+</I>&gt;&gt;<i> /tmp/ssh-&lt;somerandomstring&gt;/agent.&lt;pid&gt; on the ssh server/host.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> if i use a current x2goclient this socket is not created and so i  
+</I>&gt;&gt;<i> cannot mount a directory from another host from within my x2gosession.
+</I>&gt;<i>
+</I>&gt;<i> Is it possible that Alex and you discuss two very separate things?
+</I>&gt;<i>
+</I>&gt;<i> Alex's topic: By looking at the sources of X2goClient, there
+</I>&gt;<i> obviously  is an SSH agent implementation in X2goClient. BUT: that's
+</I>&gt;<i> for session  authentication.
+</I>&gt;<i>
+</I>&gt;<i> Heiko's topic: What you are referrring to in your last sentence is
+</I>&gt;<i> using X2go's reverse SSH port forwarding tunnel to access other
+</I>&gt;<i> server's shares in the X2go client's sub-LAN? This currently is not
+</I>&gt;<i> supported (and probably now wanted, either). Also: if the
+</I>&gt;<i> implementation of such a feature became a future endeavour we would
+</I>&gt;<i> have really to look at it very closely for considerations on 
+</I>&gt;<i> security.
+</I>&gt;<i>
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002274.html">[X2go-dev] x2goclient and ssh-agent
+</A></li>
+	<LI>Next message: <A HREF="002335.html">[X2go-Dev] [X2go-dev] x2goclient and ssh-agent
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2313">[ date ]</a>
+              <a href="thread.html#2313">[ thread ]</a>
+              <a href="subject.html#2313">[ subject ]</a>
+              <a href="author.html#2313">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

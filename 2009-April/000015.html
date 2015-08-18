@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Small error in x2goclient-gtk (3.00-1) if gnome-screensaver not installed (?)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Small%20error%20in%20x2goclient-gtk%20%283.00-1%29%20if%0A%20gnome-screensaver%20not%20installed%20%28%3F%29&In-Reply-To=%3C1240583780.7270.7.camel%40mattotaupa.wohnung.familie-menzel.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000014.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Small error in x2goclient-gtk (3.00-1) if gnome-screensaver not installed (?)</H1>
+    <B>Paul Menzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Small%20error%20in%20x2goclient-gtk%20%283.00-1%29%20if%0A%20gnome-screensaver%20not%20installed%20%28%3F%29&In-Reply-To=%3C1240583780.7270.7.camel%40mattotaupa.wohnung.familie-menzel.net%3E"
+       TITLE="[X2go-dev] Small error in x2goclient-gtk (3.00-1) if gnome-screensaver not installed (?)">paulepanter at users.sourceforge.net
+       </A><BR>
+    <I>Fri Apr 24 16:36:20 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000014.html">[X2go-dev] GNOME does not initialize correctly: dbus-launch failed to autolaunch D-Bus session
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#15">[ date ]</a>
+              <a href="thread.html#15">[ thread ]</a>
+              <a href="subject.html#15">[ subject ]</a>
+              <a href="author.html#15">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear x2go-developers and Debian packagers,
+
+
+doing aptitude update and safe-upgrade on a Debian Sid system today the
+following showed up on the terminal.
+
+Richte x2goclient-gtk ein (3.00-1) ...
+Could not parse file '/usr/share/applications/gnome-screensaver-properties.desktop': Key file does not start with a group
+
+Maybe a check before accessing the file could be included.
+
+
+Thanks for all your work,
+
+Paul
+
+
+$ LANG=C dpkg -l gnome-screensaver
+Desired=Unknown/Install/Remove/Purge/Hold
+|<i>
+</I>Status=Not/Inst/Cfg-files/Unpacked/Failed-cfg/Half-inst/trig-aWait/Trig-pend
+|<i>/ Err?=(none)/Hold/Reinst-required/X=both-problems (Status,Err:
+</I>uppercase=bad)
+||<i>/ Name           Version        Description
+</I>+++-==============-==============-============================================
+un  gnome-screensa &lt;none&gt;         (no description available)
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 197 bytes
+Desc: Dies ist ein digital signierter Nachrichtenteil
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090424/a3a5aa55/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090424/a3a5aa55/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000014.html">[X2go-dev] GNOME does not initialize correctly: dbus-launch failed to autolaunch D-Bus session
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#15">[ date ]</a>
+              <a href="thread.html#15">[ thread ]</a>
+              <a href="subject.html#15">[ subject ]</a>
+              <a href="author.html#15">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

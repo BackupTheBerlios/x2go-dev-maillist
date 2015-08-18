@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#249: Segmentation fault in x2goclient
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23249%3A%20Segmentation%20fault%20in%20x2goclient&In-Reply-To=%3C51C76237.1070804%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005879.html">
+   <LINK REL="Next"  HREF="005881.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#249: Segmentation fault in x2goclient</H1>
+    <B>Heinrich Schuchardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23249%3A%20Segmentation%20fault%20in%20x2goclient&In-Reply-To=%3C51C76237.1070804%40gmx.de%3E"
+       TITLE="[X2Go-Dev] Bug#249: Segmentation fault in x2goclient">xypron.glpk at gmx.de
+       </A><BR>
+    <I>Sun Jun 23 23:01:43 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005879.html">[X2Go-Dev] Bug#248: Conditional jump or move depends on	uninitialised value(s)
+</A></li>
+        <LI>Next message: <A HREF="005881.html">[X2Go-Dev] Bug#249:  Bug#249: Segmentation fault in x2goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5880">[ date ]</a>
+              <a href="thread.html#5880">[ thread ]</a>
+              <a href="subject.html#5880">[ subject ]</a>
+              <a href="author.html#5880">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Version: 4.0.1.0
+Severity: severe
+
+When trying to connect to a x2go server I experience a first failure 
+when the session should be established and a segmentation error ending 
+x2goclient when closing the session window:
+
+== Packages installed ==
+
+.../libxcomp3_2%3a3.5.0.20-0+wheezy~main~405~build1_amd64.deb) ...
+.../nxproxy_2%3a3.5.0.20-0+wheezy~main~405~build1_amd64.deb) ...
+.../x2goclient_4.0.1.0-0~x2go1+wheezy~main~380~build1_amd64.deb) ...
+
+== Output in x2goclient ==
+
+NXPROXY - Version 3.5.0
+
+Copyright (C) 2001, 2010 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Proxy running in client mode with pid '9249'.
+Session: Starting session at 'Sun Jun 23 22:35:13 2013'.
+Info: Connecting to remote host 'localhost:31001'.
+Info: Connection to remote proxy 'localhost:31001' established.
+Zeit&#252;berschreitungInfo: Aborting the procedure due to signal '15'.
+Session: Session terminated at 'Sun Jun 23 22:35:43 2013'.
+
+
+== Output in console ==
+
+ONMainWindow constructor
+
+ONMainWindows constructor finished, home Directory is: &quot;/home/user&quot;
+
+read  1  sessions from config file
+start new ssh connection to server: &quot;10.0.0.5&quot; : &quot;22&quot; krb:  false
+
+ssh connection ok
+
+continue normal x2go session
+
+&quot;x2gostartagent 1280x1024 lan 16m-jpeg-9 unix-kde-depth_24 de pc105/de 1 
+D KDE&quot;
+
+Agent output: &quot;50
+cf4921e4ba383a630708d7a92be69259
+14724
+user-50-1372019694_stDKDE_dp24
+30001
+30002
+30003
+&quot;
+starting nxproxy with:  &quot;nxproxy -S 
+nx/nx,options=/home/user/.x2go/S-user-50-1372019694_stDKDE_dp24/options:50&quot;
+
+&quot;
+NXPROXY - Version 3.5.0
+
+Copyright (C) 2001, 2010 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Proxy running in client mode with pid '9249'.
+Session: Starting session at 'Sun Jun 23 22:35:13 2013'.
+Info: Connecting to remote host 'localhost:31001'.
+Info: Connection to remote proxy 'localhost:31001' established.
+&quot;
+
+&quot;channel_forward_listen schlug fehl&quot;  -  &quot;&quot;
+deleting proxy
+
+nxproxy not running
+
+proxy deleted
+
+checking exit status
+check command message
+
+Speicherzugriffsfehler (segmentation fault)
+
+
+== Valgrind Output ==
+
+==9291== Process terminating with default action of signal 11 (SIGSEGV)
+==9291==  Access not within mapped region at address 0x5C
+==9291==    at 0x49C128: ??? (in /usr/bin/x2goclient)
+==9291==    by 0x446ABF: ??? (in /usr/bin/x2goclient)
+==9291==    by 0x446D05: ??? (in /usr/bin/x2goclient)
+==9291==    by 0x4CAD69: ??? (in /usr/bin/x2goclient)
+==9291==    by 0x6E5854E: QMetaObject::activate(QObject*, QMetaObject 
+const*, int, void**) (in /usr/lib/x86_64-linux-gnu/libQtCore.so.4.8.2)
+==9291==    by 0x6511F31: QAbstractButton::clicked(bool) (in 
+/usr/lib/x86_64-linux-gnu/libQtGui.so.4.8.2)
+==9291==    by 0x626606D: ??? (in 
+/usr/lib/x86_64-linux-gnu/libQtGui.so.4.8.2)
+==9291==    by 0x626689F: ??? (in 
+/usr/lib/x86_64-linux-gnu/libQtGui.so.4.8.2)
+==9291==    by 0x6266B0B: 
+QAbstractButton::mouseReleaseEvent(QMouseEvent*) (in 
+/usr/lib/x86_64-linux-gnu/libQtGui.so.4.8.2)
+==9291==    by 0x6320A89: QToolButton::mouseReleaseEvent(QMouseEvent*) 
+(in /usr/lib/x86_64-linux-gnu/libQtGui.so.4.8.2)
+==9291==    by 0x5EFBE0F: QWidget::event(QEvent*) (in 
+/usr/lib/x86_64-linux-gnu/libQtGui.so.4.8.2)
+==9291==    by 0x5EAC70B: QApplicationPrivate::notify_helper(QObject*, 
+QEvent*) (in /usr/lib/x86_64-linux-gnu/libQtGui.so.4.8.2)
+==9291==  If you believe this happened as a result of a stack
+==9291==  overflow in your program's main thread (unlikely but
+==9291==  possible), you can try to increase the size of the
+==9291==  main thread stack using the --main-stacksize= flag.
+==9291==  The main thread stack size used in this run was 8388608.
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005879.html">[X2Go-Dev] Bug#248: Conditional jump or move depends on	uninitialised value(s)
+</A></li>
+	<LI>Next message: <A HREF="005881.html">[X2Go-Dev] Bug#249:  Bug#249: Segmentation fault in x2goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5880">[ date ]</a>
+              <a href="thread.html#5880">[ thread ]</a>
+              <a href="subject.html#5880">[ subject ]</a>
+              <a href="author.html#5880">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go-home
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go-home&In-Reply-To=%3CAANLkTimn1y2Toq-0_G5pvD62si7KwuGsS7%2BHOvo_OaeL%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000939.html">
+   <LINK REL="Next"  HREF="000942.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go-home</H1>
+    <B>Alexander Cr&#246;ssmann</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go-home&In-Reply-To=%3CAANLkTimn1y2Toq-0_G5pvD62si7KwuGsS7%2BHOvo_OaeL%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] x2go-home">alexander.croessmann at gmail.com
+       </A><BR>
+    <I>Mon Aug 16 14:57:36 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000939.html">[X2go-dev] x2go-home
+</A></li>
+        <LI>Next message: <A HREF="000942.html">[X2go-dev] x2go-home
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#941">[ date ]</a>
+              <a href="thread.html#941">[ thread ]</a>
+              <a href="subject.html#941">[ subject ]</a>
+              <a href="author.html#941">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+
+my problem is solved. As I wrote in my first mail, I tired to connect
+from the localhost to the localhost which did not work.
+
+However, I have two more questions:
+- Is there a way to install the windows client without admin
+privileges? The browser plugin?
+- Is there a way to run the server admin GUI on gnome? I get the
+message that kcontrol is missing. Although kdebase is installed.
+
+Alex
+
+2010/8/13 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>&gt;:
+&gt;<i> Hi Alexander,
+</I>&gt;<i>
+</I>&gt;<i> On Fr 13 Aug 2010 12:55:01 CEST Alexander Cr&#246;ssmann wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Sorry for the post in German. The password error message is different,
+</I>&gt;&gt;<i> I tried that.
+</I>&gt;<i>
+</I>&gt;<i> No prob...
+</I>&gt;<i>
+</I>&gt;&gt;<i> I am not aware of any other differences to a normal 9.10
+</I>&gt;&gt;<i> apart from the ssh port.
+</I>&gt;<i>
+</I>&gt;<i> On the x2goclient: what OS do you use? Do you have an SSH server on the
+</I>&gt;<i> client system running? AFAIK Ubuntu Desktop comes without openssh-server
+</I>&gt;<i> package by default. You need a client-side SSH daemon for pulseaudio and
+</I>&gt;<i> cups-x2go to work properly.
+</I>&gt;<i>
+</I>&gt;&gt;<i> The first ssh contact appears to work. I am
+</I>&gt;&gt;<i> asked if the ssh host key is not verified.
+</I>&gt;<i>
+</I>&gt;<i> This means that you can SSH from client to server... please clarify if you
+</I>&gt;<i> can reverse-SSH from server to client...
+</I>&gt;<i>
+</I>&gt;&gt;<i> I deleted the content of.x2go, which did not help.
+</I>&gt;<i>
+</I>&gt;<i> OK...
+</I>&gt;<i>
+</I>&gt;&gt;<i> The individual session logs look like this.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> /usr/bin/x2goagent: Zeile 1: -e: Kommando nicht gefunden.
+</I>&gt;<i>
+</I>&gt;<i> Ihhhhh.... &#160;(this is not causing your problems though but...)
+</I>&gt;<i>
+</I>&gt;<i> @HEINZ+ALEX: there is a bug in that file:
+</I>&gt;<i>
+</I>&gt;<i> &lt;quote&gt;
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike at tsadmin</A>:~$ cat /usr/bin/x2goagent
+</I>&gt;<i> -e #!/bin/bash
+</I>&gt;<i> &#160; &#160;X2GO_LIBS=/usr/lib/x2go LD_LIBRARY_PATH=/usr/lib/x2go exec
+</I>&gt;<i> /usr/lib/x2go/x2goagent $@
+</I>&gt;<i> &lt;/quote&gt;
+</I>&gt;<i>
+</I>&gt;<i> it should be:
+</I>&gt;<i>
+</I>&gt;<i> &lt;quote&gt;
+</I>&gt;<i> #!/bin/bash -e
+</I>&gt;<i> &#160; &#160;X2GO_LIBS=/usr/lib/x2go LD_LIBRARY_PATH=/usr/lib/x2go exec
+</I>&gt;<i> /usr/lib/x2go/x2goagent $@
+</I>&gt;<i> &lt;/quote&gt;
+</I>&gt;<i>
+</I>&gt;&gt;<i> NXAGENT - Version 3.4.0
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Copyright (C) 2001, 2007 NoMachine.
+</I>&gt;&gt;<i> See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Info: Agent running with pid '9489'.
+</I>&gt;&gt;<i> Session: Starting session at 'Fri Aug 13 12:37:25 2010'.
+</I>&gt;&gt;<i> Info: Proxy running in server mode with pid '9489'.
+</I>&gt;&gt;<i> Info: Waiting for connection from 'localhost' on port '30001'.
+</I>&gt;&gt;<i> Info: Accepted connection from '127.0.0.1'.
+</I>&gt;&gt;<i> Error: The remote NX proxy closed the connection.
+</I>&gt;&gt;<i> Error: Failure negotiating the session in stage '7'.
+</I>&gt;&gt;<i> Error: Aborting session with 'X2goagent: Unable to open display
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> 'nx/nx,options=/home/alex/.x2go/C-alex-50-1281695845_stRTERMINAL_dp24/options:50''.
+</I>&gt;&gt;<i> Session: Aborting session at 'Fri Aug 13 12:37:25 2010'.
+</I>&gt;&gt;<i> Session: Session aborted at 'Fri Aug 13 12:37:25 2010'.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -----------
+</I>&gt;&gt;<i> Loop: PANIC! The remote NX proxy closed the connection.
+</I>&gt;&gt;<i> Loop: PANIC! Failure negotiating the session in stage '7'.
+</I>&gt;&gt;<i> Loop: PANIC! Wrong version or invalid session authentication cookie.
+</I>&gt;&gt;<i> ------------
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I found the following errors in In /var/log/auth.log
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Aug 13 12:37:26 adler sshd[9891]: error: bind: Address already in use
+</I>&gt;&gt;<i> Aug 13 12:37:26 adler sshd[9891]: error: channel_setup_fwd_listener:
+</I>&gt;&gt;<i> cannot listen to port: 30002
+</I>&gt;&gt;<i> Aug 13 12:37:26 adler sshd[9513]: pam_unix(sshd:session): session
+</I>&gt;&gt;<i> closed for user alex
+</I>&gt;&gt;<i> Aug 13 12:37:26 adler sshd[9906]: error: connect_to localhost port
+</I>&gt;&gt;<i> 30001: failed.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Any other ideas anyone?
+</I>&gt;<i>
+</I>&gt;<i> What is running on port 30002 on your client system??? Send ,,lsof -i -n''
+</I>&gt;<i> output...
+</I>&gt;<i>
+</I>&gt;<i> What is your x2goservers SSH port (it should not be around 30001, 30002
+</I>&gt;<i> etc.)
+</I>&gt;<i>
+</I>&gt;<i> Are you maybe trying to x2go to localhost??? I am not sure if that's
+</I>&gt;<i> supported... Try connecting between two different machines (or VMs)...
+</I>&gt;<i>
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;<i> fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;<i>
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000939.html">[X2go-dev] x2go-home
+</A></li>
+	<LI>Next message: <A HREF="000942.html">[X2go-dev] x2go-home
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#941">[ date ]</a>
+              <a href="thread.html#941">[ thread ]</a>
+              <a href="subject.html#941">[ subject ]</a>
+              <a href="author.html#941">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

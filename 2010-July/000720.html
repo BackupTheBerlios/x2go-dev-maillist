@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] session timeout management / idle management / lost processes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20session%20timeout%20management%20/%20idle%20management%20/%20lost%0A%20processes&In-Reply-To=%3C1277937274.3459.22.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000722.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] session timeout management / idle management / lost processes</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20session%20timeout%20management%20/%20idle%20management%20/%20lost%0A%20processes&In-Reply-To=%3C1277937274.3459.22.camel%40localhost%3E"
+       TITLE="[X2go-dev] session timeout management / idle management / lost processes">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu Jul  1 00:34:34 CEST 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000722.html">[X2go-dev] session timeout management / idle management / lost processes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#720">[ date ]</a>
+              <a href="thread.html#720">[ thread ]</a>
+              <a href="subject.html#720">[ subject ]</a>
+              <a href="author.html#720">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>It seems like Mike is willing to take on a lot of this work himself and
+is just looking for information to help him do that work.  If that's the
+case, I have no problem being barraged and sharing whatever knowledge I
+have of the project. :-)  I know I have a pile of improvements and
+patches I'd like to submit but haven't because I haven't had the time to
+research the details of the code.  With a bit of guidance along the way,
+I'm sure I could make much faster progress as will Mike.  Thanks - John
+
+On Wed, 2010-06-30 at 16:54 -0500, Gerry Reno wrote:
+&gt;<i> Mike,
+</I>&gt;<i>   Your enthusiasm is terrific.  But you're tending to overwhelm
+</I>&gt;<i> everyone with so many questions on so many topics all at once.
+</I>&gt;<i> 
+</I>&gt;<i>   As far as sessions go I think you should look
+</I>&gt;<i> at /usr/sbin/x2gocleansessions and read through the various scripts.
+</I>&gt;<i> Maybe you've done that.
+</I>&gt;<i> 
+</I>&gt;<i>   You point out good issues but let's take them one or two at a time
+</I>&gt;<i> and drill them out rather than get a whole slew of scattered threads
+</I>&gt;<i> started.
+</I>&gt;<i> 
+</I>&gt;<i> Gerry
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Jun 30, 2010 05:31:15 PM, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> wrote:
+</I>&gt;<i>         Hi there,
+</I>&gt;<i>         
+</I>&gt;<i>         On Mi 30 Jun 2010 22:47:02 CEST Mike Gabriel wrote:
+</I>&gt;<i>         
+</I>&gt;<i>         &gt; [...]
+</I>&gt;<i>         
+</I>&gt;<i>         what I actually wanted to put under this subject...
+</I>&gt;<i>         
+</I>&gt;<i>         I played with timeoutd and autolog (both debian squeeze and
+</I>&gt;<i>         ubuntu 
+</I>&gt;<i>         lucid). Both packages are (as I understand) unmaintained in
+</I>&gt;<i>         Debian, 
+</I>&gt;<i>         and what I read of unmaintained in upstream. There is no such 
+</I>&gt;<i>         replacement for either of the tools, is it?
+</I>&gt;<i>         
+</I>&gt;<i>         Do you have any concepts in your setups for handling of
+</I>&gt;<i>         
+</I>&gt;<i>         o idle session/process management
+</I>&gt;<i>         o session timeout management
+</I>&gt;<i>         o cleaning up of lost processes
+</I>&gt;<i>         o are any of these features included in x2go already?
+</I>&gt;<i>         
+</I>&gt;<i>         Greets,
+</I>&gt;<i>         Mike
+</I>&gt;<i>         
+</I>&gt;<i>         
+</I>&gt;<i>         -- 
+</I>&gt;<i>         
+</I>&gt;<i>         DAS-NETZWERKTEAM
+</I>&gt;<i>         mike gabriel, dorfstr. 27, 24245 barmissen
+</I>&gt;<i>         fon: +49 (4302) 281418, fax: +49 (4302) 281419
+</I>&gt;<i>         
+</I>&gt;<i>         eMail-LeseSchreibStunde: wochentags 8h-10h
+</I>&gt;<i>         mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>,
+</I>&gt;<i>         <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>         
+</I>&gt;<i>         freeBusy:
+</I>&gt;<i>         <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%</A>
+</I>&gt;<i>         40das-netzwerkteam.de.xfb
+</I>&gt;<i>         _______________________________________________
+</I>&gt;<i>         X2go-dev mailing list
+</I>&gt;<i>         <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i>         <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000722.html">[X2go-dev] session timeout management / idle management / lost processes
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#720">[ date ]</a>
+              <a href="thread.html#720">[ thread ]</a>
+              <a href="subject.html#720">[ subject ]</a>
+              <a href="author.html#720">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

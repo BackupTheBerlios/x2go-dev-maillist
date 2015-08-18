@@ -1,0 +1,119 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#354: Bug#354: Things you should know about X (was:	Re: Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23354%3A%20Bug%23354%3A%20Things%20you%20should%20know%20about%20X%20%28was%3A%0A%09Re%3A%20Bug%23354%3A%20Bug%23354%3A%20Make%20x2goagent%20listening%20to%20TCP%0A%09connections%20configurable%20in%20x2goserver.conf%29&In-Reply-To=%3CCALxOYEYJYwmwYAJO39sF2avcq%3DN0jbGwE4Zj-jMcVQc_xyvvyQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006568.html">
+   <LINK REL="Next"  HREF="006572.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#354: Bug#354: Things you should know about X (was:	Re: Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf)</H1>
+    <B>Nable 80</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23354%3A%20Bug%23354%3A%20Things%20you%20should%20know%20about%20X%20%28was%3A%0A%09Re%3A%20Bug%23354%3A%20Bug%23354%3A%20Make%20x2goagent%20listening%20to%20TCP%0A%09connections%20configurable%20in%20x2goserver.conf%29&In-Reply-To=%3CCALxOYEYJYwmwYAJO39sF2avcq%3DN0jbGwE4Zj-jMcVQc_xyvvyQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#354: Bug#354: Things you should know about X (was:	Re: Bug#354: Bug#354: Make x2goagent listening to TCP	connections configurable in x2goserver.conf)">nable.maininbox at googlemail.com
+       </A><BR>
+    <I>Sun Dec  8 21:05:21 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006568.html">[X2Go-Dev] Bug#354: Things you should know about X (was: Re:	Bug#354: Bug#354: Make x2goagent listening to TCP connections	configurable in x2goserver.conf)
+</A></li>
+        <LI>Next message: <A HREF="006572.html">[X2Go-Dev] Bug#354:  Bug#354: Things you should know about X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6571">[ date ]</a>
+              <a href="thread.html#6571">[ thread ]</a>
+              <a href="subject.html#6571">[ subject ]</a>
+              <a href="author.html#6571">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks a lot for this interesting discussion.
+
+Although I should comment this thing from the linked article: it
+begins with the following words:
+&gt;<i> log into the victim's desktop, become root
+</I>It's too obvious that with root one can do almost anything, not only
+grab X sessions.
+So, you article is not a proof of X11 insecurity (after all, we know
+that it's not secure, but example is not good), just a howto for root
+usage.
+One should notice that without root ( who would give root access to
+generic employee? except (possibly) on his workstation) you still
+cannot access other users' cookies (except cases when one have too
+wide permissions or known vulnerabilitites with privelege escalation),
+so you cannot grab their X sessions, can you?
+
+2013/12/8, Stefan Baur &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>&gt;:
+&gt;<i> Am 08.12.2013 16:13, schrieb Nick Ingegneri:
+</I>&gt;&gt;<i> I think that because I used &quot;xhost +&quot; in my original debugging example,
+</I>&gt;&gt;<i> the assumption was immediately made that &quot;xhost +&quot; was my primary
+</I>&gt;&gt;<i> concern. My primary concern is that disabling TCP breaks almost every
+</I>&gt;&gt;<i> possible use model except for one narrow case (ssh). Among other things,
+</I>&gt;&gt;<i> it breaks the MIT-MAGIC-COOKIE-1 mechanism. While there are very valid
+</I>&gt;&gt;<i> concerns regarding use of TCP on the internet, we have a different
+</I>&gt;&gt;<i> hierarchy of concerns regarding what happens on our internal network.
+</I>&gt;<i>
+</I>&gt;<i> [long blahblah snipped]
+</I>&gt;<i>
+</I>&gt;<i> If you believe Xauth Cookies alone will protect you from nastiness,
+</I>&gt;<i> think again:
+</I>&gt;<i> <A HREF="http://www.hackinglinuxexposed.com/articles/20040608.html">http://www.hackinglinuxexposed.com/articles/20040608.html</A> - &quot;Abusing X11
+</I>&gt;<i> for fun and passwords.&quot;
+</I>&gt;<i>
+</I>&gt;<i> All the nastiness shown in that write-up works *with* .Xauthority in place.
+</I>&gt;<i> And this was published in 2004, so every script kiddie, every
+</I>&gt;<i> pimple-faced youth among your trainees, every disgruntled employee knows
+</I>&gt;<i> about this. (And so does the NSA.)
+</I>&gt;<i>
+</I>&gt;<i> Seriously, I've been in the IT Security business for quite a few years
+</I>&gt;<i> *ahem ahem* - and the real enemy usually isn't some obscure Chinese
+</I>&gt;<i> hacker, it's an employee, either a lazy and careless one or a malicious
+</I>&gt;<i> one that has been turned over by a competitor. So do not trust anyone
+</I>&gt;<i> and anything on your network. Encrypt even your internal traffic.
+</I>&gt;<i> I've even seen reports of power plugs with surge protectors containing
+</I>&gt;<i> Network sniffers. So the spying device has unlimited power supply and
+</I>&gt;<i> sits right in your network, logging all your traffic and sending it out
+</I>&gt;<i> either via innocuous http requests or via a seperate WiFi network.
+</I>&gt;<i>
+</I>&gt;<i> And please, do not fool yourself into thinking &quot;but we don't have
+</I>&gt;<i> anything to hide&quot;. Yes, you have. We all have. Unless you see &quot;1984&quot; as
+</I>&gt;<i> an instruction manual.
+</I>&gt;<i>
+</I>&gt;<i> -Stefan
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I></PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006568.html">[X2Go-Dev] Bug#354: Things you should know about X (was: Re:	Bug#354: Bug#354: Make x2goagent listening to TCP connections	configurable in x2goserver.conf)
+</A></li>
+	<LI>Next message: <A HREF="006572.html">[X2Go-Dev] Bug#354:  Bug#354: Things you should know about X
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6571">[ date ]</a>
+              <a href="thread.html#6571">[ thread ]</a>
+              <a href="subject.html#6571">[ subject ]</a>
+              <a href="author.html#6571">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Desktop sharing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Desktop%20sharing&In-Reply-To=%3C1269441997.7895.13.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000379.html">
+   <LINK REL="Next"  HREF="000382.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Desktop sharing</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Desktop%20sharing&In-Reply-To=%3C1269441997.7895.13.camel%40localhost%3E"
+       TITLE="[X2go-dev] Desktop sharing">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Mar 24 15:46:37 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000379.html">[X2go-dev] Desktop sharing
+</A></li>
+        <LI>Next message: <A HREF="000382.html">[X2go-dev] Desktop sharing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#381">[ date ]</a>
+              <a href="thread.html#381">[ thread ]</a>
+              <a href="subject.html#381">[ subject ]</a>
+              <a href="author.html#381">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2010-03-22 at 22:19 +0100, Peter Puk wrote:
+&gt;<i> As described here: <A HREF="http://www.x2go.org/index.php?id=72">http://www.x2go.org/index.php?id=72</A>
+</I>&gt;<i> Quote: &quot;You may share their displays to help them or to discuss your 
+</I>&gt;<i> projects.&quot;
+</I>&gt;<i> 
+</I>&gt;<i> How can i share a desktop, or as i understand:
+</I>&gt;<i> &quot;login to an already running desktop, to support the current working user.&quot;
+</I>&gt;<i> 
+</I>&gt;<i> In what way can i manage that. I'm already to access the &quot;server&quot; and 
+</I>&gt;<i> login to another user, but not take over an existing session.
+</I>Hi, Ronnie.  I don't know a lot about these capabilities but I see that
+no one more knowledgeable has responded so I'll take my best shot :-)
+
+I believe X2Go currently supports their SpyGlass product.  This would
+allow one desktop to see thumbnails of multiple desktops and, I assume,
+then zoom in on an individual one.  I have never used it.
+
+NoMachine does have a shadowing facility.  With it, one can open a new
+session to an NX server which shadows and existing one.  It is slower
+than native NX as it uses VNC, I believe, to perform its magic.  I do
+not believe this is implemented in X2Go yet but is imminent.
+
+In our environment, we opted to go for neither.  Specifically for our
+environment, we found it was more practical to create a share/use
+desktop icon on the virtual desktop.  Our users use their X2Go desktop
+as their primary work space.  To have them leave it to open another X2Go
+client in order to shadow another user seemed more complicated than we
+needed and involved educating the users about choosing a shadow session
+rather than just letting them click on the icon, take the defaults we
+set, and work.  Now, they simply click on the Share Desktop icon to
+allow others to see their desktop or View Another Desktop icon to
+connect to another desktop.  All our users are remote but all their
+virtual desktops are on the same network.  Thus, the performance is
+splendid and we are using native NX to bring the shared desktop back to
+the end user.  Much faster than shadowing.
+
+The challenge for us was sharing display :0.  We are using Debian Lenny
+desktops with KDE 3.  Krfb is broken (as it is in Ubuntu, too) and, even
+when it does work is slow.  Regular vncserver does not share display :0
+but creates a new display.
+
+Our solution was to use x11vnc.  It is about the ugliest GUI I have ever
+seen and is a bear to configure but it is blazingly fast and allows
+access to display :0.  We then chose xvnc4viewer as the viewer rather
+than Krdc.  Krdc evidenced some instability when used with X11vnc.
+
+If it would be helpful, I can post our procedure and set up to the list.
+Hope this helps - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000379.html">[X2go-dev] Desktop sharing
+</A></li>
+	<LI>Next message: <A HREF="000382.html">[X2go-dev] Desktop sharing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#381">[ date ]</a>
+              <a href="thread.html#381">[ thread ]</a>
+              <a href="subject.html#381">[ subject ]</a>
+              <a href="author.html#381">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

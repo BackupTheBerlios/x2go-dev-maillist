@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Status load balancing in X2go, and alternatives
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Status%20load%20balancing%20in%20X2go%2C%20and%20alternatives&In-Reply-To=%3C201109192315.43855.arnold%40arnoldarts.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002805.html">
+   <LINK REL="Next"  HREF="002764.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Status load balancing in X2go, and alternatives</H1>
+    <B>Arnold Krille</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Status%20load%20balancing%20in%20X2go%2C%20and%20alternatives&In-Reply-To=%3C201109192315.43855.arnold%40arnoldarts.de%3E"
+       TITLE="[X2go-Dev] Status load balancing in X2go, and alternatives">arnold at arnoldarts.de
+       </A><BR>
+    <I>Mon Sep 19 23:15:37 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002805.html">[X2go-Dev] Status load balancing in X2go, and alternatives
+</A></li>
+        <LI>Next message: <A HREF="002764.html">[X2go-Dev] misleading stderr output when resuming, suspending, terminating a already dead session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2806">[ date ]</a>
+              <a href="thread.html#2806">[ thread ]</a>
+              <a href="subject.html#2806">[ subject ]</a>
+              <a href="author.html#2806">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Monday 19 September 2011 22:38:40 Paul van der Vlis wrote:
+&gt;<i> Op 16-09-11 07:31, John A. Sullivan III schreef:
+</I>&gt;<i> &gt; We are building that scale of environment.  For better or worse, we have
+</I>&gt;<i> &gt; been so overrun with consulting work that we are way behind where we
+</I>&gt;<i> &gt; hoped to be in our X2Go build but we have taken a different approach.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; We integrated X2Go and Linux-VServer.  Each user has a dedicated system
+</I>&gt;<i> &gt; (great for things like non-repudiation) but the extra resource
+</I>&gt;<i> &gt; requirements are minimal.
+</I>&gt;<i> 
+</I>&gt;<i> Even with RAM? I think every user needs his own OpenOffice in RAM, so
+</I>&gt;<i> you need much more RAM this way. But maybe I'm wrong.
+</I>
+Afaik shared libraries are not only shared by several apps without linking 
+them static, they are also shared in memory when loaded.
+That only leaves the cache/render-space of openoffice/libre-office/chrom[e|
+ium]/firefox to take up lots of per-user memory.
+
+Have fun,
+
+Arnold
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110919/13465dc8/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110919/13465dc8/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002805.html">[X2go-Dev] Status load balancing in X2go, and alternatives
+</A></li>
+	<LI>Next message: <A HREF="002764.html">[X2go-Dev] misleading stderr output when resuming, suspending, terminating a already dead session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2806">[ date ]</a>
+              <a href="thread.html#2806">[ thread ]</a>
+              <a href="subject.html#2806">[ subject ]</a>
+              <a href="author.html#2806">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

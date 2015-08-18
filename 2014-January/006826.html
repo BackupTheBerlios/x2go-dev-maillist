@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Raspberry Pi as cheap Thin Client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2014-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Raspberry%20Pi%20as%20cheap%20Thin%20Client&In-Reply-To=%3C52CFF03B.1020906%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006825.html">
+   <LINK REL="Next"  HREF="006792.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Raspberry Pi as cheap Thin Client</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Raspberry%20Pi%20as%20cheap%20Thin%20Client&In-Reply-To=%3C52CFF03B.1020906%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Raspberry Pi as cheap Thin Client">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Fri Jan 10 14:06:03 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006825.html">[X2Go-Dev] Raspberry Pi as cheap Thin Client
+</A></li>
+        <LI>Next message: <A HREF="006792.html">[X2Go-Dev] Bug#393: Improvements for RPM package (Xinerama support)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6826">[ date ]</a>
+              <a href="thread.html#6826">[ thread ]</a>
+              <a href="subject.html#6826">[ subject ]</a>
+              <a href="author.html#6826">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 10.01.2014 13:46, schrieb Javier Cacheiro Lopez:
+
+&gt;<i>  From my point of view one of the advantadges of RPi is that you can
+</I>&gt;<i> easily deploy new OS images by just replacing the SD card with a
+</I>&gt;<i> different one (all v1 or v2 RPi have basically the same hardware ).
+</I>&gt;<i>
+</I>&gt;<i> So in general I would just update one of the RPi nodes, check everything
+</I>&gt;<i> works and after that take the SD card to a standard computer and make a
+</I>&gt;<i> dd image of it. Then with that image you can update the SD cards of the
+</I>&gt;<i> rest of RPi.
+</I>
+That's called sneakernet administration, and may work when all the 
+computers are in close proximity, which may not well be the case here. 
+It also means increased wear and tear on the SD card connector.
+
+&gt;<i> If you can afford having some extra SD cards then you can just replace
+</I>&gt;<i> one SD card with the updated one.
+</I>
+I believe if the poster mentioned cameroon, bridging the digital gap, 
+and low-power, cheap devices, it is unlikely that he has much of a budget.
+
+&gt;<i> In case you prefer network updates take into account that the network in
+</I>&gt;<i> the RPi is not especially fast because the NIC is only 100Mbits and the
+</I>&gt;<i> processor is also a limiting factor for the speed if using encrypted
+</I>&gt;<i> transfers (like scp).
+</I>
+Why would that be a problem? You're not updating at boot, but &quot;behind 
+the scenes&quot; in the other partition/directory while the main operating 
+system is already running. if your updater uses rsync or wget, it's 
+possible to resume where it last left off, and to throttle transfer 
+speed. So you can set it up in a way that it takes 2 hours to transfer 
+the image, why would a &quot;low&quot; transfer speed caused by 100MBit/s instead 
+of 1GBit/s matter at all? It's done when it's done, and nothing breaks 
+if transfer is aborted.
+
+-Stefan
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006825.html">[X2Go-Dev] Raspberry Pi as cheap Thin Client
+</A></li>
+	<LI>Next message: <A HREF="006792.html">[X2Go-Dev] Bug#393: Improvements for RPM package (Xinerama support)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6826">[ date ]</a>
+              <a href="thread.html#6826">[ thread ]</a>
+              <a href="subject.html#6826">[ subject ]</a>
+              <a href="author.html#6826">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#260: Bug#260: Mac client not accepting input after	disconnect
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23260%3A%20Bug%23260%3A%20Mac%20client%20not%20accepting%20input%20after%0A%09disconnect&In-Reply-To=%3CCAFJm-UOwAyafVp6qhU%3D-8Y%2BYqcBjd%2BfX%2BaS0HesMyP3uJQwV6w%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005952.html">
+   <LINK REL="Next"  HREF="005972.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#260: Bug#260: Mac client not accepting input after	disconnect</H1>
+    <B>Anders Bruun Olsen</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23260%3A%20Bug%23260%3A%20Mac%20client%20not%20accepting%20input%20after%0A%09disconnect&In-Reply-To=%3CCAFJm-UOwAyafVp6qhU%3D-8Y%2BYqcBjd%2BfX%2BaS0HesMyP3uJQwV6w%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#260: Bug#260: Mac client not accepting input after	disconnect">abo at dsl.dk
+       </A><BR>
+    <I>Mon Jul 22 12:22:58 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005952.html">[X2Go-Dev] Bug#260: Mac client not accepting input after disconnect
+</A></li>
+        <LI>Next message: <A HREF="005972.html">[X2Go-Dev] Bug#260: Bug#260: Bug#260: Mac client not accepting	input after disconnect
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5969">[ date ]</a>
+              <a href="thread.html#5969">[ thread ]</a>
+              <a href="subject.html#5969">[ subject ]</a>
+              <a href="author.html#5969">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>2013/7/19 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+
+&gt;<i> (explicitly CC:ing Anders who may give feedback on this)
+</I>&gt;<i>
+</I>
+You seem to have forgotten to do that, but I caught it anyways :)
+
+
+&gt;<i>  I can connect to different servers, work with it, but as soon as I
+</I>&gt;&gt;<i> disconnect a session, the client won't access any key inputs. I can still
+</I>&gt;&gt;<i> click with the mouse and get reactions like opening the settings dialog, I
+</I>&gt;&gt;<i> can even enter text in the settings dialog, but I cannot log in anymore as
+</I>&gt;&gt;<i> I cannot enter a password (or change my username).
+</I>&gt;&gt;<i> This happens on different Macs, all using the latest Version of OS X 10.8
+</I>&gt;&gt;<i> (one tested with 10.8.3).
+</I>&gt;<i>
+</I>&gt;<i> Sound like this issue has been reported before: #139. Thus, merging these
+</I>&gt;<i> bug reports with one another.
+</I>&gt;<i>
+</I>
+We experience the same problem with x2goclient on Mac, also in broker mode.
+It has been there since we started out with it, and yes, my guess is that
+bug #139 covers it.
+To us, it is only a minor issue, since our users don't log off and on again
+a lot. They start x2goclient on their Macs, which I have customized to be
+in broker mode and contact our broker. They just type their username and
+password, and the only available session is chosen automatically for them.
+When they log out, it is normally because they are done using x2go, and
+thus close x2goclient completely. Therefore they never experience the
+problem with the unresponsive text fields.
+
+
+&gt;<i> The current problem about the Mac OS version of X2Go Client is that the
+</I>&gt;<i> upstream developers (Alex and Mike, mainly) do not have a Mac hardware at
+</I>&gt;<i> hand to get issues like this one fixed.
+</I>&gt;<i> If someone can permanently provide us with hardware (or contract us so
+</I>&gt;<i> that we can buy some Mac OS X capable device), it will make it much more
+</I>&gt;<i> likely that Mac OS issues get fixed in a much quicker way.
+</I>&gt;<i>
+</I>
+I doubt that I can convince my boss to let me give you a Mac, but I am
+going to start bugging him about us providing at least some financial aid
+to get you guys som Mac hardware. No promises, but I am going to talk to
+him about it, when he gets back from vacation.
+
+Dirk: I am still fairly new at running an x2go solution, but have been
+running a two node terminalserver solution with NoMachine for years. We are
+currently switching to x2go with a load balancing broker, thin clients
+using the x2gothinclient environment and a bunch of users logging on from
+their Macs at home or on the road. I would be glad to provide you with
+information about getting such a setup up and running, and about how I have
+customized our x2goclient.app to work seamlessly in our environment.
+
+-- 
+Anders Bruun Olsen
+It-ansvarlig
+Det Danske Sprog- og Litteraturselskab
+(Society for Danish Language and Literature)
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130722/0c6e26be/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130722/0c6e26be/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005952.html">[X2Go-Dev] Bug#260: Mac client not accepting input after disconnect
+</A></li>
+	<LI>Next message: <A HREF="005972.html">[X2Go-Dev] Bug#260: Bug#260: Bug#260: Mac client not accepting	input after disconnect
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5969">[ date ]</a>
+              <a href="thread.html#5969">[ thread ]</a>
+              <a href="subject.html#5969">[ subject ]</a>
+              <a href="author.html#5969">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

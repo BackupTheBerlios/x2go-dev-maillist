@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] NoMachine's licensing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20NoMachine%27s%20licensing&In-Reply-To=%3CAANLkTi%3DJowR4GJqOEOqxbTapxcNkR%3DA-tyDfGN4UrzJH%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001656.html">
+   <LINK REL="Next"  HREF="001662.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] NoMachine's licensing</H1>
+    <B>brian mullan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20NoMachine%27s%20licensing&In-Reply-To=%3CAANLkTi%3DJowR4GJqOEOqxbTapxcNkR%3DA-tyDfGN4UrzJH%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] NoMachine's licensing">bmullan.mail at gmail.com
+       </A><BR>
+    <I>Wed Feb  2 15:22:03 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001656.html">[X2go-dev] X2go GIT Repo - Patches?
+</A></li>
+        <LI>Next message: <A HREF="001662.html">[X2go-dev] NoMachine's licensing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1661">[ date ]</a>
+              <a href="thread.html#1661">[ thread ]</a>
+              <a href="subject.html#1661">[ subject ]</a>
+              <a href="author.html#1661">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I asked nomachine and here is their actual license.
+
+As I'd suspected the GPL components that they use NoMachine points out were
+GPL already
+and nearly 80% of the overall NX project.
+
+Given that I'm not sure they can copyright those modules as they were based
+on other GPL projects... see URL:
+<A HREF="http://www.nomachine.com/ar/view.php?ar_id=AR10B00018">http://www.nomachine.com/ar/view.php?ar_id=AR10B00018</A>
+
+Under the NoMachine EULA &lt;<A HREF="http://www.nomachine.com/licensing">http://www.nomachine.com/licensing</A>&gt; it limits
+their copyright to the following programs:
+
+*4.1 Commercial NoMachine Software
+
+NoMachine Commercial Software consists of the following computer programs
+that have been developed by NoMachine:
+
+ - nxserver
+ - nxnode
+ - nxmanager
+ - nxclient
+ - nxapplet
+ - nxstat
+
+NoMachine owns the copyrights and intellectual property in and to each
+item of NoMachine Commercial Software.*
+
+The EULA also names all of the Open Source NoMachine programs separately
+that remain open.
+
+The URL that Erik provided says:
+
+Note also that to maintain the code ununcumbered of copyright, patents and
+licensing issues, it is required that you agree on giving to NoMachine a *Joint
+Copyright Assignment, granting the right to use your contributions in future
+NoMachine software, being this future software open or closed source and
+intended for commercial or non commercial use*. Such a JCA is standard in
+the industry, being required, for example, to contribute to Apache or to
+some projects sponsored by the GNU FSF. While *NoMachine releases its OSS
+software under the GPL license (a non-whitdrawable deal, ensuring that the
+software you contributed will be freely available forever under the terms of
+this same license*),* it is a requisite that NoMachine will maintain the
+full copyright on the software it develop*s.
+
+So any code anyone's contributed since 2004 to NoMachine's programs (see the
+above list) just gives NoMachine JOINT copyright with the contributors.
+
+There's only a question if any of x2go's current modules were directly
+derived from NoMachine's above &quot;programs&quot;:
+
+libssh
+nxcomp
+nxcompext
+xcompshad
+nxproxy
+x2goagent
+x2goclient
+x2gognomebindings
+x2goplugin
+x2goserver
+
+Brian
+
+
+
+*Article:  #AR10B00018*           Added on: 2004-10-04   Last Modified:
+2011-01-12   Applies to: NX Licensing        *Under what kind of license is
+NX distributed?*
+NX Server and NX Client are commercial products, distributed under a closed
+source licence &lt;<A HREF="http://www.nomachine.com/licensing">http://www.nomachine.com/licensing</A>&gt; but all the core
+libraries (for example libraries implementing X protocol compression), the
+modified X11 transport libraries (which implement proxying of any standard X
+client) and the NX agent (the program that runs X sessions on behalf of the
+user) are released under the GNU General Public Licence. They represent a
+huge part of the project, currently nearly 80% of all the time and resources
+dedicated to NX development. See our EULA for specific details:
+<A HREF="http://www.nomachine.com/licensing">http://www.nomachine.com/licensing</A>
+------------------------------
+
+Message: 3
+Date: Wed, 2 Feb 2011 09:50:13 +0100
+From: Erik Auerswald &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">auerswald at fg-networking.de</A>&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+Subject: Re: [X2go-dev] [Pkg-x2go-devel] Getting things started with
+       x2goclient
+Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">20110202085013.GB24710 at fgnfs.fg-networking.de</A>&gt;
+Content-Type: text/plain; charset=iso-8859-1
+
+Hi,
+
+On Tue, Feb 01, 2011 at 01:53:27PM -0500, Gerry Reno wrote:
+&gt;<i> On 02/01/2011 01:44 PM, Moritz Str?be wrote:
+</I>&gt;<i> &gt; Am 01.02.2011 18:28, Gerry Reno schrieb:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt;&gt; Unless NoMachine completely rewrote the NX libs from scratch they
+</I>cannot
+&gt;<i> &gt;&gt; change the license nor can they fail to provide any updates made to
+</I>that
+&gt;<i> &gt;&gt; code base.  Once the GPL license is on a code base ALL derivatives that
+</I>&gt;<i> &gt;&gt; are distributed in any manner are covered under the GPL no matter who
+</I>&gt;<i> &gt;&gt; makes them.
+</I>
+Any code released under the GPL remains this way. This does not affect new
+releases done by the copyright holder.
+
+&gt;<i> &gt; No, this only applies if you license the code. Therefore they can
+</I>&gt;<i> &gt; re-license  the code under whatever license they wish, as long as they
+</I>&gt;<i> &gt; don't violate the rights (licenses) of others.
+</I>&gt;<i>
+</I>&gt;<i> Without knowing the entire history of the NX codebase, I would say that
+</I>&gt;<i> if they were accepting contributions from any contributors that made
+</I>&gt;<i> their contributions under the GPL then they, NoMachine, cannot just
+</I>&gt;<i> summarily change the license of the codebase.
+</I>
+They have the copyright on all code in NX, see their contribution
+guidelines:
+<A HREF="http://www.nomachine.com/ar/view.php?ar_id=AR12B00113">http://www.nomachine.com/ar/view.php?ar_id=AR12B00113</A>
+
+To spell it out: Nomachine can relicense the NX code any which way they
+want.
+
+BTW this was the first google result for the query &quot;contribute nomachine
+nx&quot;, a few seconds research would have saved many emails...
+
+Erik
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110202/38ae1613/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110202/38ae1613/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001656.html">[X2go-dev] X2go GIT Repo - Patches?
+</A></li>
+	<LI>Next message: <A HREF="001662.html">[X2go-dev] NoMachine's licensing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1661">[ date ]</a>
+              <a href="thread.html#1661">[ thread ]</a>
+              <a href="subject.html#1661">[ subject ]</a>
+              <a href="author.html#1661">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

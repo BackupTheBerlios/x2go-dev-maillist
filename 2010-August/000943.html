@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] auth.log growing...
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20auth.log%20growing...&In-Reply-To=%3C20100817225531.11071pykb6ap4if7%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000958.html">
+   <LINK REL="Next"  HREF="000944.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] auth.log growing...</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20auth.log%20growing...&In-Reply-To=%3C20100817225531.11071pykb6ap4if7%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] auth.log growing...">m.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Aug 17 22:55:31 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000958.html">[X2go-dev]  session suspend and reconnect; keyboard
+</A></li>
+        <LI>Next message: <A HREF="000944.html">[X2go-dev] auth.log growing...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#943">[ date ]</a>
+              <a href="thread.html#943">[ thread ]</a>
+              <a href="subject.html#943">[ subject ]</a>
+              <a href="author.html#943">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Paul,
+
+on Tue May 26 11:40:43 CEST 2009 you had this request to the x2go-dev list:
+
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> After installing X2go I see my auth.log is growing.
+</I>&gt;<i> I see this:
+</I>&gt;<i> ---------
+</I>&gt;<i> May 25 06:53:22 server sudo:     root : TTY=unknown ; PWD=/ ; USER=root
+</I>&gt;<i> ; COMMAND=/usr/bin/x2gopgwrapper listsessionsroot server
+</I>&gt;<i> May 25 06:53:22 server su[17628]: Successful su for postgres by root
+</I>&gt;<i> May 25 06:53:22 server su[17628]: + ??? root:postgres
+</I>&gt;<i> May 25 06:53:22 server su[17628]: pam_unix(su:session): session opened
+</I>&gt;<i> for user postgres by (uid=0)
+</I>&gt;<i> May 25 06:53:22 server su[17628]: pam_unix(su:session): session closed
+</I>&gt;<i> for user postgres
+</I>&gt;<i> May 25 06:53:23 server CRON[16311]: pam_unix(cron:session): session
+</I>&gt;<i> closed for user root
+</I>&gt;<i> May 25 06:53:28 server sudo:     root : TTY=unknown ; PWD=/ ; USER=root
+</I>&gt;<i> ; COMMAND=/usr/bin/x2gopgwrapper listsessionsroot server
+</I>&gt;<i> (...)
+</I>&gt;<i> -------
+</I>&gt;<i>
+</I>&gt;<i> I did a &quot;/etc/init.d/x2goserver stop&quot; and that helps.
+</I>&gt;<i> And I can still login on the X2go server!
+</I>&gt;<i>
+</I>&gt;<i> I see it is checking the database, but I don't understand why exactly.
+</I>&gt;<i> Is it really necessary to do this every 5 seconds?
+</I>&gt;<i> ---------
+</I>&gt;<i>  echo &quot;select agent_pid, session_id, display, server, status,\
+</I>&gt;<i>   to_char(init_time,'DD.MM.YY*HH24:MI:SS'),cookie,client,gr_port,\
+</I>&gt;<i>   sound_port,to_char(last_time,'DD.MM.YY*HH24:MI:SS'),uname,\
+</I>&gt;<i>   to_char(now()-init_time,'SSSS'),fs_port  from  sessions  \
+</I>&gt;<i>   where server='$2'  order by status desc;&quot;|psql -t x2go_sessions
+</I>&gt;<i>  ;;
+</I>&gt;<i> -----------
+</I>&gt;<i>
+</I>&gt;<i> I saw you can change the sleep-time (5 seconds) in this script:
+</I>&gt;<i> /usr/sbin/x2gocleansessions
+</I>&gt;<i> but I am not sure this is a good idea...
+</I>&gt;<i>
+</I>&gt;<i> With regards.
+</I>&gt;<i> Paul van der Vlis.
+</I>
+have you already found a solution to this??? I experience the same  
+issue tried to look for a sudo hack to silence log file output but was  
+not successful...
+
+Any ideas on this?
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">m.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000958.html">[X2go-dev]  session suspend and reconnect; keyboard
+</A></li>
+	<LI>Next message: <A HREF="000944.html">[X2go-dev] auth.log growing...
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#943">[ date ]</a>
+              <a href="thread.html#943">[ thread ]</a>
+              <a href="subject.html#943">[ subject ]</a>
+              <a href="author.html#943">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

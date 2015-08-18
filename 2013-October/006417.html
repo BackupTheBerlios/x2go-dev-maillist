@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#316: Bug#316: Can't see session icon in shadow	sessions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23316%3A%20Bug%23316%3A%20Can%27t%20see%20session%20icon%20in%20shadow%0A%09sessions&In-Reply-To=%3CCAPWth0K2iR%2BL6Qcc7S5rMCZYUjXj3Kq%2BPc4WJXuPX-yicj7PCQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006404.html">
+   <LINK REL="Next"  HREF="006418.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#316: Bug#316: Can't see session icon in shadow	sessions</H1>
+    <B>Ricardo D&#237;az Mart&#237;n</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23316%3A%20Bug%23316%3A%20Can%27t%20see%20session%20icon%20in%20shadow%0A%09sessions&In-Reply-To=%3CCAPWth0K2iR%2BL6Qcc7S5rMCZYUjXj3Kq%2BPc4WJXuPX-yicj7PCQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#316: Bug#316: Can't see session icon in shadow	sessions">oceanosoftlapalma at gmail.com
+       </A><BR>
+    <I>Wed Oct 30 08:14:09 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006404.html">[X2Go-Dev] Processed: Re: Bug#316: Can't see session icon in shadow sessions
+</A></li>
+        <LI>Next message: <A HREF="006418.html">[X2Go-Dev] Processed (with 5 errors): Re: Bug#316: Can't see session icon in shadow sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6417">[ date ]</a>
+              <a href="thread.html#6417">[ thread ]</a>
+              <a href="subject.html#6417">[ subject ]</a>
+              <a href="author.html#6417">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>tag #316 moreinfo
+tag #316 - patch
+
+Hi Mike,
+
+Yes, I think the way you said will be better. So I'm going to add this
+command line option and make a new patch ;-)
+
+
+
+
+2013/10/29 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+
+&gt;<i> tag #316 moreinfo
+</I>&gt;<i> tag #316 - patch
+</I>&gt;<i> thanks
+</I>&gt;<i>
+</I>&gt;<i> Hi Ricardo,
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On  Fr 04 Okt 2013 13:33:56 CEST, Ricardo D&#237;az Mart&#237;n wrote:
+</I>&gt;<i>
+</I>&gt;<i>  Package: x2goclient
+</I>&gt;&gt;<i> Version: 4.1.0
+</I>&gt;&gt;<i> Tag: patch
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> When you launch a session using .desktop file (session saved as a launcher
+</I>&gt;&gt;<i> in the desktop) you can't see the tray icon though you choose this option
+</I>&gt;&gt;<i> in x2go settings
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Attaching patch to solve this issue.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I have looked at your patch (and the concept behind it) more closely. Your
+</I>&gt;<i> current patch will break setups where people launch X2Go Client via a
+</I>&gt;<i> .desktop file and expect no traces of X2Go Client to be seen on screen
+</I>&gt;<i> apart from the session itself.
+</I>&gt;<i>
+</I>&gt;<i> Suggestions: introduce a new cmdline option --tray-icon. This Option
+</I>&gt;<i> activates the tray icon even if it is disabled in the
+</I>&gt;<i> ~/.x2goclient/settings file. In combination with --hide the --tray-icon
+</I>&gt;<i> command then makes the tray icon visible for hidden X2Go Client instances.
+</I>&gt;<i>
+</I>&gt;<i> How about that?
+</I>&gt;<i>
+</I>&gt;<i> Mike
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, herweg 7, 24357 fleckeby
+</I>&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.</A>**de&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;,
+</I>&gt;<i> <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**">https://mail.das-netzwerkteam.**de/freebusy/m.gabriel%40das-**</A>
+</I>&gt;<i> netzwerkteam.de.xfb&lt;<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>&gt;
+</I>&gt;<i>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131030/88f3f835/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131030/88f3f835/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006404.html">[X2Go-Dev] Processed: Re: Bug#316: Can't see session icon in shadow sessions
+</A></li>
+	<LI>Next message: <A HREF="006418.html">[X2Go-Dev] Processed (with 5 errors): Re: Bug#316: Can't see session icon in shadow sessions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6417">[ date ]</a>
+              <a href="thread.html#6417">[ thread ]</a>
+              <a href="subject.html#6417">[ subject ]</a>
+              <a href="author.html#6417">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

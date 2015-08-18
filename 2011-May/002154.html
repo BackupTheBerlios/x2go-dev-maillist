@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2gothinclient write problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2gothinclient%20write%20problem&In-Reply-To=%3C20110512122940.546953nrozeh8i38%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002153.html">
+   <LINK REL="Next"  HREF="002155.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2gothinclient write problem</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2gothinclient%20write%20problem&In-Reply-To=%3C20110512122940.546953nrozeh8i38%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] x2gothinclient write problem">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu May 12 12:29:40 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002153.html">[X2go-dev] x2gothinclient write problem
+</A></li>
+        <LI>Next message: <A HREF="002155.html">[X2go-dev] x2go TCE development
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2154">[ date ]</a>
+              <a href="thread.html#2154">[ thread ]</a>
+              <a href="subject.html#2154">[ subject ]</a>
+              <a href="author.html#2154">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Markus,
+
+On Do 12 Mai 2011 12:21:15 CEST Markus Homburg wrote:
+
+&gt;<i> Hi there,
+</I>&gt;<i>
+</I>&gt;<i> I have some strange issues with x2gothinclient.
+</I>&gt;<i> For installing I used this manual:
+</I>&gt;<i> <A HREF="http://wiki.x2go.org/installing_x2go_thin_client_environment_debian">http://wiki.x2go.org/installing_x2go_thin_client_environment_debian</A>
+</I>&gt;<i> Because of using squeeze instead of lenny I changed a couple
+</I>&gt;<i> of things:
+</I>&gt;<i> - debootstrap
+</I>&gt;<i> - repos
+</I>&gt;<i> - apt-get install x2gothinclient instead of x2gothinclientsystem
+</I>&gt;<i> But that should not be the problem.
+</I>&gt;<i>
+</I>&gt;<i> The tftp boot works like a charm, but in the NFS &quot;bootsteps&quot; I get  
+</I>&gt;<i> come errors/warnings:
+</I>&gt;<i>
+</I>&gt;<i> [...]
+</I>&gt;<i> cannot create /tmp/lean: Read-only file system
+</I>&gt;<i> [...]
+</I>&gt;<i> cannot create /var/run/utmp: Permission denied
+</I>&gt;<i> [...]
+</I>&gt;<i> cannot create /var/run/motd: Permission denied
+</I>&gt;<i> [...]
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> There are some more errors and the problem is, in my opinion, that  
+</I>&gt;<i> it is not possible to write on /tmp, /var, etc.
+</I>&gt;<i>
+</I>&gt;<i> The NFS-Share is exported &quot;ro&quot; as described in the documentation.
+</I>&gt;<i>
+</I>&gt;<i> Should be there a &quot;fake&quot; writable /tmp, /var path or a special mountpoint?
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Best regards
+</I>&gt;<i>  Markus
+</I>
+note that we are currently reworking the thin client environment  
+completely!!! The latest code can be found here:
+
+<A HREF="http://code.x2go.org/gitweb?p=x2gothinclient.git;a=shortlog;h=refs/heads/tmpfs">http://code.x2go.org/gitweb?p=x2gothinclient.git;a=shortlog;h=refs/heads/tmpfs</A>
+
+BUT: this is work-in-progress!!! And also the concept is still in  
+discussion... So, we have to ask for your patience... Please watch the  
+x2go-dev list and contribute to the discussion there.
+
+Greets,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110512/7412b912/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110512/7412b912/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002153.html">[X2go-dev] x2gothinclient write problem
+</A></li>
+	<LI>Next message: <A HREF="002155.html">[X2go-dev] x2go TCE development
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2154">[ date ]</a>
+              <a href="thread.html#2154">[ thread ]</a>
+              <a href="subject.html#2154">[ subject ]</a>
+              <a href="author.html#2154">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

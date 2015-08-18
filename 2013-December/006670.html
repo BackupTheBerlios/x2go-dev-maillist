@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#364: Bug#364: Please add config option to disable	bubble help text and change the wording of it
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23364%3A%20Bug%23364%3A%20Please%20add%20config%20option%20to%20disable%0A%09bubble%20help%20text%20and%20change%20the%20wording%20of%20it&In-Reply-To=%3C52ACD1A3.2060901%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006666.html">
+   <LINK REL="Next"  HREF="006613.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#364: Bug#364: Please add config option to disable	bubble help text and change the wording of it</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23364%3A%20Bug%23364%3A%20Please%20add%20config%20option%20to%20disable%0A%09bubble%20help%20text%20and%20change%20the%20wording%20of%20it&In-Reply-To=%3C52ACD1A3.2060901%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Bug#364: Bug#364: Please add config option to disable	bubble help text and change the wording of it">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Sat Dec 14 22:46:11 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006666.html">[X2Go-Dev] Bug#364: Bug#364: Please add config option to disable	bubble help text and change the wording of it
+</A></li>
+        <LI>Next message: <A HREF="006613.html">[X2Go-Dev] Bug#363: Workaround
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6670">[ date ]</a>
+              <a href="thread.html#6670">[ thread ]</a>
+              <a href="subject.html#6670">[ subject ]</a>
+              <a href="author.html#6670">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 14.12.2013 22:24, schrieb Mike Gabriel:
+
+&gt;<i> /me shyly raises his hand...
+</I>&gt;<i>
+</I>&gt;<i> I don't care too much for the session name in the bubble. I find it very
+</I>&gt;<i> helpful, but I lack normal user perspective, of course. However, I also
+</I>&gt;<i> think that we should make the bubble configurable. Actually it might be
+</I>&gt;<i> nice to be able to switch notifications on and off in the session
+</I>&gt;<i> profile. The default should be: bubbles turned on.
+</I>
+And that's just the point. You're a developer. You need debug messages. 
+Displaying a session name for that reason is totally okay, and I can see 
+why you want those info bubbles with that content.
+BUT:
+1) The session name (i.e. the pseudorandom mumbo-jumbo, not the &quot;human 
+readable name&quot; - it's okay to display that one to a regular user) should 
+only be displayed inside the bubble if the client is in &quot;debug mode&quot;. 
+Either by adding a --debug or by ticking a checkbox in the options.
+2) In debug mode, the message should appear for a longer period of time, 
+so that you have a chance to copy and paste it. For me, it disappeared 
+before I had a chance to even move my mouse over it from the center of 
+my screen. And no, I'm not using a 100&quot; screen. ;-)
+3) I still believe that the best way to solve the issue would be to make 
+it configurable, like:
+- If &quot;Debug&quot; is set, always pop up, display the cryptic name along with 
+the session name, and stay visible for at least 10 seconds
+- If &quot;Debug&quot; is not set, but &quot;Autostart&quot; is set, completely hide the 
+bubble. (optional)
+- If neither is set, display the bubble for 4-5 seconds, only showing 
+human readable information.
+
+An ordinary user *will* be confused and irritated by that extra info.
+
+[...]
+
+&gt;<i> @Ricardo: Stefan is one of those persons who is very supportive to X2Go
+</I>&gt;<i> behind the scenes. He also already contracted Alex for e.g. development
+</I>&gt;<i> of the published applications support.
+</I>
+Thanks for putting that into perspective, Mike#1.
+
+
+&gt;<i> @Stefan: supposing that someone adds ,,silly eye candy'' can be
+</I>&gt;<i> insultive, indeed. It's always good to check with the contributors (see
+</I>&gt;<i> debian/changelog) and check for the use case and give feedback during he
+</I>&gt;<i> development phase (and not 5 minutes before the releases is due). (-&gt;
+</I>&gt;<i> X2Go Client from the nightly builds for Debian and Ubuntu had the
+</I>&gt;<i> bubbles for 2-3 months now and noone complaint so far).
+</I>
+The thing is, so far, I'm only using the Windows client in my daily 
+business, so I don't have a chance to catch those changes early on, 
+unless you manage to provide nightlies for Windows as well.
+
+The TCE stuff I'm working on in my free time is used by my 68-year old 
+Dad (and I'm preparing a second ThinClient for my Mom), and I don't want 
+to (ab)use him as a guinea pig for new X2Go features, so I'm not 
+updating his client/server installations (aside from security patches - 
+  the sources.lists on his machines actually exclude the regular debian 
+archive and only include security.debian.org and the x2go wheezy repo) 
+unless absolutely necessary.
+And for my own personal computer, while it's dual-boot, I'm using 
+Windows 7 most of the time, even off duty. Kind of sad, but true - and 
+also a usability issue (the move from KDE3 to Win7 was easier than the 
+move from KDE3 to KDE4 - and IMO, that's *not* because the Microsoft 
+guys did a particularly good job with Win7 *hint, hint*).
+
+Okay, enough ranting for today.
+
+Kind Regards,
+Stefan
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006666.html">[X2Go-Dev] Bug#364: Bug#364: Please add config option to disable	bubble help text and change the wording of it
+</A></li>
+	<LI>Next message: <A HREF="006613.html">[X2Go-Dev] Bug#363: Workaround
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6670">[ date ]</a>
+              <a href="thread.html#6670">[ thread ]</a>
+              <a href="subject.html#6670">[ subject ]</a>
+              <a href="author.html#6670">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

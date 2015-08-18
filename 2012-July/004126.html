@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Fullscreen RDP sessions with X2Go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fullscreen%20RDP%20sessions%20with%20X2Go&In-Reply-To=%3C1738333.mqmkbvgRdd%40zen-mobile%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004125.html">
+   <LINK REL="Next"  HREF="004127.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Fullscreen RDP sessions with X2Go</H1>
+    <B>Helmer Teles</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fullscreen%20RDP%20sessions%20with%20X2Go&In-Reply-To=%3C1738333.mqmkbvgRdd%40zen-mobile%3E"
+       TITLE="[X2Go-Dev] Fullscreen RDP sessions with X2Go">helmer.teles at gmail.com
+       </A><BR>
+    <I>Tue Jul  3 16:09:23 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004125.html">[X2Go-Dev] Fullscreen RDP sessions with X2Go
+</A></li>
+        <LI>Next message: <A HREF="004127.html">[X2Go-Dev] Fullscreen RDP sessions with X2Go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4126">[ date ]</a>
+              <a href="thread.html#4126">[ thread ]</a>
+              <a href="subject.html#4126">[ subject ]</a>
+              <a href="author.html#4126">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tuesday 03 July 2012 15:53:24 Mike Gabriel wrote:
+&gt;<i> Hi John (Sullivan),
+</I>&gt;<i> 
+</I>&gt;<i> I currently try to provide Windows 2008 Terminal Services through X2Go
+</I>&gt;<i> and I stumbled over an issue I was not aware of.
+</I>&gt;<i> 
+</I>&gt;<i> In fullscreen mode the X2Go client-side does not get a keyboard grab
+</I>&gt;<i> on the rdesktop session window. I can move+click with the mouse, I can
+</I>&gt;<i> view the rdesktop login screen, but I cannot type. This is with
+</I>&gt;<i> pyhoca-gui and x2goclient. The problem does not occur with rdesktop
+</I>&gt;<i> running in a Window (rootless, but not fullscreen).
+</I>&gt;<i> 
+</I>&gt;<i> I then hacked PyHoca-GUI a little and launched rdesktop (-f) not as a
+</I>&gt;<i> rootless application (which is the default), but inside an agent
+</I>&gt;<i> desktop session (type &quot;D&quot;). Then the keyboard grab is there.
+</I>&gt;<i> 
+</I>&gt;<i> Have you an idea on this? I know that you provide RDP session through
+</I>&gt;<i> X2Go quite often.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks for any info,
+</I>&gt;<i> Mike
+</I>
+Hi Mike,
+
+although i don't use rdesktop but FreeRDP i've had that problem some time ago.
+The way i've managed to do it was by calling a script that do some stuff and 
+instead of calling freerdp -f ( fullscreen ) it calls it with a windows the 
+size of the root window.
+
+Something like this:
+
+#!/bin/bash
+
+# Script para Proxy RDP com optimiza&#231;&#227;o de trafego e 
+# Sem necessidade de usar um Gateway Windows 
+# ou Expor portas rdp directamente c&#225; fora
+# Impressora funciona como PDF - nao tem problemas de compatibilidade
+# Se existir um ficheiro ~/.ssh/hostname ele usar&#225; esse hostname ( requerido 
+por algumas
+# aplica&#231;&#245;es como o Primavera por exemplo para controle de postos.
+#
+# Tecnologias de Base: X2GO-DEV; Xfreerdp-DEV
+# 2011 <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">hteles at spikecs.pt</A>
+
+SCRIPTNAME=`basename $0`
+LOGFILE=&quot;${HOME}/.$SCRIPTNAME.log&quot;
+SERVER=${SCRIPTNAME}
+PORT=&quot;3389&quot;
+SOUND=&quot;off&quot;
+MOUNTPOINT=&quot;${HOME}/media/disk&quot;
+# Newest xfreerdp git versions  have a bug with full screen ( -f ) under 
+nxagent
+DSIZE=`xdpyinfo |grep -i dimensions|awk '{print $2}'`
+PRINTER=`lpstat -d |cut -d ':' -f 2 |tr -d ' '`
+
+...
+
+
+open_rdp()
+{
+
+  setxkbmap -model pc105 -layout pt
+  setxkbmap -model pc105 -layout pt
+  KEYB=&quot;0x00000816&quot;
+  COMMAND=&quot; -d Domain -x 3  -z -g ${DSIZE} -k ${KEYB} --gdi hw -n 
+${USERHOSTNAME} --sec rdp  ${FINALSTRG
+} ${SERVER}:${PORT}&quot;
+
+
+Hope that this helps you,
+
+
+
+regards
+-- 
+Helmer Teles
+
+helmer [DOT] teles at Google Email Server
+Web Page: <A HREF="http://hteles.wordpress.com">http://hteles.wordpress.com</A>
+
+
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120703/1a66c5a2/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120703/1a66c5a2/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004125.html">[X2Go-Dev] Fullscreen RDP sessions with X2Go
+</A></li>
+	<LI>Next message: <A HREF="004127.html">[X2Go-Dev] Fullscreen RDP sessions with X2Go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4126">[ date ]</a>
+              <a href="thread.html#4126">[ thread ]</a>
+              <a href="subject.html#4126">[ subject ]</a>
+              <a href="author.html#4126">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

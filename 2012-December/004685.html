@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] cairo release 1.12.4 now available
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20cairo%20release%201.12.4%20now%20available&In-Reply-To=%3C87624do6dt.fsf%40faui43f.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004684.html">
+   <LINK REL="Next"  HREF="004689.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] cairo release 1.12.4 now available</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20cairo%20release%201.12.4%20now%20available&In-Reply-To=%3C87624do6dt.fsf%40faui43f.informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] cairo release 1.12.4 now available">siretart at tauware.de
+       </A><BR>
+    <I>Fri Dec  7 23:16:14 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004684.html">[X2Go-Dev] Bug#81: get rid of remnant html tags in client&lt;-&gt;broker	communications
+</A></li>
+        <LI>Next message: <A HREF="004689.html">[X2Go-Dev] Bug#76: Issue resolved with PyHoca-GUI release 0.2.1.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4685">[ date ]</a>
+              <a href="thread.html#4685">[ thread ]</a>
+              <a href="subject.html#4685">[ subject ]</a>
+              <a href="author.html#4685">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>The following message is a courtesy copy of an article
+that has been posted to gmane.comp.lib.cairo as well.
+
+On Sa, Okt 06, 2012 at 11:56:13 (CEST), Chris Wilson wrote:
+
+&gt;<i> On Sat, 6 Oct 2012 11:31:14 +0200, Andreas Radke &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">andyrtr at archlinux.org</A>&gt; wrote:
+</I>&gt;&gt;<i> I've packaged the new release and it works well in ArchLinux with my
+</I>&gt;&gt;<i> local Awesome WM setup.
+</I>&gt;&gt;<i> 
+</I>&gt;&gt;<i> Remote connections using OpenNX are broken when used with Xfce.
+</I>&gt;&gt;<i> Xfce-panel and menu keep crashing instantly until I downgrade to 1.12.2
+</I>&gt;&gt;<i> on the server.
+</I>&gt;<i>
+</I>&gt;<i> There is not enough information here to begin to access the cause. A
+</I>&gt;<i> stack trace would be a good start.
+</I>
+It seems that cairo unconditionally assumes that the xserver does
+support the latest version of the Xrender extension:
+
+<A HREF="http://cgit.freedesktop.org/cairo/tree/src/cairo-xlib-display.c?id=1.12.2#n217">http://cgit.freedesktop.org/cairo/tree/src/cairo-xlib-display.c?id=1.12.2#n217</A>
+
+This assumption does not hold for many non-Xorg Xservers, including
+nxagent, which is used by NX and derivatives like OpenNX, FreeNX or
+X2Go:
+
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=blob;f=nx-X11/include/extensions/render.h;h=691c63fdecfcbc29c3625fd2b85ae1400a7b64e6;hb=HEAD#l109">http://code.x2go.org/gitweb?p=nx-libs.git;a=blob;f=nx-X11/include/extensions/render.h;h=691c63fdecfcbc29c3625fd2b85ae1400a7b64e6;hb=HEAD#l109</A>
+
+Note that the defines for Operators only available in version 0.11 in
+Xorg are *not* included:
+
+/*
+ * Operators only available in version 0.11
+ */
+#define PictOpBlendMinimum                          0x30
+#define PictOpMultiply                              0x30
+#define PictOpScreen                                0x31
+#define PictOpOverlay                               0x32
+#define PictOpDarken                                0x33
+#define PictOpLighten                               0x34
+#define PictOpColorDodge                            0x35
+#define PictOpColorBurn                             0x36
+#define PictOpHardLight                             0x37
+#define PictOpSoftLight                             0x38
+#define PictOpDifference                            0x39
+#define PictOpExclusion                             0x3a
+#define PictOpHSLHue                                0x3b
+#define PictOpHSLSaturation                         0x3c
+#define PictOpHSLColor                              0x3d
+#define PictOpHSLLuminosity                         0x3e
+#define PictOpBlendMaximum                          0x3e
+
+
+Also, note that nxagent does not use pixman (which is the software
+implementation that Xorg uses nowadays), but the old, previous
+implementation of low-level pixel rendering, AFAIUI for example:
+
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=blob;f=nx-X11/programs/Xserver/fb/fbcompose.c;h=f8169995fdb39b83dd71f978e28e00e87abf1572;hb=HEAD#l3395">http://code.x2go.org/gitweb?p=nx-libs.git;a=blob;f=nx-X11/programs/Xserver/fb/fbcompose.c;h=f8169995fdb39b83dd71f978e28e00e87abf1572;hb=HEAD#l3395</A>
+
+I would assume that there are still a number of other non-Xorg X11
+servers (most of them commercial) that do not support these
+operations. 
+
+Chris, is there any chance to fix/change cairo to work also without
+operators that are only available in version 0.11?
+
+
+-- 
+Gruesse/greetings,
+Reinhard Tartler, KeyID 945348A4
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004684.html">[X2Go-Dev] Bug#81: get rid of remnant html tags in client&lt;-&gt;broker	communications
+</A></li>
+	<LI>Next message: <A HREF="004689.html">[X2Go-Dev] Bug#76: Issue resolved with PyHoca-GUI release 0.2.1.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4685">[ date ]</a>
+              <a href="thread.html#4685">[ thread ]</a>
+              <a href="subject.html#4685">[ subject ]</a>
+              <a href="author.html#4685">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

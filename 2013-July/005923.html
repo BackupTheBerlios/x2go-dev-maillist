@@ -1,0 +1,174 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#258: Bug#258: Bug#258: SECURITY: x2goclient allows clipboard sniffing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23258%3A%20Bug%23258%3A%20Bug%23258%3A%20SECURITY%3A%20x2goclient%0A%20allows%20clipboard%20sniffing&In-Reply-To=%3C1372787237.7849.101.camel%40heisenberg.scientia.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005921.html">
+   <LINK REL="Next"  HREF="005927.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#258: Bug#258: Bug#258: SECURITY: x2goclient allows clipboard sniffing</H1>
+    <B>Christoph Anton Mitterer</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23258%3A%20Bug%23258%3A%20Bug%23258%3A%20SECURITY%3A%20x2goclient%0A%20allows%20clipboard%20sniffing&In-Reply-To=%3C1372787237.7849.101.camel%40heisenberg.scientia.net%3E"
+       TITLE="[X2Go-Dev] Bug#258: Bug#258: Bug#258: SECURITY: x2goclient allows clipboard sniffing">calestyo at scientia.net
+       </A><BR>
+    <I>Tue Jul  2 19:47:17 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005921.html">[X2Go-Dev] x2go plugin for windows
+</A></li>
+        <LI>Next message: <A HREF="005927.html">[X2Go-Dev] Bug#258: Bug#258: Bug#258: Bug#258: Bug#258: SECURITY:	x2goclient allows clipboard sniffing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5923">[ date ]</a>
+              <a href="thread.html#5923">[ thread ]</a>
+              <a href="subject.html#5923">[ subject ]</a>
+              <a href="author.html#5923">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2013-07-02 at 18:07 +0200, Alexander Wuerstlein wrote: 
+&gt;<i> Well, in that aspect, VNC, RDP and x2go/NX are somewhat different. VNC and RDP
+</I>&gt;<i> basically started from some dumb kind of framebuffer and keyboard/mouse event
+</I>&gt;<i> forwarding.
+</I>I knew (at least the VNC / RDP part)... and I started to realise the
+difference from NX ;)
+
+&gt;<i> X11 has a far larger amount of functionality and a huge system of
+</I>&gt;<i> extensions on top.
+</I>Sure...
+
+&gt;<i>  x2go/NX starts out from X11 and changes some aspects,
+</I>&gt;<i> pruning things that are slow or unnecessary (e.g. synchronous calls or
+</I>&gt;<i> uncompressed bitmaps). So while with VNC/RDP you have a very simple starting
+</I>&gt;<i> point from which you then can add some extensions like clipboards, with
+</I>&gt;<i> X11/x2go/NX you have everything and need to throw away stuff that might be bad.
+</I>&gt;<i> People are still in the process of figuring out the bad stuff, and generally its
+</I>&gt;<i> the far more hazardous direction of development.
+</I>That's the problem... at least security wise... I mean it's no wonder
+that no sane person uses ssh -X on other hosts (especially untrusted
+ones)... the X protocol is so complex especially with all extensions..
+and the typical attacks like global event grabbing or a &quot;screen man in
+the middle attack&quot; where a new full screen window tricks you into
+something evil... are probably just the simplest ideas of attacking.
+
+
+&gt;<i> &gt; This includes that users don't expect (or at least they shouldn't have
+</I>&gt;<i> &gt; to) that such connections allow wiretapping, e.g. if such a system
+</I>&gt;<i> &gt; supports audio forwarding... it shouldn't allow the remote side to
+</I>&gt;<i> &gt; activate my MIC and listen to what I say/sing/etc.
+</I>&gt;<i> Well, if you switch on audio forwarding in RDP, the other side can do exactly
+</I>&gt;<i> that...
+</I>Sure... but at least you can turn it of (unfortunately many programs
+don't do so by default, neither do they warn you what switching it on
+means.
+
+
+&gt;<i> &gt; That this can indeed lead to compromise showed a recent attack we've
+</I>&gt;<i> &gt; had on one our institutes' machines, where sensitive information was
+</I>&gt;<i> &gt; caught via an X2go connection and later on used for other attacks.
+</I>&gt;<i> Do you have any more in-depth writeup of that attack so we maybe can learn from
+</I>&gt;<i> it and look at certain things more specifically?
+</I>Well the problem is that I'm not really allowed to give much defaults
+(as you can see I also write from my private address)...
+Simply said... an attacker took over root on the remote system... and it
+seems he did just such sniffing stuff... :/
+
+
+&gt;<i> &gt; Now for the technical side... admittedly I don't know the details of
+</I>&gt;<i> &gt; how NX interacts with X... but there must be some way to achieve
+</I>&gt;<i> &gt; blocking of the clipboard sync.
+</I>&gt;<i> &gt; Even if the protocol demands to send some content,... well then simply
+</I>&gt;<i> &gt; hook in an clear it always (per default).
+</I>&gt;<i> 
+</I>&gt;<i> Yes, that should be possible. Its just that someone has to implement it.
+</I>
+AFAIU, one would need to do that on the nxproxy level then?
+
+
+&gt;<i> &gt; Now with NX I understand it's compression at the X protocol level, so
+</I>&gt;<i> &gt; &quot;no JPEGs being transferred&quot;... but where do remotes X protocol go to?
+</I>&gt;<i> &gt; Directly into the local X? Or is it taken by NX/X2go and rendered as
+</I>&gt;<i> &gt; if NX/X2go would be an X server that is displayed in a _single_
+</I>&gt;<i> &gt; window of another one (i.e. like Xephyr)?
+</I>&gt;<i> Some protocol calls are taken as is and passed to the local X, others are
+</I>&gt;<i> &quot;transformed&quot;, e.g. made asynchronous, bitmap-compressed, etc.
+</I>I see...
+
+
+&gt;<i> Well, the remote can't take over your system afaik. But there are concerns
+</I>&gt;<i> about the security of ssh -X vs. -Y. Keystroke monitoring is one of those
+</I>&gt;<i> concerns.
+</I>Why don't you do the following:
+Not passing on any X stuff to the local X server... but staring an
+Xephyr server and sending it there?
+
+Admittedly I don't really know how the Xephyr server itself does things
+(I once tried to ask the developers but got no reply)... and if that
+would really work like a sandbox ...
+At least my hope would be (as it was before with VNC/RDP/NX)... that any
+evil remote... could at least only take over the one single window...
+and in case of Xephyr... hopefully only the single Xephyr window.
+
+
+
+First thanks for your answers...
+
+I'd propose the following now:
+As this bug is now cluttered all over with two different issues
+- clipboard sniffing and the warning when it was activated
+- security measures and better documentation about what NX/X2go really
+does
+
+I'd close this bug, and open two new ones, one for each issue...
+referencing that old bug... so that all topics can be discussed (perhaps
+fixed) in a more simple fashion.
+
+Okay?
+
+
+Cheers,
+Chris.
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/x-pkcs7-signature
+Size: 5165 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130702/8e2f93fc/attachment-0001.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130702/8e2f93fc/attachment-0001.bin</A>&gt;
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005921.html">[X2Go-Dev] x2go plugin for windows
+</A></li>
+	<LI>Next message: <A HREF="005927.html">[X2Go-Dev] Bug#258: Bug#258: Bug#258: Bug#258: Bug#258: SECURITY:	x2goclient allows clipboard sniffing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5923">[ date ]</a>
+              <a href="thread.html#5923">[ thread ]</a>
+              <a href="subject.html#5923">[ subject ]</a>
+              <a href="author.html#5923">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

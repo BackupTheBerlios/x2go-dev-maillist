@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] High Performance SSH/SCP - HPN-SSH
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20High%20Performance%20SSH/SCP%20-%20HPN-SSH&In-Reply-To=%3C1277753814.3413.14.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000674.html">
+   <LINK REL="Next"  HREF="000675.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] High Performance SSH/SCP - HPN-SSH</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20High%20Performance%20SSH/SCP%20-%20HPN-SSH&In-Reply-To=%3C1277753814.3413.14.camel%40localhost%3E"
+       TITLE="[X2go-dev] High Performance SSH/SCP - HPN-SSH">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Mon Jun 28 21:36:54 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000674.html">[X2go-dev] High Performance SSH/SCP - HPN-SSH
+</A></li>
+        <LI>Next message: <A HREF="000675.html">[X2go-dev] x2goplugin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#684">[ date ]</a>
+              <a href="thread.html#684">[ thread ]</a>
+              <a href="subject.html#684">[ subject ]</a>
+              <a href="author.html#684">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2010-06-28 at 20:46 +0200, Mike Gabriel wrote:
+&gt;<i> Hi John,
+</I>&gt;<i> 
+</I>&gt;<i> On Mo 28 Jun 2010 13:47:47 CEST &quot;John A. Sullivan III&quot; wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt;&gt; This is the standard network performance tuning found everywhere. This is
+</I>&gt;<i> &gt;&gt; interesting for a saturated server, but will not solve any fundamental
+</I>&gt;<i> &gt;&gt; speed issues.
+</I>&gt;<i> &gt;&gt;
+</I>&gt;<i> &gt;&gt; Br,
+</I>&gt;<i> &gt;&gt; Erik
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I have been wondering if it will help with resilience.  We are having
+</I>&gt;<i> &gt; problems where, if the Internet connection starts dropping packets,
+</I>&gt;<i> &gt; recovery of the X2Go client is much slower than recovery of other
+</I>&gt;<i> &gt; applications such as web browsing.  We have tried playing with
+</I>&gt;<i> &gt; ClientAliveInterval and ClientAliveCountMax but that has not helped.
+</I>&gt;<i> &gt; Has anyone else been able to make X2Go session more robust across poor
+</I>&gt;<i> &gt; quality connections? Thanks - John
+</I>&gt;<i> 
+</I>&gt;<i> If TCP/IP packets get dropped on the way between source and target  
+</I>&gt;<i> host you should primarily get to the bottom of that packet dropping.
+</I>&gt;<i> 
+</I>&gt;<i> Example: Some internet providers have started oversecuring their  
+</I>&gt;<i> network routers (e.g. 1und1 in Germany). The ISPs block ICMP requests  
+</I>&gt;<i> totally. This blockage then als includes ICMP Type 3 Code 4 packets  
+</I>&gt;<i> (destination unreachable, don't fragment). If these kinds of packets  
+</I>&gt;<i> are blocked by some routers on the way the Path MTU Discovery  
+</I>&gt;<i> technique will fail which results in packet loss... (and endless  
+</I>&gt;<i> timeouts...).
+</I>&gt;<i> 
+</I>&gt;<i> PMTU discovery -&gt; RFC 1191...
+</I>&gt;<i> 
+</I>&gt;<i> Being a bit off-topic on the list...
+</I>&gt;<i> 
+</I>Indeed but sometimes it is beyond our control and we can only complain
+to the ISP and back it up with our monitoring data.  Thus, we need to
+build as resilient an infrastructure as we can.  Thanks - John
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000674.html">[X2go-dev] High Performance SSH/SCP - HPN-SSH
+</A></li>
+	<LI>Next message: <A HREF="000675.html">[X2go-dev] x2goplugin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#684">[ date ]</a>
+              <a href="thread.html#684">[ thread ]</a>
+              <a href="subject.html#684">[ subject ]</a>
+              <a href="author.html#684">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#268: X2Go issue (in src:x2goserver) has been marked	as pending for release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23268%3A%20X2Go%20issue%20%28in%20src%3Ax2goserver%29%20has%20been%20marked%0A%09as%20pending%20for%20release&In-Reply-To=%3C20130726064152.E1C895DB17%40ymir%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005990.html">
+   <LINK REL="Next"  HREF="005992.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#268: X2Go issue (in src:x2goserver) has been marked	as pending for release</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23268%3A%20X2Go%20issue%20%28in%20src%3Ax2goserver%29%20has%20been%20marked%0A%09as%20pending%20for%20release&In-Reply-To=%3C20130726064152.E1C895DB17%40ymir%3E"
+       TITLE="[X2Go-Dev] Bug#268: X2Go issue (in src:x2goserver) has been marked	as pending for release">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Jul 26 08:41:52 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005990.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goserver) has been marked as pending for release
+</A></li>
+        <LI>Next message: <A HREF="005992.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goserver) has been marked as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5991">[ date ]</a>
+              <a href="thread.html#5991">[ thread ]</a>
+              <a href="subject.html#5991">[ subject ]</a>
+              <a href="author.html#5991">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>tag #268 pending
+fixed #268 4.0.1.4
+thanks
+
+Hello,
+
+X2Go issue #268 (src:x2goserver) reported by you has been
+fixed in X2Go Git. You can see the changelog below, and you can
+check the diff of the fix at:
+
+    <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=2085cb6">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=2085cb6</A>
+
+The issue will most likely be fixed in src:x2goserver (4.0.1.4).
+
+light+love
+X2Go Git Admin (on behalf of the sender of this mail)
+
+---
+commit 2085cb616182aa47e7233ffbe72a5b45349ed508
+Author: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+Date:   Fri Jul 26 08:40:10 2013 +0200
+
+    The gnome-terminal TERMINAL returns immediately and runs in background starting with GNOME 3.8. Thus, set IMEXIT to false for gnome-terminal. (Fixes: #268).
+    
+    Cherry-pick conflicts (resolved by Mike Gabriel):
+    	debian/changelog
+
+diff --git a/debian/changelog b/debian/changelog
+index 2952864..954e75d 100644
+--- a/debian/changelog
++++ b/debian/changelog
+@@ -1,10 +1,17 @@
+ x2goserver (4.0.1.4-0~x2go1) UNRELEASED; urgency=low
+ 
+-  * New upstream versino (4.0.1.4):
++  [ Mike Gabriel ]
++  * New upstream version (4.0.1.4):
+     - Multiply query USED_DISPLAYS and USED_PORTS in x2gostartagent to minimize
+       race conditions in cases where many clients launch session simultaneously.
+     - Make X2Go Server aware of the MATE desktop environment.
+ 
++  [ Rok Mandeljc ]
++  * New upstream version (4.0.1.4):
++    - The gnome-terminal TERMINAL returns immediately and runs in background
++      starting with GNOME 3.8. Thus, set IMEXIT to false for gnome-terminal.
++      (Fixes: #268).
++
+  -- Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwertkeam.de</A>&gt;  Fri, 19 Jul 2013 17:53:11 +0200
+ 
+ x2goserver (4.0.1.3-0~x2go1) unstable; urgency=low
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005990.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goserver) has been marked as pending for release
+</A></li>
+	<LI>Next message: <A HREF="005992.html">[X2Go-Dev] Processed: X2Go issue (in src:x2goserver) has been marked as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5991">[ date ]</a>
+              <a href="thread.html#5991">[ thread ]</a>
+              <a href="subject.html#5991">[ subject ]</a>
+              <a href="author.html#5991">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

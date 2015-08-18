@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] RPMs for RH6
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20RPMs%20for%20RH6&In-Reply-To=%3CB7117CE6-CE16-44B3-981D-3EE79AF19B9E%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003240.html">
+   <LINK REL="Next"  HREF="003248.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] RPMs for RH6</H1>
+    <B>Bogdan-Andrei Taru</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20RPMs%20for%20RH6&In-Reply-To=%3CB7117CE6-CE16-44B3-981D-3EE79AF19B9E%40gmail.com%3E"
+       TITLE="[X2go-Dev] RPMs for RH6">bogdan.taru at gmail.com
+       </A><BR>
+    <I>Fri Jan 27 09:07:27 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003240.html">[X2go-Dev] postinst-script x2goserver
+</A></li>
+        <LI>Next message: <A HREF="003248.html">[X2go-Dev] RPMs for RH6
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3246">[ date ]</a>
+              <a href="thread.html#3246">[ thread ]</a>
+              <a href="subject.html#3246">[ subject ]</a>
+              <a href="author.html#3246">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello everyone,
+
+I'm fairly new to x2go, but I'm trying to package X2Go Client &amp; Server for RedHat6 and I have the following suggestion/problem:
+
+Server: it's hard to package the X2GO Server as RPM because some paths (/etc/x2go) are hardcoded into the Makefiles and a &quot;make PREFIX=/path install&quot; still installs the files under /etc/x2go. Could anyone please change the Makefile so that the PREFIX option works?
+
+Client: in order to compile the client I downloaded the libssh-0.5.0-1 and libssh-devel-0.5.0-1 as RPMs and installed them (it's the same library as Debian's libssh-4, just a newer Version -- the one from Debian Squeeze is the version 0.4.5-3). The client basically works, but segfaults sometimes (not always) in &quot;exception&quot; cases, for example false authentication to the X2GO server. 
+
+Here's a snippet from a X2GO Session, first it works all right, then I disconnect and start again with a false password: 
+
+------------------------------------------------------------------------------------------------------------------------------------
+search proxy win:  &quot;X2GO-btaru-55-1326987931_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-btaru-55-1326987931_stDGNOME_dp24&quot; 
+&quot;Info: Using shared memory parameters 1/2048K.
+&quot; 
+
+search proxy win:  &quot;X2GO-btaru-55-1326987931_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-btaru-55-1326987931_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-btaru-55-1326987931_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-btaru-55-1326987931_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-btaru-55-1326987931_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-btaru-55-1326987931_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-btaru-55-1326987931_stDGNOME_dp24&quot; 
+search proxy win:  &quot;X2GO-btaru-55-1326987931_stDGNOME_dp24&quot; 
+proxy win found: 69206095 
+&quot;Session: Terminating session at 'Fri Jan 27 08:42:52 2012'.
+Session: Session terminated at 'Fri Jan 27 08:42:52 2012'.
+&quot; 
+
+deleting proxy 
+
+nxproxy not running 
+
+proxy deleted 
+
+check command message 
+
+start new ssh connection to server: &quot;vpn.myserver.de&quot; : &quot;22&quot; krb:  false 
+
+&quot;Authentication failed&quot;  -  &quot;Access denied. Authentication that can continue: publickey,password&quot; 
+QThread: Destroyed while thread is still running
+Segmentation fault (core dumped)
+------------------------------------------------------------------------------------------------------------------------------------
+
+Heinz suggested that I use the x2golistsessions, x2goruncommand, x2goagent over SSH (btw, the X2GO Server runs on Ubuntu, and the other clients work OK) and log their return codes -- but how can I do that? Just SSH in to the Ubuntu server and call these 3 tools from the command line, with echo $? after?
+
+Thanks for your support,
+Bogdan
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003240.html">[X2go-Dev] postinst-script x2goserver
+</A></li>
+	<LI>Next message: <A HREF="003248.html">[X2go-Dev] RPMs for RH6
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3246">[ date ]</a>
+              <a href="thread.html#3246">[ thread ]</a>
+              <a href="subject.html#3246">[ subject ]</a>
+              <a href="author.html#3246">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

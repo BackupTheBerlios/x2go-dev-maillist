@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#332: RPM issue of the OSBD queues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23332%3A%20RPM%20issue%20of%20the%20OSBD%20queues&In-Reply-To=%3C20131029082122.Horde.9Ry9VXQ7Ly_fM607XI1KTQ1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006378.html">
+   <LINK REL="Next"  HREF="006415.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#332: RPM issue of the OSBD queues</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23332%3A%20RPM%20issue%20of%20the%20OSBD%20queues&In-Reply-To=%3C20131029082122.Horde.9Ry9VXQ7Ly_fM607XI1KTQ1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#332: RPM issue of the OSBD queues">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Tue Oct 29 09:21:22 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006378.html">[X2Go-Dev] Bug#332: RPM issue of the OSBD queues
+</A></li>
+        <LI>Next message: <A HREF="006415.html">[X2Go-Dev] Bug#332: RPM issue of the OSBD queues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6380">[ date ]</a>
+              <a href="thread.html#6380">[ thread ]</a>
+              <a href="subject.html#6380">[ subject ]</a>
+              <a href="author.html#6380">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Frank,
+
+On  Fr 25 Okt 2013 15:43:16 CEST, Frank Warnke wrote:
+
+&gt;<i> On 10/25/2013 07:23 AM, Jan Engelhardt wrote:
+</I>&gt;&gt;<i> On Friday 2013-10-25 12:41, Mike Gabriel wrote:
+</I>&gt;&gt;&gt;<i> can you take a look at issue #332 in X2Go BTS. Obviously, you should add
+</I>&gt;&gt;&gt;<i> something to the RPM package's init script of X2Go Server that  
+</I>&gt;&gt;&gt;<i> resembles this
+</I>&gt;&gt;&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=blobdiff;f=debian/x2goserver.init;h=5ae86e4832e3f4c497cc238510aa26375d9bcfd3;hp=b56a4cb5898bdf805b533d153a54fd138e06f9b9;hb=b3d9404c654c051875a1f3abcbd3ff81aa6780b7;hpb=d7f10874cafc3113afe50d0e109f084533aace3f">http://code.x2go.org/gitweb?p=x2goserver.git;a=blobdiff;f=debian/x2goserver.init;h=5ae86e4832e3f4c497cc238510aa26375d9bcfd3;hp=b56a4cb5898bdf805b533d153a54fd138e06f9b9;hb=b3d9404c654c051875a1f3abcbd3ff81aa6780b7;hpb=d7f10874cafc3113afe50d0e109f084533aace3f</A>
+</I>&gt;&gt;<i> The init script is already whatever was in debian/x2goserver.init.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>
+&gt;<i> I have this in /etc/rc.d/rc.local on CentOS v6.4 64bit, so that  
+</I>&gt;<i> after a reboot, x2goclient can still connect to the server;
+</I>&gt;<i>
+</I>&gt;<i> /bin/mkdir -m 1777 /tmp/.X11-unix
+</I>&gt;<i>
+</I>
+As Jan stated, there should be an init script for X2Go Server. The  
+script launches /usr/sbin/x2gocleansessions. It also should handled  
+the /tmp/.X11-unix directory. Can you please check if that script is  
+in place? Can you also check, why it does not work on your system?  
+Thanks.
+
+Mike
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-keys
+Size: 7251 bytes
+Desc: ?ffentlicher PGP-Schl?ssel
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/3163ac2d/attachment.key">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/3163ac2d/attachment.key</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/3163ac2d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131029/3163ac2d/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006378.html">[X2Go-Dev] Bug#332: RPM issue of the OSBD queues
+</A></li>
+	<LI>Next message: <A HREF="006415.html">[X2Go-Dev] Bug#332: RPM issue of the OSBD queues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6380">[ date ]</a>
+              <a href="thread.html#6380">[ thread ]</a>
+              <a href="subject.html#6380">[ subject ]</a>
+              <a href="author.html#6380">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

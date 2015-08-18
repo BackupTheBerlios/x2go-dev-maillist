@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] GPG key server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20GPG%20key%20server&In-Reply-To=%3C4D5BC06D.3030708%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001741.html">
+   <LINK REL="Next"  HREF="001745.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] GPG key server</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20GPG%20key%20server&In-Reply-To=%3C4D5BC06D.3030708%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] GPG key server">paul at vandervlis.nl
+       </A><BR>
+    <I>Wed Feb 16 13:17:49 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001741.html">[X2go-dev] GPG key server
+</A></li>
+        <LI>Next message: <A HREF="001745.html">[X2go-dev] GPG key server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1743">[ date ]</a>
+              <a href="thread.html#1743">[ thread ]</a>
+              <a href="subject.html#1743">[ subject ]</a>
+              <a href="author.html#1743">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Op 16-02-11 13:01, Mike Gabriel schreef:
+&gt;<i> Hi Paul,
+</I>&gt;<i> 
+</I>&gt;<i> On Mi 16 Feb 2011 12:56:48 CET Paul van der Vlis wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Hello,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> In de manual I see this command:
+</I>&gt;&gt;<i> gpg --keyserver wwwkeys.eu.pgp.net --recv-keys C509840B96F89133
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This GPG keyserver is down for a long time. I found this alternative
+</I>&gt;&gt;<i> what works and has the key:
+</I>&gt;&gt;<i> gpg --keyserver wwwkeys.stinkfoot.us.pgp.net --recv-keys C509840B96F89133
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Met vriendelijke groet,
+</I>&gt;&gt;<i> Paul van der Vlis.
+</I>&gt;<i> 
+</I>&gt;<i> even better: subkeys.gpg.net - points to multiple key servers out in the
+</I>&gt;<i> wild...
+</I>
+But no X2go key there. It lookslike the synchronisation between the
+keyservers is not always OK.
+
+-----------
+server2:/etc/init.d# gpg --keyserver subkeys.gpg.net --recv-keys
+C509840B96F89133
+gpg: opvragen sleutel 96F89133 van hkp sleutelserver subkeys.gpg.net
+?: subkeys.gpg.net: Connection refused
+gpgkeys: HTTP fetch error 7: couldn't connect: Connection refused
+gpg: geen geldige OpenPGP gegevens gevonden.
+gpg:        Totaal aantal verwerkt: 0
+-----------
+
+
+
+
+
+Met vriendelijke groet,
+Paul van der Vlis.
+
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001741.html">[X2go-dev] GPG key server
+</A></li>
+	<LI>Next message: <A HREF="001745.html">[X2go-dev] GPG key server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1743">[ date ]</a>
+              <a href="thread.html#1743">[ thread ]</a>
+              <a href="subject.html#1743">[ subject ]</a>
+              <a href="author.html#1743">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

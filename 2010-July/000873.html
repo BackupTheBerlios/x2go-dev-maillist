@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go windows client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20windows%20client&In-Reply-To=%3C1279802919.10805.17.camel%40asus%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000871.html">
+   <LINK REL="Next"  HREF="000879.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go windows client</H1>
+    <B>J&#246;rg Sawatzki</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20windows%20client&In-Reply-To=%3C1279802919.10805.17.camel%40asus%3E"
+       TITLE="[X2go-dev] x2go windows client">joerg.sawatzki at web.de
+       </A><BR>
+    <I>Thu Jul 22 14:48:39 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000871.html">[X2go-dev] x2go windows client
+</A></li>
+        <LI>Next message: <A HREF="000879.html">[X2go-dev] Off-the-shelf thin clients
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#873">[ date ]</a>
+              <a href="thread.html#873">[ thread ]</a>
+              <a href="subject.html#873">[ subject ]</a>
+              <a href="author.html#873">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Malic,
+
+thanks for that information - I think that will be fixed in the long run
+as soon as the developers have more time or the community gets access to
+the sources/VCS.
+The client is still very &quot;hackish&quot; at that point and calls these
+external openssh programs to take care of the connection. As this
+doesn't only result in bad performance but in weird DLL problems as you
+just pointed out, this will certainly one of the first things to fix.
+
+J&#246;rg
+
+Am Donnerstag, den 22.07.2010, 13:55 +0200 schrieb Malic Zilyas:
+&gt;<i> Dear members,
+</I>&gt;<i> 
+</I>&gt;<i> Currently I'm switchin from FreeNx to x2go.
+</I>&gt;<i> i must say everything looks very good!
+</I>&gt;<i> Especially when using linux platforms only.
+</I>&gt;<i> 
+</I>&gt;<i> When using the windows client I've had the following problem. When 
+</I>&gt;<i> trying to open a session:
+</I>&gt;<i> A first dialog with an empty msg, title: &quot;Host key verification failed 
+</I>&gt;<i> ...&quot; and option &quot;Yes&quot; and &quot;No&quot;. Pressing Yes opend up the same dialog 
+</I>&gt;<i> again. Pressing No give me the error: &quot;ssh_askpass: No such file or 
+</I>&gt;<i> directory Host key verification failed.&quot;
+</I>&gt;<i> The client is installed on a system that has the latest cygwin 
+</I>&gt;<i> installed. I was already using ssh and sshd from the cygwin package. 
+</I>&gt;<i> This gave conflicting cygwin1.dll versions. Copy the latest dll the x2go 
+</I>&gt;<i> folder did not resolve the problem completely. A new error occured, 
+</I>&gt;<i> something like could not create directory /home/mz/ssh. I don't remember 
+</I>&gt;<i> the exact error msg. I did a full scan of all cygwin1.dll. I found that 
+</I>&gt;<i> I was running a little tool on the background (xplanet) that was also 
+</I>&gt;<i> using a cygwin1.dll but a much older one. After closing down that tool, 
+</I>&gt;<i> restoring the x2go original cygwin1.dll to its folder and trying 
+</I>&gt;<i> again... All is well ...
+</I>&gt;<i> I started up my cron and sshd services again with the new cygwin1.dll 
+</I>&gt;<i> and starting the x2go client with its original dll. Everything worked again!
+</I>&gt;<i> 
+</I>&gt;<i> I just want to share this information, maybe put it in the faq or 
+</I>&gt;<i> something. When using the windows client, be carefull to look for other 
+</I>&gt;<i> (older) cygwin1.dlls
+</I>&gt;<i> 
+</I>&gt;<i> For the rest I'm very happy using x2go.
+</I>&gt;<i> Thank you all
+</I>&gt;<i>   Malic Zilyas
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000871.html">[X2go-dev] x2go windows client
+</A></li>
+	<LI>Next message: <A HREF="000879.html">[X2go-dev] Off-the-shelf thin clients
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#873">[ date ]</a>
+              <a href="thread.html#873">[ thread ]</a>
+              <a href="subject.html#873">[ subject ]</a>
+              <a href="author.html#873">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

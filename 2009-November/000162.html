@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Hardware Requirements, Stability
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Hardware%20Requirements%2C%20Stability&In-Reply-To=%3C925296022%40web.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000161.html">
+   <LINK REL="Next"  HREF="000163.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Hardware Requirements, Stability</H1>
+    <B>Heinz-M. Graesing</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Hardware%20Requirements%2C%20Stability&In-Reply-To=%3C925296022%40web.de%3E"
+       TITLE="[X2go-dev] Hardware Requirements, Stability">heinz-m at web.de
+       </A><BR>
+    <I>Tue Nov  3 22:21:06 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000161.html">[X2go-dev] General question`s
+</A></li>
+        <LI>Next message: <A HREF="000163.html">[X2go-dev] General question`s
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#162">[ date ]</a>
+              <a href="thread.html#162">[ thread ]</a>
+              <a href="subject.html#162">[ subject ]</a>
+              <a href="author.html#162">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> -----Urspr&#252;ngliche Nachricht-----
+</I>&gt;<i> Von: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Peter.Seckler at gmx.net</A>&gt;
+</I>&gt;<i> Gesendet: 03.11.09 07:07:01
+</I>&gt;<i> An: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;<i> Betreff: [X2go-dev] Hardware Requirements, Stability
+</I>
+
+&gt;<i> Hi everyone,
+</I>
+Hello Peter!
+
+&gt;<i> first, I have to say, I am really impressed of what I read about x2go and its features. Even more so bacause it doesn't seem to be sponsored by a big company. Good work!
+</I>
+Thank you!
+
+&gt;<i> I'm about to set up a lan with a single server and 15 clients in a nursing home for older and mentaly ill people and I have a few questions. It's not development related, but since there is no other mailing list, i'll post it here.
+</I>
+No Problem - we've decided to keep everyting here on one place.
+
+&gt;<i> 1. Hardware requirements for the clients: I haven't found anything on the site or in the docs, except in the &quot;linux pro magazine&quot; article where it says: 
+</I>&gt;<i> 
+</I>&gt;<i> 	This said, the Qt engine&#226;&#128;&#153;s SVG renderer
+</I>&gt;<i> 	will take 5 seconds to display the
+</I>&gt;<i> 	login manager under these circumstances.
+</I>&gt;<i> 
+</I>&gt;<i> So, if 800 MHz is not enough, what would be enough? What about RAM?
+</I>
+It is not easy to define real limits. The Nokia N810 for example has a CPU (arm) with 400Mhz and is working perfectly. But I've seen to a Via Thin Client with 1 GHZ performing really poor because of it's GPU. If you use the GTK Client, you won't need time to render SVG, but I don't think it is a real problem, if the initial display with the user information would take 4-5 seconds. More important would be, if the local device has enough power to encode and display the remote screen. Because I don't have a hardware DB with user experiences linked to devices, I only can say - please test your device. Paul has already answered so thank you Paul!
+
+&gt;<i> 2. Hardware requirements for the server: any advice concerning cpu and RAM for 15 clients, running, say, KDE (pretty basic, without most of the bells and whistles), firefox and openoffice?
+</I>
+KDE has a very small footprint, but OOo and FF can really stress a server - especially if you use flash. The number of instances will be mainly limited by your RAM. You can ignore the needed ressources for the terminal server and only count the numbers of application instances. A typical setup would be 25 users on a Dualcore/8GB system, but again - the result will be based on your applications and document sizes.
+
+&gt;<i> 3. I'd like to use diskless clients which get their boot environmnet and their kernel from the server at boot time and using x2go as the display manager. Do I have to install the regular x2go server or would the x2go server ONE be enough? 
+</I>
+We've only described the Installation with LDAP but you also can use x2goserver-one for the boot environment. The diffference would be, that you won't have a user browser. 
+ 
+&gt;<i> 4. And finally, how stable is x2go? Do you guys use it in a production environment? I have no problem filing a bug report here and there for minor things in a project like this, but those shouldn't be serious issues. If bad things happen in any significant frequency, I'd have to use nomachines nx, although I am an open source fan and would rather use x2go.
+</I>
+X2go is used in bigger schools (1200 students) in enterprises and companies. Some of them are using a supporting company for help. Linux4afrika and Linux4paraguy are supporting a lot of schools - some even in germany. 
+
+
+&gt;<i> Thanks for reading this lengthy post. I hope you find the time to answer some (or all) of my questions.
+</I>
+
+Greetings,
+
+Heinz
+______________________________________________________
+GRATIS f&#252;r alle WEB.DE-Nutzer: Die maxdome Movie-FLAT!
+Jetzt freischalten unter <A HREF="http://movieflat.web.de">http://movieflat.web.de</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000161.html">[X2go-dev] General question`s
+</A></li>
+	<LI>Next message: <A HREF="000163.html">[X2go-dev] General question`s
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#162">[ date ]</a>
+              <a href="thread.html#162">[ thread ]</a>
+              <a href="subject.html#162">[ subject ]</a>
+              <a href="author.html#162">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

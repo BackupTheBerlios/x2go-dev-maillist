@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#117: Make Cinnamon selectable
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23117%3A%20Make%20Cinnamon%20selectable&In-Reply-To=%3CA9D1AAC8-A467-4296-961C-FC4660E7E73D%40mac.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004967.html">
+   <LINK REL="Next"  HREF="004971.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#117: Make Cinnamon selectable</H1>
+    <B>Mirco Schmidt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23117%3A%20Make%20Cinnamon%20selectable&In-Reply-To=%3CA9D1AAC8-A467-4296-961C-FC4660E7E73D%40mac.com%3E"
+       TITLE="[X2Go-Dev] Bug#117: Make Cinnamon selectable">mirco.schmidt at mac.com
+       </A><BR>
+    <I>Mon Feb  4 13:36:24 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004967.html">[X2Go-Dev] locale problem
+</A></li>
+        <LI>Next message: <A HREF="004971.html">[X2Go-Dev] Bug#118: Fix desktop file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4970">[ date ]</a>
+              <a href="thread.html#4970">[ thread ]</a>
+              <a href="subject.html#4970">[ subject ]</a>
+              <a href="author.html#4970">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goserver
+Severity: wishlist
+
+Hi hi,
+
+I tried to start cinnamon with this command: /usr/bin/gnome-session --session cinnamon2d but it fail's! If I set it to: /etc/X11/Xsession it should start the last session which is cinnamon but come's up with a XFCE session...
+[12:18pm] 
+[12:33pm]sunweaver:mirco, the command launched by X2Go does not accept cmdline parms. Write a shell wrapper on the server and execute that. Note: your wrapper must be in $PATH
+[12:33pm]mirco:THX
+
+made a wrapper like this and placed it in /usr/local/bin:
+
+#!/bin/bash
+/usr/bin/gnome-session --session cinnamon2d
+
+[12:37pm]mirco:sadly I end up with a blank screen, beatified by the default debian Desktop background&#8230; Which is also my personal one!
+
+Thank's in advance
+Mirco
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130204/3a77a52a/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130204/3a77a52a/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004967.html">[X2Go-Dev] locale problem
+</A></li>
+	<LI>Next message: <A HREF="004971.html">[X2Go-Dev] Bug#118: Fix desktop file
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4970">[ date ]</a>
+              <a href="thread.html#4970">[ thread ]</a>
+              <a href="subject.html#4970">[ subject ]</a>
+              <a href="author.html#4970">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

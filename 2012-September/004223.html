@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Help with Printing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Help%20with%20Printing&In-Reply-To=%3C8CF5E40559D178B-1878-445ED%40webmail-m009.sysops.aol.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004236.html">
+   <LINK REL="Next"  HREF="004225.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Help with Printing</H1>
+    <B>senrabdet at aol.com</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Help%20with%20Printing&In-Reply-To=%3C8CF5E40559D178B-1878-445ED%40webmail-m009.sysops.aol.com%3E"
+       TITLE="[X2Go-Dev] Help with Printing">senrabdet at aol.com
+       </A><BR>
+    <I>Tue Sep 11 16:24:49 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004236.html">[X2Go-Dev] removed &quot;-nolisten tcp&quot; option by XDMCP sessions
+</A></li>
+        <LI>Next message: <A HREF="004225.html">[X2Go-Dev] Help with Printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4223">[ date ]</a>
+              <a href="thread.html#4223">[ thread ]</a>
+              <a href="subject.html#4223">[ subject ]</a>
+              <a href="author.html#4223">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi All:
+
+
+We're hoping to get some help setting up printing for an x2go Debian squeeze server.  FYI - with help, we got this going about a year ago and may be rusty but hopefully are not making old mistakes.
+
+
+SYMPTOM
+When we try to print from both an Ubuntu and Win7 machine, with the settings set to generate a pdf that can be printed to local printers, we see no x2o cups printers and neither evince on Ubuntu nor acrobat on Win7 start.
+
+
+SETUP
+We used the following link (the server is Debian squeeze):
+
+
+<A HREF="http://www.x2go.org/doku.php/wiki:x2go-repository-debian">http://www.x2go.org/doku.php/wiki:x2go-repository-debian</A>
+
+
+And did the following:
+apt-key adv --recv-keys --keyserver keys.gnupg.net E1F958385BFE2B6E
+touch /etc/apt/sources.list.d/x2go.list
+(added to x2go.list)
+# X2Go Repository
+deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze main
+# X2Go Repository (sources)
+deb-src <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze main
+aptitude update
+
+
+aptitude install x2go-keyring &amp;&amp; aptitude update
+aptitude search x2go (just to confirm packages had been installed)
+
+
+apt-get install x2goserver 
+apt-get install x2goserver-xsession
+apt-get install x2goserver-printing
+apt-get install cups-x2go
+
+
+Cups was installed on the server as a result of the original install, so we made no changes there.
+
+
+We then generated ssh keys and created authorized_keys on the server,  and moved id_rsa over to the clients.  We also added x2gouser to sshd_config as an allowed user.
+
+
+&gt;<i>From there we could connect to the server via x2go client, but get the symptoms described above when we try to print.
+</I>
+
+We checked groups, and there is both an x2user and x2goprint group.  We tried adding our user to the x2goprint group, as well as x2goprint to our sshd_config as an allowed user with no change.  
+
+
+Last time around, Alex updated the cups-x2go file which we assume is now part of the install and added &quot;x2goprint ALL=(ALL) NOPASSWD: /usr/bin/x2goprint&quot; as a sudo entry.  While we don't think Debian uses sudo the way Ubuntu does, we tried adding that line via Visudo and it made no difference.
+
+
+Is this a password/permissions issue?  Maybe an iptables issue that is blocking sftp?  We tried turning on file sharing in the GUI, but don't see the shared folder (we don't use file sharing, so we may not know what we are looking for).  Our line in sshd_config for sftp is &quot;Subsystem sftp /usr/lib/openssh/sftp-server&quot;.
+
+
+Any suggestions?  Thanks!
+
+
+Ted
+
+
+
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120911/99317cd6/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120911/99317cd6/attachment.html</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004236.html">[X2Go-Dev] removed &quot;-nolisten tcp&quot; option by XDMCP sessions
+</A></li>
+	<LI>Next message: <A HREF="004225.html">[X2Go-Dev] Help with Printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4223">[ date ]</a>
+              <a href="thread.html#4223">[ thread ]</a>
+              <a href="subject.html#4223">[ subject ]</a>
+              <a href="author.html#4223">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] fuse and X2Go printing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20fuse%20and%20X2Go%20printing&In-Reply-To=%3C5124A5E5.4020706%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005064.html">
+   <LINK REL="Next"  HREF="005066.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] fuse and X2Go printing</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20fuse%20and%20X2Go%20printing&In-Reply-To=%3C5124A5E5.4020706%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] fuse and X2Go printing">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Wed Feb 20 11:31:01 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005064.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+        <LI>Next message: <A HREF="005066.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5065">[ date ]</a>
+              <a href="thread.html#5065">[ thread ]</a>
+              <a href="subject.html#5065">[ subject ]</a>
+              <a href="author.html#5065">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I don't agree with you, Stefan. Simply redirect the ports is no solution
+for X2Go connections over Internet. The job should be converted in PDF
+on server or it will be just too big. So as result we will have a PDF
+File on server and it not a problem it all to download it to client
+system. And it could happens, that on client system you have no printers
+or printer system installed at all. So you can just save a print job as
+PDF-file.
+
+regards
+Alex
+
+Am 20.02.2013 11:16, schrieb Stefan Baur:
+&gt;<i> Am 20.02.2013 11:06, schrieb Oleksandr Shneyder:
+</I>&gt;&gt;<i> I would prefer the solution suggested by Morty. Actually, I already
+</I>&gt;&gt;<i> thought about it and i want include it in new implementation of
+</I>&gt;&gt;<i> x2goclient. X2goclient will simply check a spool directory on server and
+</I>&gt;&gt;<i> download a print jobs in PDF format via existing libssh connection.
+</I>&gt;<i> 
+</I>&gt;<i> Again, this sounds like unneccessary overhead.  You're turning a stream
+</I>&gt;<i> of data into a file, you need to have some sort of monitoring system
+</I>&gt;<i> (either polling regularly or triggered by the change to the filesystem)
+</I>&gt;<i> and what for - to turn the file into the stream of data that it
+</I>&gt;<i> originally was.  With all this happening on the server.
+</I>
+&gt;<i> 
+</I>&gt;&gt;<i> This
+</I>&gt;&gt;<i> solution is much simpler, no need a cups, lpr, or ssh daemon running on
+</I>&gt;&gt;<i> a client and implementation is just the same for all operating systems.
+</I>&gt;<i> 
+</I>&gt;<i> Well, you need the server-side cups or you wouldn't be able to print,
+</I>&gt;<i> with either solution.
+</I>&gt;<i> And my previous post contained a solution where you would only turn the
+</I>&gt;<i> data stream into a file after it arrives on the client, not on the
+</I>&gt;<i> server as well.
+</I>&gt;<i> This would work without *additional* cups, lpr or ssh on the client - it
+</I>&gt;<i> uses whatever the client (Linux, Mac OS and Windows) normally uses for
+</I>&gt;<i> printing and only needs an open tunneled port in the existing SSH
+</I>&gt;<i> connection.
+</I>&gt;<i> 
+</I>&gt;<i> Though, to be honest, I would simply connect to the existing CUPS via
+</I>&gt;<i> tunnel if the client uses Linux or Mac OS.  No need to add complexity
+</I>&gt;<i> there.
+</I>&gt;<i> 
+</I>&gt;<i> -Stefan
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130220/c9555556/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130220/c9555556/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005064.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+	<LI>Next message: <A HREF="005066.html">[X2Go-Dev] fuse and X2Go printing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5065">[ date ]</a>
+              <a href="thread.html#5065">[ thread ]</a>
+              <a href="subject.html#5065">[ subject ]</a>
+              <a href="author.html#5065">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

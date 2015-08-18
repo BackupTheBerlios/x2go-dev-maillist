@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] arbitrary no-connection issues with &#187;Warning: No data received from remote proxy within 30 seconds.&#171;
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%3D%3Fiso-8859-1%3Fq%3Farbitrary_no-connection_issues_with_%3DBB%3F%3D%0A%20%3D%3Fiso-8859-1%3Fq%3FWarning%3D3A_No_data_received_from_remote_proxy_within_30_se%3F%3D%0A%20%3D%3Fiso-8859-1%3Fq%3Fconds%3D2E%3DAB%3F%3D&In-Reply-To=%3C1254865744.9248.21.camel%40mattotaupa.wohnung.familie-menzel.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000115.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] arbitrary no-connection issues with &#187;Warning: No data received from remote proxy within 30 seconds.&#171;</H1>
+    <B>Paul Menzel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20%3D%3Fiso-8859-1%3Fq%3Farbitrary_no-connection_issues_with_%3DBB%3F%3D%0A%20%3D%3Fiso-8859-1%3Fq%3FWarning%3D3A_No_data_received_from_remote_proxy_within_30_se%3F%3D%0A%20%3D%3Fiso-8859-1%3Fq%3Fconds%3D2E%3DAB%3F%3D&In-Reply-To=%3C1254865744.9248.21.camel%40mattotaupa.wohnung.familie-menzel.net%3E"
+       TITLE="[X2go-dev] arbitrary no-connection issues with &#187;Warning: No data received from remote proxy within 30 seconds.&#171;">paulepanter at users.sourceforge.net
+       </A><BR>
+    <I>Tue Oct  6 23:49:04 CEST 2009</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000115.html">[X2go-dev] arbitrary no-connection issues with &#187;Warning: No data received from remote proxy within 30 seconds.&#171;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#103">[ date ]</a>
+              <a href="thread.html#103">[ thread ]</a>
+              <a href="subject.html#103">[ subject ]</a>
+              <a href="author.html#103">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dear X2go developers and users,
+
+
+since some time I sometimes cannot connect with my client to the server.
+
+The system the server is running on gets also used as a desktop machine.
+I think the issue is surfaces when a second user logs into the system
+using for example GNOME&#8217;s switch-user-applet.
+
+I do not know when this problem started. I am using Debian unstable/sid.
+A big change was the upgrade to GNOME 2.28 and the X.org server (1:7.4
++4).
+
+When the problem occurs `nxproxy -S`
+
+        $ nxproxy -S
+        
+        NXPROXY - Version 3.3.0
+        
+        Copyright (C) 2001, 2007 NoMachine.
+        See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+        
+        Info: Proxy running in client mode with pid '4871'.
+        Session: Starting session at 'Tue Oct  6 23:40:59 2009'.
+        Info: Waiting for connection from any host on port '4008'.
+        Info: Aborting the procedure due to signal '15'.
+        Session: Session terminated at 'Tue Oct  6 23:41:24 2009'.
+
+I do not where know where I can get useful server logs for you. This
+gets printed to the terminal running x2goclient_gtk from the command
+line.
+
+        $ x2goclient_gtk &amp;
+        [1] 8066
+        (x2goclient_gtk:8066): Gdk-CRITICAL **: gdk_drawable_copy_to_image: assertion `src_x &gt;= 0' failed
+        x2gostartagent fullscreen lan 16m-jpeg-9 unix-kde-depth_32 de pc105/de 1 D GNOME
+        50
+        8d1ccc606b790063e50135da76eaaecc
+        18829
+        x-50-1254863708_stDGNOME_dp32
+        30001
+        30002
+        30003
+        
+        OpenSSH_5.1p1 Debian-8, OpenSSL 0.9.8k 25 Mar 2009
+        debug1: Reading configuration data /etc/ssh/ssh_config
+        debug1: Applying options for *
+        debug1: Connecting to 192.168.178.25 [10.10.10.10] port 22.
+        debug1: Connection established.
+        debug1: identity file /home/paul/.ssh/identity type -1
+        debug1: identity file /home/paul/.ssh/id_rsa type 1
+        debug1: Checking blacklist file /usr/share/ssh/blacklist.RSA-8192
+        debug1: Checking blacklist file /etc/ssh/blacklist.RSA-8192
+        debug1: identity file /home/x/.ssh/id_dsa type -1
+        debug1: Remote protocol version 2.0, remote software version OpenSSH_5.1p1 Debian-8
+        debug1: match: OpenSSH_5.1p1 Debian-8 pat OpenSSH*
+        debug1: Enabling compatibility mode for protocol 2.0
+        debug1: Local version string SSH-2.0-OpenSSH_5.1p1 Debian-8
+        debug1: SSH2_MSG_KEXINIT sent
+        debug1: SSH2_MSG_KEXINIT received
+        debug1: kex: server-&gt;client blowfish-cbc hmac-md5 none
+        debug1: kex: client-&gt;server blowfish-cbc hmac-md5 none
+        debug1: SSH2_MSG_KEX_DH_GEX_REQUEST(1024&lt;1024&lt;8192) sent
+        debug1:
+        OpenSSH_5.1p1 Debian-8, OpenSSL 0.9.8k 25 Mar 2009
+        debug1: Reading configuration data /etc/ssh/ssh_config
+        debug1: Applying options for *
+        debug1: Connecting to 10.10.10.10 [10.10.10.10] port 22.
+        debug1: Connection established.
+        debug1: identity file /home/x/.ssh/identity type -1
+        debug1: identity file /home/x/.ssh/id_rsa type 1
+        debug1: Checking blacklist file /usr/share/ssh/blacklist.RSA-8192
+        debug1: Checking blacklist file /etc/ssh/blacklist.RSA-8192
+        debug1: identity file /home/x/.ssh/id_dsa type -1
+        debug1: Remote protocol version 2.0, remote software version OpenSSH_5.1p1 Debian-8
+        debug1: match: OpenSSH_5.1p1 Debian-8 pat OpenSSH*
+        debug1: Enabling compatibility mode for protocol 2.0
+        debug1: Local version string SSH-2.0-OpenSSH_5.1p1 Debian-8
+        debug1: SSH2_MSG_KEXINIT sent
+        debug1: SSH2_MSG_KEXINIT received
+        debug1: kex: server-&gt;client blowfish-cbc hmac-md5 none
+        debug1: kex: client-&gt;server blowfish-cbc hmac-md5 none
+        debug1: SSH2_MSG_KEX_DH_GEX_REQUEST(1024&lt;1024&lt;8192) sent
+        debug1:
+        expecting SSH2_MSG_KEX_DH_GEX_GROUP
+        debug1: SSH2_MSG_KEX_DH_GEX_INIT sent
+        debug1: expecting SSH2_MSG_KEX_DH_GEX_REPLY
+        debug1: Host '10.10.10.10' is known and matches the RSA host key.
+        debug1: Found key in /home/x/.ssh/known_hosts:17
+        debug1: ssh_rsa_verify: signature correct
+        debug1: SSH2_MSG_NEWKEYS sent
+        debug1: expecting SSH2_MSG_NEWKEYS
+        debug1: SSH2_MSG_NEWKEYS received
+        debug1: SSH2_MSG_SERVICE_REQUEST sent
+        debug1: SSH2_MSG_SERVICE_ACCEPT received
+        
+        expecting SSH2_MSG_KEX_DH_GEX_GROUP
+        debug1: SSH2_MSG_KEX_DH_GEX_INIT sent
+        debug1: expecting SSH2_MSG_KEX_DH_GEX_REPLY
+        debug1: Host '10.10.10.10' is known and matches the RSA host key.
+        debug1: Found key in /home/x/.ssh/known_hosts:12317
+        debug1: ssh_rsa_verify: signature correct
+        debug1: SSH2_MSG_NEWKEYS sent
+        debug1: expecting SSH2_MSG_NEWKEYS
+        debug1: SSH2_MSG_NEWKEYS received
+        debug1: SSH2_MSG_SERVICE_REQUEST sent
+        debug1: SSH2_MSG_SERVICE_ACCEPT received
+        
+        debug1: Authentications that can continue: publickey,password
+        debug1: Next authentication method: publickey
+        debug1: Trying private key: /home/x/.ssh/identity
+        debug1: Offering public key: /home/x/.ssh/id_rsa
+        debug1: Authentications that can continue: publickey,password
+        debug1: Trying private key: /home/x/.ssh/id_dsa
+        debug1: Next authentication method: password
+        debug1: read_passphrase: can't open /dev/tty: No such device or address
+        debug1: permanently_drop_suid: 1000
+        
+        debug1: Authentications that can continue: publickey,password
+        debug1: Next authentication method: publickey
+        debug1: Trying private key: /home/x/.ssh/identity
+        debug1: Offering public key: /home/x/.ssh/id_rsa
+        debug1: Authentications that can continue: publickey,password
+        debug1: Trying private key: /home/x/.ssh/id_dsa
+        debug1: Next authentication method: password
+        debug1: read_passphrase: can't open /dev/tty: No such device or address
+        debug1: permanently_drop_suid: 1000
+        
+        debug1: Authentication succeeded (password).
+        debug1: Local connections to LOCALHOST:30001 forwarded to remote address localhost:30001
+        debug1: Local forwarding listening on ::1 port 30001.
+        debug1: channel 0: new [port listener]
+        debug1: Local forwarding listening on 127.0.0.1 port 30001.
+        debug1: channel 1: new [port listener]
+        debug1: Requesting <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">no-more-sessions at openssh.com</A>
+        debug1: Entering interactive session.
+        
+        debug1: Connection to port 30001 forwarding to localhost port 30001 requested.
+        debug1: channel 2: new [direct-tcpip]
+        
+        
+        NXPROXY - Version 3.3.0
+        
+        Copyright (C) 2001, 2007 NoMachine.
+        See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+        
+        Info: Proxy running in client mode with pid '8077'.
+        Session: Starting session at 'Tue Oct  6 23:15:14 2009'.
+        Info: Connecting to remote host 'localhost:30001'.
+        Info: Connection to remote proxy 'localhost:30001' established.
+        Info: Connection with remote proxy completed.
+        Warning: Unrecognized session type 'unix-kde-depth_32'. Assuming agent session.
+        Info: Using LAN link parameters 1536/24/1/0.
+        Info: Using pack method '16m-jpeg-9' with session 'unix-kde-depth_32'.
+        Info: Not using NX delta compression.
+        Info: Not using ZLIB data compression.
+        Info: Not using ZLIB stream compression.
+        Info: Not using a persistent cache.
+        Info: Forwarding X11 connections to display ':0'.
+        Session: Session started at 'Tue Oct  6 23:15:15 2009'.
+        
+        debug1: Authentication succeeded (password).
+        debug1: Remote connections from LOCALHOST:30002 forwarded to local address localhost:4713
+        debug1: Requesting <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">no-more-sessions at openssh.com</A>
+        debug1: Entering interactive session.
+        
+        mkdir: kann Verzeichnis &#8222;/home/x/.pulse&#8220; nicht anlegen: Die Datei existiert bereits
+        
+        debug1: remote forward success for: listen 30002, connect localhost:4713
+        debug1: All remote forwarding requests processed
+        
+        Warning: No data received from remote proxy within 30 seconds.
+        
+        Session: Terminating session at 'Tue Oct  6 23:15:45 2009'.
+        
+        Info: Waiting the cleanup timeout to complete.
+        
+        debug1: channel 2: free: direct-tcpip: listening port 30001 for localhost port 30001, connect from 127.0.0.1 port 44416, nchannels 3
+        
+        Session: Session terminated at 'Tue Oct  6 23:16:09 2009'.
+        
+        debug1: channel 0: free: port listener, nchannels 2
+        debug1: channel 1: free: port listener, nchannels 1
+        Transferred: sent 2480, received 2128 bytes, in 55.2 seconds
+        Bytes per second: sent 44.9, received 38.5
+        debug1: Exit status 0
+        
+        Transferred: sent 2104, received 1800 bytes, in 55.0 seconds
+        Bytes per second: sent 38.2, received 32.7
+        debug1: Exit status 0
+        
+        cat: /home/x/.x2go/C-x-50-1254863708_stDGNOME_dp32/cmdoutput: Datei oder Verzeichnis nicht gefunden
+        
+        /usr/bin/x2goresume-session: Zeile 75: kill: (18829) - Kein passender Prozess gefunden
+
+
+Thanks,
+
+Paul
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: Dies ist ein digital signierter Nachrichtenteil
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20091006/4d5a0ac1/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20091006/4d5a0ac1/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000115.html">[X2go-dev] arbitrary no-connection issues with &#187;Warning: No data received from remote proxy within 30 seconds.&#171;
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#103">[ date ]</a>
+              <a href="thread.html#103">[ thread ]</a>
+              <a href="subject.html#103">[ subject ]</a>
+              <a href="author.html#103">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

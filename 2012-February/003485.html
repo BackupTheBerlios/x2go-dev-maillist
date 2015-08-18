@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Re%3A%20x2godesktopsharing%20SIGSEV%20-%20how%20to%0A%20compile%20with%20debugging%20info%3F&In-Reply-To=%3C20120218100203.2ec90969%40athlon.garagome%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003482.html">
+   <LINK REL="Next"  HREF="003486.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?</H1>
+    <B>Milan Kn&#237;&#382;ek</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Re%3A%20x2godesktopsharing%20SIGSEV%20-%20how%20to%0A%20compile%20with%20debugging%20info%3F&In-Reply-To=%3C20120218100203.2ec90969%40athlon.garagome%3E"
+       TITLE="[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?">knizek.confy at gmail.com
+       </A><BR>
+    <I>Sat Feb 18 10:02:03 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003482.html">[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+</A></li>
+        <LI>Next message: <A HREF="003486.html">[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3485">[ date ]</a>
+              <a href="thread.html#3485">[ thread ]</a>
+              <a href="subject.html#3485">[ subject ]</a>
+              <a href="author.html#3485">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>V Sat, 18 Feb 2012 09:00:30 +0100 (CET)
+Jan Engelhardt &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jengelh at medozas.de</A>&gt; naps&#225;no:
+
+&gt;<i> I do not see any group name length limit either, however,
+</I>&gt;<i> 
+</I>&gt;<i> (a) there is a limit as to what a user can/want to take. While
+</I>&gt;<i> tabcompletion probably gets you out most of the time, nobody really
+</I>&gt;<i> wants e.g. /home/Karl\ Theodor\ Maria\ Nikolaus\ Johann\ Jacob\
+</I>&gt;<i> Philipp\ Franz\ Joseph\ Sylvester\ Freiherr\ von\ und\ zu\ Guttenberg
+</I>&gt;<i> (21st century, though past-time, German politician serving for this
+</I>&gt;<i> example).
+</I>&gt;<i> 
+</I>&gt;<i> (b) not defined by POSIX, but there is an actual sanity limit.
+</I>&gt;<i> A username length about PATH_MAX chars long becomes problematic
+</I>&gt;<i> to be used in a path, e.g. when attempting to use for /home :)
+</I>&gt;<i> 
+</I>&gt;<i> The 16 character limit in Arch is just like the 80 character &quot;limit&quot;
+</I>&gt;<i> in coding. But actually, it is not a limit, but a wellness target: it
+</I>&gt;<i> may be exceeded if there is a justification. In contrast, historic
+</I>&gt;<i> UNIX usernames of 8 chars - /that/ was a limit.
+</I>
+This seems to be a compilation-time configure option
+GROUP_NAME_MAX_LENGTH...
+
+On Debian (I looked at Knoppix actually), the limit is relaxed a bit: 32
+chars.
+
+
+It can be handled as a distro specific patch, although it complicates
+portability. 
+
+Regards,
+Milan
+-- 
+<A HREF="http://www.milan-knizek.net/">http://www.milan-knizek.net/</A>
+About linux and photography (Czech only)
+O linuxu a fotografov&#225;n&#237;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003482.html">[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+</A></li>
+	<LI>Next message: <A HREF="003486.html">[X2Go-Dev] [PATCH] Re: x2godesktopsharing SIGSEV - how to compile with debugging info?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3485">[ date ]</a>
+              <a href="thread.html#3485">[ thread ]</a>
+              <a href="subject.html#3485">[ subject ]</a>
+              <a href="author.html#3485">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2godesktopsharing integration into x2goserver
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2godesktopsharing%20integration%20into%20x2goserver&In-Reply-To=%3C20110929082348.73586kii9knzudis%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002861.html">
+   <LINK REL="Next"  HREF="002884.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2godesktopsharing integration into x2goserver</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2godesktopsharing%20integration%20into%20x2goserver&In-Reply-To=%3C20110929082348.73586kii9knzudis%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-Dev] x2godesktopsharing integration into x2goserver">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Sep 29 08:23:48 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002861.html">[X2go-Dev] BUGS: x2godesktopsharing [SOLVED]
+</A></li>
+        <LI>Next message: <A HREF="002884.html">[X2go-Dev] x2godesktopsharing integration into x2goserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2862">[ date ]</a>
+              <a href="thread.html#2862">[ thread ]</a>
+              <a href="subject.html#2862">[ subject ]</a>
+              <a href="author.html#2862">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi all,
+
+yesterday I have been working on the C++ code in x2godesktopsharing.
+
+To make sure that x2godesktopsharing really gets shutdown on  
+x2goterminate-session, I have added a script to the x2godesktopsharing  
+package that detects the corresponding x2godesktopsharing process for  
+a given session $X2GO_SESSION. This script  
+,,x2godesktopsharing-terminate&quot; will be exectuted by  
+,,x2goterminate-session&quot;.
+
+This brought up the next question: how do we want to handle  
+x2godesktopsharing while a session is suspended. This older versions  
+of X2go (I think) this has been possible. I consider this as a  
+security problem and something that most users do not want. Imagine  
+the scenario:
+
+   o start x2go session
+   o start x2godesktopsharing
+   o allow user foo to share your desktop and remember this setting permanently
+     (via .x2godesktopsharing/settings)
+   o suspend your session (and x2godesktopsharing continues to offer desktop
+     sharing... :-( )
+   o user foo tries to connect to your desktop while you are away (while
+     your session is suspended
+   o -&gt; this is YUK!
+
+So what I have done is this:
+
+   o on session suspend, terminate x2godesktopsharing and remember that it was
+     running, place a server-side empty file ,,resume-desktopsharing'' into
+
+       $HOME/.x2go/C-$X2GO_SESSION/
+
+   o on session resume, check if that file is there and if so, launch a new
+     instance of x2godesktopsharing, with sharing mode set to disabled.
+
+Feedback, comments?
+
+Mike
+
+PS: I have just looked at my commits from yesterday and it feels like  
+I should rename the provided scripts in this way:
+
+   x2godesktopsharing-terminate -&gt; x2goterminate-desktopsharing
+   x2godesktopsharing-suspend -&gt; x2gosuspend-desktopsharing
+   etc.
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110929/e9a352c0/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110929/e9a352c0/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002861.html">[X2go-Dev] BUGS: x2godesktopsharing [SOLVED]
+</A></li>
+	<LI>Next message: <A HREF="002884.html">[X2go-Dev] x2godesktopsharing integration into x2goserver
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2862">[ date ]</a>
+              <a href="thread.html#2862">[ thread ]</a>
+              <a href="subject.html#2862">[ subject ]</a>
+              <a href="author.html#2862">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

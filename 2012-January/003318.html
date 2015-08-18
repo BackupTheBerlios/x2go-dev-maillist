@@ -1,0 +1,192 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [X2go-Commits] x2goserver.git - master (branch) updated: 3.0.99.9-13-g322a7f9
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2go-Commits%5D%20x2goserver.git%20-%20master%20%28branch%29%0A%20updated%3A%203.0.99.9-13-g322a7f9&In-Reply-To=%3C4F27A95B.1000404%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003314.html">
+   <LINK REL="Next"  HREF="003322.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [X2go-Commits] x2goserver.git - master (branch) updated: 3.0.99.9-13-g322a7f9</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BX2go-Commits%5D%20x2goserver.git%20-%20master%20%28branch%29%0A%20updated%3A%203.0.99.9-13-g322a7f9&In-Reply-To=%3C4F27A95B.1000404%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2Go-Dev] [X2go-Commits] x2goserver.git - master (branch) updated: 3.0.99.9-13-g322a7f9">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Tue Jan 31 09:42:03 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003314.html">[X2Go-Dev] [X2go-Commits] x2goserver.git - master (branch) updated: 3.0.99.9-13-g322a7f9
+</A></li>
+        <LI>Next message: <A HREF="003322.html">[X2Go-Dev] [X2go-User] Problem with xfreerdp ( any version )
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3318">[ date ]</a>
+              <a href="thread.html#3318">[ thread ]</a>
+              <a href="subject.html#3318">[ subject ]</a>
+              <a href="author.html#3318">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+sorry for that. Maybe I should you apply the patches in future. ;)
+
+Cheers
+Morty
+
+On 2012-01-30 18:48, Mike Gabriel wrote:
+&gt;<i> Hi Morty,
+</I>&gt;<i>
+</I>&gt;<i> your commit is missing a changelog entry (/debian/changelog). Please
+</I>&gt;<i> add that.
+</I>&gt;<i>
+</I>&gt;<i> THANKS!
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Mo 30 Jan 2012 18:19:07 CET X2go dev team wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> The branch, master has been updated
+</I>&gt;&gt;<i>        via  322a7f990adab973aa4dd39d5a07688e6020f977 (commit)
+</I>&gt;&gt;<i>       from  a591dd31b532c0fdc98cd051931ac4132ad7b40c (commit)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Those revisions listed above that are new to this repository have
+</I>&gt;&gt;<i> not appeared on any other notification email; so we list those
+</I>&gt;&gt;<i> revisions in full, below.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> - Log -----------------------------------------------------------------
+</I>&gt;&gt;<i> commit 322a7f990adab973aa4dd39d5a07688e6020f977
+</I>&gt;&gt;<i> Author: Moritz 'Morty' Str&#252;be &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">morty at gmx.net</A>&gt;
+</I>&gt;&gt;<i> Date:   Fri Dec 9 18:52:34 2011 +0100
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     Make sure the socket used by nxagent is not already in use
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -----------------------------------------------------------------------
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Summary of changes:
+</I>&gt;&gt;<i>  debian/control                |    3 ++-
+</I>&gt;&gt;<i>  x2goserver/bin/x2gostartagent |    8 ++++++--
+</I>&gt;&gt;<i>  2 files changed, 8 insertions(+), 3 deletions(-)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The diff of changes is:
+</I>&gt;&gt;<i> diff --git a/debian/control b/debian/control
+</I>&gt;&gt;<i> index ff07d92..0a51bcd 100644
+</I>&gt;&gt;<i> --- a/debian/control
+</I>&gt;&gt;<i> +++ b/debian/control
+</I>&gt;&gt;<i> @@ -27,7 +27,8 @@ Depends:
+</I>&gt;&gt;<i>   libdbd-sqlite3-perl,
+</I>&gt;&gt;<i>   adduser,
+</I>&gt;&gt;<i>   xauth,
+</I>&gt;&gt;<i> - psmisc
+</I>&gt;&gt;<i> + psmisc,
+</I>&gt;&gt;<i> + net-tools
+</I>&gt;&gt;<i>  Recommends:
+</I>&gt;&gt;<i>   sshfs,
+</I>&gt;&gt;<i>   x11-apps,
+</I>&gt;&gt;<i> diff --git a/x2goserver/bin/x2gostartagent
+</I>&gt;&gt;<i> b/x2goserver/bin/x2gostartagent
+</I>&gt;&gt;<i> index e882fdd..a4952bc 100755
+</I>&gt;&gt;<i> --- a/x2goserver/bin/x2gostartagent
+</I>&gt;&gt;<i> +++ b/x2goserver/bin/x2gostartagent
+</I>&gt;&gt;<i> @@ -120,8 +120,12 @@ USED_DISPLAYS=`$X2GO_LIB_PATH/x2gogetdisplays
+</I>&gt;&gt;<i> $HOSTNAME`
+</I>&gt;&gt;<i>  while [ &quot;$OUTPUT&quot;  != &quot;inserted&quot; ]; do
+</I>&gt;&gt;<i>      X2GO_PORT=$(($X2GO_PORT + 1))
+</I>&gt;&gt;<i>      X2GO_PORT=`echo &quot;for(\$i=$X2GO_PORT;\$br ne &quot;true&quot;;\$i++){
+</I>&gt;&gt;<i> if(&quot;$USED_DISPLAYS&quot; =~
+</I>&gt;&gt;<i> m/\|\$i\|/){\$br=&quot;false&quot;;}else{\$br=&quot;true&quot;;print \$i;}}&quot;|perl`
+</I>&gt;&gt;<i> -
+</I>&gt;&gt;<i> -    if  [ -e &quot;/tmp/.X${X2GO_PORT}-lock&quot; ] || [ -e
+</I>&gt;&gt;<i> &quot;/tmp/.X11-unix/X${X2GO_PORT}&quot; ]; then
+</I>&gt;&gt;<i> +
+</I>&gt;&gt;<i> +    #Test if the session is already in use. nxagent uses
+</I>&gt;&gt;<i> 6000+DISPLAY to open a port. Therefore this must be tested, too.
+</I>&gt;&gt;<i> +    NX_PORT=$(($X2GO_PORT + 6000))
+</I>&gt;&gt;<i> +    if  [ -e &quot;/tmp/.X${X2GO_PORT}-lock&quot; ] ||
+</I>&gt;&gt;<i> +        [ -e &quot;/tmp/.X11-unix/X${X2GO_PORT}&quot; ] ||
+</I>&gt;&gt;<i> +        netstat -ntl 2&gt;/dev/null | grep -q &quot;:${NX_PORT} &quot;; then
+</I>&gt;&gt;<i>          OUTPUT=&quot;XXX&quot;
+</I>&gt;&gt;<i>      else
+</I>&gt;&gt;<i>          SESSION_NAME=${USER}-${X2GO_PORT}-`date +&quot;%s&quot;`
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> hooks/post-receive
+</I>&gt;&gt;<i> -- 
+</I>&gt;&gt;<i> x2goserver.git (X2Go Server)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This is an automated email from the git hooks/post-receive script. It
+</I>&gt;&gt;<i> was
+</I>&gt;&gt;<i> generated because a ref change was pushed to the repository containing
+</I>&gt;&gt;<i> the project &quot;x2goserver.git&quot; (X2Go Server).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> X2go-commits mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-commits at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-commits">https://lists.berlios.de/mailman/listinfo/x2go-commits</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120131/108cfd8f/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120131/108cfd8f/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4992 bytes
+Desc: S/MIME Kryptografische Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120131/108cfd8f/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120131/108cfd8f/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003314.html">[X2Go-Dev] [X2go-Commits] x2goserver.git - master (branch) updated: 3.0.99.9-13-g322a7f9
+</A></li>
+	<LI>Next message: <A HREF="003322.html">[X2Go-Dev] [X2go-User] Problem with xfreerdp ( any version )
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3318">[ date ]</a>
+              <a href="thread.html#3318">[ thread ]</a>
+              <a href="subject.html#3318">[ subject ]</a>
+              <a href="author.html#3318">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,179 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goclient authentication error!
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20authentication%20error%21&In-Reply-To=%3CA3E6AD28-B686-4AEC-81E3-B769371D4773%40bigpond.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001411.html">
+   <LINK REL="Next"  HREF="001412.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goclient authentication error!</H1>
+    <B>Paul Clark</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20authentication%20error%21&In-Reply-To=%3CA3E6AD28-B686-4AEC-81E3-B769371D4773%40bigpond.com%3E"
+       TITLE="[X2go-dev] x2goclient authentication error!">paul260 at bigpond.com
+       </A><BR>
+    <I>Sat Dec 18 18:01:53 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001411.html">[X2go-dev] x2goclient authentication error!
+</A></li>
+        <LI>Next message: <A HREF="001412.html">[X2go-dev] x2goclient authentication error!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1415">[ date ]</a>
+              <a href="thread.html#1415">[ thread ]</a>
+              <a href="subject.html#1415">[ subject ]</a>
+              <a href="author.html#1415">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Partly solved on Mac. Under X11 Preferences I also needed to tick &quot;Allow connections for network clients&quot;. For NoMachine NX I only needed to tick &quot;Authenticate connections&quot;.
+
+Now I'm getting the infamous missing font problem:
+
+Error: Aborting session with 'Could not open default font 'fixed''.
+
+Any known solution?
+
+Cheers,
+
+Paul.
+
+On 18/12/2010, at 6:20 PM, Paul Clark wrote:
+
+&gt;<i> Hi All,
+</I>&gt;<i> 
+</I>&gt;<i>    hoping for some pointers here in getting x2go working.
+</I>&gt;<i> 
+</I>&gt;<i> Two problems below - related or not?
+</I>&gt;<i> 
+</I>&gt;<i> --------------------
+</I>&gt;<i> 
+</I>&gt;<i> Problem 1) Mac OS X client won't connect to server:
+</I>&gt;<i> 
+</I>&gt;<i> Dialogue error message is:
+</I>&gt;<i> 
+</I>&gt;<i> ''Can't connect to X-Server
+</I>&gt;<i> Please check your settings&quot;.
+</I>&gt;<i> 
+</I>&gt;<i> Checking /var/log/system.log on the client machine (Mac OS X 10.6.4) it shows:
+</I>&gt;<i> 
+</I>&gt;<i> Dec 18 17:23:11 Paul-Clarks-MacBook-Pro [0x0-0x18b98b8].x2goclient[56024]: Can't load translator (:/x2goclient_en_au) !
+</I>&gt;<i> Dec 18 17:23:11 Paul-Clarks-MacBook-Pro [0x0-0x18b98b8].x2goclient[56024]: Can't load translator (:/qt_en_AU) !
+</I>&gt;<i> Dec 18 17:23:21 Paul-Clarks-MacBook-Pro org.x.privileged_startx[56034]: font_cache: Scanning system font directories to generate X11 font caches
+</I>&gt;<i> Dec 18 17:23:21 Paul-Clarks-MacBook-Pro defaults[56052]: \nThe domain/default pair of (org.x.X11, dpi) does not exist
+</I>&gt;<i> 
+</I>&gt;<i> Nothing is showing in /var/log/auth.log on the server around these times.
+</I>&gt;<i> 
+</I>&gt;<i> Any ideas as to what the fix is?
+</I>&gt;<i> 
+</I>&gt;<i> ---------------------
+</I>&gt;<i> 
+</I>&gt;<i> Problem 2) Linux client on server won't connect to localhost . Is this allowed? I attempted this to try to resolve problem 1!
+</I>&gt;<i> 
+</I>&gt;<i> I get this error message:
+</I>&gt;<i> 
+</I>&gt;<i> &quot;The remote proxy closed the connection while negotiating
+</I>&gt;<i> the session. This may be due to the wrong authentication
+</I>&gt;<i> credentials passed to the server.&quot;
+</I>&gt;<i> 
+</I>&gt;<i> And the log info:
+</I>&gt;<i> 
+</I>&gt;<i> $ cat .x2go/C-paul-51-1292666024_stDGNOME_dp24/session.log
+</I>&gt;<i> 
+</I>&gt;<i> NXAGENT - Version 3.4.0
+</I>&gt;<i> 
+</I>&gt;<i> Copyright (C) 2001, 2007 NoMachine.
+</I>&gt;<i> See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+</I>&gt;<i> 
+</I>&gt;<i> Info: Agent running with pid '9734'.
+</I>&gt;<i> Session: Starting session at 'Sat Dec 18 17:53:44 2010'.
+</I>&gt;<i> Info: Proxy running in server mode with pid '9734'.
+</I>&gt;<i> Info: Waiting for connection from 'localhost' on port '30001'.
+</I>&gt;<i> Info: Accepted connection from '127.0.0.1'.
+</I>&gt;<i> Error: The remote NX proxy closed the connection.
+</I>&gt;<i> Error: Failure negotiating the session in stage '7'.
+</I>&gt;<i> Error: Aborting session with 'X2goagent: Unable to open display 'nx/nx,options=/home/paul/.x2go/C-paul-51-1292666024_stDGNOME_dp24/options:51''.
+</I>&gt;<i> Session: Aborting session at 'Sat Dec 18 17:53:44 2010'.
+</I>&gt;<i> Session: Session aborted at 'Sat Dec 18 17:53:44 2010'.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> $ cat .x2go/S-paul-51-1292666024_stDGNOME_dp24/sessions
+</I>&gt;<i> Loop: PANIC! The remote NX proxy closed the connection.
+</I>&gt;<i> Loop: PANIC! Failure negotiating the session in stage '7'.
+</I>&gt;<i> Loop: PANIC! Wrong version or invalid session authentication cookie.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Is it even possible to run the x2goclient on the server?
+</I>&gt;<i> 
+</I>&gt;<i> I'm attempted all this through a remote NoMachine NX desktop session, as the server is far away! (So, I do have NoMachine NX working fine. Server is xubuntu-64bit with ubuntu 10.10)
+</I>&gt;<i> 
+</I>&gt;<i> I followed the directions here to setup x2go on the server:
+</I>&gt;<i> 
+</I>&gt;<i> <A HREF="http://wiki.x2go.org/adding_the_x2go_repository_debian">http://wiki.x2go.org/adding_the_x2go_repository_debian</A>
+</I>&gt;<i> <A HREF="http://wiki.x2go.org/installing_x2goclient_ubuntu">http://wiki.x2go.org/installing_x2goclient_ubuntu</A>
+</I>&gt;<i> <A HREF="http://wiki.x2go.org/installing_x2goserver-home_ubuntu">http://wiki.x2go.org/installing_x2goserver-home_ubuntu</A>
+</I>&gt;<i> 
+</I>&gt;<i> I also had to install &quot;sqlite3&quot;, which I did with the synaptic package manager. (I'm guessing SQLIGHT3 is a mis-spelling in the instructions?)
+</I>&gt;<i> 
+</I>&gt;<i> Thanks for any help. :^)
+</I>&gt;<i> 
+</I>&gt;<i> Cheers,
+</I>&gt;<i> 
+</I>&gt;<i> Paul.
+</I>&gt;<i> 
+</I>&gt;<i> -------------------------------
+</I>&gt;<i> 
+</I>&gt;<i> PS: I tried this after reading some post, but no joy:
+</I>&gt;<i> 
+</I>&gt;<i> Changed to &gt;
+</I>&gt;<i> 
+</I>&gt;<i> $ cat /usr/bin/x2goagent
+</I>&gt;<i> #!/bin/bash -e
+</I>&gt;<i>     X2GO_LIBS=/usr/lib/x2go LD_LIBRARY_PATH=/usr/lib/x2go exec /usr/lib/x2go/x2goagent $@
+</I>&gt;<i> 
+</I>&gt;<i> From original&gt;
+</I>&gt;<i> 
+</I>&gt;<i> $ cat /usr/bin/x2goagent.org
+</I>&gt;<i> -e #!/bin/bash
+</I>&gt;<i>     X2GO_LIBS=/usr/lib/x2go LD_LIBRARY_PATH=/usr/lib/x2go exec /usr/lib/x2go/x2goagent $@
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101219/9cc8de56/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101219/9cc8de56/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001411.html">[X2go-dev] x2goclient authentication error!
+</A></li>
+	<LI>Next message: <A HREF="001412.html">[X2go-dev] x2goclient authentication error!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1415">[ date ]</a>
+              <a href="thread.html#1415">[ thread ]</a>
+              <a href="subject.html#1415">[ subject ]</a>
+              <a href="author.html#1415">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Dependency based booting in Squeeze
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Dependency%20based%20booting%20in%20Squeeze&In-Reply-To=%3C4D5BBEF0.3090801%40vandervlis.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001746.html">
+   <LINK REL="Next"  HREF="001744.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Dependency based booting in Squeeze</H1>
+    <B>Paul van der Vlis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Dependency%20based%20booting%20in%20Squeeze&In-Reply-To=%3C4D5BBEF0.3090801%40vandervlis.nl%3E"
+       TITLE="[X2go-dev] Dependency based booting in Squeeze">paul at vandervlis.nl
+       </A><BR>
+    <I>Wed Feb 16 13:11:28 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001746.html">[X2go-dev] GPG key server
+</A></li>
+        <LI>Next message: <A HREF="001744.html">[X2go-dev] Dependency based booting in Squeeze
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1742">[ date ]</a>
+              <a href="thread.html#1742">[ thread ]</a>
+              <a href="subject.html#1742">[ subject ]</a>
+              <a href="author.html#1742">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+X2go is for Lenny, but it also runs in Squeeze. A problem is the
+dependency based booting in Squeeze.
+
+When I edit /etc/init.d/x2goserver and replace the first line:
+#! /bin/sh
+
+By these 9 lines:
+----------------
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          x2goserver
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Start and stop the x2go daemon
+### END INIT INFO
+------------------
+
+the dependency based booting works fine. (I can enable it, I have not
+really tested the boot-process).
+
+You can enable dependency based booting with:
+apt-get install insserv
+dpkg-reconfigure insserv sysv-rc
+
+More information:
+<A HREF="http://wiki.debian.org/LSBInitScripts/DependencyBasedBoot">http://wiki.debian.org/LSBInitScripts/DependencyBasedBoot</A>
+
+With regards,
+Paul van der Vlis.
+
+
+
+
+-- 
+<A HREF="http://www.vandervlis.nl/">http://www.vandervlis.nl/</A>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001746.html">[X2go-dev] GPG key server
+</A></li>
+	<LI>Next message: <A HREF="001744.html">[X2go-dev] Dependency based booting in Squeeze
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1742">[ date ]</a>
+              <a href="thread.html#1742">[ thread ]</a>
+              <a href="subject.html#1742">[ subject ]</a>
+              <a href="author.html#1742">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

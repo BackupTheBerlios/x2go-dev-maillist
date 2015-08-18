@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Feedback: Published Applications
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Feedback%3A%20Published%20Applications&In-Reply-To=%3C4F59B4CC.40501%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003738.html">
+   <LINK REL="Next"  HREF="003750.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Feedback: Published Applications</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Feedback%3A%20Published%20Applications&In-Reply-To=%3C4F59B4CC.40501%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] Feedback: Published Applications">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Fri Mar  9 08:44:12 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003738.html">[X2Go-Dev] Feedback: Published Applications
+</A></li>
+        <LI>Next message: <A HREF="003750.html">[X2Go-Dev] Feedback: Published Applications
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3749">[ date ]</a>
+              <a href="thread.html#3749">[ thread ]</a>
+              <a href="subject.html#3749">[ subject ]</a>
+              <a href="author.html#3749">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 08.03.2012 18:34, schrieb Mike Gabriel:
+&gt;<i> Hi all,
+</I>&gt;<i> 
+</I>&gt;<i> thanks to Stefan we have another puzzle piece for making X2Go the
+</I>&gt;<i> non-plus-ultra solution for people offering Linux-SaaS.
+</I>&gt;<i> 
+</I>&gt;<i> There now is a new session mode called ,,Published Applications'',
+</I>&gt;<i> sponsored by Stefan Baur.
+</I>&gt;<i> 
+</I>&gt;<i> I have had a quick test look at the functionality, so here is a feedback
+</I>&gt;<i> list, also about other issues that I stumble upon while testing:
+</I>&gt;<i> 
+</I>&gt;<i>  - I use a dark Qt color theme, with a dark color theme some elements of
+</I>&gt;<i>    x2goclient are hardly readable on screen:
+</I>&gt;<i>      - session profile cards (right column of the screen=
+</I>&gt;<i>      - all buttons (suspend, new, terminate, etc.)
+</I>&gt;<i>      - also the button that allows me to launch a published application is
+</I>&gt;<i>        not readable on screen with my dark theme
+</I>
+Okay, I understand your problem, I'll set up a colour palette for font
+in this widgets.
+
+&gt;<i>      - when minimizing x2goclient to systray, I see an icon with
+</I>&gt;<i> transparent
+</I>&gt;<i>        background and black contours on a black system tray. Thus, I
+</I>&gt;<i> actually
+</I>&gt;<i>        see nothing...
+</I>
+I think, we should change a X2Go Icon and set a light background colour
+instead of transparency.
+
+BTW - this issues are not related to &quot;Published Applications&quot; feature, I
+think it is not correct to discuss them in topic with such subject.
+
+&gt;<i>   - Published applications: Some menu entries have icons, some do not.
+</I>&gt;<i> Where
+</I>&gt;<i>     do icons come from? Are they transferred from the server? Or are they
+</I>&gt;<i>     used from the client-side file system?
+</I>
+the icons are transferred from the server, certainly. You can find a
+directory list, where X2Go server searching for icons in the
+&quot;x2gogetapps&quot;. If you just made a link /etc/x2go/applications -&gt;
+/usr/share/applications you will get a list with all possible desktops.
+Some of them are not in fact desktop applications and have no icons in
+directories like &quot;&lt;theme path&gt;/&lt;icon size&gt;/apps&quot;. I think, for 99% of
+applications, which you really want to publish on your server,
+x2gogetapps will find the icon. In all other cases administrator just
+should put the icon in one of generic icons directory - for example in
+/usr/share/icons/hicolor/22x22/apps/. If some one have a better idea
+about icon resolution algorithm, feel free to talk with me about it.
+
+&gt;<i>   - x2goclient is configure _not_ to minimize into the systray. After
+</I>&gt;<i>     establishing a published application session I see for buttons in the
+</I>&gt;<i>     center of the blue window area of x2goclient. The buttons do not fit in
+</I>&gt;<i>     there (they overlap).
+</I>
+I see, you font size is just too large. I'll think, how I can solve this
+problem. I should find another place for &quot;Applications...&quot; button.
+
+
+&gt;<i>   - Is there a concept for evaluating i18n parts of desktop files?
+</I>&gt;<i> Application
+</I>&gt;<i>     links appear in English still.
+</I>
+Actually, all localized strings from desktop files are transferred to
+client. For example, if you client localization is de_DE, the strings
+Name[de] and Comment[de] will be used to describe your application in
+x2goclient. If this fields are not present in &quot;desktop&quot; file, &quot;Name&quot; and
+&quot;Comment&quot; will be used.
+
+&gt;<i>   - Alex, whenever we are about to release the new code, we should make
+</I>&gt;<i> a call
+</I>&gt;<i>     for translation, so that i18n files are updated with the new version
+</I>
+Good idea. But I don't think, that it is a target for developers. I
+think we should found a &quot;localization&quot; group, which will take care about
+localization. Volunteers?
+
+&gt;<i> So much from the testing front here...
+</I>&gt;<i> 
+</I>&gt;<i> BTW: x2goserver installs and uninstalls/purges fine, I added the code in
+</I>&gt;<i> a rush this lunch time, but it seems to work well.
+</I>&gt;<i> 
+</I>&gt;<i> Mike
+</I>Nice. I'll  try to install packets from repo.
+
+regards,
+Alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120309/a73bf2a4/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120309/a73bf2a4/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003738.html">[X2Go-Dev] Feedback: Published Applications
+</A></li>
+	<LI>Next message: <A HREF="003750.html">[X2Go-Dev] Feedback: Published Applications
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3749">[ date ]</a>
+              <a href="thread.html#3749">[ thread ]</a>
+              <a href="subject.html#3749">[ subject ]</a>
+              <a href="author.html#3749">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

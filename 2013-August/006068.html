@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#285: keyboard layout selected in x2go client isn't	applied to the session
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23285%3A%20keyboard%20layout%20selected%20in%20x2go%20client%20isn%27t%0A%09applied%20to%20the%20session&In-Reply-To=%3C51FEE7A9.7060001%40maciej.szmigiero.name%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006079.html">
+   <LINK REL="Next"  HREF="006071.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#285: keyboard layout selected in x2go client isn't	applied to the session</H1>
+    <B>Maciej S. Szmigiero</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23285%3A%20keyboard%20layout%20selected%20in%20x2go%20client%20isn%27t%0A%09applied%20to%20the%20session&In-Reply-To=%3C51FEE7A9.7060001%40maciej.szmigiero.name%3E"
+       TITLE="[X2Go-Dev] Bug#285: keyboard layout selected in x2go client isn't	applied to the session">mail at maciej.szmigiero.name
+       </A><BR>
+    <I>Mon Aug  5 01:45:45 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006079.html">[X2Go-Dev] Bug#284: Bug#284: mac client: focus problems prevent the	user to type in username and password
+</A></li>
+        <LI>Next message: <A HREF="006071.html">[X2Go-Dev] Bug#285: Bug#285: keyboard layout selected in x2go	client isn't applied to the session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6068">[ date ]</a>
+              <a href="thread.html#6068">[ thread ]</a>
+              <a href="subject.html#6068">[ subject ]</a>
+              <a href="author.html#6068">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goserver
+Version: 4.0.1.3
+
+It seems that the keyboard layout selected in x2go client isn't applied to the session.
+
+I've tracked the issue to &quot;keyboard&quot; blocking directory being created by x2gostartagent script:
+if [ &quot;$X2GO_SET_KBD&quot; == &quot;0&quot; ] || [ &quot;$X2GO_KBD_TYPE&quot; != &quot;auto&quot; ]; then
+	$X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;blocking creation of agent's keyboard file ${SESSION_DIR}/keyboard as requested by session startup command&quot;
+	mkdir -p ${SESSION_DIR}/keyboard
+fi
+
+X2GO_KBD_TYPE contains the actual keyboard type, so its not &quot;auto&quot; and the blocking directory gets created.
+I've changed it to &quot;[ &quot;$X2GO_KBD_TYPE&quot; == &quot;auto&quot; ]&quot; and the keyboard layouts gets applied on session startup.
+
+There is also similar code in x2goresume-session:
+# set client-side keyboard model, type, variant, etc.
+if [ &quot;$X2GO_SET_KBD&quot; != &quot;0&quot; ] &amp;&amp; [ &quot;$X2GO_KBD_TYPE&quot; == &quot;auto&quot; ]; then
+
+Here it should probably be &quot;[ &quot;$X2GO_KBD_TYPE&quot; != &quot;null\/null&quot; ]&quot;, as few lines earlier the script
+will change X2GO_KBD_TYPE to this value when it is set to &quot;auto&quot; or when X2GO_SET_KBD is zero.
+
+Best regards,
+Maciej Szmigiero
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006079.html">[X2Go-Dev] Bug#284: Bug#284: mac client: focus problems prevent the	user to type in username and password
+</A></li>
+	<LI>Next message: <A HREF="006071.html">[X2Go-Dev] Bug#285: Bug#285: keyboard layout selected in x2go	client isn't applied to the session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6068">[ date ]</a>
+              <a href="thread.html#6068">[ thread ]</a>
+              <a href="subject.html#6068">[ subject ]</a>
+              <a href="author.html#6068">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

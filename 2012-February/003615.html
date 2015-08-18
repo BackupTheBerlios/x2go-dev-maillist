@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Usernames with dashes causes errors?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Usernames%20with%20dashes%20causes%20errors%3F&In-Reply-To=%3C4F44B725.8050201%40fleten.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003580.html">
+   <LINK REL="Next"  HREF="003616.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Usernames with dashes causes errors?</H1>
+    <B>christoffer krakou</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Usernames%20with%20dashes%20causes%20errors%3F&In-Reply-To=%3C4F44B725.8050201%40fleten.net%3E"
+       TITLE="[X2Go-Dev] Usernames with dashes causes errors?">christoffer at fleten.net
+       </A><BR>
+    <I>Wed Feb 22 10:36:37 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003580.html">[X2Go-Dev] Usernames with dashes causes errors?
+</A></li>
+        <LI>Next message: <A HREF="003616.html">[X2Go-Dev] Usernames with dashes causes errors?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3615">[ date ]</a>
+              <a href="thread.html#3615">[ thread ]</a>
+              <a href="subject.html#3615">[ subject ]</a>
+              <a href="author.html#3615">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 02/21/2012 04:48 PM, Mike Gabriel wrote:
+
+&gt;<i> Christoffer! Your (and others) turn! (Debian packages are already
+</I>&gt;<i> available, Ubuntu packages will come over night, test from the nightly
+</I>&gt;<i> repositories, please)
+</I>
+  Hello mike.
+
+When i log into the server with old usernames (without dashes), the 
+client hangs until i kill it. No errors, nothing in the log on the 
+server. At one time, a user got stuck in a loop where ssh constantly 
+opened sessions, and closed sessions for the user.
+
+When i log on with a new username (with dashes), it looks as if it goes 
+through the logon process on the client, then just closes again, 
+returning to the login screen. The server log shows the following:
+
+/var/log/auth.log
+Feb 22 10:29:49 fleten-01 sshd[7901]: Accepted password for test-1 from 
+2.129.49.246 port 53921 ssh2
+Feb 22 10:29:49 fleten-01 sshd[7901]: pam_unix(sshd:session): session 
+opened for user test-1 by (uid=0)
+Feb 22 10:29:57 fleten-01 sshd[8650]: Accepted password for test-1 from 
+2.129.49.246 port 53925 ssh2
+Feb 22 10:29:57 fleten-01 sshd[8650]: pam_unix(sshd:session): session 
+opened for user test-1 by (uid=0)
+Feb 22 10:29:57 fleten-01 sshd[8653]: Accepted password for test-1 from 
+2.129.49.246 port 53926 ssh2
+Feb 22 10:29:57 fleten-01 sshd[8653]: pam_unix(sshd:session): session 
+opened for user test-1 by (uid=0)
+Feb 22 10:30:01 fleten-01 sshd[8991]: Received disconnect from 
+2.129.49.246: 11: Bye Bye
+Feb 22 10:30:01 fleten-01 sshd[8650]: pam_unix(sshd:session): session 
+closed for user test-1
+Feb 22 10:30:01 fleten-01 sshd[9048]: Received disconnect from 
+2.129.49.246: 11: Bye Bye
+Feb 22 10:30:01 fleten-01 sshd[8653]: pam_unix(sshd:session): session 
+closed for user test-1
+Feb 22 10:30:01 fleten-01 sshd[7901]: pam_unix(sshd:session): session 
+closed for user test-1
+Feb 22 10:30:02 fleten-01 su[9456]: Successful su for test-1 by root
+Feb 22 10:30:02 fleten-01 su[9456]: + ??? root:test-1
+Feb 22 10:30:02 fleten-01 su[9456]: pam_unix(su:session): session opened 
+for user test-1 by (uid=0)
+Feb 22 10:30:02 fleten-01 su[9456]: pam_unix(su:session): session closed 
+for user test-1
+
+i'm using ubuntu 11.10 64-bit on both server and client side. i've 
+tested from different networks (onsite network, and mobile 3g modem). 
+I'm using the stable client, tried on both windows and ubuntu, and the 
+nightly-build server
+
+-- 
+Venlig Hilsen / Best Regards
+Christoffer Krakou
+Fleten.net APS
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003580.html">[X2Go-Dev] Usernames with dashes causes errors?
+</A></li>
+	<LI>Next message: <A HREF="003616.html">[X2Go-Dev] Usernames with dashes causes errors?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3615">[ date ]</a>
+              <a href="thread.html#3615">[ thread ]</a>
+              <a href="subject.html#3615">[ subject ]</a>
+              <a href="author.html#3615">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

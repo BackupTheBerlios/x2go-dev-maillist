@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#384: Sound stopped working on Linux X2Goclient,	or: Lookin' For Cookie In All The Wrong Places
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23384%3A%20Sound%20stopped%20working%20on%20Linux%20X2Goclient%2C%0A%09or%3A%20Lookin%27%20For%20Cookie%20In%20All%20The%20Wrong%20Places&In-Reply-To=%3C52C0BA00.3090208%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006755.html">
+   <LINK REL="Next"  HREF="006757.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#384: Sound stopped working on Linux X2Goclient,	or: Lookin' For Cookie In All The Wrong Places</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23384%3A%20Sound%20stopped%20working%20on%20Linux%20X2Goclient%2C%0A%09or%3A%20Lookin%27%20For%20Cookie%20In%20All%20The%20Wrong%20Places&In-Reply-To=%3C52C0BA00.3090208%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Bug#384: Sound stopped working on Linux X2Goclient,	or: Lookin' For Cookie In All The Wrong Places">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Mon Dec 30 01:10:40 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006755.html">[X2Go-Dev] Periodic X2Go Server CPU usage
+</A></li>
+        <LI>Next message: <A HREF="006757.html">[X2Go-Dev] Bug#384: X2Go issue (in src:x2goclient) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6756">[ date ]</a>
+              <a href="thread.html#6756">[ thread ]</a>
+              <a href="subject.html#6756">[ subject ]</a>
+              <a href="author.html#6756">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>package: x2goclient
+severity: important
+version:4.0.1.2
+
+With X2Goclient 4.0.1.2, sound stopped working on Linux clients. Windows 
+clients were unaffected.
+
+Manually copying over the .pulse-cookie file while the session was 
+running fixed the issue.
+Thanks to sunweaver (Mike#1) and dowdle on IRC, enough info was gathered 
+that I could put two and two together as to what went wrong.
+Initial theory was that a patch was added for pulseaudio 4 (which keeps 
+the .pulse-cookie file in a different location), but said patch wouldn't 
+check for the version of pulseaudio actually installed on the client.  
+Debian Wheezy shipping with a 2.x release of pulseaudio, the location to 
+copy the file from wouldn't exist, which would explain the behavior we'd 
+seen.
+
+Close, but no cookie. (Pun intended.)
+
+stracing x2goclient shows this:
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">username at mycutelittletestmachine</A>:~/.config/pulse$ grep -i cookie stracelog
+read(7, &quot;\0\0\0\4\300\250\0\264\0\0010\0\22MIT-MAGIC-COOKIE-1\0&quot;..., 
+4096) = 317
+writev(6, [{&quot;l\0\v\0\0\0\22\0\20\0\0\0&quot;, 12}, {&quot;&quot;, 0}, 
+{&quot;MIT-MAGIC-COOKIE-1&quot;, 18}, {&quot;\0\0&quot;, 2}, 
+{&quot;=[\272)\364\376\331l\327\242\365\307\302\2\17J&quot;, 16}, {&quot;&quot;, 0}], 6) = 48
+stat64(&quot;/home/username.config/pulse/cookie&quot;, 0xbfacb180) = -1 ENOENT (No 
+such file or directory)
+stat64(&quot;/home/username.pulse-cookie&quot;, 0xbfacb180) = -1 ENOENT (No such 
+file or directory)
+
+So while it DOES attempt to check both possible locations, it actually 
+checks in /home/username.config/pulse/cookie and 
+/home/username.pulse-cookie while it should check in 
+/home/username/.config/pulse/cookie and /home/username/.pulse-cookie - 
+the slash between username and directory is missing.
+
+Please fix ASAP.
+
+-Stefan
+PS: If anyone actually remembers the game title the second part of the 
+subject is referencing: Complimentary cookie for you!
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006755.html">[X2Go-Dev] Periodic X2Go Server CPU usage
+</A></li>
+	<LI>Next message: <A HREF="006757.html">[X2Go-Dev] Bug#384: X2Go issue (in src:x2goclient) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6756">[ date ]</a>
+              <a href="thread.html#6756">[ thread ]</a>
+              <a href="subject.html#6756">[ subject ]</a>
+              <a href="author.html#6756">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

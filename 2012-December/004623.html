@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#68: X2goclient &amp; OTP
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2368%3A%20X2goclient%20%26%20OTP&In-Reply-To=%3CCAPTrY-n1knNngCpSCRbm-jn7Bjq_48Svnd-ZNu4w1BUdcvDWYQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="004624.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#68: X2goclient &amp; OTP</H1>
+    <B>Pascal Vibet - ADACIS</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2368%3A%20X2goclient%20%26%20OTP&In-Reply-To=%3CCAPTrY-n1knNngCpSCRbm-jn7Bjq_48Svnd-ZNu4w1BUdcvDWYQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#68: X2goclient &amp; OTP">pvibet at gmail.com
+       </A><BR>
+    <I>Sat Dec  1 13:40:53 CET 2012</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="004624.html">[X2Go-Dev] [PATCH] allow user to set his preferred applications in	~/.x2go/applications
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4623">[ date ]</a>
+              <a href="thread.html#4623">[ thread ]</a>
+              <a href="subject.html#4623">[ subject ]</a>
+              <a href="author.html#4623">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Version: lucid - precise: amd64/i386 (ppa.launchpad), precise 3.99.0.5-1:
+amd64/i386
+
+I should use OTM authentification (One Time Password) like google
+authentificator on my X2go server but it's impossible to mount shared
+folder and/or local printer.
+
+If i don't use OTP, i can see x2goclient connect twice to my server. First
+time to login and second time, to shared folder and/or local printer
+Dec  1 10:33:22 my_serveur sshd[22271]: Accepted password for pascal from
+AAA.BBB.CCC.DDD port 36053 ssh2
+Dec  1 10:33:22 my_serveur sshd[22271]: pam_unix(sshd:session): session
+opened for user pascal by (uid=0)
+Dec  1 10:33:36 my_serveur sshd[22707]: Accepted password for pascal from
+AAA.BBB.CCC.DDD port 36057 ssh2
+Dec  1 10:33:36 my_serveur sshd[22707]: pam_unix(sshd:session): session
+opened for user pascal by (uid=0)
+
+I i use OTP, password is valide one time. So, i can login on x2goserver but
+i can not reuse the same password to shared folder:
+Dec  1 10:37:26 my_serveur sshd[28415]: Accepted password for pascal from
+AAA.BBB.CCC.DDD port 36062 ssh2
+Dec  1 10:37:26 my_serveur sshd[28415]: pam_unix(sshd:session): session
+opened for user pascal by (uid=0)
+Dec  1 10:37:36 my_serveur sshd(pam_google_authenticator)[28839]: Trying to
+reuse a previously used time-based code. Retry again in 30 seconds.
+Warning! This might mean, you are currently subject to a man-in-the-middle
+attack.
+Dec  1 10:37:36 my_serveur sshd(pam_google_authenticator)[28839]: Invalid
+verification code
+Dec  1 10:37:36 my_serveur sshd[28839]: pam_unix(sshd:auth): authentication
+failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=toto.tata.titi.fr
+user=pascal
+Dec  1 10:37:39 my_serveur sshd[28839]: Failed password for pascal from
+AAA.BBB.CCC.DDD port 36067 ssh2
+Dec  1 10:37:39 my_serveur sshd[28839]: Received disconnect from
+AAA.BBB.CCC.DDD: Bye Bye [preauth]
+
+If X2goclient use multiplex ssh client option:
+Host *
+    ControlMaster auto
+    ControlPath ~/.ssh/%r@%h:%p
+First connection use password and create SSH socket file.
+The second connection reuse first one and it can connect whithout
+authentification.
+
+In my test, X2goclient don't use some ssh client option.
+
+Regards
+
+Pascal Vibet
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121201/c1baa392/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121201/c1baa392/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="004624.html">[X2Go-Dev] [PATCH] allow user to set his preferred applications in	~/.x2go/applications
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4623">[ date ]</a>
+              <a href="thread.html#4623">[ thread ]</a>
+              <a href="subject.html#4623">[ subject ]</a>
+              <a href="author.html#4623">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Font colour in x2goclient in case of dark system theme
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Font%20colour%20in%20x2goclient%20in%20case%20of%20dark%20system%20theme&In-Reply-To=%3C20120217163321.6f808256%40athlon.garagome%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003474.html">
+   <LINK REL="Next"  HREF="003476.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Font colour in x2goclient in case of dark system theme</H1>
+    <B>Milan Kn&#237;&#382;ek</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Font%20colour%20in%20x2goclient%20in%20case%20of%20dark%20system%20theme&In-Reply-To=%3C20120217163321.6f808256%40athlon.garagome%3E"
+       TITLE="[X2Go-Dev] Font colour in x2goclient in case of dark system theme">knizek.confy at gmail.com
+       </A><BR>
+    <I>Fri Feb 17 16:33:21 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003474.html">[X2Go-Dev] Feature Request: update ssh public key fingerprint from within x2goclient
+</A></li>
+        <LI>Next message: <A HREF="003476.html">[X2Go-Dev] Font colour in x2goclient in case of dark system theme
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3475">[ date ]</a>
+              <a href="thread.html#3475">[ thread ]</a>
+              <a href="subject.html#3475">[ subject ]</a>
+              <a href="author.html#3475">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+the x2goclient has hardcoded light appearance for the various widgets
+(main window, session list, login window, progress of logging in),
+which does not work well with dark system theme: the white font is not
+distinquishable from the background.
+
+I have checked the Qt documentation and there seems to be more ways
+on how to accomplish that. So far, I have used three various methods:
+
+  labelname-&gt;setStyleSheet(&quot;QLabel { color : black; }&quot;);
+
+or
+
+  cpal.setColor ( QPalette::Text, Qt::black);
+
+or
+
+  QString fonttemplate=(&quot;&lt;font color='black'&gt;%1&lt;/font&gt;&quot;);
+  nameLabel-&gt;setTextFormat ( Qt::RichText );
+  nameLabel-&gt;setText ( fonttemplate.arg( text ) );
+
+which kind of works, though it requires to be written repeatedly
+throughout the code (sessionbutton.cpp, onmainwindow.cpp,
+onmainwindow_part4.cpp) for individual widgets and so far I am not able
+to use a single approach for all widget types (QLabel, QMenu,
+QPushButton, etc.). The first method seems to be the most general and
+simplest, however.
+
+Is there a way to set application-wide font colour for anything
+that appears in the widgets, but not in app menu and other windows
+(Settings, Session Settings, etc.), because these are styled with the
+system-wide dark theme?
+
+Where in the code?
+
+P.S. Sorry for possibly stupid question, but since I am not a coder, it
+is rather a trial &amp; error approach and a lot of googling...
+
+Regards,
+Milan
+
+-- 
+<A HREF="http://www.milan-knizek.net/">http://www.milan-knizek.net/</A>
+About linux and photography (Czech only)
+O linuxu a fotografov&#225;n&#237;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003474.html">[X2Go-Dev] Feature Request: update ssh public key fingerprint from within x2goclient
+</A></li>
+	<LI>Next message: <A HREF="003476.html">[X2Go-Dev] Font colour in x2goclient in case of dark system theme
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3475">[ date ]</a>
+              <a href="thread.html#3475">[ thread ]</a>
+              <a href="subject.html#3475">[ subject ]</a>
+              <a href="author.html#3475">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

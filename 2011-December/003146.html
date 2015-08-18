@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Specific package versions wanted / Question regarding repository content
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Specific%20package%20versions%20wanted%20/%20Question%20regarding%0A%20repository%20content&In-Reply-To=%3C4EFAD6B8.7090202%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003145.html">
+   <LINK REL="Next"  HREF="003147.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Specific package versions wanted / Question regarding repository content</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Specific%20package%20versions%20wanted%20/%20Question%20regarding%0A%20repository%20content&In-Reply-To=%3C4EFAD6B8.7090202%40stefanbaur.de%3E"
+       TITLE="[X2go-Dev] Specific package versions wanted / Question regarding repository content">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Wed Dec 28 09:43:36 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003145.html">[X2go-Dev] Informations about sshfs and mounting local device
+</A></li>
+        <LI>Next message: <A HREF="003147.html">[X2go-Dev] Specific package versions wanted / Question regarding repository content
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3146">[ date ]</a>
+              <a href="thread.html#3146">[ thread ]</a>
+              <a href="subject.html#3146">[ subject ]</a>
+              <a href="author.html#3146">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi list,
+
+as I'm still trying to figure out what exactly happened here 
+(<A HREF="https://lists.berlios.de/pipermail/x2go-dev/2011-December/003122.html">https://lists.berlios.de/pipermail/x2go-dev/2011-December/003122.html</A>), 
+I'm looking for the following two packages in these specific versions:
+
+libxcompext3=1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1
+libxcompshad3=3.5.0-2-0~x2go-bpo1+lenny~main~24~build1
+
+Does anybody know which repository I have to enable to be able to pull 
+exactly those?
+So far I tried:
+
+deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> lenny main
+deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> lenny heuler
+deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze main
+deb <A HREF="http://packages.x2go.org/debian">http://packages.x2go.org/debian</A> squeeze heuler
+
+but I keep getting
+apt-get install libxcompext3=1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1 
+libxcompshad3=3.5.0-2-0~x2go-bpo1+lenny~main~24~build1
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+E: Version '1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1' for 
+'libxcompext3' was not found
+E: Version '3.5.0-2-0~x2go-bpo1+lenny~main~24~build1' for 
+'libxcompshad3' was not found
+
+And a related question, directed @Mike:
+
+Is there a particular reason why the &quot;squeeze main&quot; repository doesn't 
+contain
+libxcompext3=2:3.5.0-0~x2go1+squeeze~heuler~20111206~128~build1
+libxcompshad3=2:3.5.0-0~x2go1+squeeze~heuler~20111206~128~build1
+???
+
+==&gt;Running freenx and x2go in parallel seems to be impossible with 
+libxcompext3=1:3.5.0-1-2 and libxcompshad3=3.5.0-2-2 from &quot;squeeze 
+main&quot;, however installing either the old versions listed at the very top 
+of this posting, or the unstable ones from &quot;squeeze heuler&quot; fixes the 
+issue. Do these two &quot;squeeze heuler&quot; packages break something else, or 
+would it be possible to offer them via &quot;squeeze main&quot;?
+
+Kind Regards,
+Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003145.html">[X2go-Dev] Informations about sshfs and mounting local device
+</A></li>
+	<LI>Next message: <A HREF="003147.html">[X2go-Dev] Specific package versions wanted / Question regarding repository content
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3146">[ date ]</a>
+              <a href="thread.html#3146">[ thread ]</a>
+              <a href="subject.html#3146">[ subject ]</a>
+              <a href="author.html#3146">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

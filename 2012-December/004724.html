@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH 3/8] Rely on shlibs files instead of hard coding library dependencies
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%203/8%5D%20Rely%20on%20shlibs%20files%20instead%20of%20hard%0A%20coding%20library%20dependencies&In-Reply-To=%3C20121212135307.9142507fsnpejzub%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004712.html">
+   <LINK REL="Next"  HREF="004770.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH 3/8] Rely on shlibs files instead of hard coding library dependencies</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%203/8%5D%20Rely%20on%20shlibs%20files%20instead%20of%20hard%0A%20coding%20library%20dependencies&In-Reply-To=%3C20121212135307.9142507fsnpejzub%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [PATCH 3/8] Rely on shlibs files instead of hard coding library dependencies">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Dec 12 13:53:07 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004712.html">[X2Go-Dev] [PATCH 3/8] Rely on shlibs files instead of hard coding	library dependencies
+</A></li>
+        <LI>Next message: <A HREF="004770.html">[X2Go-Dev] [PATCH 3/8] Rely on shlibs files instead of hard coding library dependencies
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4724">[ date ]</a>
+              <a href="thread.html#4724">[ thread ]</a>
+              <a href="subject.html#4724">[ subject ]</a>
+              <a href="author.html#4724">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Reinhard,
+
+On Mi 12 Dez 2012 13:13:13 CET Reinhard Tartler wrote:
+
+&gt;<i> If stricter dependencies are really required, they should absolutely be
+</I>&gt;<i> specified in the slibs file instead
+</I>
+I strongly recommend that all installed (binary) components of the NX  
+suite have the same version. So, out of paranoia, strict dependencies  
+are required. Please add the slibs file to this patch, then it is a +1  
+from me.
+
+Mike
+
+
+&gt;<i> ---
+</I>&gt;<i>  debian/control |   21 ++++++++-------------
+</I>&gt;<i>  1 file changed, 8 insertions(+), 13 deletions(-)
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/debian/control b/debian/control
+</I>&gt;<i> index be83f79..78cc0b4 100644
+</I>&gt;<i> --- a/debian/control
+</I>&gt;<i> +++ b/debian/control
+</I>&gt;<i> @@ -32,7 +32,7 @@ Architecture: any
+</I>&gt;<i>  Depends:
+</I>&gt;<i>   ${shlibs:Depends},
+</I>&gt;<i>   ${misc:Depends},
+</I>&gt;<i> -Breaks: nxlibs (&lt;=3.5.1)
+</I>&gt;<i> +Breaks: nxlibs (&lt;= 3.5.1)
+</I>&gt;<i>  Replaces: nxlibs
+</I>&gt;<i>  Description: nx-X11
+</I>&gt;<i>   NX is a software suite which implements very efficient
+</I>&gt;<i> @@ -48,7 +48,7 @@ Architecture: any
+</I>&gt;<i>  Breaks: nxlibs-dev (&lt;=3.5.1)
+</I>&gt;<i>  Replaces: nxlibs-dev
+</I>&gt;<i>  Depends:
+</I>&gt;<i> - libnx-x11 (&gt;= ${source:Version}), libnx-x11 (&lt;&lt; ${source:Version}.1~),
+</I>&gt;<i> + libnx-x11 (= ${binary:Version}),
+</I>&gt;<i>   ${misc:Depends},
+</I>&gt;<i>  Description: Library headers for nx-X11
+</I>&gt;<i>   NX is a software suite which implements very efficient
+</I>&gt;<i> @@ -62,7 +62,7 @@ Package: libnx-mesa-extras-dev
+</I>&gt;<i>  Section: libdevel
+</I>&gt;<i>  Architecture: any
+</I>&gt;<i>  Depends:
+</I>&gt;<i> - libnx-x11-dev (&gt;= ${source:Version}), libnx-x11-dev (&lt;&lt;  
+</I>&gt;<i> ${source:Version}.1~),
+</I>&gt;<i> + libnx-x11-dev (= ${binary:Version}),
+</I>&gt;<i>   ${misc:Depends},
+</I>&gt;<i>  Description: Library headers for nx-X11 (extra headers)
+</I>&gt;<i>   NX is a software suite which implements very efficient
+</I>&gt;<i> @@ -75,7 +75,6 @@ Description: Library headers for nx-X11 (extra headers)
+</I>&gt;<i>  Package: nxagent
+</I>&gt;<i>  Architecture: any
+</I>&gt;<i>  Depends:
+</I>&gt;<i> - libnx-x11 (&gt;= ${source:Version}), libnx-x11 (&lt;&lt; ${source:Version}.1~),
+</I>&gt;<i>   ${shlibs:Depends},
+</I>&gt;<i>   ${misc:Depends},
+</I>&gt;<i>  Recommends:
+</I>&gt;<i> @@ -102,7 +101,7 @@ Description: NX agent
+</I>&gt;<i>  Package: x2goagent
+</I>&gt;<i>  Architecture: all
+</I>&gt;<i>  Depends:
+</I>&gt;<i> - nxagent (&gt;= ${source:Version}), nxagent (&lt;&lt; ${source:Version}.1~),
+</I>&gt;<i> + nxagent (&gt;= ${source:Version})
+</I>&gt;<i>   ${misc:Depends},
+</I>&gt;<i>  Suggests:
+</I>&gt;<i>   x2goserver
+</I>&gt;<i> @@ -124,7 +123,6 @@ Description: X2Go agent
+</I>&gt;<i>  Package: nxproxy
+</I>&gt;<i>  Architecture: any
+</I>&gt;<i>  Depends:
+</I>&gt;<i> - libxcomp3 (&gt;= ${source:Version}), libxcomp3 (&lt;&lt; ${source:Version}.1~),
+</I>&gt;<i>   ${shlibs:Depends},
+</I>&gt;<i>   ${misc:Depends},
+</I>&gt;<i>  Description: NX proxy
+</I>&gt;<i> @@ -137,7 +135,6 @@ Description: NX proxy
+</I>&gt;<i>  Package: nxauth
+</I>&gt;<i>  Architecture: any
+</I>&gt;<i>  Depends:
+</I>&gt;<i> - libnx-x11 (&gt;= ${source:Version}), libnx-x11 (&lt;&lt; ${source:Version}.1~),
+</I>&gt;<i>   ${shlibs:Depends},
+</I>&gt;<i>   ${misc:Depends},
+</I>&gt;<i>  Description: NX xauth
+</I>&gt;<i> @@ -152,7 +149,7 @@ Architecture: any
+</I>&gt;<i>  Depends:
+</I>&gt;<i>   ${shlibs:Depends},
+</I>&gt;<i>   ${misc:Depends},
+</I>&gt;<i> -Breaks: nxcomp (&lt;=3.5.1)
+</I>&gt;<i> +Breaks: nxcomp (&lt;= 3.5.1)
+</I>&gt;<i>  Replaces: nxcomp
+</I>&gt;<i>  Description: NX X compression library
+</I>&gt;<i>   NX is a software suite which implements very efficient
+</I>&gt;<i> @@ -179,7 +176,6 @@ Description: NX X compression library headers
+</I>&gt;<i>  Package: libxcompext3
+</I>&gt;<i>  Architecture: any
+</I>&gt;<i>  Depends:
+</I>&gt;<i> - libnx-x11 (&gt;= ${source:Version}), libnx-x11 (&lt;&lt; ${source:Version}.1~),
+</I>&gt;<i>   ${shlibs:Depends},
+</I>&gt;<i>   ${misc:Depends},
+</I>&gt;<i>  Breaks: nxcompext (&lt;=3.5.1)
+</I>&gt;<i> @@ -195,7 +191,7 @@ Package: libxcompext-dev
+</I>&gt;<i>  Architecture: any
+</I>&gt;<i>  Section: libdevel
+</I>&gt;<i>  Depends:
+</I>&gt;<i> - libxcompext3 (=${binary:Version}),
+</I>&gt;<i> + libxcompext3 (= ${binary:Version}),
+</I>&gt;<i>   ${misc:Depends},
+</I>&gt;<i>   libxcomp-dev,
+</I>&gt;<i>  Breaks: nxcompext-dev (&lt;=3.5.1)
+</I>&gt;<i> @@ -212,7 +208,6 @@ Package: libxcompshad3
+</I>&gt;<i>  Section: x11
+</I>&gt;<i>  Architecture: any
+</I>&gt;<i>  Depends:
+</I>&gt;<i> - libnx-x11 (&gt;= ${source:Version}), libnx-x11 (&lt;&lt; ${source:Version}.1~),
+</I>&gt;<i>   ${shlibs:Depends},
+</I>&gt;<i>   ${misc:Depends},
+</I>&gt;<i>  Breaks: nxcompshad (&lt;=3.5.1)
+</I>&gt;<i> @@ -228,9 +223,9 @@ Package: libxcompshad-dev
+</I>&gt;<i>  Section: libdevel
+</I>&gt;<i>  Architecture: any
+</I>&gt;<i>  Depends:
+</I>&gt;<i> - libxcompshad3 (=${binary:Version}),
+</I>&gt;<i> + libxcompshad3 (= ${binary:Version}),
+</I>&gt;<i>   ${misc:Depends},
+</I>&gt;<i> -Breaks: nxcompshad-dev (&lt;=3.5.1)
+</I>&gt;<i> +Breaks: nxcompshad-dev (&lt;= 3.5.1)
+</I>&gt;<i>  Replaces: nxcompshad-dev
+</I>&gt;<i>  Description: NX shadowing library headers
+</I>&gt;<i>   NX is a software suite which implements very efficient
+</I>&gt;<i> --
+</I>&gt;<i> 1.7.10.4
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121212/c1aff11e/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121212/c1aff11e/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004712.html">[X2Go-Dev] [PATCH 3/8] Rely on shlibs files instead of hard coding	library dependencies
+</A></li>
+	<LI>Next message: <A HREF="004770.html">[X2Go-Dev] [PATCH 3/8] Rely on shlibs files instead of hard coding library dependencies
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4724">[ date ]</a>
+              <a href="thread.html#4724">[ thread ]</a>
+              <a href="subject.html#4724">[ subject ]</a>
+              <a href="author.html#4724">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

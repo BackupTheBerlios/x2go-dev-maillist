@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH 2/8] make xfonts-base a recommends
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%202/8%5D%20make%20xfonts-base%20a%20recommends&In-Reply-To=%3C1355314398-35495-3-git-send-email-siretart%40tauware.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004718.html">
+   <LINK REL="Next"  HREF="004727.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH 2/8] make xfonts-base a recommends</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%202/8%5D%20make%20xfonts-base%20a%20recommends&In-Reply-To=%3C1355314398-35495-3-git-send-email-siretart%40tauware.de%3E"
+       TITLE="[X2Go-Dev] [PATCH 2/8] make xfonts-base a recommends">siretart at tauware.de
+       </A><BR>
+    <I>Wed Dec 12 13:13:12 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004718.html">[X2Go-Dev] [PATCH 1/8] remove unnecessary build-conflict on xbitmaps
+</A></li>
+        <LI>Next message: <A HREF="004727.html">[X2Go-Dev] [PATCH 2/8] make xfonts-base a recommends
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4713">[ date ]</a>
+              <a href="thread.html#4713">[ thread ]</a>
+              <a href="subject.html#4713">[ subject ]</a>
+              <a href="author.html#4713">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>According to lintian, this is a severe error. Demote to recommends to
+ensure that it still gets installed by default.
+---
+ debian/control |    3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/debian/control b/debian/control
+index bafef22..be83f79 100644
+--- a/debian/control
++++ b/debian/control
+@@ -76,9 +76,10 @@ Package: nxagent
+ Architecture: any
+ Depends:
+  libnx-x11 (&gt;= ${source:Version}), libnx-x11 (&lt;&lt; ${source:Version}.1~),
+- xfonts-base,
+  ${shlibs:Depends},
+  ${misc:Depends},
++Recommends:
++ xfonts-base,
+ Description: NX agent
+  NX is a software suite which implements very efficient
+  compression of the X11 protocol. This increases performance when
+-- 
+1.7.10.4
+
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004718.html">[X2Go-Dev] [PATCH 1/8] remove unnecessary build-conflict on xbitmaps
+</A></li>
+	<LI>Next message: <A HREF="004727.html">[X2Go-Dev] [PATCH 2/8] make xfonts-base a recommends
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4713">[ date ]</a>
+              <a href="thread.html#4713">[ thread ]</a>
+              <a href="subject.html#4713">[ subject ]</a>
+              <a href="author.html#4713">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] 3.99 Testing - Huge browsing delays
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Huge%20browsing%20delays&In-Reply-To=%3C1313430955.2675.7.camel%40jasiiieee.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002682.html">
+   <LINK REL="Next"  HREF="002706.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] 3.99 Testing - Huge browsing delays</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Huge%20browsing%20delays&In-Reply-To=%3C1313430955.2675.7.camel%40jasiiieee.pacifera.com%3E"
+       TITLE="[X2go-Dev] 3.99 Testing - Huge browsing delays">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Mon Aug 15 19:55:55 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002682.html">[X2go-Dev] 3.99 Testing - Huge browsing delays
+</A></li>
+        <LI>Next message: <A HREF="002706.html">[X2go-Dev] 3.99 Testing - Huge browsing delays
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2692">[ date ]</a>
+              <a href="thread.html#2692">[ thread ]</a>
+              <a href="subject.html#2692">[ subject ]</a>
+              <a href="author.html#2692">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, 2011-08-14 at 18:44 +0200, Mike Gabriel wrote: 
+&gt;<i> Hi John, hi all,
+</I>&gt;<i> 
+</I>&gt;<i> On Mi 03 Aug 2011 16:18:48 CEST &quot;John A. Sullivan III&quot; wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; 3.0.1-4 Windows client to 3.99.0.0 server with X2GoAgent 3.5: No delay
+</I>&gt;<i> &gt; whatsoever - and that's after pounding it for a long time.
+</I>&gt;<i> 
+</I>&gt;<i> This basically _very_ good new as it tells us that we have to look on  
+</I>&gt;<i> the client side (I hope).
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I know nothing about NX internals so I am just speculating here.  The
+</I>&gt;<i> &gt; problem only seems to be with heavy AJAX applications as far as I can
+</I>&gt;<i> &gt; tell.  Could it be related to how AJAX only paints part of the screen?
+</I>&gt;<i> &gt; Could it be that NX does not pick up the screen change because if is
+</I>&gt;<i> &gt; only a subportion of the application Window and done in a way different
+</I>&gt;<i> &gt; from, for example, OpenOffice updates the area being typed? Could it be
+</I>&gt;<i> &gt; that every certain number of seconds, NX checks the entire screen for
+</I>&gt;<i> &gt; updates and that this timer is different in the various configurations
+</I>&gt;<i> &gt; and maybe non existent with two mismatched Agents?
+</I>&gt;<i> 
+</I>&gt;<i> So we should list up the differences between x2goclient 3.0.1-4  
+</I>&gt;<i> (Windows and 3.99.0.x (also on Windows).
+</I>&gt;<i> 
+</I>&gt;<i> There are many... Who can do this?
+</I>&gt;<i> 
+</I>&gt;<i> &gt; I have no idea but I would consider this a blocking bug.  I'll try to
+</I>&gt;<i> &gt; squeeze some xkbwatch in this week - John
+</I>&gt;<i> 
+</I>&gt;<i> Can you, John, or anyone else give a howto that explains how to  
+</I>&gt;<i> reproduce this problem on a fresh server install (Debian squeeze) and  
+</I>&gt;<i> a fresh client install (Windows, what version?, what arch? what  
+</I>&gt;<i> Xserver? Etc.). We have to try to address this issue in a very generic  
+</I>&gt;<i> way if we/you want it solved.
+</I>&gt;<i> 
+</I>&gt;<i> Expecting a debugging recipe to trace this bug... THANKS!
+</I>&gt;<i> 
+</I>We can produce this without fail in our Zimbra environment.  There is an
+Zimbra live demo at <A HREF="http://www.zimbra.com/products/hosted_demo.php">http://www.zimbra.com/products/hosted_demo.php</A>
+I would think you could run this from any X2Go server although the
+reliable problem for us is chat and I do not know if the Zimbra demo has
+chat.
+
+I think John Williams and others had readily reproducible non-Zimbra
+procedures to produce this error including GMail (I do not know which
+functions).
+
+As I mentioned. the problem should be reproducible from any X2Go server
+but, if you'd like, I can give you the credentials to login to one of
+our demo systems.  Let me know if you prefer to go that route.
+
+This and the printing crash are the two blocking bugs in my assessment.
+Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002682.html">[X2go-Dev] 3.99 Testing - Huge browsing delays
+</A></li>
+	<LI>Next message: <A HREF="002706.html">[X2go-Dev] 3.99 Testing - Huge browsing delays
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2692">[ date ]</a>
+              <a href="thread.html#2692">[ thread ]</a>
+              <a href="subject.html#2692">[ subject ]</a>
+              <a href="author.html#2692">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

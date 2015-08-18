@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#278: Bug#278: X2Go issue (in src:x2goserver) has	been marked as pending for release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23278%3A%20Bug%23278%3A%20X2Go%20issue%20%28in%20src%3Ax2goserver%29%20has%0A%09been%20marked%20as%20pending%20for%20release&In-Reply-To=%3C20131128084843.Horde.u1M6U3FatcehRPnwWqNPuQ1%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006501.html">
+   <LINK REL="Next"  HREF="006527.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#278: Bug#278: X2Go issue (in src:x2goserver) has	been marked as pending for release</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23278%3A%20Bug%23278%3A%20X2Go%20issue%20%28in%20src%3Ax2goserver%29%20has%0A%09been%20marked%20as%20pending%20for%20release&In-Reply-To=%3C20131128084843.Horde.u1M6U3FatcehRPnwWqNPuQ1%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#278: Bug#278: X2Go issue (in src:x2goserver) has	been marked as pending for release">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Thu Nov 28 09:48:43 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006501.html">[X2Go-Dev] Bug#278: Bug#278: X2Go issue (in src:x2goserver) has	been marked as pending for release
+</A></li>
+        <LI>Next message: <A HREF="006527.html">[X2Go-Dev] Bug#278: Bug#278: X2Go issue (in src:x2goserver) has	been marked as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6503">[ date ]</a>
+              <a href="thread.html#6503">[ thread ]</a>
+              <a href="subject.html#6503">[ subject ]</a>
+              <a href="author.html#6503">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On  Do 28 Nov 2013 00:32:13 CET, Orion Poplawski wrote:
+
+&gt;<i> On 07/31/2013 01:06 AM, Mike Gabriel wrote:
+</I>&gt;&gt;<i> tag #278 pending
+</I>&gt;&gt;<i> fixed #278 4.0.1.7
+</I>&gt;&gt;<i> thanks
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Hello,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> X2Go issue #278 (src:x2goserver) reported by you has been
+</I>&gt;&gt;<i> fixed in X2Go Git. You can see the changelog below, and you can
+</I>&gt;&gt;<i> check the diff of the fix at:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=6567318">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=6567318</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The issue will most likely be fixed in src:x2goserver (4.0.1.7).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> light+love
+</I>&gt;&gt;<i> X2Go Git Admin (on behalf of the sender of this mail)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> ---
+</I>&gt;&gt;<i> commit 6567318201544d31d380a7fabb90de87bfbdb89a
+</I>&gt;&gt;<i> Author: Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;
+</I>&gt;&gt;<i> Date:   Wed Jul 31 09:06:01 2013 +0200
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>     Fine-tune x2goserver-xsession/Makefile: if /etc/X11 has  
+</I>&gt;&gt;<i> Xsession.d and/or Xsession.options they get symlinked into  
+</I>&gt;&gt;<i> /etc/x2go. Otherwise Xsession.d and Xsession.options are created  
+</I>&gt;&gt;<i> under /etc/x2go as empty dir/file. (Fixes: #278).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> diff --git a/debian/changelog b/debian/changelog
+</I>&gt;&gt;<i> index ce613a0..d6b0af6 100644
+</I>&gt;&gt;<i> --- a/debian/changelog
+</I>&gt;&gt;<i> +++ b/debian/changelog
+</I>&gt;&gt;<i> @@ -7,6 +7,11 @@ x2goserver (4.0.1.7-0~x2go1) UNRELEASED; urgency=low
+</I>&gt;&gt;<i>        (Fixes: #278).
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>    [ Mike Gabriel ]
+</I>&gt;&gt;<i> +  * New upstream version (4.0.1.7):
+</I>&gt;&gt;<i> +    - Fine-tune x2goserver-xsession/Makefile: if /etc/X11 has  
+</I>&gt;&gt;<i> Xsession.d and/or
+</I>&gt;&gt;<i> +      Xsession.options they get symlinked into /etc/x2go.  
+</I>&gt;&gt;<i> Otherwise Xsession.d
+</I>&gt;&gt;<i> +      and Xsession.options are created under /etc/x2go as empty dir/file.
+</I>&gt;&gt;<i> +      (Fixes: #278).
+</I>&gt;&gt;<i>    * /debian/control:
+</I>&gt;&gt;<i>      - Update LONG_DESCRIPTIONS.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> XSESSIONDIR ?= /etc/X11/Xsession.d
+</I>&gt;<i> XSESSIONOPTIONFILE ?= /etc/X11/Xsession.options
+</I>&gt;<i>
+</I>&gt;<i>         if [ -e $(XSESSIONOPTIONFILE) ]; then $(INSTALL_SYMLINK)  
+</I>&gt;<i> $(XSESSIONOPTIONFILE) $(DESTDIR)$(ETCDIR)/Xsession.options; else  
+</I>&gt;<i> touch $(DESTDIR)$(ETCDIR)/Xsession.options; fi
+</I>&gt;<i>         if [ -d $(XSESSIONDIR) ]; then $(INSTALL_SYMLINK)  
+</I>&gt;<i> $(XSESSIONDIR) $(DESTDIR)$(ETCDIR)/Xsession.d; else $(INSTALL_DIR)  
+</I>&gt;<i> $(DESTDIR)$(ETCDIR)/Xsession.d; fi
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> One unfortunate side effect of this is that  
+</I>&gt;<i> XSESSIONDIR/XSESSIONOPTIONFILE needs to be present in the buildroot  
+</I>&gt;<i> for these directories to get linked.
+</I>
+Indeed. This is not a problem with the .deb packaging logic (as I do  
+not use the Makefile for creating dirs and copying files).
+
+So, maybe we should create those folders/files during make install, if  
+they do not yet exist? Or do you want to handle that via  
+x2goserver.spec?
+
+Mike
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Signatur
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20131128/4905396d/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20131128/4905396d/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006501.html">[X2Go-Dev] Bug#278: Bug#278: X2Go issue (in src:x2goserver) has	been marked as pending for release
+</A></li>
+	<LI>Next message: <A HREF="006527.html">[X2Go-Dev] Bug#278: Bug#278: X2Go issue (in src:x2goserver) has	been marked as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6503">[ date ]</a>
+              <a href="thread.html#6503">[ thread ]</a>
+              <a href="subject.html#6503">[ subject ]</a>
+              <a href="author.html#6503">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

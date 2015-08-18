@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go &amp; Kerberos
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20%26%20Kerberos&In-Reply-To=%3C4B177D5C.10608%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000188.html">
+   <LINK REL="Next"  HREF="000190.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go &amp; Kerberos</H1>
+    <B>Oleksandr.shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20%26%20Kerberos&In-Reply-To=%3C4B177D5C.10608%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] x2go &amp; Kerberos">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Thu Dec  3 09:57:00 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000188.html">[X2go-dev] x2go &amp; Kerberos
+</A></li>
+        <LI>Next message: <A HREF="000190.html">[X2go-dev] x2go &amp; Kerberos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#189">[ date ]</a>
+              <a href="thread.html#189">[ thread ]</a>
+              <a href="subject.html#189">[ subject ]</a>
+              <a href="author.html#189">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Robert Markula schrieb:
+&gt;<i> Hi again,
+</I>&gt;<i> 
+</I>&gt;<i> Robert Markula wrote:
+</I>&gt;&gt;<i> But if I try to login via x2go to an account that's not in the server's
+</I>&gt;&gt;<i> passwd, but in ldap/kerberos, the x2go white login dialog disappears,
+</I>&gt;&gt;<i> but nothing else happens. Running x2go from a terminal, I get this output:
+</I>&gt;<i> 
+</I>&gt;<i> Forgot to mention that I can see heavy traffic going from the x2go
+</I>&gt;<i> server to the x2go client after login. No terminal output window is
+</I>&gt;<i> shown however. So I guess authentication was somewhat successful?
+</I>&gt;<i> 
+</I>&gt;<i> Cheers,
+</I>&gt;<i> Robert
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>Hello Robert,
+
+as I already wrote, your problem is sudo configuration. As you can see
+in output from x2goclient, you cannot execute &quot;sudo x2gopgwrapper&quot; :
+
+sudo: setreuid(ROOT_UID, user_uid): Operation not permitted
+
+all users running x2go should be a part of group &quot;x2gousers&quot;. This group
+ can execute &quot;sudo x2gopgwrapper&quot;. It is configured in your &quot;sudoers&quot; file :
+
+
+Defaults        env_reset
+root    ALL=(ALL) ALL
+#### X2GO section
+%x2gousers ALL=(ALL) NOPASSWD: /usr/bin/x2gopgwrapper
+
+
+You can check your configuration this way:
+
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user at client</A>:~$ ssh <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user at server</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user at server</A>'s password:
+Linux debian 2.6.26-1-amd64 #1 SMP Fri Mar 13 17:46:45 UTC 2009 x86_64
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user at server</A>:~$ id
+uid=1000(user) gid=1000(user) Gruppen=110(fuse),114(x2gousers),1000(user)
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user at server</A>:~$ sudo x2gopgwrapper
+:<i> wrong argument
+</I>
+
+As you can see in output from &quot;id&quot;, the user is a part from group
+&quot;x2gousers&quot;, and can execute command &quot;sudo x2gopgwrapper&quot;.
+In your case, your have output:
+
+sudo: setreuid(ROOT_UID, user_uid): Operation not permitted
+
+so, you have definitely problem with your sudo configuration.
+I think, you must simple add your user in group &quot;x2gousers&quot; or modify
+your &quot;sudoers&quot; file with command &quot;visudo&quot; to allow your user run &quot;sudo
+x2gopgwrapper&quot;
+
+
+Regards
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 261 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20091203/f19607c3/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20091203/f19607c3/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000188.html">[X2go-dev] x2go &amp; Kerberos
+</A></li>
+	<LI>Next message: <A HREF="000190.html">[X2go-dev] x2go &amp; Kerberos
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#189">[ date ]</a>
+              <a href="thread.html#189">[ thread ]</a>
+              <a href="subject.html#189">[ subject ]</a>
+              <a href="author.html#189">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go not working on ubuntu 10.10?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20not%20working%20on%20ubuntu%2010.10%3F&In-Reply-To=%3C4D39BF32.6040808%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001540.html">
+   <LINK REL="Next"  HREF="001542.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go not working on ubuntu 10.10?</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20not%20working%20on%20ubuntu%2010.10%3F&In-Reply-To=%3C4D39BF32.6040808%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] x2go not working on ubuntu 10.10?">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Fri Jan 21 18:15:30 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001540.html">[X2go-dev] x2go not working on ubuntu 10.10?
+</A></li>
+        <LI>Next message: <A HREF="001542.html">[X2go-dev] x2go not working on ubuntu 10.10?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1541">[ date ]</a>
+              <a href="thread.html#1541">[ thread ]</a>
+              <a href="subject.html#1541">[ subject ]</a>
+              <a href="author.html#1541">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I assume you can  SSH on the box. ;-)
+
+Morty
+
+Am 21.01.2011 18:10, schrieb jmm:
+&gt;<i> It also works from ubuntu 9.04. However, I still would like to run it 
+</I>&gt;<i> from my 9.10 box as this is my workstation :)
+</I>&gt;<i>
+</I>&gt;<i> I thought it might be a firewall issue, so I tried `sudo ufw disable` 
+</I>&gt;<i> but still the problem persists.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> jmm wrote:
+</I>&gt;&gt;<i> I just installed a client on an old windows XP computer I had lying 
+</I>&gt;&gt;<i> around, there it does work. So presumably there is something wrong 
+</I>&gt;&gt;<i> with the client. No idea what that could be though.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> jmm wrote:
+</I>&gt;&gt;&gt;<i> Oops excuse me I use Ubuntu 9.10 karmic, not 9.04 as I said earlier.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> jmm wrote:
+</I>&gt;&gt;&gt;&gt;<i> Things I tried, but did not work:
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> - check if user is a member of &quot;x2gousers&quot; group in /etc/group
+</I>&gt;&gt;&gt;&gt;<i> - check if user is a member of &quot;fuse&quot; group in /etc/group
+</I>&gt;&gt;&gt;&gt;<i> - reset password of user to make sure not entering wrong password
+</I>&gt;&gt;&gt;&gt;<i> - set DisallowTCP to false in /etc/gdm/gdm.schemas
+</I>&gt;&gt;&gt;&gt;<i> - remove &quot;-nolisten tcp&quot; from /etc/X11/xinit/xserverrc
+</I>&gt;&gt;&gt;&gt;<i> - run the command `xhost +x` (from the command line it gives an 
+</I>&gt;&gt;&gt;&gt;<i> error &quot;xhost: unable to open display &quot;&quot;&quot; caused by no active 
+</I>&gt;&gt;&gt;&gt;<i> display (and therefore no $DISPLAY environment variable), so I also 
+</I>&gt;&gt;&gt;&gt;<i> tried entering this from within an VNC session and the command 
+</I>&gt;&gt;&gt;&gt;<i> completed normally, also tried this with an Xvfb xsession)
+</I>&gt;&gt;&gt;&gt;<i> - allowed login with passwords in /etc/ssh/sshd_config
+</I>&gt;&gt;&gt;&gt;<i> - restart ssh service
+</I>&gt;&gt;&gt;&gt;<i> - restart EC2 instance
+</I>&gt;&gt;&gt;&gt;<i> - tried installing packages x2goserver-home, x2goserver-one, 
+</I>&gt;&gt;&gt;&gt;<i> x2goserver (and removed installations between trying different 
+</I>&gt;&gt;&gt;&gt;<i> packages)
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> When I tried different NX servers, I always used the corresponding 
+</I>&gt;&gt;&gt;&gt;<i> client (I have been careful not to mix up different clients with 
+</I>&gt;&gt;&gt;&gt;<i> different servers). For x2goserver I am using x2goclient from the 
+</I>&gt;&gt;&gt;&gt;<i> repository, I am using it on Ubuntu 9.04 desktop 64-bit edition. My 
+</I>&gt;&gt;&gt;&gt;<i> settings are:
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> name: test
+</I>&gt;&gt;&gt;&gt;<i> hostname: &lt;EC2 public dns here&gt;
+</I>&gt;&gt;&gt;&gt;<i> login: ubuntu
+</I>&gt;&gt;&gt;&gt;<i> ssh port: 22
+</I>&gt;&gt;&gt;&gt;<i> use rsa/dsa key for SSH connection: &lt;tried different settings, 
+</I>&gt;&gt;&gt;&gt;<i> tried to leave it empty, tried the key I got from amazon, tried a 
+</I>&gt;&gt;&gt;&gt;<i> key which was sitting in ~/.ssh/id_rsa; tried all possibilities 
+</I>&gt;&gt;&gt;&gt;<i> with and without password&gt;
+</I>&gt;&gt;&gt;&gt;<i> session type: GNOME
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> In all cases the error on the server stays the same.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> brian mullan wrote:
+</I>&gt;&gt;&gt;&gt;&gt;<i> I've been  using AMI's from Alestic or one's I build myself.   But 
+</I>&gt;&gt;&gt;&gt;&gt;<i> x2go's been working solid.
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> So you did all the normal things like change /etc/ssh/sshd_config
+</I>&gt;&gt;&gt;&gt;&gt;<i> to allow login with passwords
+</I>&gt;&gt;&gt;&gt;&gt;<i> and the user is a member of x2gousers 'group'
+</I>&gt;&gt;&gt;&gt;&gt;<i> etc
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> On Fri, Jan 21, 2011 at 5:21 AM, jmm 
+</I>&gt;&gt;&gt;&gt;&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jagermeistermeister at gmail.com</A> 
+</I>&gt;&gt;&gt;&gt;&gt;<i> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jagermeistermeister at gmail.com</A>&gt;&gt; wrote:
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>     Yes, it is an Ubuntu Server AMI with ubuntu-desktop installed,
+</I>&gt;&gt;&gt;&gt;&gt;<i>     the desktop is working with VNC so that part seems to have
+</I>&gt;&gt;&gt;&gt;&gt;<i>     gone OK.
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>     FYI it was an alestic.com &lt;<A HREF="http://alestic.com">http://alestic.com</A>&gt; Ubuntu 10.10
+</I>&gt;&gt;&gt;&gt;&gt;<i>     image, did you get the image from Canonical?
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>     brian mullan wrote:
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     ---------- Forwarded message ----------
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     From: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-request at lists.berlios.de</A>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev-request at lists.berlios.de</A>&gt;&gt;
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Date: Fri, Jan 21, 2011 at 3:29 AM
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Subject: X2go-dev Digest, Vol 25, Issue 19
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>&gt;
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Send X2go-dev mailing list submissions to
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>&gt;
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Note sure what you are doing but I've got quite a few ubuntu
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     10.10 servers on amazon
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     that I connect to using x2go.     Lack of the video card on
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     those AWS EC2 machines
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     makes no difference in regards to x2go.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     But you have installed a &quot;desktop&quot; on those AWS instances?
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     If you created an instance from an Ubuntu Server AMI then you
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     would need to
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     /sudo apt-get install ubuntu-desktop/
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     or install some &quot;light&quot; desktop.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     ------------------------------
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Message: 4
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Date: Fri, 21 Jan 2011 09:27:33 +0100
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     From: jmm &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jagermeistermeister at gmail.com</A>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jagermeistermeister at gmail.com</A>&gt;&gt;
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     To: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>&gt;
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Subject: [X2go-dev] x2go not working on ubuntu 10.10?
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Message-ID: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">4D394375.7090300 at gmail.com</A>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">4D394375.7090300 at gmail.com</A>&gt;&gt;
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Content-Type: text/plain; charset=&quot;iso-8859-1&quot;; Format=&quot;flowed&quot;
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Hi,
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     I tried to get this working all night, but it seems there is
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     no way to
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     connect to an ubuntu 10.10 installation using x2go (package
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     x2goserver-home). When trying to connect, x2goagent is
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     complaining about
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     not being able to open a display (in the session log). The
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     machine is an
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Amazon EC2 instance, which has no video card. I suspect this
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     is causing
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     the trouble. I have read it was working on ubuntu 10.04 by
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     the way, as
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     in
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     <A HREF="http://blog.restbackup.com/how-to-use-amazon-ec2-as-your-desktop">http://blog.restbackup.com/how-to-use-amazon-ec2-as-your-desktop</A>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     I also tried freenx, neatx and nxserver (from nomachine), and
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     they all
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     give similar errors. Tightvncserver on the other hand does
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     work, maybe
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     that's not so useful information, but just in case.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     The server log says:
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     $ cat session.log
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     /usr/bin/x2goagent: line 1: -e: command not found
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     NXAGENT - Version 3.4.0
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Copyright (C) 2001, 2007 NoMachine.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Agent running with pid '3065'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Session: Starting session at 'Fri Jan 21 00:42:15 2011'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Proxy running in server mode with pid '3065'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Waiting for connection from 'localhost' on port '30001'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Accepted connection from '127.0.0.1'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Warning: Connected to remote version 3.2.0 with local version
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     3.4.0.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Connection with remote proxy completed.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Using ADSL link parameters 512/24/1/0.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Using agent parameters 5000/10/50/0/0.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Using cache parameters 4/4096KB/8192KB/8192KB.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Using pack method '16m-jpeg-9' with session
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     'unix-kde-depth_24'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Using ZLIB data compression 1/1/32.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Using ZLIB stream compression 4/4.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: No suitable cache file found.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Listening to X11 connections on display ':50'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Warning: The channel for FD#5 channel ID#1 was not marked as
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     finishing.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Error: Aborting session with 'X2goagent: Unable to open display
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     'nx/nx,options=/home/ubuntu/.x2go/C-ubuntu-50-1295570534_stDGNOME_dp24/options:50''.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Session: Aborting session at 'Fri Jan 21 00:42:24 2011'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Session: Session aborted at 'Fri Jan 21 00:42:24 2011'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Warning: Signals were not blocked in process with pid '3065'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Your session has died before reaching an usable state.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: This can be due to the remote X server refusing access
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     to the client.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Please check the authorization provided by your X
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     application.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Waiting the cleanup timeout to complete.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Client (x2goclient) log says:
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     NXPROXY - Version 3.2.0
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Copyright (C) 2001, 2007 NoMachine.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Proxy running in client mode with pid '7391'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Session: Starting session at 'Fri Jan 21 02:29:02 2011'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Connecting to remote host 'localhost:30001'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Connection to remote proxy 'localhost:30001' established.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Warning: Connected to remote version 3.4.0 with local version
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     3.2.0.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Warning: Consider checking <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for updates.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Connection with remote proxy completed.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Warning: Unrecognized session type 'unix-kde-depth_24'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Assuming agent
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     session.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Using ADSL link parameters 512/24/1/0.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Using cache parameters 4/4096KB/8192KB/8192KB.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Using pack method '16m-jpeg-9' with session
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     'unix-kde-depth_24'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Using ZLIB data compression 1/1/32.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Using ZLIB stream compression 4/4.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: No suitable cache file found.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Forwarding X11 connections to display ':0.0'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Session: Session started at 'Fri Jan 21 02:29:06 2011'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Error: Connection to ':0.0' failed. Error is 111 'Connection
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     refused'.Session: Terminating session at 'Fri Jan 21 02:29:15
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     2011'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Your session was closed before reaching a usable state.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: This can be due to the local X server refusing access
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     to the client.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Info: Please check authorization provided by the remote X
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     application.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Session: Session terminated at 'Fri Jan 21 02:29:15 2011'.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     I'd really like to try NX, since it appearantly works faster
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     than VNC.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Please advice.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     Kind regards,
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     jmm
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     -------------- next part --------------
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     An HTML attachment was scrubbed...
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     URL:
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/3e2bdecb/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/3e2bdecb/attachment.html</A>&gt;
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     ------------------------------
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     _______________________________________________
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     X2go-dev mailing list
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>&gt;
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     End of X2go-dev Digest, Vol 25, Issue 19
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>     ****************************************
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/63b60a2a/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/63b60a2a/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 5867 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/63b60a2a/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110121/63b60a2a/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001540.html">[X2go-dev] x2go not working on ubuntu 10.10?
+</A></li>
+	<LI>Next message: <A HREF="001542.html">[X2go-dev] x2go not working on ubuntu 10.10?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1541">[ date ]</a>
+              <a href="thread.html#1541">[ thread ]</a>
+              <a href="subject.html#1541">[ subject ]</a>
+              <a href="author.html#1541">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Traffic%20shaping%20nightmare%20-%20missing%20SSH%20TOS%20bits&In-Reply-To=%3C1329812039.2788.113.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003559.html">
+   <LINK REL="Next"  HREF="003561.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Traffic%20shaping%20nightmare%20-%20missing%20SSH%20TOS%20bits&In-Reply-To=%3C1329812039.2788.113.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Feb 21 09:13:59 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003559.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+        <LI>Next message: <A HREF="003561.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3560">[ date ]</a>
+              <a href="thread.html#3560">[ thread ]</a>
+              <a href="subject.html#3560">[ subject ]</a>
+              <a href="author.html#3560">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2012-02-21 at 08:41 +0100, Oleksandr Shneyder wrote:
+&gt;<i> Am 21.02.2012 07:05, schrieb John A. Sullivan III:
+</I>&gt;<i> &gt; Hello, all.  I've been working on a project to implement traffic shaping
+</I>&gt;<i> &gt; to conform to 95th percentile billing including our X2Go virtual
+</I>&gt;<i> &gt; desktops.  One of the challenges is prioritizing the interactive X2Go
+</I>&gt;<i> &gt; traffic (screen, keyboard, mouse) differently from bulk traffic like
+</I>&gt;<i> &gt; local share transfers, printing, and possibly sound.  I thought this
+</I>&gt;<i> &gt; would be trivial because of the SSH transport since SSH sets the
+</I>&gt;<i> &gt; minimize-delay bit for interactive traffic and the maximize-throughput
+</I>&gt;<i> &gt; bit for bulk transfers.  Thus we could distinguish the packets by
+</I>&gt;<i> &gt; looking at the TOS bits.  This is how the default Linux pfifo_fast qdisc
+</I>&gt;<i> &gt; does it anyway.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I took a packet trace just to confirm it and, to my horror, I see that
+</I>&gt;<i> &gt; we are not setting any of the TOS bits and thus not prioritizing
+</I>&gt;<i> &gt; interactive traffic even with the default traffic shaping.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I'm guessing this is a casualty of moving to libssh.  Is there any way
+</I>&gt;<i> &gt; to set the TOS bits for interactive to 0x10, bulk to 0x08 as it is in
+</I>&gt;<i> &gt; OpenSSH?.  It would be really nice if sound could be configured either
+</I>&gt;<i> &gt; way according the the administrator's preference.  Unfortunately, I did
+</I>&gt;<i> &gt; not see anything in the libssh documentation to show how to do this
+</I>&gt;<i> &gt; although I do not claim to understand it.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; This is a critical issue for any WAN based deployments like ours.
+</I>&gt;<i> &gt; Thanks - John
+</I>&lt;snip&gt;
+&gt;<i> Hello John,
+</I>&gt;<i> 
+</I>&gt;<i> I think it is a question for libssh mailing list.
+</I>&lt;snip&gt;
+Yes, but the X2Go devs would need to implement the answer in X2Go or, if
+it is not possible using libssh, find another way to distinguish the
+traffic.  In fact, as I think about it, I wonder if it is unwise to rely
+upon libssh for those installation which may not use ssh as a transport
+- John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003559.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+	<LI>Next message: <A HREF="003561.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3560">[ date ]</a>
+              <a href="thread.html#3560">[ thread ]</a>
+              <a href="subject.html#3560">[ subject ]</a>
+              <a href="author.html#3560">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Fwd: Re:  X2Goclient
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Fwd%3A%20Re%3A%20%20X2Goclient&In-Reply-To=%3C4CEF8C6F.5020507%40immerda.ch%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001312.html">
+   <LINK REL="Next"  HREF="001313.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Fwd: Re:  X2Goclient</H1>
+    <B>kamerun at immerda.ch</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Fwd%3A%20Re%3A%20%20X2Goclient&In-Reply-To=%3C4CEF8C6F.5020507%40immerda.ch%3E"
+       TITLE="[X2go-dev] Fwd: Re:  X2Goclient">kamerun at immerda.ch
+       </A><BR>
+    <I>Fri Nov 26 11:31:11 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001312.html">[X2go-dev] x2go thinclient under Debian Lenny problem with sound
+</A></li>
+        <LI>Next message: <A HREF="001313.html">[X2go-dev] Fwd: Re:  X2Goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1311">[ date ]</a>
+              <a href="thread.html#1311">[ thread ]</a>
+              <a href="subject.html#1311">[ subject ]</a>
+              <a href="author.html#1311">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>hello,
+i am back in cameroon and i have to install x2go network with PXE and 10 
+thin clients.
+the machine is ubuntu 10.04 and i install x2go home
+question 1
+the installation was going well, but the PXE clients does not start 
+properly.
+i see that in the file
+
+/opt/x2gothinclient/etc/network/run
+
+
+
+is empty
+i had the same problem few months before
+i have done the same correction (see below) and it works
+
+i send again the mail and hope this failure will be corrected
+
+2. question
+to install x2go, because of the slow connection we need here a whole day 
+and we were lucky we had no current problem during this day.
+
+for me it would be the best when i make a x2go repository on a usb hard 
+disk and play it from there.
+somebody know howto do it?
+warm greetings
+michel
+
+-------- Original Message --------
+Subject: 	Re: [X2go-dev] X2Goclient
+Date: 	Sat, 11 Sep 2010 18:36:45 +0200
+From: 	<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kamerun at immerda.ch</A> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kamerun at immerda.ch</A>&gt;
+To: 	<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>, &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kamerun at immerda.ch</A>&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">kamerun at immerda.ch</A>&gt;
+
+
+
+hello,
+
+i install x2go server on xen machine
+
+<A HREF="http://www.x2go.org/fileadmin/doc/installation_x2go_debian_en.html#3.Installing%20X2goserver-ONE%20(One%20Node%20Edition">http://www.x2go.org/fileadmin/doc/installation_x2go_debian_en.html#3.Installing%20X2goserver-ONE%20(One%20Node%20Edition</A>)|outline
+
+pxe come to login but after login he cannot start
+
+it says that he cannot connect localhost
+when i go to console client
+i cannot ping localhost
+lo is there but not up
+
+i suppose the link in run by client is not done
+
+
+i correct like this
+and it works, but i suppose it is a mistake or not?
+
+
+x2gonoldapone:~/scripts-noldap-0ne# cd /opt/x2gothinclient/etc/network/
+x2gonoldapone:/opt/x2gothinclient/etc/network# ls
+if-down.d  if-post-down.d  if-pre-up.d	if-up.d  interfaces  run
+x2gonoldapone:/opt/x2gothinclient/etc/network# ls run
+x2gonoldapone:/opt/x2gothinclient/etc/network# ls -l
+total 24
+drwxr-xr-x 2 root root 4096 May  5  2008 if-down.d
+drwxr-xr-x 2 root root 4096 May  5  2008 if-post-down.d
+drwxr-xr-x 2 root root 4096 May  5  2008 if-pre-up.d
+drwxr-xr-x 2 root root 4096 Sep 11 08:33 if-up.d
+-rw-r--r-- 1 root root   30 Sep 11 08:21 interfaces
+drwxr-xr-x 2 root root 4096 Sep 11 08:21 run
+x2gonoldapone:/opt/x2gothinclient/etc/network# rm -r run
+x2gonoldapone:/opt/x2gothinclient/etc/network# ln -s /dev/shm run
+x2gonoldapone:/opt/x2gothinclient/etc/network# ls -l
+total 20
+drwxr-xr-x 2 root root 4096 May  5  2008 if-down.d
+drwxr-xr-x 2 root root 4096 May  5  2008 if-post-down.d
+drwxr-xr-x 2 root root 4096 May  5  2008 if-pre-up.d
+drwxr-xr-x 2 root root 4096 Sep 11 08:33 if-up.d
+-rw-r--r-- 1 root root   30 Sep 11 08:21 interfaces
+lrwxrwxrwx 1 root root    8 Sep 11 08:54 run -&gt;   /dev/shm
+x2gonoldapone:/opt/x2gothinclient/etc/network#
+
+
+michel
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101126/c73f8448/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101126/c73f8448/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001312.html">[X2go-dev] x2go thinclient under Debian Lenny problem with sound
+</A></li>
+	<LI>Next message: <A HREF="001313.html">[X2go-dev] Fwd: Re:  X2Goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1311">[ date ]</a>
+              <a href="thread.html#1311">[ thread ]</a>
+              <a href="subject.html#1311">[ subject ]</a>
+              <a href="author.html#1311">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

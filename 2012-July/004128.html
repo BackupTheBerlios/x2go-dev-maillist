@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Fullscreen RDP sessions with X2Go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fullscreen%20RDP%20sessions%20with%20X2Go&In-Reply-To=%3C1436766.TPBj2FeQWa%40zen-mobile%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004127.html">
+   <LINK REL="Next"  HREF="004129.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Fullscreen RDP sessions with X2Go</H1>
+    <B>Helmer Teles</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Fullscreen%20RDP%20sessions%20with%20X2Go&In-Reply-To=%3C1436766.TPBj2FeQWa%40zen-mobile%3E"
+       TITLE="[X2Go-Dev] Fullscreen RDP sessions with X2Go">helmer.teles at gmail.com
+       </A><BR>
+    <I>Tue Jul  3 16:57:46 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004127.html">[X2Go-Dev] Fullscreen RDP sessions with X2Go
+</A></li>
+        <LI>Next message: <A HREF="004129.html">[X2Go-Dev] Fullscreen RDP sessions with X2Go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4128">[ date ]</a>
+              <a href="thread.html#4128">[ thread ]</a>
+              <a href="subject.html#4128">[ subject ]</a>
+              <a href="author.html#4128">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tuesday 03 July 2012 16:24:55 you wrote:
+&gt;<i> &gt; Hope that this helps you,
+</I>&gt;<i> 
+</I>&gt;<i> Can you provide the whole script? It feels like this (or something  
+</I>&gt;<i> very much like this) should become part of X2Go upstream.
+</I>&gt;<i> 
+</I>&gt;<i> Thanks+Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> -- 
+</I>&gt;<i> 
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+</I>
+
+Hi, Mike.
+
+Here it goes, it's not even very finished but it works for some of our winblows 
+customers. I'm more on the Linux Desktop KDE 4 Nightmare to kiosk thing ;)
+I've attached it to you because it will get nasty to get something of inline 
+text.
+
+Side note: this script is running in a kind of forgotten by me linux host.
+Been hard @ working with  KDE 4 as DaaS to replace our aging  Debian Lenny 
+with kde3 Linux cloud Desktops.
+
+components on the server :
+
+freerdp:20120301-2hteles2
+cups-x2go:3.0.0.3-0~54~oneiric1
+pyhoca-cli:0.1.4.2-0~108~oneiric1
+pyhoca-gui:0.1.0.10-0~487~oneiric1
+python-x2go:0.1.1.9-0-0~612~oneiric1
+x2goagent:2:3.5.0.10-0~186~oneiric1
+x2goclient:3.99.0.6-0~144~oneiric1
+x2goplugin:3.99.0.6-0~144~oneiric1
+x2goserver:3.0.99.10-0~434~oneiric1
+x2goserver-compat:3.0.99.10-0~434~oneiric1
+x2goserver-extensions:3.0.99.10-0~434~oneiric1
+x2goserver-printing:3.0.99.10-0~434~oneiric1
+
+
+
+#!/bin/bash
+
+# V1.1 (2012/03/01)
+# Script para Proxy RDP com optimiza&#231;&#227;o de trafego e
+# Sem necessidade de usar um Gateway Windows ou
+# Expor portas rdp directamente c&#225; fora
+# Impressora funciona como PDF - nao tem problemas de compatibilidade
+# Se existir um ficheiro ~/.ssh/hostname ele usar&#225; esse hostname ( requerido 
+por algumas
+# aplica&#231;&#245;es como o Primavera por exemplo para controle de postos. )
+#
+# Tecnologias de Base: X2GO-DEV; Xfreerdp-DEV
+# 2011 <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">hteles at spikecs.pt</A>; <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">helmer.teles at gmail.com</A> ; <A HREF="http://hteles.wordpress.com">http://hteles.wordpress.com</A>
+
+
+SCRIPTNAME=`basename $0`
+LOGFILE=&quot;${HOME}/.$SCRIPTNAME.log&quot;
+SERVER=${SCRIPTNAME}
+PORT=&quot;3389&quot;
+SOUND=&quot;off&quot;
+MOUNTPOINT=&quot;${HOME}/media/disk&quot;
+
+# Newest x2go have a bug : error loading  libNX_Xext.so.6
+export LD_LIBRARY_PATH=&quot;$LD_LIBRARY_PATH:/usr/lib/nx/X11&quot;
+
+# Newest xfreerdp git versions  have a bug with full screen ( -f ) under 
+nxagent
+DSIZE=`xdpyinfo |grep -i dimensions|awk '{print $2}'`
+
+
+PRINTER=`lpstat -d |cut -d ':' -f 2 |tr -d ' '`
+
+check_hostname()
+{
+  USERHOSTFILE=&quot;${HOME}/.ssh/hostname&quot;
+  if ! [ -e ${USERHOSTFILE} ]; then 
+     USERHOSTNAME=&quot;SPIKEDEV&quot;
+    else
+       MYHOSTNAME=`cat ${USERHOSTFILE} | wc -c`
+       if [ &quot;$MYHOSTNAME&quot; == &quot;0&quot; ]; then 
+           USERHOSTNAME=${USERHOSTNAME}
+       else 
+           USERHOSTNAME=`cat ${USERHOSTFILE}`
+    fi
+  fi
+}
+
+check_session_mount_stuff()
+{
+ MYSESSION=`x2golistsessions |cut -d '|' -f2`
+ PTUNEL=`x2golistmounts ${MYSESSION} |grep -i spool | wc -l`
+ STUNEL=`x2golistmounts ${MYSESSION} |grep -i disk  | wc -l`
+}
+
+check_mounted_share()
+{
+ if [ &quot;$STUNEL&quot; = &quot;1&quot; ]; then
+       SHARESTR=&quot;disk:PCLOCAL:${MOUNTPOINT}&quot;
+    else 
+       SHARESTR=&quot;&quot;
+ fi
+}
+
+check_mounted_printer()
+{
+ if [ &quot;$PTUNEL&quot; = &quot;1&quot; ]; then
+       PRINTERSTR=&quot;printer:$PRINTER&quot;
+    else 
+       PRINTERSTR=&quot;&quot;
+ fi
+}
+
+construct_string()
+{
+ BASESTRG=&quot;--plugin cliprdr &quot;
+
+ if [ &quot;$STUNEL&quot; = &quot;1&quot; ] || [ &quot;$PTUNEL&quot; = &quot;1&quot; ]; then
+       COMMAND=&quot;$BASESTRG --plugin rdpdr --data &quot;  
+       CLOSESTRG=&quot;--&quot;
+ fi
+
+ if [ &quot;$STUNEL&quot; = &quot;1&quot; ]; then
+       COMMAND=&quot;$COMMAND $SHARESTR &quot;
+ fi
+ if [ &quot;$PTUNEL&quot; = &quot;1&quot; ]; then 
+       COMMAND=&quot;$COMMAND $PRINTERSTR &quot;
+ fi
+
+ FINALSTRG=&quot;$COMMAND $CLOSESTRG &quot;
+}
+
+check_user_kbd()
+{
+  #TODO
+  echo &quot;todo&quot; 
+}
+
+check_user_dimensions()
+{
+  echo &quot;todo&quot;
+}
+
+
+open_rdp()
+{
+
+  setxkbmap -model pc105 -layout pt
+  setxkbmap -model pc105 -layout pt
+  KEYB=&quot;0x00000816&quot;
+  COMMAND=&quot; -d pikets -x 3 -z --gdi hw  -g ${DSIZE} -k ${KEYB} -n 
+${USERHOSTNAME} --sec rdp  ${FINALSTRG} ${SERVER}:${PORT}&quot;
+#  COMMAND=&quot; -d pikets -x 3 -z -f -k ${KEYB} -n ${USERHOSTNAME} --sec rdp 
+${FINALSTRG} ${SERVER}:${PORT}&quot; 
+  echo &quot;----------------------------------------------------------- SESSION 
+LOG START -----------------------------------------------------&quot; &gt;&gt; $LOGFILE
+  echo &quot;Our connection is starting @ `date +%F_%T`&quot; &gt;&gt; $LOGFILE
+  echo &quot;Will Connect to Server: $SERVER @ Port: $PORT &quot; &gt;&gt; $LOGFILE
+  echo &quot;Will Use Keyboard Code $KEYB&quot; &gt;&gt; $LOGFILE
+  echo &quot;Will Use ${USERHOSTNAME} as Client Hostname&quot; &gt;&gt; $LOGFILE
+  echo &quot;Will Exec: xfreerdp -u \&quot;\&quot;  $COMMAND&quot; &gt;&gt; $LOGFILE
+  echo &quot;----------------------------------------------------------- SESSION 
+LOG CLOSE -----------------------------------------------------&quot; &gt;&gt; $LOGFILE
+  exec xfreerdp -u &quot;&quot; $COMMAND 
+  x2goterminate-session ${MYSESSION}
+   
+}
+
+ touch $LOGFILE
+ check_hostname
+ sleep 3 
+ check_session_mount_stuff
+ check_mounted_share
+ check_mounted_printer
+ construct_string
+ open_rdp
+
+
+
+
+
+-- 
+Helmer Teles
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">eM at il</A>   : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">helmer.teles at gmail.com</A>
+MSN_ID  : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">helmer.teles at gmail.com</A>
+Web Page: <A HREF="http://hteles.wordpress.com">http://hteles.wordpress.com</A>
+Phone:  : +351 96 792 10 86  
+
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120703/6f28efc6/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120703/6f28efc6/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: generic.freerdp
+Type: application/x-shellscript
+Size: 3411 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120703/6f28efc6/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120703/6f28efc6/attachment.bin</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004127.html">[X2Go-Dev] Fullscreen RDP sessions with X2Go
+</A></li>
+	<LI>Next message: <A HREF="004129.html">[X2Go-Dev] Fullscreen RDP sessions with X2Go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4128">[ date ]</a>
+              <a href="thread.html#4128">[ thread ]</a>
+              <a href="subject.html#4128">[ subject ]</a>
+              <a href="author.html#4128">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

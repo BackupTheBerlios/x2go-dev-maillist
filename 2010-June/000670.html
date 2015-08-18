@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] High Performance SSH/SCP - HPN-SSH
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20High%20Performance%20SSH/SCP%20-%20HPN-SSH&In-Reply-To=%3C20100628122855.GB11933%40fgnfs.fg-networking.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000669.html">
+   <LINK REL="Next"  HREF="000671.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] High Performance SSH/SCP - HPN-SSH</H1>
+    <B>Erik Auerswald</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20High%20Performance%20SSH/SCP%20-%20HPN-SSH&In-Reply-To=%3C20100628122855.GB11933%40fgnfs.fg-networking.de%3E"
+       TITLE="[X2go-dev] High Performance SSH/SCP - HPN-SSH">auerswald at fg-networking.de
+       </A><BR>
+    <I>Mon Jun 28 14:28:56 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000669.html">[X2go-dev] High Performance SSH/SCP - HPN-SSH
+</A></li>
+        <LI>Next message: <A HREF="000671.html">[X2go-dev] High Performance SSH/SCP - HPN-SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#670">[ date ]</a>
+              <a href="thread.html#670">[ thread ]</a>
+              <a href="subject.html#670">[ subject ]</a>
+              <a href="author.html#670">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello John,
+
+On Mon, Jun 28, 2010 at 07:47:47AM -0400, John A. Sullivan III wrote:
+&gt;<i> On Mon, 2010-06-28 at 09:30 +0200, Erik Auerswald wrote:
+</I>&gt;<i> &gt; On Mon, Jun 28, 2010 at 06:55:56AM +0000, cougarmaster wrote:
+</I>&gt;<i> &gt; &gt;    Was reading about how to increase SSH performance and I came across this.
+</I>&gt;<i> &gt; &gt; [...]
+</I>&gt;<i> &gt; &gt; Also in there is a link to tuning network performance too just wanted
+</I>&gt;<i> &gt; &gt; to see if it would be of any help.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; This is the standard network performance tuning found everywhere. This is
+</I>&gt;<i> &gt; interesting for a saturated server, but will not solve any fundamental
+</I>&gt;<i> &gt; speed issues.
+</I>&gt;<i> &gt;
+</I>&gt;<i> I have been wondering if it will help with resilience.  We are having
+</I>&gt;<i> problems where, if the Internet connection starts dropping packets,
+</I>&gt;<i> recovery of the X2Go client is much slower than recovery of other
+</I>&gt;<i> applications such as web browsing.
+</I>
+Web browsing will start new TCP connections (not for every fetched URL
+as back in the day, but still), while SSH uses just one connection. Thus
+you might have the combination of TCP slow start with several competing
+TCP connections (web browsing, file sharing, ...). As long as data
+is available to send (e.g. a screen update of X2Go), TCP will try to
+increase the send window, which might result in packet loss and slow
+the stream down again.
+
+You could try with a different congestion control algorithm for the ssh
+session or with quality of service settings (end-to-end or at least at the
+choke point, which might be the client side internet router).
+
+&gt;<i>  We have tried playing with
+</I>&gt;<i> ClientAliveInterval and ClientAliveCountMax but that has not helped.
+</I>
+This would only help to keep the session alive, but not to speed up
+recovery.
+
+Thanks,
+Erik
+-- 
+Dipl.-Inform. Erik Auerswald                <A HREF="http://www.fg-networking.de/">http://www.fg-networking.de/</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">auerswald at fg-networking.de</A> Tel: +49-631-4149988-0 Fax: +49-631-4149988-9
+
+Gesellschaft f&#252;r Fundamental Generic Networking mbH
+Gesch&#228;ftsf&#252;hrung: Volker Bauer, J&#246;rg Mayer
+Gerichtsstand: Amtsgericht Kaiserslautern - HRB: 3630
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000669.html">[X2go-dev] High Performance SSH/SCP - HPN-SSH
+</A></li>
+	<LI>Next message: <A HREF="000671.html">[X2go-dev] High Performance SSH/SCP - HPN-SSH
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#670">[ date ]</a>
+              <a href="thread.html#670">[ thread ]</a>
+              <a href="subject.html#670">[ subject ]</a>
+              <a href="author.html#670">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2Go Server + NXLibs
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Server%20%2B%20NXLibs&In-Reply-To=%3C20120210124211.0186a422%40athlon.garagome%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003377.html">
+   <LINK REL="Next"  HREF="003375.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2Go Server + NXLibs</H1>
+    <B>Milan Kn&#237;&#382;ek</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2Go%20Server%20%2B%20NXLibs&In-Reply-To=%3C20120210124211.0186a422%40athlon.garagome%3E"
+       TITLE="[X2Go-Dev] X2Go Server + NXLibs">knizek.confy at gmail.com
+       </A><BR>
+    <I>Fri Feb 10 12:42:11 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003377.html">[X2Go-Dev] X2Go Server + NXLibs
+</A></li>
+        <LI>Next message: <A HREF="003375.html">[X2Go-Dev] X2Go Server + NXLibs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3374">[ date ]</a>
+              <a href="thread.html#3374">[ thread ]</a>
+              <a href="subject.html#3374">[ subject ]</a>
+              <a href="author.html#3374">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>V Fri, 10 Feb 2012 11:22:35 +0100
+Bogdan-Andrei Taru &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">bogdan.taru at gmail.com</A>&gt; naps&#225;no:
+
+&gt;<i> Hi Oliver,
+</I>&gt;<i> 
+</I>&gt;<i> thanks for your reply! No, I had no idea I need a x2goagent wrapper.
+</I>&gt;<i> I found one in the nx-libs-source/bin/ directory, but it doesn't make
+</I>&gt;<i> any sense, because it calls another x2goagent:
+</I>&gt;<i> 
+</I>&gt;<i> NX_LIBS=/usr/lib/nx
+</I>&gt;<i> exec $NX_LIBS/../x2go/x2goagent &quot;$@&quot;
+</I>&gt;<i> 
+</I>&gt;<i> How did you solve the problem?
+</I>&gt;<i>
+</I>Create a link to nxagent:
+
+ln -s /usr/lib/nx/nxagent /usr/lib/x2go/x2goagent
+
+I assume it is because of backward compatibility. The nxagent from
+nx-libs (NX redistributed) is patched so that it knows when it is run
+as &quot;x2goagent&quot; and when as &quot;nxagent&quot;.
+
+You can also have a look at the debian package to see what is installed
+and where:
+
+<A HREF="http://packages.x2go.org/debian/pool/main/n/nx-libs/x2goagent_3.5.0.10-0+wheezy~main~250~build1_all.deb">http://packages.x2go.org/debian/pool/main/n/nx-libs/x2goagent_3.5.0.10-0+wheezy~main~250~build1_all.deb</A>
+
+Do not use x2goagent version older then 3.5.0.10, since these
+were a separate binary, not just a wrapper to NX redistributed
+nxagent.
+
+Regards,
+Milan
+
+-- 
+<A HREF="http://www.milan-knizek.net/">http://www.milan-knizek.net/</A>
+About linux and photography (Czech only)
+O linuxu a fotografov&#225;n&#237;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003377.html">[X2Go-Dev] X2Go Server + NXLibs
+</A></li>
+	<LI>Next message: <A HREF="003375.html">[X2Go-Dev] X2Go Server + NXLibs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3374">[ date ]</a>
+              <a href="thread.html#3374">[ thread ]</a>
+              <a href="subject.html#3374">[ subject ]</a>
+              <a href="author.html#3374">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

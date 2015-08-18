@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Support (more) silent mode on X2GoClient and	X2GoDesktopSharing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Support%20%28more%29%20silent%20mode%20on%20X2GoClient%20and%0A%09X2GoDesktopSharing&In-Reply-To=%3CCAJxG8soMb0D5FBieywOMtBBTv8ugvrSmKu5rKAD6-StZDW%3DPrQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006517.html">
+   <LINK REL="Next"  HREF="006491.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Support (more) silent mode on X2GoClient and	X2GoDesktopSharing</H1>
+    <B>Marco Andr&#233; Dinis</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Support%20%28more%29%20silent%20mode%20on%20X2GoClient%20and%0A%09X2GoDesktopSharing&In-Reply-To=%3CCAJxG8soMb0D5FBieywOMtBBTv8ugvrSmKu5rKAD6-StZDW%3DPrQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Support (more) silent mode on X2GoClient and	X2GoDesktopSharing">marcoandredinis at gmail.com
+       </A><BR>
+    <I>Tue Nov 26 15:22:22 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006517.html">[X2Go-Dev] Bug#348: Bug#348: x2goserver 4.0.1.8: screws up keyboard	for Mac users
+</A></li>
+        <LI>Next message: <A HREF="006491.html">[X2Go-Dev] Bug#349: Tag: patch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6490">[ date ]</a>
+              <a href="thread.html#6490">[ thread ]</a>
+              <a href="subject.html#6490">[ subject ]</a>
+              <a href="author.html#6490">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi
+
+I'm developing a program that will use X2Go software. I dont want
+users to notice they are using any other program besides my own.
+
+I have two problems right now:
+
+A) X2GoClient
+Using SHADOW mode with &quot;--hide&quot; does not work. The interface waits for
+selection of Display (usually &quot;:0&quot;) and, since there's no input from
+user (there's no window) the program does not show anything.
+There are possible ways of fixing/improving this situation:
+-allow user to set the default display on sessions' file
+-create one flag and run program like these: &quot;x2goclient --hide
+--sessionid=xxx --select-first-display&quot;
+
+Anyway, i modified the code of x2goclient/onmainwindow.cpp and added
+these lines:
+l4348:..if( shadowSession )
+l4349:....slotShadowSess();
+Compiled the program, and now i can run &quot;./x2goclient --hide
+--sessionid=xxx&quot; and the window will show up.
+This is NOT a fix, this is a nasty workaround. It wontn show the list
+even when the &quot;hide&quot; flag is not present.
+
+
+B) X2GoDesktopSharing
+Just the icon on SystemTray. If we could pass a flag like &quot;--no-icon&quot;
+would be great
+
+
+I could do these simple changes on my own, but i rather see this
+changes on the official code.
+
+Thanks,
+Marco Dinis
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006517.html">[X2Go-Dev] Bug#348: Bug#348: x2goserver 4.0.1.8: screws up keyboard	for Mac users
+</A></li>
+	<LI>Next message: <A HREF="006491.html">[X2Go-Dev] Bug#349: Tag: patch
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6490">[ date ]</a>
+              <a href="thread.html#6490">[ thread ]</a>
+              <a href="subject.html#6490">[ subject ]</a>
+              <a href="author.html#6490">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

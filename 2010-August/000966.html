@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Go client occasionally loses mouse cursor
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20client%20occasionally%20loses%20mouse%20cursor&In-Reply-To=%3C1282768690.17097.6.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000964.html">
+   <LINK REL="Next"  HREF="000968.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Go client occasionally loses mouse cursor</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20client%20occasionally%20loses%20mouse%20cursor&In-Reply-To=%3C1282768690.17097.6.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] X2Go client occasionally loses mouse cursor">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Wed Aug 25 22:38:10 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000964.html">[X2go-dev] Windows clipboard solution in next release?
+</A></li>
+        <LI>Next message: <A HREF="000968.html">[X2go-dev] X2Go client occasionally loses mouse cursor
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#966">[ date ]</a>
+              <a href="thread.html#966">[ thread ]</a>
+              <a href="subject.html#966">[ subject ]</a>
+              <a href="author.html#966">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, all.  We've seen this bug rarely but enough to know that it is a
+real bug and not just a coincidence. Here is the report from our
+internal trouble ticket.  Unfortunately, it smells like it might be
+something in the NX libraries:
+
+The user called because she could not see her mouse cursor in her
+virtual desktop.  It was visible in her physical desktop. As we later
+observed, it was indeed present in the virtual desktop, e.g., if she
+happened to stop the mouse over a file in Konqueror, it would display
+the thumbnail, but the mouse cursor was not visible.
+
+We tried suspending and reconnecting; that did not work.  I could see
+where the mouse was supposed to be via my VNC session to her physical
+desktop so I tried to change the mouse cursor theme but that did not
+work (and required a restart of KDE).
+
+Finally, before rebooting to try to re-establish the connection between
+her physical and virtual desktops to display the mouse cursor, we
+thought to suspend her X2Go session and then completely close her X2Go
+client.  When she restarted the client and reconnected to her X2Go
+session, the mouse had re-appeared.  We did not need to reboot the
+physical computer.
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000964.html">[X2go-dev] Windows clipboard solution in next release?
+</A></li>
+	<LI>Next message: <A HREF="000968.html">[X2go-dev] X2Go client occasionally loses mouse cursor
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#966">[ date ]</a>
+              <a href="thread.html#966">[ thread ]</a>
+              <a href="subject.html#966">[ subject ]</a>
+              <a href="author.html#966">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

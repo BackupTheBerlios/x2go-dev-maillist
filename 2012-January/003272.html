@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2go Plugin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2go%20Plugin&In-Reply-To=%3C8CEA757826E220E-6D0-21DD0%40webmail-m133.sysops.aol.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003215.html">
+   <LINK REL="Next"  HREF="003220.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2go Plugin</H1>
+    <B>senrabdet at aol.com</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2go%20Plugin&In-Reply-To=%3C8CEA757826E220E-6D0-21DD0%40webmail-m133.sysops.aol.com%3E"
+       TITLE="[X2go-Dev] x2go Plugin">senrabdet at aol.com
+       </A><BR>
+    <I>Sun Jan 22 20:59:40 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003215.html">[X2go-Dev] x2goclient/win32, nxproxy window resolution (outer vs. inner border)
+</A></li>
+        <LI>Next message: <A HREF="003220.html">[X2go-Dev] X2Go bugfix release: nx-libs (incl. x2goagent) 3.5.0.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3272">[ date ]</a>
+              <a href="thread.html#3272">[ thread ]</a>
+              <a href="subject.html#3272">[ subject ]</a>
+              <a href="author.html#3272">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>To Whom It May Concern:
+
+We are trying to evaluate the x2go plugin (hope to evaluate the thin client option soon too), and are having some trouble.  Can anyone help?
+
+Questions
+- is the plugin development/support still active?
+
+- we assume you need to set up the server as a web server with the code described on the x2go site, and install the plugin on the client side:  is that true? 
+
+- we assume the primary code from the <A HREF="http://www.x2go.org/wiki:components:x2goplugin#a_complete_website_example">http://www.x2go.org/wiki:components:x2goplugin#a_complete_website_example</A>
+goes in the home page/index.html file:  is that right?
+
+- when we surf to the site, we get...
+      
+  x2goplugin
+    
+This website will offer you a plugin named &quot;x2goplugin&quot;. With the installed    plugin you'll be able to start or recover a session running on a x2goserver.     The server needs to be preconfigured.    To get more information about what x2go is, please visit <A HREF="http://www.x2go.org.">http://www.x2go.org.</A>    
+    
+
+...this is part of the example code we used shown below, but that's as far as we go and link just takes us back to the main site.  We don't see a way to have the site install the plugin.
+  
+- when we try to download the plugin in the client (again, we assume the plugin is necessary on the client browser) from <A HREF="http://plugin.x2go.org">http://plugin.x2go.org</A> we get a missing page...same with the link on plugin example page link .... would guess this is just about the state of the web site change...
+
+...but is there somewhere where we can download the plugin?  Could someone email it if the site will be under construction for a while?
+
+- lastly, when the documentation says you can leave the user name blank, does that mean &quot;user=&quot; like we have it shown below?  Are there problems with our &quot;index.html&quot; file or our &quot;x2go.server&quot; files shown below
+
+Background
+- we set up an x2go server and can connect to it using the Windows client with SSL keys - works fine (much faster than RDP)
+- we used the same server and set up a web server using the instructions from <A HREF="http://www.x2go.org/wiki:components:x2goplugin">http://www.x2go.org/wiki:components:x2goplugin</A>
+The code from our index.html file is:
+
+&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;x2go Plugin&lt;/title&gt;
+    &lt;script src=&quot;<A HREF="http://plugin.x2go.org/media/x2goplugin.js">http://plugin.x2go.org/media/x2goplugin.js</A>&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+&lt;body onload=&quot;checkPlugin()&quot;&gt;
+    &lt;div id=&quot;x2goplugin&quot; style=&quot;width: auto; hight: auto;&quot;&gt;
+&lt;object src=&quot;location&quot; 
+    type=&quot;application/x2go&quot; 
+    pluginspage=&quot;<A HREF="http://plugin.x2go.org/index.html">http://plugin.x2go.org/index.html</A>&quot; 
+    pluginurl=&quot;<A HREF="http://plugin.x2go.org/download/x2goplugin_linux32.xpi">http://plugin.x2go.org/download/x2goplugin_linux32.xpi</A>&quot; 
+    data=&quot;x2go.server&quot; 
+    hidden=&quot;false&quot; 
+    name=&quot;x2goplugin&quot; 
+    palette=&quot;background&quot; 
+    height=&quot;100%&quot; 
+    hspace=&quot;0&quot; 
+    vspace=&quot;0&quot; 
+    width=&quot;100%&quot;&gt;
+        &lt;--x2goplugin //--&gt;
+    &lt;/object&gt;    
+    &lt;/div&gt;
+ &lt;div id=&quot;description&quot;&gt;
+    &lt;h4&gt;x2goplugin&lt;/h4&gt;
+    &lt;p&gt;This website will offer you a plugin named &quot;x2goplugin&quot;. With the installed
+    plugin you'll be able to start or recover a session running on a x2goserver. 
+    The server needs to be preconfigured.
+    To get more information about what x2go is, please visit &lt;a href=&quot;<A HREF="http://www.x2go.org">http://www.x2go.org</A>&quot;&gt;<A HREF="http://www.x2go.org&lt;/a">http://www.x2go.org&lt;/a</A>&gt;.
+    &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+
+And our x2go.server file is (with IP blacked out)
+session=mysessionname
+server=<A HREF="http://xxx.xxx.xxx.xxx">http://xxx.xxx.xxx.xxx</A>
+user=
+sshport=22
+command=/usr/bin/firefox -new-window -fullscreen www.google.com
+rootless=true
+sound=true
+exportfs=false
+speed=adsl
+compression=16m-jpeg
+quality=9
+dpi=120
+kbdlayout=de
+kbdtype=pc105/de
+showtoolbar=true
+showstatusbar=true
+
+Any help appreciated!  Thanks and best,
+
+Ted Barnes
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120122/9684e09e/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120122/9684e09e/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003215.html">[X2go-Dev] x2goclient/win32, nxproxy window resolution (outer vs. inner border)
+</A></li>
+	<LI>Next message: <A HREF="003220.html">[X2go-Dev] X2Go bugfix release: nx-libs (incl. x2goagent) 3.5.0.8
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3272">[ date ]</a>
+              <a href="thread.html#3272">[ thread ]</a>
+              <a href="subject.html#3272">[ subject ]</a>
+              <a href="author.html#3272">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] setuid/setgid in libXcomp
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20setuid/setgid%20in%20libXcomp&In-Reply-To=%3C521E845F.7070702%40cora.nwra.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006127.html">
+   <LINK REL="Next"  HREF="006128.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] setuid/setgid in libXcomp</H1>
+    <B>Orion Poplawski</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20setuid/setgid%20in%20libXcomp&In-Reply-To=%3C521E845F.7070702%40cora.nwra.com%3E"
+       TITLE="[X2Go-Dev] setuid/setgid in libXcomp">orion at cora.nwra.com
+       </A><BR>
+    <I>Thu Aug 29 01:14:39 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006127.html">[X2Go-Dev] [SOLVED] Re:  Downtime code.x2go.org
+</A></li>
+        <LI>Next message: <A HREF="006128.html">[X2Go-Dev] setuid/setgid in libXcomp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6126">[ date ]</a>
+              <a href="thread.html#6126">[ thread ]</a>
+              <a href="subject.html#6126">[ subject ]</a>
+              <a href="author.html#6126">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 07/25/2013 02:54 PM, Mike Gabriel wrote:
+&gt;<i> Hi Orion,
+</I>&gt;<i>
+</I>&gt;<i> On Do 25 Jul 2013 22:30:52 CEST Orion Poplawski wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> On 07/14/2013 03:33 AM, Moritz Str&#252;be wrote:
+</I>&gt;&gt;&gt;<i> Hey,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> this is a bit of guesswork, but,
+</I>&gt;&gt;&gt;<i> * getgit get the _real_ real gid
+</I>&gt;&gt;&gt;<i> * setgit sets the _effective_ gid
+</I>&gt;&gt;&gt;<i> Thus you reset the effective s/gid.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Morty
+</I>&gt;<i>
+</I>&gt;&gt;<i> But why does it need to call this?  Isn't everything running as the user
+</I>&gt;&gt;<i> already?
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Everything in NX runs under the user who launches the X2Go session. IMHO
+</I>&gt;<i> resetting the effective GID prevents us from setgid file permission
+</I>&gt;<i> manipulations, so that the effective group ID always is the primary/real group
+</I>&gt;<i> ID of the current user that is executing the NX binary.
+</I>&gt;<i>
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>
+Some more info:
+
+This executable is calling setuid and setgid without setgroups or initgroups.
+There is a high probability this mean it didn't relinquish all groups, and this
+would be a potential security issue to be fixed. Seek POS36-C on the web for
+details about the problem.
+
+Ref POS36-C:
+
+<A HREF="https://www.securecoding.cert.org/confluence/display/seccode/POS36-C.+Observe+correct+revocation+order+while+relinquishing+privileges">https://www.securecoding.cert.org/confluence/display/seccode/POS36-C.+Observe+correct+revocation+order+while+relinquishing+privileges</A>
+
+
+-- 
+Orion Poplawski
+Technical Manager                     303-415-9701 x222
+NWRA, Boulder/CoRA Office             FAX: 303-415-9702
+3380 Mitchell Lane                       <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at nwra.com</A>
+Boulder, CO 80301                   <A HREF="http://www.nwra.com">http://www.nwra.com</A>
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006127.html">[X2Go-Dev] [SOLVED] Re:  Downtime code.x2go.org
+</A></li>
+	<LI>Next message: <A HREF="006128.html">[X2Go-Dev] setuid/setgid in libXcomp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6126">[ date ]</a>
+              <a href="thread.html#6126">[ thread ]</a>
+              <a href="subject.html#6126">[ subject ]</a>
+              <a href="author.html#6126">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

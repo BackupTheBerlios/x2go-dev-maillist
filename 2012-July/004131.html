@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2goclient-3.99.2.1 plugin crash
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goclient-3.99.2.1%20plugin%20crash&In-Reply-To=%3Calpine.LNX.2.01.1207051330270.19598%40frira.zrqbmnf.qr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004130.html">
+   <LINK REL="Next"  HREF="004132.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2goclient-3.99.2.1 plugin crash</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goclient-3.99.2.1%20plugin%20crash&In-Reply-To=%3Calpine.LNX.2.01.1207051330270.19598%40frira.zrqbmnf.qr%3E"
+       TITLE="[X2Go-Dev] x2goclient-3.99.2.1 plugin crash">jengelh at inai.de
+       </A><BR>
+    <I>Thu Jul  5 13:50:33 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004130.html">[X2Go-Dev] Fullscreen RDP sessions with X2Go
+</A></li>
+        <LI>Next message: <A HREF="004132.html">[X2Go-Dev] x2goclient-3.99.2.1 plugin crash
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4131">[ date ]</a>
+              <a href="thread.html#4131">[ thread ]</a>
+              <a href="subject.html#4131">[ subject ]</a>
+              <a href="author.html#4131">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+I can get the x2goclient firefox plugin to reproducibly crash. This 
+crash happens once one clicks on the blue X2go splash when the plugin
+is loaded.
+According to gdb,
+
+(gdb) p stb
+$1 = (QToolBar *) 0x0  [or values pointing to unmapped areas]
+(gdb) l
+10353   void ONMainWindow::slotEmbedToolBarToolTip()
+10354   {
+10355       if ( !showTbTooltip )
+10356           return;
+10357       QWidget* widg=stb-&gt;widgetForAction (
+10358                         act_embedToolBar );
+10359       QToolTip::showText ( this-&gt;mapToGlobal ( QPoint ( 6,6 ) ),
+10360                            tr ( &quot;&lt;br&gt;&lt;b&gt;&nbsp;&nbsp;&nbsp;Click this &quot;
+10361                                 &quot;button&nbsp;&nbsp;&nbsp;&lt;br&gt;&quot;
+10362                                 &quot;&nbsp;&nbsp;&nbsp;to restore toolbar&quot;
+(gdb) bt
+#0  data (this=0x8) at ../../src/corelib/tools/qscopedpointer.h:135
+#1  qGetPtrHelper&lt;QScopedPointer&lt;QObjectData&gt; &gt; (p=...)
+    at ../../src/corelib/global/qglobal.h:2342
+#2  d_func (this=0x0) at widgets/qtoolbar.h:167
+#3  QToolBar::widgetForAction (this=0x0, action=0x0)
+    at widgets/qtoolbar.cpp:1285
+#4  0x00007fe1d9ad5c03 in ONMainWindow::slotEmbedToolBarToolTip (this=
+    0x7fe1d14c6800) at ../onmainwindow.cpp:10358
+#5  0x00007fe1d9b554fd in ONMainWindow::qt_metacall (this=0x7fe1d14c6800, _c=
+    QMetaObject::InvokeMetaMethod, _id=108, _a=0x7fff1d3d0440)
+    at moc_onmainwindow.cpp:402
+#6  0x00007fe1d7c235aa in QMetaObject::activate (sender=0x7fe1d1413200, 
+    m=&lt;optimized out&gt;, local_signal_index=&lt;optimized out&gt;, argv=0x0)
+    at kernel/qobject.cpp:3287
+#7  0x00007fe1d7c2b66f in QSingleShotTimer::timerEvent (this=0x7fe1d1413200)
+    at kernel/qtimer.cpp:308
+#8  0x00007fe1d7c26e89 in QObject::event (this=0x7fe1d1413200, 
+    e=&lt;optimized out&gt;) at kernel/qobject.cpp:1190
+#9  0x00007fe1d844fc34 in notify_helper (e=0x7fff1d3d0b00, receiver=
+    0x7fe1d1413200, this=0x7fe1db3e00b0) at kernel/qapplication.cpp:4481
+#10 QApplicationPrivate::notify_helper (this=0x7fe1db3e00b0, receiver=
+    0x7fe1d1413200, e=0x7fff1d3d0b00) at kernel/qapplication.cpp:4453
+#11 0x00007fe1d8454ac1 in QApplication::notify (this=0x7fe1db3a94b0, receiver=
+    0x7fe1d1413200, e=0x7fff1d3d0b00) at kernel/qapplication.cpp:4360
+---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---q
+Quit
+
+I also attempted to valgrind that, and came up with
+
+==19917== Conditional jump or move depends on uninitialised value(s)
+==19917==    at 0x12237BD8: ONMainWindow::slotEmbedToolBarToolTip() (onmainwindow.cpp:10355)
+==19917==    by 0x122B74FC: ONMainWindow::qt_metacall(QMetaObject::Call, int, void**) (moc_onmainwindow.cpp:402)
+==19917==    by 0x1424A5A9: QMetaObject::activate(QObject*, QMetaObject const*, int, void**) (qobject.cpp:3287)
+==19917==    by 0x1425266E: QSingleShotTimer::timerEvent(QTimerEvent*) (qtimer.cpp:308)
+==19917==    by 0x1424DE88: QObject::event(QEvent*) (qobject.cpp:1190)
+==19917==    by 0x132C9C33: QApplicationPrivate::notify_helper(QObject*, QEvent*) (qapplication.cpp:4481)
+==19917==    by 0x132CEAC0: QApplication::notify(QObject*, QEvent*) (qapplication.cpp:4360)
+==19917==    by 0x1423782B: QCoreApplication::notifyInternal(QObject*, QEvent*) (qcoreapplication.cpp:787)
+==19917==    by 0x142643A7: QTimerInfoList::activateTimers() (qcoreapplication.h:215)
+==19917==    by 0x14261B93: timerSourceDispatch(_GSource*, int (*)(void*), void*) (qeventdispatcher_glib.cpp:184)
+==19917==    by 0xA3E258C: g_main_context_dispatch (gmain.c:2425)
+==19917==    by 0xA3E2D87: g_main_context_iterate.isra.21 (gmain.c:3073)
+==19917== 
+
+So, showTbTooltip seems uninitialized. I added printfs around every 
+place where showTbTooltip is modified. However, my printfs never made it 
+to screen (stdout/stderr are connected to a /dev/pts/N), which means 
+that initWidgetsEmbed was never called.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004130.html">[X2Go-Dev] Fullscreen RDP sessions with X2Go
+</A></li>
+	<LI>Next message: <A HREF="004132.html">[X2Go-Dev] x2goclient-3.99.2.1 plugin crash
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4131">[ date ]</a>
+              <a href="thread.html#4131">[ thread ]</a>
+              <a href="subject.html#4131">[ subject ]</a>
+              <a href="author.html#4131">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

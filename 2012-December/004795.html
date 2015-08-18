@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2393%3A%20x2goagent%20should%20create%20/tmp/.X11-unix%20directory&In-Reply-To=%3CCAJ0cceY0YQ3FfNLLEWSZ64p8N_%3Dy7QvWMZ3GYv%2B70%3DFu-pquqA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004793.html">
+   <LINK REL="Next"  HREF="004797.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2393%3A%20x2goagent%20should%20create%20/tmp/.X11-unix%20directory&In-Reply-To=%3CCAJ0cceY0YQ3FfNLLEWSZ64p8N_%3Dy7QvWMZ3GYv%2B70%3DFu-pquqA%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory">siretart at gmail.com
+       </A><BR>
+    <I>Wed Dec 19 20:47:54 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004793.html">[X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory
+</A></li>
+        <LI>Next message: <A HREF="004797.html">[X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4795">[ date ]</a>
+              <a href="thread.html#4795">[ thread ]</a>
+              <a href="subject.html#4795">[ subject ]</a>
+              <a href="author.html#4795">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Dec 19, 2012 at 5:32 PM, Orion Poplawski &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at cora.nwra.com</A>&gt; wrote:
+&gt;<i> On 12/19/2012 09:14 AM, Reinhard Tartler wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On Wed, Dec 19, 2012 at 9:20 AM, Mike Gabriel
+</I>&gt;&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Package: x2goagent
+</I>&gt;&gt;&gt;<i> Severity: normal
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> ----- Weitergeleitete Nachricht von <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Burnce at gmx.net</A> -----
+</I>&gt;&gt;&gt;<i>       Datum: Wed, 19 Dec 2012 08:57:53 +0100
+</I>&gt;&gt;&gt;<i>         Von: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Burnce at gmx.net</A>
+</I>&gt;&gt;&gt;<i>     Betreff: [X2Go-User] RHEL6 package should create /tmp/.X11-unix
+</I>&gt;&gt;&gt;<i> directory
+</I>&gt;&gt;&gt;<i>          An: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-User at lists.berlios.de</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hi all,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> After much hunting I found what the problem was runnung x2goserver on a
+</I>&gt;&gt;&gt;<i> freshly installed server.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Apparently X2Go requires the /tmp/.X11-unix directory to exist with
+</I>&gt;&gt;&gt;<i> permissions 1777.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Could you please see to it the creation of this directory and the
+</I>&gt;&gt;&gt;<i> permissions settings are performed by teh x2goserver package.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> At least in debian, this directory is created by the init script of
+</I>&gt;&gt;<i> the x11-common package. Maybe x2goserver should explicitly depend on
+</I>&gt;&gt;<i> that package.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I'm not sure what the equivalent package is in RedHat/Fedora, but it
+</I>&gt;&gt;<i> clearly seems to be a packaging issue to me.
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On Fedora it is created via systemd's tmpfiles mechanism, and in fact
+</I>&gt;<i> provided by the systemd package so it will be on all machines.
+</I>&gt;<i>
+</I>&gt;<i> I'm using it on a RHEL6 server with no native/local X server.  The X server
+</I>&gt;<i> itself will create the directory if it doesn't exist, but will abort if it
+</I>&gt;<i> already exists but with the wrong owner or permissions.
+</I>
+Are you absolutely sure that the X server binary creates this itself?
+Or is that some startup script shipped as part of the X server
+package?
+
+
+-- 
+regards,
+    Reinhard
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004793.html">[X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory
+</A></li>
+	<LI>Next message: <A HREF="004797.html">[X2Go-Dev] Bug#93: x2goagent should create /tmp/.X11-unix directory
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4795">[ date ]</a>
+              <a href="thread.html#4795">[ thread ]</a>
+              <a href="subject.html#4795">[ subject ]</a>
+              <a href="author.html#4795">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

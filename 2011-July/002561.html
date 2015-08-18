@@ -1,0 +1,171 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] core dev-team testing x2goclient during next week
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20core%20dev-team%20testing%20x2goclient%20during%20next%20week&In-Reply-To=%3C4E2FFAE0.7010109%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002535.html">
+   <LINK REL="Next"  HREF="002566.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] core dev-team testing x2goclient during next week</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20core%20dev-team%20testing%20x2goclient%20during%20next%20week&In-Reply-To=%3C4E2FFAE0.7010109%40obviously-nice.de%3E"
+       TITLE="[X2go-Dev] core dev-team testing x2goclient during next week">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Wed Jul 27 13:47:44 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002535.html">[X2go-Dev] [X2go-User] core dev-team testing x2goclient during	next week
+</A></li>
+        <LI>Next message: <A HREF="002566.html">[X2go-Dev] core dev-team testing x2goclient during next week
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2561">[ date ]</a>
+              <a href="thread.html#2561">[ thread ]</a>
+              <a href="subject.html#2561">[ subject ]</a>
+              <a href="author.html#2561">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 22.07.2011 12:10, schrieb Mike Gabriel:
+&gt;<i> Hi all,
+</I>&gt;<i> 
+</I>&gt;<i> thanks to everyone (esp. to John) for taking such a meticulous look at
+</I>&gt;<i> the latest x2goclient 3.99.0.0 (Win32 version). There obviously seem to
+</I>&gt;<i> be quite some open issues that we have to cross-check on our own
+</I>&gt;<i> development/testing systems.
+</I>&gt;<i> 
+</I>&gt;<i> Alex (the core developer of x2goclient) will do that ASAP, we hope to
+</I>&gt;<i> come up with some feedback, patches, comments by the end of next week.
+</I>&gt;<i> If that gets delayed, I will let you know about the delay and come up
+</I>&gt;<i> with another timeline.
+</I>&gt;<i> 
+</I>&gt;<i> Unfortunately, as X2go is not a commercial project, this cannot be any
+</I>&gt;<i> quicker. We apologize for this!!!
+</I>&gt;<i> 
+</I>&gt;<i> If there are people out there you can read/write C code, please feel
+</I>&gt;<i> free to clone <A HREF="git://code.x2go.org/x2goclient.git">git://code.x2go.org/x2goclient.git</A> and cross-read the code.
+</I>&gt;<i> 
+</I>&gt;<i> Some other problems, however, may arise from x2goagent, as well. So you
+</I>&gt;<i> might use <A HREF="git://code.x2go.org/x2goagent.git">git://code.x2go.org/x2goagent.git</A> for lecture as well...
+</I>&gt;<i> 
+</I>&gt;<i> Greets,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>
+Hello all,
+
+last days I spent some time to test the latest version of x2goclient
+(3.99.0) on different platforms:
+
+Server
+
+debian lenny i386, x2goserver-3.0.99-5, nxlibs-3.4.x, x2goagent-3.4.x
+debian squeeze i386, x2goserver-3.0.99-5, nxlibs-3.4.x, x2goagent-3.4.x
+debian squeeze i386, x2goserver-3.99.0.0, nxlibs-3.5.x, x2goagent-3.4.x
+debian squeeze i386, x2goserver-3.99.0.0, nxlibs-3.5.x, x2goagent-3.5.x
+debian squeeze amd64, x2goserver-3.0.99-5, nxlibs-3.4.x, x2goagent-3.4.x
+debian squeeze amd64, x2goserver-3.99.0.0, nxlibs-3.5.x, x2goagent-3.4.x
+debian squeeze amd64, x2goserver-3.99.0.0, nxlibs-3.5.x, x2goagent-3.5.x
+
+Client
+
+debian lenny i386
+debian squeeze i386
+debian squeeze amd64
+windows7-32
+windows7-64
+
+I've tested connections in LAN and over Internet and was able to connect
+and work without any serious issues.
+
+During tests I've found some bugs:
+
+- x2goclient crashing some times if user login unsuccessful (f.e. wrong
+password)
+
+- x2goclient crashing by unexpected output in user console (f.e. there
+is a line in ~/.basrc &quot;cowsay hello&quot; or user shell set to /bin/false )
+
+- under Windows system tray icon does not disappear on client close.
+
+I'll fix this bugs ASAP.
+
+Unfortunately, I can not reproduce some bugs reported of users on this
+mailing list -
+Issues with image packaging,
+Issues with scrolling in firefox
+Issues with delays after pressing Up/Down arrow keys.
+Issues with failed connection on Win7-64
+
+I can imagine, that some of this bugs are system dependent. X2Go uses
+many components - x2go server, client, nxlibs, nx(x2go)agent. Under
+windows x2goclient starts although X-server, SSH server and Pulseaudio
+server. All this components are depended from many system libraries, for
+example libpng, libjpeg, etc.
+
+Unfortunately, we can not to test X2Go with all possible combinations of
+software installed on user computer. We running our tests on fresh
+installed OS with default set of software. And default options of
+x2goclient (on Windows with default X-server and default command line
+options)
+
+If you expecting troubles running X2Go, please try, if it possible, to
+install a &quot;clean&quot; OS, without any additional software (f.e. third-part
+firewalls or antivirals on Windows) If X2Go running on such &quot;clean&quot;
+system, you can compare it with you productive system and find out which
+software blocking functionality of X2Go. As example, one of our
+customers found out, that x2go client on Win7 can not connect to server
+if Avast antivirus is installed.
+
+
+regards,
+alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110727/fea63b92/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110727/fea63b92/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002535.html">[X2go-Dev] [X2go-User] core dev-team testing x2goclient during	next week
+</A></li>
+	<LI>Next message: <A HREF="002566.html">[X2go-Dev] core dev-team testing x2goclient during next week
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2561">[ date ]</a>
+              <a href="thread.html#2561">[ thread ]</a>
+              <a href="subject.html#2561">[ subject ]</a>
+              <a href="author.html#2561">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

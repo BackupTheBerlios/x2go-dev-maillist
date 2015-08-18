@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Client-side printing still not working
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Client-side%20printing%20still%20not%20working&In-Reply-To=%3C4EF08BC7.9090802%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003134.html">
+   <LINK REL="Next"  HREF="003137.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Client-side printing still not working</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Client-side%20printing%20still%20not%20working&In-Reply-To=%3C4EF08BC7.9090802%40stefanbaur.de%3E"
+       TITLE="[X2go-Dev] Client-side printing still not working">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Tue Dec 20 14:21:11 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003134.html">[X2go-Dev] Allow x2go client to be installed with ssh client	only
+</A></li>
+        <LI>Next message: <A HREF="003137.html">[X2go-Dev] SOLUTION: A generic way to print to cheap GDI-only printers (not only with X2Go)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3136">[ date ]</a>
+              <a href="thread.html#3136">[ thread ]</a>
+              <a href="subject.html#3136">[ subject ]</a>
+              <a href="author.html#3136">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi List,
+
+I'm still having issues getting client-side printing to work.
+
+The server is running Debian Squeeze, with the following X2Go- and
+CUPS-related packages installed:
+
+ii cups 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - server
+ii cups-bsd 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - BSD commands
+ii cups-client 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - client 
+programs (SysV)
+ii cups-common 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - common 
+files
+ii cups-driver-gutenprint 5.2.6-1 printer drivers for CUPS
+ii cups-ppdc 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - PPD 
+manipulation utilities
+ii cups-x2go 3.0.0.3-0~x2go1+squeeze~main~54~build1 X2GO printer for CUPS
+ii cupsddk 1.4.4-7+squeeze1 Common UNIX Printing System (transitional 
+package)
+ii cupsys 1.3.8-1+lenny10 Common UNIX Printing System (transitional package)
+ii cupsys-client 1.3.8-1+lenny10 Common UNIX Printing System 
+(transitional package)
+ii ghostscript-cups 8.71~dfsg2-9 The GPL Ghostscript PostScript/PDF 
+interpreter - CUPS filters
+ii hplip-cups 3.10.6-2 HP Linux Printing and Imaging - CUPS Raster 
+driver (hpcups)
+ii libcups2 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - Core library
+ii libcupscgi1 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - CGI 
+library
+ii libcupsdriver1 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - 
+Driver library
+ii libcupsimage2 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - 
+Raster image library
+ii libcupsmime1 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - MIME 
+library
+ii libcupsppdc1 1.4.4-7+squeeze1 Common UNIX Printing System(tm) - PPD 
+manipulation library
+ii libxcompext3 1:3.5.0-1-0~x2go-bpo1+lenny~main~36~build1 NX X11 
+protocol compression extensions library
+ii libxcompshad3 3.5.0-2-0~x2go-bpo1+lenny~main~24~build1 NX shadowing 
+library
+ii x2go-keyring 2011.12.07+squeeze~main~12~build1 GnuPG keys of X2go 
+developers
+ii x2goagent 3.5.0.2-0~x2go1+squeeze~main~49~build1 Special X2go-ized X 
+agent, forked from NX-X11 (NoMachine)
+ii x2goserver 3.0.99.8-0~x2go1+squeeze~main~373~build1 X2go server 
+daemon scripts
+ii x2goserver-extensions 3.0.99.8-0~x2go1+squeeze~main~373~build1 X2go 
+server daemon scripts (extensions)
+ii x2goserver-printing 3.0.99.8-0~x2go1+squeeze~main~373~build1 X2go 
+server daemon scripts (printing)
+
+I decided not to update the two libxcomp* packages, as they don't seem 
+relevant to the issue and trying to update them means temporarily adding 
+heuler sources, which I'd like to avoid.
+
+As you can see, I now have both printing-related packages installed: 
+cups-x2go and x2goserver-printing.
+I tried adding the printer via the CUPS web interface, and also via the 
+commandline (lpadmin -p &quot;Virtual_X2GO_Printer&quot; -v &quot;cups-x2go:/&quot; -D 
+&quot;Virtual X2GO Printer&quot; -L &quot;local workstation printer&quot; -E -m 
+&quot;lsb/usr/cups-x2go/CUPS-X2GO.ppd&quot;), to see if it makes a difference - it 
+does not.
+
+On the client side (Windows 7 Home Premium, German, 32-bit) I installed 
+X2Go Client V. 3.99.0.2.
+I enabled client-side printing in the session settings, and configured 
+the local default printer in the X2Go Client general settings.
+I also tried the other options like having the PDF shown instead, or the 
+&quot;save PDF file&quot; option.
+
+Nothing happens when I try to print (I tried to print a test page from 
+the CUPS web interface as well as a web page from the browser).
+CUPS claims to have processed the job, but it goes nowhere.
+
+I also tried a Windows XP SP3, German, 32-bit client, with the same 
+settings - same result. :-(
+
+Does Client-side printing only work with full desktop sessions? (I only 
+tried it with a single application - the web browser - as I don't have a 
+full DE installed on that server.)
+
+What do I have to do to get this working?
+
+Kind Regards,
+Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003134.html">[X2go-Dev] Allow x2go client to be installed with ssh client	only
+</A></li>
+	<LI>Next message: <A HREF="003137.html">[X2go-Dev] SOLUTION: A generic way to print to cheap GDI-only printers (not only with X2Go)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3136">[ date ]</a>
+              <a href="thread.html#3136">[ thread ]</a>
+              <a href="subject.html#3136">[ subject ]</a>
+              <a href="author.html#3136">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

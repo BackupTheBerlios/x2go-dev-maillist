@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] wayland remote desktop comment by
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20wayland%20remote%20desktop%20comment%20by&In-Reply-To=%3CAANLkTimWm1twQ9PZmqL7NVUtkOFW_N%3DEo%2Bpy4gA6JHgm%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001680.html">
+   <LINK REL="Next"  HREF="001685.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] wayland remote desktop comment by</H1>
+    <B>brian mullan</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20wayland%20remote%20desktop%20comment%20by&In-Reply-To=%3CAANLkTimWm1twQ9PZmqL7NVUtkOFW_N%3DEo%2Bpy4gA6JHgm%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] wayland remote desktop comment by">bmullan.mail at gmail.com
+       </A><BR>
+    <I>Thu Feb  3 15:19:37 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001680.html">[X2go-dev] re Project Management
+</A></li>
+        <LI>Next message: <A HREF="001685.html">[X2go-dev] wayland remote desktop comment by
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1682">[ date ]</a>
+              <a href="thread.html#1682">[ thread ]</a>
+              <a href="subject.html#1682">[ subject ]</a>
+              <a href="author.html#1682">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Per Wayland FAQ: Is Wayland network transparent / does it support remote
+rendering? &lt;<A HREF="http://wayland.freedesktop.org/faq.html#heading_toc_j_8">http://wayland.freedesktop.org/faq.html#heading_toc_j_8</A>&gt;
+
+No, that is outside the scope of Wayland. To support remote rendering you
+need to define a rendering API, which is something I've been very careful to
+avoid doing. The reason Wayland is so simple and feasible at all is that I'm
+sidestepping this big task and pushing it to the clients. It's an
+interesting challenge, a very big task and it's hard to get right, but
+essentially orthogonal to what Wayland tries to acheive.
+
+This doesn't mean that remote rendering won't be possible with Wayland, it
+just means that you will have to put a remote rendering server on top of
+Wayland. One such server could be the X.org server, but other options
+include an RDP server, a VNC server or somebody could even invent their own
+new remote rendering model. Which is a feature when you think about it;
+layering X.org on top of Wayland has very little overhead, but the other
+types of remote rendering servers no longer requires X.org, and
+experimenting with new protocols is easier.
+
+It is also possible to put a remoting protocol into a wayland compositor,
+either a standalone remoting compositor or as a part of a full desktop
+compositor. This will let us forward native Wayland applications. The
+standalone compositor could let you log into a server and run an application
+back on your desktop. Building the fowarding into the desktop compositor,
+could let you export or share a window on the fly with a remote wayland
+compositor, for example a friends desktop.
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110203/262647c8/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110203/262647c8/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001680.html">[X2go-dev] re Project Management
+</A></li>
+	<LI>Next message: <A HREF="001685.html">[X2go-dev] wayland remote desktop comment by
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1682">[ date ]</a>
+              <a href="thread.html#1682">[ thread ]</a>
+              <a href="subject.html#1682">[ subject ]</a>
+              <a href="author.html#1682">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

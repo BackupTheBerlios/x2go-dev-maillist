@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Go media player for redirected video [was Re:	EyeOS]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20media%20player%20for%20redirected%20video%20%5Bwas%20Re%3A%0A%09EyeOS%5D&In-Reply-To=%3C4D646C53.4080501%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001799.html">
+   <LINK REL="Next"  HREF="001801.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Go media player for redirected video [was Re:	EyeOS]</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20media%20player%20for%20redirected%20video%20%5Bwas%20Re%3A%0A%09EyeOS%5D&In-Reply-To=%3C4D646C53.4080501%40verizon.net%3E"
+       TITLE="[X2go-dev] X2Go media player for redirected video [was Re:	EyeOS]">greno at verizon.net
+       </A><BR>
+    <I>Wed Feb 23 03:09:23 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001799.html">[X2go-dev] X2Go media player for redirected video [was Re: EyeOS]
+</A></li>
+        <LI>Next message: <A HREF="001801.html">[X2go-dev] X2Go media player for redirected video [was Re: EyeOS]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1800">[ date ]</a>
+              <a href="thread.html#1800">[ thread ]</a>
+              <a href="subject.html#1800">[ subject ]</a>
+              <a href="author.html#1800">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 02/22/2011 08:55 PM, John A. Sullivan III wrote:
+&gt;<i> On Tue, 2011-02-22 at 18:42 -0500, Gerry Reno wrote:
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i>   
+</I>&gt;&gt;<i> I think they are just giving you a choice of viewing the video as
+</I>&gt;&gt;<i> embedded or non-embedded.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Either way it's still playing locally.
+</I>&gt;&gt;<i>     
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> That really got me to thinking this evening as video is still a big
+</I>&gt;<i> problem for us.  Every time we present to a school, we hear how
+</I>&gt;<i> important it is to play videos.  We are potentially looking at a large
+</I>&gt;<i> PR firm but they are big multimedia users.  So, I got to thinking . . . 
+</I>&gt;<i>
+</I>&gt;<i> Could we take a page from the X2Go client printing to do something
+</I>&gt;<i> similar for video? The X2Go printer takes the pdf file and sends it via
+</I>&gt;<i> sshfs to the local system which then can use the associated PDF reader
+</I>&gt;<i> to open it.  What if X2GoServer installed a &quot;media player&quot; which did
+</I>&gt;<i> nothing more than take the video stream and send it to the physical
+</I>&gt;<i> computer to be played with whatever player the local system has
+</I>&gt;<i> configured? Doing that with a regular file should be trivial.  I'm not
+</I>&gt;<i> sure how one does that with a streaming video but I suppose it would be
+</I>&gt;<i> similar to spooling a print job to a file.  We could popup a dialog box
+</I>&gt;<i> (perhaps with a progress indicator) saying we are redirecting the video
+</I>&gt;<i> to the local computer.
+</I>&gt;<i>
+</I>&gt;<i> The X2Go Client would need another checkbox to activate redirection of
+</I>&gt;<i> video to local computer.  If checked, the client would activate a script
+</I>&gt;<i> on the X2Go server via ssh which would backup the existing mime-type
+</I>&gt;<i> associations and edit the association files to make the X2Go media
+</I>&gt;<i> player (spooler might be a better term) the default player for the
+</I>&gt;<i> appropriate mime-types for the specific user.  When a session is
+</I>&gt;<i> suspended or terminated, the original mime-types associations are
+</I>&gt;<i> restored.
+</I>&gt;<i>
+</I>&gt;<i> Browsers might be a bit of a challenge if they are not using default
+</I>&gt;<i> applications for video but we could always edit the rdf files for
+</I>&gt;<i> Firefox (not sure what Chrome uses).
+</I>&gt;<i>
+</I>&gt;<i> I have a pretty good handle on how mime-type associations are set for
+</I>&gt;<i> KDE, Gnome, and Trinity as well as Firefox and would be willing to
+</I>&gt;<i> determine what those edits need to be if someone else could do the X2Go
+</I>&gt;<i> Client code changes, the X2Go Server script to implement the edits, and
+</I>&gt;<i> the X2Go media spooler itself.  Does this sound possible? Thanks - John
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+We just tell clients that if they want really good video performance
+then their users will need to use a local media player on their client
+machine to play video.
+
+There's really no good solution to be able to do this from a media
+player on the remote desktop that delivers any type of acceptable
+performance.
+
+Maybe when the entire world has 1Gbps internet but otherwise just
+configure things for a local media player.
+
+And rather than trying to pass the actual content around it's just seems
+easier to post the content on a webserver that the users can access from
+their client machines.
+
+
+
+Regards,
+Gerry
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001799.html">[X2go-dev] X2Go media player for redirected video [was Re: EyeOS]
+</A></li>
+	<LI>Next message: <A HREF="001801.html">[X2go-dev] X2Go media player for redirected video [was Re: EyeOS]
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1800">[ date ]</a>
+              <a href="thread.html#1800">[ thread ]</a>
+              <a href="subject.html#1800">[ subject ]</a>
+              <a href="author.html#1800">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

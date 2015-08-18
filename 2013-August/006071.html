@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#285: Bug#285: keyboard layout selected in x2go	client isn't applied to the session
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23285%3A%20Bug%23285%3A%20keyboard%20layout%20selected%20in%20x2go%0A%09client%20isn%27t%20applied%20to%20the%20session&In-Reply-To=%3C20130805121656.69992m0bdq7s0mu0%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006068.html">
+   <LINK REL="Next"  HREF="006072.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#285: Bug#285: keyboard layout selected in x2go	client isn't applied to the session</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23285%3A%20Bug%23285%3A%20keyboard%20layout%20selected%20in%20x2go%0A%09client%20isn%27t%20applied%20to%20the%20session&In-Reply-To=%3C20130805121656.69992m0bdq7s0mu0%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#285: Bug#285: keyboard layout selected in x2go	client isn't applied to the session">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Aug  5 12:16:56 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006068.html">[X2Go-Dev] Bug#285: keyboard layout selected in x2go client isn't	applied to the session
+</A></li>
+        <LI>Next message: <A HREF="006072.html">[X2Go-Dev] Processed: Re: Bug#285: keyboard layout selected in x2go client isn't applied to the session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6071">[ date ]</a>
+              <a href="thread.html#6071">[ thread ]</a>
+              <a href="subject.html#6071">[ subject ]</a>
+              <a href="author.html#6071">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Control: tag -1 confirmed
+
+Hi Maciej,
+
+I have taken a look at this issue this morning and I think in some  
+parts you are right, in some parts you are wrong.
+
+On Mo 05 Aug 2013 01:45:45 CEST &quot;Maciej S. Szmigiero&quot; wrote:
+
+&gt;<i> Package: x2goserver
+</I>&gt;<i> Version: 4.0.1.3
+</I>&gt;<i>
+</I>&gt;<i> It seems that the keyboard layout selected in x2go client isn't  
+</I>&gt;<i> applied to the session.
+</I>&gt;<i>
+</I>&gt;<i> I've tracked the issue to &quot;keyboard&quot; blocking directory being  
+</I>&gt;<i> created by x2gostartagent script:
+</I>&gt;<i> if [ &quot;$X2GO_SET_KBD&quot; == &quot;0&quot; ] || [ &quot;$X2GO_KBD_TYPE&quot; != &quot;auto&quot; ]; then
+</I>&gt;<i> 	$X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;info&quot; &quot;blocking creation of agent's  
+</I>&gt;<i> keyboard file ${SESSION_DIR}/keyboard as requested by session  
+</I>&gt;<i> startup command&quot;
+</I>&gt;<i> 	mkdir -p ${SESSION_DIR}/keyboard
+</I>&gt;<i> fi
+</I>&gt;<i>
+</I>&gt;<i> X2GO_KBD_TYPE contains the actual keyboard type, so its not &quot;auto&quot;  
+</I>&gt;<i> and the blocking directory gets created.
+</I>&gt;<i> I've changed it to &quot;[ &quot;$X2GO_KBD_TYPE&quot; == &quot;auto&quot; ]&quot; and the keyboard  
+</I>&gt;<i> layouts gets applied on session startup.
+</I>
+x2gostartagent: here I do not see an issue. Not that in X2Go Server  
+there are three ways to set up your keyboard:
+
+   1) no setup at all (setxkb=false in sessions file)
+   2) setup a specific setup (e.g. type=pc105/us, layout=us)
+   3) automatic setup (-&gt; type=auto, layout=)
+
+The server-side script ,,x2gosetkeyboard'' is only used for 3).
+
+The keyboard setup for 2) is managed from the client side by issuing  
+setxkbmap commands via the open SSH channel.
+
+On x2gostartagent, everything (after testing with PyHoca-GUI and X2Go  
+Client) works as expected.
+
+&gt;<i> There is also similar code in x2goresume-session:
+</I>&gt;<i> # set client-side keyboard model, type, variant, etc.
+</I>&gt;<i> if [ &quot;$X2GO_SET_KBD&quot; != &quot;0&quot; ] &amp;&amp; [ &quot;$X2GO_KBD_TYPE&quot; == &quot;auto&quot; ]; then
+</I>&gt;<i>
+</I>&gt;<i> Here it should probably be &quot;[ &quot;$X2GO_KBD_TYPE&quot; != &quot;null/null&quot; ]&quot;, as  
+</I>&gt;<i> few lines earlier the script
+</I>&gt;<i> will change X2GO_KBD_TYPE to this value when it is set to &quot;auto&quot; or  
+</I>&gt;<i> when X2GO_SET_KBD is zero.
+</I>
+For x2goresume-session, however, you dug out a minor issue. This issue  
+has been fixed now, see the automatic follow-up mail which will point  
+you to the code change in X2Go Git.
+
+Thanks for contributing to X2Go,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130805/a35d8191/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130805/a35d8191/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006068.html">[X2Go-Dev] Bug#285: keyboard layout selected in x2go client isn't	applied to the session
+</A></li>
+	<LI>Next message: <A HREF="006072.html">[X2Go-Dev] Processed: Re: Bug#285: keyboard layout selected in x2go client isn't applied to the session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6071">[ date ]</a>
+              <a href="thread.html#6071">[ thread ]</a>
+              <a href="subject.html#6071">[ subject ]</a>
+              <a href="author.html#6071">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

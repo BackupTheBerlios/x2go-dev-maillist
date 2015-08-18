@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2goclient hangs on login
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20hangs%20on%20login&In-Reply-To=%3C4AE08E13.4060202%40gmx.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000137.html">
+   <LINK REL="Next"  HREF="000139.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2goclient hangs on login</H1>
+    <B>Alternativende</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2goclient%20hangs%20on%20login&In-Reply-To=%3C4AE08E13.4060202%40gmx.de%3E"
+       TITLE="[X2go-dev] x2goclient hangs on login">sauron99 at gmx.de
+       </A><BR>
+    <I>Thu Oct 22 18:53:39 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000137.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+        <LI>Next message: <A HREF="000139.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#138">[ date ]</a>
+              <a href="thread.html#138">[ thread ]</a>
+              <a href="subject.html#138">[ subject ]</a>
+              <a href="author.html#138">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+so I have some new information about all this. I have noticed that my 
+/etc/sudoers file wasn&#180;t correct. Beside the X2GO entry there were no 
+other entries in it. So I have copied them from an other Machine. The 
+annoying E- Mail terror stopped now. But the Problem persists... Any 
+idea so far where to look else? I have no idea which files could be 
+empty or wrong to and which I need for a working X2GO.
+
+This is what I have so far.
+
+/etc/sudoers = Correct so far.
+My user is in the x2gousers Group.
+LDAP is running but floods the syslog with this strange messages.
+X2goclient hangs and leaves some processes even after killing it manually.
+
+Many Greetings!
+
+
+
+Heinz-M. Graesing schrieb:
+&gt;&gt;<i> -----Urspr&#252;ngliche Nachricht-----
+</I>&gt;&gt;<i> Von: &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Sauron99 at gmx.de</A>&gt;
+</I>&gt;&gt;<i> Gesendet: 22.10.09 16:59:59
+</I>&gt;&gt;<i> An: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+</I>&gt;&gt;<i> Betreff: Re: [X2go-dev] x2goclient hangs on login
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> GSN-EDU.GSN2 : Okt  9 13:28:58 : root : user NOT in sudoers ; TTY=unknown ; PWD=/ ; USER=root ; COMMAND=/usr/bin/x2gopgwrapper listsessionsroot GSN-EDU
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> So what do I missed??
+</I>&gt;&gt;<i>     
+</I>&gt;<i>
+</I>&gt;<i> Please make sure - on server side - that the user who should be able to log in is part of the posix group x2gousers. You also should make sure, that you have an entry inside your /etc/sudoers file looking like this:
+</I>&gt;<i>
+</I>&gt;<i> %x2gousers ALL=(ALL) NOPASSWD: /usr/bin/x2gopgwrapper
+</I>&gt;<i>
+</I>&gt;<i> If you get an error running the command /usr/bin/x2gopgwrapper as the use you wan't to login, something obove is wrong.
+</I>&gt;<i>
+</I>&gt;<i> Greetings,
+</I>&gt;<i>
+</I>&gt;<i> Heinz
+</I>&gt;<i> _______________________________________________________________
+</I>&gt;<i> Neu: WEB.DE DSL bis 50.000 kBit/s und 200,- Euro Startguthaben!
+</I>&gt;<i> <A HREF="http://produkte.web.de/go/02/">http://produkte.web.de/go/02/</A>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000137.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+	<LI>Next message: <A HREF="000139.html">[X2go-dev] x2goclient hangs on login
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#138">[ date ]</a>
+              <a href="thread.html#138">[ thread ]</a>
+              <a href="subject.html#138">[ subject ]</a>
+              <a href="author.html#138">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

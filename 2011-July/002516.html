@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] 3.99 Testing - Very serious issues with image packing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Very%20serious%20issues%20with%20image%20packing&In-Reply-To=%3C1311279273.8194.133.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002508.html">
+   <LINK REL="Next"  HREF="002517.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] 3.99 Testing - Very serious issues with image packing</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%203.99%20Testing%20-%20Very%20serious%20issues%20with%20image%20packing&In-Reply-To=%3C1311279273.8194.133.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] 3.99 Testing - Very serious issues with image packing">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu Jul 21 22:14:33 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002508.html">[X2go-Dev] [X2go-User] x2goclient version bumping -&gt; 3.99.0.0
+</A></li>
+        <LI>Next message: <A HREF="002517.html">[X2go-Dev] 3.99 Testing - Very serious issues with image packing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2516">[ date ]</a>
+              <a href="thread.html#2516">[ thread ]</a>
+              <a href="subject.html#2516">[ subject ]</a>
+              <a href="author.html#2516">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, all.  This seems to be the most serious and potentially
+showstopping issue I've found.  It is a Windows only issue.  It does not
+occur in our Linux client testing.
+
+Something is seriously wrong with image packing.  I'm guessing this has
+something to do with NXAgent 3.5 but I'm really not sure.  It first
+appeared when I install Pyhoca which I am assume pulled in the new
+agent.  On the other hand, reverting to 3.0.1-4 did not fix the problem
+which has me very suspicious.  I am writing from Linux right now but I
+will test that again later.  If it is not the nxagent or the 3.99
+client, then we'll need to find whatever it was that Pyhoca pulled in.
+I did uninstall ghostscript and vcxsrv after uninstalling Pyhoca.
+
+I can confirm that the problem persists even after backleveling to
+3.0.1-4 so I'm not sure that this is specifically 3.99 but it is a
+crippling problem.
+
+On to the actual problem.  We normally use 16m-png-jpeg packing which
+seems to give us the fastest performance and crispest looking screen on
+our WAN only environment.  I'm honestly not sure what this setting
+controls.  I assume it means we are compressing png and jpeg images as
+opposed to the default 16m-jpeg which then only compresses jpegs? I
+don't know what the 16m is - is that the size of the cache?
+
+When we use that from a Windows client now, all the images are
+thoroughly corrupted and unusable.  This was noticeable in the desktop
+icons and in the KDE splash screen.  We changed the packing to 16m-jpeg
+and thought the problem went away because the splash screen and desktop
+icons appeared properly.  Our enthusiasm was short-lived.  All jpegs
+seems to be corrupt.  The only way we could get a non-corrupt screen was
+to use nopack but that made for lousy performance especially when
+scrolling a graphics intensive page such as www.wsj.com or www.cnn.com.
+
+Interestingly, even after upgrading, the client details screen says we
+are running NXPROXY - version 3.4.0.
+
+I don't know what in the Pyhoca installation caused this but completely
+removing Pyhoca and previous x2goclient installations from both file
+system and registry and installing 3.99 has not fixed the problem.
+Thanks - John
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002508.html">[X2go-Dev] [X2go-User] x2goclient version bumping -&gt; 3.99.0.0
+</A></li>
+	<LI>Next message: <A HREF="002517.html">[X2go-Dev] 3.99 Testing - Very serious issues with image packing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2516">[ date ]</a>
+              <a href="thread.html#2516">[ thread ]</a>
+              <a href="subject.html#2516">[ subject ]</a>
+              <a href="author.html#2516">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

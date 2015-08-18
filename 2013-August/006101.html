@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#287: Bug#287: x2goserver allows to connect to ALL X	server sessions by default
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23287%3A%20Bug%23287%3A%20x2goserver%20allows%20to%20connect%20to%20ALL%20X%0A%09server%20sessions%20by%20default&In-Reply-To=%3C20130817204255.119582nheui8tcfj%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="006099.html">
+   <LINK REL="Next"  HREF="006102.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#287: Bug#287: x2goserver allows to connect to ALL X	server sessions by default</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23287%3A%20Bug%23287%3A%20x2goserver%20allows%20to%20connect%20to%20ALL%20X%0A%09server%20sessions%20by%20default&In-Reply-To=%3C20130817204255.119582nheui8tcfj%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#287: Bug#287: x2goserver allows to connect to ALL X	server sessions by default">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Sat Aug 17 20:42:55 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="006099.html">[X2Go-Dev] Bug#287: Fwd: Bug#287: x2goserver allows to connect to	ALL X server sessions by default
+</A></li>
+        <LI>Next message: <A HREF="006102.html">[X2Go-Dev] Processed (with 1 errors): Re: Bug#287: x2goserver allows to connect to ALL X server sessions by default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6101">[ date ]</a>
+              <a href="thread.html#6101">[ thread ]</a>
+              <a href="subject.html#6101">[ subject ]</a>
+              <a href="author.html#6101">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>title #287 Linux Mint desktops configured too insecurely for multi-user mode
+tag #287 confirmed
+tag #287 wontfix
+close #287
+thanks
+
+Hi all,
+
+On Sa 17 Aug 2013 17:35:24 CEST Stefan Baur wrote:
+
+&gt;<i> Actually, this is not an x2go issue, this is a linux mint issue : by
+</I>&gt;<i> default, there is a &quot;xhost +&quot; command launched at session startup for all
+</I>&gt;<i> users.
+</I>&gt;<i>
+</I>&gt;<i> If you type &quot;xhost - &quot;, then you should see the normal behavior again :
+</I>&gt;<i> userB will get a &quot;no desktop found&quot; message if he try to connect to the x2go
+</I>&gt;<i> host.
+</I>&gt;<i>
+</I>&gt;<i> So, the workaround is to remove the &quot;xhost +&quot; command in the Control Panel &gt;
+</I>&gt;<i> Startup Applications for each user,
+</I>&gt;<i>
+</I>&gt;<i> or completely remove the /etc/xdg/autostart/mint-xhost-plus.desktop
+</I>&gt;<i> (but this could come back if the package ubuntu-system-adjustments is
+</I>&gt;<i> updated)
+</I>&gt;<i>
+</I>&gt;<i> or change this file to:
+</I>&gt;<i>
+</I>&gt;<i> [Desktop Entry]
+</I>&gt;<i> Encoding=UTF-8
+</I>&gt;<i> Version=1.0
+</I>&gt;<i> Name=Xhost +
+</I>&gt;<i> Exec=xhost +
+</I>&gt;<i> Terminal=false
+</I>&gt;<i> Type=Application
+</I>&gt;<i> StartupNotify=false
+</I>&gt;<i> Terminal=false
+</I>&gt;<i> X-MATE-Autostart-enabled=false
+</I>&gt;<i> Hidden=true
+</I>
+We (David and I) just figured out the same... (what a race  
+condition...). Thanks! What a security leakage if people start using  
+Linux Mint in multi-user operation mode (like with X2Go or locally or  
+with LTSP).
+
+With xhost + for every user you can launch applications on other  
+people's desktops and also read out their clipboards' contents.
+
+/me rarely has to puke at other people's work, but this time... Well, yes.
+
+&gt;<i> note to x2go packages maintainers:
+</I>&gt;<i> Maybe this should be an option to check/disable when the x2goserver package
+</I>&gt;<i> is installed?
+</I>
+No! We won't work around such grave issues in distributions or in  
+other packages. This needs to be immediately fixed in Linux Mint  
+upstream.
+
+&gt;<i> Or maybe a warning should be issued if &quot;xhost&quot; is set to + when a user
+</I>&gt;<i> connect?
+</I>
+Nope! In default setups no other distro evokes xhost + on session  
+startup. This is just insane!!! So we ignore this issue in X2Go  
+upstream completely.
+
+Stay away from Linux Mint with X2Go (or actually at all) till this has  
+been fixed in Mint.
+
+light+love,
+Mike
+
+PS: quote me freely if needed...
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, herweg 7, 24357 fleckeby
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130817/9519a5ff/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130817/9519a5ff/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="006099.html">[X2Go-Dev] Bug#287: Fwd: Bug#287: x2goserver allows to connect to	ALL X server sessions by default
+</A></li>
+	<LI>Next message: <A HREF="006102.html">[X2Go-Dev] Processed (with 1 errors): Re: Bug#287: x2goserver allows to connect to ALL X server sessions by default
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#6101">[ date ]</a>
+              <a href="thread.html#6101">[ thread ]</a>
+              <a href="subject.html#6101">[ subject ]</a>
+              <a href="author.html#6101">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,183 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] [PATCH] Fix compilation of nxcomp on Mac OS X 10.5.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Fix%20compilation%20of%20nxcomp%20on%20Mac%20OS%20X%2010.5.&In-Reply-To=%3C20120229160100.10309tvhdwasew18%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003643.html">
+   <LINK REL="Next"  HREF="003664.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] [PATCH] Fix compilation of nxcomp on Mac OS X 10.5.</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20%5BPATCH%5D%20Fix%20compilation%20of%20nxcomp%20on%20Mac%20OS%20X%2010.5.&In-Reply-To=%3C20120229160100.10309tvhdwasew18%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] [PATCH] Fix compilation of nxcomp on Mac OS X 10.5.">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Feb 29 16:01:00 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003643.html">[X2Go-Dev] [PATCH] Fix compilation of nxcomp on Mac OS X 10.5.
+</A></li>
+        <LI>Next message: <A HREF="003664.html">[X2Go-Dev] [PATCH] Fix compilation of nxcomp on Mac OS X 10.5.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3663">[ date ]</a>
+              <a href="thread.html#3663">[ thread ]</a>
+              <a href="subject.html#3663">[ subject ]</a>
+              <a href="author.html#3663">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mihai,
+
+On So 26 Feb 2012 09:18:53 CET Mihai Moldovan wrote:
+
+&gt;<i> The Mac OS X 10.5 SDK requires the second argument of FD_ISSET to be
+</I>&gt;<i> writeable, although it does only access the data. Given that we have a
+</I>&gt;<i> const pointer for a const struct, copy and pass that.
+</I>&gt;<i>
+</I>&gt;<i> Note that this is merely a workaround for OS X 10.5, as 10.6 and later
+</I>&gt;<i> define the second argument of FD_ISSET as const struct const *foo, too.
+</I>&gt;<i>
+</I>&gt;<i> It it safe, as data is accessed read-only by FD_ISSET, even on 10.5.
+</I>&gt;<i>
+</I>&gt;<i> Signed-off-by: Mihai Moldovan &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">ionic at ionic.de</A>&gt;
+</I>&gt;<i> ---
+</I>&gt;<i>  nxcomp/Agent.h |   28 ++++++++++++++++++++--------
+</I>&gt;<i>  1 files changed, 20 insertions(+), 8 deletions(-)
+</I>&gt;<i>
+</I>&gt;<i> diff --git a/nxcomp/Agent.h b/nxcomp/Agent.h
+</I>&gt;<i> index fac5acd..ded344d 100644
+</I>&gt;<i> --- a/nxcomp/Agent.h
+</I>&gt;<i> +++ b/nxcomp/Agent.h
+</I>&gt;<i> @@ -149,30 +149,38 @@ class Agent
+</I>&gt;<i>
+</I>&gt;<i>    int remoteCanRead(const fd_set * const readSet)
+</I>&gt;<i>    {
+</I>&gt;<i> +    // OS X 10.5 requires the second argument to be non-const, so copy
+</I>&gt;<i> readSet.
+</I>&gt;<i> +    // It's safe though, as FD_ISSET does not operate on it.
+</I>&gt;<i> +    fd_set readWorkSet = *readSet;
+</I>&gt;<i> +
+</I>&gt;<i>      #if defined(TEST) || defined(INFO)
+</I>&gt;<i>      *logofs &lt;&lt; &quot;Agent: remoteCanRead() is &quot; &lt;&lt;
+</I>&gt;<i> -               (FD_ISSET(remoteFd_, readSet) &amp;&amp; transport_ -&gt;
+</I>&gt;<i> dequeuable() != 0)
+</I>&gt;<i> -            &lt;&lt; &quot; with FD_ISSET() &quot; &lt;&lt; (int) FD_ISSET(remoteFd_, readSet)
+</I>&gt;<i> +               (FD_ISSET(remoteFd_, &amp;readWorkSet) &amp;&amp; transport_ -&gt;
+</I>&gt;<i> dequeuable() != 0)
+</I>&gt;<i> +            &lt;&lt; &quot; with FD_ISSET() &quot; &lt;&lt; (int) FD_ISSET(remoteFd_,
+</I>&gt;<i> &amp;readWorkSet)
+</I>&gt;<i>              &lt;&lt; &quot; and dequeuable &quot; &lt;&lt; transport_ -&gt; dequeuable()
+</I>&gt;<i>              &lt;&lt; &quot;.n&quot; &lt;&lt; logofs_flush;
+</I>&gt;<i>      #endif
+</I>&gt;<i>
+</I>&gt;<i> -    return (FD_ISSET(remoteFd_, readSet) &amp;&amp;
+</I>&gt;<i> +    return (FD_ISSET(remoteFd_, &amp;readWorkSet) &amp;&amp;
+</I>&gt;<i>                  transport_ -&gt; dequeuable() != 0);
+</I>&gt;<i>    }
+</I>&gt;<i>
+</I>&gt;<i>    int remoteCanWrite(const fd_set * const writeSet)
+</I>&gt;<i>    {
+</I>&gt;<i> +    // OS X 10.5 requires the second argument to be non-const, so copy
+</I>&gt;<i> writeSet.
+</I>&gt;<i> +    // It's safe though, as FD_ISSET does not operate on it.
+</I>&gt;<i> +    fd_set writeWorkSet = *writeSet;
+</I>&gt;<i> +
+</I>&gt;<i>      #if defined(TEST) || defined(INFO)
+</I>&gt;<i>      *logofs &lt;&lt; &quot;Agent: remoteCanWrite() is &quot; &lt;&lt;
+</I>&gt;<i> -               (FD_ISSET(remoteFd_, writeSet) &amp;&amp; transport_ -&gt;
+</I>&gt;<i> +               (FD_ISSET(remoteFd_, &amp;writeWorkSet) &amp;&amp; transport_ -&gt;
+</I>&gt;<i>                 queuable() != 0 &amp;&amp; canRead_ == 1) &lt;&lt; &quot; with FD_ISSET() &quot;
+</I>&gt;<i> -            &lt;&lt; (int) FD_ISSET(remoteFd_, writeSet) &lt;&lt; &quot; queueable &quot;
+</I>&gt;<i> +            &lt;&lt; (int) FD_ISSET(remoteFd_, &amp;writeWorkSet) &lt;&lt; &quot; queueable &quot;
+</I>&gt;<i>              &lt;&lt; transport_ -&gt; queuable() &lt;&lt; &quot; channel can read &quot;
+</I>&gt;<i>              &lt;&lt; canRead_ &lt;&lt; &quot;.n&quot; &lt;&lt; logofs_flush;
+</I>&gt;<i>      #endif
+</I>&gt;<i>
+</I>&gt;<i> -    return (FD_ISSET(remoteFd_, writeSet) &amp;&amp;
+</I>&gt;<i> +    return (FD_ISSET(remoteFd_, &amp;writeWorkSet) &amp;&amp;
+</I>&gt;<i>                  transport_ -&gt; queuable() != 0 &amp;&amp;
+</I>&gt;<i>                      canRead_ == 1);
+</I>&gt;<i>    }
+</I>&gt;<i> @@ -203,13 +211,17 @@ class Agent
+</I>&gt;<i>
+</I>&gt;<i>    int proxyCanRead(const fd_set * const readSet)
+</I>&gt;<i>    {
+</I>&gt;<i> +    // OS X 10.5 requires the second argument to be non-const, so copy
+</I>&gt;<i> readSet.
+</I>&gt;<i> +    // It's safe though, as FD_ISSET does not operate on it.
+</I>&gt;<i> +    fd_set readWorkSet = *readSet;
+</I>&gt;<i> +
+</I>&gt;<i>      #if defined(TEST) || defined(INFO)
+</I>&gt;<i>      *logofs &lt;&lt; &quot;Agent: proxyCanRead() is &quot;
+</I>&gt;<i> -            &lt;&lt; ((int) FD_ISSET(proxy -&gt; getFd(), readSet)
+</I>&gt;<i> +            &lt;&lt; ((int) FD_ISSET(proxy -&gt; getFd(), &amp;readWorkSet)
+</I>&gt;<i>              &lt;&lt; &quot;.n&quot; &lt;&lt; logofs_flush;
+</I>&gt;<i>      #endif
+</I>&gt;<i>
+</I>&gt;<i> -    return (FD_ISSET(proxy -&gt; getFd(), readSet));
+</I>&gt;<i> +    return (FD_ISSET(proxy -&gt; getFd(), &amp;readWorkSet));
+</I>&gt;<i>    }
+</I>&gt;<i>
+</I>&gt;<i>    int enqueueData(const char *data, const int size) const
+</I>&gt;<i> --
+</I>&gt;<i> 1.7.9
+</I>
+patch applied...
+<A HREF="http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=655173ff215dde1a167193eafe29bfc955a19561">http://code.x2go.org/gitweb?p=nx-libs.git;a=commitdiff;h=655173ff215dde1a167193eafe29bfc955a19561</A>
+
+I had to tweak the patch by hand so it could get applied fully. Not  
+sure what went wrong, so I just place a reminder here to make sure  
+patches apply against latest Git code well enough.
+
+Mike
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120229/02c18bd6/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120229/02c18bd6/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003643.html">[X2Go-Dev] [PATCH] Fix compilation of nxcomp on Mac OS X 10.5.
+</A></li>
+	<LI>Next message: <A HREF="003664.html">[X2Go-Dev] [PATCH] Fix compilation of nxcomp on Mac OS X 10.5.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3663">[ date ]</a>
+              <a href="thread.html#3663">[ thread ]</a>
+              <a href="subject.html#3663">[ subject ]</a>
+              <a href="author.html#3663">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

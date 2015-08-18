@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2go for Fedora packaging issues
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20for%20Fedora%20packaging%20issues&In-Reply-To=%3C50C8FDB7.2070000%40cora.nwra.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004697.html">
+   <LINK REL="Next"  HREF="004742.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2go for Fedora packaging issues</H1>
+    <B>Orion Poplawski</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2go%20for%20Fedora%20packaging%20issues&In-Reply-To=%3C50C8FDB7.2070000%40cora.nwra.com%3E"
+       TITLE="[X2Go-Dev] x2go for Fedora packaging issues">orion at cora.nwra.com
+       </A><BR>
+    <I>Wed Dec 12 22:57:11 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004697.html">[X2Go-Dev] x2go for Fedora packaging issues
+</A></li>
+        <LI>Next message: <A HREF="004742.html">[X2Go-Dev] x2go for Fedora packaging issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4738">[ date ]</a>
+              <a href="thread.html#4738">[ thread ]</a>
+              <a href="subject.html#4738">[ subject ]</a>
+              <a href="author.html#4738">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 12/12/2012 04:17 AM, Mike Gabriel wrote:
+&gt;<i> Hi Orion,
+</I>&gt;<i>
+</I>&gt;<i> On Mi 12 Dez 2012 00:11:02 CET Orion Poplawski wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> I'm looking at packaging x2go for Fedora and am running into a few issues
+</I>&gt;&gt;<i> which I'm hoping to get resolved.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> nx-libs:
+</I>&gt;&gt;<i> - bin/Makefile doesn't support DESTDIR.  The attached  nx-libs-destdir.patch
+</I>&gt;&gt;<i> partially addresses that.
+</I>&gt;&gt;<i> - The various nx*/configure.in files do not honor passed in compiler flags.
+</I>&gt;&gt;<i> The attached nx-libs-optflags.patch fixes that.  Note also though that
+</I>&gt;&gt;<i> CFLAGS is used in some and CPPFLAGS in others.
+</I>&gt;&gt;<i> - Is there a preferred way to install into /usr rather than /usr/local?  I
+</I>&gt;&gt;<i> ended up doing:
+</I>&gt;&gt;<i>   sed -i -e 's,/usr/local,/usr,' nx-X11/config/cf/site.def
+</I>&gt;&gt;<i> - It would be very nice if you could support installing into /usr/lib64.  I
+</I>&gt;&gt;<i> had to do the following:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   sed -i -e 's,/lib/nx,/%{_lib}/nx,' nx-X11/config/cf/X11.tmpl
+</I>&gt;&gt;<i>   sed -i -e 's,/usr/lib/,/usr/%{_lib}/,' bin/*
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   make install ... USRLIBDIR=/usr/lib64/nx SHLIBDIR=/usr/lib64/nx
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>   # Make sure x2goagent is linked relative and on 64-bit
+</I>&gt;&gt;<i>   rm -rf %{buildroot}%{_prefix}/lib/x2go
+</I>&gt;&gt;<i>   mkdir -p %{buildroot}%{_libdir}/x2go/bin
+</I>&gt;&gt;<i>   ln -sf ../../nx/bin/nxagent %{buildroot}%{_libdir}/x2go/bin/x2goagent
+</I>&gt;<i>
+</I>&gt;<i> Can you break this down to a patch against the current nx-libs.git on
+</I>&gt;<i> <A HREF="http://git.x2go.org?">http://git.x2go.org?</A> If yes, then we will apply that patch (after testing it).
+</I>&gt;<i>
+</I>&gt;<i> Please note that Jan Engelhard already contributed a patch that addresses
+</I>&gt;<i> flexibility with choosing custom install locations. This patch is found in
+</I>&gt;<i> X2Go Server:
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=75798658a1934df1e9f5038ed140235b356b5f5c">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=75798658a1934df1e9f5038ed140235b356b5f5c</A>
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=1fe04071bb1b318dfe43fcbe48e985f554b2fb79">http://code.x2go.org/gitweb?p=x2goserver.git;a=commitdiff;h=1fe04071bb1b318dfe43fcbe48e985f554b2fb79</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Please base your work on that latest change of code. Also: if possible, only
+</I>&gt;<i> send patches against our code in Git.
+</I>
+
+Looking at current git it looks like bin/Makefile does not get created at all 
+in the release tarball - removed by git commit:
+
+commit d139e5d3da1b56457d7f076581de7e186fe2e6f2
+Author: Reinhard Tartler &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">siretart at tauware.de</A>&gt;
+Date:   Wed Dec 12 12:45:41 2012 +0100
+
+     drop debian/patches/001_add-main-makefile.full+lite.patch
+
+     Instead, place the makefile into debian/Makefile.nx-libs. This makes the
+     makefile easier to edit.
+
+
+Would be nice to still have these installed as part of the build process.
+
+&gt;&gt;<i> x2goserver:
+</I>&gt;&gt;<i> - Does not honor passed in CFLAGS.  The attached x2goserver-cflags.patch fixes.
+</I>&gt;&gt;<i> - Again, very hard to use /usr/lib64...
+</I>&gt;<i>
+</I>&gt;<i> I have forwarded the patch to X2Go BTS [1]. Please read [2] before sending
+</I>&gt;<i> more patches. Please use X2Go BTS for reporting bugs, sending patches.
+</I>&gt;<i>
+</I>&gt;<i> [1] <A HREF="http://bugs.x2go.org/83">http://bugs.x2go.org/83</A>
+</I>&gt;<i> [2] <A HREF="http://bugs.x2go.org/Reporting.html">http://bugs.x2go.org/Reporting.html</A>
+</I>
+Thanks, will do.
+
+&gt;<i>
+</I>&gt;&gt;<i> x2goclient:
+</I>&gt;&gt;<i> - Required the attached x2goclient-include.patch to build.  There is no qt4
+</I>&gt;&gt;<i> prefix on Fedora, and in general that should be specified by -I...
+</I>&gt;<i>
+</I>&gt;<i> Already in Vcs:
+</I>&gt;<i> <A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=1412f5a6d4031ef191caa5cc1c3f8be870552b30">http://code.x2go.org/gitweb?p=x2goclient.git;a=commitdiff;h=1412f5a6d4031ef191caa5cc1c3f8be870552b30</A>
+</I>
+Ah, will start to check git.
+
+Thank you very much for your responsiveness!
+
+
+-- 
+Orion Poplawski
+Technical Manager                     303-415-9701 x222
+NWRA, Boulder Office                  FAX: 303-415-9702
+3380 Mitchell Lane                       <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">orion at nwra.com</A>
+Boulder, CO 80301                   <A HREF="http://www.nwra.com">http://www.nwra.com</A>
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004697.html">[X2Go-Dev] x2go for Fedora packaging issues
+</A></li>
+	<LI>Next message: <A HREF="004742.html">[X2Go-Dev] x2go for Fedora packaging issues
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4738">[ date ]</a>
+              <a href="thread.html#4738">[ thread ]</a>
+              <a href="subject.html#4738">[ subject ]</a>
+              <a href="author.html#4738">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

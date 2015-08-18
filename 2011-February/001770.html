@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Use case for an x2go user-group
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C87hbc115no.fsf%40faui44a.informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001769.html">
+   <LINK REL="Next"  HREF="001772.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Use case for an x2go user-group</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C87hbc115no.fsf%40faui44a.informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] Use case for an x2go user-group">siretart at tauware.de
+       </A><BR>
+    <I>Fri Feb 18 20:52:59 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001769.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+        <LI>Next message: <A HREF="001772.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1770">[ date ]</a>
+              <a href="thread.html#1770">[ thread ]</a>
+              <a href="subject.html#1770">[ subject ]</a>
+              <a href="author.html#1770">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, Feb 18, 2011 at 20:34:06 (CET), Gerry Reno wrote:
+
+&gt;<i> On 02/18/2011 02:14 PM, Alexander Wuerstlein wrote:
+</I>&gt;&gt;<i> On 11-02-18 19:59, Gerry Reno &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">greno at verizon.net</A>&gt; wrote:
+</I>&gt;&gt;<i>   
+</I>&gt;&gt;&gt;<i> On 02/18/2011 01:18 PM, Reinhard Tartler wrote:
+</I>&gt;&gt;&gt;<i>     
+</I>&gt;&gt;&gt;&gt;<i> On Fri, Feb 18, 2011 at 18:52:28 (CET), John A. Sullivan III wrote:
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;&gt;<i>       
+</I>&gt;&gt;&gt;&gt;&gt;<i> On Fri, 2011-02-18 at 17:18 +0100, Reinhard Tartler wrote:
+</I>&gt;&gt;&gt;&gt;&gt;<i>     
+</I>&gt;&gt;&gt;&gt;&gt;<i>         
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> &lt;snip&gt;The question is if there was a legitimate use-case for having users
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> that can login via ssh, but are not in the x2gousers group, i.e., cannot
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> login via x2go.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>       
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>           
+</I>&gt;&gt;&gt;&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;&gt;&gt;&gt;<i> It's a bit of a stretch but I could see it in hosted environments like
+</I>&gt;&gt;&gt;&gt;&gt;<i> ours.  Although we do not do this specifically, let's say there is an
+</I>&gt;&gt;&gt;&gt;&gt;<i> application server which is also hosting X2Go desktops.  The client may
+</I>&gt;&gt;&gt;&gt;&gt;<i> have an external consultant/support person who should not have a
+</I>&gt;&gt;&gt;&gt;&gt;<i> billable X2Go desktop but does need console access to support the
+</I>&gt;&gt;&gt;&gt;&gt;<i> application via, say, a VPN connection.
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> Come to think of it, I suppose that is not just a hosting issue.  A
+</I>&gt;&gt;&gt;&gt;&gt;<i> company using X2Go may not want to give desktop access to consultants
+</I>&gt;&gt;&gt;&gt;&gt;<i> who are supporting applications running on the same server.  That sounds
+</I>&gt;&gt;&gt;&gt;&gt;<i> like poor practice but there may be some legitimate reason to do that
+</I>&gt;&gt;&gt;&gt;&gt;<i> which we haven't considered.  Is that more in line with what you were
+</I>&gt;&gt;&gt;&gt;&gt;<i> asking? Thanks - John
+</I>&gt;&gt;&gt;&gt;&gt;<i>     
+</I>&gt;&gt;&gt;&gt;&gt;<i>         
+</I>&gt;&gt;&gt;&gt;<i> Indeed, that would.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> AFAIUI, you also agree that this is a pretty obscure corner case that is
+</I>&gt;&gt;&gt;&gt;<i> not worth to have as default. Therefore, I suggest to drop the sudo
+</I>&gt;&gt;&gt;&gt;<i> stuff completely and install x2gowrapper as 'suid x2gouser' so that no
+</I>&gt;&gt;&gt;&gt;<i> additional configuration is necessary. With this change, the use-case
+</I>&gt;&gt;&gt;&gt;<i> above doesn't work anymore.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> In order to restore that functionality, the database schema would need
+</I>&gt;&gt;&gt;&gt;<i> to be extended to implement a blacklist. And in fact, your explanation
+</I>&gt;&gt;&gt;&gt;<i> kindof confirms that a blacklist would be more suited than the current
+</I>&gt;&gt;&gt;&gt;<i> whitelist (i.e., the x2gousers group) approach.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>   
+</I>&gt;&gt;&gt;&gt;<i>       
+</I>&gt;&gt;&gt;<i> Are you implying that every user on any x2go server would be able to
+</I>&gt;&gt;&gt;<i> launch a remote x2go desktop by default?
+</I>&gt;&gt;&gt;<i>     
+</I>&gt;&gt;<i> Yes.
+</I>&gt;&gt;<i>   
+</I>&gt;<i>
+</I>&gt;<i> That would be a security hole.
+</I>
+Please elaborate. What security goal is compromised here?
+
+&gt;&gt;&gt;<i> We don't have any problems with the current mechanism of 'x2gousers'
+</I>&gt;&gt;&gt;<i> providing the control.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> And in fact in most OS you see 'groups' are specifically there for the
+</I>&gt;&gt;&gt;<i> express purpose of controlling access to functionality.
+</I>&gt;&gt;&gt;<i>     
+</I>&gt;&gt;<i> Yes, but in large setups, groups become very hard to manage. Large
+</I>&gt;&gt;<i> groups with thousands of users tend to be an administration burden, also
+</I>&gt;&gt;<i> a large number of additional groups for each user tends to be
+</I>&gt;&gt;<i> problematic with many operating systems or setups (NIS, SQL, older
+</I>&gt;&gt;<i> unices, etc).
+</I>&gt;&gt;<i>   
+</I>&gt;<i>
+</I>&gt;<i> Well, qualified sysadmins have been managing large installations quite
+</I>&gt;<i> successfully for about 50 years now.
+</I>
+We are talking about a setup with ~100 new and deleted user accounts on
+a yearly basis, the CS student lab at uni-erlangen.de
+
+&gt;&gt;<i> And our approach wouldn't make the 'x2gousers' group go away if you
+</I>&gt;&gt;<i> still want to use it: You can simply make the x2gowrapper executable
+</I>&gt;&gt;<i> only for that group and not for others.  Then you have exactly the
+</I>&gt;&gt;<i> same functionality as with 'sudo', but without the hassle of setting
+</I>&gt;&gt;<i> up the sudo configuration (wich does never seem to work automatically
+</I>&gt;&gt;<i> on installation). That would also be the suggested migration path i
+</I>&gt;&gt;<i> guess. Additionally you can of course use database black/whitelists,
+</I>&gt;&gt;<i> or you can set x2gowrapper o+rx and only use database
+</I>&gt;&gt;<i> black/whitelists. In that sense our approach would also be far more
+</I>&gt;&gt;<i> flexible than the current sudo approach.
+</I>&gt;&gt;<i>   
+</I>&gt;<i>
+</I>&gt;<i> It doesn't make the 'x2gousers' group go away.  But it removes all the
+</I>&gt;<i> 'sudo' functionality which does it's job of auditing and control very well.
+</I>
+It does. My implementation still keeps the x2gousers group, but removes
+the necessity to add users to that group by default. If you have a valid
+use case, that's fine, just adjust the permissions of the wrappers and
+implement your user whitelist by adding them to the group.
+
+&gt;<i> I don't get what is complained about here:  sudo being difficult.  It is
+</I>&gt;<i> not difficult at all.  Use 'visudo' as you should and it works very well.
+</I>&gt;<i>
+</I>&gt;<i> If you try direct access to the sudoers file then you have to take extra
+</I>&gt;<i> precautions.  If you're not doing that then of course you will run into
+</I>&gt;<i> problems.
+</I>
+No, editing /etc/sudoers is not the problem. Managing the x2gousers group is.
+
+-- 
+Gruesse/greetings,
+Reinhard Tartler, KeyID 945348A4
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001769.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+	<LI>Next message: <A HREF="001772.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1770">[ date ]</a>
+              <a href="thread.html#1770">[ thread ]</a>
+              <a href="subject.html#1770">[ subject ]</a>
+              <a href="author.html#1770">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

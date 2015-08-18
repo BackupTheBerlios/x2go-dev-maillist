@@ -1,0 +1,156 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] ATTN: Alex - Questions regarding x2goclient.exe --portable and session specification
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20ATTN%3A%20Alex%20-%20Questions%20regarding%20x2goclient.exe%0A%20--portable%20and%20session%20specification&In-Reply-To=%3C4F3BAB17.1060409%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003419.html">
+   <LINK REL="Next"  HREF="003424.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] ATTN: Alex - Questions regarding x2goclient.exe --portable and session specification</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20ATTN%3A%20Alex%20-%20Questions%20regarding%20x2goclient.exe%0A%20--portable%20and%20session%20specification&In-Reply-To=%3C4F3BAB17.1060409%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] ATTN: Alex - Questions regarding x2goclient.exe --portable and session specification">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Wed Feb 15 13:54:47 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003419.html">[X2Go-Dev] ATTN: Alex - Questions regarding x2goclient.exe --portable and session specification
+</A></li>
+        <LI>Next message: <A HREF="003424.html">[X2Go-Dev] ATTN: Alex - Questions regarding x2goclient.exe --portable and session specification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3423">[ date ]</a>
+              <a href="thread.html#3423">[ thread ]</a>
+              <a href="subject.html#3423">[ subject ]</a>
+              <a href="author.html#3423">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 14.02.2012 15:29, schrieb <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>:
+&gt;<i> Hi Alex,
+</I>&gt;<i> 
+</I>&gt;<i> I noticed that x2goclient.exe can be called with --portable to make it
+</I>&gt;<i> use a session file rather than Windows registry entries.
+</I>
+if running with --portable option, x2goclient should not save data in
+registry. But you should also specify a &quot;--home&quot; parameter.
+
+&gt;<i> Is it possible to specify the location of the session file?
+</I>
+Yes, with &quot;--home&quot; parameter you can specify a folder, that should be
+used as home directory. All X2Go data (ssh files, x2goclient settings,
+sessions, etc) will be read from this directory and written into this
+directory. On windows, if using this parameter, for x2goclient settings
+will be used not registry, but the ini files in &quot;home&quot;/.x2goclient/
+(same way as for x2goclient on linux). You can also specify for windows
+a drive label in brackets instead of drive letter for example:
+
+(x2godrive):/x2goclient/
+instead of
+D:/x2goclient
+
+x2goclient --portable --home=(x2godrive):/x2goclient/
+
+it is useful if you using flash drive with portable x2goclient and you
+don't know the letter which will be assumed by windows for this drive.
+
+&gt;<i> Is there a way to export/import sessions from the registry to a sessions
+</I>&gt;<i> file and back?
+</I>
+no
+
+&gt;<i> Is there any kind of documentation as to which command line options are
+</I>&gt;<i> available *specifically with the Windows x2go client*?
+</I>
+sorry, only --help command line option. I plan to change many options
+and implement some new in next release of x2goclient. The same is for
+documentation.
+
+&gt;<i> By the way, the message that is shown after &quot;x2goclient.exe --help&quot; is
+</I>&gt;<i> too large to fit on my screen.  It doesn't have scroll bars, and there's
+</I>&gt;<i> no way to resize that window, either.  I have to use Ctrl-A, Ctrl-C to
+</I>&gt;<i> copy the message to the clipboard, then hit space to &quot;click&quot; the OK
+</I>&gt;<i> button that is outside of my screen, then paste the clipboard content
+</I>&gt;<i> into a text editor if I want to read all of it...
+</I>
+
+&gt;<i> Also, is it possible to connect without a session file/registry entry,
+</I>&gt;<i> by specifying all required parameters on the command line?
+</I>
+no, you can only specify the name of preconfigured session with
+&quot;--session&quot; or id of session (from ini file or registry) with
+&quot;--session-id&quot;. Perhaps I will implement such feature in future.
+
+&gt;<i> if so, what are the minimum required parameters for that? Whenever I try
+</I>&gt;<i> to pass parameters, x2goclient.exe simply returns me to the command
+</I>&gt;<i> line. :-(
+</I>&gt;<i> The only parameters that seem to cause a response are &quot;--help&quot;,
+</I>&gt;<i> &quot;--maximize&quot; and &quot;--hide&quot;...
+</I>
+there are unary and binary parameters for x2goclient
+unary:
+--maximize
+--no-menu
+binary:
+--link=adsl
+--pack=16m-jpeg-9
+
+the format of binary parameters is not usual for POSIX systems. I will
+definitive change this in next release.
+
+&gt;<i> -Stefan
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>regards,
+Alex
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120215/042fa0c8/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120215/042fa0c8/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003419.html">[X2Go-Dev] ATTN: Alex - Questions regarding x2goclient.exe --portable and session specification
+</A></li>
+	<LI>Next message: <A HREF="003424.html">[X2Go-Dev] ATTN: Alex - Questions regarding x2goclient.exe --portable and session specification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3423">[ date ]</a>
+              <a href="thread.html#3423">[ thread ]</a>
+              <a href="subject.html#3423">[ subject ]</a>
+              <a href="author.html#3423">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

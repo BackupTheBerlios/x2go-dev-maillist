@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go with likewise-open (ldap) questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CAANLkTiktnbwQ%2BgFbFRUgsVF4DKsG7Vikkoh4WUFA%3DrVq%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001390.html">
+   <LINK REL="Next"  HREF="001394.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go with likewise-open (ldap) questions</H1>
+    <B>Ivan Boyadzhiev</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CAANLkTiktnbwQ%2BgFbFRUgsVF4DKsG7Vikkoh4WUFA%3DrVq%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] x2go with likewise-open (ldap) questions">ivancho.b at gmail.com
+       </A><BR>
+    <I>Wed Dec 15 15:19:21 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001390.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+        <LI>Next message: <A HREF="001394.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1391">[ date ]</a>
+              <a href="thread.html#1391">[ thread ]</a>
+              <a href="subject.html#1391">[ subject ]</a>
+              <a href="author.html#1391">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>
+</I>&gt;<i> Bingo!
+</I>&gt;<i>
+</I>&gt;<i> This above is the exact problem.
+</I>&gt;<i>
+</I>&gt;<i> I cleaned all the folders. Then I started new x2goclient session. While the
+</I>&gt;<i> session was starting, I've created symbolic folder without &quot;\&quot; symbol, in
+</I>&gt;<i> the next moment when the folder with &quot;\&quot; appeared. As result I had 2 folders
+</I>&gt;<i> in ~/.x2go/ - the one with &quot;\&quot; and symlink without &quot;\&quot;. Then the 3 files
+</I>&gt;<i> .pulse-cookie; .pulse-client.conf and cmdoutput appeared, as well as the
+</I>&gt;<i> sound in my client!
+</I>&gt;<i>
+</I>&gt;<i> That is the problem then. Can you, please, provide fix?
+</I>&gt;<i>
+</I>&gt;<i>
+</I>Hi hi,
+although this issue is happening on the server side (located in Ubuntu
+x2goserver), the code is actually sending from the client - reverse ssh.
+
+I'm using x2goclient 3.01-13 on my Windows 7, as 3.01-14 doesn't work
+properly. Still I've tested x2goclient 3.01-14 on VMWare Ubuntu, and it
+doesn't solve this issue, infact, it doesn't have sound at all.
+I couldn't find x2goclient 3.01-13 sources, but I have found 3.01-14
+sources, so I made my investigations there.
+
+Before we start dig in the source:
+ 1. We have problem with creating 3 files (.pulse-cookie;
+.pulse-client.conf, cmdoutput)
+ 2. We have problem with not properly set environment (PULSE_CLIENTCONFIG)
+All these errors are because:
+ 1. These files are located in non-existing folder (without &quot;\&quot;)
+ 2. This environment is pointing to non-existing folder (without &quot;\&quot;)
+
+We have 2 solutions: to use everywhere DOMAIN\user, or DOMAINuser.
+I think using everywhere DOMAIN\user is better, but it is complete up to you
+as development to decide.
+
+Another problem: I've checked, and because of very same problem, sshfs can't
+map local folder with remote folder, because of non-existing
+/tmp/DOMAINuser_media folder.
+
+Deep in the code:
+All sources are in the file: onmainwindow.cpp. Searching for .pulse-cookie
+and PULSE_CLIENTCONFIG lead us to the first places
+
+
+row 3,227:
+    if ( sndSystem==PULSE )
+    {
+        startSoundServer=false;
+        QString scmd;
+        if ( !sshSndTunnel )
+            scmd=&quot;echo \&quot;default-server=`echo &quot;
+                 &quot;$SSH_CLIENT | awk '{print $1}'`:&quot;+
+                 sndPort+
+                 &quot;\&quot;&gt; ~/.x2go/C-&quot;+
+                 resumingSession.sessionId+
+                 &quot;/.pulse-client.conf&quot;
+                 &quot;;echo \&quot;cookie-file=.x2go/C-&quot;+
+                 resumingSession.sessionId+
+                 &quot;/.pulse-cookie&quot;+
+                 &quot;\&quot;&gt;&gt; ~/.x2go/C-&quot;+
+                 resumingSession.sessionId+
+                 &quot;/.pulse-client.conf&quot;;
+
+row 4,274:
+            cmd=&quot;PULSE_CLIENTCONFIG=~/.x2go/C-&quot;+
+                resumingSession.sessionId+
+                &quot;/.pulse-client.conf &quot;+cmd;
+
+Note: same variable: resumingSession.sessionId
+
+Where is resumingSession initialise?
+
+row 3,203:
+    if ( newSession )
+    {
+        QString sString=output.trimmed();
+        sString.replace ( '\n','|' );
+        host=resumingSession.server;
+        resumingSession=getNewSessionFromString ( sString );
+
+getNewSessionFromString and sString:
+
+row 4,160:
+x2goSession ONMainWindow::getNewSessionFromString ( const QString&amp; string )
+{
+    QStringList lst=string.split ( '|' );
+    x2goSession s;
+    s.display=lst[0];
+    s.cookie=lst[1];
+    s.agentPid=lst[2];
+    s.sessionId=lst[3];
+
+row 3,205:
+sString comes from: output.trimmed();
+
+Here is not possible for QT function trimmed() to remove &quot;\&quot; because this
+howto:
+<A HREF="http://doc.qt.nokia.com/4.7-snapshot/qstring.html#trimmed">http://doc.qt.nokia.com/4.7-snapshot/qstring.html#trimmed</A>
+
+Then where is output coming from? - From the Method, which is:
+
+row 3,089:
+void ONMainWindow::slot_retResumeSess ( bool result,
+                                        QString output,
+                                        sshProcess* proc )
+
+Where is slot_retResumeSess called from? Various places, but I think it is
+from here:
+
+row 2,724:
+    connect ( proc,SIGNAL ( sshFinished ( bool, QString,sshProcess* ) ),
+              this,SLOT ( slot_retResumeSess ( bool, QString,
+                                               sshProcess* ) ) );
+
+Still there is NO parameter given for second variable, which should come as
+output?!
+
+Still working on ...
+
+Best Regards
+Ivan
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101215/ac57df83/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101215/ac57df83/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001390.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+	<LI>Next message: <A HREF="001394.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1391">[ date ]</a>
+              <a href="thread.html#1391">[ thread ]</a>
+              <a href="subject.html#1391">[ subject ]</a>
+              <a href="author.html#1391">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

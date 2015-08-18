@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] python-x2go fails to build on launchpad
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20python-x2go%20fails%20to%20build%20on%20launchpad&In-Reply-To=%3CCAJ0ccebQT5PSGn3v-4ctCkrKkf3za%2BES11UKNXJn39QrpiApcQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004371.html">
+   <LINK REL="Next"  HREF="004373.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] python-x2go fails to build on launchpad</H1>
+    <B>Reinhard Tartler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20python-x2go%20fails%20to%20build%20on%20launchpad&In-Reply-To=%3CCAJ0ccebQT5PSGn3v-4ctCkrKkf3za%2BES11UKNXJn39QrpiApcQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] python-x2go fails to build on launchpad">siretart at gmail.com
+       </A><BR>
+    <I>Thu Sep 27 09:41:08 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004371.html">[X2Go-Dev] python-x2go fails to build on launchpad
+</A></li>
+        <LI>Next message: <A HREF="004373.html">[X2Go-Dev] python-x2go fails to build on launchpad
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4372">[ date ]</a>
+              <a href="thread.html#4372">[ thread ]</a>
+              <a href="subject.html#4372">[ subject ]</a>
+              <a href="author.html#4372">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, Sep 27, 2012 at 9:10 AM, Mike Gabriel
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; wrote:
+&gt;<i> Hi Reinhard,
+</I>&gt;<i>
+</I>&gt;<i> Python X2Go fails to build on Launchpad for Ubuntu lucid currently. This is
+</I>&gt;<i> due to the missing --with python2 addon feature in debhelper 8.0.0, I guess.
+</I>
+AFAIUI not the absense, but the presence of --with python2 is the problem here.
+Ubuntu/Lucid did not have that python helper yet, and updating
+debhelper won't help much either.
+
+&gt;<i> You uploaded debhelper 8.0.0 to ppa:x2go/ppa already. Would it make sense to
+</I>&gt;<i> provide a newer version of debhelper via our ppa? This, I guess, then has to
+</I>&gt;<i> be in ppa:x2go/ppa and ppa:x2go/stable. Could you take a look at that?
+</I>
+this seems to be filed before as:
+<A HREF="https://bugs.launchpad.net/ubuntu/+source/python-defaults/+bug/788524">https://bugs.launchpad.net/ubuntu/+source/python-defaults/+bug/788524</A>
+
+There is even a workaround in comment #3.
+
+
+-- 
+regards,
+    Reinhard
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004371.html">[X2Go-Dev] python-x2go fails to build on launchpad
+</A></li>
+	<LI>Next message: <A HREF="004373.html">[X2Go-Dev] python-x2go fails to build on launchpad
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4372">[ date ]</a>
+              <a href="thread.html#4372">[ thread ]</a>
+              <a href="subject.html#4372">[ subject ]</a>
+              <a href="author.html#4372">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

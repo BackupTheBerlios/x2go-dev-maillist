@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Local Media Artifacts
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Local%20Media%20Artifacts&In-Reply-To=%3C1265399472.3445.62.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000325.html">
+   <LINK REL="Next"  HREF="000329.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Local Media Artifacts</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Local%20Media%20Artifacts&In-Reply-To=%3C1265399472.3445.62.camel%40localhost%3E"
+       TITLE="[X2go-dev] Local Media Artifacts">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Feb  5 20:51:12 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000325.html">[X2go-dev] OT: Configuring print dialog window
+</A></li>
+        <LI>Next message: <A HREF="000329.html">[X2go-dev] x2goprint and user rights
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#326">[ date ]</a>
+              <a href="thread.html#326">[ thread ]</a>
+              <a href="subject.html#326">[ subject ]</a>
+              <a href="author.html#326">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, all.  We are finding that, as we add and delete shares to local
+media, the virtual desktop is becoming cluttered with artifacts from the
+file sharing.  These appear to be sshfs disk definitions but they do not
+appear as devices (e.g., allowing mounts).
+
+Ah, this is ringing a bell from when we worked with X2Go a year ago.
+Our tmp file system is in a separate tmpfs partition and set to
+noexec,nosuid,nodev.  I would assume these artifacts are supposed to be
+devices but fail because they are located in /tmp and we are set to
+nodev.
+
+Is there any way to create the devices some place else besides /tmp?
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000325.html">[X2go-dev] OT: Configuring print dialog window
+</A></li>
+	<LI>Next message: <A HREF="000329.html">[X2go-dev] x2goprint and user rights
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#326">[ date ]</a>
+              <a href="thread.html#326">[ thread ]</a>
+              <a href="subject.html#326">[ subject ]</a>
+              <a href="author.html#326">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

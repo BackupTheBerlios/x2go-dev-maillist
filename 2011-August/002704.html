@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2golxdebindings (was Re: [X2go-User] Local share appears as a text file in $HOME/Desktop - cluttering the desktop)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-August/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2golxdebindings%20%28was%20Re%3A%20%5BX2go-User%5D%20Local%20share%0A%20appears%20as%20a%20text%20file%20in%20%24HOME/Desktop%20-%20cluttering%20the%20desktop%29&In-Reply-To=%3C20110816172509.3d11f449%40athlon.garagome%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002703.html">
+   <LINK REL="Next"  HREF="002705.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2golxdebindings (was Re: [X2go-User] Local share appears as a text file in $HOME/Desktop - cluttering the desktop)</H1>
+    <B>Milan Kn&#237;&#382;ek</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2golxdebindings%20%28was%20Re%3A%20%5BX2go-User%5D%20Local%20share%0A%20appears%20as%20a%20text%20file%20in%20%24HOME/Desktop%20-%20cluttering%20the%20desktop%29&In-Reply-To=%3C20110816172509.3d11f449%40athlon.garagome%3E"
+       TITLE="[X2go-Dev] x2golxdebindings (was Re: [X2go-User] Local share appears as a text file in $HOME/Desktop - cluttering the desktop)">knizek.confy at volny.cz
+       </A><BR>
+    <I>Tue Aug 16 17:25:09 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002703.html">[X2go-Dev] x2golxdebindings (was Re: [X2go-User] Local share appears as a text file in $HOME/Desktop - cluttering the desktop)
+</A></li>
+        <LI>Next message: <A HREF="002705.html">[X2go-Dev] x2golxdebindings (was Re: [X2go-User] Local share appears as a text file in $HOME/Desktop - cluttering the desktop)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2704">[ date ]</a>
+              <a href="thread.html#2704">[ thread ]</a>
+              <a href="subject.html#2704">[ subject ]</a>
+              <a href="author.html#2704">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Mike,
+
+V Tue, 16 Aug 2011 14:14:34 +0200
+Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt; naps&#225;no:
+
+&gt;<i> Thanks for your input on this!!! Fixed in latest Debian package and
+</I>&gt;<i> in X2go Git (Ubuntu packages will follow some time during the next
+</I>&gt;<i> 24h automatically).
+</I>
+I have further looked on git on the x2go*bindings and it seems that the
+default file manager for handling the shared (sshfs) mounted directory
+is hardcoded - i.e. nautilus for GNOME, pcmanfm for LXDE.
+
+How about using xdg-open for that? While it might make sense to expect
+that GNOME users have nautilus installed, users of less-fat environments
+usually prefer various file managers (thunar, pcmanfm) and not
+neccessarily the default one.
+
+I tried to edit /usr/bin/x2gopcmanfm and replace the command:
+
+system( &quot;pcmanfm $dir&quot; );
+
+with
+
+system( &quot;xdg-open $dir&quot; );
+
+and it seems to work just fine.
+
+What do you think?
+
+(If it is fine, then the command could actually be named more
+neutrally, like x2gofilemanager and also the corresponding
+x2gofilemanager.desktop file and also the definition of mime type 
+sshfs-x2go.xml - which would lead to unification of the code across
+desktop environments.)
+
+
+regards,
+Milan
+-- 
+<A HREF="http://www.milan-knizek.net/">http://www.milan-knizek.net/</A>
+About linux and photography (Czech only)
+O linuxu a fotografov&#225;n&#237;
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002703.html">[X2go-Dev] x2golxdebindings (was Re: [X2go-User] Local share appears as a text file in $HOME/Desktop - cluttering the desktop)
+</A></li>
+	<LI>Next message: <A HREF="002705.html">[X2go-Dev] x2golxdebindings (was Re: [X2go-User] Local share appears as a text file in $HOME/Desktop - cluttering the desktop)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2704">[ date ]</a>
+              <a href="thread.html#2704">[ thread ]</a>
+              <a href="subject.html#2704">[ subject ]</a>
+              <a href="author.html#2704">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

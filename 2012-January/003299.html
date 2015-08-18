@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Help needed in debugging
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Help%20needed%20in%20debugging&In-Reply-To=%3C20120130000438.53537jnp7gduwarq%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003298.html">
+   <LINK REL="Next"  HREF="003319.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Help needed in debugging</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Help%20needed%20in%20debugging&In-Reply-To=%3C20120130000438.53537jnp7gduwarq%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Help needed in debugging">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Jan 30 00:04:38 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003298.html">[X2Go-Dev] Help needed in debugging
+</A></li>
+        <LI>Next message: <A HREF="003319.html">[X2Go-Dev] Help needed in debugging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3299">[ date ]</a>
+              <a href="thread.html#3299">[ thread ]</a>
+              <a href="subject.html#3299">[ subject ]</a>
+              <a href="author.html#3299">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>HI Oliver,
+
+On So 29 Jan 2012 22:33:54 CET Oliver Burger wrote:
+
+&gt;<i> 2012/1/29 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;:
+</I>&gt;&gt;&gt;<i> thanks for your answer. I changed the log level &#160;to debug and got the
+</I>&gt;&gt;&gt;<i> log output below.
+</I>&gt;&gt;<i> Below???
+</I>&gt;<i> Oups....
+</I>
+Do you have x2goagent installed? It looks as if it fails to start the  
+agent or as if the agent starts and dies immediately after having  
+started.
+
+Greets,
+Mike
+
+&gt;<i>
+</I>&gt;<i> -----&gt;   snip   &lt;-----
+</I>&gt;<i>
+</I>&gt;<i> Jan 29 21:09:36 beteigeuze /usr/bin/x2golistsessions[8465]:
+</I>&gt;<i> x2golistsessions has been called with no option
+</I>&gt;<i> Jan 29 21:09:36 beteigeuze /usr/bin/x2gostartagent: x2gostartagent
+</I>&gt;<i> called with options: 800x600 lan 16m-jpeg-9 unix-kde-depth_24 de
+</I>&gt;<i> pc105/de 1 D LXDE
+</I>&gt;<i> Jan 29 21:09:36 beteigeuze /usr/bin/x2gostartagent: client announced
+</I>&gt;<i> itself as ,,192.168.1.201''
+</I>&gt;<i> Jan 29 21:09:36 beteigeuze /usr/bin/x2gosessionlimit[8492]:
+</I>&gt;<i> x2gosessionlimit has been called
+</I>&gt;<i> Jan 29 21:09:36 beteigeuze /usr/bin/x2golistsessions[8496]:
+</I>&gt;<i> x2golistsessions has been called with options: --all-servers
+</I>&gt;<i> Jan 29 21:09:36 beteigeuze /usr/lib/x2go/x2gogetdisplays[8513]:
+</I>&gt;<i> db_getdisplays called, server: beteigeuze.oli-home; return value:
+</I>&gt;<i> Jan 29 21:09:36 beteigeuze /usr/lib/x2go/x2goinsertsession[8531]:
+</I>&gt;<i> db_insertsession called, session ID: oli-50-1327867776_stDLXDE_dp24,
+</I>&gt;<i> server: beteigeuze.oli-home, session ID:
+</I>&gt;<i> oli-50-1327867776_stDLXDE_dp24
+</I>&gt;<i> Jan 29 21:09:37 beteigeuze /usr/lib/x2go/x2gogetports[8551]:
+</I>&gt;<i> db_getports called, server: beteigeuze.oli-home; return value:
+</I>&gt;<i> Jan 29 21:09:37 beteigeuze /usr/lib/x2go/x2goinsertport[8583]:
+</I>&gt;<i> db_insertport called, session ID: oli-50-1327867776_stDLXDE_dp24,
+</I>&gt;<i> server: beteigeuze.oli-home, SSH port: 30001
+</I>&gt;<i> Jan 29 21:09:37 beteigeuze /usr/lib/x2go/x2goinsertport[8610]:
+</I>&gt;<i> db_insertport called, session ID: oli-50-1327867776_stDLXDE_dp24,
+</I>&gt;<i> server: beteigeuze.oli-home, SSH port: 30002
+</I>&gt;<i> Jan 29 21:09:38 beteigeuze /usr/lib/x2go/x2goinsertport[8635]:
+</I>&gt;<i> db_insertport called, session ID: oli-50-1327867776_stDLXDE_dp24,
+</I>&gt;<i> server: beteigeuze.oli-home, SSH port: 30003
+</I>&gt;<i> Jan 29 21:09:38 beteigeuze /usr/bin/x2gofeature: x2gofeature called
+</I>&gt;<i> with options: X2GO_RUN_EXTENSIONS
+</I>&gt;<i> Jan 29 21:09:38 beteigeuze
+</I>&gt;<i> /usr/share/x2go/x2gofeature.d/x2goserver-compat.features:
+</I>&gt;<i> x2goserver-compat.features called with options: X2GO_RUN_EXTENSIONS
+</I>&gt;<i> Jan 29 21:09:38 beteigeuze
+</I>&gt;<i> /usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+</I>&gt;<i> x2goserver-extensions.features called with options:
+</I>&gt;<i> X2GO_RUN_EXTENSIONS
+</I>&gt;<i> Jan 29 21:09:38 beteigeuze /usr/bin/x2goserver-run-extensions:
+</I>&gt;<i> x2goserver-run-extensions called with options:
+</I>&gt;<i> oli-50-1327867776_stDLXDE_dp24 pre-start
+</I>&gt;<i> Jan 29 21:09:38 beteigeuze /usr/bin/x2gostartagent: successfully
+</I>&gt;<i> started X2go agent session with ID oli-50-1327867776_stDLXDE_dp24
+</I>&gt;<i> Jan 29 21:09:38 beteigeuze /usr/bin/x2gofeature: x2gofeature called
+</I>&gt;<i> with options: X2GO_RUN_EXTENSIONS
+</I>&gt;<i> Jan 29 21:09:38 beteigeuze
+</I>&gt;<i> /usr/share/x2go/x2gofeature.d/x2goserver-compat.features:
+</I>&gt;<i> x2goserver-compat.features called with options: X2GO_RUN_EXTENSIONS
+</I>&gt;<i> Jan 29 21:09:38 beteigeuze
+</I>&gt;<i> /usr/share/x2go/x2gofeature.d/x2goserver-extensions.features:
+</I>&gt;<i> x2goserver-extensions.features called with options:
+</I>&gt;<i> X2GO_RUN_EXTENSIONS
+</I>&gt;<i> Jan 29 21:09:38 beteigeuze /usr/bin/x2goserver-run-extensions:
+</I>&gt;<i> x2goserver-run-extensions called with options:
+</I>&gt;<i> oli-50-1327867776_stDLXDE_dp24 post-start
+</I>&gt;<i> Jan 29 21:09:38 beteigeuze /usr/lib/x2go/x2gocreatesession[8743]:
+</I>&gt;<i> db_createsession called, session ID: oli-50-1327867776_stDLXDE_dp24,
+</I>&gt;<i> cookie: f6cbfebcde016faa90d03c7d4b6c8052, client: 192.168.1.201, pid:
+</I>&gt;<i> 8695, graphics port: 30001, sound port: 30002, file sharing port:
+</I>&gt;<i> 30003
+</I>&gt;<i> Jan 29 21:10:08 beteigeuze /usr/lib/x2go/x2gochangestatus[8882]:
+</I>&gt;<i> db_changestatus called, session ID: oli-50-1327867776_stDLXDE_dp24,
+</I>&gt;<i> new status: F
+</I>&gt;<i> Jan 29 21:10:08 beteigeuze /usr/bin/x2goumount-session[8898]:
+</I>&gt;<i> x2goumount-session has been called with options:
+</I>&gt;<i> oli-50-1327867776_stDLXDE_dp24
+</I>&gt;<i> Jan 29 21:10:08 beteigeuze /usr/bin/x2goumount-session[8898]:
+</I>&gt;<i> db_getdisplay called, session ID: oli-50-1327867776_stDLXDE_dp24;
+</I>&gt;<i> return value: 50
+</I>&gt;<i> Jan 29 21:10:08 beteigeuze /usr/bin/x2goumount-session[8898]:
+</I>&gt;<i> db_getmounts called, session ID: oli-50-1327867776_stDLXDE_dp24;
+</I>&gt;<i> return value:
+</I>&gt;<i> Jan 29 21:10:13 beteigeuze /usr/lib/x2go/x2golistsessions_sql[8924]:
+</I>&gt;<i> Purging finished session from X2go db, session ID:
+</I>&gt;<i> oli-50-1327867776_stDLXDE_dp24
+</I>&gt;<i> Jan 29 21:10:13 beteigeuze /usr/bin/x2goumount-session[8941]:
+</I>&gt;<i> x2goumount-session has been called with options:
+</I>&gt;<i> oli-50-1327867776_stDLXDE_dp24
+</I>&gt;<i> Jan 29 21:10:13 beteigeuze /usr/bin/x2goumount-session[8941]:
+</I>&gt;<i> db_getdisplay called, session ID: oli-50-1327867776_stDLXDE_dp24;
+</I>&gt;<i> return value:
+</I>&gt;<i> Jan 29 21:10:13 beteigeuze /usr/bin/x2goumount-session[8941]:
+</I>&gt;<i> db_getmounts called, session ID: oli-50-1327867776_stDLXDE_dp24;
+</I>&gt;<i> return value:
+</I>&gt;<i> -----&gt;   snip   &lt;-----
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120130/cd8f53c7/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120130/cd8f53c7/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003298.html">[X2Go-Dev] Help needed in debugging
+</A></li>
+	<LI>Next message: <A HREF="003319.html">[X2Go-Dev] Help needed in debugging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3299">[ date ]</a>
+              <a href="thread.html#3299">[ thread ]</a>
+              <a href="subject.html#3299">[ subject ]</a>
+              <a href="author.html#3299">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Use case for an x2go user-group
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C4D5EC177.404%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001766.html">
+   <LINK REL="Next"  HREF="001768.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Use case for an x2go user-group</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Use%20case%20for%20an%20x2go%20user-group&In-Reply-To=%3C4D5EC177.404%40verizon.net%3E"
+       TITLE="[X2go-dev] Use case for an x2go user-group">greno at verizon.net
+       </A><BR>
+    <I>Fri Feb 18 19:59:03 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001766.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+        <LI>Next message: <A HREF="001768.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1767">[ date ]</a>
+              <a href="thread.html#1767">[ thread ]</a>
+              <a href="subject.html#1767">[ subject ]</a>
+              <a href="author.html#1767">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 02/18/2011 01:18 PM, Reinhard Tartler wrote:
+&gt;<i> On Fri, Feb 18, 2011 at 18:52:28 (CET), John A. Sullivan III wrote:
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>&gt;&gt;<i> On Fri, 2011-02-18 at 17:18 +0100, Reinhard Tartler wrote:
+</I>&gt;&gt;<i>     
+</I>&gt;&gt;&gt;<i> &lt;snip&gt;The question is if there was a legitimate use-case for having users
+</I>&gt;&gt;&gt;<i> that can login via ssh, but are not in the x2gousers group, i.e., cannot
+</I>&gt;&gt;&gt;<i> login via x2go.
+</I>&gt;&gt;&gt;<i>       
+</I>&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;<i> It's a bit of a stretch but I could see it in hosted environments like
+</I>&gt;&gt;<i> ours.  Although we do not do this specifically, let's say there is an
+</I>&gt;&gt;<i> application server which is also hosting X2Go desktops.  The client may
+</I>&gt;&gt;<i> have an external consultant/support person who should not have a
+</I>&gt;&gt;<i> billable X2Go desktop but does need console access to support the
+</I>&gt;&gt;<i> application via, say, a VPN connection.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Come to think of it, I suppose that is not just a hosting issue.  A
+</I>&gt;&gt;<i> company using X2Go may not want to give desktop access to consultants
+</I>&gt;&gt;<i> who are supporting applications running on the same server.  That sounds
+</I>&gt;&gt;<i> like poor practice but there may be some legitimate reason to do that
+</I>&gt;&gt;<i> which we haven't considered.  Is that more in line with what you were
+</I>&gt;&gt;<i> asking? Thanks - John
+</I>&gt;&gt;<i>     
+</I>&gt;<i> Indeed, that would.
+</I>&gt;<i>
+</I>&gt;<i> AFAIUI, you also agree that this is a pretty obscure corner case that is
+</I>&gt;<i> not worth to have as default. Therefore, I suggest to drop the sudo
+</I>&gt;<i> stuff completely and install x2gowrapper as 'suid x2gouser' so that no
+</I>&gt;<i> additional configuration is necessary. With this change, the use-case
+</I>&gt;<i> above doesn't work anymore.
+</I>&gt;<i>
+</I>&gt;<i> In order to restore that functionality, the database schema would need
+</I>&gt;<i> to be extended to implement a blacklist. And in fact, your explanation
+</I>&gt;<i> kindof confirms that a blacklist would be more suited than the current
+</I>&gt;<i> whitelist (i.e., the x2gousers group) approach.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>   
+</I>
+Are you implying that every user on any x2go server would be able to
+launch a remote x2go desktop by default?
+
+
+We don't have any problems with the current mechanism of 'x2gousers'
+providing the control.
+
+And in fact in most OS you see 'groups' are specifically there for the
+express purpose of controlling access to functionality.
+
+In many companies only certain employees such as field personnel or
+sales are permitted remote desktop access.  And the 'x2gousers' group
+suits this purpose well.
+
+I would not want to see the existing mechanism changed in the way being
+proposed.
+
+
+Regards,
+Gerry
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001766.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+	<LI>Next message: <A HREF="001768.html">[X2go-dev] Use case for an x2go user-group
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1767">[ date ]</a>
+              <a href="thread.html#1767">[ thread ]</a>
+              <a href="subject.html#1767">[ subject ]</a>
+              <a href="author.html#1767">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

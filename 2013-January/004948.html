@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#112: Mac Os X keyboard bug: NumLockMask always set,	keyboard unusable
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23112%3A%20Mac%20Os%20X%20keyboard%20bug%3A%20NumLockMask%20always%20set%2C%0A%09keyboard%20unusable&In-Reply-To=%3CCA%2ByVNSOHsoQekUiUuyGWibTqfs5vm8cvkm8j4tJe%3Do-VsNexJg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004947.html">
+   <LINK REL="Next"  HREF="004949.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#112: Mac Os X keyboard bug: NumLockMask always set,	keyboard unusable</H1>
+    <B>benjamin milde</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23112%3A%20Mac%20Os%20X%20keyboard%20bug%3A%20NumLockMask%20always%20set%2C%0A%09keyboard%20unusable&In-Reply-To=%3CCA%2ByVNSOHsoQekUiUuyGWibTqfs5vm8cvkm8j4tJe%3Do-VsNexJg%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#112: Mac Os X keyboard bug: NumLockMask always set,	keyboard unusable">bmilde at gmail.com
+       </A><BR>
+    <I>Wed Jan 30 19:35:14 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004947.html">[X2Go-Dev] Bug#111: x2goclient: fix X2Go logo;	set autologin to false by default;	session key &quot;usebrokerpassforproxy&quot;
+</A></li>
+        <LI>Next message: <A HREF="004949.html">[X2Go-Dev] Bug#113: X11TransWritev in libNX_X11.so.6 causes VLC	crash
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4948">[ date ]</a>
+              <a href="thread.html#4948">[ thread ]</a>
+              <a href="subject.html#4948">[ subject ]</a>
+              <a href="author.html#4948">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: *
+Version: various versions tried out, see below
+
+* Buggy package name not known. I suspect a problem with nx-libraries.
+
+------------------------------------------------------------------------------------------------
+I can supply further information for the mac os x keyboard bug in x2go. I
+think I had this problem already ~2 years ago, when I first tried out x2go.
+All pressed client keys produce wrong key events on the host. Its a real
+show-stopper since it makes x2go basically totally unusable for me and
+others.
+
+See also this post on the x2go mailing list
+<A HREF="https://lists.berlios.de/pipermail/x2go-user/2012-November/001123.html">https://lists.berlios.de/pipermail/x2go-user/2012-November/001123.html</A>
+There, Michael had the same problem I observe with:
+
+Server Side: Ubuntu 12.04 with x2goserver 3.1.1.6-0~610~precise1 from the
+stable PPA
+Client Side: Mac OS X 10.6.8 with x2goclient 3.99.2.1 from the x2go website
+Keyboard Layout: en_us everywhere, and in x2goclient I checked &quot;Keep
+current keyboard Settings&quot;
+
+I'm using Mac OS X 10.8.2, XQuarz 2.7.4 and also x2goclient 3.99.2.1. I
+also tried changing x2goserver from stable PPA to 4.1.0 from git. Also
+toggling &quot;Keep current keyboard Settings&quot; does not make a difference.
+Server is also a ubuntu machine, but could cross-check this with a Debian
+install (and see if the same error occurs there).
+
+The problem is that keystate changes while it is transferred to the host:
+
+MAC:   state 0x0, keycode 26 (keysym 0x31, 1), same_screen YES,
+LINUX: state 0x10, keycode 26 (keysym 0x65, e), same_screen YES,
+
+This makes the keyboard unusable, since every client keycode gives a wrong
+keysym on the host. The mask 0x10 is set for all key events sent to the
+host, every time.
+
+Looking around in X's headers I found:
+
+defined in &lt;X.h&gt;
+/* Key masks. Used as modifiers to GrabButton and GrabKey, results of
+QueryPointer,
+   state in various key-, mouse-, and button-related events. */
+#define ShiftMask               (1&lt;&lt;0)
+#define LockMask                (1&lt;&lt;1)
+#define ControlMask             (1&lt;&lt;2)
+#define Mod1Mask                (1&lt;&lt;3)
+#define Mod2Mask                (1&lt;&lt;4)
+#define Mod3Mask                (1&lt;&lt;5)
+#define Mod4Mask                (1&lt;&lt;6)
+#define Mod5Mask                (1&lt;&lt;7)
+
+So keystate 0x10 means the keyevent has Mod2Mask set.
+
+defined in &lt;xorg/atKeynames.h&gt; (but don't think it's a standard X11 header)
+#define AltMask         Mod1Mask
+#define NumLockMask     Mod2Mask
+#define AltLangMask     Mod3Mask
+#define KanaMask        Mod4Mask
+#define ScrollLockMask  Mod5Mask
+
+Which appears to be a NumLockMask. This makes sense since 'dfg' gives the
+numbers '124', i.e. indicating that I have some sort of Numpad overlay in
+the middle of the keyboard on the host.
+
+For what is worth, a found similar bug report with no machines remote
+desktop.
+<A HREF="http://apple.stackexchange.com/questions/31691/no-machine-remote-desktop-issue">http://apple.stackexchange.com/questions/31691/no-machine-remote-desktop-issue</A>
+
+ &quot;For instance, the Delete key was now comma, all the letters were
+transposed, general chaos. &quot;
+
+I can also confirm that backspace is comma, so this seems to be the same
+NumLockMask problem. Every key is garbled, but not randomly.
+
+The same problems apparently appears here in a bug report in XQuartz. They
+think its not their fault:
+
+<A HREF="http://xquartz.macosforge.org/trac/ticket/471">http://xquartz.macosforge.org/trac/ticket/471</A>
+
+Quote:
+&quot;From my experience using NX in Linux, NX is badly designed. It sends
+keycodes instead of KeySyms to the remote NX session.
+ This causes the remote session to behave badly, unless you install the
+local keyboard map into the remote X session.
+It is a problem with NX and not the X server. However, that should have no
+effect on the local keyboard mapping. &quot;
+
+If someone could point me in the right direction, I would be glad to help.
+And as I have no need for the Mod2Mask, as a temporary fix, I would be fine
+to ignore this mask on the server side and hard code xkey-&gt;state &amp;= ~(1u &lt;&lt;
+4); somewhere.
+
+Has someone an idea how to further investigate this issue? Is there someone
+who can report a working keyboard with Mac Os X as client?
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130130/b9b816fd/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130130/b9b816fd/attachment.html</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004947.html">[X2Go-Dev] Bug#111: x2goclient: fix X2Go logo;	set autologin to false by default;	session key &quot;usebrokerpassforproxy&quot;
+</A></li>
+	<LI>Next message: <A HREF="004949.html">[X2Go-Dev] Bug#113: X11TransWritev in libNX_X11.so.6 causes VLC	crash
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4948">[ date ]</a>
+              <a href="thread.html#4948">[ thread ]</a>
+              <a href="subject.html#4948">[ subject ]</a>
+              <a href="author.html#4948">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

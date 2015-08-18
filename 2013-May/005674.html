@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#215: Fwd: Google Chrome and chromium-browser both	crash when their advanced settings menu is accessed (Windows	X2GoClient)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23215%3A%20Fwd%3A%20Google%20Chrome%20and%20chromium-browser%20both%0A%09crash%20when%20their%20advanced%20settings%20menu%20is%20accessed%20%28Windows%0A%09X2GoClient%29&In-Reply-To=%3C519B44EC.3030507%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005625.html">
+   <LINK REL="Next"  HREF="005626.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#215: Fwd: Google Chrome and chromium-browser both	crash when their advanced settings menu is accessed (Windows	X2GoClient)</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23215%3A%20Fwd%3A%20Google%20Chrome%20and%20chromium-browser%20both%0A%09crash%20when%20their%20advanced%20settings%20menu%20is%20accessed%20%28Windows%0A%09X2GoClient%29&In-Reply-To=%3C519B44EC.3030507%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Bug#215: Fwd: Google Chrome and chromium-browser both	crash when their advanced settings menu is accessed (Windows	X2GoClient)">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Tue May 21 11:57:00 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005625.html">[X2Go-Dev] Google Chrome and chromium-browser both crash when	their advanced settings menu is accessed (Windows X2GoClient)
+</A></li>
+        <LI>Next message: <A HREF="005626.html">[X2Go-Dev] Bug#142: X2Go issue (in src:x2goclient) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5674">[ date ]</a>
+              <a href="thread.html#5674">[ thread ]</a>
+              <a href="subject.html#5674">[ subject ]</a>
+              <a href="author.html#5674">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Version: 4.0.0.3
+Severity: important
+
+
+-------- Original-Nachricht --------
+Betreff: [X2Go-Dev] Google Chrome and chromium-browser both crash when 
+their advanced settings menu is accessed (Windows X2GoClient)
+Datum: Thu, 16 May 2013 13:55:24 +0200
+Von: Stefan Baur &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">newsgroups.mail2 at stefanbaur.de</A>&gt;
+Antwort an: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+An: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">x2go-dev at lists.berlios.de</A>
+
+Hi,
+
+this is basically a repeat of Message-ID:
+&lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">4FB3F9DA.1020602 at stefanbaur.de</A>&gt;, as the problem still hasn't been fixed.
+
+I'm not copying it to the bugtracker directly as I am not sure whether
+it is a client- or server-side issue, or both.
+@DEVs: Please advise how it should be tagged, or forward and tag it
+yourself.
+
+What's new is that I've now also tried it on Debian Wheezy with the
+following packages installed on the server:
+
+dpkg -l | grep x2go
+ii  cups-x2go 3.0.0.4-0~x2go1+wheezy~main~62~build1  all
+Virtual X2Go printer for CUPS
+ii  x2go-keyring 2012.07.23+wheezy~main~17~build1       all
+GnuPG keys of all X2Go developers and the X2Go archive
+ii  x2goagent 2:3.5.0.20-0+wheezy~main~405~build1    all          X2Go agent
+ii  x2goserver 4.0.0.1-0~x2go1+wheezy~main~648~build1 i386         X2Go
+server daemon scripts
+ii  x2goserver-extensions 4.0.0.1-0~x2go1+wheezy~main~648~build1
+all          X2Go server daemon scripts (extensions)
+ii  x2goserver-printing 4.0.0.1-0~x2go1+wheezy~main~648~build1
+all          X2Go server daemon scripts (printing)
+
+dpkg -l | grep nx
+ii  libnx-x11 2:3.5.0.20-0+wheezy~main~405~build1    i386         nx-X11
+ii  nxagent 2:3.5.0.20-0+wheezy~main~405~build1    i386         NX agent
+
+On the client side, I am now using X2GoClient V. 4.0.0.3 on Windows 7
+(32-bit, German)
+
+Note: The problem is *independent* of the compression *settings* (it
+occurs with WAN/nopack as well), but it does *not* occur when bypassing
+X2Go and running an unaccelerated, regular X session via SSH - with the
+X Server &quot;stolen&quot; from the X2GoClient package. Also, it doesn't matter
+which version of the X2GoClient you use, both the interim client and the
+new one show this behavior in their 4.0.0.3 versions.
+
+What happens: Whenever you try to access the advanced settings/proxy
+settings in chromium-browser or Google Chrome, vcxsrv.exe crashes.
+
+The following problem details are given:
+
+Problemsignatur:
+   Problemereignisname:    APPCRASH
+   Anwendungsname:    vcxsrv.exe
+   Anwendungsversion:    0.0.0.0
+   Anwendungszeitstempel:    4f852997
+   Fehlermodulname:    vcxsrv.exe
+   Fehlermodulversion:    0.0.0.0
+   Fehlermodulzeitstempel:    4f852997
+   Ausnahmecode:    c0000005
+   Ausnahmeoffset:    00160860
+   Betriebsystemversion:    6.1.7601.2.1.0.768.3
+   Gebietsschema-ID:    1031
+   Zusatzinformation 1:    0a9e
+   Zusatzinformation 2:    0a9e372d3b4ad19135b953a78882e789
+   Zusatzinformation 3:    0a9e
+   Zusatzinformation 4:    0a9e372d3b4ad19135b953a78882e789
+
+Lesen Sie unsere Datenschutzbestimmungen online:
+   <A HREF="http://go.microsoft.com/fwlink/?linkid=104288&amp;clcid=0x0407">http://go.microsoft.com/fwlink/?linkid=104288&amp;clcid=0x0407</A>
+
+Wenn die Onlinedatenschutzbestimmungen nicht verf&#252;gbar sind, lesen Sie
+unsere Datenschutzbestimmungen offline:
+   C:\windows\system32\de-DE\erofflps.txt
+
+It would be really cool if you see to getting this fixed soon, some of
+my users really want to use Chrome these days.
+
+Kind Regards,
+Stefan
+_______________________________________________
+X2Go-Dev mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005625.html">[X2Go-Dev] Google Chrome and chromium-browser both crash when	their advanced settings menu is accessed (Windows X2GoClient)
+</A></li>
+	<LI>Next message: <A HREF="005626.html">[X2Go-Dev] Bug#142: X2Go issue (in src:x2goclient) has been marked	as pending for release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5674">[ date ]</a>
+              <a href="thread.html#5674">[ thread ]</a>
+              <a href="subject.html#5674">[ subject ]</a>
+              <a href="author.html#5674">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

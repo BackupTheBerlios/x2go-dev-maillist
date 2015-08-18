@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] occurrence of sluggishness in X2Go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20occurrence%20of%20sluggishness%20in%20X2Go&In-Reply-To=%3C1578365.Xzm0NZMZY6%40yukon%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004055.html">
+   <LINK REL="Next"  HREF="004057.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] occurrence of sluggishness in X2Go</H1>
+    <B>Arnold Krille</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20occurrence%20of%20sluggishness%20in%20X2Go&In-Reply-To=%3C1578365.Xzm0NZMZY6%40yukon%3E"
+       TITLE="[X2Go-Dev] occurrence of sluggishness in X2Go">arnold at arnoldarts.de
+       </A><BR>
+    <I>Sat Jun  2 13:19:27 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004055.html">[X2Go-Dev] occurrence of sluggishness in X2Go
+</A></li>
+        <LI>Next message: <A HREF="004057.html">[X2Go-Dev] occurrence of sluggishness in X2Go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4056">[ date ]</a>
+              <a href="thread.html#4056">[ thread ]</a>
+              <a href="subject.html#4056">[ subject ]</a>
+              <a href="author.html#4056">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Friday 01 June 2012 08:32:40 Mike Gabriel wrote:
+&gt;<i> just for the record and to let people know about current work focus...
+</I>&gt;<i> 
+</I>&gt;<i> People (esp. John) have reported occurrences of a very sluggish
+</I>&gt;<i> behaviour of various applications when run in X2Go sessions.
+</I>
+Add me to that list (and my co-workers).
+
+&gt;<i> We developers can now confirm this. Ubuntu users reported this
+</I>&gt;<i> earlier, Debian user can now also experience such a sluggishness.
+</I>&gt;<i> 
+</I>&gt;<i> Reproduce on Debian:
+</I>&gt;<i> 
+</I>&gt;<i>    * add squeeze-backports archive to your system
+</I>&gt;<i>    * install iceweasel (esr version)
+</I>&gt;<i> 
+</I>&gt;<i> This will drag in a libcairo from squeeze backports that is very
+</I>&gt;<i> probably the cause for making some applications very slow within X2Go
+</I>&gt;<i> sessions.
+</I>&gt;<i> 
+</I>&gt;<i> Libcairo is used in all GTK applications and is a layer between GTK
+</I>&gt;<i> and the rendering backend (X11, OpenGL, ...). With some recent version
+</I>&gt;<i> of libcairo the sluggishness got introduced...
+</I>
+Would it help to mask/block the libcairo from squeeze-backports? Or test with 
+a newer version from wheezy? Maybe I can squeeze that in next week...
+
+Have fun,
+
+Arnold
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 198 bytes
+Desc: This is a digitally signed message part.
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120602/1fc7eb56/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120602/1fc7eb56/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004055.html">[X2Go-Dev] occurrence of sluggishness in X2Go
+</A></li>
+	<LI>Next message: <A HREF="004057.html">[X2Go-Dev] occurrence of sluggishness in X2Go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4056">[ date ]</a>
+              <a href="thread.html#4056">[ thread ]</a>
+              <a href="subject.html#4056">[ subject ]</a>
+              <a href="author.html#4056">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

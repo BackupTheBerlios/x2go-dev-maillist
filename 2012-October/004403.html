@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2go, printing, Vserver, PostgreSQL - Progress....
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2go%2C%20printing%2C%20Vserver%2C%20PostgreSQL%20-%20Progress....&In-Reply-To=%3C20121001075312.20765rwre8j86aq0%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004402.html">
+   <LINK REL="Next"  HREF="004404.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2go, printing, Vserver, PostgreSQL - Progress....</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2go%2C%20printing%2C%20Vserver%2C%20PostgreSQL%20-%20Progress....&In-Reply-To=%3C20121001075312.20765rwre8j86aq0%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] X2go, printing, Vserver, PostgreSQL - Progress....">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Oct  1 07:53:12 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004402.html">[X2Go-Dev] X2go, printing, Vserver, PostgreSQL - Progress....
+</A></li>
+        <LI>Next message: <A HREF="004404.html">[X2Go-Dev] X2go, printing, Vserver, PostgreSQL - Progress....
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4403">[ date ]</a>
+              <a href="thread.html#4403">[ thread ]</a>
+              <a href="subject.html#4403">[ subject ]</a>
+              <a href="author.html#4403">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi John,
+
+On Mo 01 Okt 2012 04:12:25 CEST &quot;John A. Sullivan III&quot; wrote:
+
+&gt;<i> On Sun, 2012-09-30 at 10:35 -0400, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">senrabdet at aol.com</A> wrote:
+</I>
+&gt;&gt;<i> Another quick update - we think enabling fuse in the vserver guest is
+</I>&gt;&gt;<i> part of the problem, though the vserver folks suggest this may be a
+</I>&gt;&gt;<i> security/stability problem.
+</I>&gt;&gt;<i>
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> Newer kernels may break out the capability required to make FUSE work
+</I>&gt;<i> from the admin capability but I've not investigated that yet.  If you
+</I>&gt;<i> allowed the admin capability in your vserver guest, you shot your
+</I>&gt;<i> security to bits.  If I recall correctly, the capability limitation was
+</I>&gt;<i> not in mounting FUSE drives but only in unmounting them, strangely.
+</I>&gt;<i> That's why we moved the x2gocleansessions script to the VServer host -
+</I>&gt;<i> not to mention that it means we can run one process for many hundreds of
+</I>&gt;<i> servers rather than one each firing every five seconds.
+</I>&gt;<i>
+</I>&gt;<i> We do have this working without opening the admin capabilities but I do
+</I>&gt;<i> not remember the details off the top of my head and we are using an old
+</I>&gt;<i> and heavily adapted version.  Good luck with it - John
+</I>
+For X2Go Server 3.2.0.0 I am currently fully restructuring the  
+x2goserver src:package. Would it make sense for you to package the  
+x2gocleansessions script in a separate package? What other components  
+do you have running on the Vserver host that do not run on the X2Go  
+servers (Vserver guests)?
+
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121001/252b38e7/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121001/252b38e7/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004402.html">[X2Go-Dev] X2go, printing, Vserver, PostgreSQL - Progress....
+</A></li>
+	<LI>Next message: <A HREF="004404.html">[X2Go-Dev] X2go, printing, Vserver, PostgreSQL - Progress....
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4403">[ date ]</a>
+              <a href="thread.html#4403">[ thread ]</a>
+              <a href="subject.html#4403">[ subject ]</a>
+              <a href="author.html#4403">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

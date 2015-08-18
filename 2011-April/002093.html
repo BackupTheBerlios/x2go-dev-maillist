@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Build-Server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Build-Server&In-Reply-To=%3C4DB7ED45.2020607%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002083.html">
+   <LINK REL="Next"  HREF="002096.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Build-Server</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Build-Server&In-Reply-To=%3C4DB7ED45.2020607%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-dev] Build-Server">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Wed Apr 27 12:17:41 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002083.html">[X2go-dev] Build-Server
+</A></li>
+        <LI>Next message: <A HREF="002096.html">[X2go-dev] Build-Server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2093">[ date ]</a>
+              <a href="thread.html#2093">[ thread ]</a>
+              <a href="subject.html#2093">[ subject ]</a>
+              <a href="author.html#2093">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+
+we do have such a thing and in principle this is possible. None the
+less, if I remember right, Reinhard has a something similar in
+preparation for another project. @Reinhard: Any news? I also think that
+compile-time shouldn't be an issue - worst case the package is published
+an hour later. If you've got a system up and running we should probably
+use that. Anyway the next two or three weeks are very busy for me,
+therefore I'd like to avoid doing this unless it is absolutely necessary
+until then.
+
+Cheers.
+Morty
+
+
+On 2011-04-26 22:09, Mike Gabriel wrote:
+&gt;<i> Hi Morty, Reinhard, Arw,
+</I>&gt;<i>
+</I>&gt;<i> Morty mentioned recently (I think in a Jabber session) that there is a
+</I>&gt;<i> build-server available at Uni Erlangen. Will it be possible to install
+</I>&gt;<i> qemubuilder on that system and use it for building X2go packages? I
+</I>&gt;<i> volunteer to do that, the qemubuilder can be used for other build jobs
+</I>&gt;<i> as well...
+</I>&gt;<i>
+</I>&gt;<i> I have looked at the different systems available for package building
+</I>&gt;<i> and I liked qemubuilder best. However, qemubuilder does only build in
+</I>&gt;<i> kvm-mode on native systems (that is: not on already virtualized
+</I>&gt;<i> systems). In Intel-based kvm-VMs it can not access the VT technology
+</I>&gt;<i> of the CPU (so-called VT nesting).
+</I>&gt;<i>
+</I>&gt;<i> However, AMD Pacifica CPUs support KVM nesting (never tried it out,
+</I>&gt;<i> though). @Morty: if you run VMs on an AMD CPU that would also be great
+</I>&gt;<i> and functional for our needs.
+</I>&gt;<i>
+</I>&gt;<i> Anyone else: if you can provide such a build server, please let me
+</I>&gt;<i> know that, too. I currently use my notebook for building X2go packages
+</I>&gt;<i> (it is a really fast one, but still, it is a notebook). The server
+</I>&gt;<i> behind code.x2go.org also runs a similar qemubuilder setup, but it
+</I>&gt;<i> only falls back to slow qemu software emulation as it already as a
+</I>&gt;<i> virtual machine...
+</I>&gt;<i>
+</I>&gt;<i> Any help is appreciated,
+</I>&gt;<i> Thanks a lot Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110427/09e75911/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110427/09e75911/attachment.html</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 5867 bytes
+Desc: S/MIME Cryptographic Signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110427/09e75911/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110427/09e75911/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002083.html">[X2go-dev] Build-Server
+</A></li>
+	<LI>Next message: <A HREF="002096.html">[X2go-dev] Build-Server
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2093">[ date ]</a>
+              <a href="thread.html#2093">[ thread ]</a>
+              <a href="subject.html#2093">[ subject ]</a>
+              <a href="author.html#2093">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

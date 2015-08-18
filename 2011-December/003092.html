@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] [PATCH] Make sure the [...] - The right patch!
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BPATCH%5D%20Make%20sure%20the%20%5B...%5D%20-%20The%20right%20patch%21&In-Reply-To=%3C1323464708.3159.83.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003091.html">
+   <LINK REL="Next"  HREF="003097.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] [PATCH] Make sure the [...] - The right patch!</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20%5BPATCH%5D%20Make%20sure%20the%20%5B...%5D%20-%20The%20right%20patch%21&In-Reply-To=%3C1323464708.3159.83.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-Dev] [PATCH] Make sure the [...] - The right patch!">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Dec  9 22:05:08 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003091.html">[X2go-Dev] [PATCH] Make sure the [...] - The right patch!
+</A></li>
+        <LI>Next message: <A HREF="003097.html">[X2go-Dev] [PATCH] Make sure the [...] - The right patch!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3092">[ date ]</a>
+              <a href="thread.html#3092">[ thread ]</a>
+              <a href="subject.html#3092">[ subject ]</a>
+              <a href="author.html#3092">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2011-12-09 at 21:53 +0100, Reinhard Tartler wrote:
+&gt;<i> On Fr, Dez 09, 2011 at 18:58:35 (CET), Moritz Struebe wrote:
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> &gt; --- a/x2goserver/bin/x2gostartagent
+</I>&gt;<i> &gt; +++ b/x2goserver/bin/x2gostartagent
+</I>&gt;<i> &gt; @@ -120,8 +120,8 @@ USED_DISPLAYS=`$X2GO_LIB_PATH/x2gogetdisplays $HOSTNAME`
+</I>&gt;<i> &gt;  while [ &quot;$OUTPUT&quot;  != &quot;inserted&quot; ]; do
+</I>&gt;<i> &gt;  	X2GO_PORT=$(($X2GO_PORT + 1))
+</I>&gt;<i> &gt;  	X2GO_PORT=`echo &quot;for(\\$i=$X2GO_PORT;\\$br ne \&quot;true\&quot;;\\$i++){ if(\&quot;$USED_DISPLAYS\&quot; =~ m/\\|\\$i\\|/){\\$br=\&quot;false\&quot;;}else{\\$br=\&quot;true\&quot;;print \\$i;}}&quot;|perl`
+</I>&gt;<i> &gt; -
+</I>&gt;<i> &gt; -	if  [ -e &quot;/tmp/.X${X2GO_PORT}-lock&quot; ] || [ -e &quot;/tmp/.X11-unix/X${X2GO_PORT}&quot; ]; then
+</I>&gt;<i> &gt; +	#Test if the session is already in use. nxagent uses 6000+DISPLAY to open a port. Therefore this must be tested, too.
+</I>&gt;<i> &gt; +	if  [ -e &quot;/tmp/.X${X2GO_PORT}-lock&quot; ] || [ -e &quot;/tmp/.X11-unix/X${X2GO_PORT}&quot; ] || `netstat -ntl | grep &quot;:${X2GO_PORT} &quot;` ; then
+</I>&gt;<i> &gt;  		OUTPUT=&quot;XXX&quot;
+</I>&gt;<i> &gt;  	else
+</I>&gt;<i> &gt;  		SESSION_NAME=${USER}-${X2GO_PORT}-`date +&quot;%s&quot;`
+</I>&gt;<i> 
+</I>&gt;<i> That looks overly convoluted to me. What about this (untested, but shell
+</I>&gt;<i> syntax works):
+</I>&gt;<i> 
+</I>&gt;<i> if  [ -e &quot;/tmp/.X${X2GO_PORT}-lock&quot; ] || 
+</I>&gt;<i>     [ -e &quot;/tmp/.X11-unix/X${X2GO_PORT}&quot; ] ||
+</I>&gt;<i>     netstat -ntl 2&gt;/dev/null | grep -q &quot;:${X2GO_PORT}&quot;; then
+</I>&gt;<i> 	OUTPUT=&quot;XXX&quot;
+</I>&gt;<i> else
+</I>&gt;<i> 	SESSION_NAME=${USER}-${X2GO_PORT}-`date +&quot;%s&quot;`
+</I>&gt;<i> fi
+</I>&gt;<i> 
+</I>&gt;<i> Cheers,
+</I>&gt;<i> Reinhard
+</I>&gt;<i> 
+</I>What if X2GO_PORT is 6051 and for some reason there is a service
+listening on port 60513? Won't it erroneously match? - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003091.html">[X2go-Dev] [PATCH] Make sure the [...] - The right patch!
+</A></li>
+	<LI>Next message: <A HREF="003097.html">[X2go-Dev] [PATCH] Make sure the [...] - The right patch!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3092">[ date ]</a>
+              <a href="thread.html#3092">[ thread ]</a>
+              <a href="subject.html#3092">[ subject ]</a>
+              <a href="author.html#3092">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

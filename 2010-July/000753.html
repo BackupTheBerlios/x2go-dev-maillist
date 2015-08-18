@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] latest plugin testing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20latest%20plugin%20testing&In-Reply-To=%3Cloom.20100707T010415-622%40post.gmane.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000752.html">
+   <LINK REL="Next"  HREF="000754.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] latest plugin testing</H1>
+    <B>Max Chao</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20latest%20plugin%20testing&In-Reply-To=%3Cloom.20100707T010415-622%40post.gmane.org%3E"
+       TITLE="[X2go-dev] latest plugin testing">yochaos at gmail.com
+       </A><BR>
+    <I>Wed Jul  7 01:15:31 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000752.html">[X2go-dev] latest plugin testing
+</A></li>
+        <LI>Next message: <A HREF="000754.html">[X2go-dev] latest plugin testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#753">[ date ]</a>
+              <a href="thread.html#753">[ thread ]</a>
+              <a href="subject.html#753">[ subject ]</a>
+              <a href="author.html#753">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Gerry Reno &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">greno at ...</A>&gt; writes:
+
+&gt;<i> 
+</I>&gt;<i> Heinz,
+</I>&gt;<i>     I ran some tests with the latest plugin today and here are some 
+</I>&gt;<i> things I noticed:
+</I>&gt;<i> 
+</I>&gt;<i>    When displaying a single rootless app, as soon as I place the cursor 
+</I>&gt;<i> over the title bar it kills the window.  Only happens with the x2go 
+</I>&gt;<i> remote app window.
+</I>&gt;<i> 
+</I>&gt;<i>    Running gnome-terminal natively either locally or remotely displays 
+</I>&gt;<i> it correctly.  But, when I displayed a single rootless app 
+</I>&gt;<i> (gnome-terminal) from a user that had Wine installed, the border was the 
+</I>&gt;<i> same as all my other local windows but the palette and menues were all 
+</I>&gt;<i> Wine styled and looked like Windows 98.
+</I>&gt;<i> 
+</I>&gt;<i>    Remote shares work fine.
+</I>&gt;<i> 
+</I>&gt;<i>    Printing did not work - no spool mount.
+</I>&gt;<i> 
+</I>&gt;<i>    DPI and compression do not set on whole desktops.  They do set on 
+</I>&gt;<i> single rootless apps.
+</I>&gt;<i> 
+</I>&gt;<i>    That's everything I've noticed so far.
+</I>&gt;<i> 
+</I>&gt;<i> Gerry
+</I>&gt;<i> 
+</I>Hi Gerry,
+
+I met one issue you mentioned here before: &quot;place the cursor over the title bar 
+it kills the window&quot;, which because of X2Go will try to run the program pointed 
+by environment variable NX_CLIENT, if your cursor over the title bar of single 
+window. 
+
+While the NX_CLIENT is set as /usr/bin/x2gosuspend-agent, which will suspend 
+your app. You can just comment it out or set it as /bin/true to make a 
+workaround.
+
+Hope it helps you.
+
+Max
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000752.html">[X2go-dev] latest plugin testing
+</A></li>
+	<LI>Next message: <A HREF="000754.html">[X2go-dev] latest plugin testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#753">[ date ]</a>
+              <a href="thread.html#753">[ thread ]</a>
+              <a href="subject.html#753">[ subject ]</a>
+              <a href="author.html#753">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

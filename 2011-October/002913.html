@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Problem with windows x2go client 3.99.0.1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Problem%20with%20windows%20x2go%20client%203.99.0.1&In-Reply-To=%3C4E9A38DD.3040802%40spsmb.cz%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002912.html">
+   <LINK REL="Next"  HREF="002914.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Problem with windows x2go client 3.99.0.1</H1>
+    <B>vasek at spsmb.cz</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Problem%20with%20windows%20x2go%20client%203.99.0.1&In-Reply-To=%3C4E9A38DD.3040802%40spsmb.cz%3E"
+       TITLE="[X2go-Dev] Problem with windows x2go client 3.99.0.1">vasek at spsmb.cz
+       </A><BR>
+    <I>Sun Oct 16 03:52:29 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002912.html">[X2go-Dev] Problem with windows x2go client 3.99.0.1
+</A></li>
+        <LI>Next message: <A HREF="002914.html">[X2go-Dev] Problem with windows x2go client 3.99.0.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2913">[ date ]</a>
+              <a href="thread.html#2913">[ thread ]</a>
+              <a href="subject.html#2913">[ subject ]</a>
+              <a href="author.html#2913">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Dne 15.10.2011 23:01, John A. Sullivan III napsal(a):
+&gt;<i> On Sat, 2011-10-15 at 22:40 +0200, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">vasek at spsmb.cz</A> wrote:
+</I>&gt;&gt;<i> Dne 15.10.2011 20:56, John A. Sullivan III napsal(a):
+</I>&gt;&gt;&gt;<i> On Sat, 2011-10-15 at 20:38 +0200, <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">vasek at spsmb.cz</A> wrote:
+</I>&gt;&gt;&gt;&gt;<i> Hello,
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> x2go client 3.99.0.1 (and 3.99.0.0 and 3.01.18) is not working under
+</I>&gt;&gt;&gt;&gt;<i> windows 7. Session is established but connection timeout. On the server
+</I>&gt;&gt;&gt;&gt;<i> side in log: sshd[1903]: error: connect_to localhost port 30001: failed.
+</I>&gt;&gt;&gt;&gt;<i> I use debian squeeze and x2go server from <A HREF="http://packages.x2go.org/debian.">http://packages.x2go.org/debian.</A>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> 3.01.18 under ubuntu with no problem
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Where is the problem?
+</I>&gt;&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;&gt;<i> I've noticed the exact same thing.  I assumed it was because I am using
+</I>&gt;&gt;&gt;<i> 3.0.1-5 on the server side and there was a backwards compatibility issue
+</I>&gt;&gt;&gt;<i> so I postponed investigation until I have a chance to upgrade the server
+</I>&gt;&gt;&gt;<i> side - John
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;<i> I use most recent x2go server (3.0.99.6). Only 3.01-4 client from
+</I>&gt;&gt;<i> <A HREF="http://www.x2go.org/index.php?id=7">http://www.x2go.org/index.php?id=7</A> works (3.01-2 should work but there
+</I>&gt;&gt;<i> are trojans inside of installation package).
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> Hmm . . . smells like libssh.  I wonder if it's related to another
+</I>&gt;<i> problem we are seeing in Linux with the newer clients; we are constantly
+</I>&gt;<i> dropping SSH sessions.  Sound, file sharing, printing, all those
+</I>&gt;<i> functions which rely upon the reverse ssh forwarding all break after a
+</I>&gt;<i> while.  Suspending and resuming the session restores them - John
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+x2go client 3.99.0.1 under ubuntu (with new libssl) works, but not under 
+windows.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002912.html">[X2go-Dev] Problem with windows x2go client 3.99.0.1
+</A></li>
+	<LI>Next message: <A HREF="002914.html">[X2go-Dev] Problem with windows x2go client 3.99.0.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2913">[ date ]</a>
+              <a href="thread.html#2913">[ thread ]</a>
+              <a href="subject.html#2913">[ subject ]</a>
+              <a href="author.html#2913">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] a2go-client for MAC
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20a2go-client%20for%20MAC&In-Reply-To=%3C1285112319.2986.40.camel%40asus%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001028.html">
+   <LINK REL="Next"  HREF="001029.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] a2go-client for MAC</H1>
+    <B>J&#246;rg Sawatzki</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20a2go-client%20for%20MAC&In-Reply-To=%3C1285112319.2986.40.camel%40asus%3E"
+       TITLE="[X2go-dev] a2go-client for MAC">joerg.sawatzki at web.de
+       </A><BR>
+    <I>Wed Sep 22 01:38:39 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001028.html">[X2go-dev] headless client with pyx2go
+</A></li>
+        <LI>Next message: <A HREF="001029.html">[X2go-dev] Loadbalancing?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1027">[ date ]</a>
+              <a href="thread.html#1027">[ thread ]</a>
+              <a href="subject.html#1027">[ subject ]</a>
+              <a href="author.html#1027">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hej Jarle,
+
+I am not really a MAC expert - but I'd say if other X clients can
+connect through UNIX sockets, the x2goclient should be able to do that
+as well. When developing my python x2go library, I ran into pretty much
+the same issue with win32 - nxproxy didn't really want to use unix
+sockets in the cygwin environment. 
+It might be that this is actually not a mac/cygwin problem, but that
+there is something wrong with nxproxy, which is the component that gets
+a compressed stream through SSH, builds a cache and plays back the
+uncompressed X11 messages to the local X server.
+Even though I cannot really help you, I have some ideas how you could
+track down the issue: You have probably heard of nomachine.com who
+actually invented the NX stuff. Go to their website and download their
+NX Client for Mac OS X and see if that needs you to open the TCP X11
+port or not It's using nxproxy as well (maybe even exactly the same
+version/binary) - so the communication between X and the proxy follows
+the same scheme as x2go does. The NoMachine website has a &quot;TestDrive&quot;
+section that you can use to play around with - no need to setup an NX
+test server!
+
+I hope that will get you a bit closer to the solution what's going
+wrong ;)
+
+Good luck!
+
+J&#246;rg
+
+Am Mittwoch, den 18.08.2010, 10:25 +0200 schrieb Jarle Bj&#248;rgeengen:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> first, thank you for a nice application. I've been looking for a  
+</I>&gt;<i> suitable free NX low-bandwidth solution and x2go seems to fit the  
+</I>&gt;<i> purpose well.
+</I>&gt;<i> 
+</I>&gt;<i> I'm using the MAC client, and I'm a bit puzzled that it is necessary  
+</I>&gt;<i> to turn on remote connections (and hence open the X11 TCP port for  
+</I>&gt;<i> listening) in order to locally display the desktop received over NX  
+</I>&gt;<i> protocole (presumably tunneled over SSH) . So first you tunnel over  
+</I>&gt;<i> SSH for security, and then it is required to open a potentially  
+</I>&gt;<i> vulnerable service in order to display that picture ... ?
+</I>&gt;<i> 
+</I>&gt;<i> When starting X programs (like XTERM) in OSX it seems that the default  
+</I>&gt;<i> behavior is to communicate over a internal unix socket. Would it be  
+</I>&gt;<i> possible to have x2goclient for mac using the same mechanism rather  
+</I>&gt;<i> requiring the opening of unsafe services ?
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001028.html">[X2go-dev] headless client with pyx2go
+</A></li>
+	<LI>Next message: <A HREF="001029.html">[X2go-dev] Loadbalancing?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1027">[ date ]</a>
+              <a href="thread.html#1027">[ thread ]</a>
+              <a href="subject.html#1027">[ subject ]</a>
+              <a href="author.html#1027">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Packaging%20nx-libs%20%28aka%20x2goagent%29%20for%20your%20distro&In-Reply-To=%3C20120210232316.13931cutms5wjv84%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003380.html">
+   <LINK REL="Next"  HREF="003383.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Packaging%20nx-libs%20%28aka%20x2goagent%29%20for%20your%20distro&In-Reply-To=%3C20120210232316.13931cutms5wjv84%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Fri Feb 10 23:23:16 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003380.html">[X2Go-Dev] [PATCH] x2goserver.git/bin/x2goumount-session
+</A></li>
+        <LI>Next message: <A HREF="003383.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3376">[ date ]</a>
+              <a href="thread.html#3376">[ thread ]</a>
+              <a href="subject.html#3376">[ subject ]</a>
+              <a href="author.html#3376">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Oliver, Milan,
+
+Please build x2goagent from nx-libs.git. Tarballs are available here:
+<A HREF="http://code.x2go.org/releases/source/nx-libs">http://code.x2go.org/releases/source/nx-libs</A>
+
+the symlink...
+--------------
+nx-libs aims at being a replacement for nxagent (as being used with  
+FreeNX, for example) whilst also providing our x2goagent. x2goagent is  
+nothing more than a branded nxagent. Originally, Alex forked NX libs  
+and nxagent for achieving the branding. However, we recently patched  
+some code into original NX code that makes it now possible for nxagent  
+to recognize under what name the agent is launched. If that name is  
+x2goagent the X2Go branding is turned on, otherwise no branding.
+
+the wrapper script...
+---------------------
+nx-libs ships with its own X11 library files (libnx-x11, we call the  
+package for Debian). With your distro's X libraries nxagent/x2goagent  
+will probably fail to run or it will at least be really unstable. You  
+have to install NX libs to some non-default library path (e.g.  
+/usr/lib/nx) and make sure that nxagent/x2goagent finds only those (by  
+tweaking LD_LIBRARY_PATH) and _not_ the distro's X11 libs.
+
+Hope that helps!
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 490 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120210/779a481c/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120210/779a481c/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003380.html">[X2Go-Dev] [PATCH] x2goserver.git/bin/x2goumount-session
+</A></li>
+	<LI>Next message: <A HREF="003383.html">[X2Go-Dev] Packaging nx-libs (aka x2goagent) for your distro
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3376">[ date ]</a>
+              <a href="thread.html#3376">[ thread ]</a>
+              <a href="subject.html#3376">[ subject ]</a>
+              <a href="author.html#3376">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

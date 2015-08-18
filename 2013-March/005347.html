@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] nx-libs 3.5.0.18 failing to build in launchpad PPA
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nx-libs%203.5.0.18%20failing%20to%20build%20in%20launchpad%20PPA&In-Reply-To=%3CE86AAB60-7504-407A-BCB7-3CCFF80B8807%40dartmouth.edu%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005346.html">
+   <LINK REL="Next"  HREF="005350.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] nx-libs 3.5.0.18 failing to build in launchpad PPA</H1>
+    <B>Matthew L. Dailey</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20nx-libs%203.5.0.18%20failing%20to%20build%20in%20launchpad%20PPA&In-Reply-To=%3CE86AAB60-7504-407A-BCB7-3CCFF80B8807%40dartmouth.edu%3E"
+       TITLE="[X2Go-Dev] nx-libs 3.5.0.18 failing to build in launchpad PPA">matthew.l.dailey at dartmouth.edu
+       </A><BR>
+    <I>Wed Mar 27 16:20:42 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005346.html">[X2Go-Dev] libjpeg-turbo 1.2.90 uploaded to X2Go project's Debian	archive
+</A></li>
+        <LI>Next message: <A HREF="005350.html">[X2Go-Dev] nx-libs 3.5.0.18 failing to build in launchpad PPA
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5347">[ date ]</a>
+              <a href="thread.html#5347">[ thread ]</a>
+              <a href="subject.html#5347">[ subject ]</a>
+              <a href="author.html#5347">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Greetings. I'm not sure I can e-mail the dev list, but I figured I'd give it a try, since this seems more appropriate than the users list. :-)
+
+I was looking at the Launchpad PPA for X2Go today and noticed that the nx-libs packages for 3.5.0.18 are not successfully building: &lt;<A HREF="https://launchpad.net/~x2go/+archive/baikal/+builds?build_text=nx-libs&amp;build_state=failed">https://launchpad.net/~x2go/+archive/baikal/+builds?build_text=nx-libs&amp;build_state=failed</A>&gt;. Looking at the build log, it seems related to the fix for bug #145. It looks like debian/Makefile.nx-libs is trying to source replace.sh, but the file is actually Makefile.replace.sh so it fails when trying to call string_rep(). The roll-tarball.sh script copies this file to replace.sh, but my guess is that this isn't invoked in the launchpad build process.
+
+Hopefully someone with a better understanding of the patch and build process can find a quick fix.
+
+Thanks for your hard work and let me know if you have any questions.
+
+Best,
+Matt
+
+-- 
+Matthew L. Dailey
+Systems Administrator
+Thayer School of Engineering
+Dartmouth College
+
+
+
+</PRE>
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005346.html">[X2Go-Dev] libjpeg-turbo 1.2.90 uploaded to X2Go project's Debian	archive
+</A></li>
+	<LI>Next message: <A HREF="005350.html">[X2Go-Dev] nx-libs 3.5.0.18 failing to build in launchpad PPA
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5347">[ date ]</a>
+              <a href="thread.html#5347">[ thread ]</a>
+              <a href="subject.html#5347">[ subject ]</a>
+              <a href="author.html#5347">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2goserver patch (against a pull from Sep 14, 2011)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20patch%20%28against%20a%20pull%20from%20Sep%2014%2C%202011%29&In-Reply-To=%3C12784371.qaZNVHzTFe%40tervel%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002792.html">
+   <LINK REL="Next"  HREF="002808.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2goserver patch (against a pull from Sep 14, 2011)</H1>
+    <B>Ivan Kabaivanov</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2goserver%20patch%20%28against%20a%20pull%20from%20Sep%2014%2C%202011%29&In-Reply-To=%3C12784371.qaZNVHzTFe%40tervel%3E"
+       TITLE="[X2go-Dev] x2goserver patch (against a pull from Sep 14, 2011)">chepati at yahoo.com
+       </A><BR>
+    <I>Tue Sep 20 00:26:23 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002792.html">[X2go-Dev] [X2go-User] Is http://x2go.obviously-nice.de/deb/	down?
+</A></li>
+        <LI>Next message: <A HREF="002808.html">[X2go-Dev] x2goserver patch (against a pull from Sep 14, 2011)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2807">[ date ]</a>
+              <a href="thread.html#2807">[ thread ]</a>
+              <a href="subject.html#2807">[ subject ]</a>
+              <a href="author.html#2807">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>--- x2goserver-git-2011-09-14/x2goserver/bin/x2gosuspend-session.original
+2011-09-20 00:57:03.000000000 +0300
++++ x2goserver-git-2011-09-14/x2goserver/bin/x2gosuspend-session        
+2011-09-
+20 01:07:15.000000000 +0300
+@@ -35,16 +35,15 @@
+ 
+ 
+ #workaround for knotify
+-killall -HUP knotify
++killall -HUP knotify &gt; /dev/null 2&gt;&amp;1
+ 
+ $X2GO_LIB_PATH/x2gochangestatus 'S' $SESSION_NAME  &gt; /dev/null
+ 
+-kill -HUP $X2GO_AGENT_PID &amp;&gt;/dev/null &amp;&amp; {
++kill -HUP $X2GO_AGENT_PID &amp;&gt;/dev/null &amp;&amp;
+        $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;notice&quot; &quot;session with ID $SESSION_NAME 
+h
+as successfully been suspended&quot; || {
+-} || {
+        err_msg=&quot;ERROR: failed to suspend session with ID $SESSION_NAME&quot;
+-       echo err_$msg 1&gt;&amp;2
+-       $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;err&quot; &quot;$err_msg&quot;B
++       echo &quot;$err_msg&quot; 1&gt;&amp;2
++       $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;err&quot; &quot;$err_msg&quot;
+ }
+ 
+ export HOSTNAME 
+--- x2goserver-git-2011-09-14/x2goserver/bin/x2goresume-session.original
+2011-09-20 01:03:40.000000000 +0300
++++ x2goserver-git-2011-09-14/x2goserver/bin/x2goresume-session 2011-09-20 
+01:04
+:<i>00.000000000 +0300
+</I>@@ -85,8 +85,7 @@
+ 
+ kill -HUP $X2GO_AGENT_PID &amp;&gt;/dev/null &amp;&amp; \
+        $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;notice&quot; &quot;client $X2GO_CLIENT 
+successfull
+y resumed session with ID $SESSION_NAME&quot; || {
+-} || {
+        err_msg=&quot;ERROR: failed to resume session with ID $SESSION_NAME&quot;
+-       echo err_$msg 1&gt;&amp;2
++       echo &quot;$err_msg&quot; 1&gt;&amp;2
+        $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;err&quot; &quot;$err_msg&quot;
+ }
+--- x2goserver-git-2011-09-14/x2goserver/bin/x2goterminate-session.original
+2011-09-20 00:50:57.000000000 +0300
++++ x2goserver-git-2011-09-14/x2goserver/bin/x2goterminate-session      
+2011-09-
+20 00:51:19.000000000 +0300
+@@ -37,9 +37,8 @@
+ 
+ kill -TERM $X2GO_AGENT_PID &amp;&gt;/dev/null &amp;&amp; \
+        $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;notice&quot; &quot;session with ID $SESSION_NAME 
+h
+as successfully been terminated&quot; || {
+-} || {
+        err_msg=&quot;ERROR: failed to terminate session with ID $SESSION_NAME&quot;
+-       echo &quot;err_$msg&quot; 1&gt;&amp;2
++       echo &quot;$err_msg&quot; 1&gt;&amp;2
+        $X2GO_LIB_PATH/x2gosyslog &quot;$0&quot; &quot;err&quot; &quot;$err_msg&quot;
+ }
+ 
+
+
+IvanK.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002792.html">[X2go-Dev] [X2go-User] Is http://x2go.obviously-nice.de/deb/	down?
+</A></li>
+	<LI>Next message: <A HREF="002808.html">[X2go-Dev] x2goserver patch (against a pull from Sep 14, 2011)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2807">[ date ]</a>
+              <a href="thread.html#2807">[ thread ]</a>
+              <a href="subject.html#2807">[ subject ]</a>
+              <a href="author.html#2807">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

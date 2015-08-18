@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Shared drive icon cleanup
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Shared%20drive%20icon%20cleanup&In-Reply-To=%3C1272919833.17004.13.camel%40Family.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000450.html">
+   <LINK REL="Next"  HREF="000447.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Shared drive icon cleanup</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Shared%20drive%20icon%20cleanup&In-Reply-To=%3C1272919833.17004.13.camel%40Family.pacifera.com%3E"
+       TITLE="[X2go-dev] Shared drive icon cleanup">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Mon May  3 22:50:33 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000450.html">[X2go-dev] (no subject)
+</A></li>
+        <LI>Next message: <A HREF="000447.html">[X2go-dev] Custom paper size for cups-x2go.ppd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#446">[ date ]</a>
+              <a href="thread.html#446">[ thread ]</a>
+              <a href="subject.html#446">[ subject ]</a>
+              <a href="author.html#446">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, all.  We've been having a problem with the icons created when one
+shares a local share with the X2Go desktop not being cleaned up on
+Windows computers.  It works fine when the client is Linux.  This could
+be peculiar to our highly customized setup.  Has anyone else noticed
+this?
+
+We set up a bit of tracing and found the $remote variable used to delete
+the icon in the x2goumount_session script was being prepended with
+_cygdrive_:
+
+May  3 15:54:39 vd01 X2GOUMOUNT TRACE : remote is /vservers/joe/data/users/joe/Desktop/_cygdrive_C_DOCUME~1_Joe_X2GO~1_S-BDE3~1_spool
+May  3 15:54:39 vd01 X2GOUMOUNT TRACE : remote is /vservers/joe/data/users/joe/Desktop/_cygdrive_C_DOCUME~1_joeold
+
+We edited x2goumount_session to read:
+        $remote=~s/\//_/g;
+        $remote=(split(&quot;:&quot;,&quot;$remote&quot;))[1];
+        $remote=~s/^_cygdrive_//;
+        $remote=&quot;/vservers/$serv/data/users/$uname/Desktop/$remote&quot;;
+As you can tell, we have customized this for a vserver environment -
+something we hope to publish very soon.  This then gave us the expected
+results on Windows stations.
+
+May  3 15:58:19 vd01 X2GOUMOUNT TRACE : remote is /vservers/steve/data/users/steve/Desktop/C_DOCUME~1_spare_X2GO~1_S-SMCC~2_spool
+May  3 16:00:34 vd01 X2GOUMOUNT TRACE : remote is /vservers/joe/data/users/joe/Desktop/C_DOCUME~1_Joe_X2GO~1_S-BDE3~1_spool
+May  3 16:00:34 vd01 X2GOUMOUNT TRACE : remote is /vservers/joe/data/users/joe/Desktop/C_DOCUME~1_joeold
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000450.html">[X2go-dev] (no subject)
+</A></li>
+	<LI>Next message: <A HREF="000447.html">[X2go-dev] Custom paper size for cups-x2go.ppd
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#446">[ date ]</a>
+              <a href="thread.html#446">[ thread ]</a>
+              <a href="subject.html#446">[ subject ]</a>
+              <a href="author.html#446">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

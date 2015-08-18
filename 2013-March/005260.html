@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#142: x2goclient output on stdout
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23142%3A%20x2goclient%20output%20on%20stdout&In-Reply-To=%3CCAHeJaPLjydPxyR4qpjYMNq-pxfeX%3DezhDFY4UWgRend-yWeniQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005207.html">
+   <LINK REL="Next"  HREF="005261.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#142: x2goclient output on stdout</H1>
+    <B>Kjell Otto</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23142%3A%20x2goclient%20output%20on%20stdout&In-Reply-To=%3CCAHeJaPLjydPxyR4qpjYMNq-pxfeX%3DezhDFY4UWgRend-yWeniQ%40mail.gmail.com%3E"
+       TITLE="[X2Go-Dev] Bug#142: x2goclient output on stdout">otto.kjell at gmail.com
+       </A><BR>
+    <I>Mon Mar 11 13:51:28 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005207.html">[X2Go-Dev] Bug#142: x2goclient output on stdout
+</A></li>
+        <LI>Next message: <A HREF="005261.html">[X2Go-Dev] Bug#142: x2goclient output on stdout
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5260">[ date ]</a>
+              <a href="thread.html#5260">[ thread ]</a>
+              <a href="subject.html#5260">[ subject ]</a>
+              <a href="author.html#5260">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Mike,
+
+here is my patch boiled down to one commit. You can look at it before
+you apply it here:
+<A HREF="https://github.com/kjellski/x2goclient/compare/master...debug-cleanup">https://github.com/kjellski/x2goclient/compare/master...debug-cleanup</A>
+
+Greetings,
+Kjellski
+
+2013/3/7 Mike Gabriel &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>&gt;:
+&gt;<i> Hi Otto,
+</I>&gt;<i>
+</I>&gt;<i> On Do 07 M&#228;r 2013 13:51:25 CET Kjell Otto wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Package: x2goclient
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> The x2goclient has extreme output on stdout while running. It's more
+</I>&gt;&gt;<i> noise then signal and therefor, I've wrapped all the printouts with
+</I>&gt;&gt;<i> #ifdef DEBUG and a #undef DEBUG on the onmainwindow.cpp file.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Then I've added in printout statements that are parsable with numbered
+</I>&gt;&gt;<i> output and category so that a normal run of the x2goclient would
+</I>&gt;&gt;<i> output like this:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> $ ./client_build/x2goclient --session=x2goserver_RZ --add-to-known-hosts
+</I>&gt;&gt;<i> --hide
+</I>&gt;&gt;<i> x2go-INFO-001&gt; Starting x2goclient...
+</I>&gt;&gt;<i> x2go-WARN-001&gt; Can't load translator: :/x2goclient_en_us
+</I>&gt;&gt;<i> x2go-WARN-002&gt; Can't load translator: :/qt_en_US
+</I>&gt;&gt;<i> x2go-INFO-004&gt; Started  x2goclient.
+</I>&gt;&gt;<i> x2go-INFO-005&gt; $HOME=/home/kjellski
+</I>&gt;&gt;<i> x2go-INFO-029&gt; Starting connection to server: 10.3.0.20:22
+</I>&gt;&gt;<i> x2go-INFO-031&gt; SSH connection established.
+</I>&gt;&gt;<i> x2go-INFO-011&gt; Closing x2goclient...
+</I>&gt;&gt;<i> x2go-INFO-018&gt; Waiting for the SSH connection to finish...
+</I>&gt;&gt;<i> x2go-INFO-019&gt; Waited  for the SSH connection to finish.
+</I>&gt;&gt;<i> x2go-INFO-028&gt; Closed  x2goclient.
+</I>&gt;&gt;<i> $
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> No GUI will be shown and no try Icons appear. This reflects a bit more
+</I>&gt;&gt;<i> the --hide param and can be used to make a shortcut to the client that
+</I>&gt;&gt;<i> will just open the window.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Also I've added a log method and provided a script that lets you show
+</I>&gt;&gt;<i> all outputs on the file.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> All changes can be found on this repository in the branch stdout-cleanup:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> <A HREF="https://github.com/kjellski/x2goclient/tree/stdout-cleanup">https://github.com/kjellski/x2goclient/tree/stdout-cleanup</A>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> If any additional help from my side is required, please contact me and
+</I>&gt;&gt;<i> I try to support the process.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> yes, help is required.
+</I>&gt;<i>
+</I>&gt;<i> 1. Create fresh (tmp) branch
+</I>&gt;<i> 2. pull over your patches you wish applied in x2goclient.git
+</I>&gt;<i> 3. rebase, boil all single commits down to one commit
+</I>&gt;<i> 4. send the URL to the exact patch/diff for review
+</I>&gt;<i>
+</I>&gt;<i> Mike
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> --
+</I>&gt;<i>
+</I>&gt;<i> DAS-NETZWERKTEAM
+</I>&gt;<i> mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+</I>&gt;<i> fon: +49 (1520) 1976 148
+</I>&gt;<i>
+</I>&gt;<i> GnuPG Key ID 0x25771B31
+</I>&gt;<i> mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+</I>&gt;<i>
+</I>&gt;<i> freeBusy:
+</I>&gt;<i> <A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+</I>-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 0001-Added-the-debug-parameter-to-x2goclient.patch
+Type: application/octet-stream
+Size: 102810 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130311/809f9f1d/attachment.obj">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130311/809f9f1d/attachment.obj</A>&gt;
+</PRE>
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005207.html">[X2Go-Dev] Bug#142: x2goclient output on stdout
+</A></li>
+	<LI>Next message: <A HREF="005261.html">[X2Go-Dev] Bug#142: x2goclient output on stdout
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5260">[ date ]</a>
+              <a href="thread.html#5260">[ thread ]</a>
+              <a href="subject.html#5260">[ subject ]</a>
+              <a href="author.html#5260">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

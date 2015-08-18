@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] x2go live-build based livesystems
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2go%20live-build%20based%20livesystems&In-Reply-To=%3C4E1AA013.4000808%40informatik.uni-erlangen.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="002423.html">
+   <LINK REL="Next"  HREF="002425.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] x2go live-build based livesystems</H1>
+    <B>Moritz Struebe</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20x2go%20live-build%20based%20livesystems&In-Reply-To=%3C4E1AA013.4000808%40informatik.uni-erlangen.de%3E"
+       TITLE="[X2go-Dev] x2go live-build based livesystems">Moritz.Struebe at informatik.uni-erlangen.de
+       </A><BR>
+    <I>Mon Jul 11 09:02:43 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="002423.html">[X2go-Dev] x2go live-build based livesystems
+</A></li>
+        <LI>Next message: <A HREF="002425.html">[X2go-Dev] x2go live-build based livesystems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2424">[ date ]</a>
+              <a href="thread.html#2424">[ thread ]</a>
+              <a href="subject.html#2424">[ subject ]</a>
+              <a href="author.html#2424">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>While I think this is a cool solution for private or trusted usage, I do
+see two issues for enterprise usage due to aufs:
+
+1) Minor: It might happen, that some log-file runs crazy and fills the
+ram. In this case a reboot will solve the issue. This might be unwanted,
+though.
+
+2) Installing any kind of software is much easier, as more directories
+are writeable then with the tmpfs-solution. Once someone does become
+root (already having an anonymous login) the world is open... :)
+
+
+Morty
+
+
+
+On 2011-07-10 11:35, Reinhard Tartler wrote:
+&gt;<i> Last friday we've been experimenting with creating thin clients using
+</I>&gt;<i> the live-build infrastructure. This is the infrastrucutre that is used
+</I>&gt;<i> by both debian live and from oneiric onwards, the ubuntu live cds. This
+</I>&gt;<i> worked included backporting relevant packages from oneiric to natty and
+</I>&gt;<i> fixing some annoying bugs for getting actual working packages.
+</I>&gt;<i>
+</I>&gt;<i> Mainly as a self reminder for me, here some test instructions for
+</I>&gt;<i> *natty* systems. Feedback (as always) welcome:
+</I>&gt;<i>
+</I>&gt;<i> sudo add-apt-repository ppa:siretart
+</I>&gt;<i> sudo apt-get update
+</I>&gt;<i> sudo apt-get dist-upgrade
+</I>&gt;<i> sudo apt-get install live-build x2go-rootfs
+</I>&gt;<i> mkdir /tmp/build
+</I>&gt;<i> cd /tmp/build
+</I>&gt;<i> cp -rv /usr/share/x2go-livefs/auto .
+</I>&gt;<i> sudo lb clean
+</I>&gt;<i> lb config
+</I>&gt;<i> sudo lb build
+</I>&gt;<i>
+</I>&gt;<i> after this, you should end up with a lubuntu/natty based live cd
+</I>&gt;<i> 'binary-hybrid.iso' that has an lxdm configured to autologin the user
+</I>&gt;<i> 'user'. Moreover, x2goclient and rdesktop should be available in the
+</I>&gt;<i> system. This binary-hybrid.iso is for me less than 500MiB in size and
+</I>&gt;<i> AFAIUI (but I didn't test myself) should also worke from an usb stick
+</I>&gt;<i> (dd if=binary-hybrid of=/dev/sdX).
+</I>&gt;<i>
+</I>&gt;<i> hints: /tmp/build is best done on a tmpfs. You'll need around 2gb space
+</I>&gt;<i> available there.
+</I>&gt;<i>
+</I>&gt;<i> Cheers
+</I>&gt;<i>
+</I>
+
+-- 
+Dipl.-Ing. Moritz 'Morty' Struebe (Wissenschaftlicher Mitarbeiter)
+Lehrstuhl f&#252;r Informatik 4 (Verteilte Systeme und Betriebssysteme)
+Friedrich-Alexander-Universit&#228;t Erlangen-N&#252;rnberg
+Martensstr. 1
+91058 Erlangen
+
+Tel   : +49 9131 85-25419
+Fax   : +49 9131 85-28732
+eMail : <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">struebe at informatik.uni-erlangen.de</A>
+WWW   : <A HREF="http://www4.informatik.uni-erlangen.de/~morty">http://www4.informatik.uni-erlangen.de/~morty</A>
+
+
+
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: smime.p7s
+Type: application/pkcs7-signature
+Size: 4482 bytes
+Desc: S/MIME Kryptografische Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110711/a363991a/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110711/a363991a/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="002423.html">[X2go-Dev] x2go live-build based livesystems
+</A></li>
+	<LI>Next message: <A HREF="002425.html">[X2go-Dev] x2go live-build based livesystems
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#2424">[ date ]</a>
+              <a href="thread.html#2424">[ thread ]</a>
+              <a href="subject.html#2424">[ subject ]</a>
+              <a href="author.html#2424">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

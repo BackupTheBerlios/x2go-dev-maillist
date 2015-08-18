@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Patches for shared database, vserver virtualization, and multi-server CUPS print server
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Patches%20for%20shared%20database%2C%20vserver%20virtualization%2C%0A%20and%20multi-server%20CUPS%20print%20server&In-Reply-To=%3C4C2DF9CA.7030804%40verizon.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000740.html">
+   <LINK REL="Next"  HREF="000741.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Patches for shared database, vserver virtualization, and multi-server CUPS print server</H1>
+    <B>Gerry Reno</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Patches%20for%20shared%20database%2C%20vserver%20virtualization%2C%0A%20and%20multi-server%20CUPS%20print%20server&In-Reply-To=%3C4C2DF9CA.7030804%40verizon.net%3E"
+       TITLE="[X2go-dev] Patches for shared database, vserver virtualization, and multi-server CUPS print server">greno at verizon.net
+       </A><BR>
+    <I>Fri Jul  2 16:38:02 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000740.html">[X2go-dev] Patches for shared database, vserver virtualization, and multi-server CUPS print server
+</A></li>
+        <LI>Next message: <A HREF="000741.html">[X2go-dev] Shared database patch documentation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#748">[ date ]</a>
+              <a href="thread.html#748">[ thread ]</a>
+              <a href="subject.html#748">[ subject ]</a>
+              <a href="author.html#748">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>John,
+   I just spent some time going through your documentation and patches.  
+These are very nice.  We are not using any containers at the moment (had 
+considered but shelved the idea previously) but the patches can be 
+applicable to a VM setup as well.  I like the trigger idea you 
+developed.  Although a lot of people like to keep the logic out of the 
+db, in certain instances it makes perfect sense.  In a VM setup some of 
+this could be simplified because of not dealing with the security 
+restrictions of the container environment.
+
+   Thanks for sharing these.  When I get a little more time I'll try to 
+make another pass through them.
+
+Gerry
+
+
+
+On 07/02/2010 07:57 AM, John A. Sullivan III wrote:
+&gt;<i> Hello, all.  We recently found a condition where the VServer patches we
+</I>&gt;<i> submitted conflict with the x2golistsessions script running on the X2Go
+</I>&gt;<i> Servers.  We have revised the patches.  Since most of the patches seemed
+</I>&gt;<i> to get lost in the LinuxTag excitement and never posted, I'll repost
+</I>&gt;<i> them all in dependency order.
+</I>&gt;<i>
+</I>&gt;<i> No offense taken if they are deemed useless.  We need them for our
+</I>&gt;<i> environment and just thought we'd share them.  Improvements are always
+</I>&gt;<i> welcome.  They can probably be reworked so they can be configurable
+</I>&gt;<i> options rather than complete replacements for many of the scripts but we
+</I>&gt;<i> have not had time to be that elegant.  Thanks - John
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>&gt;<i>
+</I>&gt;<i>    
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000740.html">[X2go-dev] Patches for shared database, vserver virtualization, and multi-server CUPS print server
+</A></li>
+	<LI>Next message: <A HREF="000741.html">[X2go-dev] Shared database patch documentation
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#748">[ date ]</a>
+              <a href="thread.html#748">[ thread ]</a>
+              <a href="subject.html#748">[ subject ]</a>
+              <a href="author.html#748">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#70: X2Go Client: some of the debug code fails to	compile
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2370%3A%20X2Go%20Client%3A%20some%20of%20the%20debug%20code%20fails%20to%0A%09compile&In-Reply-To=%3C20121203100548.44381avqctyqodbg%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004632.html">
+   <LINK REL="Next"  HREF="004637.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#70: X2Go Client: some of the debug code fails to	compile</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%2370%3A%20X2Go%20Client%3A%20some%20of%20the%20debug%20code%20fails%20to%0A%09compile&In-Reply-To=%3C20121203100548.44381avqctyqodbg%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#70: X2Go Client: some of the debug code fails to	compile">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Dec  3 10:05:48 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004632.html">[X2Go-Dev] Processed: Related to issue #69?
+</A></li>
+        <LI>Next message: <A HREF="004637.html">[X2Go-Dev] Bug#71: X2Go Client,	httpbrokerclient: GUI bug on broker connection failures
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4635">[ date ]</a>
+              <a href="thread.html#4635">[ thread ]</a>
+              <a href="subject.html#4635">[ subject ]</a>
+              <a href="author.html#4635">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Package: x2goclient
+Severity: minor
+Version: HEAD
+
+Hi Alex,
+
+some of the debug code lines fail to compile if a LOG_FILE has been set.
+
+The below patch shows which lines I had to comment out to make X2Go  
+Client compile with debug output.
+
+Greets,
+Mike
+
+
+
+diff --git a/onmainwindow.cpp b/onmainwindow.cpp
+index 76f8ba9..1f2e2b7 100644
+--- a/onmainwindow.cpp
++++ b/onmainwindow.cpp
+@@ -261,7 +261,7 @@ ONMainWindow::ONMainWindow ( QWidget *parent )  
+:<i>QMainWindow ( parent )
+</I>
+      QDesktopWidget wd;
+
+-    x2goDebug&lt;&lt;&quot;primary screen geometry:  
+&quot;&lt;&lt;wd.screenGeometry(wd.screenNumber(this));
++    //x2goDebug&lt;&lt;&quot;primary screen geometry:  
+&quot;&lt;&lt;wd.screenGeometry(wd.screenNumber(this));
+
+      if ( wd.screenGeometry(wd.screenNumber(this)).width() &lt;1024 ||
+              wd.screenGeometry(wd.screenNumber(this)).height() &lt;768 )
+@@ -9375,7 +9375,7 @@ void ONMainWindow::slotSetProxyWinFullscreen()
+  void ONMainWindow::resizeProxyWinOnDisplay(int disp)
+  {
+      QRect geom=QApplication::desktop()-&gt;screenGeometry(disp-1);
+-    x2goDebug&lt;&lt;&quot;resizing proxy win to fit display  
+&quot;&lt;&lt;disp&lt;&lt;&quot;(&quot;&lt;&lt;geom&lt;&lt;&quot;)&quot;&lt;&lt;endl;
++    //x2goDebug&lt;&lt;&quot;resizing proxy win to fit display  
+&quot;&lt;&lt;disp&lt;&lt;&quot;(&quot;&lt;&lt;geom&lt;&lt;&quot;)&quot;&lt;&lt;endl;
+  #ifdef Q_OS_LINUX
+      XSync(QX11Info::display(),false);
+      XMoveWindow(QX11Info::display(), proxyWinId,geom.x(),geom.y());
+@@ -9425,7 +9425,7 @@ void ONMainWindow::slotConfigXinerama()
+      if (newGeometry==lastDisplayGeometry)
+          return;
+      lastDisplayGeometry=newGeometry;
+-    x2goDebug&lt;&lt;&quot;New proxy geometry: &quot;&lt;&lt;lastDisplayGeometry&lt;&lt;endl;
++//    x2goDebug&lt;&lt;&quot;New proxy geometry: &quot;&lt;&lt;lastDisplayGeometry&lt;&lt;endl;
+      QDesktopWidget* root=QApplication::desktop();
+      QList&lt;QRect&gt; newXineramaScreens;
+      for (int i=0; i&lt; root-&gt;numScreens(); ++i)
+@@ -9437,17 +9437,17 @@ void ONMainWindow::slotConfigXinerama()
+               
+intersection=root-&gt;screenGeometry(i).intersected(lastDisplayGeometry);
+          if (!intersection.isNull())
+          {
+-            x2goDebug&lt;&lt;&quot;intersected with &quot;&lt;&lt;i&lt;&lt;&quot;: &quot;&lt;&lt;intersection&lt;&lt;endl;
++//            x2goDebug&lt;&lt;&quot;intersected with &quot;&lt;&lt;i&lt;&lt;&quot;: &quot;&lt;&lt;intersection&lt;&lt;endl;
+              intersection.moveLeft(intersection.x()-lastDisplayGeometry.x());
+              intersection.moveTop(intersection.y()-lastDisplayGeometry.y());
+-            x2goDebug&lt;&lt;&quot;xinerama screen: &quot;&lt;&lt;intersection&lt;&lt;endl;
++//            x2goDebug&lt;&lt;&quot;xinerama screen: &quot;&lt;&lt;intersection&lt;&lt;endl;
+              newXineramaScreens&lt;&lt;intersection;
+          }
+      }
+      if (xineramaScreens != newXineramaScreens)
+      {
+          xineramaScreens=newXineramaScreens;
+-        x2goDebug&lt;&lt;&quot;xinerama screen changed, new screens:  
+&quot;&lt;&lt;xineramaScreens&lt;&lt;endl;
++//        x2goDebug&lt;&lt;&quot;xinerama screen changed, new screens:  
+&quot;&lt;&lt;xineramaScreens&lt;&lt;endl;
+          xineramaTimer-&gt;stop();
+          QStringList screens;
+          foreach (QRect disp, xineramaScreens)
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20121203/c2ebe5a2/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20121203/c2ebe5a2/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004632.html">[X2Go-Dev] Processed: Related to issue #69?
+</A></li>
+	<LI>Next message: <A HREF="004637.html">[X2Go-Dev] Bug#71: X2Go Client,	httpbrokerclient: GUI bug on broker connection failures
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4635">[ date ]</a>
+              <a href="thread.html#4635">[ thread ]</a>
+              <a href="subject.html#4635">[ subject ]</a>
+              <a href="author.html#4635">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] New Bug/Issue with X2Go - NOT related to latest client	release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20Bug/Issue%20with%20X2Go%20-%20NOT%20related%20to%20latest%20client%0A%09release&In-Reply-To=%3C4F8E9479.3040107%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003860.html">
+   <LINK REL="Next"  HREF="003924.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] New Bug/Issue with X2Go - NOT related to latest client	release</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20New%20Bug/Issue%20with%20X2Go%20-%20NOT%20related%20to%20latest%20client%0A%09release&In-Reply-To=%3C4F8E9479.3040107%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] New Bug/Issue with X2Go - NOT related to latest client	release">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Wed Apr 18 12:16:25 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003860.html">[X2Go-Dev] remote proxy closed the connection
+</A></li>
+        <LI>Next message: <A HREF="003924.html">[X2Go-Dev] New Bug/Issue with X2Go - NOT related to latest client	release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3861">[ date ]</a>
+              <a href="thread.html#3861">[ thread ]</a>
+              <a href="subject.html#3861">[ subject ]</a>
+              <a href="author.html#3861">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Situation:
+Client:
+Windows 7 (32-Bit), German
+X2Go Client versions tested:
+<A HREF="http://code.x2go.org/releases/binary-win32/x2goclient/x2goclient-3.99.2.1-rc2-setup.exe">http://code.x2go.org/releases/binary-win32/x2goclient/x2goclient-3.99.2.1-rc2-setup.exe</A> 
+(latest)
+<A HREF="http://code.x2go.org/releases/binary-win32/x2goclient/x2goclient-3.99.2.0-rc2-setup.exe">http://code.x2go.org/releases/binary-win32/x2goclient/x2goclient-3.99.2.0-rc2-setup.exe</A> 
+(old)
+
+Server:
+Debian Squeeze, 32-Bit, with additional repositories for newer iceweasel 
+and icedove releases:
+sources.list-snippet:
+# Ice*-ESR
+deb <A HREF="http://backports.debian.org/debian-backports">http://backports.debian.org/debian-backports</A> squeeze-backports main
+deb <A HREF="http://mozilla.debian.net/">http://mozilla.debian.net/</A> squeeze-backports iceweasel-esr
+deb <A HREF="http://mozilla.debian.net/">http://mozilla.debian.net/</A> squeeze-backports icedove-esr
+
+Affected Iceweasel Version: 10.0.3 (ESR)
+Shockwave Flash:
+     File: libflashplayer.so
+     Version:
+     Shockwave Flash 11.1 r102
+
+Problem description:
+When opening two tabs in Iceweasel, and accessing Youtube in one, the 
+rectangle containing the video player/flash applet is carried over to 
+the new tab, where it blocks the view.
+
+This does *not* happen with the Iceweasel version from stock Debian Squeeze.
+This *does* happen with both X2Go client versions listed above.
+
+Is anybody out there running Iceweasel 10.0.3 (ESR) with the 
+above-mentioned flash version on a &quot;real&quot; display screen (i.e. a Linux 
+computer hooked up to a physical display, not via X2Go)?  If so, could 
+you please check if you're experiencing the issue as well:
+1) On the real display screen?
+2) Via X2Go?
+
+I'm curious if this is a bug in Iceweasel or in X2Go.
+
+-Stefan
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003860.html">[X2Go-Dev] remote proxy closed the connection
+</A></li>
+	<LI>Next message: <A HREF="003924.html">[X2Go-Dev] New Bug/Issue with X2Go - NOT related to latest client	release
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3861">[ date ]</a>
+              <a href="thread.html#3861">[ thread ]</a>
+              <a href="subject.html#3861">[ subject ]</a>
+              <a href="author.html#3861">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

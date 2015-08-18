@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] x2go with likewise-open (ldap) questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CAANLkTin5LQxctH4RYtzC7m63QwqjZLBZBV22yDKA4_LL%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001382.html">
+   <LINK REL="Next"  HREF="001385.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] x2go with likewise-open (ldap) questions</H1>
+    <B>Ivan Boyadzhiev</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20x2go%20with%20likewise-open%20%28ldap%29%20questions&In-Reply-To=%3CAANLkTin5LQxctH4RYtzC7m63QwqjZLBZBV22yDKA4_LL%40mail.gmail.com%3E"
+       TITLE="[X2go-dev] x2go with likewise-open (ldap) questions">ivancho.b at gmail.com
+       </A><BR>
+    <I>Wed Dec 15 07:28:23 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001382.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+        <LI>Next message: <A HREF="001385.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1383">[ date ]</a>
+              <a href="thread.html#1383">[ thread ]</a>
+              <a href="subject.html#1383">[ subject ]</a>
+              <a href="author.html#1383">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Neil
+
+&gt;<i> I am actually struggling with the exact scenario as Ivan is involved with
+</I>&gt;<i> here. Unfortunately, I'm not quite to where you are yet, so according to you
+</I>&gt;<i> more troubles loom on the horizon re: audio. We are trying to use x2go with
+</I>&gt;<i> Likewise Open connected to our corporate Active Directory and based upon
+</I>&gt;<i> your suggestion here, I've changed the id of the local group x2gousers to my
+</I>&gt;<i> LDAP group ID for x2gousers group in our corporate groups, in /etc/group and
+</I>&gt;<i> now my users in my LDAP group are able to authenticate successfully.
+</I>&gt;<i>
+</I>I'm glad that this works at your side as well!
+
+&gt;<i>  However, when connecting as an LDAP user via Likewise, I only get a
+</I>&gt;<i> blank/black screen upon session start. The session is active and shows as
+</I>&gt;<i> being connected (I see the user listed when I run &quot;who&quot;), but I can't do or
+</I>&gt;<i> see anything in that user's x2go session window. Whereas when I use a local
+</I>&gt;<i> user, it brings me right to a GNOME desktop and I can use it as normal with
+</I>&gt;<i> full audio. If you can help me figure this out, I can move onto the next
+</I>&gt;<i> issue which will be getting audio for Likewise LDAP users, which I see is
+</I>&gt;<i> where Ivan is stuck now as well. If we can get these last two issues
+</I>&gt;<i> resolved, we intend to roll this out on a much larger scale at our
+</I>&gt;<i> organization as well as demo it to a much larger audience at our parent
+</I>&gt;<i> company.
+</I>&gt;<i>
+</I>Please, provide more information about all versions that you use. For
+example, I'm using X2goclient 3.01-13 under Windows7 as client, because the
+latest version 3.01-14 doesn't work.
+
+You have to investigate deeper. Try these tips:
+
+1. Change your ssh logging by changing inside file: /etc/ssh/sshd_config -
+LogLevel INFO change to LogLevel DEBUG3
+Then watch the authentication log: tail -f /var/log/auth.log .And login
+again
+(I know that you said that it authenticate successfully, still check this
+out)
+
+2. Login locally on the Ubuntu server with: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">USERNAME at DOMAIN</A> (although you
+can't see them through gdm or kdm), if you can successfully login to the
+domain locally. If you have troubles with that, then the problem is with
+likewise. BTW, are you using likewise-open? How you've configured it? Using
+domainjoin-gui? Can you see from System -&gt; Administration -&gt; Active
+Directory Membership. (You can see that with Local user of Ubuntu).
+
+3. Try to login with SSH client (like putty for windows) using again
+<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">USERNAME at DOMAIN</A>, and the password. Then check if this login is successful.
+
+4. If authentication is good, but there is blank/black screen, then try
+another: OS, Client, Client version. As I said above, the latest version
+doesn't work in my scenario. Hint: Don't try to connect with client from the
+same server, as it is not possible. If you use Windows, try to find other
+OS, install other (virtual if possible) Windows, Linux, whatever is easy for
+you.
+
+Bottom line: It seem to be client problem, but you need to do further
+investigations to find out.
+
+Best Regards
+Ivan
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101215/b06cfb10/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101215/b06cfb10/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001382.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+	<LI>Next message: <A HREF="001385.html">[X2go-dev] x2go with likewise-open (ldap) questions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1383">[ date ]</a>
+              <a href="thread.html#1383">[ thread ]</a>
+              <a href="subject.html#1383">[ subject ]</a>
+              <a href="author.html#1383">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Resume specific session with x2goplugin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Resume%20specific%20session%20with%20x2goplugin&In-Reply-To=%3C1285163761.3097.24.camel%40asus%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001030.html">
+   <LINK REL="Next"  HREF="001033.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Resume specific session with x2goplugin</H1>
+    <B>J&#246;rg Sawatzki</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Resume%20specific%20session%20with%20x2goplugin&In-Reply-To=%3C1285163761.3097.24.camel%40asus%3E"
+       TITLE="[X2go-dev] Resume specific session with x2goplugin">joerg.sawatzki at web.de
+       </A><BR>
+    <I>Wed Sep 22 15:56:01 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001030.html">[X2go-dev] Resume specific session with x2goplugin
+</A></li>
+        <LI>Next message: <A HREF="001033.html">[X2go-dev] Resume specific session with x2goplugin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1031">[ date ]</a>
+              <a href="thread.html#1031">[ thread ]</a>
+              <a href="subject.html#1031">[ subject ]</a>
+              <a href="author.html#1031">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Salut Guillaume,
+
+&gt;<i> I don't want to use the resuming form showed by the plugin (my users 
+</I>&gt;<i> are confused with it).
+</I>&gt;<i> I'm making a webapp, and I would list sessions in a web page, and make 
+</I>&gt;<i> it possible to resume
+</I>&gt;<i> paused sessions just by clicking on a link.
+</I>Basically, I'd say this is actually not a plugin specific question. What
+you need to do is (1) make your webapp talk to the x2go server to get
+the list of sessions. The webapp should then dynamically create a
+configuration file that is loaded by the plugin, which then (2) resumes
+the session.
+
+1: Getting the list of sessions shouldn't be a problem at all: If your
+webapp is in python, you can use the pyx2go library and only need three
+lines of code - if not, find an ssh library for your programming
+language, connect to the x2go host using ssh, execute x2golistsessions
+and parse the output.
+
+2: This is probably the point where it all breaks: As far as I can see,
+the x2goplugin does not have an option for this &quot;x2go.server&quot; file that
+tells it to resume a specified session. Maybe dig through the docs if
+you can find something. If not - get the source code for the plugin and
+the x2goclient and modify it to your needs. It is GPL and it should
+_theoretically_ be possible to get it.
+
+J&#246;rg
+
+&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Thanks in advance !
+</I>&gt;<i> 
+</I>&gt;<i> Regards,
+</I>&gt;<i> Guillaume
+</I>&gt;<i> 
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001030.html">[X2go-dev] Resume specific session with x2goplugin
+</A></li>
+	<LI>Next message: <A HREF="001033.html">[X2go-dev] Resume specific session with x2goplugin
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1031">[ date ]</a>
+              <a href="thread.html#1031">[ thread ]</a>
+              <a href="subject.html#1031">[ subject ]</a>
+              <a href="author.html#1031">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

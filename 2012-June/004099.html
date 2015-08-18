@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] patchset by Jan Engelhard (was. Re: [X2Go-User] [X2Go-Announcement] New X2Go releases: x2goclient, pyhoca-gui, pyhoca-cli, python-x2go)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20patchset%20by%20Jan%20Engelhard%20%28was.%20Re%3A%20%5BX2Go-User%5D%0A%20%5BX2Go-Announcement%5D%20New%20X2Go%20releases%3A%20x2goclient%2C%20pyhoca-gui%2C%20pyhoca-cli%2C%0A%20python-x2go%29&In-Reply-To=%3Calpine.LNX.2.01.1206251726220.5552%40frira.zrqbmnf.qr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004098.html">
+   <LINK REL="Next"  HREF="004100.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] patchset by Jan Engelhard (was. Re: [X2Go-User] [X2Go-Announcement] New X2Go releases: x2goclient, pyhoca-gui, pyhoca-cli, python-x2go)</H1>
+    <B>Jan Engelhardt</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20patchset%20by%20Jan%20Engelhard%20%28was.%20Re%3A%20%5BX2Go-User%5D%0A%20%5BX2Go-Announcement%5D%20New%20X2Go%20releases%3A%20x2goclient%2C%20pyhoca-gui%2C%20pyhoca-cli%2C%0A%20python-x2go%29&In-Reply-To=%3Calpine.LNX.2.01.1206251726220.5552%40frira.zrqbmnf.qr%3E"
+       TITLE="[X2Go-Dev] patchset by Jan Engelhard (was. Re: [X2Go-User] [X2Go-Announcement] New X2Go releases: x2goclient, pyhoca-gui, pyhoca-cli, python-x2go)">jengelh at inai.de
+       </A><BR>
+    <I>Mon Jun 25 17:31:27 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004098.html">[X2Go-Dev] patchset by Jan Engelhard (was. Re: [X2Go-User] [X2Go-Announcement] New X2Go releases: x2goclient, pyhoca-gui, pyhoca-cli, python-x2go)
+</A></li>
+        <LI>Next message: <A HREF="004100.html">[X2Go-Dev] X2Go Client 3.99.2.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4099">[ date ]</a>
+              <a href="thread.html#4099">[ thread ]</a>
+              <a href="subject.html#4099">[ subject ]</a>
+              <a href="author.html#4099">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+On Monday 2012-06-25 17:15, Mike Gabriel wrote:
+&gt;&gt;<i> x2goclient:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Is attempting to call &quot;lrelease&quot;, but this does not work on Fedora which
+</I>&gt;&gt;<i> has decided to call it lrelease-qt4 again.
+</I>&gt;<i>
+</I>&gt;<i> Ok, thanks for the info. In Debian/Ubuntu both exist (and are synonymous). We
+</I>&gt;<i> will use the latter (lrelease-qt4).
+</I>
+Easier said than done. Because on openSUSE&lt; there is only lrelease,
+no lrelease-qt4.
+
+&gt;&gt;<i> x2goserver:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> rpmlint says:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> &quot;x2goserver.x86_64: E: non-position-independent-executable (Badness:
+</I>&gt;&gt;<i> 10000) /usr/lib/x2go/x2gosqlitewrapper
+</I>&gt;&gt;<i> This executable must be position independent. Check that it is built
+</I>&gt;&gt;<i> with -fPIE/-fpie in compiler flags and -pie in linker flags.&quot;
+</I>&gt;<i>
+</I>&gt;<i> We (we as in upstream devs) currently do not support multiarch or configurable
+</I>&gt;<i> libdir paths in x2goserver. It would be nice to have something like autotools
+</I>&gt;<i> for X2Go Server working.
+</I>&gt;<i>
+</I>&gt;<i> Also the x2gosqlitewrapper is very picky on the location of
+</I>&gt;<i> x2gosqlitewrapper.pl. It has to be located in the same directory. This is
+</I>&gt;<i> intended.
+</I>&gt;<i>
+</I>&gt;<i> What exactly is the origin of the error message?
+</I>
+I suspect it is simply because x2gosqlitewrapper is a suid binary,
+and as such should be hardened with PIE mode.
+(I don't have any directory issues to report ATM.)
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004098.html">[X2Go-Dev] patchset by Jan Engelhard (was. Re: [X2Go-User] [X2Go-Announcement] New X2Go releases: x2goclient, pyhoca-gui, pyhoca-cli, python-x2go)
+</A></li>
+	<LI>Next message: <A HREF="004100.html">[X2Go-Dev] X2Go Client 3.99.2.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4099">[ date ]</a>
+              <a href="thread.html#4099">[ thread ]</a>
+              <a href="subject.html#4099">[ subject ]</a>
+              <a href="author.html#4099">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

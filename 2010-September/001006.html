@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Go client occasionally loses mouse cursor
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20client%20occasionally%20loses%20mouse%20cursor&In-Reply-To=%3C1284135445.3326.15.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001002.html">
+   <LINK REL="Next"  HREF="001007.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Go client occasionally loses mouse cursor</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20client%20occasionally%20loses%20mouse%20cursor&In-Reply-To=%3C1284135445.3326.15.camel%40localhost%3E"
+       TITLE="[X2go-dev] X2Go client occasionally loses mouse cursor">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Fri Sep 10 18:17:25 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001002.html">[X2go-dev] Local Port for NXPROXY - no listen socket
+</A></li>
+        <LI>Next message: <A HREF="001007.html">[X2go-dev] X2Goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1006">[ date ]</a>
+              <a href="thread.html#1006">[ thread ]</a>
+              <a href="subject.html#1006">[ subject ]</a>
+              <a href="author.html#1006">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Mon, 2010-08-30 at 21:52 -0400, John A. Sullivan III wrote:
+&gt;<i> On Fri, 2010-08-27 at 13:35 -0400, John A. Sullivan III wrote:
+</I>&gt;<i> &gt; On Wed, 2010-08-25 at 16:38 -0400, John A. Sullivan III wrote:
+</I>&gt;<i> &gt; &gt; Hello, all.  We've seen this bug rarely but enough to know that it is a
+</I>&gt;<i> &gt; &gt; real bug and not just a coincidence. Here is the report from our
+</I>&gt;<i> &gt; &gt; internal trouble ticket.  Unfortunately, it smells like it might be
+</I>&gt;<i> &gt; &gt; something in the NX libraries:
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; The user called because she could not see her mouse cursor in her
+</I>&gt;<i> &gt; &gt; virtual desktop.  It was visible in her physical desktop. As we later
+</I>&gt;<i> &gt; &gt; observed, it was indeed present in the virtual desktop, e.g., if she
+</I>&gt;<i> &gt; &gt; happened to stop the mouse over a file in Konqueror, it would display
+</I>&gt;<i> &gt; &gt; the thumbnail, but the mouse cursor was not visible.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; We tried suspending and reconnecting; that did not work.  I could see
+</I>&gt;<i> &gt; &gt; where the mouse was supposed to be via my VNC session to her physical
+</I>&gt;<i> &gt; &gt; desktop so I tried to change the mouse cursor theme but that did not
+</I>&gt;<i> &gt; &gt; work (and required a restart of KDE).
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; Finally, before rebooting to try to re-establish the connection between
+</I>&gt;<i> &gt; &gt; her physical and virtual desktops to display the mouse cursor, we
+</I>&gt;<i> &gt; &gt; thought to suspend her X2Go session and then completely close her X2Go
+</I>&gt;<i> &gt; &gt; client.  When she restarted the client and reconnected to her X2Go
+</I>&gt;<i> &gt; &gt; session, the mouse had re-appeared.  We did not need to reboot the
+</I>&gt;<i> &gt; &gt; physical computer.
+</I>&gt;<i> &gt; &lt;snip&gt;
+</I>&gt;<i> &gt; We saw this again today for the same user.  Has anyone else experienced
+</I>&gt;<i> &gt; this? Thanks - John
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> We now have another user who experienced this twice today.  I'm willing
+</I>&gt;<i> to put in the time to troubleshoot this but I'm not sure where to begin.
+</I>&gt;<i> Any ideas? Thanks - John
+</I>&lt;snip&gt;
+This is now happening many times a day and is causing quite an upset.  I
+scoured the Internet for ideas and there seems to be lots of reports
+about this on Debian and Ubuntu but no clear identification of the
+problem or clear fixes.
+
+I posted to the Debian mailing list assuming it is a Debian problem.
+They recommended editing xorg.conf to add Option &quot;SWCursor&quot; &quot;yes&quot; to the
+video driver.  That didn't help.  Using Ctl-Alt-D as someone else
+suggested to recover the mouse did not help.  I'm not sure if NX and
+X2Go are complicating the issue.  Has anyone else seen this? Has anyone
+solved it? It is making the system approach unusable.  Thanks - John
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001002.html">[X2go-dev] Local Port for NXPROXY - no listen socket
+</A></li>
+	<LI>Next message: <A HREF="001007.html">[X2go-dev] X2Goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1006">[ date ]</a>
+              <a href="thread.html#1006">[ thread ]</a>
+              <a href="subject.html#1006">[ subject ]</a>
+              <a href="author.html#1006">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

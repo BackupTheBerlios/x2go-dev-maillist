@@ -1,0 +1,152 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] sudo permissions?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20sudo%20permissions%3F&In-Reply-To=%3C4CAAD5CC.5050201%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001137.html">
+   <LINK REL="Next"  HREF="001142.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] sudo permissions?</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20sudo%20permissions%3F&In-Reply-To=%3C4CAAD5CC.5050201%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] sudo permissions?">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Tue Oct  5 09:37:48 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001137.html">[X2go-dev] sudo permissions?
+</A></li>
+        <LI>Next message: <A HREF="001142.html">[X2go-dev] sudo permissions?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1141">[ date ]</a>
+              <a href="thread.html#1141">[ thread ]</a>
+              <a href="subject.html#1141">[ subject ]</a>
+              <a href="author.html#1141">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Rob, list
+
+In multi-user environment session informations of all users are stored
+in one data base table. If we granting access to this table for all
+users, each user will be able to view or change data of other users,
+that's unacceptable. Using sudo we can give access for user only to his
+own data. It's simplest way we have found to protect data of other
+users. In postgresql we could use views, but not all DBMS have such
+mechanisms. We cannot although create single table for every user,
+because all users should know which DISPLAYs/ports are currently in use
+by other users.
+
+Rob you are right. The user which execute sql queries not necessarily
+should be root. As you can see, in x2gopgwrapper.local all queries are
+executed with user postgres. We could make same changes in
+x2gopgwrapper_local and x2gopgwrapper_net, but wee need to add a new
+user into a system (as user &quot;x2go&quot; in your example). Unfortunately since
+x2goserver version 3_0.1-9
+(<A HREF="http://x2go.obviously-nice.de/deb/pool-heuler/x2goserver/">http://x2go.obviously-nice.de/deb/pool-heuler/x2goserver/</A>)
+there is one more reason to run x2gopgwrapper as root. Running with
+argument &quot;startshadowagent&quot; x2gopgwrapper should start x2gostartagent as
+user which desktop will be displayed. I don't see the simple way to do
+this without root privileges.
+
+
+Rob Lemley schrieb:
+&gt;<i> Hey John,
+</I>&gt;<i> 
+</I>&gt;<i> I double-triple checked again, and tried a session myself that mounted
+</I>&gt;<i> my desktop with my changes. No issues.
+</I>&gt;<i> 
+</I>&gt;<i> The only script that gets called with sudo is x2gopgwrapper. It's the
+</I>&gt;<i> only script that can get called as it's the only entry added to the
+</I>&gt;<i> sudoers file.
+</I>&gt;<i> 
+</I>&gt;<i> x2gopgwrapper calls one of x2pgwrapper_local, x2pgwrapper_sqlite, or
+</I>&gt;<i> x2pgwrapper_net. That's all it does. Those scripts are a giant case
+</I>&gt;<i> blocks that only runs sql queries against a database.  In the case of
+</I>&gt;<i> sqlite you need to assume the id of the sqlite database file owner. (I
+</I>&gt;<i> thought about making the file group-writable, but chose not to go that
+</I>&gt;<i> direction. With the sudoers entry and the script there's some level of
+</I>&gt;<i> protection from average-joe user mangling the database.) As for
+</I>&gt;<i> postgres, it's the same idea. It can authenticate by userid with the
+</I>&gt;<i> right entry in pg_hba.conf (?? right filename??)
+</I>&gt;<i> 
+</I>&gt;<i> The mounting and unmounting seems to be done through fuse so the only
+</I>&gt;<i> privilege needed is to be a member of the fuse group.  The
+</I>&gt;<i> x2gocleansessions process started by init will unmount a fuse mounted
+</I>&gt;<i> directory if it finds a stale session, but that is running as root so
+</I>&gt;<i> there's no issue there.
+</I>&gt;<i> 
+</I>&gt;<i> Enjoy the rest of your getaway!
+</I>&gt;<i> 
+</I>&gt;<i> -rob
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> &lt;snip&gt;
+</I>&gt;<i> On Sat, Oct 2, 2010 at 9:56 AM, John A. Sullivan III
+</I>&gt;<i> &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt; wrote:
+</I>&gt;&gt;<i> &lt;snip&gt;
+</I>&gt;&gt;<i> Hi, Rob.  I'm on a getaway with the family and &quot;sneaking&quot; this in so I
+</I>&gt;&gt;<i> may be remembering the details incorrectly :)
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> You may want to trace all the other scripts which are invoked as part of
+</I>&gt;&gt;<i> the process, especially x2gomount_sessions and x2goumount_sessions.
+</I>&gt;&gt;<i> These may need root access - I'm not sure - John
+</I>&gt;&gt;<i>
+</I>&gt;<i> 
+</I>&gt;<i> Hey John,
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 260 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20101005/56c013e0/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20101005/56c013e0/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001137.html">[X2go-dev] sudo permissions?
+</A></li>
+	<LI>Next message: <A HREF="001142.html">[X2go-dev] sudo permissions?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1141">[ date ]</a>
+              <a href="thread.html#1141">[ thread ]</a>
+              <a href="subject.html#1141">[ subject ]</a>
+              <a href="author.html#1141">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

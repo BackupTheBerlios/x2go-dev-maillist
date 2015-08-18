@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-Dev] Two problems (crashes) with X2goclient for Microsoft	Windows
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Two%20problems%20%28crashes%29%20with%20X2goclient%20for%20Microsoft%0A%09Windows&In-Reply-To=%3C4ED52D5C.5090205%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003050.html">
+   <LINK REL="Next"  HREF="003052.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-Dev] Two problems (crashes) with X2goclient for Microsoft	Windows</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-Dev%5D%20Two%20problems%20%28crashes%29%20with%20X2goclient%20for%20Microsoft%0A%09Windows&In-Reply-To=%3C4ED52D5C.5090205%40stefanbaur.de%3E"
+       TITLE="[X2go-Dev] Two problems (crashes) with X2goclient for Microsoft	Windows">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Tue Nov 29 20:07:08 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003050.html">[X2go-Dev] Error installing X2go on Debian Lenny (Oldstable)
+</A></li>
+        <LI>Next message: <A HREF="003052.html">[X2go-Dev] Two problems (crashes) with X2goclient for Microsoft Windows
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3051">[ date ]</a>
+              <a href="thread.html#3051">[ thread ]</a>
+              <a href="subject.html#3051">[ subject ]</a>
+              <a href="author.html#3051">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi List,
+
+subject says it all, so here's a short description of the test environment:
+
+Server is a vserver running Debian Lenny (oldstable/5.0.9) but the 
+2.6.32-5-vserver-amd64 kernel (as the host is Debian Squeeze).
+dpkg -l|grep x2go
+ii  nxcompshad                           
+3.4.0-1-1                                  nx based library needed by 
+the x2go system
+ii  x2go-keyring                         
+2011.04.19+lenny~main~10~build1            GnuPG keys of X2go developers
+ii  x2goagent                            
+3.4.0-3-1                                  Special NX-ized client, was 
+developed by NoMachine to handle X
+ii  x2goserver                           
+3.0.99.8-0~x2go-bpo1+lenny~main~388~build1 X2go server daemon scripts
+ii  x2goserver-extensions                
+3.0.99.8-0~x2go-bpo1+lenny~main~388~build1 X2go server daemon scripts 
+(extensions)
+
+Client is &quot;Windows 7 Home Premium&quot;, 32-Bit, running X2Go Client 
+V.3.99.0.1 (Qt-4.5.3) - not a clean install, but installed over a 
+previous, older version.
+
+1) Accidentally attempting to connect to the wrong server crashes the 
+client.
+What happened:
+* Host is configured to use private key files and doesn't have a 
+corresponding user
+* Vserver is running sshd on a different IP/port
+* Client connects to the host instead of the vserver due to the wrong 
+port number, using password-interactive authentication, which is denied 
+by the server, also, there is no user present on the host that matches 
+the given username
+==&gt;Crash (System message offering to close the program or look online 
+for help)
+
+2) Attempting to connect to a host that has a different ssh key than the 
+one seen previously shows a small popup &quot;Authentication failed&quot; that 
+complains about the offending key, but it immediately causes a Crash 
+(same as above) - there's not even a chance to click on the &quot;OK&quot; button 
+of that popup.
+
+Both cases should be handled more gracefully.
+
+Kind Regards,
+Stefan
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003050.html">[X2go-Dev] Error installing X2go on Debian Lenny (Oldstable)
+</A></li>
+	<LI>Next message: <A HREF="003052.html">[X2go-Dev] Two problems (crashes) with X2goclient for Microsoft Windows
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3051">[ date ]</a>
+              <a href="thread.html#3051">[ thread ]</a>
+              <a href="subject.html#3051">[ subject ]</a>
+              <a href="author.html#3051">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

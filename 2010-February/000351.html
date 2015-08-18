@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] upcoming release
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20upcoming%20release&In-Reply-To=%3C4B811928.6040601%40x2go.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000350.html">
+   <LINK REL="Next"  HREF="000353.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] upcoming release</H1>
+    <B>Heinz-M. Graesing</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20upcoming%20release&In-Reply-To=%3C4B811928.6040601%40x2go.org%3E"
+       TITLE="[X2go-dev] upcoming release">x2go-dev at x2go.org
+       </A><BR>
+    <I>Sun Feb 21 12:29:44 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000350.html">[X2go-dev] upcoming release
+</A></li>
+        <LI>Next message: <A HREF="000353.html">[X2go-dev] Setting up a Wiki (was: upcoming release)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#351">[ date ]</a>
+              <a href="thread.html#351">[ thread ]</a>
+              <a href="subject.html#351">[ subject ]</a>
+              <a href="author.html#351">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+R P Herrold schrieb:
+&gt;<i>
+</I>&gt;<i> hmmm --- so the roadmap is non-public, or not being developed in the 
+</I>&gt;<i> open?   Doesn't this imply that this is not:
+</I>&gt;<i>
+</I>&gt;&gt;&gt;<i> What is x2go?
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> x2go is an open source terminal server project
+</I>&gt;<i>
+</I>&gt;<i> but rather a commerical project, that permits non-insider people to 
+</I>&gt;<i> watch it develop in the open, under a non-encumbering license?
+</I>Ok - x2go is open and with the previous mail, I've informed you about 
+the latest development. Of cause there are a lot more possibilities to 
+do this and to do it more open. I'm sorry that this was not made - but 
+we are are very small team and x2go is still an sparetime project. We've 
+received a lot of whishes and ideas with the help of our webform - which 
+- only informs us about those issues.
+We'll try to change that in furture, but we're still getting a lot of 
+complaints only to offer a &quot;mailing list&quot;. Even on this important 
+previous mail 8 people have answered using the webform. As there will be 
+a git reposity and a wiki in future, we should add an wishlist. But what 
+we really don't like is, when the communication/information about our 
+project gets fragmented.
+Thank you for your open words!
+&gt;<i>
+</I>&gt;<i> A customary three-tier model usually has a presentation front end, a 
+</I>&gt;<i> application logic layer in the middle, and a data store in the back.  
+</I>&gt;<i> There are well defined boundries at each interface point, so that one 
+</I>&gt;<i> can substitute (and add capacity, facility for failover, and fanout) 
+</I>&gt;<i> at the needed point independent of afecting the other two.
+</I>As you might have recordnized, there is already a wrapper for database 
+storage, so it is no problem to realize support for other databases. The 
+fact, that we've not released a new graphical administration set yet, is 
+due to a discussion on exacctly this topic. A popular discussed idea is 
+building an JSON api for all administration functionalities. So anybody 
+can build a administration gui or automatism even over the web and not 
+in the same lan. This would solve the problem, that anybody has other 
+ideas about what a administration gui should do. On the other side this 
+really means a lot of work and can't be done with the existing release. 
+So again this is part of the question: what is really needed?
+
+&gt;<i>
+</I>&gt;<i> The competition between the two FOSS modern widget tool kits, is that 
+</I>&gt;<i> this pretends that, say, Tk/Tcl, OpenMotif, or wxWindows do not exist, 
+</I>&gt;<i> and that one HAS to choose to stay with the latest bleeding edge 
+</I>&gt;<i> 'coolness' to access some 'latest new feature'.  That alone is a clear 
+</I>&gt;<i> warning sign of API boundry bleed-over, and over-tight integration to 
+</I>&gt;<i> one implementation mothodology
+</I>Qt is a bit more that only a widget set and it is a great help because 
+of so many &quot;ready to use&quot; capabilities. Sure - we too are looking on 
+what Nokia will do with Qt, but at the moment it is - in our eyes - the 
+best way to develop software for a lot of platforms. Qt is used for the 
+Client, which really should be running on as many platforms as possible.
+
+&gt;&gt;<i> You'll be able to integrate the plugin into a Website and you'll have
+</I>&gt;&gt;<i> all features of the x2goclient.
+</I>&gt;<i>
+</I>&gt;<i> but part of implementing this is clearly solving a design of a webbish 
+</I>&gt;<i> API to do the GETS, POST, and PUTS, possibly with 'REST' and Web 2.0 
+</I>&gt;<i> hotness.  If web control actions cannot be specified into a series of 
+</I>&gt;<i> atomic actions of this sort, one runs the risk of accidentially 
+</I>&gt;<i> designing an API model where some state is preserved at the client, 
+</I>&gt;<i> rather than only at the servers
+</I>&gt;<i>
+</I>The x2goplugin will be a plugin like &quot;acroread&quot; or the &quot;flashplugin&quot;. In 
+fact it will be a x2goclient shown in a &lt;object&gt;&lt;/object&gt; tag with the 
+known communication protocols. You'll still have to contact a sshd 
+server - so preconfigured it will use the port 22.
+&gt;&gt;<i> Yes there will be a &quot;session sharing&quot; option without the need of a LDAP
+</I>&gt;&gt;<i> server.
+</I>&gt;<i>
+</I>&gt;<i> I guess I am confused here - how is a LDAP server on 127.0.0.1 harder 
+</I>&gt;<i> to get going that hte pgSQL database.  If the complaint is 'it is too 
+</I>&gt;<i> hard to set up, this is a symptom of:
+</I>&gt;<i>     write a better setup and diagnostic wizard
+</I>&gt;<i> , rather than:
+</I>&gt;<i>     remove the facility
+</I>&gt;<i>
+</I>&gt;<i> What am I missing here?
+</I>&gt;<i>
+</I>In the actual release, the session shadowing was only available over 
+x11vnc and as an option in our LDAP administration gui. The new session 
+shadowing is nx native and now available on every installation. The 
+first one could also be realized by yourself.
+&gt;<i>
+</I>&gt;<i> .. and what is wrong with documentation tools like the older TeX / 
+</I>&gt;<i> LaTeX, or the later DocBook, which are designed for version control 
+</I>&gt;<i> system friendly collaborative editting?  I think a wiki is the wrong 
+</I>&gt;<i> way to go for ystem documenation deliverables [having fought this 
+</I>&gt;<i> battle and lost in my work with CentOS]
+</I>&gt;<i>
+</I>Again this was a wish by actual 56 persons - their idea was, that this 
+would be better accessed by the search engines and that the hpertext 
+would solve the problem of getting to long documentations. Again : Yes 
+it would help, if I could go back in time and to change all this dialogs 
+to the mailing list, so they would have been discussed more open...
+&gt;&gt;<i> We are looking for new localisations. If x2goclient is not available in
+</I>&gt;&gt;<i> your language and you want to translate it, please let us know (on the
+</I>&gt;&gt;<i> list ). We'll provide a *.ts file for your language (qt-linguist).
+</I>&gt;<i>
+</I>&gt;<i> and again, this is a 'one tool kit' specific solution, rather than the 
+</I>&gt;<i> FSF .po file approach which is generic.
+</I>Yes - I've never understood why they have to do this on their own...
+
+Ok - dear x2go community - please understand that we are a small Team 
+and that sometimes there is a bit of attractive laziness and we prefer 
+to work on the code instead on communications. We'll try to relay all 
+future input visibly open.
+
+Thank you for your open words,
+
+Heinz
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000350.html">[X2go-dev] upcoming release
+</A></li>
+	<LI>Next message: <A HREF="000353.html">[X2go-dev] Setting up a Wiki (was: upcoming release)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#351">[ date ]</a>
+              <a href="thread.html#351">[ thread ]</a>
+              <a href="subject.html#351">[ subject ]</a>
+              <a href="author.html#351">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

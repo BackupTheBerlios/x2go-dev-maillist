@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Problems with AltGr
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Problems%20with%20AltGr&In-Reply-To=%3Cjum5vf%2474o%241%40dough.gmane.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004140.html">
+   <LINK REL="Next"  HREF="004142.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Problems with AltGr</H1>
+    <B>Sven K&#246;hler</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Problems%20with%20AltGr&In-Reply-To=%3Cjum5vf%2474o%241%40dough.gmane.org%3E"
+       TITLE="[X2Go-Dev] Problems with AltGr">sven.koehler at gmail.com
+       </A><BR>
+    <I>Tue Jul 24 14:55:11 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004140.html">[X2Go-Dev] Problems with AltGr
+</A></li>
+        <LI>Next message: <A HREF="004142.html">[X2Go-Dev] Suspend-To-DISK/RAM and x2goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4145">[ date ]</a>
+              <a href="thread.html#4145">[ thread ]</a>
+              <a href="subject.html#4145">[ subject ]</a>
+              <a href="author.html#4145">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 14.07.2012 11:26, schrieb Mike Gabriel:
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> On Fr 13 Jul 2012 23:50:51 CEST Moritz Str&#252;be wrote:
+</I>&gt;<i> 
+</I>&gt;&gt;<i> Am 13.07.2012 23:45, Sven K&#246;hler schrieb:
+</I>&gt;&gt;&gt;<i> After executing &quot;setxkbmap de&quot; inside the session, the issues goes away
+</I>&gt;&gt;&gt;<i> and the output is:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This is a commen problem, that should probably be fixed. We solved it by
+</I>&gt;&gt;<i> adding setykbmap to our .x2gosession, which we have as default desktop
+</I>&gt;&gt;<i> environment on our thin clients (As well as a &quot;(sleep 10 &amp;&amp; metacity
+</I>&gt;&gt;<i> --replace &amp;)&quot; to fix the metacity's keyboard bug).
+</I>&gt;<i> 
+</I>&gt;<i> the problem is already solved. Make sure you have
+</I>&gt;<i> 
+</I>&gt;<i>   x2goserver &gt;= 3.1.1.3
+</I>&gt;<i>   x2goagent &gt;= 3.5.0.12
+</I>
+But I have that already and the problem still exists. I have
+x2goserver-3.1.1.3
+nx-3.5.0.14 (includes nxagent)
+
+So unless patches are in x2goagent-3.5.0.12 that didn't make it into
+nomachine's nx release, then I should have all that's needed.
+
+&gt;<i> Make sure the session profile in x2goclient does not set a custom
+</I>&gt;<i> keyboard profile.
+</I>
+It doesn't.
+
+&gt;<i> Then for testing purposes you can call ,,x2gosetkeyboard'' on the server
+</I>&gt;<i> side after the session has started. After that check ,,setxkbmap
+</I>&gt;<i> -print''. You should see a keyboard configuration that matches your
+</I>&gt;<i> client-side keyboard configuration (call setxkbmap -print on the client,
+</I>&gt;<i> as well).
+</I>
+Didn't work. x2gosetkeyboard seemed to wait for something to happen for
+about 10 seconds, and then terminated. Output of setxkbmap -print didn't
+change and was still not correct.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004140.html">[X2Go-Dev] Problems with AltGr
+</A></li>
+	<LI>Next message: <A HREF="004142.html">[X2Go-Dev] Suspend-To-DISK/RAM and x2goclient
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4145">[ date ]</a>
+              <a href="thread.html#4145">[ thread ]</a>
+              <a href="subject.html#4145">[ subject ]</a>
+              <a href="author.html#4145">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] .xinitrc and .xsession
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20.xinitrc%20and%20.xsession&In-Reply-To=%3C1293729694.15159.7.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001442.html">
+   <LINK REL="Next"  HREF="001445.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] .xinitrc and .xsession</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20.xinitrc%20and%20.xsession&In-Reply-To=%3C1293729694.15159.7.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2go-dev] .xinitrc and .xsession">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Thu Dec 30 18:21:34 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001442.html">[X2go-dev] .xinitrc and .xsession
+</A></li>
+        <LI>Next message: <A HREF="001445.html">[X2go-dev] .xinitrc and .xsession
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1443">[ date ]</a>
+              <a href="thread.html#1443">[ thread ]</a>
+              <a href="subject.html#1443">[ subject ]</a>
+              <a href="author.html#1443">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Thu, 2010-12-30 at 17:48 +0100, Milan Kn&#237;&#382;ek wrote:
+&gt;<i> Florian Effenberger p&#237;&#353;e v &#268;t 30. 12. 2010 v 12:52 +0100:
+</I>&gt;<i> &gt; I tried to enter startlxde as command, but .xsession was ignored as
+</I>&gt;<i> &gt; well. Then I created ~/.x2go-lxde with
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; #!/bin/bash
+</I>&gt;<i> &gt; LANG=de_DE.UTF-8
+</I>&gt;<i> &gt; startlxde
+</I>&gt;<i> &gt; 
+</I>&gt;<i> 
+</I>&gt;<i> I have been struggling with setting the language and path variables,
+</I>&gt;<i> too, and finished with a script sourcing /etc/profile (which was ignored
+</I>&gt;<i> in x2go session otherwise). Arch linux.
+</I>&gt;<i> 
+</I>&gt;<i> Milan
+</I>I've not been following this thread closely but the reference to the
+failure to read /etc/profile caught my eye because we struggled with
+that.  I'll share our internal notes in case it helps with the problems
+you are facing.  It is not an X2Go problem but rather a Desktop
+Environment problem, e.g., KDE, perhaps Gnome, and I don't know about
+others - they do not read /etc/profile although they do seem to read the
+user bash configuration scripts (assuming you are using bash and not
+dash).  These internal notes also include some notes about PAM and LDAP;
+I'll leave them in because they are embedded in the comments and may be
+useful to someone else.  
+Here are our internal notes:
+
+Now we need to fix some pam files.  It is critical that the ldap modules
+are processed first even though that is non-standard.  In the X2Go
+environment, many ssh sessions are fired off in quick succession.  Since
+the pam_unix authentications fail for the LDAP users (as they are not
+defined locally), all the failed authentications trip the OSSEC
+auto-response and block the user from access to the host.  Thus, LDAP
+credentials MUST be processed first.
+We also need a cross platform (e.g., KDE, Gnome) means of establishing
+environment variables.  This can be done within pam by using the env
+module.  By default, it will look to /etc/environment.  We will add
+additional paths which will provide for more centralized management.
+cd /etc/pam.d
+edit /etc/pam.d/common-account to read:
+account     sufficient    pam_ldap.so
+account     required      pam_unix.so
+account     sufficient    pam_succeed_if.so uid &lt; 1000 quiet
+account     required      pam_permit.so
+
+edit /etc/pam.d/common-session so  it reads:
+session     required      pam_limits.so
+session     optional      pam_ldap.so
+session     required      pam_unix.so
+session    optional     pam_umask.so     umask=007
+This last umask line is necessary because KDE does not read
+the /etc/profile file to set its umask.  pam_umask is the lowest
+priority for umask.  If any other file has a umask setting, it will
+override it, e.g., our setting of 022 for root.  We could also do this
+by setting the value in one of the /etc/environment files
+
+edit /etc/pam.d/common-password so it reads:
+password   sufficient   pam_ldap.so
+password   required   pam_unix.so nullok obscure md5
+#password    required      pam_deny.so
+
+edit /etc/pam.d/common-auth so it reads:
+auth    sufficient      pam_ldap.so
+auth    sufficient      pam_unix.so nullok_secure use_first_pass
+auth    requisite       pam_succeed_if.so uid &gt;= 1000 quiet
+auth    required        pam_deny.so
+edit /etc/pam.d/login by adding after the line which reads:
+session       required   pam_env.so readenv=1
+envfile=/etc/default/locale
+the following two lines:
+# variables for SimplicITy
+session       required   pam_env.so readenv=1
+envfile=/data/.Common/etc/environment
+session       required   pam_env.so readenv=1
+envfile=/data/.CommonClient/etc/environment
+Do the same for /etc/pam.d/sshd
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001442.html">[X2go-dev] .xinitrc and .xsession
+</A></li>
+	<LI>Next message: <A HREF="001445.html">[X2go-dev] .xinitrc and .xsession
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1443">[ date ]</a>
+              <a href="thread.html#1443">[ thread ]</a>
+              <a href="subject.html#1443">[ subject ]</a>
+              <a href="author.html#1443">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

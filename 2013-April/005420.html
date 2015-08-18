@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#155: 25 user logon problem
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23155%3A%2025%20user%20logon%20problem&In-Reply-To=%3C20130415230840.103249kxioog6tso%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005418.html">
+   <LINK REL="Next"  HREF="005435.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#155: 25 user logon problem</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23155%3A%2025%20user%20logon%20problem&In-Reply-To=%3C20130415230840.103249kxioog6tso%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] Bug#155: 25 user logon problem">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Mon Apr 15 23:08:40 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005418.html">[X2Go-Dev] Bug#108: Missing fonts in X application
+</A></li>
+        <LI>Next message: <A HREF="005435.html">[X2Go-Dev] Bug#155:  Bug#155: 25 user logon problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5420">[ date ]</a>
+              <a href="thread.html#5420">[ thread ]</a>
+              <a href="subject.html#5420">[ subject ]</a>
+              <a href="author.html#5420">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>tag #155 moreinfo
+thanks
+
+Hi Thomas,
+
+thanks for reporting the below issue.
+
+On Do 28 M&#228;r 2013 16:31:23 CET Thomas Hanschke wrote:
+
+&gt;<i> I have 25 thinclients (wyse with windows7 embedded) in a classroom.
+</I>&gt;<i> If more than 2 or 3 clients log on at exactly the same time, some of
+</I>&gt;<i> them stop at the black screen before the gray X2Go Logo appears.
+</I>&gt;<i> There is no error message. With a little timeshift of 2 or 3 seconds
+</I>&gt;<i> between the logons, there are no problems.
+</I>&gt;<i>
+</I>&gt;<i> I suggest a while-loop in x2gostartagent that looped through the
+</I>&gt;<i> displays until it had a valid display and free ports.
+</I>
+I have attached a slightly modified x2gostartagent script and patch  
+file that document the changes to this mail.
+
+Please copy the x2gostartagent script to /usr/bin/x2gostartagent on  
+the server and report back if the performed modification fixes your  
+25-user-issue.
+
+@Devs: I suspect we have to query x2gogetport 3x times during one run  
+of x2gostartagent to make sure that more-than-one instances of  
+x2gostartagent (run by different users at the very same time, a  
+typical class room situation) do not interfere with each other. This  
+probably has to happen in x2goresume-session, as well.
+
+I am not 100% sure if the modified x2gostartagent reduces the reported  
+issue to zero, but my guess is that the reported issue should go down  
+in occurrence tremendously.
+
+Please test with your setup and give feedback.
+
+Greets+thanks,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: x2gostartagent
+Type: application/x-sh
+Size: 10839 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130415/c7c34aec/attachment.sh">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130415/c7c34aec/attachment.sh</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 25-user-x2goserver.patch
+Type: text/x-patch
+Size: 1531 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130415/c7c34aec/attachment.bin">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130415/c7c34aec/attachment.bin</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20130415/c7c34aec/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20130415/c7c34aec/attachment.pgp</A>&gt;
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005418.html">[X2Go-Dev] Bug#108: Missing fonts in X application
+</A></li>
+	<LI>Next message: <A HREF="005435.html">[X2Go-Dev] Bug#155:  Bug#155: 25 user logon problem
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5420">[ date ]</a>
+              <a href="thread.html#5420">[ thread ]</a>
+              <a href="subject.html#5420">[ subject ]</a>
+              <a href="author.html#5420">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

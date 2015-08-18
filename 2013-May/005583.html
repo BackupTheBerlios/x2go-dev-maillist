@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Bug#203: Waiting for keyboard to appear
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23203%3A%20Waiting%20for%20keyboard%20to%20appear&In-Reply-To=%3Czarafa.5188f4a8.7774.59fb2244696d29ed%40mail.int.lindix.nl%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="005581.html">
+   <LINK REL="Next"  HREF="005590.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Bug#203: Waiting for keyboard to appear</H1>
+    <B>Dick Kniep</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Bug%23203%3A%20Waiting%20for%20keyboard%20to%20appear&In-Reply-To=%3Czarafa.5188f4a8.7774.59fb2244696d29ed%40mail.int.lindix.nl%3E"
+       TITLE="[X2Go-Dev] Bug#203: Waiting for keyboard to appear">dick at lindix.nl
+       </A><BR>
+    <I>Tue May  7 14:33:44 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="005581.html">[X2Go-Dev] Bug#202: Strange crash?
+</A></li>
+        <LI>Next message: <A HREF="005590.html">[X2Go-Dev] Bug#204: Error starting an aborted session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5583">[ date ]</a>
+              <a href="thread.html#5583">[ thread ]</a>
+              <a href="subject.html#5583">[ subject ]</a>
+              <a href="author.html#5583">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>package: pyhoca-gui
+Severity: normal
+Version: 0.4.0.1
+
+Under certain circumstances (which???) the connection is made, but the session cannot be started.
+
+
+May  7 14:28:29 menea /usr/bin/x2gosetkeyboard: Waiting for /home/dick/.x2go/C-dick-51-1367929691_stRTERMINAL_dp24/keyboard to appear
+May  7 14:28:29 menea /usr/bin/x2golistmounts[4191]: db_getmounts called, session ID: dick-51-1367929691_stRTERMINAL_dp24; return value: 127.0.0.1
+|<i>/tmp/.x2go-dick/spool/C-dick-51-1367929691_stRTERMINAL_dp24| 127.0.0.1|/tmp/.x2go-dick/media/disk/_home_dick| 127.0.0.1|/tmp/.x2go-dick/mimebox/C
+</I>-dick-51-1367929691_stRTERMINAL_dp24|
+May  7 14:28:30 menea /usr/bin/x2gosetkeyboard: Waiting for /home/dick/.x2go/C-dick-51-1367929691_stRTERMINAL_dp24/keyboard to appear
+May  7 14:28:34  /usr/bin/x2gosetkeyboard: last message repeated 4 times
+May  7 14:28:34 menea /usr/bin/x2golistsessions[4313]: x2golistsessions has been called with no option
+May  7 14:28:35 menea /usr/bin/x2golistmounts[4327]: db_getmounts called, session ID: dick-51-1367929691_stRTERMINAL_dp24; return value: 127.0.0.1
+|<i>/tmp/.x2go-dick/spool/C-dick-51-1367929691_stRTERMINAL_dp24| 127.0.0.1|/tmp/.x2go-dick/media/disk/_home_dick| 127.0.0.1|/tmp/.x2go-dick/mimebox/C
+</I>-dick-51-1367929691_stRTERMINAL_dp24|
+May  7 14:28:35 menea /usr/bin/x2gosetkeyboard: Waiting for /home/dick/.x2go/C-dick-51-1367929691_stRTERMINAL_dp24/keyboard to appear
+May  7 14:28:40  /usr/bin/x2gosetkeyboard: last message repeated 4 times
+May  7 14:28:40 menea /usr/bin/x2golistsessions[4382]: x2golistsessions has been called with no option
+May  7 14:28:40 menea /usr/bin/x2golistmounts[4396]: db_getmounts called, session ID: dick-51-1367929691_stRTERMINAL_dp24; return value: 127.0.0.1
+|<i>/tmp/.x2go-dick/spool/C-dick-51-1367929691_stRTERMINAL_dp24| 127.0.0.1|/tmp/.x2go-dick/media/disk/_home_dick| 127.0.0.1|/tmp/.x2go-dick/mimebox/C
+</I>-dick-51-1367929691_stRTERMINAL_dp24|
+May  7 14:28:40 menea /usr/bin/x2gosetkeyboard: Waiting for /home/dick/.x2go/C-dick-51-1367929691_stRTERMINAL_dp24/keyboard to appear
+May  7 14:28:42 menea /usr/bin/x2gosetkeyboard: Waiting for /home/dick/.x2go/C-dick-51-1367929691_stRTERMINAL_dp24/keyboard to appear
+May  7 14:28:42 menea postfix/smtpd[23561]: connect from menea.int.cvix.nl[127.0.0.1]
+May  7 14:28:42 menea postfix/smtpd[23561]: disconnect from menea.int.cvix.nl[127.0.0.1]
+May  7 14:28:43 menea /usr/bin/x2gosetkeyboard: Waiting for /home/dick/.x2go/C-dick-51-1367929691_stRTERMINAL_dp24/keyboard to appear
+May  7 14:28:45  /usr/bin/x2gosetkeyboard: last message repeated 2 times
+
+
+running as X2Go Agent
+
+NXAGENT - Version 3.5.0
+
+Copyright (C) 2001, 2011 NoMachine.
+See <A HREF="http://www.nomachine.com/">http://www.nomachine.com/</A> for more information.
+
+Info: Agent running with pid '3729'.
+Session: Starting session at 'Tue May  7 14:28:12 2013'.
+Info: Proxy running in server mode with pid '3729'.
+Info: Waiting for connection from 'localhost' on port '30004'.
+Info: Accepted connection from '127.0.0.1'.
+Info: Aborting the procedure due to signal '1'.
+Error: Aborting session with 'Unable to open display 'nx/nx,options=/home/dick/.x2go/C-dick-51-1367929691_stRTERMINAL_dp24/options:51''.
+Session: Aborting session at 'Tue May  7 14:29:12 2013'.
+Session: Session aborted at 'Tue May  7 14:29:12 2013'.
+session-C-dick-51-1367929691_stRTERMINAL_dp24.log (END)
+
+
+
+Met vriendelijke groet,
+Dick Kniep
+Lindix BV
+tel. 036-5215580
+mob. 06-50991858
+</PRE>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="005581.html">[X2Go-Dev] Bug#202: Strange crash?
+</A></li>
+	<LI>Next message: <A HREF="005590.html">[X2Go-Dev] Bug#204: Error starting an aborted session
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#5583">[ date ]</a>
+              <a href="thread.html#5583">[ thread ]</a>
+              <a href="subject.html#5583">[ subject ]</a>
+              <a href="author.html#5583">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

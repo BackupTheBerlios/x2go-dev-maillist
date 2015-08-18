@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2Go media player for redirected video [was Re: EyeOS]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20media%20player%20for%20redirected%20video%20%5Bwas%20Re%3A%0A%20EyeOS%5D&In-Reply-To=%3C1298485023.2367.22.camel%40porced%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001806.html">
+   <LINK REL="Next"  HREF="001795.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2Go media player for redirected video [was Re: EyeOS]</H1>
+    <B>cedric cavret</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2Go%20media%20player%20for%20redirected%20video%20%5Bwas%20Re%3A%0A%20EyeOS%5D&In-Reply-To=%3C1298485023.2367.22.camel%40porced%3E"
+       TITLE="[X2go-dev] X2Go media player for redirected video [was Re: EyeOS]">ced.ca at free.fr
+       </A><BR>
+    <I>Wed Feb 23 19:17:03 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001806.html">[X2go-dev] X2Go media player for redirected video [was Re:	EyeOS]
+</A></li>
+        <LI>Next message: <A HREF="001795.html">[X2go-dev] Windows client 3.01-18, VcXsrv 1.9.4.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1807">[ date ]</a>
+              <a href="thread.html#1807">[ thread ]</a>
+              <a href="subject.html#1807">[ subject ]</a>
+              <a href="author.html#1807">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, 
+I'm would like to suggest something to complete the third solution.
+Why don't we offer to the user the possibility to encode with a video
+stream a particular window.
+The server don't have to decide to encode or not.
+You decide to encode only when it' absolutly necessary by a right click
+on the window and finaly a choice in a menu.
+
+regards,
+
+c&#233;dric cavret
+
+ps : sorry for my poor english. I just discovered x2go a couple of
+months ago and i'm very insterested in it's developpement.
+Thanks to the developpers for the great job.
+
+
+Le mercredi 23 f&#233;vrier 2011 &#224; 13:12 +0100, Alexander Wuerstlein a
+&#233;crit :
+
+&gt;<i> On 11-02-23 05:59, John A. Sullivan III &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">jsullivan at opensourcedevel.com</A>&gt; wrote:
+</I>&gt;<i> &gt; On Tue, 2011-02-22 at 23:23 -0500, Gerry Reno wrote:
+</I>&gt;<i> &gt; &gt; On 02/22/2011 10:16 PM, John A. Sullivan III wrote:
+</I>&gt;<i> &gt; &gt; &gt; On Tue, 2011-02-22 at 21:09 -0500, Gerry Reno wrote:
+</I>&gt;<i> &gt; &gt; &gt;   
+</I>&gt;<i> &gt; &gt; &gt; &lt;big snip&gt;
+</I>&gt;<i> &gt; &gt; &gt;&gt; And rather than trying to pass the actual content around it's just seems
+</I>&gt;<i> &gt; &gt; &gt;&gt; easier to post the content on a webserver that the users can access from
+</I>&gt;<i> &gt; &gt; &gt;&gt; their client machines.
+</I>&gt;<i> &gt; &gt; &gt;&gt;     
+</I>&gt;<i> &gt; &gt; &gt; This is where I disagree.  When we have control of the content and
+</I>&gt;<i> &gt; &gt; &gt; environment that works.  But that's not our environment.  We want as
+</I>&gt;<i> &gt; &gt; &gt; seamless a user experience as possible whether they are browsing the
+</I>&gt;<i> &gt; &gt; &gt; Internet and hit a video, clicking on an email attachment that happens
+</I>&gt;<i> &gt; &gt; &gt; to be video, or viewing some kind of embedded video content.  We expect
+</I>&gt;<i> &gt; &gt; &gt; our clients to be able to work as closely as possible to their physical
+</I>&gt;<i> &gt; &gt; &gt; environment in their virtual environment.  The onus is on us to make
+</I>&gt;<i> &gt; &gt; &gt; that possible as transparently as possible without changing their
+</I>&gt;<i> &gt; &gt; &gt; procedures.  That may not be true of all deployments but it is true of
+</I>&gt;<i> &gt; &gt; &gt; ours - John
+</I>&gt;<i> &gt; &gt; &gt;   
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; Right now there is no simple way to do this with x2go or any of the
+</I>&gt;<i> &gt; &gt; other remote access technologies.
+</I>&gt;<i> &gt; Actually, although I have not used it, I believe Citrix is doing
+</I>&gt;<i> &gt; something like this.  Whatever EyeOS is doing works very well.  HP is
+</I>&gt;<i> &gt; taking a different approach by adapting their transport to the nature of
+</I>&gt;<i> &gt; the video being transmitted.  If what I propose is feasible, we have a
+</I>&gt;<i> &gt; possible solution.
+</I>&gt;<i> 
+</I>&gt;<i> There are basically 2 solutions to this problem (actually 3):
+</I>&gt;<i> - Adapt the software playing the media to stream the raw data over to
+</I>&gt;<i>   the thin-client without reencoding and play that stream on the
+</I>&gt;<i>   thin-client. Pros: same quality as local, Cons: possibly needs a lot
+</I>&gt;<i>   of bandwith and processing power on the thin-client. Only works with
+</I>&gt;<i>   adapted media-players.
+</I>&gt;<i> - Adapt some video-API like XVideo to re-encode every video-stream its
+</I>&gt;<i>   asked to play into some transfer format which is encodable in realtime
+</I>&gt;<i>   and sufficiently small in bandwith usage. Pros: thin-clients may be
+</I>&gt;<i>   smaller, works with every software that uses standard Video-APIs (so
+</I>&gt;<i>   possibly not flash...), lower bandwith usage. Cons: Possibly wouldn't
+</I>&gt;<i>   work with flash, needs a lot of processing power on the server,
+</I>&gt;<i>   possibly too much for high quality or larger window sizes of the video
+</I>&gt;<i> - Use some heuristics to recognize rapidly changing window contents
+</I>&gt;<i>   (which probably is either video or a game). Encode that window content
+</I>&gt;<i>   into a video stream. Pros: works with every software, including flash,
+</I>&gt;<i>   games and other weird stuff (i guess there will be corner cases
+</I>&gt;<i>   though). Cons: unbelievably ugly, lots of server load, possibly crappy
+</I>&gt;<i>   quality.
+</I>&gt;<i> 
+</I>&gt;<i> &gt; &gt; For true transparency the media would have to be played on the remote
+</I>&gt;<i> &gt; &gt; desktop media player but then the performance is bad.
+</I>&gt;<i> &gt; &gt; 
+</I>&gt;<i> &gt; &gt; To get satisfactory performance you have to use the media players on the
+</I>&gt;<i> &gt; &gt; users machine but then you would not have seamless experience.
+</I>&gt;<i> &gt; It is not entirely seamless but, at least for our purposes, it is much
+</I>&gt;<i> &gt; better than saying, &quot;save the video to disk, transfer the file to your
+</I>&gt;<i> &gt; local computer, now open it using your local media player.&quot; Let's do all
+</I>&gt;<i> &gt; of that automatically for them.  That may not work well for your
+</I>&gt;<i> &gt; environment but it would for ours.
+</I>&gt;<i> 
+</I>&gt;<i> The approaches described above practically preclude any scenario where
+</I>&gt;<i> playing videos would be absolutely seamless. Practically all solutions
+</I>&gt;<i> that do not take the third approach do only work with a few media
+</I>&gt;<i> players (in practice: their &quot;special&quot; Windows Media Player and their
+</I>&gt;<i> &quot;special&quot; Flash). I could be wrong and there are better solutions out
+</I>&gt;<i> there, but everything I have seen so far suggests that there is no nice
+</I>&gt;<i> and easy way...
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Ciao,
+</I>&gt;<i> 
+</I>&gt;<i> Alexander Wuerstlein.
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2go-dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2go-dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110223/4222ce68/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110223/4222ce68/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001806.html">[X2go-dev] X2Go media player for redirected video [was Re:	EyeOS]
+</A></li>
+	<LI>Next message: <A HREF="001795.html">[X2go-dev] Windows client 3.01-18, VcXsrv 1.9.4.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1807">[ date ]</a>
+              <a href="thread.html#1807">[ thread ]</a>
+              <a href="subject.html#1807">[ subject ]</a>
+              <a href="author.html#1807">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

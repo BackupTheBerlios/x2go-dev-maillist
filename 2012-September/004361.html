@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Issues/Quirks with MAC client
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Issues/Quirks%20with%20MAC%20client&In-Reply-To=%3C5062E87C.7020008%40stefanbaur.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004360.html">
+   <LINK REL="Next"  HREF="004362.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Issues/Quirks with MAC client</H1>
+    <B>Stefan Baur</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Issues/Quirks%20with%20MAC%20client&In-Reply-To=%3C5062E87C.7020008%40stefanbaur.de%3E"
+       TITLE="[X2Go-Dev] Issues/Quirks with MAC client">newsgroups.mail2 at stefanbaur.de
+       </A><BR>
+    <I>Wed Sep 26 13:35:24 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004360.html">[X2Go-Dev] Processed: Fixed in Vcs for X2Go Server
+</A></li>
+        <LI>Next message: <A HREF="004362.html">[X2Go-Dev] Issues/Quirks with MAC client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4361">[ date ]</a>
+              <a href="thread.html#4361">[ thread ]</a>
+              <a href="subject.html#4361">[ subject ]</a>
+              <a href="author.html#4361">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi list,
+
+I'm currently experimenting with x2goclient 3.99.2.2 on Mac OS X and 
+this is what I've found &quot;weird/fix-worthy&quot; so far:
+
+1) PulseAudio stutters (just like it does in the current MS-Windows client)
+2) when x2goclient is called with &quot;--hide&quot;, there is no way to access 
+the &quot;Published Applications&quot; menu
+2.1) there is no way to start published applications from the dock 
+(compare right-click on systray icon on MS-Windows)
+2.2) there also is no way to start published applications from the 
+x2goclient menu on the upper screen border
+
+Re: 1) I'm not sure what we can do about this; it seems Mihai's attempts 
+to make the PulseAudio developers aware of the issues have failed. :-(
+
+The other issues look like they could be fixed by the x2go-devs, though, 
+so I'm posting my suggestions here:
+
+Re: 2) &quot;--hide&quot;, on Windows (and probably also on Linux, though I never 
+checked it there), means &quot;hide-to-systray&quot;, so parts of the application 
+remain accessible via right-click (context menu).
+I guess a sensible action on Mac OS, when &quot;--hide&quot; is used, would be to 
+do a &quot;minimize&quot; by going straight to the Dock on startup, but, upon 
+clicking the Dock icon, show the usual screen (just like after 
+un-minimizing any other app).
+This is under the assumption that &quot;2.1)&quot; simply doesn't work on Mac OS.
+An alternative would be to remain &quot;hidden&quot;, i.e. without a visible 
+window on screen, and offering a pull-down menu with all published 
+applications on the top menu bar (&quot;2.2)&quot;).
+
+Now, before anyone starts coding away on this, I'd like to see some 
+feedback from the Mac users here:
+a) Where do you expect to find a list of published applications?
+b) Is there a UI styleguide by Apple that says this must/must 
+not/should/should not be done in a particular way?
+
+-Stefan
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004360.html">[X2Go-Dev] Processed: Fixed in Vcs for X2Go Server
+</A></li>
+	<LI>Next message: <A HREF="004362.html">[X2Go-Dev] Issues/Quirks with MAC client
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4361">[ date ]</a>
+              <a href="thread.html#4361">[ thread ]</a>
+              <a href="subject.html#4361">[ subject ]</a>
+              <a href="author.html#4361">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

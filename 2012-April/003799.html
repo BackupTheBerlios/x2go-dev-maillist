@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Writing a systemd service file
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Writing%20a%20systemd%20service%20file&In-Reply-To=%3C4F7C1BBC.6080208%40mageia.org%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003798.html">
+   <LINK REL="Next"  HREF="003800.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Writing a systemd service file</H1>
+    <B>Oliver Burger</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Writing%20a%20systemd%20service%20file&In-Reply-To=%3C4F7C1BBC.6080208%40mageia.org%3E"
+       TITLE="[X2Go-Dev] Writing a systemd service file">obgr_seneca at mageia.org
+       </A><BR>
+    <I>Wed Apr  4 12:00:28 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003798.html">[X2Go-Dev] Writing a systemd service file
+</A></li>
+        <LI>Next message: <A HREF="003800.html">[X2Go-Dev] X2Go release day: x2goserver, x2goclient (adds support for Published Applications)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3799">[ date ]</a>
+              <a href="thread.html#3799">[ thread ]</a>
+              <a href="subject.html#3799">[ subject ]</a>
+              <a href="author.html#3799">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Am 04.04.2012 11:51, schrieb Oliver Burger:
+Argh....
+&gt;<i> Here is the service file:
+</I>&gt;<i>
+</I>&gt;<i> ----------&gt; snip &lt;----------
+</I>&gt;<i> # this is a systemd service file for starting x2goserver
+</I>&gt;<i> [Unit]
+</I>&gt;<i> Description=x2go - remote desktop server
+</I>&gt;<i> After=syslog.target network.target
+</I>&gt;<i> #
+</I>&gt;<i> [Service]
+</I>&gt;<i> # The process to start is x2gocleansession
+</I>&gt;<i> ExecStart=/usr/bin/x2gocleansession
+</I>&gt;<i> #
+</I>&gt;<i> # perhaps some other things have to be done
+</I>&gt;<i> # don't know yet, let's talk to Colin
+</I>&gt;<i> [Install]
+</I>&gt;<i> WantedBy=multi-user.target
+</I>&gt;<i> ----------&gt; snip &lt;----------
+</I>Ok, the first error was the path, x2gocleansessions is in /usr/sbin, not 
+/usr/bin...
+The second error was that application name (missing &quot;s&quot; at the end of 
+the command.
+Now the error I wrote in the last mail is gone. But now I get no output 
+at all and it's still not working.
+when starting x2gocleansessions manually, everything is ok.
+
+Oliver
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003798.html">[X2Go-Dev] Writing a systemd service file
+</A></li>
+	<LI>Next message: <A HREF="003800.html">[X2Go-Dev] X2Go release day: x2goserver, x2goclient (adds support for Published Applications)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3799">[ date ]</a>
+              <a href="thread.html#3799">[ thread ]</a>
+              <a href="subject.html#3799">[ subject ]</a>
+              <a href="author.html#3799">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

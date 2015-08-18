@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Share database for multiple X2Go servers
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Share%20database%20for%20multiple%20X2Go%20servers&In-Reply-To=%3C1263004483.15916.5.camel%40jaseee.pacifera.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000269.html">
+   <LINK REL="Next"  HREF="000266.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Share database for multiple X2Go servers</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Share%20database%20for%20multiple%20X2Go%20servers&In-Reply-To=%3C1263004483.15916.5.camel%40jaseee.pacifera.com%3E"
+       TITLE="[X2go-dev] Share database for multiple X2Go servers">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat Jan  9 03:34:43 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000269.html">[X2go-dev] FUSE reFUSEs to install
+</A></li>
+        <LI>Next message: <A HREF="000266.html">[X2go-dev] x2go Web client is needed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#265">[ date ]</a>
+              <a href="thread.html#265">[ thread ]</a>
+              <a href="subject.html#265">[ subject ]</a>
+              <a href="author.html#265">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, all.  My rusty brain is gradually remembering the work we did a
+year ago when we first started adapting X2Go to our environment where we
+run a virtual vserver for each user so there is a one-to-one
+correspondence between virtual machines and virtual desktops.
+
+One of the important changes for our environment was to be able to run a
+single database server for all the (hopefully) thousands of individual
+X2Go servers.  I know tha X2GoServer-One is designed for this and uses
+SQLite.  However, I would rather run a single PostgreSQL server for 2000
+X2GoServer instances than running 2000 instances of SQLite on the
+virtual desktop host.
+
+We had submitted patches roughly a year ago for supporting a shared
+database.  A quick look at the wrapper scripts seems to indicate they
+weren't incorporated.  Is there a better way? Is this natively supported
+now? Or will we need to reapply our patches to use PostgreSQL schema for
+each user? Thanks and thrilled to be back on board with X2Go - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000269.html">[X2go-dev] FUSE reFUSEs to install
+</A></li>
+	<LI>Next message: <A HREF="000266.html">[X2go-dev] x2go Web client is needed
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#265">[ date ]</a>
+              <a href="thread.html#265">[ thread ]</a>
+              <a href="subject.html#265">[ subject ]</a>
+              <a href="author.html#265">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] CLI / plugin
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20CLI%20/%20plugin&In-Reply-To=%3C1276362654.2965.50.camel%40asus%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000552.html">
+   <LINK REL="Next"  HREF="000555.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] CLI / plugin</H1>
+    <B>J&#246;rg Sawatzki</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20CLI%20/%20plugin&In-Reply-To=%3C1276362654.2965.50.camel%40asus%3E"
+       TITLE="[X2go-dev] CLI / plugin">joerg.sawatzki at web.de
+       </A><BR>
+    <I>Sat Jun 12 19:10:54 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000552.html">[X2go-dev] How X2Go works
+</A></li>
+        <LI>Next message: <A HREF="000555.html">[X2go-dev] newest stuff
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#554">[ date ]</a>
+              <a href="thread.html#554">[ thread ]</a>
+              <a href="subject.html#554">[ subject ]</a>
+              <a href="author.html#554">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hey folks,
+
+first of all I'd like to thank you for your excellent work! I just gave
+x2go a try on my virtual server running ubuntu hardy and I am quite
+impressed how easy it was to set it up and how fast it works.
+
+One short thing concerning the new plugin (which is not yet released, I
+know): I am on ubuntu lucid here (amd64) and firefox 3.6.3 - browsing to
+<A HREF="http://plugin.x2go.org">http://plugin.x2go.org</A> and installing the plugin works perfectly.
+
+But: After installation, browsing to plugin.x2go.org makes firefox crash
+with the following command line output:
+firefox-bin: ../../src/xcb_io.c:249: process_responses: Assertion
+`(((long) (dpy-&gt;last_request_read) - (long) (dpy-&gt;request)) &lt;= 0)'
+failed.
+
+Just as a hint - but probably you already know this issue...
+
+Anyway, now my actual question: I am developing a portable learning and
+working environment for the state of Lower Saxony targeted to schools
+(<A HREF="http://www.n-stick.de">http://www.n-stick.de</A>). Basically users put it on their USB stick to
+manage their portable programs and get updates using an apt-get like
+repository providing software and learning materials. 
+If they e.g. install openoffice through the package manager, they can
+double click an *.odt file in the builtin file manager and it is opened
+with their openoffice. You probably already guess what I am thinking
+about: It would be cool if they had an option to say &quot;Edit online&quot; - in
+the case they don't have the appropriate application on their stick. Our
+portable desktop would then start x2goclient and popup an openoffice
+window on the remote x2goserver configured in the user's settings.
+
+I had a look at x2goclient-cli which could easily be executed by our
+python app.
+A few questions:
+- most of the users are using Windows - is or will the CLI be available
+for windows as well?
+- is there a way to tell the CLI that it should let the local window
+manager render the windows? If I use it with --command xterm for
+example, a 800x600 virtual desktop pops up and contains an xterm window.
+I have seen the x2goclient-gtk/qt can do that, but I am not sure how to
+do it with the CLI.
+- if the user clicks a file on his USB drive the terminal server will
+need access to it - is it possible to get that working with the CLI?
+
+Thanks once again and have fun at LinuxTag :o)
+
+J&#246;rg
+
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000552.html">[X2go-dev] How X2Go works
+</A></li>
+	<LI>Next message: <A HREF="000555.html">[X2go-dev] newest stuff
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#554">[ date ]</a>
+              <a href="thread.html#554">[ thread ]</a>
+              <a href="subject.html#554">[ subject ]</a>
+              <a href="author.html#554">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

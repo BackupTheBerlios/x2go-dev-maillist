@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Torn down TCP connections
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Torn%20down%20TCP%20connections&In-Reply-To=%3C54abdbd2-8551-40d0-8f14-6e5c056860cd%40office.splatnix.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001914.html">
+   <LINK REL="Next"  HREF="001916.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Torn down TCP connections</H1>
+    <B>--[ UxBoD ]--</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Torn%20down%20TCP%20connections&In-Reply-To=%3C54abdbd2-8551-40d0-8f14-6e5c056860cd%40office.splatnix.net%3E"
+       TITLE="[X2go-dev] Torn down TCP connections">uxbod at splatnix.net
+       </A><BR>
+    <I>Fri Mar 18 18:58:53 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001914.html">[X2go-dev] Torn down TCP connections
+</A></li>
+        <LI>Next message: <A HREF="001916.html">[X2go-dev] Torn down TCP connections
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1915">[ date ]</a>
+              <a href="thread.html#1915">[ thread ]</a>
+              <a href="subject.html#1915">[ subject ]</a>
+              <a href="author.html#1915">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+----- Original Message -----
+&gt;<i> Hi Phil,
+</I>&gt;<i> 
+</I>&gt;<i> On Fr 18 M&#228;r 2011 18:17:11 CET &quot;--[ UxBoD ]--&quot; wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; Hello All,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Am facing a problem where the three SSH tcp connections are being
+</I>&gt;<i> &gt; torn down. Personally I am using a Cisco router and reflexive ACLs
+</I>&gt;<i> &gt; and can see what is happening. I have tried configuring SSHD on the
+</I>&gt;<i> &gt; remote server side with the following:
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; TCPKeepAlive no
+</I>&gt;<i> &gt; ClientAliveInterval 30
+</I>&gt;<i> &gt; ClientAliveCountMax 3
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; This appears to have resolved the issue with File&amp;Print but the
+</I>&gt;<i> &gt; PulseAudio connection is still being torn down. Have thought about
+</I>&gt;<i> &gt; removing the ClientAliveCountMax but why would three attempts fail
+</I>&gt;<i> &gt; when I was still connected to my X2go session ?
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; This is so frustrating and cannot believe nobody else has hit it;
+</I>&gt;<i> &gt; unless everybody is running it across a LAN ???
+</I>&gt;<i> 
+</I>&gt;<i> What I always do when developing PyHoca and I meet an error, I switch
+</I>&gt;<i> over to x2goclient and test if the other X2go client app available
+</I>&gt;<i> shows the same behaviour.
+</I>&gt;<i> 
+</I>&gt;<i> As the SSH implementation in Python X2go is completely Python-based
+</I>&gt;<i> (Paramiko module) it should be possible to track down if it is a
+</I>&gt;<i> server problem or a client problem. So maybe you cross-check with
+</I>&gt;<i> PyHoca-GUI if the problem occurs there as well.
+</I>&gt;<i> 
+</I>&gt;<i> I have added quite some verbosity to PyHoca-GUI, also for failing
+</I>&gt;<i> (rev) port forwarding requests.
+</I>&gt;<i> 
+</I>&gt;<i> With what you describe:
+</I>&gt;<i> 
+</I>&gt;<i>    o do port forwardings start up and then fail (get torn down)
+</I>&gt;<i>    o or do they not even start up (rev port forwarding request
+</I>&gt;<i>    denials)
+</I>&gt;<i> 
+</I>&gt;<i> The last aspect I have met and unfortunately still meet with Python
+</I>&gt;<i> X2go... The denials are a known issue in SSHD (I can't find the
+</I>&gt;<i> source
+</I>&gt;<i> I found on the web a couple of weeks ago). If you meet rev port
+</I>&gt;<i> forwarding request denials, restart SSHD on the server and then the
+</I>&gt;<i> rev port fw request should succeed.
+</I>&gt;<i> 
+</I>&gt;<i> The denials of rev port forwarding occur only on ,,resume session''
+</I>&gt;<i> operations in PyHoca-GUI, esp. after a session has died unexpectedly.
+</I>&gt;<i> The reason is that SSHD does not release a requested port fast enough
+</I>&gt;<i> after the client connection has vanished (client-side network failure
+</I>&gt;<i> etc.).
+</I>&gt;<i> 
+</I>&gt;<i> So what I do with reverse port forwarding in Python X2go (that is in
+</I>&gt;<i> the client SSH code): I cancel a potentially previous port forwarding
+</I>&gt;<i> request on the server before requesting a new one on the same port.
+</I>&gt;<i> Especially while testing PyHoca-GUI (many session starts, reconnects,
+</I>&gt;<i> resumptions, etc. in a short period of time, often with the same
+</I>&gt;<i> session) I encountered many of these rev port fw denials. After
+</I>&gt;<i> adding
+</I>&gt;<i> the described above hack (cancel_port_fw before request_port_fw) I
+</I>&gt;<i> had
+</I>&gt;<i> reduced the issues to 10% or so, but they still occur, but only on
+</I>&gt;<i> certain test servers. Here I presume that the SSHD configs on the
+</I>&gt;<i> server could be optimized.
+</I>&gt;<i> 
+</I>&gt;<i> Hope this helps,
+</I>&gt;<i> Mike
+</I>&gt;<i> 
+</I>
+Thanks, Mike.
+
+I have been monitoring my router and see exactly what is happening; yet it does not for File/Print.  I am wondering whether libssh is sending any sort of keep-alive packet ? or perhaps it is not responding correctly to the server side packet that is being sent. libssh 0.4.8 came out in January so would be interested to see how x2go works when that version is used.  It's very frustrating indeed :(
+-- 
+Thanks, Phil
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001914.html">[X2go-dev] Torn down TCP connections
+</A></li>
+	<LI>Next message: <A HREF="001916.html">[X2go-dev] Torn down TCP connections
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1915">[ date ]</a>
+              <a href="thread.html#1915">[ thread ]</a>
+              <a href="subject.html#1915">[ subject ]</a>
+              <a href="author.html#1915">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

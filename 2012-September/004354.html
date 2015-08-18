@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] X2go, printing, Vserver, PostgreSQL  - PS
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-September/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2go%2C%20printing%2C%20Vserver%2C%20PostgreSQL%20%20-%20PS&In-Reply-To=%3C20120926091722.9130361cw8dv5r7m%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004348.html">
+   <LINK REL="Next"  HREF="004349.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] X2go, printing, Vserver, PostgreSQL  - PS</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20X2go%2C%20printing%2C%20Vserver%2C%20PostgreSQL%20%20-%20PS&In-Reply-To=%3C20120926091722.9130361cw8dv5r7m%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2Go-Dev] X2go, printing, Vserver, PostgreSQL  - PS">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Sep 26 09:17:22 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004348.html">[X2Go-Dev]  X2go, printing, Vserver, PostgreSQL  - PS
+</A></li>
+        <LI>Next message: <A HREF="004349.html">[X2Go-Dev] New X2Go releases: x2goserver, cups-x2go, x2goplasmabindings, python-x2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4354">[ date ]</a>
+              <a href="thread.html#4354">[ thread ]</a>
+              <a href="subject.html#4354">[ subject ]</a>
+              <a href="author.html#4354">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Ted,
+
+On Di 25 Sep 2012 18:05:08 CEST  wrote:
+
+&gt;<i> ...and given that we cannot get do a manual ssh command line  
+</I>&gt;<i> connection from the cups server/Vserver Host (which is this design  
+</I>&gt;<i> we assume is the &quot;ssh client&quot;) to the x2go server/Vserver Guest  
+</I>&gt;<i> (which would then be the &quot;ssh server&quot;) that that is probably where  
+</I>&gt;<i> the problem lies (which we think is what John is suggesting).
+</I>
+Yes, this is needed.
+
+&gt;<i> FYI  though we cannot ping the Vserver guest from the host or visa  
+</I>&gt;<i> versa by domain name (each can resolve to itself if we ping within
+</I>
+Why not??? This is also needed as the X2Go session DB stores  
+hostnames, not IPs.
+
+&gt;<i> the respective environments...i.e., in the Vserver host, if we ping  
+</I>&gt;<i> &quot;servername.myhost.com&quot; the ip resolves),  we think this is some  
+</I>&gt;<i> sort of network protocol/firewall issue (the inability to ping by  
+</I>&gt;<i> domain name) and not the source of the problem, but could be wrong.
+</I>
+It is another source of the problem. And it is not a firewall issue.  
+Put your hostnames in /etc/hosts of the machines if you cannot set up  
+DNS as needed for X2Go.
+
+&gt;<i> Are guessing this is an ssh issue and are working to sort that.  We  
+</I>&gt;<i> have some security concerns about have an active ssh between Vserver  
+</I>&gt;<i> guests and hosts, but figure we want to get the printing working  
+</I>&gt;<i> first and then think about possible security issues.
+</I>
+You can heavily restrict ssh daemon access in /etc/ssh/sshd_config.  
+Feel free to narrow SSH access down as much as needed.
+
+&gt;<i> SO...when we first try to connect via ssh commands from the cups  
+</I>&gt;<i> server on the vserver host to the x2go server on the Vserver guest  
+</I>&gt;<i> with the postgreSQL back end per  
+</I>&gt;<i> <A HREF="http://www.x2go.org/doku.php/wiki:advanced:multi-node:x2goserver-printing,">http://www.x2go.org/doku.php/wiki:advanced:multi-node:x2goserver-printing,</A>  
+</I>&gt;<i> we get...
+</I>&gt;<i>
+</I>&gt;<i> RSA key fingerprint is dd:04:0f:56:5f:23:a8:71:e6:d8:aa:64:4c:91:16:0d.
+</I>&gt;<i> Are you sure you want to continue connecting (yes/no)? yesWarning:  
+</I>&gt;<i> Permanently added '192.168.1.112' (RSA) to the list of known hosts.
+</I>&gt;<i> Permission denied (publickey).
+</I>
+Then your private/public key pair is not working properly.
+
+&gt;<i> We couldn't get the initial &quot;here's how you move the public key from  
+</I>&gt;<i> the client to the authorized_keys on the server&quot;, so we created  
+</I>&gt;<i> /home/x2goprint/.ssh and added the public key info to  
+</I>&gt;<i> authorized_keys there by hand....this also may be the source of the  
+</I>&gt;<i> problem.  We've tried checking the permissions and ownership on  
+</I>&gt;<i> /home/x2goprint and it's .ssh and authorized_keys, as well as the  
+</I>&gt;<i> x2go servers sshd_config file but no joy yet.  Interestingly, our  
+</I>&gt;<i> attempts do create a know_hosts file so we think some level of  
+</I>&gt;<i> connection occurs.
+</I>
+What does ,,getent passwd x2goprint'' tell you about x2goprint's home  
+directory. I have no idea why you cling to /home/x2goprint. This is  
+_not_ (!!!) the home of the x2goprint user as created on a default  
+X2Go server installation.
+
+&gt;<i> What's interesting, is that the print jobs show up in the  
+</I>&gt;<i> /var/spool/cups logs on the cups server (Vserver host), so there
+</I>
+No, that is not interesting at all. (Sorry for my sarcasm). This is  
+where CUPS (not cups-x2go) puts the spool job files. The fact, that  
+the files appear in /var/spool/cups simply means that your CUPS  
+installation is working. It does not say anythin about X2Go  
+functioning or not.
+
+&gt;<i> seems to be some level of connection....sowe're guessing the the  
+</I>&gt;<i> correct ssh connection is &quot;the problem&quot; we need to fix for x2goprint  
+</I>&gt;<i> (the script) to work.
+</I>&gt;<i>
+</I>&gt;<i> Thanks for the input - may write back with questions, or hopefully  
+</I>&gt;<i> &quot;this is how we solved this&quot;...
+</I>
+:<i>-)
+</I>
+&gt;<i> Best,
+</I>
+Greets,
+Mike
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, rothenstein 5, 24214 neudorf-bornstein
+fon: +49 (1520) 1976 148
+
+GnuPG Key ID 0x25771B31
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 836 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120926/164513de/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120926/164513de/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004348.html">[X2Go-Dev]  X2go, printing, Vserver, PostgreSQL  - PS
+</A></li>
+	<LI>Next message: <A HREF="004349.html">[X2Go-Dev] New X2Go releases: x2goserver, cups-x2go, x2goplasmabindings, python-x2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4354">[ date ]</a>
+              <a href="thread.html#4354">[ thread ]</a>
+              <a href="subject.html#4354">[ subject ]</a>
+              <a href="author.html#4354">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

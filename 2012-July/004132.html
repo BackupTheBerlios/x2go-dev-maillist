@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] x2goclient-3.99.2.1 plugin crash
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goclient-3.99.2.1%20plugin%20crash&In-Reply-To=%3C4FF58717.5060506%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="004131.html">
+   <LINK REL="Next"  HREF="004133.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] x2goclient-3.99.2.1 plugin crash</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20x2goclient-3.99.2.1%20plugin%20crash&In-Reply-To=%3C4FF58717.5060506%40obviously-nice.de%3E"
+       TITLE="[X2Go-Dev] x2goclient-3.99.2.1 plugin crash">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Thu Jul  5 14:22:47 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="004131.html">[X2Go-Dev] x2goclient-3.99.2.1 plugin crash
+</A></li>
+        <LI>Next message: <A HREF="004133.html">[X2Go-Dev] x2goclient-3.99.2.1 plugin crash
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4132">[ date ]</a>
+              <a href="thread.html#4132">[ thread ]</a>
+              <a href="subject.html#4132">[ subject ]</a>
+              <a href="author.html#4132">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Jan,
+
+I have made some fixes in X2GoPlugin code for several minutes:
+<A HREF="http://code.x2go.org/gitweb?p=x2goclient.git;a=commit;h=d4d0fe38610d3e514dc2e4e259ce8f103e4ac535">http://code.x2go.org/gitweb?p=x2goclient.git;a=commit;h=d4d0fe38610d3e514dc2e4e259ce8f103e4ac535</A>
+Please test it.
+The documentation in our wiki about X2Go Plugin configuration was too
+old. Since we using qtbrowserplugin for building X2Go Plugin we don't
+need a configuration file any more. All settings should be saved direct
+in HTML-File. I have the wiki page also updated, please check it:
+
+<A HREF="http://www.x2go.org/doku.php/wiki:components:x2goplugin#inserting_the_object_object_code">http://www.x2go.org/doku.php/wiki:components:x2goplugin#inserting_the_object_object_code</A>
+
+Am 05.07.2012 13:50, schrieb Jan Engelhardt:
+&gt;<i> 
+</I>&gt;<i> I can get the x2goclient firefox plugin to reproducibly crash. This 
+</I>&gt;<i> crash happens once one clicks on the blue X2go splash when the plugin
+</I>&gt;<i> is loaded.
+</I>&gt;<i> According to gdb,
+</I>&gt;<i> 
+</I>&gt;<i> (gdb) p stb
+</I>&gt;<i> $1 = (QToolBar *) 0x0  [or values pointing to unmapped areas]
+</I>&gt;<i> (gdb) l
+</I>&gt;<i> 10353   void ONMainWindow::slotEmbedToolBarToolTip()
+</I>&gt;<i> 10354   {
+</I>&gt;<i> 10355       if ( !showTbTooltip )
+</I>&gt;<i> 10356           return;
+</I>&gt;<i> 10357       QWidget* widg=stb-&gt;widgetForAction (
+</I>&gt;<i> 10358                         act_embedToolBar );
+</I>&gt;<i> 10359       QToolTip::showText ( this-&gt;mapToGlobal ( QPoint ( 6,6 ) ),
+</I>&gt;<i> 10360                            tr ( &quot;&lt;br&gt;&lt;b&gt;&nbsp;&nbsp;&nbsp;Click this &quot;
+</I>&gt;<i> 10361                                 &quot;button&nbsp;&nbsp;&nbsp;&lt;br&gt;&quot;
+</I>&gt;<i> 10362                                 &quot;&nbsp;&nbsp;&nbsp;to restore toolbar&quot;
+</I>&gt;<i> (gdb) bt
+</I>&gt;<i> #0  data (this=0x8) at ../../src/corelib/tools/qscopedpointer.h:135
+</I>&gt;<i> #1  qGetPtrHelper&lt;QScopedPointer&lt;QObjectData&gt; &gt; (p=...)
+</I>&gt;<i>     at ../../src/corelib/global/qglobal.h:2342
+</I>&gt;<i> #2  d_func (this=0x0) at widgets/qtoolbar.h:167
+</I>&gt;<i> #3  QToolBar::widgetForAction (this=0x0, action=0x0)
+</I>&gt;<i>     at widgets/qtoolbar.cpp:1285
+</I>&gt;<i> #4  0x00007fe1d9ad5c03 in ONMainWindow::slotEmbedToolBarToolTip (this=
+</I>&gt;<i>     0x7fe1d14c6800) at ../onmainwindow.cpp:10358
+</I>&gt;<i> #5  0x00007fe1d9b554fd in ONMainWindow::qt_metacall (this=0x7fe1d14c6800, _c=
+</I>&gt;<i>     QMetaObject::InvokeMetaMethod, _id=108, _a=0x7fff1d3d0440)
+</I>&gt;<i>     at moc_onmainwindow.cpp:402
+</I>&gt;<i> #6  0x00007fe1d7c235aa in QMetaObject::activate (sender=0x7fe1d1413200, 
+</I>&gt;<i>     m=&lt;optimized out&gt;, local_signal_index=&lt;optimized out&gt;, argv=0x0)
+</I>&gt;<i>     at kernel/qobject.cpp:3287
+</I>&gt;<i> #7  0x00007fe1d7c2b66f in QSingleShotTimer::timerEvent (this=0x7fe1d1413200)
+</I>&gt;<i>     at kernel/qtimer.cpp:308
+</I>&gt;<i> #8  0x00007fe1d7c26e89 in QObject::event (this=0x7fe1d1413200, 
+</I>&gt;<i>     e=&lt;optimized out&gt;) at kernel/qobject.cpp:1190
+</I>&gt;<i> #9  0x00007fe1d844fc34 in notify_helper (e=0x7fff1d3d0b00, receiver=
+</I>&gt;<i>     0x7fe1d1413200, this=0x7fe1db3e00b0) at kernel/qapplication.cpp:4481
+</I>&gt;<i> #10 QApplicationPrivate::notify_helper (this=0x7fe1db3e00b0, receiver=
+</I>&gt;<i>     0x7fe1d1413200, e=0x7fff1d3d0b00) at kernel/qapplication.cpp:4453
+</I>&gt;<i> #11 0x00007fe1d8454ac1 in QApplication::notify (this=0x7fe1db3a94b0, receiver=
+</I>&gt;<i>     0x7fe1d1413200, e=0x7fff1d3d0b00) at kernel/qapplication.cpp:4360
+</I>&gt;<i> ---Type &lt;return&gt; to continue, or q &lt;return&gt; to quit---q
+</I>&gt;<i> Quit
+</I>&gt;<i> 
+</I>&gt;<i> I also attempted to valgrind that, and came up with
+</I>&gt;<i> 
+</I>&gt;<i> ==19917== Conditional jump or move depends on uninitialised value(s)
+</I>&gt;<i> ==19917==    at 0x12237BD8: ONMainWindow::slotEmbedToolBarToolTip() (onmainwindow.cpp:10355)
+</I>&gt;<i> ==19917==    by 0x122B74FC: ONMainWindow::qt_metacall(QMetaObject::Call, int, void**) (moc_onmainwindow.cpp:402)
+</I>&gt;<i> ==19917==    by 0x1424A5A9: QMetaObject::activate(QObject*, QMetaObject const*, int, void**) (qobject.cpp:3287)
+</I>&gt;<i> ==19917==    by 0x1425266E: QSingleShotTimer::timerEvent(QTimerEvent*) (qtimer.cpp:308)
+</I>&gt;<i> ==19917==    by 0x1424DE88: QObject::event(QEvent*) (qobject.cpp:1190)
+</I>&gt;<i> ==19917==    by 0x132C9C33: QApplicationPrivate::notify_helper(QObject*, QEvent*) (qapplication.cpp:4481)
+</I>&gt;<i> ==19917==    by 0x132CEAC0: QApplication::notify(QObject*, QEvent*) (qapplication.cpp:4360)
+</I>&gt;<i> ==19917==    by 0x1423782B: QCoreApplication::notifyInternal(QObject*, QEvent*) (qcoreapplication.cpp:787)
+</I>&gt;<i> ==19917==    by 0x142643A7: QTimerInfoList::activateTimers() (qcoreapplication.h:215)
+</I>&gt;<i> ==19917==    by 0x14261B93: timerSourceDispatch(_GSource*, int (*)(void*), void*) (qeventdispatcher_glib.cpp:184)
+</I>&gt;<i> ==19917==    by 0xA3E258C: g_main_context_dispatch (gmain.c:2425)
+</I>&gt;<i> ==19917==    by 0xA3E2D87: g_main_context_iterate.isra.21 (gmain.c:3073)
+</I>&gt;<i> ==19917== 
+</I>&gt;<i> 
+</I>&gt;<i> So, showTbTooltip seems uninitialized. I added printfs around every 
+</I>&gt;<i> place where showTbTooltip is modified. However, my printfs never made it 
+</I>&gt;<i> to screen (stdout/stderr are connected to a /dev/pts/N), which means 
+</I>&gt;<i> that initWidgetsEmbed was never called.
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> X2Go-Dev mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">X2Go-Dev at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">https://lists.berlios.de/mailman/listinfo/x2go-dev</A>
+</I>
+
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 262 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20120705/438a5a69/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20120705/438a5a69/attachment.pgp</A>&gt;
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="004131.html">[X2Go-Dev] x2goclient-3.99.2.1 plugin crash
+</A></li>
+	<LI>Next message: <A HREF="004133.html">[X2Go-Dev] x2goclient-3.99.2.1 plugin crash
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#4132">[ date ]</a>
+              <a href="thread.html#4132">[ thread ]</a>
+              <a href="subject.html#4132">[ subject ]</a>
+              <a href="author.html#4132">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

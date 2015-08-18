@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2012-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Traffic%20shaping%20nightmare%20-%20missing%20SSH%20TOS%20bits&In-Reply-To=%3C1329813802.2788.119.camel%40denise.theartistscloset.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="003561.html">
+   <LINK REL="Next"  HREF="003563.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2Go-Dev%5D%20Traffic%20shaping%20nightmare%20-%20missing%20SSH%20TOS%20bits&In-Reply-To=%3C1329813802.2788.119.camel%40denise.theartistscloset.com%3E"
+       TITLE="[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Tue Feb 21 09:43:22 CET 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="003561.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+        <LI>Next message: <A HREF="003563.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3562">[ date ]</a>
+              <a href="thread.html#3562">[ thread ]</a>
+              <a href="subject.html#3562">[ subject ]</a>
+              <a href="author.html#3562">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Tue, 2012-02-21 at 09:30 +0100, Jan Engelhardt wrote:
+&gt;<i> On Tuesday 2012-02-21 07:05, John A. Sullivan III wrote:
+</I>&gt;<i> 
+</I>&gt;<i> &gt;I've been working on a project to implement traffic shaping
+</I>&gt;<i> &gt;to conform to 95th percentile billing including our X2Go virtual
+</I>&gt;<i> &gt;desktops. One of the challenges is prioritizing the interactive X2Go
+</I>&gt;<i> &gt;traffic (screen, keyboard, mouse) differently from bulk traffic like
+</I>&gt;<i> &gt;local share transfers, printing, and possibly sound.  I thought this
+</I>&gt;<i> &gt;would be trivial because of the SSH transport since SSH sets the
+</I>&gt;<i> &gt;minimize-delay bit for interactive traffic and the maximize-throughput
+</I>&gt;<i> &gt;bit for bulk transfers.
+</I>&gt;<i> 
+</I>&gt;<i> If a user has his own machine, he can of course do whatever he wants.
+</I>&gt;<i> Second, if he can pass options to ssh, he can set the QOS type
+</I>&gt;<i> arbitrarily, and even where that is not available for control, one
+</I>&gt;<i> can still cause the openssh client to use interactive TOS marking for
+</I>&gt;<i> bulk transfers, since secondary ssh channels (e.g. tunnels) do not
+</I>&gt;<i> pass up the TOS mark.
+</I>&lt;snip&gt;
+However, Windows and Mac clients may not be using OpenSSH.  Users may
+not have control over their X2Go Server configurations; they certainly
+do not in our environment.  We do need a way to distinguish between bulk
+and interactive traffic to ensure adequate performance in any bandwidth
+constrained environment.  Thanks - John
+
+PS - out of curiosity, now does one set the QoS type in OpenSSH? Several
+minutes of searching has not given me an answer.  That's far from an
+exhaustive search but, if someone knows off hand, it would be helpful.
+Thanks - John
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="003561.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+	<LI>Next message: <A HREF="003563.html">[X2Go-Dev] Traffic shaping nightmare - missing SSH TOS bits
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#3562">[ date ]</a>
+              <a href="thread.html#3562">[ thread ]</a>
+              <a href="subject.html#3562">[ subject ]</a>
+              <a href="author.html#3562">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

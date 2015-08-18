@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Dependency based booting in Squeeze
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-February/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Dependency%20based%20booting%20in%20Squeeze&In-Reply-To=%3C20110216132539.11642sjtyj33e8n7%40mail.das-netzwerkteam.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001742.html">
+   <LINK REL="Next"  HREF="001749.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Dependency based booting in Squeeze</H1>
+    <B>Mike Gabriel</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Dependency%20based%20booting%20in%20Squeeze&In-Reply-To=%3C20110216132539.11642sjtyj33e8n7%40mail.das-netzwerkteam.de%3E"
+       TITLE="[X2go-dev] Dependency based booting in Squeeze">mike.gabriel at das-netzwerkteam.de
+       </A><BR>
+    <I>Wed Feb 16 13:25:39 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001742.html">[X2go-dev] Dependency based booting in Squeeze
+</A></li>
+        <LI>Next message: <A HREF="001749.html">[X2go-dev] Dependency based booting in Squeeze
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1744">[ date ]</a>
+              <a href="thread.html#1744">[ thread ]</a>
+              <a href="subject.html#1744">[ subject ]</a>
+              <a href="author.html#1744">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Paul,
+
+On Mi 16 Feb 2011 13:11:28 CET Paul van der Vlis wrote:
+
+&gt;<i> When I edit /etc/init.d/x2goserver and replace the first line:
+</I>&gt;<i> #! /bin/sh
+</I>&gt;<i>
+</I>&gt;<i> By these 9 lines:
+</I>&gt;<i> ----------------
+</I>&gt;<i> #! /bin/sh
+</I>&gt;<i> ### BEGIN INIT INFO
+</I>&gt;<i> # Provides:          x2goserver
+</I>&gt;<i> # Required-Start:    $remote_fs $syslog
+</I>&gt;<i> # Required-Stop:     $remote_fs $syslog
+</I>&gt;<i> # Default-Start:     2 3 4 5
+</I>&gt;<i> # Default-Stop:      0 1 6
+</I>&gt;<i> # Short-Description: Start and stop the x2go daemon
+</I>&gt;<i> ### END INIT INFO
+</I>&gt;<i> ------------------
+</I>&gt;<i>
+</I>
+Could you send a patch (.diff attachment) to <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">patches at x2go.org.</A>
+
+Thanks,
+Mike
+
+
+
+-- 
+
+DAS-NETZWERKTEAM
+mike gabriel, dorfstr. 27, 24245 barmissen
+fon: +49 (4302) 281418, fax: +49 (4302) 281419
+
+GnuPG Key ID 0xB588399B
+mail: <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">mike.gabriel at das-netzwerkteam.de</A>, <A HREF="http://das-netzwerkteam.de">http://das-netzwerkteam.de</A>
+
+freeBusy:
+<A HREF="https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb">https://mail.das-netzwerkteam.de/freebusy/m.gabriel%40das-netzwerkteam.de.xfb</A>
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: not available
+Type: application/pgp-signature
+Size: 489 bytes
+Desc: Digitale PGP-Unterschrift
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110216/72b96a3a/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110216/72b96a3a/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001742.html">[X2go-dev] Dependency based booting in Squeeze
+</A></li>
+	<LI>Next message: <A HREF="001749.html">[X2go-dev] Dependency based booting in Squeeze
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1744">[ date ]</a>
+              <a href="thread.html#1744">[ thread ]</a>
+              <a href="subject.html#1744">[ subject ]</a>
+              <a href="author.html#1744">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

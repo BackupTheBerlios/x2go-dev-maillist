@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Password in plain text!?!?!?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2009-July/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Password%20in%20plain%20text%21%3F%21%3F%21%3F&In-Reply-To=%3C4A71BA44.1060608%40obviously-nice.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000063.html">
+   <LINK REL="Next"  HREF="000068.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Password in plain text!?!?!?</H1>
+    <B>Oleksandr Shneyder</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Password%20in%20plain%20text%21%3F%21%3F%21%3F&In-Reply-To=%3C4A71BA44.1060608%40obviously-nice.de%3E"
+       TITLE="[X2go-dev] Password in plain text!?!?!?">oleksandr.shneyder at obviously-nice.de
+       </A><BR>
+    <I>Thu Jul 30 17:20:36 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000063.html">[X2go-dev] Password in plain text!?!?!?
+</A></li>
+        <LI>Next message: <A HREF="000068.html">[X2go-dev] Password in plain text!?!?!?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#64">[ date ]</a>
+              <a href="thread.html#64">[ thread ]</a>
+              <a href="subject.html#64">[ subject ]</a>
+              <a href="author.html#64">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE><A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">Alexander.Kuchler at pruftechnik.com</A> schrieb:
+&gt;<i> 
+</I>&gt;&gt;<i> Hello Alexander,
+</I>&gt;&gt;<i> x2goclient need to save password on disk for sending it to ssh via
+</I>&gt;&gt;<i> SSH_ASKPASS program. Passwords are saved in protected file direct before
+</I>&gt;&gt;<i> initialization of ssh session and should be deleted immediately after
+</I>&gt;&gt;<i> initialization of ssh connection.
+</I>&gt;&gt;<i> You should not see the file with password in your
+</I>&gt;&gt;<i> C:\Documents\%User%\.x2go\ssh\
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I have tested x2go client right now and all I can see in my \.x2go\ssh\
+</I>&gt;&gt;<i> folder are several files with XXXXXXXXXXXXXXXXXX.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> If you can reproduce other behaviour of x2goclient on windows, you have
+</I>&gt;&gt;<i> possible found a bug in windows version of x2goclient. Let me know what
+</I>&gt;&gt;<i> you do to see file with password and I try to fix this problem. I will
+</I>&gt;&gt;<i> also try to found it by myself.
+</I>&gt;&gt;<i>
+</I>&gt;<i> I had one file on my own computer
+</I>&gt;<i> c:\Documents\%User%\.x2go\ssh\askpass.akk844
+</I>&gt;<i> which contained my password in plain text.
+</I>&gt;<i> 
+</I>&gt;<i> The other files
+</I>&gt;<i> c:\Documents\%User%\.x2go\ssh\askpass.* contained only XXXXX
+</I>&gt;<i> 
+</I>&gt;<i> The worrying thing was: In the morning I tried to login to the linux
+</I>&gt;<i> machine from the windows workstation of my colleage to figure out the
+</I>&gt;<i> reason for some other strange X2Go client effects. In the afternoon (in
+</I>&gt;<i> the meantime he started a few other x2go sessions) he came to me smiling
+</I>&gt;<i> and told me my password because the plain text askpass file of my
+</I>&gt;<i> session was still on his computer. And he told me he found files with
+</I>&gt;<i> his own password, too. Maybe it's not encrypted when anything is going
+</I>&gt;<i> wrong during initialisation of the session. But in my point of view this
+</I>&gt;<i> should really never happen.
+</I>&gt;<i> 
+</I>&gt;<i> Yours,
+</I>&gt;<i> Alexander
+</I>
+Ok. You have right. I will try to find why it happens and fix this bug.
+
+Greetings
+-- 
+Oleksandr Shneyder
+Dipl. Informatik
+X2go Core Developer Team
+
+email:  <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">oleksandr.shneyder at obviously-nice.de</A>
+web: www.obviously-nice.de
+
+--&gt; X2go - <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">everywhere at home</A>
+
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: signature.asc
+Type: application/pgp-signature
+Size: 260 bytes
+Desc: OpenPGP digital signature
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20090730/e90e58e0/attachment.pgp">https://lists.berlios.de/pipermail/x2go-dev/attachments/20090730/e90e58e0/attachment.pgp</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000063.html">[X2go-dev] Password in plain text!?!?!?
+</A></li>
+	<LI>Next message: <A HREF="000068.html">[X2go-dev] Password in plain text!?!?!?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#64">[ date ]</a>
+              <a href="thread.html#64">[ thread ]</a>
+              <a href="subject.html#64">[ subject ]</a>
+              <a href="author.html#64">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

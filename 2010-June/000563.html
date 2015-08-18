@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] Extra functions requested in x2go
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2010-June/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Extra%20functions%20requested%20in%20x2go&In-Reply-To=%3C1276967978.4296.28.camel%40localhost%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000562.html">
+   <LINK REL="Next"  HREF="000564.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] Extra functions requested in x2go</H1>
+    <B>John A. Sullivan III</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20Extra%20functions%20requested%20in%20x2go&In-Reply-To=%3C1276967978.4296.28.camel%40localhost%3E"
+       TITLE="[X2go-dev] Extra functions requested in x2go">jsullivan at opensourcedevel.com
+       </A><BR>
+    <I>Sat Jun 19 19:19:38 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000562.html">[X2go-dev] Extra functions requested in x2go
+</A></li>
+        <LI>Next message: <A HREF="000564.html">[X2go-dev] Extra functions requested in x2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#563">[ date ]</a>
+              <a href="thread.html#563">[ thread ]</a>
+              <a href="subject.html#563">[ subject ]</a>
+              <a href="author.html#563">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Fri, 2010-06-18 at 10:19 +0200, Dick Kniep wrote:
+&gt;<i> Hi List,
+</I>&gt;<i> 
+</I>&gt;<i>  
+</I>&gt;<i> 
+</I>&gt;<i> First of all,I am very impressed by the work you have done and would
+</I>&gt;<i> like to thank all involved.
+</I>&gt;<i> 
+</I>&gt;<i>  
+</I>&gt;<i> 
+</I>&gt;<i> We are a company that provides a kind of CRM system over the net to
+</I>&gt;<i> our customers. (See www.lindix.nl, text is Dutch)
+</I>&gt;<i> 
+</I>&gt;<i>  
+</I>&gt;<i> 
+</I>&gt;<i> Currently we use GoGlobal but we want to switch to x2go. However,
+</I>&gt;<i> there is a missing piece. In GoGlobal it is possible to start an
+</I>&gt;<i> application on the client by the use of the extension of the file. So
+</I>&gt;<i> I can write an Excel sheet in my application and subsequently start
+</I>&gt;<i> the file, the result is that a local session opens on the client with
+</I>&gt;<i> the Excel sheet.
+</I>&gt;<i> 
+</I>&gt;<i>  
+</I>&gt;<i> 
+</I>&gt;<i> I realize that there are security issues here, but for our application
+</I>&gt;<i> this would be a real bonus.
+</I>&gt;<i> 
+</I>&gt;<i>  
+</I>&gt;<i> 
+</I>&gt;<i> Is there any chance this could be implemented? If the number of hours
+</I>&gt;<i> involved is reasonable, we even would pay for that.
+</I>&lt;snip&gt;
+I'm not entirely sure but you may be able to do this yourself.  I can
+think of two possible ways but I have tried neither.
+
+It is possible to start a specific application rather than a destkop.
+If one started something like Konqueror or Nautilus, I wonder what would
+happen when one clicked on a file to open it.  It may very well open in
+the associated application but I'm not sure.
+
+If you wanted more granularity, i.e., to pass a specific file rather
+than searching through a file manager, you may be able to adapt the
+scripts yourself.  It is the beauty of open source.  X2Go is largely a
+collection of bash and perl scripts that tie together various
+technologies (the NX libraries, ssh, pulseaudio, sshfs, etc.).  Perhaps
+you could add some kind of case statement or other branch logic to parse
+the passed file for the extension and then launch an application based
+thereon, e.g., 
+
+EXT=${1%.*}
+if [ &quot;${EXT}&quot; = &quot;.xls&quot; ];then
+	COMMAND=&quot;/usr/bin/oocalc ${1}&quot;
+elif [ &quot;${EXT}&quot; = &quot;.odt&quot; ];then
+	COMMAND=&quot;/usr/bin/oowriter ${1}&quot;
+. . . 
+fi
+
+I'm just guessing at the syntax and do not know if it is possible but we
+have been able to highly customize our X2Go scripts for our very
+specific environment.
+
+I recently posted a scratch sheet to this list on what we found as we
+investigated the process X2Go undergoes to start and stop sessions. It
+describes what scripts run when.  Good luck - John
+
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000562.html">[X2go-dev] Extra functions requested in x2go
+</A></li>
+	<LI>Next message: <A HREF="000564.html">[X2go-dev] Extra functions requested in x2go
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#563">[ date ]</a>
+              <a href="thread.html#563">[ thread ]</a>
+              <a href="subject.html#563">[ subject ]</a>
+              <a href="author.html#563">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>

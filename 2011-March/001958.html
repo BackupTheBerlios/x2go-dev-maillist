@@ -1,0 +1,176 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [X2go-dev] X2go is insecure
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/x2go-dev/2011-March/index.html" >
+   <LINK REL="made" HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20is%20insecure&In-Reply-To=%3Cvmime.4d91e024.80e.2c275bcf4bfc7309%40mail.pl20%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001957.html">
+   <LINK REL="Next"  HREF="001959.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[X2go-dev] X2go is insecure</H1>
+    <B>Dick Kniep</B> 
+    <A HREF="mailto:x2go-dev%40lists.berlios.de?Subject=Re%3A%20%5BX2go-dev%5D%20X2go%20is%20insecure&In-Reply-To=%3Cvmime.4d91e024.80e.2c275bcf4bfc7309%40mail.pl20%3E"
+       TITLE="[X2go-dev] X2go is insecure">dick.kniep at lindix.nl
+       </A><BR>
+    <I>Tue Mar 29 15:35:32 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001957.html">[X2go-dev] Suggestion: Make x2gothinclientsystem less invasive
+</A></li>
+        <LI>Next message: <A HREF="001959.html">[X2go-dev] X2go is insecure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1958">[ date ]</a>
+              <a href="thread.html#1958">[ thread ]</a>
+              <a href="subject.html#1958">[ subject ]</a>
+              <a href="author.html#1958">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi list,
+
+
+
+
+
+In the past few month, Mike has developed a very nice python client for x2go that caters to our need as a Application service provider. However during that period, we have investigated the security of X2go and it proves that X2go is an insecure product if used in a hostile environment like the Internet. 
+
+
+
+
+I know many of you are wondering: But we are using ssh, how can that be insecure? Well, as many of you know, one can connect to a server with ssh with a terminal and execute commands on that server, including commands like rm -Rf * or other commands. Even if the shell is disabled, it is still possible to execute any command on the server by using 
+
+
+
+
+ssh <A HREF="https://lists.berlios.de/mailman/listinfo/x2go-dev">user at server</A>&#160; 'command' 
+
+
+
+
+&#160;
+
+The problem is caused by the fact that the x2go server does not restrict the commands that can be entered thru ssh. This is bad, but what is worse, is that the X2go clients actually use this security hole to start any command it needs.
+
+
+
+
+
+
+&#160;
+
+To make it secure, ssh should be configured to allow only a single command. This wrapper-command effectively checks server side whether a requested command is allowed and started by the proper user. Only if both criteria are met, the command can be executed.
+
+
+
+So in the configuration of the x2gossh daemon, the following line is added:
+
+
+
+
+
+
+ForceCommand=&quot;x2gowrapper.sh $SSH_ORIGINAL_COMMAND&quot; ssh-rsa 
+
+
+
+
+&#160;
+
+The $SSH_ORIGINAL_COMMAND contains the original command that the client wants to execute on the server. This command is checked against the allowed commands for the user within the wrapper.
+
+
+
+
+
+
+Currently we are developing this wrapper that checks whether a command is allowed. When this is ready, we will make this available to the X2go project. However, acceptance of this solution will only happen if the principle problem is recognized.
+
+
+
+
+
+&#160;
+
+In pyhoca-gui a distinction can be made between an x2go system user and the end-user that is running the application. This is a good start, but does not solve the problem mentioned above. However if combined with the wrapper it is a real secure solution, as in the wrapper, the system user can only execute a number of x2go commands, while the end-user can only execute another set of commands.
+
+
+
+
+
+
+&#160;
+
+Furthermore, the client should be able to request the allowed commands for the end-user from the server and show them. If a user wants to change a profile, he/she should be allowed to choose only from the allowed commands. Also by this method it should be possible to generate the profiles automatically from the data from the server combined with some general parameters (like client-side printing and ways to connect).
+
+
+
+
+
+
+&#160;
+
+Therefore the following changes are requested:
+
+
+
+
+
+
+1. A 	seperate instance of the ssh daemon for x2go.	
+
+2. A 	wrapper that is ALWAYS called when connecting to the server by the 	ssh configuration	
+
+3. Separate 	users for the x2go system calls and the end-user	
+
+4. A 	change to the x2go clients to accomodate this change	
+
+5.An 	api on the server to request the allowed commands 	
+
+6. Automatic 	generation of the configuration on the cli&#235;nt side.
+
+
+Anyone willing to make a comment, please do so. The overall quality will only increase!
+
+
+
+
+
+
+Dick Kniep
+
+-------------- next part --------------
+An HTML attachment was scrubbed...
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/x2go-dev/attachments/20110329/789cdaaf/attachment.html">https://lists.berlios.de/pipermail/x2go-dev/attachments/20110329/789cdaaf/attachment.html</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001957.html">[X2go-dev] Suggestion: Make x2gothinclientsystem less invasive
+</A></li>
+	<LI>Next message: <A HREF="001959.html">[X2go-dev] X2go is insecure
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1958">[ date ]</a>
+              <a href="thread.html#1958">[ thread ]</a>
+              <a href="subject.html#1958">[ subject ]</a>
+              <a href="author.html#1958">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/x2go-dev">More information about the X2Go-Dev
+mailing list</a><br>
+</body></html>
